@@ -62,9 +62,13 @@ Working from a phone, he has no way to push it himself afterwards.
 
 There is a published page he uses at the gym: **Matchday Block**,
 <https://claude.ai/code/artifact/0f918bd3-56b5-439a-9d0d-fbd51a5a0a9b>. It is built
-from `ui/matchday.html` in this repo. Two lanes: a *team sheet* that captures a
-session against the prescribed line-up, and a *form guide* showing what the last
-export actually says.
+from `ui/matchday.html` in this repo. Three lanes: *week* (the Mon–Sun rotation at a
+glance, Week A or B, with a Log button per day), *team sheet* (captures a session
+against the prescribed line-up), and *form guide* (what the last export actually says).
+
+`plan.md` is the source for the week lane and the line-ups. If you change the
+programme there, update `WEEK` and `SESSIONS` in `ui/matchday.html` and republish, or
+the page will quietly go stale.
 
 The page cannot reach GitHub — published pages are blocked from calling any external
 API — so it holds saved sessions in itself and **you** are what moves them into the
@@ -104,6 +108,10 @@ anything else, then delete the file in the same commit.
   7-a-side. Never schedule around it — schedule under it.
 - **Flat bench was dropped deliberately** to prioritise incline. His call, sound
   reasoning, and it stands. Do not suggest bringing it back.
+- **The September 2025 drop in row load is a form change, not the injury.** He adjusted
+  how he rows in Sep 2025 and reset the load to match. The chart shows 80kg → 70 → 60
+  across that autumn; that is the new movement, not a decline. Do not read it as
+  pathology and do not "discover" it again.
 - **Right lat injury since June 2026, under physiotherapy care.** Left rows 70kg,
   right around 50kg and painful there. He has decided against imaging. Respect that.
   You are not his physio; their guidance overrides anything here.

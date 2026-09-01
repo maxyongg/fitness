@@ -56,8 +56,8 @@ header{border-bottom:1px solid var(--rule);background:var(--surface);}
 /* ---- tabs ---- */
 .tabs{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--rule)}
 .tabs-in{max-width:660px;margin:0 auto;padding:0 16px;display:flex;gap:2px}
-.tab{flex:1;appearance:none;border:0;background:none;cursor:pointer;padding:13px 6px 11px;
-  font-family:"Barlow Condensed",sans-serif;font-size:16px;font-weight:600;letter-spacing:.13em;
+.tab{flex:1;appearance:none;border:0;background:none;cursor:pointer;padding:13px 2px 11px;white-space:nowrap;
+  font-family:"Barlow Condensed",sans-serif;font-size:15px;font-weight:600;letter-spacing:.08em;
   text-transform:uppercase;color:var(--ink-3);border-bottom:2px solid transparent}
 .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
 .tab:focus-visible{outline:2px solid var(--accent);outline-offset:-3px}
@@ -68,7 +68,7 @@ section[hidden]{display:none!important}
 /* ---- generic card ---- */
 .card{background:var(--surface);border:1px solid var(--rule);border-radius:3px;box-shadow:var(--shadow);margin-bottom:16px}
 .card-h{padding:13px 15px 11px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:10px}
-.card-h h2{margin:0;font-size:15px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+.card-h h2{margin:0;font-size:15px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
 .card-h .hint{margin-left:auto;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
 .card-b{padding:15px}
 
@@ -195,6 +195,29 @@ td.n{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;tex
   font-weight:600;color:var(--ink-3);border-right:1px solid var(--rule);text-align:center}
 .phasebar div:last-child{border-right:0}
 .phasebar div.on{background:var(--accent);color:var(--accent-ink)}
+.wk{list-style:none;margin:0;padding:0}
+.wd{display:flex;border-top:1px solid var(--rule);align-items:stretch}
+.wd:first-child{border-top:0}
+.wd .day{flex:0 0 52px;background:var(--surface-2);border-right:1px solid var(--rule);
+  padding:12px 0 10px;text-align:center;font-family:"Barlow Condensed",sans-serif}
+.wd .day .dd{font-size:15px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;line-height:1}
+.wd .day .dnum{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);margin-top:3px}
+.wd.today .day{background:var(--accent);color:var(--accent-ink)}
+.wd.today .day .dnum{color:var(--accent-ink);opacity:.75}
+.wd .body{flex:1;min-width:0;padding:11px 13px 12px;display:flex;flex-direction:column;gap:5px}
+.wd .top{display:flex;align-items:baseline;gap:8px}
+.wd .ttl{font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:600;letter-spacing:.02em;line-height:1.1}
+.wd .len{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3)}
+.wd .list{font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+.wd .list b{font-weight:600;color:var(--ink)}
+.wd.quiet .ttl{color:var(--ink-3)}
+.wd.quiet .body{opacity:.85}
+.tag{display:inline-block;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:600;
+  padding:2px 6px;border-radius:2px;background:var(--surface-2);color:var(--ink-3);vertical-align:1px}
+.tag.opt{background:var(--amber-soft);color:var(--amber)}
+.tag.off{background:var(--clay-soft);color:var(--clay)}
+.tag.fix{background:var(--green-soft);color:var(--green)}
+.wd .go{margin-left:auto;flex:0 0 auto}
 footer{margin:26px 0 0;padding-top:16px;border-top:1px solid var(--rule);font-size:12px;color:var(--ink-3);line-height:1.6}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -209,13 +232,15 @@ footer{margin:26px 0 0;padding-top:16px;border-top:1px solid var(--rule);font-si
 
 <nav class="tabs">
   <div class="tabs-in">
-    <button class="tab" id="tab-sheet" role="tab" aria-selected="true" aria-controls="lane-sheet">Team sheet</button>
+    <button class="tab" id="tab-week" role="tab" aria-selected="true" aria-controls="lane-week">Week</button>
+    <button class="tab" id="tab-sheet" role="tab" aria-selected="false" aria-controls="lane-sheet">Team sheet</button>
     <button class="tab" id="tab-form" role="tab" aria-selected="false" aria-controls="lane-form">Form guide</button>
   </div>
 </nav>
 
 <div class="wrap">
-  <section class="lane" id="lane-sheet" role="tabpanel" aria-labelledby="tab-sheet"></section>
+  <section class="lane" id="lane-week" role="tabpanel" aria-labelledby="tab-week"></section>
+  <section class="lane" id="lane-sheet" role="tabpanel" aria-labelledby="tab-sheet" hidden></section>
   <section class="lane" id="lane-form" role="tabpanel" aria-labelledby="tab-form" hidden></section>
   <footer id="foot"></footer>
 </div>
@@ -519,6 +544,104 @@ function wire() {
 </script>
 <script>
 "use strict";
+/* ---------- lane: the week ---------- */
+var WEEK = {
+  A: [
+    { d: 1, key: 'push' },
+    { d: 2, fixed: 'Football', len: '2h', note: '7-a-side. Fixed — schedule under it, never around it.' },
+    { d: 3, rest: 'Rest', note: 'Protected. Late food after Tuesday football. Nothing goes here.' },
+    { d: 4, key: 'pull', note: 'RDL at RPE 7.' },
+    { d: 5, key: 'pushb' },
+    { d: 6, key: 'legs', note: 'Yoga happens either way — 90/90, half-pigeon, supine hamstring, open-book, couch stretch, ankle dorsiflexion.' },
+    { d: 0, key: 'calis' }
+  ],
+  B: [
+    { d: 1, key: 'push' },
+    { d: 2, fixed: 'Football', len: '2h', note: '7-a-side. Fixed.' },
+    { d: 3, rest: 'Rest', note: 'Protected. Nothing goes here.' },
+    { d: 4, key: 'pull', note: 'RDL drops to RPE 6 — two football sessions this week.' },
+    { d: 5, fixed: 'Football', len: '2h', note: 'Second session of the week. Push B gives way to it.' },
+    { d: 6, rest: 'Rest', note: 'Yoga optional.' },
+    { d: 0, key: 'calis' }
+  ]
+};
+var activeWeek = 'A';
+var FULL = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+function dateForDow(dow) {
+  var t = new Date(todayISO() + 'T12:00:00');
+  var mon = new Date(t); mon.setDate(t.getDate() - ((t.getDay() + 6) % 7));
+  var off = (dow === 0) ? 6 : dow - 1;
+  var x = new Date(mon); x.setDate(mon.getDate() + off);
+  return new Date(x.getTime() - x.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+}
+
+(function () {
+  var wk = document.getElementById('lane-week');
+
+  function render() {
+    var iso = todayISO(), ph = phaseFor(iso), today = new Date(iso + 'T12:00:00').getDay();
+    var h = '';
+
+    h += '<div class="card"><div class="card-h"><h2>' + esc(ph.label) + '</h2>' +
+         '<span class="hint">to ' + (ph.until === '9999-12-31' ? 'further notice' : ph.until) + '</span></div>' +
+         '<div class="card-b"><p class="note" style="margin:0 0 12px">' + esc(ph.rule) + '</p>' +
+         '<div class="seg">' +
+         '<button class="chip" data-wk="A" aria-pressed="' + (activeWeek === 'A') + '">Week A · one football</button>' +
+         '<button class="chip" data-wk="B" aria-pressed="' + (activeWeek === 'B') + '">Week B · two football</button>' +
+         '</div></div></div>';
+
+    h += '<div class="card"><div class="card-h"><h2>Week ' + activeWeek + '</h2>' +
+         '<span class="hint">order is programming</span></div><ul class="wk">';
+
+    WEEK[activeWeek].forEach(function (row) {
+      var S = row.key ? SESSIONS[row.key] : null;
+      var off = S && ph.days.indexOf(S.dow) === -1;
+      var quiet = !!(row.rest || off);
+      var cls = 'wd' + (row.d === today ? ' today' : '') + (quiet ? ' quiet' : '');
+      h += '<li class="' + cls + '"><div class="day"><div class="dd">' + DOW[row.d] + '</div>' +
+           '<div class="dnum">' + dateForDow(row.d).slice(8) + '</div></div><div class="body">';
+      h += '<div class="top"><span class="ttl">' + esc(S ? S.name : (row.fixed || row.rest)) + '</span>';
+      if (S) h += '<span class="len">~' + S.mins + ' min</span>';
+      if (row.len) h += '<span class="len">' + row.len + '</span>';
+      if (row.fixed) h += '<span class="tag fix">fixed</span>';
+      if (S && S.optional && !off) h += '<span class="tag opt">optional</span>';
+      if (off) h += '<span class="tag off">not this phase</span>';
+      if (S && !off) h += '<button class="mini go" data-log="' + row.key + '" data-d="' + row.d + '">Log</button>';
+      h += '</div>';
+      if (S) {
+        h += '<div class="list">' + S.items.map(function (it, i) {
+          var nm = it.ex.replace(/ \(.*\)$/, '') + (it.side ? ' ' + it.side.slice(0, 1) : '');
+          return '<b>' + (i + 1) + '</b> ' + esc(nm);
+        }).join(' · ') + '</div>';
+      }
+      if (row.note) h += '<div class="list" style="color:var(--ink-3)">' + esc(row.note) + '</div>';
+      h += '</div></li>';
+    });
+    h += '</ul></div>';
+
+    h += '<div class="card"><div class="card-h"><h2>Standing rules</h2></div><div class="card-b">' +
+         '<p class="note" style="margin:0">Restart at <strong>Monday</strong>, never Friday. After 10+ days off, take 10% off top sets for the first session. ' +
+         'Travelling: Sunday needs a pull-up bar and a floor. Pull-ups go <strong>first</strong> on pull day — position is worth about 10 reps.</p></div></div>';
+
+    wk.innerHTML = h;
+    wk.querySelectorAll('[data-wk]').forEach(function (b) {
+      b.onclick = function () { activeWeek = b.dataset.wk; render(); };
+    });
+    wk.querySelectorAll('[data-log]').forEach(function (b) {
+      b.onclick = function () {
+        draft = newDraft(b.dataset.log, dateForDow(+b.dataset.d));
+        draft.week = activeWeek; saveNote = '';
+        renderSheet(); window.goTab('sheet');
+      };
+    });
+  }
+  window.renderWeek = render;
+})();
+</script>
+
+<script>
+"use strict";
 /* ---------- lane: form guide ---------- */
 (function () {
   var form = document.getElementById('lane-form');
@@ -603,8 +726,9 @@ function wire() {
          '<div><div class="k">Last done</div><div class="v">' + r.last + '</div></div>' +
          '<div><div class="k">Pain logged</div><div class="v" style="color:var(--clay)">never</div></div></div>';
     h += lineChart(r.series, 340, 132);
-    h += '<p class="note">The decline starts <strong>September 2025</strong>, then an eight-month gap with no row at all, then one session back at 50kg. ' +
-         'Both sides were logged at the same weight that day, so the left-70 / right-50 split in <code>plan.md</code> has never actually reached the log.</p>';
+    h += '<p class="note">The step down from 80kg in <strong>September 2025</strong> is a form change — the load reset when the movement did. ' +
+         'It is not the injury, which dates from June 2026. What the log still does not show is the left-70 / right-50 split: ' +
+         'on 20 Aug both sides went in at 50kg.</p>';
     h += '</div></div>';
 
     /* pull-up position effect */
@@ -665,17 +789,20 @@ function wire() {
 
 /* ---------- chrome ---------- */
 (function () {
-  var t1 = document.getElementById('tab-sheet'), t2 = document.getElementById('tab-form');
-  var l1 = document.getElementById('lane-sheet'), l2 = document.getElementById('lane-form');
+  var TABS = { week: 'renderWeek', sheet: null, form: 'renderForm' };
   function go(which) {
-    var a = which === 'sheet';
-    t1.setAttribute('aria-selected', a); t2.setAttribute('aria-selected', !a);
-    l1.hidden = !a; l2.hidden = a;
-    if (!a) window.renderForm();
+    Object.keys(TABS).forEach(function (k) {
+      var on = k === which;
+      document.getElementById('tab-' + k).setAttribute('aria-selected', on);
+      document.getElementById('lane-' + k).hidden = !on;
+      if (on && TABS[k]) window[TABS[k]]();
+    });
     window.scrollTo(0, 0);
   }
-  t1.onclick = function () { go('sheet'); };
-  t2.onclick = function () { go('form'); };
+  window.goTab = go;
+  Object.keys(TABS).forEach(function (k) {
+    document.getElementById('tab-' + k).onclick = function () { go(k); };
+  });
 
   var ph = phaseFor(todayISO());
   document.getElementById('phaseTag').textContent = ph.label;
@@ -684,6 +811,7 @@ function wire() {
     DATA.export + ' (' + DATA.headline.sessions + ' sessions, ' + DATA.headline.sets.toLocaleString() + ' working sets, ' +
     DATA.headline.perweek_12 + '/week over the last 12).<br>Saved sessions live in this page until a Claude session writes them to the repo.';
 
+  window.renderWeek();
   renderSheet();
 })();
 </script>

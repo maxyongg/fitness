@@ -40,5 +40,7 @@ the export or in any analysis.
      · RDL 95.0 · lat pulldown 92.4 (current quarter; lifetime best 97.5 in Q2) · barbell curl 39.7
      Pull-up: 27 reps total / top set 10 when performed 2nd in session.
      Single-arm iso-lateral row: 80kg mid-2025 → 50kg now. THE number to watch.
+     (The Sep 2025 step down from 80kg is a form change, not the injury — his call,
+      confirmed 2026-09-01. The right-lat injury is separate, from June 2026.)
      Legs: 6.9% of all working sets ever. Core: planks only, unlogged.
      Corrected 2026-09-01: legs read 7.5% here, analyse.py on this same export gives 6.9%. -->
