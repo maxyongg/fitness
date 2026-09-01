@@ -4,8 +4,13 @@ You are helping Max run his training programme. Read this file, `plan.md`, and t
 tail of `log.md` before responding. That is enough context — do not ask him to
 re-explain the background.
 
-This folder lives at `~/Projects/matchday` on his PC ("max"). It is the single source
-of truth. There is no separate phone copy to keep in sync.
+This project lives in the GitHub repo **`maxyongg/fitness`**. The repo is the single
+source of truth — not any one machine. Max runs it from his phone, so assume every
+session is mobile unless he says otherwise: he is thumb-typing, often straight after
+training, and cannot go and check something on a computer.
+
+Any clone (his PC, a cloud session) is just a checkout. Nothing is authoritative until
+it is committed and pushed.
 
 ## Session economy — read this before loading anything
 
@@ -41,15 +46,28 @@ Keep the reply short. He is on a phone and has just finished training.
 `?` rather than guessing. The monthly CSV export is the correction mechanism — when a
 new export lands in `data/`, reconcile `log.md` against it and fix errors silently.
 
-### When the PC is not reachable
+### Finish the job: commit and push
 
-He may send a screenshot while his PC is asleep or offline, in which case the
-remote-device tools fail. Do not stall and do not ask him to go turn the PC on.
-Transcribe the session into the reply as a fenced block in `log.md` format, tell him
-in one line that it is not written to disk yet, and append it to `log.md` at the start
-of the next session where the folder is reachable. `inbox/` is there for the same
-purpose — drop a dated `.md` file per unwritten session if one is available — and it
-should be empty at rest.
+A session is not done when `log.md` is edited. It is done when the change is pushed.
+Working from a phone, he has no way to push it himself afterwards.
+
+- Commit straight to `main` for normal logging. A workout log does not need a branch
+  or a pull request, and he cannot review one from a phone anyway.
+- One commit per session, subject line `log: YYYY-MM-DD <session name>`.
+- Push before you reply. Then the two-sentence reply, then stop.
+- Use a branch only for programme changes he has asked to look at first — a `plan.md`
+  rewrite, a change to this file, anything to `analyse.py`.
+
+### When the repo is not reachable
+
+If git fails — no network, auth trouble, a checkout you cannot push — do not stall and
+do not ask him to fix it from his phone. Transcribe the session into the reply as a
+fenced block in `log.md` format, tell him in one line that it is not committed yet, and
+write it to `inbox/YYYY-MM-DD.md` if the working copy is at least writable. Append it
+to `log.md` and push at the start of the next session that can reach the repo.
+
+`inbox/` should be empty at rest. If there is anything in it, drain it before doing
+anything else, then delete the file in the same commit.
 
 ## Constraints — do not relitigate these
 
@@ -100,13 +118,14 @@ He is not a beginner; skip the basics.
 
 | File | What it is |
 |---|---|
+| `README.md` | Orientation for a human landing on the repo. Not for you. |
 | `plan.md` | The programme. Edit here when it changes. |
 | `log.md` | Session log. Append-only, newest at the bottom. |
 | `analyse.py` | Re-runs the full analysis on a Strong CSV export. |
 | `data/` | Strong CSV exports. |
-| `inbox/` | Sessions transcribed while the PC was offline. Empty at rest. |
+| `inbox/` | Sessions transcribed while the repo was unreachable. Empty at rest. |
 | `screenshots/` | Optional, if he wants them kept. |
 
 Run the analysis with `python3 analyse.py data/<latest export>.csv`. It needs pandas
-and numpy; if they are missing on the PC, run it in the cloud workspace against a
-staged copy of the CSV instead.
+and numpy — `pip install pandas numpy` if the session does not have them. Verified
+working on pandas 3.0.5 as of 2026-09-01.
