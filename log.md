@@ -10,7 +10,8 @@ pain(R): n/10 | note: free text
 - Exercise — weight × reps, reps, reps
 ```
 
-`pain(R)` is right-lat pain during the set, 0–6. Omit the field entirely on days
+`pain(R)` is right-lat pain during the set, 0–10 — the same scale as the green-light
+table in `plan.md` (≤3 is a green light). Omit the field entirely on days
 where nothing pulled. Use `?` for anything unreadable in a screenshot rather than
 guessing — the monthly CSV export corrects it.
 

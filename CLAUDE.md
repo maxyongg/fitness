@@ -58,6 +58,31 @@ Working from a phone, he has no way to push it himself afterwards.
 - Use a branch only for programme changes he has asked to look at first — a `plan.md`
   rewrite, a change to this file, anything to `analyse.py`.
 
+### The phone UI — draining the queue
+
+There is a published page he uses at the gym: **Matchday Block**,
+<https://claude.ai/code/artifact/0f918bd3-56b5-439a-9d0d-fbd51a5a0a9b>. It is built
+from `ui/matchday.html` in this repo. Two lanes: a *team sheet* that captures a
+session against the prescribed line-up, and a *form guide* showing what the last
+export actually says.
+
+The page cannot reach GitHub — published pages are blocked from calling any external
+API — so it holds saved sessions in itself and **you** are what moves them into the
+repo. When he says the queue has something in it, or asks you to drain it:
+
+1. `Artifact` with `action: "read"` and that URL. The saved sessions are JSON in the
+   `<script id="mb-state">` tag, each with a ready-made `md` block.
+2. Append those blocks to `log.md` in date order. They are already in log format —
+   check them, do not rewrite them.
+3. Commit and push.
+4. Republish `ui/matchday.html` with `url` set to that artifact, having first cleared
+   the drained entries from the `mb-state` JSON. Do not skip this — anything left in
+   the queue gets written twice next time.
+
+A screenshot dropped into the chat is still the faster path for a single session, and
+it stays supported. The page earns its place for `pain(R)`, which the screenshots
+cannot give you and which has never once been logged.
+
 ### When the repo is not reachable
 
 If git fails — no network, auth trouble, a checkout you cannot push — do not stall and
@@ -125,6 +150,7 @@ He is not a beginner; skip the basics.
 | `data/` | Strong CSV exports. |
 | `inbox/` | Sessions transcribed while the repo was unreachable. Empty at rest. |
 | `screenshots/` | Optional, if he wants them kept. |
+| `ui/matchday.html` | Source of the published phone page. Republish after editing. |
 
 Run the analysis with `python3 analyse.py data/<latest export>.csv`. It needs pandas
 and numpy — `pip install pandas numpy` if the session does not have them. Verified
