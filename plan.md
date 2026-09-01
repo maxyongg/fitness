@@ -3,8 +3,8 @@
 Two-week rotation. Week A has one football session, Week B has two.
 Order within each session is the order to perform them in — this is not cosmetic.
 
-Sessions run 5–6 exercises. That is roughly what you already do and it keeps sessions
-under an hour — it is **not** a finding. See "What we don't know" at the bottom.
+Sessions run 5–6 exercises because that is what fits the hour — it is **not** a tested
+optimum. See `docs/findings.md`.
 
 ## Phases
 
@@ -105,22 +105,8 @@ an adaptation and the physio should sign off on it.
 - After 10+ days off, take 10% off top sets for the first session
 - Travelling: Sunday's session needs a pull-up bar and a floor
 
-## What we don't know
+## What this rests on
 
-**Whether session length matters.** Tested it twice and got opposite answers.
-Scored against each lift's lifetime history, 7+ exercise sessions look worse — but
-6-exercise days are 49% of 2024 and 6% of 2026, so that comparison is mostly
-measuring two years of getting stronger. Remove the time trend and 7+ sessions score
-*best*, which is reverse causation: on good days you do more exercises and push
-further into the session.
-
-Observational data can't separate these. If you want the answer, run it deliberately:
-alternate a 5-exercise and a 7-exercise version of the same session for eight weeks,
-choosing which one **before** you train rather than by feel on the day. That's the
-only version of this that would mean anything.
-
-**What does hold:** the pull-up position effect. Position 2 for five months at 24–32
-reps, position 5 for three months at 13–23, back to position 2 and immediately 27.
-That was a standing programme decision rather than a day-by-day choice, so it isn't
-contaminated the same way — and the reversal rests on a single session, so treat it
-as strong but not proven.
+The pull-up position rule and the separate left/right row loads come out of his own
+data and hold up. The 5–6 exercise session length does **not** — it is a scheduling
+habit, not a finding. Working, and the open questions, in `docs/findings.md`.

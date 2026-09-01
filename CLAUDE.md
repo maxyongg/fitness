@@ -1,165 +1,93 @@
-# Matchday Block — training project
+# Matchday Block — Max's training repo
 
-You are helping Max run his training programme. Read this file, `plan.md`, and the
-tail of `log.md` before responding. That is enough context — do not ask him to
-re-explain the background.
+Read this, `plan.md`, and the last ~40 lines of `log.md`. That is the whole briefing —
+do not ask him to re-explain the background.
 
-This project lives in the GitHub repo **`maxyongg/fitness`**. The repo is the single
-source of truth — not any one machine. Max runs it from his phone, so assume every
-session is mobile unless he says otherwise: he is thumb-typing, often straight after
-training, and cannot go and check something on a computer.
+Max runs this from his phone, thumb-typing, usually straight after training. He cannot
+go and check something on a computer, and he cannot push a commit himself. The GitHub
+repo `maxyongg/fitness` is the source of truth; any clone is just a checkout, and
+nothing counts until it is pushed.
 
-Any clone (his PC, a cloud session) is just a checkout. Nothing is authoritative until
-it is committed and pushed.
+## Every session
 
-## Session economy — read this before loading anything
+- **Read:** this file, `plan.md`, tail of `log.md`. Nothing else by default.
+- **Never read `data/*.csv`** — ~7,500 rows. Reach it only through `analyse.py`, and
+  only monthly, when a new export lands.
+- Baseline numbers are in the comment at the foot of `log.md`. Don't re-derive them.
+- If `inbox/` holds anything, append it to `log.md` and delete it in the same commit,
+  before anything else. It is empty at rest.
 
-Max starts a **fresh task per workout** (or per week) rather than one long thread,
-because a long thread re-reads itself on every message. Keep each session cheap:
-
-- Read `CLAUDE.md`, `plan.md`, and the **last ~40 lines** of `log.md`. That is enough.
-- **Never read `data/*.csv` into context.** It is ~7,500 rows. Touch it only via
-  `analyse.py`, and only when he asks for analysis or a new export has landed.
-- Do not re-derive the baseline. It is in the comment at the foot of `log.md`.
-- Do not re-run `analyse.py` on a normal logging session. Monthly, on a new export.
-
-A normal session is: read three files, transcribe one screenshot, reply in two
-sentences, stop.
+He starts a fresh task per workout so no thread has to re-read itself. Keep it cheap:
+three files, one transcription, a two-sentence reply, stop.
 
 ## The standing job
 
-Most sessions Max drops in a **screenshot from the Strong app** — usually from his
-phone, right after training. When he does:
+He drops in a screenshot from the Strong app. Then:
 
-1. Transcribe it into `log.md` using the format at the top of that file. One line
-   per session, plus per-exercise lines indented beneath.
-2. **Flag anything worth flagging, briefly.** Not a report — two sentences at most:
-   - Right-side row load and whether he noted pain
-   - Session length only if it changed sharply — it is not a rule, see below
-   - Whether pull-ups were done first on pull day
-   - A lift that moved up, or one that has stalled 3+ sessions
-3. Say nothing if nothing is notable. Silence is a valid response to a normal session.
+1. **Transcribe** it into `log.md`, in the format at the top of that file — newest at
+   the bottom, exercises in performed order. Screenshots are lossy: mark anything
+   unreadable `?` rather than guessing. The monthly CSV export is the fix.
+2. **Commit and push** — straight to `main`, one commit, subject
+   `log: YYYY-MM-DD <session name>`. Push *before* you reply; he has no way to do it
+   afterwards. Use a branch only for what he'd want to review first: `plan.md`,
+   this file, `analyse.py`.
+3. **Reply in two sentences**, flagging only what earns it:
+   - right-side row load, and whether he noted pain
+   - were pull-ups first on pull day
+   - a lift that moved up, or one stalled 3+ sessions
+   - session length, only if it changed sharply — it is not a rule, see `docs/findings.md`
 
-Keep the reply short. He is on a phone and has just finished training.
+   Nothing notable → say nothing. Silence is a valid response to a normal session.
 
-**Screenshots are lossy.** Transcribe what you can read and mark anything unclear as
-`?` rather than guessing. The monthly CSV export is the correction mechanism — when a
-new export lands in `data/`, reconcile `log.md` against it and fix errors silently.
+The occasional jobs — draining the phone-UI queue, logging when git is unreachable,
+the monthly reconcile, republishing the page — live in `docs/workflows.md`. Read it
+when one comes up, not before.
 
-### Finish the job: commit and push
+## Settled — do not relitigate
 
-A session is not done when `log.md` is edited. It is done when the change is pushed.
-Working from a phone, he has no way to push it himself afterwards.
+- **Legs are optional.** He dislikes them; Saturday is optional by design. Never push
+  it, never guilt him, never offer "just a short one".
+- **Wednesday is a protected rest day.** Late food after Tuesday football. Nothing goes there.
+- **Football is fixed** — Tuesday evening, sometimes Friday too, 2h of 7-a-side.
+  Schedule under it, never around it.
+- **Flat bench was dropped** deliberately to prioritise incline. His call, sound, it stands.
+- **The Sep 2025 row drop (80 → 70 → 60kg) is a form change, not the injury.** He
+  changed how he rows and reset the load to match. Not pathology, and not a decline.
+  Do not discover it again.
+- **Right lat injury since June 2026**, under physiotherapy care. Left rows 70kg, right
+  ~50kg and painful there. He has decided against imaging. You are not his physio;
+  their guidance overrides anything here.
 
-- Commit straight to `main` for normal logging. A workout log does not need a branch
-  or a pull request, and he cannot review one from a phone anyway.
-- One commit per session, subject line `log: YYYY-MM-DD <session name>`.
-- Push before you reply. Then the two-sentence reply, then stop.
-- Use a branch only for programme changes he has asked to look at first — a `plan.md`
-  rewrite, a change to this file, anything to `analyse.py`.
+## What his data does and doesn't say
 
-### The phone UI — draining the queue
-
-There is a published page he uses at the gym: **Matchday Block**,
-<https://claude.ai/code/artifact/0f918bd3-56b5-439a-9d0d-fbd51a5a0a9b>. It is built
-from `ui/matchday.html` in this repo. Three lanes: *week* (the Mon–Sun rotation at a
-glance, Week A or B, with a Log button per day), *team sheet* (captures a session
-against the prescribed line-up), and *form guide* (what the last export actually says).
-
-`plan.md` is the source for the week lane and the line-ups. If you change the
-programme there, update `WEEK` and `SESSIONS` in `ui/matchday.html` and republish, or
-the page will quietly go stale.
-
-The page cannot reach GitHub — published pages are blocked from calling any external
-API — so it holds saved sessions in itself and **you** are what moves them into the
-repo. When he says the queue has something in it, or asks you to drain it:
-
-1. `Artifact` with `action: "read"` and that URL. The saved sessions are JSON in the
-   `<script id="mb-state">` tag, each with a ready-made `md` block.
-2. Append those blocks to `log.md` in date order. They are already in log format —
-   check them, do not rewrite them.
-3. Commit and push.
-4. Republish `ui/matchday.html` with `url` set to that artifact, having first cleared
-   the drained entries from the `mb-state` JSON. Do not skip this — anything left in
-   the queue gets written twice next time.
-
-A screenshot dropped into the chat is still the faster path for a single session, and
-it stays supported. The page earns its place for `pain(R)`, which the screenshots
-cannot give you and which has never once been logged.
-
-### When the repo is not reachable
-
-If git fails — no network, auth trouble, a checkout you cannot push — do not stall and
-do not ask him to fix it from his phone. Transcribe the session into the reply as a
-fenced block in `log.md` format, tell him in one line that it is not committed yet, and
-write it to `inbox/YYYY-MM-DD.md` if the working copy is at least writable. Append it
-to `log.md` and push at the start of the next session that can reach the repo.
-
-`inbox/` should be empty at rest. If there is anything in it, drain it before doing
-anything else, then delete the file in the same commit.
-
-## Constraints — do not relitigate these
-
-- **He dislikes leg training.** The Saturday leg day is optional by design. Never
-  push it, never guilt him about skipping it, never propose "just a short one".
-- **Wednesday is a protected rest day.** Late food after Tuesday football. Nothing
-  goes there. This has been settled.
-- **Football is fixed.** Always Tuesday evening, sometimes also Friday. 2h of
-  7-a-side. Never schedule around it — schedule under it.
-- **Flat bench was dropped deliberately** to prioritise incline. His call, sound
-  reasoning, and it stands. Do not suggest bringing it back.
-- **The September 2025 drop in row load is a form change, not the injury.** He adjusted
-  how he rows in Sep 2025 and reset the load to match. The chart shows 80kg → 70 → 60
-  across that autumn; that is the new movement, not a decline. Do not read it as
-  pathology and do not "discover" it again.
-- **Right lat injury since June 2026, under physiotherapy care.** Left rows 70kg,
-  right around 50kg and painful there. He has decided against imaging. Respect that.
-  You are not his physio; their guidance overrides anything here.
-
-## Principles established from his own data
-
-- **Order beats content.** Pull-ups at position 2 → 27 reps. Same month, position 5
-  → 15 reps. Session order is programming, not a detail.
-- **Session length is UNKNOWN — do not claim otherwise.** An earlier version of this
-  file asserted 5–6 exercises was his tested optimum. It was an artefact: session
-  length is confounded with the calendar, and de-trending reverses the sign because
-  good days produce longer sessions. Sessions run 5–6 because that fits his hour, not
-  because it's proven. `plan.md` has the full write-up.
-- **Left and right lat carry separate loads.** Left trains at 70kg and progresses.
-  Right is governed by pain, starting at the heaviest pain-free load. Do not hold
-  the left back to match the right.
+- **Order beats content.** Pull-ups at position 2 → 27 reps; same month at position 5
+  → 15. Session order is programming, not a detail.
+- **Left and right lat are separate lifts.** Left trains at 70kg and progresses; right
+  is governed by pain. Never hold the left back to match the right.
+- **Session length is UNKNOWN.** An earlier version of this file called 5–6 exercises
+  his tested optimum. It was an artefact of the calendar. Don't reassert it.
 - **He is right about his own body more often than the log is.** Three confident
-  findings in this project turned out to be scheduling artefacts read as physiology.
-  Ask why before inferring from data. The log records what he lifted, never why he
-  stopped.
+  findings here turned out to be scheduling artefacts read as physiology. Ask why
+  before inferring. The log records what he lifted, never why he stopped.
+
+Full working and the open questions: `docs/findings.md`.
 
 ## Tone
 
-He wants directness and will push back when you are wrong — take it, correct it,
-move on. Do not soften findings into mush, and do not over-apologise when corrected.
-He is not a beginner; skip the basics.
-
-## Open questions
-
-- Is the 50kg right-side ceiling pain-limited or caution-limited? The pain scores
-  in `log.md` should answer this over time.
-- Feb–Apr 2026 was his best block in two years — nine straight Saturday leg days.
-  Why it worked was never established. He started CPAP in May/June, which is when
-  the decline begins, but he considers this closed.
+Direct. He'll push back when you're wrong — take it, correct it, move on. Don't soften
+findings into mush, don't over-apologise, don't explain the basics. He isn't a beginner.
 
 ## Files
 
-| File | What it is |
+| | |
 |---|---|
-| `README.md` | Orientation for a human landing on the repo. Not for you. |
 | `plan.md` | The programme. Edit here when it changes. |
 | `log.md` | Session log. Append-only, newest at the bottom. |
-| `analyse.py` | Re-runs the full analysis on a Strong CSV export. |
-| `data/` | Strong CSV exports. |
-| `inbox/` | Sessions transcribed while the repo was unreachable. Empty at rest. |
+| `docs/workflows.md` | The occasional jobs. On demand. |
+| `docs/findings.md` | What the data supports, what it doesn't, what's open. On demand. |
+| `analyse.py` | Full analysis of a Strong export. Monthly, not per session. |
+| `data/` | Strong CSV exports. Never read directly. |
+| `inbox/` | Sessions logged while the repo was unreachable. Empty at rest. |
 | `screenshots/` | Optional, if he wants them kept. |
 | `ui/matchday.html` | Source of the published phone page. Republish after editing. |
-
-Run the analysis with `python3 analyse.py data/<latest export>.csv`. It needs pandas
-and numpy — `pip install pandas numpy` if the session does not have them. Verified
-working on pandas 3.0.5 as of 2026-09-01.
+| `README.md` | Orientation for a human landing on the repo. Not for you. |
