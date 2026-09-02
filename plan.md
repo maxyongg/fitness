@@ -29,14 +29,26 @@ optimum. See `docs/findings.md`.
 
 **Wed · Rest** — protected. Nothing goes here.
 
-**Thu · Pull + hamstrings** (~55 min)
+**Thu · Pull** (~50 min)
+
+Five exercises, because that is what he actually does. Of the 22 pull sessions between
+May and August 2026: none ran to more than five exercises, **all 22** included a bicep
+movement, and **none** included an RDL. An earlier version of this file prescribed
+seven and cut the curls. It was wrong — this is the corrected day.
 
 1. Pull Up — 3 × AMRAP · **first, always**
-2. Single-Arm Iso-Lateral Row — 3 × 8–10/side · left 70kg progressing, right pain-limited. Log separately.
-3. Single-Arm Lat Pulldown — 3 × 10/side
-4. Seated Wide-Grip Row — 3 × 8–12 · hold 57kg, chase reps
-5. Face Pull (Cable) — 3 × 12–15
-6. Romanian Deadlift — 3 × 6–8 @ RPE 7
+2. Single-Arm Iso-Lateral Row — 3 × 8–10, left then right. Log separately; see the row protocol.
+3. Lat Pulldown (Cable) — 3 × 10
+4. Seated Wide-Grip Row (Cable) — 3 × 8–12 · hold 57kg, chase reps
+5. Bicep Curl — 3 × 8–10 · barbell, preacher or hammer, his pick
+
+Optional sixth only if the session is running short: Face Pull (Cable) 3 × 12–15.
+Alternate Single-Arm Lat Pulldown is a fine swap for the wide-grip row — he rotates
+between them already.
+
+**Hamstrings are not on this day any more.** The RDL sat here for posterior volume and
+he has never once performed it on a pull day. If hamstrings want work, it is the
+optional Saturday or Sunday's Nordics from 14 Sep.
 
 **Fri · Push B** (~50 min) — the droppable session
 
@@ -67,14 +79,16 @@ On weeks the leg day happens, drop the leg curl — Sunday's Nordics cover it.
 
 ## Week B — football Tuesday and Friday
 
-Mon Push (as A) · Tue Football · Wed Rest · Thu Pull, **RDL at RPE 6** ·
+Mon Push (as A) · Tue Football · Wed Rest · Thu Pull (as A) ·
 Fri Football · Sat Rest, yoga optional · Sun Calisthenics (as A)
 
 ## The row protocol
 
 Left and right are separate exercises that share a machine.
 
-**Left** — 70kg, progress normally. Holding it back detrains a healthy lat for
+**Left** — progress normally. Note the 70kg figure predates the September 2025 form
+change: the only 2026 row session (20 Aug) put *both* sides in at 50kg. Re-establish
+where the left actually is before assuming a 20kg gap. Holding it back detrains a healthy lat for
 nothing, and cross-education means training the good side produces measurable
 strength gains in the injured one.
 
