@@ -785,7 +785,10 @@ var activeWeek = null;                                 /* null = follow the cale
            '<td class="n">' + v.last + '</td><td class="n" style="color:' + col + '">' + (delta > 0 ? '+' : '') + delta + '</td></tr>';
     });
     h += '</tbody></table></div>';
-    h += '<p class="note">Everything is down — that is the two-week trip plus re-entry, not a programme failure. Legs are <strong>' + d.legspct + '%</strong> of every set ever logged, and that share has been stable for two years. That is what the optional legs day costs.</p>';
+    h += '<p class="note"><strong>Core is the gap.</strong> It was 8.8% of every set he has ever logged and has been zero since 9 March — ' +
+         'the clearest place to improve, and the most calisthenics-native. Rear delts have halved too, 3.0/wk down to 0.8, ' +
+         'because the face pull is optional. The rest being down is the two-week trip plus re-entry, not a programme failure. ' +
+         'Legs are <strong>' + d.legspct + '%</strong> of every set ever logged and stable for two years — that is what the optional legs day costs, by design.</p>';
     h += '</div></div>';
 
     form.innerHTML = h;

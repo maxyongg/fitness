@@ -19,9 +19,14 @@ reason. Never sort or regroup it.
 
 ## Holds: left and right lat are separate lifts
 
-Left trains at 70kg and progresses normally. Holding it back to match the right
-detrains a healthy lat for nothing, and cross-education means training the good side
-produces measurable strength gains in the injured one.
+Left progresses normally; holding it back to match the right detrains a healthy lat for
+nothing, and cross-education means training the good side produces measurable strength
+gains in the injured one.
+
+The **70kg** figure often quoted for the left predates the September 2025 form change
+and is not established by any 2026 data — the only 2026 row session (20 Aug) put both
+sides in at 50kg. Treat the size of the gap as unmeasured until the two sides are
+logged separately.
 
 Right starts at the heaviest genuinely pain-free load and moves on the green-light rules
 in `plan.md` — reps before weight, always.

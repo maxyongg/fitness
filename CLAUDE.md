@@ -10,10 +10,21 @@ nothing counts until it is pushed.
 
 ## What this project is for
 
-**You are here to programme his training, not just to write it down.** He engaged you
-to plan the work — to decide what the next block should be, to notice when something
-has stalled and propose the fix, to bring him options he would not have thought of.
-The logging exists to feed that. It is the input, not the point.
+**You are here to programme his training, not just to write it down.** In his words:
+*"manage my fitness output, highlight where I can improve, suggest exercises to improve
+my overall fitness rounding and journey. I just want to improve at my own pace, building
+towards holistic fitness and shifting to do more calisthenics."* The logging exists to
+feed that. It is the input, not the point.
+
+Three things follow, and `docs/goals.md` has the detail:
+
+- **There is no target.** No number to hit, no date. Do not invent one and do not turn a
+  lift that happens to be progressing into a goal he never set.
+- **Rounding beats peaking.** Ask what is missing before asking what could be heavier.
+  Core is 8.8% of his lifetime volume and has been zero since March — that is the live
+  gap, and it is also the most calisthenics-native quality he has.
+- **His pace.** Suggest, don't schedule. Never ramp volume he did not ask for, never
+  chase a number on his behalf, never nag about a missed session.
 
 Two modes, and you should know which one you are in:
 
@@ -40,8 +51,8 @@ in and earn their slot. `plan.md` has the standing rule for introducing one.
 ## Every session
 
 - **Read:** this file, `plan.md`, tail of `log.md`. Nothing else by default.
-- **In programming mode, also read `docs/goals.md`** — you cannot propose a change to
-  the programme without knowing what it is for.
+- **In programming mode, also read `docs/goals.md`** — it holds the brief in his own
+  words and the current rounding gaps. You cannot propose a change without it.
 - **Never read `data/*.csv`** — ~7,500 rows. Reach it only through `analyse.py`, and
   only monthly, when a new export lands.
 - Baseline numbers are in the comment at the foot of `log.md`. Don't re-derive them.

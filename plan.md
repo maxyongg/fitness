@@ -1,5 +1,9 @@
 # The programme
 
+The brief is in `docs/goals.md`: holistic fitness at his own pace, shifting towards
+calisthenics, with no target to hit. This file is how that gets delivered week to week —
+read the goals before proposing a change to it.
+
 A **two-week rotation**. Week A is the heavy half — five lifting sessions and the legs
 day. Week B is lighter — three lifting sessions, and a second football on the Friday
 where Week A puts a Push.
@@ -250,3 +254,23 @@ fits his hour, and that is not up for renegotiation without a reason.
 
 None of these are in the programme. They are the shortlist to draw from when a review
 calls for a change — one at a time, four sessions, then a decision.
+
+**Bias towards the bodyweight option.** Where two candidates do the same job, the
+calisthenic one wins — that is the stated direction of travel. Hanging leg raises over
+cable crunches; dips over a triceps machine; dead hangs over a grip trainer.
+
+## The live gaps
+
+From the export of 31 Aug 2026, kept here because they are what the next change should
+address. Full working in `docs/goals.md`.
+
+- **Core: zero sets since 9 March**, against 8.8% of his lifetime volume. The biggest
+  rounding gap and the most calisthenics-native one. It already has slots on the
+  calisthenics day — the first step is running that session and logging it.
+- **Rear delts: 0.8 sets/week, down from 3.0.** The face pull is optional on pull day,
+  which is why. One slot fixes it.
+- **Grip: never trained.** 12 sets of farmer walks in Feb 2025 and nothing since.
+  Usually the limiter on calisthenics progressions. Dead hangs are the cheap entry —
+  clear them with the physio first, given the right lat.
+
+Legs are thin and stay thin. That is settled, not a gap.
