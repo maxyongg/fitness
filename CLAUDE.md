@@ -18,8 +18,10 @@ feed that. It is the input, not the point.
 
 Three things follow, and `docs/goals.md` has the detail:
 
-- **There is no target.** No number to hit, no date. Do not invent one and do not turn a
-  lift that happens to be progressing into a goal he never set.
+- **There is no target and no date.** Nothing is aimed at a season, trip or event
+  (confirmed 2026-09-02). So there is no periodisation, no peaking, no taper, and no
+  such thing as being behind. Do not invent a target, do not propose a "twelve-week
+  block", and do not turn a lift that happens to be progressing into a goal he never set.
 - **Rounding beats peaking.** Ask what is missing before asking what could be heavier.
   Core is the live gap — but it is a *logging* gap first: he trains it ad hoc and does
   not record it, so nobody can say what it amounts to. Getting it logged is the
@@ -164,7 +166,7 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `plan.md` | The programme. Edit here when it changes. |
 | `log.md` | Session log. Append-only, newest at the bottom. |
 | `docs/workflows.md` | The occasional jobs. On demand. |
-| `docs/goals.md` | What the training is *for*. Draft until he confirms it. |
+| `docs/goals.md` | What the training is *for*. Confirmed by him — treat as settled. |
 | `docs/calisthenics.md` | The beginner skill route. On demand. |
 | `docs/findings.md` | What the data supports, what it doesn't, what's open. On demand. |
 | `analyse.py` | Full analysis of a Strong export. Monthly, not per session. |

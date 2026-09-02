@@ -138,6 +138,22 @@ The phone page picks the rotating exercises for him — a different combination 
 session, derived from the date — with a swap control on each slot and a "Vary it" button
 for the whole session. Anchors have no swap control.
 
-## Still unanswered
+## Nothing is pointed at a date
 
-- Is there any **date** anything is pointed at — a season, a trip, an event?
+Confirmed 2026-09-02. There is no season, trip or event this training is aimed at, and
+combined with "no target" that settles the shape of the programme:
+
+- **No periodisation, no peaking, no planned deloads.** There is nothing to peak *for*.
+  Never propose a "twelve-week block" or a taper — those are structures for a date that
+  does not exist.
+- **The phases are recovery-driven, not goal-driven.** Re-entry runs to 13 Sep because he
+  came back from a trip, not because anything is being built towards. Once the full block
+  starts it simply continues; there is no phase after it.
+- **Progression is open-ended and conditional.** Add weight when the reps say so and the
+  right lat allows it. There is no schedule and nothing is behind.
+- **A quiet month is not a failure.** With no date, there is no such thing as being off
+  track — only training that is happening or not happening. Never frame it otherwise.
+
+With this answered, **this file is no longer a draft.** Everything in it is either his
+own words or a decision he has confirmed. Treat the goals as settled and change them only
+when he says so.
