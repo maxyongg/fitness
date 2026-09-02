@@ -112,6 +112,10 @@ input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;b
   border-radius:2px;padding:5px 10px;font-family:"Barlow Condensed",sans-serif;font-size:14px;
   font-weight:600;letter-spacing:.09em;text-transform:uppercase}
 .addset:hover{border-color:var(--accent);color:var(--accent)}
+.swap{appearance:none;cursor:pointer;border:1px solid var(--rule-2);background:none;color:var(--ink-3);
+  border-radius:2px;padding:0 5px;font-size:13px;line-height:1.5;vertical-align:2px}
+.swap:hover{border-color:var(--accent);color:var(--accent)}
+.swap:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 
 /* ---- pain gate ---- */
 .gate{margin-top:12px;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
@@ -280,38 +284,60 @@ var PHASES = [
 
 var SESSIONS = {
   push: { name: 'Push', mins: 50, items: [
-    { ex: 'Incline Bench Press (Barbell)', p: '4 × 5–8', n: 'primary press · 60kg' },
-    { ex: 'Shoulder Press (Plate Loaded)', p: '3 × 8–10', n: 'or Arnold Press · OHP belongs here' },
-    { ex: 'Chest Fly', p: '3 × 10–12', n: 'or cable crossover' },
-    { ex: 'Lateral Raise (Dumbbell)', p: '3 × 15–20', n: 'stay high-rep · 7kg' },
-    { ex: 'Triceps Extension', p: '3 × 10–12', n: 'or dips · last of the five' },
-    { ex: 'Push-Up finisher', p: '3 × 15', n: 'even sets, not 25/8/8 · log it', bw: true, fin: true }
+    { ex: 'Incline Bench Press (Barbell)', p: '4 × 5–8', n: '60kg', anchor: true },
+    { ex: 'Shoulder Press (Plate Loaded)', p: '3 × 8–10',
+      alts: ['Arnold Press (Dumbbell)', 'Overhead Press (Barbell)', 'Landmine Press'] },
+    { ex: 'Chest Fly', p: '3 × 10–12',
+      alts: ['Cable Crossover', 'Incline Chest Press', 'Dumbbell Pullover'] },
+    { ex: 'Lateral Raise (Dumbbell)', p: '3 × 15–20', n: 'stay high-rep · 7kg', anchor: true,
+      alts: ['Lateral Raise (Cable)'] },
+    { ex: 'Triceps Extension', p: '3 × 10–12',
+      alts: ['Triceps Dip', 'One Handed Triceps Pull', 'Skullcrusher'] },
+    { ex: 'Push-Up', p: '3 × 15', n: 'even sets, not 25/8/8 · log it', bw: true, fin: true,
+      alts: ['Diamond Push-Up', 'Pike Push-Up', 'Deficit Push-Up'] }
   ]},
   pull: { name: 'Pull', mins: 50, gate: true, items: [
-    { ex: 'Pull Up', p: '3 × AMRAP', n: 'first, always', bw: true },
-    { ex: 'Single-Arm Iso-Lateral Row', p: '3 × 8–10', side: 'Left',  n: 're-establish the load' },
-    { ex: 'Single-Arm Iso-Lateral Row', p: '3 × 8–10', side: 'Right', n: 'pain-limited', gate: true },
-    { ex: 'Lat Pulldown (Cable)', p: '3 × 10', n: '67kg' },
-    { ex: 'Seated Wide-Grip Row (Cable)', p: '3 × 8–12', n: 'hold 57kg, chase reps' },
-    { ex: 'Bicep Curl', p: '3 × 8–10', n: 'barbell, preacher or hammer · always last' },
-    { ex: 'Face Pull (Cable)', p: '3 × 12–15', n: 'only if short on time', opt: true },
-    { ex: 'Hanging Leg Raise', p: '3 × 10–12', n: 'or pull-ups if you still want them here · log it', bw: true, fin: true }
+    { ex: 'Pull Up', p: '3 × AMRAP', n: 'first, always', bw: true, anchor: true },
+    { ex: 'Single-Arm Iso-Lateral Row', p: '3 × 8–10', side: 'Left',
+      n: 'the one horizontal row · sub: wide-grip or chest-supported', anchor: true },
+    { ex: 'Single-Arm Iso-Lateral Row', p: '3 × 8–10', side: 'Right',
+      n: 'pain-limited', gate: true, anchor: true },
+    { ex: 'Lat Pulldown (Cable)', p: '3 × 10', n: '67kg',
+      alts: ['Alternate Single Arm Lat Pulldown', 'Lat Pulldown - Underhand (Cable)', 'Straight Arm Pulldown'] },
+    { ex: 'Face Pull (Cable)', p: '3 × 12–15', n: 'rear delts — the real gap',
+      alts: ['Reverse Flye', 'Bent-Over Rear-Delt Raise'] },
+    { ex: 'Bicep Curl (Barbell)', p: '3 × 8–10',
+      alts: ['Preacher Curl (Barbell)', 'Hammer Curl (Dumbbell)', 'Incline Curl (Dumbbell)', 'Rings: Bicep Curl'] },
+    { ex: 'Hanging Leg Raise', p: '3 × 10–12', n: 'log it', bw: true, fin: true,
+      alts: ['Plank', 'Dead Hang', 'Ab Wheel'] }
   ]},
   calis: { name: 'Calisthenics', mins: 45, items: [
-    { ex: 'Pull Up', p: '3 × AMRAP', n: 'or wide pull-up · right lat governs this', bw: true },
-    { ex: 'Chin Up', p: '3 × 6–8', bw: true },
-    { ex: 'Triceps Dip', p: '3 × 8–10', bw: true },
-    { ex: 'Hanging Leg Raise', p: '3 × 10–12', bw: true },
-    { ex: 'Plank', p: '3 × 45–60s', bw: true }
+    { ex: 'Hollow Body Hold', p: '3 × 20–30s', n: 'skill · fresh, never to failure', bw: true, skill: true,
+      alts: ['Dead Hang', 'Chest-to-Wall Handstand'] },
+    { ex: 'Pull Up', p: '3 × AMRAP', bw: true, anchor: true, alts: ['Chin Up'] },
+    { ex: 'Triceps Dip', p: '3 × 8–10', bw: true, alts: ['Ring Dip', 'Archer Push-Up'] },
+    { ex: 'Hanging Leg Raise', p: '3 × 10–12', n: 'core', bw: true, alts: ['Plank', 'Hollow Rock'] },
+    { ex: 'Dead Hang', p: '3 × 30s', n: 'grip · clear with the physio', bw: true, alts: ['Farmer Carry'] }
   ]},
   legs: { name: 'Legs', mins: 45, items: [
-    { ex: 'Squat (Barbell)', p: '3 × 6–8', n: '75kg' },
-    { ex: 'Romanian Deadlift (Barbell)', p: '3 × 6–8', n: 'lives here, nowhere else · 70kg' },
-    { ex: 'Leg Press', p: '3 × 10', n: 'or Bulgarian split squat · 130kg' },
-    { ex: 'Lying Leg Curl (Machine)', p: '3 × 10–12', n: 'or kneeling · 35kg' },
-    { ex: 'Seated Calf Raise', p: '3 × 15', n: '40kg' }
+    { ex: 'Squat (Barbell)', p: '3 × 6–8', n: '75kg', anchor: true, alts: ['Hack Squat', 'Pendulum Squat'] },
+    { ex: 'Romanian Deadlift (Barbell)', p: '3 × 6–8', n: 'lives here, nowhere else · 70kg', anchor: true },
+    { ex: 'Leg Press', p: '3 × 10', n: '130kg', alts: ['Bulgarian Split Squat', 'Lunge (Barbell)'] },
+    { ex: 'Lying Leg Curl (Machine)', p: '3 × 10–12', n: '35kg', alts: ['Kneeling Leg Curl', 'Nordic Curl'] },
+    { ex: 'Seated Calf Raise', p: '3 × 15', n: '40kg', alts: ['Hip Thrust (Plate Loaded)'] }
   ]}
 };
+
+/* Rotate slots pick a different option each session, derived from the date so it is
+   stable within a day and varies between them. Anchors never move. */
+function variantFor(it, i, iso) {
+  var pool = [it.ex].concat(it.alts || []);
+  if (pool.length < 2) return it.ex;
+  var d = new Date(iso + 'T12:00:00');
+  var n = Math.floor(d.getTime() / 864e5) + i * 3;
+  return pool[((n % pool.length) + pool.length) % pool.length];
+}
+
 var DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 function phaseFor(iso) { for (var i = 0; i < PHASES.length; i++) if (iso <= PHASES[i].until) return PHASES[i]; }
@@ -325,9 +351,11 @@ function newDraft(key, iso) {
   var s = SESSIONS[key];
   return {
     id: 'd' + Date.now(), key: key, date: iso || todayISO(), note: '', pain: null,
-    items: s.items.map(function (it) {
-      return { ex: it.ex, side: it.side || null, p: it.p, n: it.n, bw: it.bw,
-               gate: it.gate, opt: it.opt, fin: it.fin, sets: [] };
+    items: s.items.map(function (it, i) {
+      return { ex: variantFor(it, i, iso || todayISO()), base: it.ex,
+               pool: [it.ex].concat(it.alts || []),
+               side: it.side || null, p: it.p, n: it.n, bw: it.bw, gate: it.gate,
+               opt: it.opt, fin: it.fin, skill: it.skill, anchor: it.anchor, sets: [] };
     })
   };
 }
@@ -421,18 +449,24 @@ function renderSheet() {
   if (ph.key === 're-entry') html += '<p class="note"><strong>Re-entry.</strong> Take 10% off top sets.</p>';
   html += '</div></div>';
 
-  html += '<div class="card"><div class="card-h"><h2>Line-up</h2><span class="hint">order is programming</span></div>';
+  html += '<div class="card"><div class="card-h"><h2>Line-up</h2>' +
+          '<button class="mini" id="dVary" style="margin-left:auto">⇄ Vary it</button></div>';
   html += '<ul class="sheet">';
   var slot = 0;
   draft.items.forEach(function (it, i) {
     var spec = it;
     var num;
-    if (spec.side) num = spec.side.slice(0, 1);
+    if (spec.side) { if (spec.side === 'Left') slot += 1; num = slot + spec.side.slice(0, 1); }
     else if (spec.custom) num = '+';
     else if (spec.fin) num = 'F';
     else { slot += 1; num = String(slot); }
     html += '<li class="pos' + (spec.side || spec.custom || spec.fin ? ' side' : '') + '"><div class="num">' + num + '</div><div class="pos-b">';
-    html += '<div class="ex">' + esc(it.ex) + (spec.side ? ' <span style="color:var(--ink-3)">· ' + spec.side + '</span>' : '') + '</div>';
+    html += '<div class="ex">' + esc(it.ex) + (spec.side ? ' <span style="color:var(--ink-3)">· ' + spec.side + '</span>' : '');
+    if (spec.anchor) html += ' <span class="tag">anchor</span>';
+    if (spec.skill) html += ' <span class="tag fix">skill</span>';
+    if (!spec.anchor && spec.pool && spec.pool.length > 1)
+      html += ' <button class="swap" data-swap="' + i + '" title="Another option">⇄</button>';
+    html += '</div>';
     html += '<div class="presc">' + esc(spec.p) + (spec.n ? ' · <b>' + esc(spec.n) + '</b>' : '') + '</div>';
     if (spec.opt) html += '<div class="presc" style="margin-top:3px"><span class="tag opt">optional</span></div>';
     html += '<div class="sets" data-sets="' + i + '">';
@@ -518,6 +552,23 @@ function wire() {
   var dn = lane.querySelector('#dNote'); if (dn) dn.oninput = function () { draft.note = dn.value; };
   var dd = lane.querySelector('#dDate'); if (dd) dd.onchange = function () { draft.date = dd.value; renderSheet(); };
   var dc = lane.querySelector('#dCancel'); if (dc) dc.onclick = function () { draft = null; saveNote = ''; renderSheet(); };
+  lane.querySelectorAll('[data-swap]').forEach(function (b) {
+    b.onclick = function () {
+      var it = draft.items[+b.dataset.swap];
+      var k = it.pool.indexOf(it.ex);
+      it.ex = it.pool[(k + 1) % it.pool.length];
+      renderSheet();
+    };
+  });
+  var dv = lane.querySelector('#dVary');
+  if (dv) dv.onclick = function () {
+    draft.items.forEach(function (it, i) {
+      if (it.anchor || !it.pool || it.pool.length < 2) return;
+      var k = it.pool.indexOf(it.ex);
+      it.ex = it.pool[(k + 1) % it.pool.length];
+    });
+    renderSheet();
+  };
   var addEx = function () {
     var inp = lane.querySelector('#dNew'), v = (inp.value || '').trim();
     if (!v) return;

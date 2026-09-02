@@ -97,26 +97,47 @@ oversight. Do not reopen it.
 
 ## The calisthenics direction
 
-Week B's Sunday session is the seed. Today it is the only calisthenics slot, it runs
-once a fortnight, and it has never been logged.
+Answered 2026-09-02. He said he is a beginner, does not know what "more calisthenics"
+should mean, and would rather be guided — and that he wants **both** new skills and
+better bodyweight strength. The full route is in `docs/calisthenics.md`. In summary:
 
-The honest first step is not to design a bigger calisthenics programme — it is to run
-the one that exists and log it, so there is something to progress from. After that, the
-natural growth is for it to absorb core and grip work, and then to earn a second slot
-in the fortnight.
+**He is a beginner at skills, not at strength.** 68 pull-up sessions, 53 dip sessions,
+a best of 27 pull-up reps. What he has never done is skill work — the held positions
+that make calisthenics its own discipline rather than bodyweight bodybuilding.
 
-**Actioned 2026-09-02:** the pull day now has an explicit finisher slot, defaulting to
-hanging leg raises — his core staple until 9 March, calisthenic, and placed where it
-will actually get recorded. Pull-ups moved to slot 1, so finishing on them again would
-be a second exposure rather than the first; if he would rather keep them there, the slot
-is the point and the exercise is his choice.
+**Phase 1 is three holds**, chosen because they load core and shoulder while asking
+nothing of the injured lat: hollow body hold, dead hang, chest-to-wall handstand. They
+also happen to cover both training gaps — core and grip — and the handstand loads the
+vertical-push pattern his overhead press has been losing.
 
-Push day's finisher is now written down as push-ups, 3 × 15, and the phone page has a
-free-text row on every session for anything else that happens.
+**The lat-heavy skills come last, not first.** Front lever, muscle-up and planche are
+Phase 3, behind physio clearance. An older `plan.md` opened the session with tuck front
+levers, which was both invented and the single worst choice available.
+
+Skill work goes first in the session, ten minutes, never to failure. It is practice, not
+conditioning.
+
+## Variety, and why the anchors do not move
+
+He said he enjoys doing different exercises, and asked whether that is optimal. The
+honest answer is that it is neither good nor bad on its own — it depends entirely on
+which slot it happens in, and `plan.md` now splits every session on exactly that line.
+
+- **Rotate slots** — accessories, isolation work, finishers. Variety is free here and
+  probably positive: it covers more angles, spares the joints, and he trains more when
+  he is enjoying it. Adherence beats optimality.
+- **Anchor slots** — the primary press, pull-ups, the injured-side row. These never
+  change, because **you cannot progressively overload what you do not repeat.**
+
+The evidence is in his own log: incline bench is at an all-time high because slot 1 never
+moves, and overhead press fell from 61.7 to 50.7 e1RM because its slot rotates between
+the Arnold, the machine and the barbell. That is the cost of variety in the wrong place,
+measured on his own data rather than asserted.
+
+The phone page picks the rotating exercises for him — a different combination each
+session, derived from the date — with a swap control on each slot and a "Vary it" button
+for the whole session. Anchors have no swap control.
 
 ## Still unanswered
 
 - Is there any **date** anything is pointed at — a season, a trip, an event?
-- What does **"more calisthenics"** look like at the end of it: specific skills
-  (pull-up variations, handstand, levers), or simply a higher share of bodyweight work
-  in the same structure? These lead to different programmes.

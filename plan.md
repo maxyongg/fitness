@@ -42,67 +42,79 @@ goes there, yoga included.
 | → 13 Sep 2026 | Re-entry | Run the **Week B shape** — Mon Push, Thu Pull, Sun Calisthenics. 10% off top sets. No legs day. |
 | 14 Sep → | Full block | Week A starts. Full load, normal alternation, progressing normally. |
 
+## Anchors and rotations
+
+Every session has two kinds of slot, and the difference matters more than the exercise
+names.
+
+- **Anchor slots** stay the same session after session and carry the load progression.
+  You cannot progressively overload something you do not repeat. Incline bench is at an
+  all-time high because slot 1 never changes; **overhead press fell from 61.7 to 50.7
+  e1RM precisely because its slot keeps rotating.** That is the cost, stated plainly.
+- **Rotate slots** change whenever he likes, from the menus below. Variety costs nothing
+  here because these slots are not chasing a number — they are accumulating volume and
+  covering angles. Adherence matters more than optimality, and he trains more when he is
+  enjoying it.
+
+So: **rotate the accessories freely, leave the anchors alone.** If he wants to make a
+rotating lift progress — OHP is the obvious candidate — the answer is to anchor it for a
+block, not to hope it improves while being picked at random.
+
+Exercises marked ★ are ones he has never logged. See "Trying new exercises" below.
+
 ## Push (~50 min)
 
-Five exercises. This is his logged template almost exactly — 22 of the last 23 push
-sessions ran precisely these five slots, and **every one of the 23 finished on
-triceps**.
+| # | Slot | Exercise | Sets | Now |
+|---|---|---|---|---|
+| 1 | **Anchor** | Incline Bench Press (Barbell) | 4 × 5–8 | 60kg |
+| 2 | Rotate — vertical press | Shoulder Press · Arnold Press · **Overhead Press** · Landmine Press | 3 × 8–10 | 30kg / 22kg / 40kg |
+| 3 | Rotate — chest | Chest Fly · Cable Crossover · Incline Chest Press · ★ Dumbbell Pullover | 3 × 10–12 | 65kg / 13.75kg |
+| 4 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | 7kg |
+| 5 | Rotate — triceps | Triceps Extension · Triceps Dip · One-Handed Triceps Pull · ★ Skullcrusher | 3 × 10–12 | 17.5kg / bw |
+| F | Rotate — finisher | Push-Ups · ★ Diamond Push-Ups · ★ Pike Push-Ups · ★ Deficit Push-Ups | 3 × 15 | bodyweight |
 
-| # | Exercise | Sets | Now |
-|---|---|---|---|
-| 1 | Incline Bench Press (Barbell) | 4 × 5–8 | 60kg |
-| 2 | Shoulder Press (Plate Loaded) *or* Arnold Press (DB) | 3 × 8–10 | 30kg / 22kg |
-| 3 | Chest Fly *or* Cable Crossover | 3 × 10–12 | 65kg / 13.75kg |
-| 4 | Lateral Raise (Dumbbell) | 3 × 15–20 | 7kg |
-| 5 | Triceps Extension *or* Triceps Dip | 3 × 10–12 | 17.5kg / bodyweight |
-| F | **Push-Up finisher** | 3 × 15 | bodyweight |
+Slot 2 is where the overhead press lives. It is the one lift with a real hole in it, and
+the hole exists because this slot rotates. **Standing proposal:** anchor OHP here for one
+block and see if it comes back.
 
-The finisher is real and has been happening for a long time — it is just not in the log.
-Push-ups appear **8 times in the whole export**, last in April 2025. Log it: even sets
-of 15 rather than 25/8/8, which is what the 31 Aug note says he is moving to.
-
-Slot 2 is the only real choice. **Overhead Press belongs here** when he wants it back —
-it has no other home, which is why it slid from 61.7 to 50.7 e1RM: slot 2 keeps going
-to the Arnold or the machine instead. Putting OHP there for a block is the fix.
-
-On Week A both Push days run the same template. Vary slot 2 and slot 3 between them
-rather than building a separate session.
+The finisher has been happening for years and going unlogged — push-ups appear 8 times
+in the whole export, last April 2025. Log it. Even sets of 15, not 25/8/8.
 
 Flat bench was dropped deliberately in June to prioritise incline. It stays dropped.
 
 ## Pull (~50 min)
 
-Five exercises and a finisher. Of the 22 pull sessions from May to August, none ran past
-five logged exercises and **all 22 contained a bicep movement**.
+**Exactly one horizontal row and one to two vertical pulls.** This is not a guess: across
+the 22 pull days from May to August he did **exactly one horizontal row on every single
+one**, and one to three vertical pulls, median two. An earlier version of this file
+prescribed two of each. That was wrong — the wide-grip row was the surplus, and it has
+moved to the substitutes line.
 
-(An earlier version of this file said all 22 *finished* on a curl. That was a miscount:
-only 9 of 22 end on one. Since June, 12 of 13 end on pull-ups — those are the finisher,
-which is why they were sitting at position 5.)
+| # | Slot | Exercise | Sets | Now |
+|---|---|---|---|---|
+| 1 | **Anchor** | **Pull Up** — first, always | 3 × AMRAP | bodyweight |
+| 2 | **Anchor** — the one horizontal row | Single-Arm Iso-Lateral Row, left then right | 3 × 8–10 each | see protocol |
+| 3 | Rotate — second vertical | Lat Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown · ★ Straight-Arm Pulldown | 3 × 10 | 67kg |
+| 4 | Rotate — rear delt | Face Pull · ★ Reverse Flye · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | 17.5kg |
+| 5 | Rotate — biceps | Bicep Curl · Preacher Curl · Hammer Curl · Incline Curl · Rings Curl | 3 × 8–10 | 30kg |
+| F | Rotate — finisher | Hanging Leg Raise · Plank · ★ Dead Hang · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
-| # | Exercise | Sets | Now |
-|---|---|---|---|
-| 1 | **Pull Up** | 3 × AMRAP | bodyweight |
-| 2 | Single-Arm Iso-Lateral Row — left, then right | 3 × 8–10 each | see protocol |
-| 3 | Lat Pulldown (Cable) | 3 × 10 | 67kg |
-| 4 | Seated Wide-Grip Row (Cable) | 3 × 8–12 | hold 57kg, chase reps |
-| 5 | Bicep Curl — barbell, preacher or hammer | 3 × 8–10 | 30kg |
-| F | **Finisher** — Hanging Leg Raise, or pull-ups if you still want them here | 3 × 10–12 | bodyweight |
+**Slot 2 substitutes**, only if the machine is taken: Seated Wide-Grip Row (57kg, hold
+and chase reps) or ★ Chest-Supported Row. It is an anchor because it is the injured
+side's lift — the green-light protocol needs the same movement week to week to mean
+anything.
 
-**On the finisher:** pull-ups have moved to slot 1, so ending on them again would be the
-second exposure of the session rather than the first. Hanging leg raises are proposed
-instead — they were his core staple until 9 March, they are calisthenic, and they put
-core somewhere it will actually get logged. If he would rather keep finishing on
-pull-ups, that is his call; the slot is the point, not the exercise.
+**Slot 4 is new as a fixed slot.** Rear delts fell from 3.0 sets a week to 0.8 because
+the face pull was optional. Making it a real slot is the fix.
 
-Optional sixth if the session is running short: Face Pull (Cable) 3 × 12–15 @ 17.5kg.
-Alternate Single-Arm Lat Pulldown is a fine swap for slot 4 — he rotates between them.
+**Pull-ups go first.** Position 2 for five months gave 21–26 reps; position 5 for three
+months gave 13–23; back to position 2 on 27 Aug gave 27, the best in the record. His own
+data, and the strongest thing in it.
 
-**Pull-ups go first.** This is the one finding in this project that survived scrutiny:
-five months at position 2 gave 21–26 reps, three months at position 5 gave 13–23, and
-moving back to position 2 on 27 Aug gave 27 — the best in the record. They have
-recently been running last. Move them.
-
-On Week A the Sunday Pull follows Thursday's. Take the second one on reps, not load.
+**On doing two exercises for one muscle group:** normal and fine — the second one is
+volume, not a strength test, and it is expected to be weaker. But his instinct is worth
+respecting, and the position effect shows fatigue costs him real reps on the compound.
+Hence one horizontal, one or two vertical, pull-ups first and fresh.
 
 ## Legs (~45 min) — Week A only
 
@@ -124,25 +136,27 @@ on the Tuesday and again on the Friday is the trade.
 
 ## Calisthenics (~45 min) — Week B Sunday
 
-Bodyweight upper and core. **This session has never been logged in Strong**, so the
-sets below are a starting point rather than a record — built only from movements he
-has real history with, not from the front-lever / L-sit / Nordic list an earlier
-version of this file invented.
+Skill first while fresh, then strength. Full route and progressions in
+`docs/calisthenics.md`.
 
-| # | Exercise | Sets |
-|---|---|---|
-| 1 | Pull Up *or* Wide Pull Up | 3 × AMRAP |
-| 2 | Chin Up | 3 × 6–8 |
-| 3 | Triceps Dip | 3 × 8–10 |
-| 4 | Hanging Leg Raise | 3 × 10–12 |
-| 5 | Plank | 3 × 45–60s |
+| # | Slot | Exercise | Sets |
+|---|---|---|---|
+| 1 | **Skill** — 10 min, fresh, never to failure | Hollow Body Hold · ★ Dead Hang · ★ Chest-to-Wall Handstand | 3 × 20–30s each |
+| 2 | Anchor | Pull Up *or* Chin Up | 3 × AMRAP |
+| 3 | Rotate | Triceps Dip · ★ Ring Dip · ★ Archer Push-Up | 3 × 8–10 |
+| 4 | Rotate — core | Hanging Leg Raise · Plank · ★ Hollow Rock | 3 × 10–12 |
+| 5 | Rotate — grip | ★ Dead Hang · ★ Farmer Carry | 3 × 30s |
 
-This lands three days after Thursday's Pull and is a lot of vertical pulling in one
-week. **The right lat governs it**: reps before load, and stop the pulling when that
-side starts talking. Cut slots 1–2 to one exercise if the week has been heavy.
+**This session has never been logged in Strong.** The sets above are a starting point,
+not a record, and they are built only from movements he has history with plus the three
+Phase 1 skills. The front lever / pike / L-sit list an older version of this file carried
+was invented and stays out until `docs/calisthenics.md` Phase 3 — those load the injured
+lat hardest of anything in the discipline.
+
+**Skill work is practice, not conditioning.** Stop while the shape is still clean.
 
 Logging it matters more than the numbers in it. Anything unlogged is invisible to
-`analyse.py`, which is why this session looks like it does not exist.
+`analyse.py`, which is why this session currently looks like it does not exist.
 
 ## Yoga (15–20 min) — Saturday, both weeks
 

@@ -26,6 +26,11 @@ Three things follow, and `docs/goals.md` has the detail:
   prerequisite for programming it.
 - **His pace.** Suggest, don't schedule. Never ramp volume he did not ask for, never
   chase a number on his behalf, never nag about a missed session.
+- **He enjoys variety, and `plan.md` splits every session into anchor and rotate slots
+  to give him it safely.** Rotate freely; never quietly change an anchor. Incline bench
+  is at an all-time high because slot 1 never moves, and the overhead press regressed
+  because its slot does. Suggesting a different accessory or finisher is welcome and
+  expected — that is what he asked for.
 
 Two modes, and you should know which one you are in:
 
@@ -160,6 +165,7 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `log.md` | Session log. Append-only, newest at the bottom. |
 | `docs/workflows.md` | The occasional jobs. On demand. |
 | `docs/goals.md` | What the training is *for*. Draft until he confirms it. |
+| `docs/calisthenics.md` | The beginner skill route. On demand. |
 | `docs/findings.md` | What the data supports, what it doesn't, what's open. On demand. |
 | `analyse.py` | Full analysis of a Strong export. Monthly, not per session. |
 | `data/` | Strong CSV exports. Never read directly. |

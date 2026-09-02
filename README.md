@@ -14,6 +14,7 @@ If you are Claude, read `CLAUDE.md` first and stop there. This file is for human
 | `docs/workflows.md` | The occasional jobs: queue drain, offline logging, monthly reconcile. |
 | `docs/findings.md` | What the data supports, what it doesn't, what's still open. |
 | `docs/goals.md` | What the training is for. |
+| `docs/calisthenics.md` | The beginner calisthenics skill route. |
 | `docs/findings.md` | What the data supports and what it doesn't. |
 | `analyse.py` | Re-runs the full analysis on a Strong CSV export. |
 | `data/` | Strong exports. Read them through `analyse.py`, not directly. |
