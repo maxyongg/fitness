@@ -192,13 +192,61 @@ None of this is a verdict on the plan. It is what to check against the next expo
 
 ## What we don't know
 
-**Whether session length matters.** Tested twice, opposite answers. Scored against each
-lift's lifetime history, longer sessions look worse — but that comparison is mostly
-measuring two years of getting stronger, since 6-exercise days are 49% of 2024 and 6%
-of 2026. Remove the time trend and longer sessions score *best*, which is reverse
-causation: on good days you do more and push further. Observational data cannot
-separate these. To answer it, alternate a 5- and a 7-exercise version of the same
-session for eight weeks, deciding which **before** training rather than by feel.
+Both open questions and the full working live in `docs/findings.md`. The short version:
+session length is unanswerable from observational data, and whether the right lat's
+50kg ceiling is pain-limited or caution-limited will not be known until `pain(R)`
+actually gets logged.
 
-**Whether the right lat is pain-limited or caution-limited.** `pain(R)` has never once
-been recorded. Until it is, the 50kg ceiling is an assumption.
+## How this plan changes
+
+This file is not a record of what he does. It is the programme, and it is meant to move.
+
+**Claude proposes, Max decides.** Bring a change with the evidence behind it, the
+trade-off it costs, and a recommendation — not a list of options to pick from. Then
+write down what was decided and why, so the next session inherits the reasoning instead
+of re-deriving it.
+
+**Review points:**
+
+- **Every new export** into `data/` — reconcile the log, re-run `analyse.py`, and come
+  back with what moved, what stalled, and one proposal. See `docs/workflows.md`.
+- **Phase boundaries** — the next one is 14 Sep, when re-entry ends and Week A starts.
+- **Any lift stalled three sessions or more** — that is a prompt to propose something,
+  not a fact to note in passing.
+- **Any green-light streak on the right row** — three held over two weeks earns +2.5kg.
+  Say so; don't wait to be asked.
+- **A session repeatedly skipped** — ask why before assuming it should be cut. The log
+  tells you about adherence, never about intent.
+
+**Changes that need his sign-off before they land:** anything in this file, `CLAUDE.md`,
+or `analyse.py`. Push those on a branch. Log entries go straight to `main`.
+
+## Trying new exercises
+
+He is open to movements he has never done. The constraint is that a new exercise has to
+earn a slot, not get added on top — the sessions are five exercises because that is what
+fits his hour, and that is not up for renegotiation without a reason.
+
+**The rule for introducing one:**
+
+1. Name the slot it goes into and the exercise it displaces.
+2. Say what it is for — a gap in the plan, a stall to break, a rehab constraint.
+3. Run it for **four sessions**, then keep it or drop it. Decide before starting, not
+   by feel afterwards. This is the same discipline `docs/findings.md` asks for on the
+   session-length question, and for the same reason.
+4. Log it under its real Strong name from the first set, so it is visible to
+   `analyse.py` rather than invisible like the calisthenics day currently is.
+
+**Standing candidates**, with what each is for:
+
+| Exercise | Slot | What it is for |
+|---|---|---|
+| Chest-Supported Row | Pull 3 or 4 | Removes torso English from the row — the most promising way to load the right lat without the pain that free rowing brings. He did one on 27 Aug. |
+| Dead Hang | Calisthenics, or after Pull | Lat decompression, 3 × 30s. Cheap, and the sort of thing a physio tends to like. Clear it with them. |
+| Hip Thrust | Legs 3 | Posterior work that does not load the spine like the RDL. Done once, 25 Jul. |
+| Nordic Curl (eccentric) | Legs 4, displacing the leg curl | Best-evidence hamstring exercise. **Note:** an earlier version of this file prescribed these as though they were established — they have never been done. Proposed here honestly as new, starting 2 × 4. |
+| Z-Press or Half-Kneeling Landmine Press | Push 2 | An overhead variant that is kinder to the shoulder than a strict OHP, if the press is what is holding slot 2 back. |
+| Rear-Delt Flye | Push 4, paired with laterals | Rear delts fell from 3.0 to 0.8 sets a week over the last eight weeks. The face pull is currently optional, so this is the real gap. |
+
+None of these are in the programme. They are the shortlist to draw from when a review
+calls for a change — one at a time, four sessions, then a decision.

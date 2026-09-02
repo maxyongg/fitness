@@ -13,6 +13,8 @@ If you are Claude, read `CLAUDE.md` first and stop there. This file is for human
 | `log.md` | Session log. Append-only, newest at the bottom. |
 | `docs/workflows.md` | The occasional jobs: queue drain, offline logging, monthly reconcile. |
 | `docs/findings.md` | What the data supports, what it doesn't, what's still open. |
+| `docs/goals.md` | What the training is for. |
+| `docs/findings.md` | What the data supports and what it doesn't. |
 | `analyse.py` | Re-runs the full analysis on a Strong CSV export. |
 | `data/` | Strong exports. Read them through `analyse.py`, not directly. |
 | `inbox/` | Sessions logged while the repo was unreachable. Empty at rest. |
