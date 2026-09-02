@@ -284,7 +284,8 @@ var SESSIONS = {
     { ex: 'Shoulder Press (Plate Loaded)', p: '3 × 8–10', n: 'or Arnold Press · OHP belongs here' },
     { ex: 'Chest Fly', p: '3 × 10–12', n: 'or cable crossover' },
     { ex: 'Lateral Raise (Dumbbell)', p: '3 × 15–20', n: 'stay high-rep · 7kg' },
-    { ex: 'Triceps Extension', p: '3 × 10–12', n: 'or dips · always last' }
+    { ex: 'Triceps Extension', p: '3 × 10–12', n: 'or dips · last of the five' },
+    { ex: 'Push-Up finisher', p: '3 × 15', n: 'even sets, not 25/8/8 · log it', bw: true, fin: true }
   ]},
   pull: { name: 'Pull', mins: 50, gate: true, items: [
     { ex: 'Pull Up', p: '3 × AMRAP', n: 'first, always', bw: true },
@@ -293,7 +294,8 @@ var SESSIONS = {
     { ex: 'Lat Pulldown (Cable)', p: '3 × 10', n: '67kg' },
     { ex: 'Seated Wide-Grip Row (Cable)', p: '3 × 8–12', n: 'hold 57kg, chase reps' },
     { ex: 'Bicep Curl', p: '3 × 8–10', n: 'barbell, preacher or hammer · always last' },
-    { ex: 'Face Pull (Cable)', p: '3 × 12–15', n: 'only if short on time', opt: true }
+    { ex: 'Face Pull (Cable)', p: '3 × 12–15', n: 'only if short on time', opt: true },
+    { ex: 'Hanging Leg Raise', p: '3 × 10–12', n: 'or pull-ups if you still want them here · log it', bw: true, fin: true }
   ]},
   calis: { name: 'Calisthenics', mins: 45, items: [
     { ex: 'Pull Up', p: '3 × AMRAP', n: 'or wide pull-up · right lat governs this', bw: true },
@@ -323,7 +325,10 @@ function newDraft(key, iso) {
   var s = SESSIONS[key];
   return {
     id: 'd' + Date.now(), key: key, date: iso || todayISO(), note: '', pain: null,
-    items: s.items.map(function (it) { return { ex: it.ex, side: it.side || null, sets: [] }; })
+    items: s.items.map(function (it) {
+      return { ex: it.ex, side: it.side || null, p: it.p, n: it.n, bw: it.bw,
+               gate: it.gate, opt: it.opt, fin: it.fin, sets: [] };
+    })
   };
 }
 
@@ -418,10 +423,15 @@ function renderSheet() {
 
   html += '<div class="card"><div class="card-h"><h2>Line-up</h2><span class="hint">order is programming</span></div>';
   html += '<ul class="sheet">';
+  var slot = 0;
   draft.items.forEach(function (it, i) {
-    var spec = S.items[i];
-    var num = spec.side ? spec.side.slice(0, 1) : String(i + 1);
-    html += '<li class="pos' + (spec.side ? ' side' : '') + '"><div class="num">' + num + '</div><div class="pos-b">';
+    var spec = it;
+    var num;
+    if (spec.side) num = spec.side.slice(0, 1);
+    else if (spec.custom) num = '+';
+    else if (spec.fin) num = 'F';
+    else { slot += 1; num = String(slot); }
+    html += '<li class="pos' + (spec.side || spec.custom || spec.fin ? ' side' : '') + '"><div class="num">' + num + '</div><div class="pos-b">';
     html += '<div class="ex">' + esc(it.ex) + (spec.side ? ' <span style="color:var(--ink-3)">· ' + spec.side + '</span>' : '') + '</div>';
     html += '<div class="presc">' + esc(spec.p) + (spec.n ? ' · <b>' + esc(spec.n) + '</b>' : '') + '</div>';
     if (spec.opt) html += '<div class="presc" style="margin-top:3px"><span class="tag opt">optional</span></div>';
@@ -437,7 +447,11 @@ function renderSheet() {
     if (spec.gate) html += gateHTML();
     html += '</div></li>';
   });
-  html += '</ul></div>';
+  html += '</ul>';
+  html += '<div class="card-b" style="border-top:1px solid var(--rule);display:flex;gap:8px">' +
+          '<input type="text" id="dNew" placeholder="Anything else you did — core, a finisher, a new lift" style="flex:1;min-width:0">' +
+          '<button class="btn ghost" id="dAdd" style="flex:0 0 auto">Add</button></div>';
+  html += '</div>';
 
   html += '<div class="card"><div class="card-h"><h2>Note</h2></div><div class="card-b">' +
           '<textarea id="dNote" placeholder="How it felt, anything unusual, anything you did that Strong will not have.">' + esc(draft.note) + '</textarea>' +
@@ -504,6 +518,15 @@ function wire() {
   var dn = lane.querySelector('#dNote'); if (dn) dn.oninput = function () { draft.note = dn.value; };
   var dd = lane.querySelector('#dDate'); if (dd) dd.onchange = function () { draft.date = dd.value; renderSheet(); };
   var dc = lane.querySelector('#dCancel'); if (dc) dc.onclick = function () { draft = null; saveNote = ''; renderSheet(); };
+  var addEx = function () {
+    var inp = lane.querySelector('#dNew'), v = (inp.value || '').trim();
+    if (!v) return;
+    draft.items.push({ ex: v, side: null, p: 'ad hoc', custom: true, sets: [{ w: '', r: '' }] });
+    renderSheet();
+  };
+  var da = lane.querySelector('#dAdd'); if (da) da.onclick = addEx;
+  var dnew = lane.querySelector('#dNew');
+  if (dnew) dnew.onkeydown = function (e) { if (e.key === 'Enter') { e.preventDefault(); addEx(); } };
   var ds = lane.querySelector('#dSave');
   if (ds) ds.onclick = function () {
     var md = markdown(draft);
@@ -612,10 +635,12 @@ var activeWeek = null;                                 /* null = follow the cale
       if (S && !off) h += '<button class="mini go" data-log="' + row.key + '" data-d="' + row.d + '">Log</button>';
       h += '</div>';
       if (S) {
+        var n = 0;
         h += '<div class="list">' + S.items.map(function (it, i) {
           var nm = it.ex.replace(/ \(.*\)$/, '') + (it.side ? ' ' + it.side.slice(0, 1) : '');
           if (it.opt) return '<span style="color:var(--ink-3)">+ ' + esc(nm) + ' <em>if time</em></span>';
-          return '<b>' + (i + 1) + '</b> ' + esc(nm);
+          if (it.fin) return '<span style="color:var(--ink-3)"><b>F</b> ' + esc(nm) + '</span>';
+          n += 1; return '<b>' + n + '</b> ' + esc(nm);
         }).join(' · ') + '</div>';
       }
       if (row.note) h += '<div class="list" style="color:var(--ink-3)">' + esc(row.note) + '</div>';

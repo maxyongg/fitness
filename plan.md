@@ -55,6 +55,11 @@ triceps**.
 | 3 | Chest Fly *or* Cable Crossover | 3 × 10–12 | 65kg / 13.75kg |
 | 4 | Lateral Raise (Dumbbell) | 3 × 15–20 | 7kg |
 | 5 | Triceps Extension *or* Triceps Dip | 3 × 10–12 | 17.5kg / bodyweight |
+| F | **Push-Up finisher** | 3 × 15 | bodyweight |
+
+The finisher is real and has been happening for a long time — it is just not in the log.
+Push-ups appear **8 times in the whole export**, last in April 2025. Log it: even sets
+of 15 rather than 25/8/8, which is what the 31 Aug note says he is moving to.
 
 Slot 2 is the only real choice. **Overhead Press belongs here** when he wants it back —
 it has no other home, which is why it slid from 61.7 to 50.7 e1RM: slot 2 keeps going
@@ -67,8 +72,12 @@ Flat bench was dropped deliberately in June to prioritise incline. It stays drop
 
 ## Pull (~50 min)
 
-Five exercises. Of the 22 pull sessions from May to August, none ran past five and
-**all 22 finished on a bicep movement**.
+Five exercises and a finisher. Of the 22 pull sessions from May to August, none ran past
+five logged exercises and **all 22 contained a bicep movement**.
+
+(An earlier version of this file said all 22 *finished* on a curl. That was a miscount:
+only 9 of 22 end on one. Since June, 12 of 13 end on pull-ups — those are the finisher,
+which is why they were sitting at position 5.)
 
 | # | Exercise | Sets | Now |
 |---|---|---|---|
@@ -77,6 +86,13 @@ Five exercises. Of the 22 pull sessions from May to August, none ran past five a
 | 3 | Lat Pulldown (Cable) | 3 × 10 | 67kg |
 | 4 | Seated Wide-Grip Row (Cable) | 3 × 8–12 | hold 57kg, chase reps |
 | 5 | Bicep Curl — barbell, preacher or hammer | 3 × 8–10 | 30kg |
+| F | **Finisher** — Hanging Leg Raise, or pull-ups if you still want them here | 3 × 10–12 | bodyweight |
+
+**On the finisher:** pull-ups have moved to slot 1, so ending on them again would be the
+second exposure of the session rather than the first. Hanging leg raises are proposed
+instead — they were his core staple until 9 March, they are calisthenic, and they put
+core somewhere it will actually get logged. If he would rather keep finishing on
+pull-ups, that is his call; the slot is the point, not the exercise.
 
 Optional sixth if the session is running short: Face Pull (Cable) 3 × 12–15 @ 17.5kg.
 Alternate Single-Arm Lat Pulldown is a fine swap for slot 4 — he rotates between them.
@@ -261,16 +277,33 @@ cable crunches; dips over a triceps machine; dead hangs over a grip trainer.
 
 ## The live gaps
 
-From the export of 31 Aug 2026, kept here because they are what the next change should
-address. Full working in `docs/goals.md`.
+From the export of 31 Aug 2026 — **with the caveat that the export is not everything he
+does.** He finishes push days with push-ups, pull days with pull-ups, and trains core ad
+hoc, none of it reliably logged. Full working in `docs/goals.md`.
 
-- **Core: zero sets since 9 March**, against 8.8% of his lifetime volume. The biggest
-  rounding gap and the most calisthenics-native one. It already has slots on the
-  calisthenics day — the first step is running that session and logging it.
+- **Core: the gap is the logging, not necessarily the training.** Zero logged sets since
+  9 March, against 8.8% of his lifetime volume — but he does it ad hoc and does not
+  record it, so nobody can say what it actually amounts to. The finisher slot on pull day
+  and the free-text row on the phone page exist to fix that. **Get it logged first, then
+  programme it.** Anything else is guessing.
 - **Rear delts: 0.8 sets/week, down from 3.0.** The face pull is optional on pull day,
-  which is why. One slot fixes it.
+  which is why. This one is a real gap — nothing unlogged is filling it.
 - **Grip: never trained.** 12 sets of farmer walks in Feb 2025 and nothing since.
   Usually the limiter on calisthenics progressions. Dead hangs are the cheap entry —
   clear them with the physio first, given the right lat.
 
 Legs are thin and stay thin. That is settled, not a gap.
+
+## Logging the ad hoc work
+
+Confirmed by him on 2026-09-02: the finishers and the core work have been happening all
+along and mostly going unrecorded. This matters beyond tidiness — it is why the log said
+core was dead, why push days looked like exactly five exercises, and why the pull-up
+position numbers read the way they do.
+
+- Both Push and Pull now carry an explicit **finisher slot** in the tables above.
+- The phone page has a **free-text row** at the bottom of every session for anything
+  else — core, a new movement, whatever actually happened.
+- Anything unlogged is invisible to `analyse.py`. That is not a criticism of him; it is
+  the reason a finding can be wrong, so treat any claim that something is "absent" as a
+  claim about the log until it has been checked with him.

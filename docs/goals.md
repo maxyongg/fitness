@@ -41,48 +41,59 @@ particular past number.
 
 ## Where he can improve — from the export of 31 Aug 2026
 
-Weekly sets by muscle group over the last eight weeks, against lifetime share:
+**Read the caveat first.** These are *logged* sets. Max confirmed on 2026-09-02 that he
+does ad hoc work he does not record: three sets of push-ups to finish push day, three
+sets of pull-ups to finish pull day, and core whenever he feels like it. Push-ups appear
+**8 times in the entire export**, last April 2025 — so the finisher is real and almost
+entirely invisible. The table below understates his true volume by an unknown amount,
+and the shortfalls are where it is least trustworthy.
+
+Weekly *logged* sets by muscle group over the last eight weeks, against lifetime share:
 
 | Group | Last 8wk | Lifetime | |
 |---|---|---|---|
 | back (vertical) | 7.1/wk | 11.2% | fine |
-| chest | 7.0/wk | 21.9% | fine |
+| chest | 7.0/wk | 21.9% | fine, and understated — push-up finishers are missing |
 | delts | 5.4/wk | 16.0% | fine |
 | back (horizontal) | 3.9/wk | 11.1% | fine |
-| triceps | 3.0/wk | 8.4% | fine |
+| triceps | 3.0/wk | 8.4% | understated for the same reason |
 | biceps | 3.0/wk | 10.6% | fine |
 | quads | 1.0/wk | 3.8% | thin by design |
-| **rear delts** | **0.8/wk** | 3.9% | **down from 3.0/wk** |
+| **rear delts** | **0.8/wk** | 3.9% | **down from 3.0/wk — a real gap** |
 | posterior chain | 0.8/wk | 2.5% | thin by design |
 | calves | 0.6/wk | 0.5% | thin by design |
-| **core** | **0.0/wk** | **8.8%** | **nothing since 9 March** |
+| **core** | **0.0/wk** | **8.8%** | **a logging gap, not a training gap** |
 
-### 1. Core is the gap, and it is a regression
+### 1. Core — measure it before programming it
 
-Core was **8.8% of every set he has ever logged** — 572 sets, more than triceps. It has
-been **zero for six months**. Cable crunches were the workhorse (326 sets across 109
-days) and stopped in October 2025; hanging leg raises carried it until 9 March 2026,
-then nothing.
+Core was 8.8% of every logged set — 572 sets, more than triceps — and reads as zero
+since 9 March. But he trains it ad hoc and does not record it, so **the honest position
+is that nobody knows how much core he does.**
 
-This is the clearest answer to "where can I improve", and it is also the most
-calisthenics-native quality he has. The two goals point at the same fix.
+An earlier version of this file called this "the biggest rounding gap and a regression".
+That was wrong, and wrong in the way this project keeps getting things wrong: it read
+silence in the log as absence in the training.
 
-### 2. Rear delts halved
+The fix is not a core programme. It is a slot that gets logged — the pull-day finisher,
+and the free-text row on the phone page for anything else. One month of that and there
+will be something real to programme against.
 
-3.0 sets a week down to 0.8 over the last eight weeks. The face pull is currently an
-optional sixth exercise on pull day, which is why. Small fix, one slot.
+### 2. Rear delts — this one is a genuine gap
+
+3.0 sets a week down to 0.8. Nothing unlogged is filling it: the face pull is an optional
+sixth exercise on pull day and it simply is not getting done. One slot fixes it.
 
 ### 3. Grip has never been trained
 
-12 sets of farmer walks in February 2025 and nothing else, ever. Worth naming because
-grip is usually the limiter on calisthenics progressions, and dead hangs are also the
-sort of lat decompression a physio tends to like. Clear it with them first.
+12 sets of farmer walks in February 2025 and nothing since, logged or otherwise. Worth
+naming because grip usually limits calisthenics progressions, and dead hangs are also
+the sort of lat decompression a physio tends to like. Clear it with them first.
 
 ### Not gaps
 
-Push and pull are well balanced — 7.0/wk horizontal push against 3.9 horizontal pull,
-2.8 vertical push against 7.1 vertical pull. Legs are thin, and that is his settled
-decision, not an oversight. Do not reopen it.
+Push and pull are well balanced — and better balanced than the table shows, since the
+unlogged finishers add to both. Legs are thin, and that is his settled decision, not an
+oversight. Do not reopen it.
 
 ## The calisthenics direction
 
@@ -94,11 +105,14 @@ the one that exists and log it, so there is something to progress from. After th
 natural growth is for it to absorb core and grip work, and then to earn a second slot
 in the fortnight.
 
-**Standing proposal, not yet actioned:** bring core back through the calisthenics day
-first, since it is already there in the hanging leg raise and plank slots. If he wants
-core more than once a fortnight, the cheapest place is the optional sixth slot on pull
-day, which currently holds the face pull — but that trades one gap for another, so it
-is a decision for him, not a change to make quietly.
+**Actioned 2026-09-02:** the pull day now has an explicit finisher slot, defaulting to
+hanging leg raises — his core staple until 9 March, calisthenic, and placed where it
+will actually get recorded. Pull-ups moved to slot 1, so finishing on them again would
+be a second exposure rather than the first; if he would rather keep them there, the slot
+is the point and the exercise is his choice.
+
+Push day's finisher is now written down as push-ups, 3 × 15, and the phone page has a
+free-text row on every session for anything else that happens.
 
 ## Still unanswered
 

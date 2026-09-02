@@ -18,6 +18,11 @@ guessing — the monthly CSV export corrects it.
 Exercises are listed in the order they were performed. That ordering is data in this
 project, not formatting — do not sort or regroup it.
 
+**Log the ad hoc work too** — the push-up and pull-up finishers, and any core. It has
+been happening for years and almost none of it reached Strong, which is why the analysis
+kept concluding that core was dead and that push days were exactly five exercises. If it
+was not in the screenshot but he did it, it still goes in the entry.
+
 ---
 
 ## 2026-08-31 · Mon · Push

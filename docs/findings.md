@@ -3,6 +3,27 @@
 Everything here came out of `analyse.py` on the Strong export. The headline is in
 `CLAUDE.md`; this is the working.
 
+## Read this before trusting any number below
+
+**The export is not everything he does.** Confirmed by Max on 2026-09-02: he finishes
+push days with three sets of push-ups, pull days with three sets of pull-ups, and trains
+core ad hoc — and most of it never reaches Strong. Push-ups appear **8 times in the whole
+export**, last April 2025.
+
+Three consequences, and they touch most of this file:
+
+- **Volume is understated**, by an unknown amount, unevenly across muscle groups.
+- **Session shape is wrong.** Push days look like exactly five exercises; they are five
+  plus a finisher. Anything reasoning from "sessions run 5–6 exercises" — the
+  session-length question below included — is reasoning about the logged part only.
+- **"Absent" claims are unsafe.** Core reading as zero since 9 March is a fact about the
+  log. It was written up here and in `docs/goals.md` as a training gap; that was wrong.
+
+He is now logging the ad hoc work: both Push and Pull carry a finisher slot in
+`plan.md`, and the phone page has a free-text row on every session. Numbers from exports
+after September 2026 should be progressively more complete — which also means **do not
+compare set counts across that boundary** and read a rise as improvement.
+
 ## Holds: the pull-up position effect
 
 Pull-ups at position 2 in the session for five months ran 24–32 reps. Moved to position

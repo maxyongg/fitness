@@ -21,8 +21,9 @@ Three things follow, and `docs/goals.md` has the detail:
 - **There is no target.** No number to hit, no date. Do not invent one and do not turn a
   lift that happens to be progressing into a goal he never set.
 - **Rounding beats peaking.** Ask what is missing before asking what could be heavier.
-  Core is 8.8% of his lifetime volume and has been zero since March — that is the live
-  gap, and it is also the most calisthenics-native quality he has.
+  Core is the live gap — but it is a *logging* gap first: he trains it ad hoc and does
+  not record it, so nobody can say what it amounts to. Getting it logged is the
+  prerequisite for programming it.
 - **His pace.** Suggest, don't schedule. Never ramp volume he did not ask for, never
   chase a number on his behalf, never nag about a missed session.
 
@@ -103,8 +104,17 @@ when one comes up, not before.
 - **The RDL belongs to the legs day.** It appears on 10 of 11 leg days and on none of
   22 pull days. It was briefly moved to Thursday to patch Week B's hamstring gap; that
   was wrong and has been undone. Do not move it again.
-- **Push always ends on triceps (23 of 23 sessions); Pull always ends on a curl
-  (22 of 22).** Both days run five exercises. Do not prescribe a sixth without asking.
+- **Push ends on triceps: 23 of 23 sessions.** That one holds.
+  **Pull *contains* a curl on 22 of 22 days, but only 9 of 22 end on one** — an earlier
+  session wrote "always ends on a curl", which was a miscount. Since June, 12 of 13 pull
+  days end on pull-ups, because those are the finisher.
+- **The export is not the whole truth. He does ad hoc work he does not log.** Confirmed
+  by him on 2026-09-02: three sets of push-ups to finish push day, three sets of
+  pull-ups to finish pull day, and core whenever he feels like it. Push-ups appear
+  **8 times in the entire history**, last in April 2025, so the finisher is essentially
+  invisible. Before calling anything absent from the training, check whether it is
+  merely absent from the log — and ask him. He wants to log all of it now; the phone
+  page has a finisher slot on both days and a free-text row for anything else.
 - **He dislikes leg training.** Legs sit once a fortnight, Week A only, and in practice
   run about monthly. Never push it, never guilt him, never offer "just a short one".
   Week B has no direct leg work by design — that is the accepted trade, not a gap to
