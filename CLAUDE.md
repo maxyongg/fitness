@@ -45,21 +45,28 @@ when one comes up, not before.
 
 ## Settled — do not relitigate
 
-- **The programme is three sessions: Push, Pull, and an optional Legs day.** Push and
-  Pull alternate; there is no weekday template and no two-week rotation. `plan.md` was
-  rewritten on 2026-09-01 against the export after an earlier version prescribed a
-  Friday "Push B" and a Sunday calisthenics day. Neither has ever happened — front
-  lever holds, pike push-ups, L-sits and Nordic curls have **zero recorded sets in the
-  entire history**. Do not reintroduce them.
+- **The two-week rotation is real and it is his.** He gave the template on 2026-09-02
+  and it is written out in full at the top of `plan.md`. Week A: Push / Football /
+  Rest / Pull / Push / Legs+yoga / Pull. Week B: Push / Football / Rest / Pull /
+  Football / yoga / Calisthenics. Do not redesign it. Do not infer it from the log.
+- **The log tells you about adherence, never about intent.** On 2026-09-01 a session
+  deleted the Sunday calisthenics day from `plan.md` because it had zero recorded sets.
+  That was wrong — it is a real part of his week that he has not been logging. Absence
+  from the export is a question to ask him, not a licence to cut a session. `plan.md`
+  keeps the template and the adherence figures in separate sections; keep them separate.
+- **The invented calisthenics *contents* are still out.** Front lever holds, pike
+  push-ups, L-sits and Nordic curls have zero recorded sets ever. The session is real;
+  that exercise list was not. It is now built from movements he actually has history
+  with — pull-ups, chin-ups, dips, hanging leg raises, planks.
 - **The RDL belongs to the legs day.** It appears on 10 of 11 leg days and on none of
-  22 pull days. It was briefly moved to Thursday to patch a hamstring gap; that was
-  wrong and has been undone. Do not move it again.
+  22 pull days. It was briefly moved to Thursday to patch Week B's hamstring gap; that
+  was wrong and has been undone. Do not move it again.
 - **Push always ends on triceps (23 of 23 sessions); Pull always ends on a curl
   (22 of 22).** Both days run five exercises. Do not prescribe a sixth without asking.
-- **Legs are optional.** He dislikes them; the legs day is optional by design and
-  happens about monthly. Never push it, never guilt him, never offer "just a short
-  one". When he skips it he gets no direct leg work that week — that is his accepted
-  trade, not a gap to fill by smuggling a leg lift onto another day.
+- **He dislikes leg training.** Legs sit once a fortnight, Week A only, and in practice
+  run about monthly. Never push it, never guilt him, never offer "just a short one".
+  Week B has no direct leg work by design — that is the accepted trade, not a gap to
+  fill by smuggling a leg lift onto another day.
 - **Wednesday is a protected rest day.** Late food after Tuesday football. Nothing goes there.
 - **Football is fixed** — Tuesday evening, sometimes Friday too, 2h of 7-a-side.
   Schedule under it, never around it.

@@ -1,39 +1,46 @@
 # The programme
 
-Three sessions: **Push**, **Pull**, and an optional **Legs** day. Push and Pull
-alternate. That is the whole structure.
+A **two-week rotation**. Week A is the heavy half — five lifting sessions and the legs
+day. Week B is lighter — three lifting sessions, and a second football on the Friday
+where Week A puts a Push.
 
-This file was rewritten on 2026-09-01 against the Strong export of 31 Aug 2026. The
-version before it prescribed a Friday "Push B", a Sunday calisthenics session, and a
-Thursday RDL. None of those exist in two and a half years of logs — front lever holds,
-pike push-ups, L-sits and Nordic curls have **zero recorded sets, ever**. Everything
-below is what he actually does, with the loads he is actually using.
+This is Max's own template, given 2026-09-02. It is the spine of the programme and it
+is authoritative. What the export shows about how faithfully it gets run is a separate
+question, kept honest at the bottom of this file — do not confuse the two, and do not
+delete a session from this plan because the log is quiet about it.
+
+## The fortnight
+
+| | **Week A** | **Week B** |
+|---|---|---|
+| **Mon** | Push | Push |
+| **Tue** | Football — 2h, 7-a-side | Football — 2h, 7-a-side |
+| **Wed** | Rest, protected | Rest, protected |
+| **Thu** | Pull | Pull |
+| **Fri** | Push | Football — 2h, 7-a-side |
+| **Sat** | Legs, then yoga | Yoga only |
+| **Sun** | Pull | Calisthenics |
+
+Week A is 2 × Push, 2 × Pull, 1 × Legs. Week B is 1 × Push, 1 × Pull, 1 × Calisthenics.
+Eight lifting sessions a fortnight, two or three football sessions, yoga twice.
+
+**Anchor:** Week A begins **Monday 14 September 2026**, the first full week after
+re-entry, and the weeks alternate from there. Flip the anchor if that is wrong — nothing
+else depends on it.
+
+**Wednesday is protected in both weeks.** Late food after Tuesday football. Nothing
+goes there, yoga included.
 
 ## Phases
 
 | Dates | Phase | What |
 |---|---|---|
-| → 13 Sep 2026 | Re-entry | 10% off top sets. Three sessions a week. Skip the legs day. |
-| 14 Sep → | Full block | Full load, progressing normally. |
-
-## The week
-
-There is no fixed weekday template, because he has never trained to one. What is fixed:
-
-- **Tuesday is football.** 2h, 7-a-side. Schedule under it, never around it.
-- **Wednesday is a protected rest day.** Nothing goes there.
-- **Some Fridays are football too.** On those weeks, that Friday is not a lifting day.
-
-Everything else is: **alternate Push and Pull, three times a week.** In practice that
-lands on Mon / Thu / Sun, which is what the log shows. Lifetime average is 3.16
-sessions a week; the last twelve weeks are 2.67. Three is the target, not a floor.
-
-If a session is missed, take the next one in the rotation — do not skip ahead to keep
-a weekday. The rotation is the programme; the calendar is not.
+| → 13 Sep 2026 | Re-entry | Run the **Week B shape** — Mon Push, Thu Pull, Sun Calisthenics. 10% off top sets. No legs day. |
+| 14 Sep → | Full block | Week A starts. Full load, normal alternation, progressing normally. |
 
 ## Push (~50 min)
 
-Five exercises. This is his template almost exactly as logged — 22 of the last 23 push
+Five exercises. This is his logged template almost exactly — 22 of the last 23 push
 sessions ran precisely these five slots, and **every one of the 23 finished on
 triceps**.
 
@@ -46,8 +53,11 @@ triceps**.
 | 5 | Triceps Extension *or* Triceps Dip | 3 × 10–12 | 17.5kg / bodyweight |
 
 Slot 2 is the only real choice. **Overhead Press belongs here** when he wants it back —
-it has no other home, which is why it slid from 61.7 to 50.7 e1RM: he has been picking
-the Arnold or the machine instead. Putting it in slot 2 for a block is the fix.
+it has no other home, which is why it slid from 61.7 to 50.7 e1RM: slot 2 keeps going
+to the Arnold or the machine instead. Putting OHP there for a block is the fix.
+
+On Week A both Push days run the same template. Vary slot 2 and slot 3 between them
+rather than building a separate session.
 
 Flat bench was dropped deliberately in June to prioritise incline. It stays dropped.
 
@@ -69,13 +79,14 @@ Alternate Single-Arm Lat Pulldown is a fine swap for slot 4 — he rotates betwe
 
 **Pull-ups go first.** This is the one finding in this project that survived scrutiny:
 five months at position 2 gave 21–26 reps, three months at position 5 gave 13–23, and
-moving back to position 2 on 27 Aug gave 27 — the best in the record. Recently they
-have been running last. Move them.
+moving back to position 2 on 27 Aug gave 27 — the best in the record. They have
+recently been running last. Move them.
 
-## Legs (~45 min) — optional, roughly monthly
+On Week A the Sunday Pull follows Thursday's. Take the second one on reps, not load.
 
-He dislikes leg training and does this about once a month. That is a settled decision,
-not a problem to solve. The day itself is real and unchanged since February:
+## Legs (~45 min) — Week A only
+
+He dislikes leg training. It sits once a fortnight by design, not once a week.
 
 | # | Exercise | Sets | Now |
 |---|---|---|---|
@@ -87,24 +98,50 @@ not a problem to solve. The day itself is real and unchanged since February:
 
 **The RDL lives here and nowhere else.** It appears on 10 of his 11 leg days and on
 none of his 22 pull days. An earlier version of this file moved it to Thursday to cover
-a perceived hamstring gap on weeks with no leg day. That was the wrong fix: it put a
-heavy hip hinge on a day he has never hinged, to solve a gap he has already accepted.
+the hamstring gap on Week B. That was the wrong fix: it put a heavy hip hinge on a day
+he has never hinged. Week B has no direct leg work, by design — two hours of 7-a-side
+on the Tuesday and again on the Friday is the trade.
 
-On weeks he skips this day he gets no direct leg work. That is the trade, and it is
-his to make. Two hours of 7-a-side every Tuesday is not nothing. Legs are 6.9% of every
-set he has ever logged — the number has been stable for two years.
+## Calisthenics (~45 min) — Week B Sunday
 
-Yoga and mobility sit alongside this day and are not logged in Strong: 90/90 hip
-switch, half-pigeon, supine hamstring with a strap, thoracic open-book, couch stretch,
-ankle dorsiflexion. They happen whether or not the legs happen.
+Bodyweight upper and core. **This session has never been logged in Strong**, so the
+sets below are a starting point rather than a record — built only from movements he
+has real history with, not from the front-lever / L-sit / Nordic list an earlier
+version of this file invented.
+
+| # | Exercise | Sets |
+|---|---|---|
+| 1 | Pull Up *or* Wide Pull Up | 3 × AMRAP |
+| 2 | Chin Up | 3 × 6–8 |
+| 3 | Triceps Dip | 3 × 8–10 |
+| 4 | Hanging Leg Raise | 3 × 10–12 |
+| 5 | Plank | 3 × 45–60s |
+
+This lands three days after Thursday's Pull and is a lot of vertical pulling in one
+week. **The right lat governs it**: reps before load, and stop the pulling when that
+side starts talking. Cut slots 1–2 to one exercise if the week has been heavy.
+
+Logging it matters more than the numbers in it. Anything unlogged is invisible to
+`analyse.py`, which is why this session looks like it does not exist.
+
+## Yoga (15–20 min) — Saturday, both weeks
+
+Week A it follows the legs day. Week B it is the whole of Saturday. It happens either
+way — that is the point of giving it a fixed slot rather than leaving it floating.
+
+90/90 hip switch · half-pigeon · supine hamstring with a strap · thoracic open-book ·
+couch stretch · ankle dorsiflexion.
+
+Not tracked in Strong and not worth tracking. It is the one thing here measured by
+whether it happened, not by what it weighed.
 
 ## The row protocol
 
 Left and right are separate exercises that share a machine. Log them separately.
 
-**Left** — progress normally. Note that the "70kg" figure carried in older notes
-predates the September 2025 form change; the only 2026 row session (20 Aug) put *both*
-sides in at 50kg. Re-establish where the left actually is before assuming a 20kg gap.
+**Left** — progress normally. Note the "70kg" figure carried in older notes predates
+the September 2025 form change; the only 2026 row session (20 Aug) put *both* sides in
+at 50kg. Re-establish where the left actually is before assuming a 20kg gap.
 
 **Right** — start at the heaviest genuinely pain-free load. Three green lights held for
 two consecutive weeks → +2.5kg. Any red → back to the last green load and stay there.
@@ -126,13 +163,32 @@ adaptation and the physio should sign off on it.
 - **Seated wide-grip row** — hold 57kg deliberately, chase reps
 - **Pull-ups** — back to 27 reps fresh, then re-add 5kg once that holds three sessions
 - **Anything the right lat touches** — reps before weight, always
-- **Legs** — whatever is left where it was; this day is too infrequent to programme
+- **Legs** — leave loads where they are; once a fortnight is too infrequent to programme
+- **Calisthenics** — reps only, never load
 
 ## When life interferes
 
-- Take the next session in the rotation. Never skip one to preserve a weekday.
+- Miss a day, take the next one in the template. Do not shuffle sessions between days
+  to catch up, and do not restart the fortnight.
 - After 10+ days off, take 10% off top sets for the first session back.
-- Travelling: the pull day needs a bar; the push day needs almost nothing.
+- Travelling: Sunday's session needs a bar and a floor. Push needs almost nothing.
+
+## What the log says about adherence
+
+Kept separate from the plan above on purpose. The template is the intent; this is what
+the Strong export of 31 Aug 2026 actually contains.
+
+- The fortnight asks for **eight lifting sessions**, about four a week. Logged rate is
+  **3.16/week lifetime and 2.67 over the last twelve weeks.** The gap is mostly the
+  Friday Push and the Sunday session.
+- **Push and Pull are run faithfully.** Both are rock-solid five-exercise templates and
+  the loads move. This is the working half of the programme.
+- **Legs run about monthly** rather than once a fortnight — 11 sessions across 2026.
+- **Calisthenics has never appeared in the log at all.** Either it is not happening or
+  it is happening unlogged. Worth knowing which, because the answer changes what the
+  Sunday slot is for.
+
+None of this is a verdict on the plan. It is what to check against the next export.
 
 ## What we don't know
 
@@ -140,13 +196,9 @@ adaptation and the physio should sign off on it.
 lift's lifetime history, longer sessions look worse — but that comparison is mostly
 measuring two years of getting stronger, since 6-exercise days are 49% of 2024 and 6%
 of 2026. Remove the time trend and longer sessions score *best*, which is reverse
-causation: on good days you do more and push further.
-
-Observational data cannot separate these, and it is close to moot now — he has run
-five exercises in 22 of his last 23 push sessions and 22 of 22 pull sessions. The
-question is settled by habit rather than by evidence. If you ever want the real answer,
-alternate a 5- and a 7-exercise version of the same session for eight weeks, deciding
-which **before** training rather than by feel on the day.
+causation: on good days you do more and push further. Observational data cannot
+separate these. To answer it, alternate a 5- and a 7-exercise version of the same
+session for eight weeks, deciding which **before** training rather than by feel.
 
 **Whether the right lat is pain-limited or caution-limited.** `pain(R)` has never once
 been recorded. Until it is, the 50kg ceiling is an assumption.

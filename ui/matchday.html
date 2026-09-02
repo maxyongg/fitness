@@ -195,19 +195,6 @@ td.n{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;tex
   font-weight:600;color:var(--ink-3);border-right:1px solid var(--rule);text-align:center}
 .phasebar div:last-child{border-right:0}
 .phasebar div.on{background:var(--accent);color:var(--accent-ink)}
-.strip{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--rule);
-  border-radius:2px;overflow:hidden;margin-bottom:16px;background:var(--surface)}
-.strip .c{padding:9px 2px 10px;text-align:center;border-right:1px solid var(--rule);min-width:0}
-.strip .c:last-child{border-right:0}
-.strip .c .d{font-family:"Barlow Condensed",sans-serif;font-size:13px;font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;line-height:1}
-.strip .c .n{font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--ink-3);margin-top:2px}
-.strip .c .w{font-size:8px;letter-spacing:0;text-transform:uppercase;font-weight:600;margin-top:5px;
-  color:var(--ink-3);white-space:nowrap}
-.strip .c.lift .w{color:var(--accent)}
-.strip .c.ball .w{color:var(--green)}
-.strip .c.now{background:var(--accent)}
-.strip .c.now .d,.strip .c.now .n,.strip .c.now .w{color:var(--accent-ink);opacity:1}
 .wk{list-style:none;margin:0;padding:0}
 .wd{display:flex;border-top:1px solid var(--rule);align-items:stretch}
 .wd:first-child{border-top:0}
@@ -284,9 +271,11 @@ try {
 /* ---------- the programme, from plan.md ---------- */
 var PHASES = [
   { until: '2026-09-13', key: 're-entry', label: 'Re-entry',
-    rule: '10% off top sets. Three sessions a week. Skip the legs day.', skipLegs: true },
+    rule: 'Run the Week B shape — Mon Push, Thu Pull, Sun Calisthenics. 10% off top sets. No legs day.',
+    forceWeek: 'B', skipLegs: true },
   { until: '9999-12-31', key: 'full', label: 'Full block',
-    rule: 'Full load, progressing normally.', skipLegs: false }
+    rule: 'Week A and Week B alternate. Full load, progressing normally.',
+    forceWeek: null, skipLegs: false }
 ];
 
 var SESSIONS = {
@@ -306,7 +295,14 @@ var SESSIONS = {
     { ex: 'Bicep Curl', p: '3 × 8–10', n: 'barbell, preacher or hammer · always last' },
     { ex: 'Face Pull (Cable)', p: '3 × 12–15', n: 'only if short on time', opt: true }
   ]},
-  legs: { name: 'Legs', mins: 45, optional: true, items: [
+  calis: { name: 'Calisthenics', mins: 45, items: [
+    { ex: 'Pull Up', p: '3 × AMRAP', n: 'or wide pull-up · right lat governs this', bw: true },
+    { ex: 'Chin Up', p: '3 × 6–8', bw: true },
+    { ex: 'Triceps Dip', p: '3 × 8–10', bw: true },
+    { ex: 'Hanging Leg Raise', p: '3 × 10–12', bw: true },
+    { ex: 'Plank', p: '3 × 45–60s', bw: true }
+  ]},
+  legs: { name: 'Legs', mins: 45, items: [
     { ex: 'Squat (Barbell)', p: '3 × 6–8', n: '75kg' },
     { ex: 'Romanian Deadlift (Barbell)', p: '3 × 6–8', n: 'lives here, nowhere else · 70kg' },
     { ex: 'Leg Press', p: '3 × 10', n: 'or Bulgarian split squat · 130kg' },
@@ -405,7 +401,7 @@ function renderSheet() {
               '>' + esc(SESSIONS[k].name) + '</button>';
     });
     html += '</div>';
-    html += '<p class="note">Push and Pull alternate — take whichever is next in the rotation, not whichever fits the weekday.</p>';
+    html += '<p class="note">Check the <strong>Week</strong> tab for what the template has today. Miss a day and take the next one in the template — do not shuffle sessions to catch up.</p>';
     html += '</div></div>';
     lane.innerHTML = html + queueHTML();
     wire();
@@ -533,11 +529,37 @@ function wire() {
 <script>
 "use strict";
 /* ---------- lane: the week ---------- */
-/* No weekday template: Push and Pull alternate and land wherever they land.
-   Fixed points only — football Tuesday, protected Wednesday. */
-var FIXED = { 2: { label: 'Football', cls: 'ball' }, 3: { label: 'Rest', cls: '' } };
-var TYPICAL = [1, 4, 0];                       /* Mon, Thu, Sun — where sessions usually land */
-var nextUp = 'push';
+/* Max's own two-week template, given 2026-09-02. Not inferred from the log. */
+var WEEK_ANCHOR = '2026-09-14';        /* Monday that starts a Week A */
+var YOGA = '90/90 hip switch · half-pigeon · supine hamstring w/ strap · thoracic open-book · couch stretch · ankle dorsiflexion';
+var BALL = { fixed: 'Football', len: '2h' };
+
+var WEEK = {
+  A: [
+    { d: 1, key: 'push' },
+    { d: 2, fixed: BALL.fixed, len: BALL.len, note: '7-a-side. Fixed — schedule under it, never around it.' },
+    { d: 3, rest: 'Rest', note: 'Protected. Late food after Tuesday football. Nothing goes here, yoga included.' },
+    { d: 4, key: 'pull' },
+    { d: 5, key: 'push', note: 'Second Push. Vary slot 2 and slot 3 from Monday rather than repeating it.' },
+    { d: 6, key: 'legs', yoga: true, note: 'Then yoga, 15–20 min.' },
+    { d: 0, key: 'pull', note: 'Second Pull. Take this one on reps, not load.' }
+  ],
+  B: [
+    { d: 1, key: 'push' },
+    { d: 2, fixed: BALL.fixed, len: BALL.len, note: '7-a-side. Fixed — schedule under it, never around it.' },
+    { d: 3, rest: 'Rest', note: 'Protected. Late food after Tuesday football. Nothing goes here, yoga included.' },
+    { d: 4, key: 'pull' },
+    { d: 5, fixed: BALL.fixed, len: BALL.len, note: 'Second football of the fortnight. This is where Week A puts a Push.' },
+    { d: 6, yogaOnly: true, note: 'Yoga only, 15–20 min. No lifting.' },
+    { d: 0, key: 'calis', note: 'Right lat governs it — reps before load, stop the pulling when that side talks.' }
+  ]
+};
+
+function weekFor(iso) {
+  if (iso < WEEK_ANCHOR) return null;                 /* still in re-entry */
+  var a = new Date(WEEK_ANCHOR + 'T12:00:00'), t = new Date(iso + 'T12:00:00');
+  return (Math.floor((t - a) / (7 * 864e5)) % 2 === 0) ? 'A' : 'B';
+}
 
 function dateForDow(dow) {
   var t = new Date(todayISO() + 'T12:00:00');
@@ -547,71 +569,74 @@ function dateForDow(dow) {
   return new Date(x.getTime() - x.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
 }
 
+var activeWeek = null;                                 /* null = follow the calendar */
+
 (function () {
   var wk = document.getElementById('lane-week');
 
   function render() {
     var iso = todayISO(), ph = phaseFor(iso), today = new Date(iso + 'T12:00:00').getDay();
+    var auto = ph.forceWeek || weekFor(iso) || 'B';
+    var shown = activeWeek || auto;
     var h = '';
 
     h += '<div class="card"><div class="card-h"><h2>' + esc(ph.label) + '</h2>' +
          '<span class="hint">to ' + (ph.until === '9999-12-31' ? 'further notice' : ph.until) + '</span></div>' +
-         '<div class="card-b"><p class="note" style="margin:0">' + esc(ph.rule) + '</p></div></div>';
-
-    /* the week's shape: what is fixed, and where sessions usually land */
-    h += '<div class="strip">';
-    [1, 2, 3, 4, 5, 6, 0].forEach(function (d) {
-      var fx = FIXED[d], lift = !fx && TYPICAL.indexOf(d) !== -1;
-      var cls = 'c' + (d === today ? ' now' : '') + (fx ? ' ' + fx.cls : (lift ? ' lift' : ''));
-      h += '<div class="' + cls + '"><div class="d">' + DOW[d] + '</div>' +
-           '<div class="n">' + dateForDow(d).slice(8) + '</div>' +
-           '<div class="w">' + (fx ? fx.label : (lift ? 'Lift' : '·')) + '</div></div>';
-    });
-    h += '</div>';
-
-    h += '<div class="card"><div class="card-h"><h2>The rotation</h2><span class="hint">three a week</span></div>' +
-         '<div class="card-b"><p class="note" style="margin:0 0 12px">Push and Pull alternate. Take whichever is next — ' +
-         'never skip one to preserve a weekday. Tuesday is football and Wednesday is protected; the other five days are fair game.</p>' +
+         '<div class="card-b"><p class="note" style="margin:0 0 12px">' + esc(ph.rule) + '</p>' +
          '<div class="seg">' +
-         '<button class="chip" data-next="push" aria-pressed="' + (nextUp === 'push') + '">Next: Push</button>' +
-         '<button class="chip" data-next="pull" aria-pressed="' + (nextUp === 'pull') + '">Next: Pull</button>' +
-         '</div></div></div>';
+         '<button class="chip" data-wk="A" aria-pressed="' + (shown === 'A') + '">Week A</button>' +
+         '<button class="chip" data-wk="B" aria-pressed="' + (shown === 'B') + '">Week B</button>' +
+         '</div>' +
+         '<p class="note">' + (ph.forceWeek
+            ? 'Re-entry runs the Week B shape whichever week it is. Week A begins Mon 14 Sep.'
+            : 'This week is <strong>Week ' + auto + '</strong>, counting from Mon 14 Sep.') + '</p>' +
+         '</div></div>';
 
-    Object.keys(SESSIONS).forEach(function (k) {
-      var S = SESSIONS[k], off = k === 'legs' && ph.skipLegs;
-      var isNext = k === nextUp;
-      h += '<div class="card"' + (isNext ? ' style="border-color:var(--accent)"' : '') + '>';
-      h += '<div class="card-h"><h2>' + esc(S.name) + '</h2>' +
-           '<span class="hint">~' + S.mins + ' min</span></div>';
-      h += '<div class="card-b" style="padding-bottom:12px">';
-      h += '<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px">';
-      if (isNext) h += '<span class="tag fix">next up</span>';
-      if (S.optional) h += '<span class="tag opt">optional · about monthly</span>';
+    h += '<div class="card"><div class="card-h"><h2>Week ' + shown + '</h2>' +
+         '<span class="hint">' + (shown === 'A' ? '5 lifts · 1 football' : '3 lifts · 2 football') + '</span></div><ul class="wk">';
+
+    WEEK[shown].forEach(function (row) {
+      var S = row.key ? SESSIONS[row.key] : null;
+      var off = S && ph.skipLegs && row.key === 'legs';
+      var quiet = !!(row.rest || row.yogaOnly || off);
+      var title = S ? S.name : (row.fixed || row.rest || 'Yoga');
+      var cls = 'wd' + (row.d === today && shown === auto ? ' today' : '') + (quiet ? ' quiet' : '');
+      h += '<li class="' + cls + '"><div class="day"><div class="dd">' + DOW[row.d] + '</div>' +
+           '<div class="dnum">' + dateForDow(row.d).slice(8) + '</div></div><div class="body">';
+      h += '<div class="top"><span class="ttl">' + esc(title) + '</span>';
+      if (S) h += '<span class="len">~' + S.mins + ' min</span>';
+      if (row.len) h += '<span class="len">' + row.len + '</span>';
+      if (row.fixed) h += '<span class="tag fix">fixed</span>';
+      if (row.yoga) h += '<span class="tag opt">+ yoga</span>';
       if (off) h += '<span class="tag off">not this phase</span>';
-      if (!off) h += '<button class="mini" style="margin-left:auto" data-log="' + k + '">Log this</button>';
+      if (S && !off) h += '<button class="mini go" data-log="' + row.key + '" data-d="' + row.d + '">Log</button>';
       h += '</div>';
-      h += '<ol style="margin:0;padding-left:20px;font-size:13.5px;line-height:1.55;color:var(--ink-2)">';
-      S.items.forEach(function (it) {
-        var nm = it.ex.replace(/ \(.*\)$/, '') + (it.side ? ' — ' + it.side : '');
-        h += '<li' + (it.opt ? ' style="color:var(--ink-3)"' : '') + '><b style="color:var(--ink);font-weight:600">' +
-             esc(nm) + '</b> · ' + esc(it.p) + (it.n ? ' · ' + esc(it.n) : '') + '</li>';
-      });
-      h += '</ol></div></div>';
+      if (S) {
+        h += '<div class="list">' + S.items.map(function (it, i) {
+          var nm = it.ex.replace(/ \(.*\)$/, '') + (it.side ? ' ' + it.side.slice(0, 1) : '');
+          if (it.opt) return '<span style="color:var(--ink-3)">+ ' + esc(nm) + ' <em>if time</em></span>';
+          return '<b>' + (i + 1) + '</b> ' + esc(nm);
+        }).join(' · ') + '</div>';
+      }
+      if (row.note) h += '<div class="list" style="color:var(--ink-3)">' + esc(row.note) + '</div>';
+      if (row.yoga || row.yogaOnly) h += '<div class="list" style="color:var(--ink-3)">' + esc(YOGA) + '</div>';
+      h += '</div></li>';
     });
+    h += '</ul></div>';
 
     h += '<div class="card"><div class="card-h"><h2>Standing rules</h2></div><div class="card-b">' +
          '<p class="note" style="margin:0">Pull-ups go <strong>first</strong> on pull day — position is worth about 10 reps. ' +
          'Triceps close the push day, curls close the pull day. The RDL lives on the legs day and nowhere else. ' +
-         'After 10+ days off, take 10% off top sets for the first session back. ' +
-         'Skipping the legs day means no direct leg work that week — that is the accepted trade, not an oversight.</p></div></div>';
+         'Miss a day and take the next one in the template — do not shuffle sessions or restart the fortnight. ' +
+         'After 10+ days off, take 10% off top sets for the first session back.</p></div></div>';
 
     wk.innerHTML = h;
-    wk.querySelectorAll('[data-next]').forEach(function (b) {
-      b.onclick = function () { nextUp = b.dataset.next; render(); };
+    wk.querySelectorAll('[data-wk]').forEach(function (b) {
+      b.onclick = function () { activeWeek = b.dataset.wk; render(); };
     });
     wk.querySelectorAll('[data-log]').forEach(function (b) {
       b.onclick = function () {
-        draft = newDraft(b.dataset.log); saveNote = '';
+        draft = newDraft(b.dataset.log, dateForDow(+b.dataset.d)); saveNote = '';
         renderSheet(); window.goTab('sheet');
       };
     });
