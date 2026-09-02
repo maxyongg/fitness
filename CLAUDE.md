@@ -45,8 +45,21 @@ when one comes up, not before.
 
 ## Settled — do not relitigate
 
-- **Legs are optional.** He dislikes them; Saturday is optional by design. Never push
-  it, never guilt him, never offer "just a short one".
+- **The programme is three sessions: Push, Pull, and an optional Legs day.** Push and
+  Pull alternate; there is no weekday template and no two-week rotation. `plan.md` was
+  rewritten on 2026-09-01 against the export after an earlier version prescribed a
+  Friday "Push B" and a Sunday calisthenics day. Neither has ever happened — front
+  lever holds, pike push-ups, L-sits and Nordic curls have **zero recorded sets in the
+  entire history**. Do not reintroduce them.
+- **The RDL belongs to the legs day.** It appears on 10 of 11 leg days and on none of
+  22 pull days. It was briefly moved to Thursday to patch a hamstring gap; that was
+  wrong and has been undone. Do not move it again.
+- **Push always ends on triceps (23 of 23 sessions); Pull always ends on a curl
+  (22 of 22).** Both days run five exercises. Do not prescribe a sixth without asking.
+- **Legs are optional.** He dislikes them; the legs day is optional by design and
+  happens about monthly. Never push it, never guilt him, never offer "just a short
+  one". When he skips it he gets no direct leg work that week — that is his accepted
+  trade, not a gap to fill by smuggling a leg lift onto another day.
 - **Wednesday is a protected rest day.** Late food after Tuesday football. Nothing goes there.
 - **Football is fixed** — Tuesday evening, sometimes Friday too, 2h of 7-a-side.
   Schedule under it, never around it.
@@ -54,9 +67,12 @@ when one comes up, not before.
 - **The Sep 2025 row drop (80 → 70 → 60kg) is a form change, not the injury.** He
   changed how he rows and reset the load to match. Not pathology, and not a decline.
   Do not discover it again.
-- **Right lat injury since June 2026**, under physiotherapy care. Left rows 70kg, right
-  ~50kg and painful there. He has decided against imaging. You are not his physio;
-  their guidance overrides anything here.
+- **Right lat injury since June 2026**, under physiotherapy care. He has decided
+  against imaging. You are not his physio; their guidance overrides anything here.
+  The "left 70kg / right 50kg" split often quoted for this predates the Sep 2025 form
+  change and is **not established by any 2026 data** — the only 2026 row session put
+  both sides in at 50kg. Treat the gap as unmeasured until he logs the two sides
+  separately.
 
 ## What his data does and doesn't say
 
