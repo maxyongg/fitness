@@ -39,6 +39,18 @@ the export or in any analysis.
 <!-- Reconciled against data/strong_2026-08-31.csv on 2026-09-01: loads and reps filled
      in, and Cable Crossover moved ahead of Lateral Raise to match the performed order. -->
 
+## 2026-09-03 · Thu · Pull
+pain(R): 3/10 | note: right lat was half weakness half pain -> i’ve certainly lost a lot of strength there
+- Pull Up — bodyweight × 12, 10, 7
+- Iso Lateral Row - Left — 40kg × 10, 50kg × 8, 60kg × 8, 7
+- Iso Lateral Row - Right — 40kg × 10, 50kg × 8, 8, 8
+- Lat Pulldown (Cable) — 67kg × 8, 8, 57kg × 10
+- Bent Over Rear Delt Raise — 6kg × 10, 12, 12
+- Rings: Bicep Curl — bodyweight × 10, 10, 10
+- Plank — 1:00, 1:00
+
+<!-- From the phone page queue, drained 2026-09-03. First session with pain(R) recorded. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
