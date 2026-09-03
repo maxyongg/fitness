@@ -253,10 +253,6 @@ footer{margin:26px 0 0;padding-top:16px;border-top:1px solid var(--rule);font-si
 <script id="mb-state" type="application/json">{"queue":[]}</script>
 <script>
 "use strict";
-/* Capture the source document BEFORE any render, so republishing rebuilds from
-   the original template rather than from mutated DOM. */
-var PRISTINE = document.documentElement.outerHTML;
-
 var DATA  = JSON.parse(document.getElementById('mb-data').textContent);
 var STATE = JSON.parse(document.getElementById('mb-state').textContent);
 if (!STATE || !Array.isArray(STATE.queue)) STATE = { queue: [] };
@@ -450,11 +446,33 @@ if (window.claude && typeof claude.use === 'function') {
   }).catch(function () {});
 }
 
+/* Rebuild the page to republish it.
+
+   This used to snapshot document.documentElement.outerHTML at the top of this
+   script. That runs mid-parse, so the snapshot stopped at this script tag and
+   silently dropped the second script below it — the week lane, the form guide
+   and the whole boot block. Every save published a page that could no longer
+   render itself. Do not go back to it.
+
+   Clone the live body instead, and undo by hand the four things rendering
+   mutates. The body is exactly our own source: the platform's runtime, charset
+   and reset live in <head> and are re-added when the page is served, so this
+   also stops a copy of that runtime being baked in on every save. */
 function stateDoc(st) {
-  var mi = PRISTINE.indexOf('id="mb-state"');
-  var gt = PRISTINE.indexOf('>', mi);
-  var cl = PRISTINE.indexOf('<\/script>', gt);
-  return '<!doctype html>' + PRISTINE.slice(0, gt + 1) + JSON.stringify(st) + PRISTINE.slice(cl);
+  var b = document.body.cloneNode(true);
+  var s = b.querySelector('#mb-state');
+  if (s) s.textContent = JSON.stringify(st);
+  ['week', 'sheet', 'form'].forEach(function (k) {
+    var ln = b.querySelector('#lane-' + k), tb = b.querySelector('#tab-' + k);
+    if (ln) {
+      ln.innerHTML = '';
+      if (k === 'week') ln.removeAttribute('hidden'); else ln.setAttribute('hidden', '');
+    }
+    if (tb) tb.setAttribute('aria-selected', k === 'week' ? 'true' : 'false');
+  });
+  var pt = b.querySelector('#phaseTag'); if (pt) pt.textContent = '\u2014';
+  var ft = b.querySelector('#foot'); if (ft) ft.innerHTML = '';
+  return b.innerHTML.trim();   /* or the wrapper's newline accretes, one per save */
 }
 
 function persist(cb) {
