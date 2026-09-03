@@ -22,9 +22,25 @@ Published pages cannot call GitHub, so the page holds saved sessions inside itse
    the drained entries from the `mb-state` JSON**. Skip this and everything in the
    queue gets written twice next time.
 
-A screenshot in the chat is still the faster path for a single session. The page earns
-its place for `pain(R)`, which screenshots cannot give you and which has never once
-been logged.
+### Three ways a session reaches the queue
+
+The team sheet lane accepts all three, and all three end up as the same `md` block:
+
+1. **Tapped in against the template** — the prescribed line-up, with the rotating slots
+   already picked.
+2. **Pasted from Strong** — he shares the workout from Strong as plain text and pastes
+   the lot, trailing `link.strong.app` URL included. The page parses the title, the
+   date, every exercise and every set, and hands back an **editable** session rather
+   than a blind import. It reads `40 kg × 10`, `12 reps`, `1:00` and lbs, and a generic
+   title like "Morning Workout" is replaced by the session type guessed from the
+   exercises. Exercise names are kept exactly as Strong writes them, so they match the
+   CSV export.
+3. **Free-text rows** — the "anything else you did" box at the bottom of every session,
+   for ad hoc core and finishers.
+
+A screenshot in the chat is still fine and still the fastest for a single session. What
+the page adds is `pain(R)` and the ad hoc work — neither of which a screenshot can give
+you, and `pain(R)` has never once been logged.
 
 ## Keeping the page in step with the programme
 

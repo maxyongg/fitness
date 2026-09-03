@@ -72,7 +72,9 @@ three files, one transcription, a two-sentence reply, stop.
 
 ## The standing job
 
-He drops in a screenshot from the Strong app. Then:
+He drops in a screenshot from the Strong app — or he logs it in the phone page instead,
+by tapping it in or pasting Strong's plain-text share. Page entries queue up and are
+drained on request (`docs/workflows.md`); a screenshot in the chat you handle now:
 
 1. **Transcribe** it into `log.md`, in the format at the top of that file — newest at
    the bottom, exercises in performed order. Screenshots are lossy: mark anything

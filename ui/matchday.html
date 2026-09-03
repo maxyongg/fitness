@@ -342,8 +342,64 @@ var DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 function phaseFor(iso) { for (var i = 0; i < PHASES.length; i++) if (iso <= PHASES[i].until) return PHASES[i]; }
 function todayISO() { var d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); }
-function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); }
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); }
 function el(h) { var t = document.createElement('template'); t.innerHTML = h.trim(); return t.content.firstElementChild; }
+
+/* ---------- paste from Strong ---------- */
+var MONTHS = ['january','february','march','april','may','june','july','august',
+              'september','october','november','december'];
+
+function strongIso(y, mon, d) {
+  var k = MONTHS.indexOf(String(mon).toLowerCase());
+  if (k < 0) return null;
+  return y + '-' + String(k + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+}
+function strongDate(L) {
+  var t = L.replace(/\s+at\s+.*$/i, '').replace(/^[A-Za-z]+,\s*/, '').trim(), m;
+  if ((m = t.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/))) return strongIso(m[3], m[2], m[1]);
+  if ((m = t.match(/^([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})$/))) return strongIso(m[3], m[1], m[2]);
+  if ((m = t.match(/^(\d{4})-(\d{2})-(\d{2})$/))) return t;
+  return null;
+}
+function strongSet(v) {
+  v = v.trim(); var m;
+  if ((m = v.match(/^([\d.]+)\s*(kg|lbs?)?\s*[\u00d7x*]\s*([\d.]+)/i)))
+    return { w: m[1], r: m[3], unit: (m[2] || 'kg').toLowerCase() };
+  if ((m = v.match(/^([\d.]+)\s*reps?\b/i))) return { w: '', r: m[1] };
+  if ((m = v.match(/^(\d+:\d{2}(?::\d{2})?)$/))) return { w: '', r: '', t: m[1] };
+  if ((m = v.match(/^([\d.]+)\s*(kg|lbs?)\b/i))) return { w: m[1], r: '', unit: m[2].toLowerCase() };
+  if ((m = v.match(/^([\d.]+)$/))) return { w: '', r: m[1] };
+  return null;
+}
+function parseStrong(text) {
+  var lines = String(text || '').replace(/\r/g, '').split('\n').map(function (l) { return l.trim(); });
+  var out = { date: null, name: null, items: [], skipped: 0 }, cur = null;
+  function flush() { if (cur && cur.sets.length) out.items.push(cur); cur = null; }
+  lines.forEach(function (L) {
+    if (!L || /^https?:\/\//i.test(L)) return;
+    var d = strongDate(L);
+    if (d && !out.date) { out.date = d; return; }
+    var m = L.match(/^Set\s+\d+\s*:\s*(.+)$/i) || L.match(/^(?:Warm[- ]?up|W)\s*\d*\s*:\s*(.+)$/i);
+    if (m) {
+      if (!cur) { out.skipped += 1; return; }
+      var st = strongSet(m[1]);
+      if (st) cur.sets.push(st); else out.skipped += 1;
+      return;
+    }
+    flush();
+    if (out.name === null && !out.items.length && !out.date) { out.name = L; return; }
+    cur = { ex: L, sets: [] };
+  });
+  flush();
+  return out;
+}
+function guessKey(items) {
+  var all = items.map(function (i) { return i.ex; }).join(' ').toLowerCase();
+  if (/squat|leg press|leg curl|calf|deadlift/.test(all) && !/pulldown|pull up/.test(all)) return 'legs';
+  if (/pull up|pulldown|row|curl|chin up/.test(all)) return 'pull';
+  if (/bench|press|fly|crossover|lateral raise|tricep|dip/.test(all)) return 'push';
+  return 'calis';
+}
 
 /* ---------- draft being edited ---------- */
 var draft = null;
@@ -361,20 +417,23 @@ function newDraft(key, iso) {
 }
 
 function markdown(d) {
-  var s = SESSIONS[d.key];
   var dt = new Date(d.date + 'T12:00:00');
-  var out = '## ' + d.date + ' · ' + DOW[dt.getDay()] + ' · ' + s.name + '\n';
+  var title = d.pastedName || SESSIONS[d.key].name;
+  var out = '## ' + d.date + ' · ' + DOW[dt.getDay()] + ' · ' + title + '\n';
   var meta = [];
   if (d.pain !== null && d.pain !== undefined) meta.push('pain(R): ' + d.pain + '/10');
   if (d.note) meta.push('note: ' + d.note);
   if (meta.length) out += meta.join(' | ') + '\n';
   d.items.forEach(function (it) {
-    var live = it.sets.filter(function (st) { return st.r !== '' && st.r != null; });
+    var live = it.sets.filter(function (st) { return (st.r !== '' && st.r != null) || st.t || st.w; });
     if (!live.length) return;
     var name = it.ex + (it.side ? ' (' + it.side + ')' : '');
     var parts = [], lastW = null;
     live.forEach(function (st) {
-      var w = (st.w === '' || st.w == null) ? 'bodyweight' : st.w + 'kg';
+      if (st.t) { parts.push(st.t); lastW = null; return; }
+      var unit = (st.unit === 'lb' || st.unit === 'lbs') ? 'lbs' : 'kg';
+      var w = (st.w === '' || st.w == null) ? 'bodyweight' : st.w + unit;
+      if (st.r === '' || st.r == null) { parts.push(w); lastW = null; return; }
       if (w === lastW) parts.push(String(st.r));
       else { parts.push(w + ' × ' + st.r); lastW = w; }
     });
@@ -436,6 +495,15 @@ function renderSheet() {
     html += '</div>';
     html += '<p class="note">Check the <strong>Week</strong> tab for what the template has today. Miss a day and take the next one in the template — do not shuffle sessions to catch up.</p>';
     html += '</div></div>';
+
+    html += '<div class="card"><div class="card-h"><h2>Paste from Strong</h2>' +
+            '<span class="hint">already logged it?</span></div><div class="card-b">' +
+            '<p class="note" style="margin:0 0 10px">Share the workout from Strong as text and paste the whole thing here — ' +
+            'the link at the end is fine. You get an editable session, not a blind import.</p>' +
+            '<textarea id="dPaste" placeholder="Morning Workout&#10;Thursday, 3 September 2026 at 9:50 AM&#10;&#10;Pull Up&#10;Set 1: 12 reps&#10;..." style="min-height:110px"></textarea>' +
+            '<div class="btnbar"><button class="btn" id="dParse">Read it</button>' +
+            '<span class="saveState" id="dParseMsg"></span></div></div></div>';
+
     lane.innerHTML = html + queueHTML();
     wire();
     return;
@@ -450,14 +518,15 @@ function renderSheet() {
   html += '</div></div>';
 
   html += '<div class="card"><div class="card-h"><h2>Line-up</h2>' +
-          '<button class="mini" id="dVary" style="margin-left:auto">⇄ Vary it</button></div>';
+          (draft.pasted ? '<span class="hint">from Strong</span>'
+                        : '<button class="mini" id="dVary" style="margin-left:auto">⇄ Vary it</button>') + '</div>';
   html += '<ul class="sheet">';
   var slot = 0;
   draft.items.forEach(function (it, i) {
     var spec = it;
     var num;
     if (spec.side) { if (spec.side === 'Left') slot += 1; num = slot + spec.side.slice(0, 1); }
-    else if (spec.custom) num = '+';
+    else if (spec.custom && !spec.pasted) num = '+';
     else if (spec.fin) num = 'F';
     else { slot += 1; num = String(slot); }
     html += '<li class="pos' + (spec.side || spec.custom || spec.fin ? ' side' : '') + '"><div class="num">' + num + '</div><div class="pos-b">';
@@ -471,11 +540,15 @@ function renderSheet() {
     if (spec.opt) html += '<div class="presc" style="margin-top:3px"><span class="tag opt">optional</span></div>';
     html += '<div class="sets" data-sets="' + i + '">';
     it.sets.forEach(function (st, j) {
-      html += '<span class="setrow">' +
-        '<input inputmode="decimal" placeholder="' + (spec.bw ? 'BW' : 'kg') + '" data-i="' + i + '" data-j="' + j + '" data-f="w" value="' + esc(st.w) + '" aria-label="weight">' +
-        '<span class="x">×</span>' +
-        '<input inputmode="numeric" placeholder="reps" data-i="' + i + '" data-j="' + j + '" data-f="r" value="' + esc(st.r) + '" aria-label="reps">' +
-        '<button class="kill" data-kill="' + i + '.' + j + '" aria-label="remove set">×</button></span>';
+      html += '<span class="setrow">';
+      if (st.t != null && st.t !== '') {
+        html += '<input inputmode="text" placeholder="m:ss" style="width:64px;text-align:center" data-i="' + i + '" data-j="' + j + '" data-f="t" value="' + esc(st.t) + '" aria-label="time">';
+      } else {
+        html += '<input inputmode="decimal" placeholder="' + (spec.bw ? 'BW' : 'kg') + '" data-i="' + i + '" data-j="' + j + '" data-f="w" value="' + esc(st.w) + '" aria-label="weight">' +
+          '<span class="x">×</span>' +
+          '<input inputmode="numeric" placeholder="reps" data-i="' + i + '" data-j="' + j + '" data-f="r" value="' + esc(st.r) + '" aria-label="reps">';
+      }
+      html += '<button class="kill" data-kill="' + i + '.' + j + '" aria-label="remove set">×</button></span>';
     });
     html += '<button class="addset" data-add="' + i + '">+ set</button></div>';
     if (spec.gate) html += gateHTML();
@@ -487,6 +560,11 @@ function renderSheet() {
           '<button class="btn ghost" id="dAdd" style="flex:0 0 auto">Add</button></div>';
   html += '</div>';
 
+  if (draft.pasted) {
+    html += '<div class="card"><div class="card-h"><h2>Right lat</h2>' +
+            '<span class="hint">omit if nothing pulled</span></div><div class="card-b">' +
+            gateHTML() + '</div></div>';
+  }
   html += '<div class="card"><div class="card-h"><h2>Note</h2></div><div class="card-b">' +
           '<textarea id="dNote" placeholder="How it felt, anything unusual, anything you did that Strong will not have.">' + esc(draft.note) + '</textarea>' +
           '<div class="btnbar"><button class="btn" id="dSave">Save session</button>' +
@@ -530,6 +608,29 @@ function queueHTML() {
 }
 
 function wire() {
+  var dp = lane.querySelector('#dParse');
+  if (dp) dp.onclick = function () {
+    var txt = lane.querySelector('#dPaste').value;
+    var r = parseStrong(txt);
+    var msg = lane.querySelector('#dParseMsg');
+    if (!r.items.length) {
+      msg.textContent = 'Could not find any exercises in that. Paste the whole share text, including the set lines.';
+      return;
+    }
+    var key = guessKey(r.items);
+    draft = {
+      id: 'p' + Date.now(), key: key, pasted: true,
+      pastedName: r.name && !/^(morning|afternoon|evening|night)\s+workout$/i.test(r.name)
+                  ? r.name : SESSIONS[key].name,
+      date: r.date || todayISO(), note: '', pain: null,
+      items: r.items.map(function (it) {
+        return { ex: it.ex, side: null, p: 'from Strong', pasted: true, sets: it.sets };
+      })
+    };
+    saveNote = r.date ? '' : 'No date in that paste — using today. Change it above if that is wrong.';
+    if (r.skipped) saveNote += (saveNote ? ' ' : '') + r.skipped + ' line(s) could not be read; check the sets.';
+    renderSheet();
+  };
   lane.querySelectorAll('[data-pick]').forEach(function (b) {
     b.onclick = function () { draft = newDraft(b.dataset.pick); saveNote = ''; renderSheet(); };
   });
