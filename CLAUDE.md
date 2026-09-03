@@ -95,6 +95,12 @@ The occasional jobs — draining the phone-UI queue, logging when git is unreach
 the monthly reconcile, republishing the page — live in `docs/workflows.md`. Read it
 when one comes up, not before.
 
+**One hard rule from that file, because it destroys his data:** `ui/matchday.html` in
+the repo always carries an empty queue, so **publishing it overwrites whatever the live
+page is holding.** Before *any* republish — including a one-line tweak — read the
+artifact, check `mb-state`, and drain the queue into `log.md` first if it is not empty.
+Nothing notifies you that he has saved something; you only find it by looking.
+
 ## Settled — do not relitigate
 
 - **The two-week rotation is real and it is his.** He gave the template on 2026-09-02
@@ -150,6 +156,12 @@ when one comes up, not before.
   is governed by pain. Never hold the left back to match the right.
 - **Session length is UNKNOWN.** An earlier version of this file called 5–6 exercises
   his tested optimum. It was an artefact of the calendar. Don't reassert it.
+- **Time of day makes no measurable difference**, checked 2026-09-03 because he
+  suspected it did. Raw numbers favour mornings by 0.39 SD; that is entirely the
+  calendar — he moved from evening training in 2024 to mornings in 2026 while getting
+  stronger. Within 2026 the spread is 0.09 SD and only 6 of 18 lifts favour AM. Train
+  when the week allows. Don't re-derive this, and don't tell him he is wrong about
+  feeling stronger at a time — the log simply cannot see it.
 - **He is right about his own body more often than the log is.** Three confident
   findings here turned out to be scheduling artefacts read as physiology. Ask why
   before inferring. The log records what he lifted, never why he stopped.

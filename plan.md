@@ -32,6 +32,18 @@ Eight lifting sessions a fortnight, two or three football sessions, yoga twice.
 re-entry, and the weeks alternate from there. Flip the anchor if that is wrong — nothing
 else depends on it.
 
+**Time of day is free.** He suspected he is stronger at certain times; the log says
+otherwise. Within 2026 — the only window where mornings and evenings are both well
+represented — the gap across all four time buckets is 0.09 SD, and only 6 of 18 lifts
+favour mornings. The apparent morning advantage in the raw numbers is the calendar: he
+shifted from evening training in 2024 to morning training in 2026 while getting
+stronger throughout. Working out in `docs/findings.md`.
+
+So schedule sessions by what the week allows, not by a time. In practice that has meant
+mornings at the weekend and evenings on weekdays, which is fine and needs no change. If
+he *feels* stronger at a given hour, train then — the measurement is not sensitive
+enough to argue with him, and readiness is worth more than 0.02 SD.
+
 **Wednesday is protected in both weeks.** Late food after Tuesday football. Nothing
 goes there, yoga included.
 

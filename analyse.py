@@ -7,9 +7,13 @@ Re-run the full analysis on a Strong app CSV export.
 Every number in plan.md came from this script. Re-running it on a fresh export is
 how you check whether the programme is working.
 
-IMPORTANT: Strong preserves the ORDER exercises were performed in. This script uses
-that. Ignoring it produced three wrong conclusions in this project — a scheduling
-change read as an injury. Do not drop the ordering.
+IMPORTANT: Strong preserves the ORDER exercises were performed in, and the START TIME
+of each session. This script uses both. Ignoring the order produced three wrong
+conclusions in this project — a scheduling change read as an injury. Do not drop it.
+
+Two questions in here are confounded with the calendar and are reported with their
+de-trended counterpart every run, so nobody re-derives them naively: session length and
+time of day.
 """
 import sys
 import numpy as np
@@ -51,6 +55,7 @@ def load(path):
     df['row'] = range(len(df))                      # preserves performed order
     df['is_work'] = ~df['Set Order'].astype(str).eq('W')
     df['grp'] = df['Exercise Name'].map(classify)
+    df['hour'] = df.Date.dt.hour                    # Strong records the start time
     df['e1rm'] = np.where(df.Weight > 0, df.Weight * (1 + df.Reps / 30.0), np.nan)
     return df
 
@@ -132,6 +137,43 @@ which BEFORE training rather than by feel on the day.""")
     }).round(3)
     print('\n' + cmp.to_string())
     print('\nSigns disagree. That is the finding: there is no finding.')
+
+    section('TIME OF DAY — confounded with the calendar, like session length')
+    start = df.groupby('day').hour.min()
+    per['hour'] = per.day.map(start)
+    per['tod'] = pd.cut(per.hour, [-1, 11, 14, 17, 24],
+                        labels=['morning <=11', 'midday 12-14', 'afternoon 15-17', 'evening 18+'])
+    tod = pd.DataFrame({
+        'raw_z': per.groupby('tod', observed=True).z.mean(),
+        'de-trended': per.groupby('tod', observed=True).resid.mean(),
+        'n': per.groupby('tod', observed=True).z.size(),
+    }).round(3)
+    print(tod.to_string())
+    print("""
+Raw says mornings are much better. De-trended says the gap is nearly gone. That is the
+same trap as session length: he moved from evening training in 2024 to morning training
+in 2026, over the same two years he got stronger, so the raw comparison is measuring the
+calendar. Mornings are also mostly weekends.""")
+
+    print('\n--- each year on its own (raw z), which removes most of the trend ---')
+    per['yr'] = per.day.dt.year
+    per['am'] = np.where(per.hour <= 11, 'morning', np.where(per.hour >= 18, 'evening', 'mid'))
+    print(per.pivot_table(index='yr', columns='am', values='z', aggfunc='mean').round(3).to_string())
+    print('Sign flips year to year — evening led in 2024, morning in 2025, level in 2026.')
+
+    print('\n--- 2026 only, per lift, morning vs afternoon/evening ---')
+    p26 = per[per.day >= '2026-01-01'].copy()
+    p26['ampm'] = np.where(p26.hour <= 11, 'AM', 'PM')
+    gaps = []
+    for name, s_ in p26.groupby('Exercise Name'):
+        t = s_.groupby('ampm').z.agg(['mean', 'size'])
+        if len(t) < 2 or t['size'].min() < 4:
+            continue
+        gaps.append(t.loc['AM', 'mean'] - t.loc['PM', 'mean'])
+    if gaps:
+        print(f'{sum(1 for g_ in gaps if g_ > 0)}/{len(gaps)} lifts favour mornings · '
+              f'mean gap {np.mean(gaps):+.3f} SD · median {np.median(gaps):+.3f}')
+        print('Inside the clean window there is no effect. Train when it suits him.')
 
     section('KEY LIFTS — quarterly best e1RM')
     watch = ['Incline Bench Press (Barbell)', 'Bench Press (Barbell)',

@@ -7,43 +7,55 @@ Not needed on a normal logging session. Read the one you need.
 The published page is **Matchday Block**,
 <https://claude.ai/code/artifact/0f918bd3-56b5-439a-9d0d-fbd51a5a0a9b>, built from
 `ui/matchday.html`. Three lanes: *week* (the Mon–Sun rotation, Week A or B, Log button
-per day), *team sheet* (captures a session against the prescribed line-up), *form
-guide* (what the last export says).
+per day), *team sheet* (captures a session), *form guide* (what the last export says).
 
-Published pages cannot call GitHub, so the page holds saved sessions inside itself and
-**you** are what moves them into the repo. When he says the queue has something in it:
+### How `mb-state` works
 
-1. `Artifact` with `action: "read"` and that URL. Saved sessions are JSON in the
-   `<script id="mb-state">` tag, each carrying a ready-made `md` block.
-2. Append those blocks to `log.md` in date order. They are already in log format —
-   check them, don't rewrite them.
-3. Commit and push.
-4. Republish `ui/matchday.html` with `url` set to that artifact, having first edited
-   the `mb-state` JSON: **take the drained entries out of `queue` and put their ids
-   into `drained`**. Emptying `queue` alone is not enough — his phone keeps its own
-   copy in localStorage and walks the session straight back in on the next load, and
-   it gets logged twice. `drained` is the receipt that keeps it out. Commit that
-   edited `mb-state` too, so the repo copy and the published page agree.
+The page's `<script id="mb-state">` holds two things:
 
-### Three ways a session reaches the queue
+- **`queue`** — sessions he has saved and nobody has written to `log.md` yet. These live
+  **only on the live page**; the repo copy is always empty.
+- **`drained`** — a receipt: the ids already written into `log.md`. This one *is* kept in
+  the repo file, and the page uses it to ignore anything it sees again, so a stale
+  `localStorage` copy on his phone cannot resurrect a session that has already been
+  logged. Keep it when you edit the file; never clear it to "tidy up".
 
-The team sheet lane accepts all three, and all three end up as the same `md` block:
+### Read this before you republish anything
 
-1. **Tapped in against the template** — the prescribed line-up, with the rotating slots
-   already picked.
-2. **Pasted from Strong** — he shares the workout from Strong as plain text and pastes
-   the lot, trailing `link.strong.app` URL included. The page parses the title, the
-   date, every exercise and every set, and hands back an **editable** session rather
-   than a blind import. It reads `40 kg × 10`, `12 reps`, `1:00` and lbs, and a generic
-   title like "Morning Workout" is replaced by the session type guessed from the
-   exercises. Exercise names are kept exactly as Strong writes them, so they match the
-   CSV export.
-3. **Free-text rows** — the "anything else you did" box at the bottom of every session,
-   for ad hoc core and finishers.
+**Publishing the repo file overwrites the live `queue` with nothing.** Any session he
+saved and you have not yet drained is gone from the page.
 
-A screenshot in the chat is still fine and still the fastest for a single session. What
-the page adds is `pain(R)` and the ad hoc work — neither of which a screenshot can give
-you, and `pain(R)` has never once been logged.
+This applies to *every* republish, not just a drain — a one-line CSS tweak wipes the
+queue exactly as thoroughly as a rewrite. It is the single easiest way to lose his data
+in this project.
+
+Two things soften it, neither of which is a reason to be careless: the page also keeps
+the queue in the browser's `localStorage` and merges it back on load, so **his own phone**
+will usually still have the entries; and the publish is refused outright if this
+conversation has not read the live version first, which forces the check below.
+
+Nothing wakes this session when he saves something. There is no working subscription —
+attempts return 403. **The queue is only ever found by looking.** Read the artifact at
+the start of any programming session, and whenever he mentions having trained.
+
+### The safe procedure — follow it for every publish
+
+1. **`Artifact` with `action: "read"` and the URL.** Always first. This is both the
+   safety check and what the publish guard requires.
+2. **Find `<script id="mb-state">` in the returned HTML and look at `queue`.**
+   - Empty (`{"queue":[]}`) → carry on to step 4.
+   - Not empty → do step 3 before touching the page.
+3. **Drain it.** Each entry carries a ready-made `md` block. Append them to `log.md` in
+   date order — they are already in log format, so check them, don't rewrite them —
+   then commit and push. Only once that push has succeeded is it safe to publish over
+   them.
+4. **Publish `ui/matchday.html`**, having first added the drained ids to its `drained`
+   array. The empty `queue` now correctly reflects reality because you just drained it,
+   and the receipt stops those entries coming back. Never hand-copy *queue* JSON into
+   the repo file to "preserve" it — `log.md` is the record, the page is only a buffer.
+
+If a publish is refused because someone republished in between, re-read and start again
+from step 1. Do not use `force`.
 
 ## Keeping the page in step with the programme
 
