@@ -18,9 +18,12 @@ Published pages cannot call GitHub, so the page holds saved sessions inside itse
 2. Append those blocks to `log.md` in date order. They are already in log format —
    check them, don't rewrite them.
 3. Commit and push.
-4. Republish `ui/matchday.html` with `url` set to that artifact, **having first cleared
-   the drained entries from the `mb-state` JSON**. Skip this and everything in the
-   queue gets written twice next time.
+4. Republish `ui/matchday.html` with `url` set to that artifact, having first edited
+   the `mb-state` JSON: **take the drained entries out of `queue` and put their ids
+   into `drained`**. Emptying `queue` alone is not enough — his phone keeps its own
+   copy in localStorage and walks the session straight back in on the next load, and
+   it gets logged twice. `drained` is the receipt that keeps it out. Commit that
+   edited `mb-state` too, so the repo copy and the published page agree.
 
 ### Three ways a session reaches the queue
 
