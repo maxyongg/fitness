@@ -146,29 +146,65 @@ the hamstring gap on Week B. That was the wrong fix: it put a heavy hip hinge on
 he has never hinged. Week B has no direct leg work, by design — two hours of 7-a-side
 on the Tuesday and again on the Friday is the trade.
 
-## Calisthenics (~45 min) — Week B Sunday
+## Calisthenics (~55 min) — Week B Sunday
 
-Skill first while fresh, then strength. Full route and progressions in
-`docs/calisthenics.md`.
+**In Week B this is the second upper-body session, not an extra.** Week B carries one
+Push and one Pull, so this day has to cover what they miss — and the five-slot version
+this replaced covered a vertical pull and a dip and nothing else. Rebuilt 2026-09-05 at
+his request to be a complete upper body: every pull and push pattern, plus core, grip
+and the Phase 1 skills.
 
-| # | Slot | Exercise | Sets |
-|---|---|---|---|
-| 1 | **Skill** — 10 min, fresh, never to failure | Hollow Body Hold · ★ Dead Hang · ★ Chest-to-Wall Handstand | 3 × 20–30s each |
-| 2 | Anchor | Pull Up *or* Chin Up | 3 × AMRAP |
-| 3 | Rotate | Triceps Dip · ★ Ring Dip · ★ Archer Push-Up | 3 × 8–10 |
-| 4 | Rotate — core | Hanging Leg Raise · Plank · ★ Hollow Rock | 3 × 10–12 |
-| 5 | Rotate — grip | ★ Dead Hang · ★ Farmer Carry | 3 × 30s |
+Run as **antagonist supersets** — the two movements in a block alternate, and the rest
+comes after the pair, not between them. Nothing in a pair competes for the same muscle,
+so this costs nothing in performance and takes about fifteen minutes off the session.
 
-**This session has never been logged in Strong.** The sets above are a starting point,
-not a record, and they are built only from movements he has history with plus the three
-Phase 1 skills. The front lever / pike / L-sit list an older version of this file carried
-was invented and stays out until `docs/calisthenics.md` Phase 3 — those load the injured
-lat hardest of anything in the discipline.
+| Block | | Exercise | Sets | Rest |
+|---|---|---|---|---|
+| **A** skill | A1 | ★ Chest-to-Wall Handstand | 3 × 20–30s | pair, then 60s |
+| | A2 | Hollow Body Hold | 3 × 20–30s | |
+| **B** | B1 | **Pull Up** — vertical pull | 3 × AMRAP−1 | pair, then 90s |
+| | B2 | Triceps Dip — horizontal/vertical push | 3 × 8–10 | |
+| **C** | C1 | ★ Ring Row *or* Inverted Row — horizontal pull | 3 × 10–12 | pair, then 90s |
+| | C2 | ★ Pike Push-Up — vertical push | 3 × 6–8 | |
+| **D** finisher | D1 | Hanging Leg Raise — core | 3 × 10–12 | pair, then 60s |
+| | D2 | ★ Dead Hang — grip | 3 × 20–30s | |
 
-**Skill work is practice, not conditioning.** Stop while the shape is still clean.
+Eight movements, four blocks, about 55 minutes. Coverage: vertical pull (B1),
+horizontal pull (C1), vertical push (C2), horizontal push (B2), core (A2, D1), grip
+(D2), plus the handstand skill.
 
-Logging it matters more than the numbers in it. Anything unlogged is invisible to
-`analyse.py`, which is why this session currently looks like it does not exist.
+**Skill block is practice, not conditioning.** Ten minutes, stop while the shape is
+still clean, never to failure. It goes first because skill work is worthless tired.
+
+### The right lat governs this session
+
+Three days after a pull day, and the 3 Sep note said the right side was *"half weakness
+half pain"*. There is more pulling here than in a normal pull day.
+
+- **C1 is the release valve.** A ring or inverted row is instantly regressable — walk
+  the feet in or raise the bar and the load drops. If the right side talks, regress it,
+  then cut it. Do not push through.
+- **D2 decompresses.** The dead hang at the end is deliberate, and the physio should
+  sign it off before the first one.
+- Keep the pull-ups honest: **AMRAP−1**, one rep in reserve. Re-entry runs to 13 Sep.
+
+### Three new movements at once — deliberately
+
+`plan.md`'s own rule says introduce one new exercise at a time and give it four
+sessions. This breaks that rule and it is worth saying why: **that rule protects
+progression on established lifts, and this session has no established anything** — it
+has never once been logged. There is no baseline to disturb, so the first job is to
+create one. The two anchors, pull-up and dip, are unchanged, so continuity is intact.
+
+Pike push-ups were on the invented list an older version of this file carried as though
+he already did them. They are reintroduced here **as new**, under the standing rule, to
+fill the vertical-push gap that his regressed overhead press leaves. If he would rather
+not, a second dip variation covers the block and the gap stays open.
+
+Progressions and how to know when to move on: `docs/calisthenics.md`.
+
+**Log all of it.** This session has never appeared in Strong, so it currently reads as
+though it does not exist.
 
 ## Yoga (15–20 min) — Saturday, both weeks
 

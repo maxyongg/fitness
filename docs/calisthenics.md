@@ -59,6 +59,52 @@ involvement.
 hips near the wall. 3 × 20–30s. Nose to the wall, not back to it — it teaches the
 straight line.
 
+## The strength movements — progressions
+
+Added 2026-09-05, when the Sunday session became Week B's second upper-body day. These
+are strength, not skill, so they run to near-failure and they belong after the skill
+block.
+
+### Ring Row / Inverted Row — the horizontal pull
+The pattern the Sunday session was missing entirely, and the **safest loaded pull he
+has** for the right lat: the load is set by body angle, so it regresses mid-set by
+walking the feet in. Nothing else in the programme adjusts that fast.
+
+*Progression:* feet well forward, torso ~45° → feet further out, torso nearer horizontal
+→ feet elevated → one leg. 3 × 10–12. Chest to the rings, shoulders down and back, no
+shrugging.
+
+*Move on when* 3 × 12 at horizontal is comfortable with a one-second pause at the top.
+
+### Pike Push-Up — the vertical push
+Fills the pattern his overhead press has been losing. The strength expression of the
+handstand work, and the reason both sit in the same session.
+
+*Progression:* hands on a box, hips high → floor pike → feet elevated → head touches the
+floor between the hands (the deficit version). 3 × 6–8.
+
+*Move on when* 3 × 8 with the head lightly touching the floor and no lower-back sag.
+
+**Note on honesty:** an older version of `plan.md` listed pike push-ups as though he
+already did them. He never has — zero recorded sets. They are introduced here as new,
+by his own choice to try unfamiliar movements, and should be treated as untested.
+
+## How the session is put together
+
+Four blocks, antagonist supersets, rest after each **pair** rather than between the two
+movements. The pairings are chosen so nothing competes:
+
+| | Pair | Why it works |
+|---|---|---|
+| A | Handstand + Hollow hold | Two low-fatigue holds; neither is a strength effort |
+| B | Pull Up + Dip | Pull against push — the classic antagonist pair |
+| C | Ring Row + Pike Push-Up | Horizontal pull against vertical push |
+| D | Hanging Leg Raise + Dead Hang | Core against grip, both hanging, both cheap |
+
+This is roughly fifteen minutes faster than running eight movements straight, and no
+pair shares a limiter. If a session is running long, **cut block C, not block A** —
+the skills are the part that only happens here.
+
 ## Phase 2 — once Phase 1 is comfortable
 
 Not dated. "Comfortable" means the Phase 1 holds are steady and unremarkable.

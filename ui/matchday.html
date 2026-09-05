@@ -96,6 +96,7 @@ input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;b
   font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:700;color:var(--ink-3);
   background:var(--surface-2);border-right:1px solid var(--rule);line-height:1}
 .pos.side .num{font-size:15px;padding-top:18px;letter-spacing:.06em}
+.pos.blk .num{font-size:16px;padding-top:17px;letter-spacing:.04em}
 .pos-b{flex:1;min-width:0;padding:12px 14px 14px}
 .ex{font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:600;letter-spacing:.02em;line-height:1.12}
 .presc{font-size:12px;color:var(--ink-3);margin-top:2px;letter-spacing:.02em}
@@ -317,13 +318,23 @@ var SESSIONS = {
     { ex: 'Hanging Leg Raise', p: '3 × 10–12', n: 'log it', bw: true, fin: true,
       alts: ['Plank', 'Dead Hang', 'Ab Wheel'] }
   ]},
-  calis: { name: 'Calisthenics', mins: 45, items: [
-    { ex: 'Hollow Body Hold', p: '3 × 20–30s', n: 'skill · fresh, never to failure', bw: true, skill: true,
-      alts: ['Dead Hang', 'Chest-to-Wall Handstand'] },
-    { ex: 'Pull Up', p: '3 × AMRAP', bw: true, anchor: true, alts: ['Chin Up'] },
-    { ex: 'Triceps Dip', p: '3 × 8–10', bw: true, alts: ['Ring Dip', 'Archer Push-Up'] },
-    { ex: 'Hanging Leg Raise', p: '3 × 10–12', n: 'core', bw: true, alts: ['Plank', 'Hollow Rock'] },
-    { ex: 'Dead Hang', p: '3 × 30s', n: 'grip · clear with the physio', bw: true, alts: ['Farmer Carry'] }
+  calis: { name: 'Calisthenics', mins: 55, items: [
+    { ex: 'Chest-to-Wall Handstand', p: '3 × 20–30s', slot: 'A1', skill: true, bw: true, timed: true,
+      n: 'skill · fresh, never to failure' },
+    { ex: 'Hollow Body Hold', p: '3 × 20–30s', slot: 'A2', skill: true, bw: true, timed: true,
+      n: 'superset with A1 · rest after the pair' },
+    { ex: 'Pull Up', p: '3 × AMRAP−1', slot: 'B1', anchor: true, bw: true,
+      n: 'vertical pull · leave one in the tank', alts: ['Chin Up'] },
+    { ex: 'Triceps Dip', p: '3 × 8–10', slot: 'B2', anchor: true, bw: true,
+      n: 'push · superset with B1' },
+    { ex: 'Ring Row', p: '3 × 10–12', slot: 'C1', bw: true,
+      n: 'horizontal pull · walk feet in if the right side talks', alts: ['Inverted Row'] },
+    { ex: 'Pike Push-Up', p: '3 × 6–8', slot: 'C2', bw: true,
+      n: 'vertical push · new · superset with C1', alts: ['Box Pike Push-Up'] },
+    { ex: 'Hanging Leg Raise', p: '3 × 10–12', slot: 'D1', bw: true, fin: true,
+      n: 'core', alts: ['Hollow Rock', 'Plank'] },
+    { ex: 'Dead Hang', p: '3 × 20–30s', slot: 'D2', bw: true, fin: true, timed: true,
+      n: 'grip · decompression · clear with the physio', alts: ['Farmer Carry'] }
   ]},
   legs: { name: 'Legs', mins: 45, items: [
     { ex: 'Squat (Barbell)', p: '3 × 6–8', n: '75kg', anchor: true, alts: ['Hack Squat', 'Pendulum Squat'] },
@@ -337,6 +348,7 @@ var SESSIONS = {
 /* Rotate slots pick a different option each session, derived from the date so it is
    stable within a day and varies between them. Anchors never move. */
 function variantFor(it, i, iso) {
+  if (it.anchor) return it.ex;                 /* anchors never move — that is the point */
   var pool = [it.ex].concat(it.alts || []);
   if (pool.length < 2) return it.ex;
   var d = new Date(iso + 'T12:00:00');
@@ -417,7 +429,8 @@ function newDraft(key, iso) {
       return { ex: variantFor(it, i, iso || todayISO()), base: it.ex,
                pool: [it.ex].concat(it.alts || []),
                side: it.side || null, p: it.p, n: it.n, bw: it.bw, gate: it.gate,
-               opt: it.opt, fin: it.fin, skill: it.skill, anchor: it.anchor, sets: [] };
+               opt: it.opt, fin: it.fin, skill: it.skill, anchor: it.anchor,
+               slot: it.slot, timed: it.timed, sets: [] };
     })
   };
 }
@@ -431,7 +444,9 @@ function markdown(d) {
   if (d.note) meta.push('note: ' + d.note);
   if (meta.length) out += meta.join(' | ') + '\n';
   d.items.forEach(function (it) {
-    var live = it.sets.filter(function (st) { return (st.r !== '' && st.r != null) || st.t || st.w; });
+    var live = it.sets.filter(function (st) {
+      return (st.r !== '' && st.r != null) || (st.t !== '' && st.t != null) || st.w;
+    });
     if (!live.length) return;
     var name = it.ex + (it.side ? ' (' + it.side + ')' : '');
     var parts = [], lastW = null;
@@ -554,11 +569,12 @@ function renderSheet() {
   draft.items.forEach(function (it, i) {
     var spec = it;
     var num;
-    if (spec.side) { if (spec.side === 'Left') slot += 1; num = slot + spec.side.slice(0, 1); }
+    if (spec.slot) num = spec.slot;
+    else if (spec.side) { if (spec.side === 'Left') slot += 1; num = slot + spec.side.slice(0, 1); }
     else if (spec.custom && !spec.pasted) num = '+';
     else if (spec.fin) num = 'F';
     else { slot += 1; num = String(slot); }
-    html += '<li class="pos' + (spec.side || spec.custom || spec.fin ? ' side' : '') + '"><div class="num">' + num + '</div><div class="pos-b">';
+    html += '<li class="pos' + (spec.slot ? ' side blk' : (spec.side || spec.custom || spec.fin ? ' side' : '')) + '"><div class="num">' + num + '</div><div class="pos-b">';
     html += '<div class="ex">' + esc(it.ex) + (spec.side ? ' <span style="color:var(--ink-3)">· ' + spec.side + '</span>' : '');
     if (spec.anchor) html += ' <span class="tag">anchor</span>';
     if (spec.skill) html += ' <span class="tag fix">skill</span>';
@@ -570,7 +586,7 @@ function renderSheet() {
     html += '<div class="sets" data-sets="' + i + '">';
     it.sets.forEach(function (st, j) {
       html += '<span class="setrow">';
-      if (st.t != null && st.t !== '') {
+      if (spec.timed || (st.t != null && st.t !== '')) {
         html += '<input inputmode="text" placeholder="m:ss" style="width:64px;text-align:center" data-i="' + i + '" data-j="' + j + '" data-f="t" value="' + esc(st.t) + '" aria-label="time">';
       } else {
         html += '<input inputmode="decimal" placeholder="' + (spec.bw ? 'BW' : 'kg') + '" data-i="' + i + '" data-j="' + j + '" data-f="w" value="' + esc(st.w) + '" aria-label="weight">' +
@@ -665,8 +681,9 @@ function wire() {
   });
   lane.querySelectorAll('[data-add]').forEach(function (b) {
     b.onclick = function () {
-      var i = +b.dataset.add, sets = draft.items[i].sets;
-      sets.push({ w: sets.length ? sets[sets.length - 1].w : '', r: '' });
+      var i = +b.dataset.add, sets = draft.items[i].sets, it = draft.items[i];
+      if (it.timed) sets.push({ w: '', r: '', t: sets.length ? sets[sets.length - 1].t : '' });
+      else sets.push({ w: sets.length ? sets[sets.length - 1].w : '', r: '' });
       renderSheet();
     };
   });
@@ -820,6 +837,7 @@ var activeWeek = null;                                 /* null = follow the cale
         h += '<div class="list">' + S.items.map(function (it, i) {
           var nm = it.ex.replace(/ \(.*\)$/, '') + (it.side ? ' ' + it.side.slice(0, 1) : '');
           if (it.opt) return '<span style="color:var(--ink-3)">+ ' + esc(nm) + ' <em>if time</em></span>';
+          if (it.slot) return '<b>' + it.slot + '</b> ' + esc(nm);
           if (it.fin) return '<span style="color:var(--ink-3)"><b>F</b> ' + esc(nm) + '</span>';
           n += 1; return '<b>' + n + '</b> ' + esc(nm);
         }).join(' · ') + '</div>';
@@ -991,9 +1009,10 @@ var activeWeek = null;                                 /* null = follow the cale
            '<td class="n">' + v.last + '</td><td class="n" style="color:' + col + '">' + (delta > 0 ? '+' : '') + delta + '</td></tr>';
     });
     h += '</tbody></table></div>';
-    h += '<p class="note"><strong>Core is the gap.</strong> It was 8.8% of every set he has ever logged and has been zero since 9 March — ' +
-         'the clearest place to improve, and the most calisthenics-native. Rear delts have halved too, 3.0/wk down to 0.8, ' +
-         'because the face pull is optional. The rest being down is the two-week trip plus re-entry, not a programme failure. ' +
+    h += '<p class="note"><strong>Core reads as zero since 9 March — but that is the logging, not the training.</strong> ' +
+         'It was 8.8% of every set ever logged, and he does it ad hoc without recording it, so nobody can say what it amounts to. ' +
+         'Get it logged, then programme it. <strong>Rear delts are the real gap</strong> — 3.0/wk down to 0.8, and nothing unlogged fills it. ' +
+         'The rest being down is the two-week trip plus re-entry, not a programme failure. ' +
          'Legs are <strong>' + d.legspct + '%</strong> of every set ever logged and stable for two years — that is what the optional legs day costs, by design.</p>';
     h += '</div></div>';
 
