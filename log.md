@@ -56,7 +56,7 @@ pain(R): 1/10 | note: accidentally did pike push up with pull up instead of ring
 - Chest-to-wall Handstand — 0:20, 0:30, 0:30
 - Hollow Body Hold — 0:20, 0:30, 0:30
 - Pull Up — bodyweight × 12, 11, 7
-- Elevated Pike Push Up — bodyweight × 20, 20, 20
+- Elevated Pike Push Up (feet elevated, hands on floor) — bodyweight × 20, 20, 20
 - Ring Row — bodyweight × 12, 12, 12
 - Triceps Dip — bodyweight × 12, 12, 12
 - Plank — 1:00, 1:00, 1:00
@@ -68,6 +68,12 @@ pain(R): 1/10 | note: accidentally did pike push up with pull up instead of ring
      since the 2026-09-05 rebuild. Order is as saved: he supersetted the pike push-up
      with the pull-up (B1+C2) and the ring row with the dip (C1+B2), which is the swap
      the note describes. His two note lines merged onto one. -->
+
+<!-- Confirmed by him 2026-09-06: the pike push-up was feet elevated with hands on the
+     floor — rung 3 of the four in docs/calisthenics.md (box → floor → feet elevated →
+     deficit), not the Box Pike Push-Up the page offers as the C2 alternative. Recorded
+     because "elevated" alone does not say which rung, and 3 × 20 only means something
+     against a known one. -->
 
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
