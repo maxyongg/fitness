@@ -51,6 +51,24 @@ pain(R): 3/10 | note: right lat was half weakness half pain -> i’ve certainly 
 
 <!-- From the phone page queue, drained 2026-09-03. First session with pain(R) recorded. -->
 
+## 2026-09-06 · Sun · Calisthenics
+pain(R): 1/10 | note: accidentally did pike push up with pull up instead of ring row, so swapped it. The farmers walk ×1 is a 87-88 pace rep.
+- Chest-to-wall Handstand — 0:20, 0:30, 0:30
+- Hollow Body Hold — 0:20, 0:30, 0:30
+- Pull Up — bodyweight × 12, 11, 7
+- Elevated Pike Push Up — bodyweight × 20, 20, 20
+- Ring Row — bodyweight × 12, 12, 12
+- Triceps Dip — bodyweight × 12, 12, 12
+- Plank — 1:00, 1:00, 1:00
+- Farmer Walks — 24kg × 1, 1, 1
+
+<!-- From the phone page queue (id p1788695085492), drained 2026-09-06. The page's Strong
+     importer guessed the session name as "Pull" from the pull-ups and rows; retitled
+     Calisthenics — it is the Week B Sunday session, and the first time it has been run
+     since the 2026-09-05 rebuild. Order is as saved: he supersetted the pike push-up
+     with the pull-up (B1+C2) and the ring row with the dip (C1+B2), which is the swap
+     the note describes. His two note lines merged onto one. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
