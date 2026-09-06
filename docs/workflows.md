@@ -20,6 +20,21 @@ The page's `<script id="mb-state">` holds two things:
   `localStorage` copy on his phone cannot resurrect a session that has already been
   logged. Keep it when you edit the file; never clear it to "tidy up".
 
+### If a save looks like it vanished
+
+Symptom: he says he logged a session and it is not in the queue. Almost always this —
+he had the page open from **before** the last republish, so his save tried to publish
+over a version it did not have, was rejected, and fell back to `localStorage`. The
+session is on his phone, not lost.
+
+**Fix: ask him to reload the page.** Since 2026-09-06 the merge on load spots entries
+that exist only in `localStorage` and republishes them itself, so a reload is enough to
+make the session readable from here. Before that fix nothing ever pushed them up and
+they sat on the phone indefinitely.
+
+If he cannot reload, the queue card has a **Copy** button per entry — the markdown is
+already in log format, so he can paste it straight into the chat.
+
 ### Read this before you republish anything
 
 **Publishing the repo file overwrites the live `queue` with nothing.** Any session he

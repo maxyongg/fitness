@@ -267,6 +267,7 @@ if (!Array.isArray(STATE.drained)) STATE.drained = [];
    phone's localStorage copy survives, walks the session straight back in, and it
    gets logged a second time. Anything on that list stays out, and is cleared from
    localStorage on the way past. */
+var needsSync = false;
 try {
   var done = {}, seen = {};
   STATE.drained.forEach(function (id) { done[id] = 1; });
@@ -274,7 +275,7 @@ try {
   STATE.queue.forEach(function (q) { seen[q.id] = 1; });
   var lsRaw = localStorage.getItem('mb-queue');
   if (lsRaw) JSON.parse(lsRaw).forEach(function (q) {
-    if (!seen[q.id] && !done[q.id]) { STATE.queue.push(q); seen[q.id] = 1; }
+    if (!seen[q.id] && !done[q.id]) { STATE.queue.push(q); seen[q.id] = 1; needsSync = true; }
   });
   localStorage.setItem('mb-queue', JSON.stringify(STATE.queue));
 } catch (e) {}
@@ -467,7 +468,19 @@ function markdown(d) {
 var artifactApi = null, saveNote = '';
 if (window.claude && typeof claude.use === 'function') {
   claude.use('artifact').then(function (a) {
-    if (a) { artifactApi = a; renderSheet(); }
+    if (!a) return;
+    artifactApi = a;
+    /* A save made while this page was behind the live version gets rejected and
+       survives only in localStorage. Nothing republishes it, because the page only
+       publishes when you act — so it sits on the phone, invisible to any Claude
+       session, and looks to Max like the save silently failed. If the merge above
+       recovered anything like that, push it up now. */
+    if (needsSync) {
+      needsSync = false;
+      persist(function () { renderSheet(); });
+    } else {
+      renderSheet();
+    }
   }).catch(function () {});
 }
 
@@ -508,8 +521,8 @@ function persist(cb) {
     saveNote = 'Saved to the page. Claude can pick it up next session.'; cb && cb();
   }).catch(function (err) {
     saveNote = (err && err.code === 'conflict')
-      ? 'Someone else saved first — reload and re-enter this one.'
-      : 'Saved on this phone only — the page could not be updated.';
+      ? 'Saved on this phone. The page was out of date — reload it and this will sync itself up. Do not re-enter it.'
+      : 'Saved on this phone. Reload the page and it will sync itself up.';
     cb && cb();
   });
 }
