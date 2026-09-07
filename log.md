@@ -75,6 +75,30 @@ pain(R): 1/10 | note: accidentally did pike push up with pull up instead of ring
      because "elevated" alone does not say which rung, and 3 × 20 only means something
      against a known one. -->
 
+## 2026-09-07 · Mon · Push
+pain(R): 2/10 | note: the right lat pain was from the overhead press. This week is Week A, not Week B.
+- Incline Bench Press (Barbell) — 50kg × 10, 60kg × 8, 65kg × 8, 7, 45kg × 12
+- Overhead Press (Barbell) — 20kg × 10, 40kg × 8, 8, 6
+- Cable Crossover — 15kg × 8, 8, 12.5kg × 12
+- Lateral Raise (Dumbbell) — 7kg × 20, 20, 20
+- Single Arm Upward Triceps Extension — 7.5kg × 12, 12, 12
+- Push Up — bodyweight × 20, 15, 15
+
+<!-- From the phone page queue (id p1788783999741), drained 2026-09-07. Titled "Push (1)"
+     in the paste, his Strong template name; normalised to Push to match the rest of the
+     log and plan.md. His note ran to two paragraphs and is merged onto one line.
+
+     Three things worth keeping. Incline 65kg × 8 ties his best incline e1RM ever
+     (82.3, first set 2026-07-09) and 65kg is his heaviest ever working weight on it.
+     The overhead press is back in push slot 2 for the first time since 2026-07-27,
+     which is the standing proposal in plan.md — 40kg × 8 is e1RM 50.7, level with where
+     it stalled, still short of the 61.7 peak. And the push-up finisher is logged for the
+     first time: push-ups had 8 recorded sets in the whole two-year history before this.
+
+     pain(R) 2/10 is a green reading but it is NOT a green light on the row protocol —
+     he attributes it to the overhead press, and no row was performed. The gate in
+     plan.md counts greens on the right-side iso-lateral row only. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
