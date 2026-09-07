@@ -28,9 +28,9 @@ delete a session from this plan because the log is quiet about it.
 Week A is 2 × Push, 2 × Pull, 1 × Legs. Week B is 1 × Push, 1 × Pull, 1 × Calisthenics.
 Eight lifting sessions a fortnight, two or three football sessions, yoga twice.
 
-**Anchor:** Week A begins **Monday 14 September 2026**, the first full week after
-re-entry, and the weeks alternate from there. Flip the anchor if that is wrong — nothing
-else depends on it.
+**Anchor:** Week A begins **Monday 7 September 2026**, and the weeks alternate from
+there — so 14 Sep is Week B, 21 Sep Week A, and so on. He corrected this on 2026-09-07;
+an earlier version guessed 14 Sep, which was a week out.
 
 **Time of day is free.** He suspected he is stronger at certain times; the log says
 otherwise. Within 2026 — the only window where mornings and evenings are both well
@@ -51,8 +51,8 @@ goes there, yoga included.
 
 | Dates | Phase | What |
 |---|---|---|
-| → 13 Sep 2026 | Re-entry | Run the **Week B shape** — Mon Push, Thu Pull, Sun Calisthenics. 10% off top sets. No legs day. |
-| 14 Sep → | Full block | Week A starts. Full load, normal alternation, progressing normally. |
+| → 13 Sep 2026 | Re-entry | 10% off top sets if needed. No legs day. The rotation runs normally — this week is Week A. |
+| 14 Sep → | Full block | Full load, everything on, progressing normally. |
 
 ## Anchors and rotations
 
