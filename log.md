@@ -99,6 +99,54 @@ pain(R): 2/10 | note: the right lat pain was from the overhead press. This week 
      he attributes it to the overhead press, and no row was performed. The gate in
      plan.md counts greens on the right-side iso-lateral row only. -->
 
+## 2026-09-10 · Thu · Pull
+pain(R): ? | note: straight-arm pulldown strength dropped because halfway through he changed his form and started doing it better.
+- Pull Up — bodyweight × 10, 11, 10
+- Iso Lateral Row - Right — 40kg × 10, 50kg × 10, 10, 8
+- Iso Lateral Row - Left — 40kg × 10, 60kg × 8, 8, 55kg × 8
+- Straight Arm Pulldown — 17.5kg × 15, 12.5kg × 10, 10
+- Face Pull (Cable) — 17.5kg × 10, 10, 10
+- Preacher Curl (Barbell) — 30kg × 8, 7, 27.5kg × 8
+- Hanging Leg Raise — bodyweight × 10, 10, 10
+- Handlebar L-Sit — 0:15, 0:15, 0:10
+
+<!-- From the phone page queue (id p1789038008355), drained 2026-09-10. Titled "Midday
+     Workout" on the page, his Strong template name; normalised to Pull to match the log
+     and plan.md, as was done for "Push (1)" on 09-07. Order is exactly as saved — note
+     the right row went before the left this time, the reverse of 09-03.
+
+     pain(R) is `?` because he left the field blank on the page, not because anything was
+     illegible. That is the one thing missing from an otherwise complete entry: he rowed
+     the right side, so this session either was or was not a green light, and the
+     protocol in plan.md cannot count it either way. Two of the three greens needed for
+     +2.5kg are still unrecorded.
+
+     Four things worth keeping.
+
+     Pull-ups at position 1: 10, 11, 10 = 31 reps, the most in the record (29 on 09-03,
+     27 in the whole export before that) and the first time the three sets have not
+     decayed — the top set was the second one. The plan's progression line asks for 27
+     fresh held three sessions before adding 5kg; this is the second.
+
+     Right row +2 reps at the same load: 50kg × 10, 10, 8 against 50kg × 8, 8, 8 a week
+     ago. Reps before weight is exactly what the plan asks for on that side.
+
+     Left row 60kg × 8, 8 against 60kg × 8, 7 on 09-03. Both sessions since the sides
+     were split put the left at 60kg and the right at 50kg, so the working gap is 10kg,
+     not the 20kg older notes carried. Two sessions is not a settled number, but it is
+     now measured rather than assumed.
+
+     Straight Arm Pulldown is a ★ new exercise, first ever logged, taken in pull slot 3
+     ahead of the lat pulldown. Under the four-session rule in plan.md that is session 1
+     of 4. The load drop mid-exercise is a form correction by his own account, so
+     17.5 → 12.5kg is not a regression to read as one.
+
+     Handlebar L-Sit is the first L-sit ever recorded. CLAUDE.md lists L-sits among the
+     invented calisthenics contents that were struck out for having zero recorded sets —
+     that stays true of how they got into plan.md, but the movement itself is now real
+     data. With the hanging leg raises this is the first properly logged core on a pull
+     day since 9 March. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
