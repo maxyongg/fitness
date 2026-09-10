@@ -100,7 +100,7 @@ pain(R): 2/10 | note: the right lat pain was from the overhead press. This week 
      plan.md counts greens on the right-side iso-lateral row only. -->
 
 ## 2026-09-10 · Thu · Pull
-pain(R): ? | note: straight-arm pulldown strength dropped because halfway through he changed his form and started doing it better.
+pain(R): 2/10 | note: straight-arm pulldown strength dropped because halfway through he changed his form and started doing it better.
 - Pull Up — bodyweight × 10, 11, 10
 - Iso Lateral Row - Right — 40kg × 10, 50kg × 10, 10, 8
 - Iso Lateral Row - Left — 40kg × 10, 60kg × 8, 8, 55kg × 8
@@ -115,11 +115,10 @@ pain(R): ? | note: straight-arm pulldown strength dropped because halfway throug
      and plan.md, as was done for "Push (1)" on 09-07. Order is exactly as saved — note
      the right row went before the left this time, the reverse of 09-03.
 
-     pain(R) is `?` because he left the field blank on the page, not because anything was
-     illegible. That is the one thing missing from an otherwise complete entry: he rowed
-     the right side, so this session either was or was not a green light, and the
-     protocol in plan.md cannot count it either way. Two of the three greens needed for
-     +2.5kg are still unrecorded.
+     pain(R) was blank on the page and was filled in as 2/10 by him on 2026-09-10.
+     It counts: he rowed the right side at 50kg, so this is the **second green light**
+     on the row protocol — 3/10 on 09-03, 2/10 today, a week apart. One more green and
+     the right side earns +2.5kg.
 
      Four things worth keeping.
 

@@ -300,8 +300,13 @@ of re-deriving it.
 - **A session repeatedly skipped** — ask why before assuming it should be cut. The log
   tells you about adherence, never about intent.
 
-**Changes that need his sign-off before they land:** anything in this file, `CLAUDE.md`,
-or `analyse.py`. Push those on a branch. Log entries go straight to `main`.
+**Everything goes to `main`** — his instruction, 2026-09-10. That includes this file,
+`CLAUDE.md` and `analyse.py`, which an earlier version of this rule sent to a branch for
+review. It did not work: branches sat unmerged, and on 09-10 a logged session and a UI
+fix were stranded on one for days because nobody noticed. Branch only if he asks for one
+in that message. Pushing straight to `main` is not licence to change the programme
+unasked — the propose-don't-impose rule above is unchanged, and a change he has not
+agreed to is still wrong; it just means the writing-down happens where he can see it.
 
 ## Trying new exercises
 

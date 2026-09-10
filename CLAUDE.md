@@ -81,8 +81,13 @@ drained on request (`docs/workflows.md`); a screenshot in the chat you handle no
    unreadable `?` rather than guessing. The monthly CSV export is the fix.
 2. **Commit and push** — straight to `main`, one commit, subject
    `log: YYYY-MM-DD <session name>`. Push *before* you reply; he has no way to do it
-   afterwards. Use a branch only for what he'd want to review first: `plan.md`,
-   this file, `analyse.py`.
+   afterwards.
+
+   **Everything goes to `main` by default** — his instruction, 2026-09-10. That
+   includes `plan.md`, this file and `analyse.py`, which an earlier version of this
+   rule sent to a branch for review. It did not work: branches sat unmerged, and on
+   09-10 a logged session and a UI fix were stranded on one for days because nobody
+   noticed. Branch only if he asks for one in that message.
 3. **Reply in two sentences**, flagging only what earns it:
    - right-side row load, and whether he noted pain
    - were pull-ups first on pull day
