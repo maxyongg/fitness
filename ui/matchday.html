@@ -259,15 +259,28 @@ var STATE = JSON.parse(document.getElementById('mb-state').textContent);
 if (!STATE || !Array.isArray(STATE.queue)) STATE = { queue: [] };
 if (!Array.isArray(STATE.drained)) STATE.drained = [];
 
-/* localStorage is the instant, always-available backup; artifact.publish is what
-   makes the queue readable from a Claude session. Merge on load, newest wins.
+/* Where a saved session lives, most durable first:
 
-   `drained` is the receipt: ids a Claude session has already written into log.md
-   and pushed. Without it, clearing the queue on the page achieves nothing — this
-   phone's localStorage copy survives, walks the session straight back in, and it
-   gets logged a second time. Anything on that list stays out, and is cleared from
-   localStorage on the way past. */
-var needsSync = false;
+   1. **`db`** — this artifact's own document store, one document per session in
+      the `queue` collection. This is the record. It survives reloads, restarts
+      and republishes, and a Claude session reads it directly without opening the
+      page. Crucially, **republishing this page no longer touches it.**
+   2. **`localStorage`** — the instant, offline copy on this phone. Written first
+      and always, so a save is never lost to a dead network, then reconciled into
+      db on the next load.
+   3. **The `queue` array in `mb-state` below** — the legacy path, used only when
+      db cannot be reached. The repo copy of this file is always empty.
+
+   Saving used to mean republishing the entire page, which is how sessions went
+   missing on 9–10 Sep 2026: if the publish was refused, or the artifact grant
+   had lapsed, the save fell back to localStorage and nothing ever pushed it up.
+   A one-document write has none of those failure modes. Do not go back.
+
+   `drained` is the receipt: ids already written into log.md and pushed. In db a
+   drained session keeps its document, flagged `drained: true`; this list carries
+   the ones drained before db existed. Anything on either stays out of the queue
+   and is cleared from localStorage on the way past — without that, this phone's
+   copy walks a logged session straight back in and it gets logged twice. */
 try {
   var done = {}, seen = {};
   STATE.drained.forEach(function (id) { done[id] = 1; });
@@ -275,7 +288,7 @@ try {
   STATE.queue.forEach(function (q) { seen[q.id] = 1; });
   var lsRaw = localStorage.getItem('mb-queue');
   if (lsRaw) JSON.parse(lsRaw).forEach(function (q) {
-    if (!seen[q.id] && !done[q.id]) { STATE.queue.push(q); seen[q.id] = 1; needsSync = true; }
+    if (!seen[q.id] && !done[q.id]) { STATE.queue.push(q); seen[q.id] = 1; }
   });
   localStorage.setItem('mb-queue', JSON.stringify(STATE.queue));
 } catch (e) {}
@@ -471,23 +484,69 @@ function markdown(d) {
 }
 
 /* ---------- persistence ---------- */
-var artifactApi = null, saveNote = '';
+var dbApi = null, artifactApi = null, saveNote = '', storeState = 'connecting';
+
+function queueCol() { return dbApi.collection('queue'); }
+
+function queueDoc(q) {
+  return { id: q.id, key: q.key, date: q.date, md: q.md,
+           savedAt: q.savedAt || new Date().toISOString(), drained: false };
+}
+
+/* Reconcile the copies on load. db is the record; localStorage is whatever this
+   phone managed to hold on to. Anything this phone has that db has never seen is
+   pushed up here — that is the recovery path for a save made while the store was
+   unreachable, and it is why a reload is enough to rescue a stranded session. */
+function syncDb() {
+  return queueCol().get().then(function (snap) {
+    var remote = {}, gone = {};
+    snap.docs.forEach(function (d) {
+      var v = d.data() || {};
+      if (v.drained) gone[d.id] = 1;
+      else remote[d.id] = { id: d.id, key: v.key, date: v.date, md: v.md, savedAt: v.savedAt };
+    });
+    var keep = [], seen = {}, orphans = [];
+    STATE.queue.forEach(function (q) {
+      if (gone[q.id] || seen[q.id]) return;
+      seen[q.id] = 1;
+      keep.push(remote[q.id] || q);
+      if (!remote[q.id]) orphans.push(q);
+    });
+    Object.keys(remote).forEach(function (id) {
+      if (!seen[id]) { seen[id] = 1; keep.push(remote[id]); }
+    });
+    keep.sort(function (a, b) { return String(a.id) < String(b.id) ? -1 : 1; });
+    STATE.queue = keep;
+    try { localStorage.setItem('mb-queue', JSON.stringify(STATE.queue)); } catch (e) {}
+    if (!orphans.length) return null;
+    return Promise.all(orphans.map(function (q) { return queueCol().doc(q.id).set(queueDoc(q)); }))
+      .then(function () {
+        saveNote = orphans.length > 1
+          ? orphans.length + ' sessions stranded on this phone have been recovered — Claude can read them now.'
+          : 'A session stranded on this phone has been recovered — Claude can read it now.';
+      });
+  });
+}
+
+/* db first, artifact publish only if db cannot be reached. Both are declared, so
+   losing db degrades to the old behaviour rather than to silence. */
 if (window.claude && typeof claude.use === 'function') {
-  claude.use('artifact').then(function (a) {
-    if (!a) return;
-    artifactApi = a;
-    /* A save made while this page was behind the live version gets rejected and
-       survives only in localStorage. Nothing republishes it, because the page only
-       publishes when you act — so it sits on the phone, invisible to any Claude
-       session, and looks to Max like the save silently failed. If the merge above
-       recovered anything like that, push it up now. */
-    if (needsSync) {
-      needsSync = false;
-      persist(function () { renderSheet(); });
-    } else {
-      renderSheet();
-    }
-  }).catch(function () {});
+  claude.use('db').then(function (d) {
+    if (!d) return null;
+    dbApi = d;
+    return syncDb().then(function () { storeState = 'db'; });
+  }).catch(function () { dbApi = null; }).then(function () {
+    if (dbApi) return null;
+    return claude.use('artifact').then(function (a) {
+      artifactApi = a || null;
+      storeState = a ? 'artifact' : 'local';
+    }).catch(function () { storeState = 'local'; });
+  }).then(function () {
+    if (storeState === 'connecting') storeState = 'local';
+    renderSheet();
+  });
+} else {
+  storeState = 'local';
 }
 
 /* Rebuild the page to republish it.
@@ -520,9 +579,17 @@ function stateDoc(st) {
   return b.innerHTML.trim();   /* or the wrapper's newline accretes, one per save */
 }
 
-function persist(cb) {
+function localCopy() {
   try { localStorage.setItem('mb-queue', JSON.stringify(STATE.queue)); } catch (e) {}
-  if (!artifactApi) { saveNote = 'Saved on this phone only — not yet readable from a Claude session.'; cb && cb(); return; }
+}
+
+/* The legacy path: republish the whole page with the queue baked into it. Only
+   runs when db is unavailable. Its failure modes are the reason db exists. */
+function legacyPublish(cb) {
+  if (!artifactApi) {
+    saveNote = 'Saved on this phone ONLY — Claude cannot see it yet. Reload the page; if this keeps saying so, tap Copy below and paste it into the chat.';
+    cb && cb(); return;
+  }
   artifactApi.publish(stateDoc(STATE)).then(function () {
     saveNote = 'Saved to the page. Claude can pick it up next session.'; cb && cb();
   }).catch(function (err) {
@@ -530,6 +597,29 @@ function persist(cb) {
       ? 'Saved on this phone. The page was out of date — reload it and this will sync itself up. Do not re-enter it.'
       : 'Saved on this phone. Reload the page and it will sync itself up.';
     cb && cb();
+  });
+}
+
+function saveEntry(entry, cb) {
+  localCopy();
+  if (!dbApi) return legacyPublish(cb);
+  queueCol().doc(entry.id).set(queueDoc(entry)).then(function () {
+    saveNote = 'Saved. Claude reads this straight from the store — nothing else to do.';
+    cb && cb();
+  }).catch(function (err) {
+    saveNote = 'Saved on this phone — the store did not answer (' + ((err && err.code) || 'error') +
+               '). Reload when you have signal and it will sync itself up. Do not re-enter it.';
+    cb && cb();
+  });
+}
+
+function dropEntry(id, cb) {
+  localCopy();
+  if (!dbApi) return legacyPublish(cb);
+  queueCol().doc(id).delete().then(function () {
+    saveNote = 'Deleted.'; cb && cb();
+  }).catch(function () {
+    saveNote = 'Could not reach the store — it may come back on reload.'; cb && cb();
   });
 }
 
@@ -655,10 +745,22 @@ function gateHTML() {
   return h;
 }
 
+/* A save that did not reach the store used to look exactly like one that did.
+   Say which it was, every time — that ambiguity is the whole bug. */
+function storeHTML() {
+  if (storeState === 'db') return '';
+  var m = { connecting: ['v-n', 'Connecting to the store\u2026'],
+            artifact:   ['v-a', '<b>Fallback mode.</b> The store is unavailable, so saves republish the page instead. They should still reach Claude.'],
+            local:      ['v-r', '<b>This phone only.</b> Nothing saved here can reach Claude. Tap <b>Copy</b> on an entry and paste it into the chat.'] }[storeState];
+  return m ? '<div class="verdict ' + m[0] + '" style="margin:0 0 12px">' + m[1] + '</div>' : '';
+}
+
 function queueHTML() {
-  if (!STATE.queue.length) return '<div class="card"><div class="card-b"><p class="note" style="margin:0">' +
+  if (!STATE.queue.length) return '<div class="card"><div class="card-b">' + storeHTML() +
+    '<p class="note" style="margin:0">' +
     'Nothing waiting. Saved sessions queue here until a Claude session writes them into <code>log.md</code> and pushes.</p></div></div>';
   var h = '<div class="card"><div class="card-h"><h2>Waiting to be written</h2><span class="hint">' + STATE.queue.length + '</span></div><div class="card-b">';
+  h += storeHTML();
   h += '<p class="note" style="margin:0 0 12px">Open a Claude session on the repo and say <em>drain the queue</em>. These land in <code>log.md</code> and get pushed.</p>';
   STATE.queue.slice().reverse().forEach(function (q) {
     h += '<div class="qitem"><div class="qitem-h"><span class="t">' + esc(SESSIONS[q.key].name) + '</span>' +
@@ -748,9 +850,11 @@ function wire() {
   if (ds) ds.onclick = function () {
     var md = markdown(draft);
     if (md.split('\n').length < 2) { saveNote = 'Nothing logged yet — add at least one set.'; renderSheet(); return; }
-    STATE.queue.push({ id: draft.id, key: draft.key, date: draft.date, md: md });
+    var entry = { id: draft.id, key: draft.key, date: draft.date, md: md,
+                  savedAt: new Date().toISOString() };
+    STATE.queue.push(entry);
     ds.disabled = true;
-    persist(function () { draft = null; renderSheet(); });
+    saveEntry(entry, function () { draft = null; renderSheet(); });
   };
   lane.querySelectorAll('[data-copy]').forEach(function (b) {
     b.onclick = function () {
@@ -760,8 +864,9 @@ function wire() {
   });
   lane.querySelectorAll('[data-drop]').forEach(function (b) {
     b.onclick = function () {
-      STATE.queue = STATE.queue.filter(function (x) { return x.id !== b.dataset.drop; });
-      persist(function () { renderSheet(); });
+      var gone = b.dataset.drop;
+      STATE.queue = STATE.queue.filter(function (x) { return x.id !== gone; });
+      dropEntry(gone, function () { renderSheet(); });
     };
   });
 }
@@ -1060,7 +1165,7 @@ var activeWeek = null;                                 /* null = follow the cale
   document.getElementById('foot').innerHTML =
     'Programme in <code>plan.md</code> · log in <code>log.md</code> · numbers from <code>analyse.py</code> on the Strong export of ' +
     DATA.export + ' (' + DATA.headline.sessions + ' sessions, ' + DATA.headline.sets.toLocaleString() + ' working sets, ' +
-    DATA.headline.perweek_12 + '/week over the last 12).<br>Saved sessions live in this page until a Claude session writes them to the repo.';
+    DATA.headline.perweek_12 + '/week over the last 12).<br>Saved sessions are held in this page\u2019s own store until a Claude session writes them to <code>log.md</code> and pushes.';
 
   window.renderWeek();
   renderSheet();

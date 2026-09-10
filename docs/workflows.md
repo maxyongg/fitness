@@ -9,68 +9,94 @@ The published page is **Matchday Block**,
 `ui/matchday.html`. Three lanes: *week* (the Mon–Sun rotation, Week A or B, Log button
 per day), *team sheet* (captures a session), *form guide* (what the last export says).
 
-### How `mb-state` works
+### Where a saved session actually lives
 
-The page's `<script id="mb-state">` holds two things:
+Since 2026-09-10 the queue lives in **the artifact's own document store** (`db`), one
+document per session in the `queue` collection. That is the record. The page also keeps
+a `localStorage` copy on his phone, written first and always, and reconciled into the
+store on the next load.
 
-- **`queue`** — sessions he has saved and nobody has written to `log.md` yet. These live
-  **only on the live page**; the repo copy is always empty.
-- **`drained`** — a receipt: the ids already written into `log.md`. This one *is* kept in
-  the repo file, and the page uses it to ignore anything it sees again, so a stale
-  `localStorage` copy on his phone cannot resurrect a session that has already been
-  logged. Keep it when you edit the file; never clear it to "tidy up".
+The `<script id="mb-state">` block still carries two things, but both are now secondary:
+
+- **`queue`** — the legacy buffer, used only if the store cannot be reached. The repo
+  copy is always empty.
+- **`drained`** — the pre-db receipt: ids written into `log.md` before the store
+  existed. Keep it; never clear it to "tidy up". New drains are recorded in the store
+  instead, by flagging the document `drained: true`.
+
+**The page declares `capabilities: {artifact: {}, db: {}}`.** Both must stay declared.
+Passing a non-empty `capabilities` that omits one revokes it, and a page that cannot
+reach either can only save to the phone — which is exactly the failure below.
+
+### Reading the queue from a Claude session
+
+No need to open the page at all:
+
+```
+Artifact  action: "read_db"  url: <the artifact>  db_op: "list"  collection: "queue"
+```
+
+`No documents matched` means the queue is empty (the store is created on first write).
 
 ### If a save looks like it vanished
 
-Symptom: he says he logged a session and it is not in the queue. Almost always this —
-he had the page open from **before** the last republish, so his save tried to publish
-over a version it did not have, was rejected, and fell back to `localStorage`. The
-session is on his phone, not lost.
+**What happened on 9–10 Sep 2026, and the reason the store exists.** Saving used to mean
+republishing the whole page. That fails in two ways that look identical to him — the
+publish is refused because his page was behind the live version, or the `artifact` grant
+is not there at all — and in both the save fell back to `localStorage` with nothing to
+push it up. Three sessions' worth of work sat invisible on his phone.
 
-**Fix: ask him to reload the page.** Since 2026-09-06 the merge on load spots entries
-that exist only in `localStorage` and republishes them itself, so a reload is enough to
-make the session readable from here. Before that fix nothing ever pushed them up and
-they sat on the phone indefinitely.
+A one-document write has neither failure mode. What remains:
 
-If he cannot reload, the queue card has a **Copy** button per entry — the markdown is
-already in log format, so he can paste it straight into the chat.
+1. **Ask him to reload the page.** On load the page pushes anything in `localStorage`
+   that the store has never seen, and says so on screen. This is the recovery path and
+   it is usually enough.
+2. **Check the store** with `read_db` above.
+3. If it is still not there, the queue card shows a coloured banner naming the problem —
+   ask him what it says. `This phone only` means neither capability resolved, and the
+   **Copy** button per entry is the way out: the markdown is already in log format, so
+   he can paste it straight into the chat.
+
+Never tell him a save is lost without checking `localStorage` recovery first. It almost
+never is.
 
 ### Read this before you republish anything
 
-**Publishing the repo file overwrites the live `queue` with nothing.** Any session he
-saved and you have not yet drained is gone from the page.
+The old hazard — *publishing the repo file wipes the live queue* — **is gone for anything
+in the store.** Republishing no longer touches `db`. This is the main reason for the
+change.
 
-This applies to *every* republish, not just a drain — a one-line CSS tweak wipes the
-queue exactly as thoroughly as a rewrite. It is the single easiest way to lose his data
-in this project.
+Two caveats keep the check worth doing:
 
-Two things soften it, neither of which is a reason to be careless: the page also keeps
-the queue in the browser's `localStorage` and merges it back on load, so **his own phone**
-will usually still have the entries; and the publish is refused outright if this
-conversation has not read the live version first, which forces the check below.
+- A session saved while the store was unreachable sits in the legacy `mb-state.queue` on
+  the live page, and publishing over it *does* still destroy it.
+- The publish is refused outright unless this conversation has read the live version
+  first, so you cannot skip the read anyway.
 
-Nothing wakes this session when he saves something. There is no working subscription —
-attempts return 403. **The queue is only ever found by looking.** Read the artifact at
-the start of any programming session, and whenever he mentions having trained.
+**Nothing wakes this session when he saves.** Wake subscriptions do not register here
+(the gateway returns 404; it was 403 before). The queue is still only ever found by
+looking. Check it at the start of any programming session and whenever he mentions
+having trained.
 
 ### The safe procedure — follow it for every publish
 
-1. **`Artifact` with `action: "read"` and the URL.** Always first. This is both the
-   safety check and what the publish guard requires.
-2. **Find `<script id="mb-state">` in the returned HTML and look at `queue`.**
-   - Empty (`{"queue":[]}`) → carry on to step 4.
-   - Not empty → do step 3 before touching the page.
-3. **Drain it.** Each entry carries a ready-made `md` block. Append them to `log.md` in
-   date order — they are already in log format, so check them, don't rewrite them —
-   then commit and push. Only once that push has succeeded is it safe to publish over
-   them.
-4. **Publish `ui/matchday.html`**, having first added the drained ids to its `drained`
-   array. The empty `queue` now correctly reflects reality because you just drained it,
-   and the receipt stops those entries coming back. Never hand-copy *queue* JSON into
-   the repo file to "preserve" it — `log.md` is the record, the page is only a buffer.
+1. **`read_db`** the `queue` collection. That is the real queue.
+2. **`Artifact` with `action: "read"` and the URL.** Still required — it is what the
+   publish guard checks — and it shows whether the legacy `mb-state.queue` holds
+   anything.
+3. **Drain whatever either one holds.** Each entry carries a ready-made `md` block.
+   Append them to `log.md` in date order — they are already in log format, so check
+   them, don't rewrite them — then commit and push.
+4. **Mark them drained, only after the push succeeded.** For store entries, `write_db`
+   with `db_op: "update"` setting `drained: true` (batch them if there are several).
+   Marking rather than deleting is deliberate: his phone's `localStorage` copy would
+   otherwise walk the session straight back in on the next load. For legacy entries, add
+   the id to the `drained` array in `ui/matchday.html`.
+5. **Publish `ui/matchday.html`** if you changed it, with `capabilities` naming both
+   `artifact` and `db`.
 
-If a publish is refused because someone republished in between, re-read and start again
-from step 1. Do not use `force`.
+If a publish is refused because someone republished in between, re-read and start again.
+Do not use `force`.
 
 ## Keeping the page in step with the programme
 

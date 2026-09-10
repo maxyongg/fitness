@@ -95,11 +95,22 @@ The occasional jobs — draining the phone-UI queue, logging when git is unreach
 the monthly reconcile, republishing the page — live in `docs/workflows.md`. Read it
 when one comes up, not before.
 
-**One hard rule from that file, because it destroys his data:** `ui/matchday.html` in
-the repo always carries an empty queue, so **publishing it overwrites whatever the live
-page is holding.** Before *any* republish — including a one-line tweak — read the
-artifact, check `mb-state`, and drain the queue into `log.md` first if it is not empty.
-Nothing notifies you that he has saved something; you only find it by looking.
+**One hard rule from that file:** **nothing notifies you when he saves a session** —
+wake subscriptions do not register here — so the queue is only ever found by looking.
+Read it whenever he mentions having trained, and at the start of any programming session:
+
+```
+Artifact  action: "read_db"  url: <the artifact>  db_op: "list"  collection: "queue"
+```
+
+Since 2026-09-10 saved sessions live in the artifact's own document store, so
+republishing the page no longer destroys them — that used to be the easiest way to lose
+his data, and it was. The store also has to stay granted: the page declares
+`capabilities: {artifact: {}, db: {}}` and a publish that names a non-empty
+`capabilities` **without both** silently revokes one, which is how three sessions went
+missing on 9–10 Sep. Still read the artifact before publishing — the guard requires it,
+and a session saved while the store was unreachable can be sitting in the legacy
+`mb-state` queue, where publishing over it does still destroy it.
 
 ## Settled — do not relitigate
 
