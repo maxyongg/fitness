@@ -146,6 +146,50 @@ pain(R): 2/10 | note: straight-arm pulldown strength dropped because halfway thr
      data. With the hanging leg raises this is the first properly logged core on a pull
      day since 9 March. -->
 
+## 2026-09-11 · Fri · Push
+pain(R): 2/10 | note: pain present in right lat on arnold press
+- Incline Bench Press (Barbell) — 40kg × 10, 65kg × 8, 8, 6, 45kg × 10
+- Arnold Press (Dumbbell) — 22kg × 8, 8, 6
+- Dumbbell Pullover — 14kg × 10, 20, 20
+- Lateral Raise (Dumbbell) — 8kg × 15, 15, 15
+- Triceps Dip — bodyweight × 10, 10, 8
+- Push Up — bodyweight × 10, 8
+
+<!-- From the phone page store (id p1789101479848), drained 2026-09-11. Titled "Push (1)"
+     on the page, his Strong template name; normalised to Push as on 09-07 and 09-10.
+
+     The Friday Push of Week A, which is one of the two sessions adherence usually loses.
+     Both Week A Pushes are now in the log.
+
+     Lateral raise 7kg → 8kg. That is the progression rule in plan.md executed exactly:
+     it asks for +1kg once 20 reps holds across all three sets, and 09-07 was 7kg × 20,
+     20, 20. The stall list from the 31 Aug export had lateral raise at 7kg for five
+     sessions; it is unstalled, and 8kg × 15, 15, 15 is at the bottom of the 15–20 band
+     as intended.
+
+     Incline 65kg × 8, 8, 6 — two sets of 8 at 65kg, where 09-07 gave 65kg × 8, 7. e1RM
+     82.3, level with his all-time best, and 65kg remains his heaviest working weight on
+     the lift. The progression line wants all four sets at 8 before +2.5kg; three working
+     sets at 8/8/6 is not that, so the load holds.
+
+     Dumbbell Pullover is a ★ new exercise, first ever logged, taken in push slot 3 (the
+     chest rotate) ahead of the cable crossover. Session 1 of 4 under the four-session
+     rule in plan.md. 14kg × 10 then 20, 20 reads as him finding the load light after the
+     first set rather than as a real 20-rep prescription.
+
+     pain(R) 2/10 is a green reading and is NOT a green light on the row protocol — no
+     row was performed, and the gate counts greens on the right-side iso-lateral row
+     only. It is the second consecutive push day where an overhead pressing movement
+     provoked the right lat: overhead press on 09-07, Arnold press today. Two sessions is
+     a pattern worth naming to the physio, not a conclusion.
+
+     Slot 2 rotated again — overhead press on 09-07, Arnold today. plan.md's standing
+     proposal is to anchor OHP in that slot for a block; this is the rotation the
+     proposal exists to stop. Still his call.
+
+     Push ends on triceps: 24 of 24. Push-up finisher logged for the second session
+     running, at 10, 8 against the 3 × 15 the plan asks for. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

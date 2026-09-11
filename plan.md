@@ -80,8 +80,8 @@ Exercises marked ★ are ones he has never logged. See "Trying new exercises" be
 |---|---|---|---|---|
 | 1 | **Anchor** | Incline Bench Press (Barbell) | 4 × 5–8 | 60kg |
 | 2 | Rotate — vertical press | Shoulder Press · Arnold Press · **Overhead Press** · Landmine Press | 3 × 8–10 | 30kg / 22kg / 40kg |
-| 3 | Rotate — chest | Chest Fly · Cable Crossover · Incline Chest Press · ★ Dumbbell Pullover | 3 × 10–12 | 65kg / 13.75kg |
-| 4 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | 7kg |
+| 3 | Rotate — chest | Chest Fly · Cable Crossover · Incline Chest Press · Dumbbell Pullover | 3 × 10–12 | 65kg / 13.75kg / 14kg |
+| 4 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | 8kg |
 | 5 | Rotate — triceps | Triceps Extension · Triceps Dip · One-Handed Triceps Pull · ★ Skullcrusher | 3 × 10–12 | 17.5kg / bw |
 | F | Rotate — finisher | Push-Ups · ★ Diamond Push-Ups · ★ Pike Push-Ups · ★ Deficit Push-Ups | 3 × 15 | bodyweight |
 
@@ -91,6 +91,10 @@ block and see if it comes back.
 
 The finisher has been happening for years and going unlogged — push-ups appear 8 times
 in the whole export, last April 2025. Log it. Even sets of 15, not 25/8/8.
+
+**Dumbbell Pullover is on trial in slot 3**, first run 2026-09-11 at 14kg — session 1 of
+4 under the four-session rule below. Decide to keep or drop it after the fourth, not by
+feel. It displaces nothing permanently; it is one of the chest rotate options.
 
 Flat bench was dropped deliberately in June to prioritise incline. It stays dropped.
 
@@ -241,7 +245,9 @@ adaptation and the physio should sign off on it.
 
 - **Incline bench** — +2.5kg once all four sets hit 8
 - **Overhead press**, if it goes into slot 2 — +2.5kg at the top of the range
-- **Lateral raises** — stay 15–20; +1kg once 20 holds across all three sets
+- **Lateral raises** — stay 15–20; +1kg once 20 holds across all three sets.
+  Earned and taken on 2026-09-11: 7kg × 20, 20, 20 on 09-07 → 8kg × 15, 15, 15. Next
+  step is 9kg, on the same condition.
 - **Seated wide-grip row** — hold 57kg deliberately, chase reps
 - **Pull-ups** — back to 27 reps fresh, then re-add 5kg once that holds three sessions
 - **Anything the right lat touches** — reps before weight, always
