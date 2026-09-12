@@ -87,11 +87,24 @@ having trained.
 3. **Drain whatever either one holds.** Each entry carries a ready-made `md` block.
    Append them to `log.md` in date order — they are already in log format, so check
    them, don't rewrite them — then commit and push.
-4. **Mark them drained, only after the push succeeded.** For store entries, `write_db`
-   with `db_op: "update"` setting `drained: true` (batch them if there are several).
-   Marking rather than deleting is deliberate: his phone's `localStorage` copy would
-   otherwise walk the session straight back in on the next load. For legacy entries, add
-   the id to the `drained` array in `ui/matchday.html`.
+4. **Mark them drained, only after the push succeeded.** Marking rather than deleting
+   is deliberate: his phone's `localStorage` copy would otherwise walk the session
+   straight back in on the next load.
+
+   **Use the `drained` array in `ui/matchday.html`, not `write_db`.** The obvious route
+   — `write_db` with `db_op: "update"` setting `drained: true` — no longer works from a
+   Claude session. Every write against a document that already exists is refused with
+   `version_mismatch` unless it carries `if_version`, and the `Artifact` tool exposes no
+   such parameter; `db_op: "set"` is refused the same way, and putting `if_version`
+   inside `data` does nothing. Confirmed 2026-09-12 draining the legs session. So add
+   the id to the array at `#mb-state` instead and republish. The page treats the two
+   identically — the boot block filters the queue against `drained` before anything
+   renders — so the session stays out of his queue either way. The store document keeps
+   `drained: false` forever and that is now cosmetic; **the array is the receipt.**
+   The same array was always the route for legacy entries.
+
+   If `write_db` ever starts accepting `if_version`, go back to flagging the document:
+   it survives a stale republish, and the array does not.
 5. **Publish `ui/matchday.html`** if you changed it, with `capabilities` naming both
    `artifact` and `db`.
 
