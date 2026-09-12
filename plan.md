@@ -69,8 +69,9 @@ names.
   enjoying it.
 
 So: **rotate the accessories freely, leave the anchors alone.** If he wants to make a
-rotating lift progress — OHP is the obvious candidate — the answer is to anchor it for a
-block, not to hope it improves while being picked at random.
+rotating lift progress — OHP was the obvious candidate — the answer is to anchor it for a
+block, not to hope it improves while being picked at random. He took that on 2026-09-12
+and push slot 2 is now an anchor; see the Push section.
 
 Exercises marked ★ are ones he has never logged. See "Trying new exercises" below.
 
@@ -79,15 +80,34 @@ Exercises marked ★ are ones he has never logged. See "Trying new exercises" be
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
 | 1 | **Anchor** | Incline Bench Press (Barbell) | 4 × 5–8 | 60kg |
-| 2 | Rotate — vertical press | Shoulder Press · Arnold Press · **Overhead Press** · Landmine Press | 3 × 8–10 | 30kg / 22kg / 40kg |
+| 2 | **Anchor** | Overhead Press (Barbell) | 3 × 8–10 | 40kg |
 | 3 | Rotate — chest | Chest Fly · Cable Crossover · Incline Chest Press · Dumbbell Pullover | 3 × 10–12 | 65kg / 13.75kg / 14kg |
 | 4 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | 8kg |
 | 5 | Rotate — triceps | Triceps Extension · Triceps Dip · One-Handed Triceps Pull · ★ Skullcrusher | 3 × 10–12 | 17.5kg / bw |
 | F | Rotate — finisher | Push-Ups · ★ Diamond Push-Ups · ★ Pike Push-Ups · ★ Deficit Push-Ups | 3 × 15 | bodyweight |
 
-Slot 2 is where the overhead press lives. It is the one lift with a real hole in it, and
-the hole exists because this slot rotates. **Standing proposal:** anchor OHP here for one
-block and see if it comes back.
+**Slot 2 was a rotate slot and is now an anchor — his call, 2026-09-12.** It stopped
+being a proposal and became the programme. The reasoning is the one in "Anchors and
+rotations" above: overhead press fell from 61.7 to 50.7 e1RM while its slot rotated, and
+a lift that gets picked at random cannot be progressively overloaded. It is now the only
+thing in that slot. Shoulder Press, Arnold Press and Landmine Press are out of push for
+the duration — that is the cost of the change, and it is variety he is giving up on
+purpose.
+
+- **Progression:** all three working sets at 10 reps → +2.5kg. Currently 40kg × 8, 8, 6
+  (2026-09-07), so 40kg × 10, 10, 10 earns 42.5kg. Same shape as the incline rule.
+- **Review after 8 push sessions** — roughly five weeks at three push days a fortnight.
+  Keep it anchored if the e1RM is moving, hand the slot back to rotation if it is not.
+  Decide at the eighth, not by feel before it.
+
+**One flag on this, and it is not a reason to undo it.** Both push days since the
+restart put right-lat pain at 2/10 and both had an overhead press in slot 2 — the
+barbell OHP on 09-07, the Arnold on 09-11. Anchoring means that movement now recurs
+every push day instead of one in four. 2/10 is inside his own green band and he is
+under physiotherapy care, so this is his and his physio's call, not a stop signal from
+the log. But it belongs in the next physio conversation, and if pain climbs above 3/10
+on this lift the anchor goes back to rotation immediately — that overrides the
+eight-session review.
 
 The finisher has been happening for years and going unlogged — push-ups appear 8 times
 in the whole export, last April 2025. Log it. Even sets of 15, not 25/8/8.

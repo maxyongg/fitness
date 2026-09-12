@@ -190,6 +190,39 @@ pain(R): 2/10 | note: pain present in right lat on arnold press
      Push ends on triceps: 24 of 24. Push-up finisher logged for the second session
      running, at 10, 8 against the 3 × 15 the plan asks for. -->
 
+## 2026-09-12 · Sat · Legs
+pain(R): 0/10 | note: my knees hurt while doing squats
+- Squat (Barbell) — 40kg × 8, 60kg × 5, 70kg × 5, 80kg × 5
+- Romanian Deadlift (Barbell) — 50kg × 8, 70kg × 8, 8, 8
+- Seated Leg Press (Machine) — 72.5kg × 8, 80kg × 8, 8
+- Kneeling Leg Curl — 10kg × 8, 8, 8
+- Seated Calf Raise (Plate Loaded) — 40kg × 12, 12, 12
+
+<!-- From the phone page store (id p1789180966420), drained 2026-09-12.
+
+     First legs day in this log, and the first since the 31 Aug export. Week A Saturday,
+     run as scheduled. Nothing here needs chasing and none of it gets chased.
+
+     **The knees are the only thing in this entry that matters.** "My knees hurt while
+     doing squats" is new — it appears nowhere in log.md, plan.md or docs/ before today,
+     and it arrived on the day he squatted 80kg, his heaviest recorded top set. That is
+     one data point and it is not a diagnosis; it is a thing to say out loud to the
+     physio he is already seeing, alongside the right lat.
+
+     Squat 80kg × 5 is e1RM 90.0 against a 95.0 baseline; RDL 70kg × 8 is e1RM 86.9
+     against 95.0. Both are below the export's figures and neither is a finding — this
+     is his first leg session in at least a fortnight and probably longer, which is the
+     designed frequency, and a squat top set of 5 is not the plan's 6-8 band, so the
+     e1RM comparison is against a different rep range.
+
+     Two loads sit far under plan.md's "Now" column: Seated Leg Press 80kg vs 130kg, and
+     Kneeling Leg Curl 10kg vs 35kg. Almost certainly different machines — kneeling and
+     lying leg curls are not the same station, and plate-loaded and stack presses do not
+     share a scale. Do NOT record this as a regression. It is a question for the monthly
+     reconcile against the CSV, where the exercise names are unambiguous.
+
+     pain(R) 0/10, and no upper-body work, so nothing here touches the row protocol. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
