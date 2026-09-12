@@ -306,7 +306,8 @@ var PHASES = [
 var SESSIONS = {
   push: { name: 'Push', mins: 50, items: [
     { ex: 'Incline Bench Press (Barbell)', p: '4 × 5–8', n: '60kg', anchor: true },
-    { ex: 'Overhead Press (Barbell)', p: '3 × 8–10', n: '40kg · all 3 sets at 10 → 42.5kg', anchor: true },
+    { ex: 'Shoulder Press (Plate Loaded)', p: '3 × 8–10',
+      alts: ['Arnold Press (Dumbbell)', 'Overhead Press (Barbell)', 'Landmine Press'] },
     { ex: 'Chest Fly', p: '3 × 10–12',
       alts: ['Cable Crossover', 'Incline Chest Press', 'Dumbbell Pullover'] },
     { ex: 'Lateral Raise (Dumbbell)', p: '3 × 15–20', n: 'stay high-rep · 8kg', anchor: true,
@@ -1105,10 +1106,10 @@ var activeWeek = null;                                 /* null = follow the cale
            '<span class="cu' + (down ? ' down' : '') + '" style="width:' + (l.cur / mx * 100).toFixed(1) + '%"></span></div>' +
            '<div class="meta">peak ' + l.peakq + (lastQ === l.peakq ? '' : ' · last logged ' + lastQ) + '</div></div>';
     });
-    h += '<p class="note">Overhead press is the one carrying a real hole — 61.7 in February, 50.7 now. It regressed because ' +
-         'push slot 2 kept going to the Arnold or the machine instead. Since 2026-09-12 that slot is an anchor and the OHP ' +
-         'is the only thing in it: 40kg now, all three sets at 10 earns 42.5kg, reviewed after 8 push sessions. ' +
-         'Squat and RDL read at their peak only because neither has been logged since Q2.</p>';
+    h += '<p class="note">Overhead press is the one carrying a real hole — 61.7 in February, 50.7 now. <strong>Why is an open ' +
+         'question</strong>: its slot rotates, so it comes up about one push day in four — but the June lat injury and the ' +
+         'August trip cover the same window, and nothing separates them yet. Anchoring the slot was considered on 12 Sep ' +
+         'and left alone; the next export answers it. Squat and RDL read at their peak only because neither has been logged since Q2.</p>';
     h += '</div></div>';
 
     /* stalls */

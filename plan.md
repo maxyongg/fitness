@@ -61,17 +61,20 @@ names.
 
 - **Anchor slots** stay the same session after session and carry the load progression.
   You cannot progressively overload something you do not repeat. Incline bench is at an
-  all-time high because slot 1 never changes; **overhead press fell from 61.7 to 50.7
-  e1RM precisely because its slot keeps rotating.** That is the cost, stated plainly.
+  all-time high because slot 1 never changes. The overhead press, in a rotating slot,
+  fell from 61.7 to 50.7 e1RM over the same period — but read that as the cost a
+  rotating slot *can* carry, not as a measured cause. See the Push section: the
+  rotation is one candidate explanation and it has never been tested against the other
+  two.
 - **Rotate slots** change whenever he likes, from the menus below. Variety costs nothing
   here because these slots are not chasing a number — they are accumulating volume and
   covering angles. Adherence matters more than optimality, and he trains more when he is
   enjoying it.
 
-So: **rotate the accessories freely, leave the anchors alone.** If he wants to make a
-rotating lift progress — OHP was the obvious candidate — the answer is to anchor it for a
-block, not to hope it improves while being picked at random. He took that on 2026-09-12
-and push slot 2 is now an anchor; see the Push section.
+So: **rotate the accessories freely, leave the anchors alone.** Anchoring a rotating
+lift is the lever available if one needs to progress — but it costs variety, and it is
+not free when the lift in question is one the right lat reacts to. Push slot 2 was
+considered for it on 2026-09-12 and deliberately left rotating; see the Push section.
 
 Exercises marked ★ are ones he has never logged. See "Trying new exercises" below.
 
@@ -80,34 +83,42 @@ Exercises marked ★ are ones he has never logged. See "Trying new exercises" be
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
 | 1 | **Anchor** | Incline Bench Press (Barbell) | 4 × 5–8 | 60kg |
-| 2 | **Anchor** | Overhead Press (Barbell) | 3 × 8–10 | 40kg |
+| 2 | Rotate — vertical press | Shoulder Press · Arnold Press · **Overhead Press** · Landmine Press | 3 × 8–10 | 30kg / 22kg / 40kg |
 | 3 | Rotate — chest | Chest Fly · Cable Crossover · Incline Chest Press · Dumbbell Pullover | 3 × 10–12 | 65kg / 13.75kg / 14kg |
 | 4 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | 8kg |
 | 5 | Rotate — triceps | Triceps Extension · Triceps Dip · One-Handed Triceps Pull · ★ Skullcrusher | 3 × 10–12 | 17.5kg / bw |
 | F | Rotate — finisher | Push-Ups · ★ Diamond Push-Ups · ★ Pike Push-Ups · ★ Deficit Push-Ups | 3 × 15 | bodyweight |
 
-**Slot 2 was a rotate slot and is now an anchor — his call, 2026-09-12.** It stopped
-being a proposal and became the programme. The reasoning is the one in "Anchors and
-rotations" above: overhead press fell from 61.7 to 50.7 e1RM while its slot rotated, and
-a lift that gets picked at random cannot be progressively overloaded. It is now the only
-thing in that slot. Shoulder Press, Arnold Press and Landmine Press are out of push for
-the duration — that is the cost of the change, and it is variety he is giving up on
-purpose.
+### Slot 2 stays a rotate slot — decided 2026-09-12
 
-- **Progression:** all three working sets at 10 reps → +2.5kg. Currently 40kg × 8, 8, 6
-  (2026-09-07), so 40kg × 10, 10, 10 earns 42.5kg. Same shape as the incline rule.
-- **Review after 8 push sessions** — roughly five weeks at three push days a fortnight.
-  Keep it anchored if the e1RM is moving, hand the slot back to rotation if it is not.
-  Decide at the eighth, not by feel before it.
+An earlier version of this file carried a standing proposal to anchor the overhead
+press here for a block. It was briefly implemented on 2026-09-12 and **undone the same
+day.** Do not re-propose it without new evidence; the reasoning is below, so that the
+next session inherits it instead of re-deriving it.
 
-**One flag on this, and it is not a reason to undo it.** Both push days since the
-restart put right-lat pain at 2/10 and both had an overhead press in slot 2 — the
-barbell OHP on 09-07, the Arnold on 09-11. Anchoring means that movement now recurs
-every push day instead of one in four. 2/10 is inside his own green band and he is
-under physiotherapy care, so this is his and his physio's call, not a stop signal from
-the log. But it belongs in the next physio conversation, and if pain climbs above 3/10
-on this lift the anchor goes back to rotation immediately — that overrides the
-eight-session review.
+**The argument for it was never tested.** It ran: OHP fell from 61.7 to 50.7 e1RM
+because its slot rotates, so anchor the slot and it comes back. But nothing establishes
+the *because*. Two other explanations cover the same window and neither was ruled out —
+the right lat injury dating from June 2026, and the two-week trip in August that the
+whole re-entry phase exists for. This project has already mistaken three scheduling
+artefacts for physiology; this would be the fourth.
+
+**The argument against it is concrete.** Both push days since the restart logged
+right-lat pain at 2/10, and both had an overhead press in slot 2 — the barbell OHP on
+09-07, the Arnold on 09-11. Anchoring would make the provoking movement compulsory every
+push day rather than roughly one in four, while that structure is under physiotherapy
+care. That is the wrong direction on the one signal actually being measured.
+
+**And nothing depends on it.** There is no target and no date. The overhead press hole
+is real, but a lift regressing is not a goal to chase unless he says it is — the brief
+is rounding, not peaking, and push already carries two anchors out of six slots.
+
+**What answers it instead:** the next Strong export. `analyse.py` can ask directly
+whether OHP sessions cluster where the slot happened to pick it, and whether the decline
+tracks slot frequency or tracks June. That question is now logged in `docs/findings.md`.
+Until then the slot rotates, and if the right lat keeps reacting to overhead pressing,
+the live question is whether the movement belongs on push day at all — not whether to
+do more of it.
 
 The finisher has been happening for years and going unlogged — push-ups appear 8 times
 in the whole export, last April 2025. Log it. Even sets of 15, not 25/8/8.

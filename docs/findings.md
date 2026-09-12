@@ -150,6 +150,28 @@ inferring from it; he is right about his own body more often than the log is.
   deficit. If that reading repeats, the limiter is detraining rather than tissue, and
   the answer is loading the right side more, not less. **One session. Do not act on it
   yet** — the protocol wants three green lights held across two weeks.
+- **Did the overhead press decline because its slot rotates?** Asserted in `plan.md`
+  for a fortnight as though settled; it is not. OHP e1RM ran 49.6 → 60.2 → **61.7**
+  (2026Q1) → 57.0 → 50.7. The rotation story says it fell because push slot 2 picks it
+  about one day in four. Two rival explanations cover the same window and neither has
+  been excluded: the **right lat injury from June 2026**, and the **two-week August
+  trip** the whole re-entry phase exists for. There is also a prior question nobody has
+  asked — was slot 2 already rotating in 2026Q1, when the lift *peaked*? If it was, the
+  rotation story is dead on arrival.
+
+  **Resolvable from the next export**, and `analyse.py` should do it: count OHP sessions
+  per quarter against e1RM per quarter, and check whether the drop lands at June or
+  tracks exposure. Until then the slot stays rotating — anchoring it was proposed,
+  implemented on 2026-09-12 and undone the same day, because the cost is concrete (it
+  would make a movement that has provoked right-lat pain on both recent push days
+  compulsory rather than occasional) and the benefit rests on an untested because.
+- **Is overhead pressing what the right lat is reacting to on push day?** Two sessions,
+  both 2/10: barbell OHP on 2026-09-07 (his note names it), Arnold press on 2026-09-11.
+  Two is a pattern worth naming to the physio, not a conclusion, and the confound is
+  obvious — those are simply the two push days since the restart. Watch whether a push
+  day *without* an overhead press comes in clean. If the pattern holds, the question is
+  whether the movement belongs on push day at all, which is his physio's call and not
+  the log's.
 - **Why was Feb–Apr 2026 his best block in two years?** Nine straight Saturday leg days.
   Never established. CPAP started May/June, which is where the decline begins, but he
   considers this closed — note it, don't reopen it.
