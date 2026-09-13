@@ -223,6 +223,43 @@ pain(R): 0/10 | note: my knees hurt while doing squats
 
      pain(R) 0/10, and no upper-body work, so nothing here touches the row protocol. -->
 
+## 2026-09-13 · Sun · Pull
+pain(R): 4/10 | note: reduced session — tired from physio, and general fatigue from this being the 4th session in a row. Logged the 4 on the seated row as tightness rather than pain. Reverse fly strength down because he changed the form: shoulder-focused (50kg) to lat-focused (35kg).
+- Pull Up — bodyweight × 10, 9, 8
+- Uni Lateral Seated Row — 47kg × 8, 57kg × 8, 8, 40kg × 8
+- Reverse Fly (Machine) — 50kg × 8, 35kg × 8, 8
+- Bicep Curl (Barbell) — 30kg × 8, 8, 7
+
+<!-- From the phone page store (id p1789272149017), drained 2026-09-13. Titled "Pull (2)"
+     in the paste, his Strong template name; normalised to Pull. His note ran to three
+     numbered points and is merged onto one line.
+
+     **pain(R) 4/10 is not a green light.** Under the plan.md protocol 4-5 means hold the
+     load and do not add weight. Two qualifiers, both of which matter and neither of
+     which cancels it. First, he says the 4 is **tightness rather than pain** — his
+     words, and this file's standing rule is that he is right about his own body more
+     often than the log is, so it is recorded as he gave it and not argued with.
+     Second, the movement was a Uni Lateral Seated Row, not the right-side iso-lateral
+     row, and the gate counts greens on that one lift only. So this reading neither
+     extends the streak (3/10 on 09-03, 2/10 on 09-10) nor breaks it. It sits outside it.
+
+     **Which side, or both?** "Uni Lateral Seated Row" is unilateral by name but was
+     logged without a side split, and 57kg falls between his left (60kg) and right (50kg)
+     from 09-10. It may be the same machine as the iso-lateral row under Strong's other
+     name, or a different station. Do not resolve this by guessing — ask him, or wait for
+     the CSV. Until then the right side has not been measured since 09-10.
+
+     **Reverse fly 50kg → 35kg is a form change, not a decline.** He states it plainly:
+     shoulder-focused to lat-focused. This is now the third time this pattern has
+     appeared — the row in Sep 2025, the straight-arm pulldown on 09-10, the reverse fly
+     today. Each time the load reset because the movement did. Do not let a future
+     session discover any of them as a regression.
+
+     Pull-ups first and at position 1: 10, 9, 8 for 27 total, level with his 27 on 27 Aug.
+     Rear delts got direct work, which is the one gap the export actually supports
+     (3.0/wk down to 0.8). Four exercises rather than six — a reduced session he chose
+     and explained. Session length proves nothing; see docs/findings.md. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
