@@ -38,6 +38,31 @@ Artifact  action: "read_db"  url: <the artifact>  db_op: "list"  collection: "qu
 
 `No documents matched` means the queue is empty (the store is created on first write).
 
+### Why a logged session can look unlogged
+
+Two separate faults, both fixed on 2026-09-13, both of which made a session he had
+already pushed look like a save that failed. Reproduced in a headless browser against
+the real page before and after the fix — do not take either on trust if they recur.
+
+1. **Drained sessions used to vanish without trace.** A session marked drained left the
+   queue and appeared nowhere else: no confirmation, no record, nothing to distinguish
+   "written to `log.md` and pushed" from "the save never landed". He re-entered a
+   session on 09-13 for exactly this reason, and said it was not the first time. The page
+   now carries a **"Written to log.md"** card listing recently drained sessions, so the
+   queue emptying reads as the success it is.
+
+2. **`syncDb` honoured only one of the two receipts.** It built its "already drained"
+   set from the store document's `drained: true` flag and never consulted the `drained`
+   array in `mb-state`. Since 2026-09-12 the array is the only receipt a Claude session
+   can actually write, so every newly drained session was filtered out by the boot block
+   and then pushed straight back into the queue by `syncDb` three lines later — logged,
+   pushed, and still sitting there marked as waiting. It now seeds `gone` from the array
+   first. **Never remove either check.**
+
+The two produce opposite symptoms — one makes a session disappear, the other makes it
+reappear — so do not assume which one you are looking at. Check the store, check
+`log.md`, and check `git log` before telling him anything.
+
 ### If a save looks like it vanished
 
 **What happened on 9–10 Sep 2026, and the reason the store exists.** Saving used to mean
