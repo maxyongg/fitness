@@ -2,6 +2,9 @@
 
 Not needed on a normal logging session. Read the one you need.
 
+The failures described below are summarised with the rest of this project's mistakes in
+`docs/incidents.md`. This file is the procedure; that one is the reasoning.
+
 ## Draining the phone-UI queue
 
 The published page is **Matchday Block**,

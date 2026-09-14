@@ -1,7 +1,9 @@
 # What the data supports — and what it doesn't
 
 Everything here came out of `analyse.py` on the Strong export. The headline is in
-`CLAUDE.md`; this is the working.
+`CLAUDE.md`; this is the working. **`docs/incidents.md` is the companion file** — where
+this one records what the data supports, that one records what was claimed anyway, and
+the rule each error produced. Read it before adding a finding here.
 
 ## Read this before trusting any number below
 
