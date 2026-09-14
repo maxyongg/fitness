@@ -101,6 +101,15 @@ input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;b
 .ex{font-family:"Barlow Condensed",sans-serif;font-size:19px;font-weight:600;letter-spacing:.02em;line-height:1.12}
 .presc{font-size:12px;color:var(--ink-3);margin-top:2px;letter-spacing:.02em}
 .presc b{color:var(--amber);font-weight:600}
+.rx{margin-top:7px;border-left:2px solid var(--accent);padding:0 0 0 10px}
+.rx-top{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.rx-load{font-family:"IBM Plex Mono",monospace;font-size:19px;font-weight:600;color:var(--accent);
+  font-variant-numeric:tabular-nums;line-height:1.15}
+.rx-reps{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.rx-do{font-size:13.5px;line-height:1.45;color:var(--ink);margin-top:3px}
+.rx-why{font-size:12.5px;line-height:1.45;color:var(--ink-2);margin-top:4px}
+.rx-last{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);margin-top:5px}
+.note.brief{background:var(--accent-soft);color:var(--ink);padding:10px 12px;border-radius:2px}
 .sets{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .setrow{display:flex;align-items:center;gap:4px;background:var(--ground);border:1px solid var(--rule);border-radius:2px;padding:3px 4px 3px 6px}
 .setrow input{width:52px;padding:4px 5px;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
@@ -304,72 +313,197 @@ var PHASES = [
     forceWeek: null, skipLegs: false }
 ];
 
+/* ---------- the prescription ----------
+
+   Every slot carries an `rx`: the load to use today, the target that earns the next
+   increment, what he actually did last time, and one line of instruction. The numbers
+   come from log.md and the 31 Aug export — nothing here is invented, and anything with
+   no history says so rather than guessing a load.
+
+   Rotate slots no longer pick at random from a menu. The listed exercise IS the call,
+   with the reason attached; `alts` stay reachable through the swap button for when a
+   machine is taken. He asked for this on 2026-09-14: the page was "loose" and a trainer
+   names the session. Variety still happens — it happens because the data says to
+   rotate, not because a date hash did.                                              */
+
 var SESSIONS = {
-  push: { name: 'Push', mins: 50, items: [
-    { ex: 'Incline Bench Press (Barbell)', p: '4 × 5–8', n: '60kg', anchor: true },
+  push: { name: 'Push', mins: 50,
+    brief: 'Slot 2 comes down in weight and slot 3 goes up in reps. Nothing gets heavier today.',
+    items: [
+    { ex: 'Incline Bench Press (Barbell)', p: '4 × 5–8', anchor: true,
+      rx: { load: '65kg', sets: 4,
+            last: '09-14 · 65×8, 8 then 60×6',
+            do: 'Hold 65kg. Four working sets at 8 earns 67.5kg — you have stopped at 8, 8, 6 twice now, so set three is the one to win.',
+            why: 'e1RM 82.3, level with your best, three push days running.' } },
     { ex: 'Shoulder Press (Plate Loaded)', p: '3 × 8–10',
-      alts: ['Arnold Press (Dumbbell)', 'Overhead Press (Barbell)', 'Landmine Press'] },
+      alts: ['Arnold Press (Dumbbell)', 'Overhead Press (Barbell)', 'Landmine Press'],
+      rx: { load: '32.5kg', sets: 3,
+            last: '09-14 · 40kg × 6, 5, 3',
+            do: 'Come DOWN to 32.5kg. 40kg gave 6, 5, 3 — the last set is under half the band. Own 8–10 on all three before you add anything.',
+            why: 'A set of 3 is not what an accessory slot is for. 30kg carried 8 as your opener.' } },
     { ex: 'Chest Fly', p: '3 × 10–12',
-      alts: ['Cable Crossover', 'Incline Chest Press', 'Dumbbell Pullover'] },
-    { ex: 'Lateral Raise (Dumbbell)', p: '3 × 15–20', n: 'stay high-rep · 8kg', anchor: true,
-      alts: ['Lateral Raise (Cable)'] },
+      alts: ['Dumbbell Pullover', 'Cable Crossover', 'Incline Chest Press'],
+      rx: { load: '65kg', sets: 3,
+            last: '09-14 · 65kg × 8, 8, 8',
+            do: 'Stay at 65kg and chase reps. 12, 12, 12 earns the next plate — not before.',
+            why: 'Stalled at 65kg for six sessions in the Aug export, and 8s are under the 10–12 band. Reps first.' } },
+    { ex: 'Lateral Raise (Dumbbell)', p: '3 × 15–20', anchor: true,
+      alts: ['Lateral Raise (Cable)'],
+      rx: { load: '8kg', sets: 3,
+            last: '09-14 · 8kg × 15, 15, 15',
+            do: '8kg. Build to 20, 20, 20 across all three, then 9kg.',
+            why: 'Second session at 8kg after the +1kg you earned on 09-07. Progressing normally — do not rush it.' } },
     { ex: 'Triceps Extension', p: '3 × 10–12',
-      alts: ['Triceps Dip', 'One Handed Triceps Pull', 'Skullcrusher'] },
-    { ex: 'Push-Up', p: '3 × 15', n: 'even sets, not 25/8/8 · log it', bw: true, fin: true,
-      alts: ['Diamond Push-Up', 'Pike Push-Up', 'Deficit Push-Up'] }
+      alts: ['Triceps Dip', 'One Handed Triceps Pull', 'Skullcrusher'],
+      rx: { load: '17.5kg', sets: 3,
+            last: '17.5kg — 7 sessions at this weight (Aug export)',
+            do: 'Take this one deliberately today. 17.5kg, 12 reps on all three sets, then 20kg next time.',
+            why: 'The longest stall in your data. It has been drifting because the slot keeps going elsewhere.' } },
+    { ex: 'Push-Up', p: '3 × 15', bw: true, fin: true,
+      alts: ['Diamond Push-Up', 'Pike Push-Up', 'Deficit Push-Up'],
+      rx: { load: 'bodyweight', sets: 3,
+            last: '09-14 · diamond, 10, 10, 8',
+            do: 'Plain push-ups, three honest sets of 15. Rotate back to diamonds once 15s hold.',
+            why: 'Logged three sessions running now, against 8 recorded sets in the two years before this month.' } }
   ]},
-  pull: { name: 'Pull', mins: 50, gate: true, items: [
-    { ex: 'Pull Up', p: '3 × AMRAP', n: 'first, always', bw: true, anchor: true },
-    { ex: 'Single-Arm Iso-Lateral Row', p: '3 × 8–10', side: 'Left',
-      n: 'the one horizontal row · sub: wide-grip or chest-supported', anchor: true },
-    { ex: 'Single-Arm Iso-Lateral Row', p: '3 × 8–10', side: 'Right',
-      n: 'pain-limited', gate: true, anchor: true },
-    { ex: 'Lat Pulldown (Cable)', p: '3 × 10', n: '67kg',
-      alts: ['Alternate Single Arm Lat Pulldown', 'Lat Pulldown - Underhand (Cable)', 'Straight Arm Pulldown'] },
-    { ex: 'Face Pull (Cable)', p: '3 × 12–15', n: 'rear delts — the real gap',
-      alts: ['Reverse Flye', 'Bent-Over Rear-Delt Raise'] },
+  pull: { name: 'Pull', mins: 50, gate: true,
+    brief: 'The right-side iso-lateral row is the whole point of this session. Two greens banked; a third earns 52.5kg.',
+    items: [
+    { ex: 'Pull Up', p: '3 × AMRAP', bw: true, anchor: true,
+      rx: { load: 'bodyweight', sets: 3,
+            last: '09-13 · 10, 9, 8 — 27 total',
+            do: 'First movement, always. 27 total is your best; beat it.',
+            why: 'Position is worth about 10 reps on this lift. At position 2 you get 24–27, at position 5 you get 13–17.' } },
+    { ex: 'Iso Lateral Row', p: '3 × 8–10', side: 'Left', anchor: true,
+      rx: { load: '60kg', sets: 3,
+            last: '09-10 · 60kg × 8, 8 then 55kg × 8',
+            do: '60kg × 8. Never hold this side back to match the right.',
+            why: 'The left is a separate lift and it is progressing. Let it.' } },
+    { ex: 'Iso Lateral Row', p: '3 × 8–10', side: 'Right', gate: true, anchor: true,
+      rx: { load: '50kg', sets: 3,
+            last: '09-10 · 50kg × 10, 10, 8 — pain 2/10',
+            do: '50kg, and LOG THE PAIN SCORE. Two greens banked (3/10 on 09-03, 2/10 on 09-10). A third at 3 or under earns 52.5kg.',
+            why: 'Not performed since 09-10 — the 09-13 pull day substituted a seated row, which is a different exercise and does not count toward the gate.' } },
+    { ex: 'Lat Pulldown (Cable)', p: '3 × 10',
+      alts: ['Alternate Single Arm Lat Pulldown', 'Lat Pulldown - Underhand (Cable)', 'Straight Arm Pulldown'],
+      rx: { load: '67kg', sets: 3,
+            last: '09-03 · 67kg × 8, 8 then 57kg × 10',
+            do: '67kg. Take all three sets to 10 before adding weight.',
+            why: 'You got 8, 8 at this load — the reps are the gap, not the plate.' } },
+    { ex: 'Face Pull (Cable)', p: '3 × 12–15',
+      alts: ['Reverse Flye', 'Bent-Over Rear-Delt Raise'],
+      rx: { load: '17.5kg', sets: 3,
+            last: '09-10 · 17.5kg × 10, 10, 10',
+            do: '17.5kg to 15 reps, all three sets. Do not skip this one.',
+            why: 'Rear delts are the ONE gap the export actually supports — 3.0 sets a week down to 0.8, and no unlogged ad hoc work fills it.' } },
     { ex: 'Bicep Curl (Barbell)', p: '3 × 8–10',
-      alts: ['Preacher Curl (Barbell)', 'Hammer Curl (Dumbbell)', 'Incline Curl (Dumbbell)', 'Rings: Bicep Curl'] },
-    { ex: 'Hanging Leg Raise', p: '3 × 10–12', n: 'log it', bw: true, fin: true,
-      alts: ['Plank', 'Dead Hang', 'Ab Wheel'] }
+      alts: ['Preacher Curl (Barbell)', 'Hammer Curl (Dumbbell)', 'Incline Curl (Dumbbell)', 'Rings: Bicep Curl'],
+      rx: { load: '30kg', sets: 3,
+            last: '09-13 · 30kg × 8, 8, 7',
+            do: '30kg. All three sets at 10 and it goes to 32.5kg.',
+            why: 'You have been just short of the top of the band twice. Close it out.' } },
+    { ex: 'Hanging Leg Raise', p: '3 × 10–12', bw: true, fin: true,
+      alts: ['Plank', 'Dead Hang', 'Ab Wheel'],
+      rx: { load: 'bodyweight', sets: 3,
+            last: '09-10 · 10, 10, 10',
+            do: '10–12, and log it even when it is ad hoc.',
+            why: 'Core reads as zero in the export since March. That is the logging, not the training — but nobody can programme what is not written down.' } }
   ]},
-  calis: { name: 'Calisthenics', mins: 55, items: [
+  calis: { name: 'Calisthenics', mins: 55,
+    brief: 'In Week B this is your second upper body session, not an extra. Supersets: rest after the pair, not between.',
+    items: [
     { ex: 'Chest-to-Wall Handstand', p: '3 × 20–30s', slot: 'A1', skill: true, bw: true, timed: true,
-      n: 'skill · fresh, never to failure' },
+      rx: { load: 'bodyweight', sets: 3,
+            last: '09-06 · 0:20, 0:30, 0:30',
+            do: 'Three holds at 30s. Fresh, never to failure — stop the set with something left.',
+            why: 'Skill work is practice, not conditioning. You already held 30 twice; make it three.' } },
     { ex: 'Hollow Body Hold', p: '3 × 20–30s', slot: 'A2', skill: true, bw: true, timed: true,
-      n: 'superset with A1 · rest after the pair' },
+      rx: { load: 'bodyweight', sets: 3,
+            last: '09-06 · 0:20, 0:30, 0:30',
+            do: '30s, supersetted with A1. Rest after the pair.',
+            why: 'The straight-body line this teaches is the same one the handstand needs.' } },
     { ex: 'Pull Up', p: '3 × AMRAP−1', slot: 'B1', anchor: true, bw: true,
-      n: 'vertical pull · leave one in the tank', alts: ['Chin Up'] },
+      alts: ['Chin Up'],
+      rx: { load: 'bodyweight', sets: 3,
+            last: '09-13 · 10, 9, 8 (pull day)',
+            do: 'Leave one rep in the tank on every set. This is not the pull-day AMRAP.',
+            why: 'Week B gives you one Pull day, so this is the second dose of vertical pulling — quality over a number.' } },
     { ex: 'Triceps Dip', p: '3 × 8–10', slot: 'B2', anchor: true, bw: true,
-      n: 'push · superset with B1' },
+      rx: { load: 'bodyweight', sets: 3,
+            last: '09-11 · 10, 10, 8',
+            do: '10, 10, 10 clean, then start adding weight.',
+            why: 'One rep short of the full three sets. Close it.' } },
     { ex: 'Ring Row', p: '3 × 10–12', slot: 'C1', bw: true,
-      n: 'horizontal pull · walk feet in if the right side talks', alts: ['Inverted Row'] },
-    { ex: 'Pike Push-Up', p: '3 × 6–8', slot: 'C2', bw: true,
-      n: 'vertical push · new · superset with C1', alts: ['Box Pike Push-Up'] },
+      alts: ['Inverted Row'],
+      rx: { load: 'bodyweight', sets: 3,
+            last: '09-06 · 12, 12, 12',
+            do: 'Walk your feet further in to make it harder — you topped the band last time.',
+            why: 'Horizontal pull. Back off the angle if the right side talks; that is the lever here, not reps.' } },
+    { ex: 'Pike Push-Up', p: '3 × 8–12', slot: 'C2', bw: true,
+      alts: ['Box Pike Push-Up', 'Deficit Pike Push-Up'],
+      rx: { load: 'bodyweight', sets: 3,
+            last: '09-06 · feet elevated, 20, 20, 20',
+            do: 'Raise the feet higher or add a deficit under the hands. Band moved to 8–12 — if you are getting 20, the movement is too easy to be a vertical press.',
+            why: 'You did 20, 20, 20 on 09-06 against a 6–8 prescription. The prescription was wrong, not you.' } },
     { ex: 'Hanging Leg Raise', p: '3 × 10–12', slot: 'D1', bw: true, fin: true,
-      n: 'core', alts: ['Hollow Rock', 'Plank'] },
+      alts: ['Hollow Rock', 'Plank'],
+      rx: { load: 'bodyweight', sets: 3,
+            last: '09-10 · 10, 10, 10',
+            do: '10–12, strict. Legs straight if the hamstrings allow.',
+            why: 'Core, logged.' } },
     { ex: 'Dead Hang', p: '3 × 20–30s', slot: 'D2', bw: true, fin: true, timed: true,
-      n: 'grip · decompression · clear with the physio', alts: ['Farmer Carry'] }
+      alts: ['Farmer Carry'],
+      rx: { load: 'bodyweight', sets: 3,
+            last: '09-06 · farmer walks, 24kg',
+            do: '30s hangs. Clear this with your physio first.',
+            why: 'Grip and decompression — but it loads the lat passively, so it is their call, not mine.' } }
   ]},
-  legs: { name: 'Legs', mins: 45, items: [
-    { ex: 'Squat (Barbell)', p: '3 × 6–8', n: '75kg', anchor: true, alts: ['Hack Squat', 'Pendulum Squat'] },
-    { ex: 'Romanian Deadlift (Barbell)', p: '3 × 6–8', n: 'lives here, nowhere else · 70kg', anchor: true },
-    { ex: 'Leg Press', p: '3 × 10', n: '130kg', alts: ['Bulgarian Split Squat', 'Lunge (Barbell)'] },
-    { ex: 'Lying Leg Curl (Machine)', p: '3 × 10–12', n: '35kg', alts: ['Kneeling Leg Curl', 'Nordic Curl'] },
-    { ex: 'Seated Calf Raise', p: '3 × 15', n: '40kg', alts: ['Hip Thrust (Plate Loaded)'] }
+  legs: { name: 'Legs', mins: 45,
+    brief: 'Squat comes down because of the knees. RDL is the one lift here that earned an increase.',
+    items: [
+    { ex: 'Squat (Barbell)', p: '3 × 6–8', anchor: true,
+      alts: ['Hack Squat', 'Pendulum Squat'],
+      rx: { load: '70kg', sets: 3,
+            last: '09-12 · 80kg × 5 — knees hurt',
+            do: 'Take it to 70kg and get 6–8. Mention the knees to your physio before you go heavy again.',
+            why: 'You squatted your heaviest recorded top set on 09-12 and your knees talked. One data point, not a diagnosis — but the right response to it is reps, not plates.' } },
+    { ex: 'Romanian Deadlift (Barbell)', p: '3 × 6–8', anchor: true,
+      rx: { load: '72.5kg', sets: 3,
+            last: '09-12 · 70kg × 8, 8, 8',
+            do: 'Up to 72.5kg. You held 8, 8, 8 at 70 — that is the top of the band on all three sets.',
+            why: 'This is the one earned increase in the session. The RDL lives on this day and nowhere else.' } },
+    { ex: 'Seated Leg Press (Machine)', p: '3 × 10',
+      alts: ['Bulgarian Split Squat', 'Lunge (Barbell)'],
+      rx: { load: '80kg', sets: 3,
+            last: '09-12 · 80kg × 8, 8',
+            do: '80kg to 10 reps, three sets.',
+            why: 'The 130kg in older notes is a DIFFERENT machine. Do not chase it — that number is not on this scale.' } },
+    { ex: 'Kneeling Leg Curl', p: '3 × 10–12',
+      alts: ['Lying Leg Curl (Machine)', 'Nordic Curl'],
+      rx: { load: '10kg', sets: 3,
+            last: '09-12 · 10kg × 8, 8, 8',
+            do: '10kg, reps up to 12 before the weight moves.',
+            why: 'Same caveat as the leg press: the 35kg in older notes is the lying machine, a different station.' } },
+    { ex: 'Seated Calf Raise (Plate Loaded)', p: '3 × 15',
+      alts: ['Hip Thrust (Plate Loaded)'],
+      rx: { load: '40kg', sets: 3,
+            last: '09-12 · 40kg × 12, 12, 12',
+            do: '40kg × 15, all three. Then add.',
+            why: 'Three short of the band on every set.' } }
   ]}
 };
 
-/* Rotate slots pick a different option each session, derived from the date so it is
-   stable within a day and varies between them. Anchors never move. */
-function variantFor(it, i, iso) {
-  if (it.anchor) return it.ex;                 /* anchors never move — that is the point */
-  var pool = [it.ex].concat(it.alts || []);
-  if (pool.length < 2) return it.ex;
-  var d = new Date(iso + 'T12:00:00');
-  var n = Math.floor(d.getTime() / 864e5) + i * 3;
-  return pool[((n % pool.length) + pool.length) % pool.length];
-}
+/* The listed exercise is the call, for anchors and rotate slots alike.
+
+   This used to hash the date to pick a rotate slot's exercise, which meant the session
+   was assembled by arithmetic and nobody could say why today's chest movement was the
+   one on screen. That is what "loose" meant on 2026-09-14. The prescription in `rx`
+   names the movement, the load and the reason; `alts` are there for a taken machine,
+   reachable through the swap button and no longer chosen on your behalf.
+
+   Rotation has not gone away — it moved up a level. plan.md decides when a slot changes
+   and writes down why, which is the same discipline the anchors already had. */
+function variantFor(it) { return it.ex; }
 
 var DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -447,11 +581,17 @@ function newDraft(key, iso) {
   return {
     id: 'd' + Date.now(), key: key, date: iso || todayISO(), note: '', pain: null,
     items: s.items.map(function (it, i) {
-      return { ex: variantFor(it, i, iso || todayISO()), base: it.ex,
+      /* Open with the prescribed number of rows already at the prescribed load, so the
+         session arrives filled in and he only types reps. A blank sheet is the thing
+         that made this feel like a menu. */
+      var kg = it.rx && /^[\d.]+kg$/.test(it.rx.load) ? it.rx.load.replace('kg', '') : '';
+      var n = (it.rx && it.rx.sets) || 3, pre = [];
+      for (var k = 0; k < n; k++) pre.push(it.timed ? { w: '', r: '', t: '' } : { w: kg, r: '' });
+      return { ex: variantFor(it), base: it.ex,
                pool: [it.ex].concat(it.alts || []),
-               side: it.side || null, p: it.p, n: it.n, bw: it.bw, gate: it.gate,
+               side: it.side || null, p: it.p, rx: it.rx, bw: it.bw, gate: it.gate,
                opt: it.opt, fin: it.fin, skill: it.skill, anchor: it.anchor,
-               slot: it.slot, timed: it.timed, sets: [] };
+               slot: it.slot, timed: it.timed, sets: pre };
     })
   };
 }
@@ -465,8 +605,11 @@ function markdown(d) {
   if (d.note) meta.push('note: ' + d.note);
   if (meta.length) out += meta.join(' | ') + '\n';
   d.items.forEach(function (it) {
+    /* Reps or a time make a set. A weight on its own does not — since the sheet now
+       opens prefilled at the prescribed load, every exercise he did NOT do would
+       otherwise land in log.md as a bare "65kg" with no reps behind it. */
     var live = it.sets.filter(function (st) {
-      return (st.r !== '' && st.r != null) || (st.t !== '' && st.t != null) || st.w;
+      return (st.r !== '' && st.r != null) || (st.t !== '' && st.t != null);
     });
     if (!live.length) return;
     var name = it.ex + (it.side ? ' (' + it.side + ')' : '');
@@ -688,6 +831,7 @@ function renderSheet() {
   html += '<label class="fld" for="dDate">Date</label>' +
           '<input type="date" id="dDate" value="' + iso + '">';
   if (ph.key === 're-entry') html += '<p class="note"><strong>Re-entry.</strong> Take 10% off top sets.</p>';
+  if (!draft.pasted && S.brief) html += '<p class="note brief"><strong>Today:</strong> ' + esc(S.brief) + '</p>';
   html += '</div></div>';
 
   html += '<div class="card"><div class="card-h"><h2>Line-up</h2>' +
@@ -710,7 +854,18 @@ function renderSheet() {
     if (!spec.anchor && spec.pool && spec.pool.length > 1)
       html += ' <button class="swap" data-swap="' + i + '" title="Another option">⇄</button>';
     html += '</div>';
-    html += '<div class="presc">' + esc(spec.p) + (spec.n ? ' · <b>' + esc(spec.n) + '</b>' : '') + '</div>';
+    var rx = spec.rx;
+    if (rx) {
+      html += '<div class="rx">';
+      html += '<div class="rx-top"><span class="rx-load">' + esc(rx.load) + '</span>' +
+              '<span class="rx-reps">' + esc(spec.p) + '</span></div>';
+      html += '<div class="rx-do">' + esc(rx.do) + '</div>';
+      if (rx.why) html += '<div class="rx-why">' + esc(rx.why) + '</div>';
+      if (rx.last) html += '<div class="rx-last">Last: ' + esc(rx.last) + '</div>';
+      html += '</div>';
+    } else {
+      html += '<div class="presc">' + esc(spec.p) + '</div>';
+    }
     if (spec.opt) html += '<div class="presc" style="margin-top:3px"><span class="tag opt">optional</span></div>';
     html += '<div class="sets" data-sets="' + i + '">';
     it.sets.forEach(function (st, j) {

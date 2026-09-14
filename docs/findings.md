@@ -150,16 +150,18 @@ inferring from it; he is right about his own body more often than the log is.
   deficit. If that reading repeats, the limiter is detraining rather than tissue, and
   the answer is loading the right side more, not less.
 
-  **Partly answered, 2026-09-13.** The right side did **57kg × 8, 8** on the Uni Lateral
-  Seated Row, both sides at the same load throughout — confirmed by him 09-14. It had
-  never been recorded above 50kg in 2026. So the ceiling was not a 7kg strength deficit,
-  and his own "half weakness half pain" reading is now the better description of the
-  earlier data than anything the log inferred. Two limits on that: it is a different
-  machine from the Iso Lateral Row, so it does not transfer to the 09-10 left-60 /
-  right-50 numbers; and the reading that came with it was **4/10, outside the green
-  band**, after a +7kg jump where the protocol specifies +2.5kg. Whether that 4 is a
-  load signal or the tightness he calls it is the live question now. Three readings,
-  two loads, one machine change — still not enough to act on beyond returning to 50kg.
+  **Still open, and a worked example of how not to close it.** On 2026-09-13 he rowed
+  57kg for two sets of 8, both sides equal, and this file briefly recorded that as the
+  50kg ceiling being broken. It was the **Uni Lateral Seated Row**, a different exercise
+  from the Iso Lateral Row — his correction, 09-14. Different machine, different
+  leverage, loads not on the same scale. The comparison was never valid and the
+  conclusion is withdrawn.
+
+  This is the fourth time in this project a number has been read against a number it
+  does not belong with, and the first three are the whole reason the "Read this before
+  trusting any number below" section exists. **Machine identity is part of the
+  measurement.** The right-side iso-lateral row still sits where it did on 09-10: 50kg,
+  two green pain readings, unperformed since.
 - **Did the overhead press decline because its slot rotates?** Asserted in `plan.md`
   for a fortnight as though settled; it is not. OHP e1RM ran 49.6 → 60.2 → **61.7**
   (2026Q1) → 57.0 → 50.7. The rotation story says it fell because push slot 2 picks it

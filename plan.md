@@ -66,10 +66,18 @@ names.
   rotating slot *can* carry, not as a measured cause. See the Push section: the
   rotation is one candidate explanation and it has never been tested against the other
   two.
-- **Rotate slots** change whenever he likes, from the menus below. Variety costs nothing
-  here because these slots are not chasing a number — they are accumulating volume and
-  covering angles. Adherence matters more than optimality, and he trains more when he is
-  enjoying it.
+- **Rotate slots** carry a named call that changes when the data says so, from the menus
+  below. Variety costs nothing here because these slots are not chasing a number — they
+  are accumulating volume and covering angles. Adherence matters more than optimality,
+  and he trains more when he is enjoying it.
+
+  **Changed 2026-09-14: the page no longer picks these at random.** It used to hash the
+  date, which meant the session was assembled by arithmetic and nobody could say why
+  today's chest movement was the one on screen. He called the result "loose" and he was
+  right — a trainer names the session. Each rotate slot now carries one prescribed
+  exercise with its load and the reason; the alternatives stay one tap away for a taken
+  machine. **Rotation moved up a level rather than going away:** this file decides when
+  a slot changes and writes down why, which is the discipline the anchors already had.
 
 So: **rotate the accessories freely, leave the anchors alone.** Anchoring a rotating
 lift is the lever available if one needs to progress — but it costs variety, and it is
@@ -82,12 +90,22 @@ Exercises marked ★ are ones he has never logged. See "Trying new exercises" be
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | **Anchor** | Incline Bench Press (Barbell) | 4 × 5–8 | 60kg |
-| 2 | Rotate — vertical press | Shoulder Press · Arnold Press · **Overhead Press** · Landmine Press | 3 × 8–10 | 30kg / 22kg / 40kg |
-| 3 | Rotate — chest | Chest Fly · Cable Crossover · Incline Chest Press · Dumbbell Pullover | 3 × 10–12 | 65kg / 13.75kg / 14kg |
-| 4 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | 8kg |
-| 5 | Rotate — triceps | Triceps Extension · Triceps Dip · One-Handed Triceps Pull · ★ Skullcrusher | 3 × 10–12 | 17.5kg / bw |
-| F | Rotate — finisher | Push-Ups · ★ Diamond Push-Ups · ★ Pike Push-Ups · ★ Deficit Push-Ups | 3 × 15 | bodyweight |
+| 1 | **Anchor** | Incline Bench Press (Barbell) | 4 × 5–8 | **65kg** |
+| 2 | Rotate — vertical press | **Shoulder Press (Plate Loaded)** · Arnold · OHP · Landmine | 3 × 8–10 | **32.5kg** ↓ |
+| 3 | Rotate — chest | **Chest Fly** · Dumbbell Pullover · Cable Crossover · Incline Chest Press | 3 × 10–12 | **65kg**, reps first |
+| 4 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
+| 5 | Rotate — triceps | **Triceps Extension** · Dip · One-Handed Pull · ★ Skullcrusher | 3 × 10–12 | **17.5kg** |
+| F | Rotate — finisher | **Push-Ups** · Diamond · ★ Pike · ★ Deficit | 3 × 15 | bodyweight |
+
+**The bolded exercise in each rotate slot is the current call, not a menu head.** The
+page prescribes it by name with the load and the reason; the others are there for a
+taken machine. See "Anchors and rotations" for why that changed on 2026-09-14.
+
+Slot 1 reads 65kg, not the 60kg an earlier version had: 65kg has been the working weight
+since 09-07 and is his heaviest ever on the lift. Slot 2 comes **down** to 32.5kg —
+40kg returned 6, 5, 3 on 09-14 against an 8–10 band. Slot 5 is a deliberate pick: the
+triceps extension is the longest stall in the export at 17.5kg for seven sessions, and
+it has been drifting because the slot kept going elsewhere.
 
 ### Slot 2 stays a rotate slot — decided 2026-09-12
 
@@ -176,17 +194,39 @@ volume, not a strength test, and it is expected to be weaker. But his instinct i
 respecting, and the position effect shows fatigue costs him real reps on the compound.
 Hence one horizontal, one or two vertical, pull-ups first and fresh.
 
+**C2 was prescribed wrong and the ★ is retired.** He ran the pike push-up feet-elevated
+on 2026-09-06 for **20, 20, 20** against a 3 × 6–8 prescription. A movement he can do 20
+times is not a vertical press for him, it is conditioning — the prescription was wrong,
+not the execution. Band moves to 8–12 and the instruction is to make it harder: feet
+higher, or a deficit under the hands, working toward a wall-supported handstand push-up.
+That progression is in `docs/calisthenics.md`.
+
 ## Legs (~45 min) — Week A only
 
 He dislikes leg training. It sits once a fortnight by design, not once a week.
 
 | # | Exercise | Sets | Now |
 |---|---|---|---|
-| 1 | Squat (Barbell) | 3 × 6–8 | 75kg |
-| 2 | Romanian Deadlift (Barbell) | 3 × 6–8 | 70kg |
-| 3 | Leg Press *or* Bulgarian Split Squat | 3 × 10 | 130kg |
-| 4 | Lying or Kneeling Leg Curl | 3 × 10–12 | 35kg |
-| 5 | Seated Calf Raise | 3 × 15 | 40kg |
+| 1 | Squat (Barbell) | 3 × 6–8 | **70kg** ↓ |
+| 2 | Romanian Deadlift (Barbell) | 3 × 6–8 | **72.5kg** ↑ |
+| 3 | Seated Leg Press (Machine) *or* Bulgarian Split Squat | 3 × 10 | **80kg** |
+| 4 | Kneeling Leg Curl | 3 × 10–12 | **10kg** |
+| 5 | Seated Calf Raise (Plate Loaded) | 3 × 15 | 40kg |
+
+Three corrections in that table, 2026-09-14:
+
+- **Squat down to 70kg — a proposal, and it is his and his physio's call.** He squatted
+  80kg × 5 on 09-12, his heaviest recorded top set, and reported his knees hurting. One
+  data point is not a diagnosis. But the right answer to a new joint complaint is reps
+  at a lighter load while someone qualified looks at it, not another plate.
+- **RDL up to 72.5kg — earned, by the rule.** 70kg × 8, 8, 8 on 09-12 is the top of the
+  band on all three sets. This is the progression executing, not a decision.
+- **The leg press and leg curl numbers were wrong, and wrong in a specific way.** The
+  old 130kg and 35kg came from different machines than the ones he actually uses — the
+  Seated Leg Press and the Kneeling Leg Curl. Loads do not transfer between stations.
+  A session read 80kg against 130kg on 09-12 and nearly recorded a regression; the same
+  error, on a bigger scale, produced the withdrawn "57kg beats 50kg" claim two days
+  later. **Machine identity is part of the measurement.**
 
 **The RDL lives here and nowhere else.** It appears on 10 of his 11 leg days and on
 none of his 22 pull days. An earlier version of this file moved it to Thursday to cover
@@ -213,7 +253,7 @@ so this costs nothing in performance and takes about fifteen minutes off the ses
 | **B** | B1 | **Pull Up** — vertical pull | 3 × AMRAP−1 | pair, then 90s |
 | | B2 | Triceps Dip — horizontal/vertical push | 3 × 8–10 | |
 | **C** | C1 | ★ Ring Row *or* Inverted Row — horizontal pull | 3 × 10–12 | pair, then 90s |
-| | C2 | ★ Pike Push-Up — vertical push | 3 × 6–8 | |
+| | C2 | Pike Push-Up — vertical push | 3 × 8–12 | harder variant |
 | **D** finisher | D1 | Hanging Leg Raise — core | 3 × 10–12 | pair, then 60s |
 | | D2 | ★ Dead Hang — grip | 3 × 20–30s | |
 
@@ -276,24 +316,21 @@ at 50kg. Re-establish where the left actually is before assuming a 20kg gap.
 **Right** — start at the heaviest genuinely pain-free load. Three green lights held for
 two consecutive weeks → +2.5kg. Any red → back to the last green load and stay there.
 
-**Where it actually stands, 2026-09-14.** Readings so far: 3/10 at 50kg (09-03),
-2/10 at 50kg (09-10), **4/10 at 57kg (09-13)** — both sides at 57 that day, confirmed by
-him, so the right matched the left rep for rep. Two things at once, and they point
-opposite ways:
+**Where it actually stands, 2026-09-14.** The gate counts the **right-side iso-lateral
+row and nothing else.** On that lift: 3/10 at 50kg (09-03), 2/10 at 50kg (09-10).
+**Two greens on the pain criterion, at 50kg. One more and 52.5kg is earned.**
 
-- **The 50kg ceiling is gone.** The right side has never been recorded above 50kg in
-  2026 and it took 57kg for two sets of 8. Whatever governs that side, at this load it
-  is not a 7kg strength deficit. (Caveat: 09-13 was the Uni Lateral Seated Row, not the
-  Iso Lateral Row — cross-machine numbers do not transfer. The equal-sides finding is
-  within one session and does hold.)
-- **The jump was +7kg where the protocol says +2.5kg, and the reading left the green
-  band.** 2/10 → 4/10 is the gate doing its job.
+The 09-13 session does not appear in that count. He rowed 57kg on the **Uni Lateral
+Seated Row**, both sides equal — and that is a different exercise from the iso-lateral
+row, his correction on 09-14. Different machine, different leverage; the loads are not
+on the same scale. An earlier version of this section read 57 against 50 and concluded
+the ceiling was gone. That was wrong and is struck. **Never compare loads across
+machines here.** The 4/10 that came with it is right-lat discomfort on a different
+horizontal pull, logged as its own point and outside the gate.
 
-**Recommendation, and it is his and his physio's call:** next pull day take the right
-side back to **50kg**, the last green load. If that reads ≤3 again, go to 52.5kg, not
-back to 57. He calls the 4 tightness rather than pain and he is usually right about his
-own body — this is not an instruction, and if the physio is comfortable at 57 then 57
-stands and the protocol gets rewritten around it rather than the other way round.
+So nothing about the right iso-lateral row has changed since 09-10: **50kg, two greens,
+one to go.** The only thing to do is perform it — it has not been done since 09-10, and
+the 09-13 pull day substituted a different row.
 
 | Green light | Means |
 |---|---|
@@ -344,9 +381,9 @@ None of this is a verdict on the plan. It is what to check against the next expo
 ## What we don't know
 
 Both open questions and the full working live in `docs/findings.md`. The short version:
-session length is unanswerable from observational data. The right lat's "50kg ceiling"
-has partly answered itself — 57kg × 8 on 09-13 with both sides equal — but whether the
-4/10 that came with it is a load signal or the tightness he calls it is still open.
+session length is unanswerable from observational data, and whether the right lat's 50kg
+ceiling on the iso-lateral row is pain-limited or caution-limited is still open — three
+readings in, all of them useful, none of them enough.
 
 ## How this plan changes
 

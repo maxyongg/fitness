@@ -160,12 +160,15 @@ and a session saved while the store was unreachable can be sitting in the legacy
 - **Right lat injury since June 2026**, under physiotherapy care. He has decided
   against imaging. You are not his physio; their guidance overrides anything here.
   The "left 70kg / right 50kg" split often quoted for this predates the Sep 2025 form
-  change and is **not established by any 2026 data**. On 2026-09-13 he rowed both sides
-  at the same loads throughout, topping at **57kg × 8** — so on that machine, that day,
-  there was no gap at all, and the right side went 7kg above its supposed ceiling. The
-  reading that came with it was 4/10, outside the green band, after a jump the protocol
-  did not sanction. Treat the *strength* gap as unsupported; treat the load/pain
-  relationship as the open question. Details in `plan.md` and `docs/findings.md`.
+  change and is **not established by any 2026 data** — the only 2026 row session put
+  both sides in at 50kg. Treat the gap as unmeasured until he logs the two sides
+  separately **on the same machine**.
+- **Never compare loads across machines.** On 2026-09-13 he rowed 57kg on the Uni
+  Lateral Seated Row; a session read that against the 50kg on the Iso Lateral Row and
+  announced the ceiling was gone. He corrected it on 09-14: **they are different
+  exercises.** Different leverage, different scale, no comparison. The row protocol
+  gates on the right-side iso-lateral row alone, and a substitute row — however similar
+  it looks in Strong — is not a reading on it.
 
 ## What his data does and doesn't say
 

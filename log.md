@@ -244,20 +244,25 @@ pain(R): 4/10 | note: reduced session — tired from physio, and general fatigue
      extends the streak (3/10 on 09-03, 2/10 on 09-10) nor breaks it. It sits outside it.
 
      **Both sides, at every load — confirmed by him 2026-09-14.** So the right side did
-     57kg x 8, 8. That is the single most informative number in this log since the pain
-     scale was introduced, and it cuts two ways.
+     57kg x 8, 8 on this movement.
 
-     It retires the 50kg ceiling. The right side had never been recorded above 50kg in
-     2026; here it matches the left rep for rep at 57kg. Whatever governs that side, at
-     this load on this machine it is not a 7kg strength deficit. Caveat, and it is a real
-     one: this is the Uni Lateral Seated Row, not the Iso Lateral Row of 09-10, so the
-     cross-machine comparison to left-60 / right-50 does not hold. What holds is the
-     within-session one, and within this session the two sides were equal.
+     **That is NOT 57kg on the iso-lateral row, and it says nothing about the 50kg
+     figure.** The Uni Lateral Seated Row is a different exercise from the Iso Lateral
+     Row — his correction, 2026-09-14, and he is right. Different machine, different
+     leverage, different loading; the numbers are not on the same scale and never were.
+     An earlier version of this comment read the 57 against the 50 and announced that
+     "the 50kg ceiling is gone". It was the same error this file warns about on three
+     other pages: a number compared to a number it does not belong with.
 
-     And it is the protocol working exactly as designed. He took the right side from
-     50kg to 57kg in one step -- the protocol's increment is +2.5kg -- and the reading
-     went from 2/10 to 4/10, out of the green band. Load up, signal worse. See plan.md;
-     the recommendation is 50kg next pull day, then +2.5kg steps.
+     What survives is narrow and worth keeping. **Within this session, on this machine,
+     the two sides handled the same loads for the same reps.** That is one within-session
+     observation about one movement. It does not transfer to the iso-lateral row, to the
+     left-60 / right-50 numbers of 09-10, or to any claim about strength deficit.
+
+     The right-side **iso-lateral** row therefore still stands where it did on 09-10:
+     50kg, 2/10, and two green readings (3/10 on 09-03, 2/10 on 09-10). This session
+     neither extends that nor breaks it. The 4/10 here is right-lat discomfort on a
+     different horizontal pull and is logged as its own data point.
 
      **Reverse fly 50kg → 35kg is a form change, not a decline.** He states it plainly:
      shoulder-focused to lat-focused. This is now the third time this pattern has
