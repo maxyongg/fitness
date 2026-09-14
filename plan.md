@@ -123,9 +123,22 @@ do more of it.
 The finisher has been happening for years and going unlogged — push-ups appear 8 times
 in the whole export, last April 2025. Log it. Even sets of 15, not 25/8/8.
 
-**Dumbbell Pullover is on trial in slot 3**, first run 2026-09-11 at 14kg — session 1 of
-4 under the four-session rule below. Decide to keep or drop it after the fourth, not by
-feel. It displaces nothing permanently; it is one of the chest rotate options.
+**Slot 2 is running too heavy, 2026-09-14.** The Shoulder Press (Plate Loaded) went
+40kg × 6, 5, 3 against a 3 × 8–10 prescription — the last set is under half the bottom
+of the band, and a set of 3 is not accumulating the volume an accessory slot exists for.
+30kg carried 8 as the opener the same day. **Proposal: run it at 32.5–35kg until 8–10
+holds across all three sets, then climb.** This is the slot, not the lift: the same rule
+applies to whichever vertical press the rotation picks. Chasing a top set here is how
+the slot got into trouble in the first place.
+
+**Chest Fly is stalled and under its band.** 65kg × 8, 8, 8 on 09-14 against a 3 × 10–12
+prescription, and the 31 Aug export already had it at 65kg for six sessions. Take the
+reps first: hold 65kg until 12 holds across all three, then add.
+
+**Dumbbell Pullover is on trial in slot 3**, first run 2026-09-11 at 14kg — **run 1 of
+4** under the rule below. Still at 1 of 4 as of 09-14: the slot went to Chest Fly that
+day, and the rule counts runs of the exercise, not push days. Decide to keep or drop it
+after the fourth run, not by feel. It displaces nothing permanently; it is one of the chest rotate options.
 
 Flat bench was dropped deliberately in June to prioritise incline. It stays dropped.
 
@@ -263,6 +276,25 @@ at 50kg. Re-establish where the left actually is before assuming a 20kg gap.
 **Right** — start at the heaviest genuinely pain-free load. Three green lights held for
 two consecutive weeks → +2.5kg. Any red → back to the last green load and stay there.
 
+**Where it actually stands, 2026-09-14.** Readings so far: 3/10 at 50kg (09-03),
+2/10 at 50kg (09-10), **4/10 at 57kg (09-13)** — both sides at 57 that day, confirmed by
+him, so the right matched the left rep for rep. Two things at once, and they point
+opposite ways:
+
+- **The 50kg ceiling is gone.** The right side has never been recorded above 50kg in
+  2026 and it took 57kg for two sets of 8. Whatever governs that side, at this load it
+  is not a 7kg strength deficit. (Caveat: 09-13 was the Uni Lateral Seated Row, not the
+  Iso Lateral Row — cross-machine numbers do not transfer. The equal-sides finding is
+  within one session and does hold.)
+- **The jump was +7kg where the protocol says +2.5kg, and the reading left the green
+  band.** 2/10 → 4/10 is the gate doing its job.
+
+**Recommendation, and it is his and his physio's call:** next pull day take the right
+side back to **50kg**, the last green load. If that reads ≤3 again, go to 52.5kg, not
+back to 57. He calls the 4 tightness rather than pain and he is usually right about his
+own body — this is not an instruction, and if the physio is comfortable at 57 then 57
+stands and the protocol gets rewritten around it rather than the other way round.
+
 | Green light | Means |
 |---|---|
 | Pain ≤ 3/10 during the set | Present, not sharp, doesn't change how you move |
@@ -312,9 +344,9 @@ None of this is a verdict on the plan. It is what to check against the next expo
 ## What we don't know
 
 Both open questions and the full working live in `docs/findings.md`. The short version:
-session length is unanswerable from observational data, and whether the right lat's
-50kg ceiling is pain-limited or caution-limited will not be known until `pain(R)`
-actually gets logged.
+session length is unanswerable from observational data. The right lat's "50kg ceiling"
+has partly answered itself — 57kg × 8 on 09-13 with both sides equal — but whether the
+4/10 that came with it is a load signal or the tightness he calls it is still open.
 
 ## How this plan changes
 
@@ -355,9 +387,14 @@ fits his hour, and that is not up for renegotiation without a reason.
 
 1. Name the slot it goes into and the exercise it displaces.
 2. Say what it is for — a gap in the plan, a stall to break, a rehab constraint.
-3. Run it for **four sessions**, then keep it or drop it. Decide before starting, not
-   by feel afterwards. This is the same discipline `docs/findings.md` asks for on the
+3. Run it **four times**, then keep it or drop it. Decide before starting, not by feel
+   afterwards. This is the same discipline `docs/findings.md` asks for on the
    session-length question, and for the same reason.
+
+   **Four runs of the exercise, not four push days.** An earlier wording said "four
+   sessions" and that is wrong for anything in a rotate slot, which by design does not
+   come up every time: the Dumbbell Pullover ran on 09-11, the slot went to Chest Fly on
+   09-14, and the trial is still at 1 of 4. Count the runs.
 4. Log it under its real Strong name from the first set, so it is visible to
    `analyse.py` rather than invisible like the calisthenics day currently is.
 

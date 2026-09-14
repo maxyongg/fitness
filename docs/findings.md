@@ -148,8 +148,18 @@ inferring from it; he is right about his own body more often than the log is.
   side was *"half weakness half pain — I've certainly lost a lot of strength there"*,
   which the 0–10 scale cannot carry: a green light on pain says nothing about strength
   deficit. If that reading repeats, the limiter is detraining rather than tissue, and
-  the answer is loading the right side more, not less. **One session. Do not act on it
-  yet** — the protocol wants three green lights held across two weeks.
+  the answer is loading the right side more, not less.
+
+  **Partly answered, 2026-09-13.** The right side did **57kg × 8, 8** on the Uni Lateral
+  Seated Row, both sides at the same load throughout — confirmed by him 09-14. It had
+  never been recorded above 50kg in 2026. So the ceiling was not a 7kg strength deficit,
+  and his own "half weakness half pain" reading is now the better description of the
+  earlier data than anything the log inferred. Two limits on that: it is a different
+  machine from the Iso Lateral Row, so it does not transfer to the 09-10 left-60 /
+  right-50 numbers; and the reading that came with it was **4/10, outside the green
+  band**, after a +7kg jump where the protocol specifies +2.5kg. Whether that 4 is a
+  load signal or the tightness he calls it is the live question now. Three readings,
+  two loads, one machine change — still not enough to act on beyond returning to 50kg.
 - **Did the overhead press decline because its slot rotates?** Asserted in `plan.md`
   for a fortnight as though settled; it is not. OHP e1RM ran 49.6 → 60.2 → **61.7**
   (2026Q1) → 57.0 → 50.7. The rotation story says it fell because push slot 2 picks it

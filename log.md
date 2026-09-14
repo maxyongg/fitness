@@ -243,11 +243,21 @@ pain(R): 4/10 | note: reduced session — tired from physio, and general fatigue
      row, and the gate counts greens on that one lift only. So this reading neither
      extends the streak (3/10 on 09-03, 2/10 on 09-10) nor breaks it. It sits outside it.
 
-     **Which side, or both?** "Uni Lateral Seated Row" is unilateral by name but was
-     logged without a side split, and 57kg falls between his left (60kg) and right (50kg)
-     from 09-10. It may be the same machine as the iso-lateral row under Strong's other
-     name, or a different station. Do not resolve this by guessing — ask him, or wait for
-     the CSV. Until then the right side has not been measured since 09-10.
+     **Both sides, at every load — confirmed by him 2026-09-14.** So the right side did
+     57kg x 8, 8. That is the single most informative number in this log since the pain
+     scale was introduced, and it cuts two ways.
+
+     It retires the 50kg ceiling. The right side had never been recorded above 50kg in
+     2026; here it matches the left rep for rep at 57kg. Whatever governs that side, at
+     this load on this machine it is not a 7kg strength deficit. Caveat, and it is a real
+     one: this is the Uni Lateral Seated Row, not the Iso Lateral Row of 09-10, so the
+     cross-machine comparison to left-60 / right-50 does not hold. What holds is the
+     within-session one, and within this session the two sides were equal.
+
+     And it is the protocol working exactly as designed. He took the right side from
+     50kg to 57kg in one step -- the protocol's increment is +2.5kg -- and the reading
+     went from 2/10 to 4/10, out of the green band. Load up, signal worse. See plan.md;
+     the recommendation is 50kg next pull day, then +2.5kg steps.
 
      **Reverse fly 50kg → 35kg is a form change, not a decline.** He states it plainly:
      shoulder-focused to lat-focused. This is now the third time this pattern has
@@ -259,6 +269,51 @@ pain(R): 4/10 | note: reduced session — tired from physio, and general fatigue
      Rear delts got direct work, which is the one gap the export actually supports
      (3.0/wk down to 0.8). Four exercises rather than six — a reduced session he chose
      and explained. Session length proves nothing; see docs/findings.md. -->
+
+## 2026-09-14 · Mon · Push
+- Incline Bench Press (Barbell) — 40kg × 10, 65kg × 8, 8, 60kg × 6, 45kg × 10
+- Shoulder Press (Plate Loaded) — 30kg × 8, 40kg × 6, 5, 3
+- Chest Fly — 65kg × 8, 8, 8
+- Lateral Raise (Dumbbell) — 8kg × 15, 15, 15
+- One Handed Triceps Pull — 7.5kg × 10, 10, 10
+- Diamond Push Up — bodyweight × 10, 10, 8
+
+<!-- From the phone page store (id p1789358981350), drained 2026-09-14. Titled "Push (1)";
+     normalised to Push. First session of the full block, and Week B Monday.
+
+     **No pain(R) field, which under the log format means nothing pulled.** Worth one
+     careful note and no more: this is the first push day in three without a pain
+     reading, and the vertical press was a plate-loaded machine rather than the barbell
+     OHP (09-07, 2/10) or the Arnold (09-11, 2/10). That is one clean data point on the
+     open question in docs/findings.md, not an answer — an omitted field is also just an
+     omitted field, and three sessions cannot separate the movement from the machine
+     from the week. Do not upgrade this to a finding.
+
+     **Shoulder Press 40kg x 6, 5, 3 is the flag.** The slot asks for 3 x 8-10 and he
+     got 6, 5, 3 — the last set is less than half the bottom of the band, and a set of 3
+     on an 8-10 accessory is not accumulating the volume the slot exists for. 40kg is
+     simply too heavy here. 30kg carried 8 as the opener. Proposal in plan.md: run the
+     slot at 32.5-35kg until 8-10 holds across all three.
+
+     Incline 65kg x 8, 8 then 60kg x 6 — e1RM 82.3, level with his best for the third
+     push day running, and 65kg remains the heaviest working weight on the lift. The
+     progression line wants all four working sets at 8 before +2.5kg; this was 8, 8, 6.
+     Load holds, as on 09-11.
+
+     Chest Fly 65kg x 8, 8, 8 — the slot asks 10-12, and the 31 Aug export already had
+     this stalled at 65kg for six sessions. Stalled and under the rep band is the
+     clearer read: take the reps before the weight.
+
+     Lateral Raise 8kg x 15, 15, 15, second session at the new load. The rule wants
+     20, 20, 20 before +1kg, so it holds and is progressing normally.
+
+     Diamond Push-Up is a ★ first — the finisher menu listed it and it had never been
+     performed. 10, 10, 8 against 3 x 15. Finisher logged three sessions running now,
+     against 8 recorded sets in the two years before this month.
+
+     **Dumbbell Pullover trial is still at 1 of 4**, not 2. It ran on 09-11 and the
+     rotate slot went to Chest Fly today. plan.md's four-session rule counts runs of the
+     exercise, not push days; see the note added there. -->
 
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
