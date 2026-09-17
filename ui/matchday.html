@@ -110,6 +110,10 @@ input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;b
 .rx-why{font-size:12.5px;line-height:1.45;color:var(--ink-2);margin-top:4px}
 .rx-last{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);margin-top:5px}
 .note.brief{background:var(--accent-soft);color:var(--ink);padding:10px 12px;border-radius:2px}
+.nextline{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.nextname{font-family:"Barlow Condensed",sans-serif;font-size:30px;font-weight:700;
+  letter-spacing:.02em;line-height:1;text-transform:uppercase}
+.nextmins{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3)}
 .asof{padding:9px 15px;border-bottom:1px solid var(--rule);background:var(--surface-2);
   font-size:12px;line-height:1.45;color:var(--ink-2)}
 .asof b{color:var(--ink);font-weight:600}
@@ -333,7 +337,7 @@ var PHASES = [
    the sheet so he can see at a glance whether the page is current — the loads here are
    static HTML and only move when a Claude session drains a workout and republishes.
    Bump BOTH fields on every drain; docs/workflows.md makes it a required step. */
-var RX_ASOF = { updated: '2026-09-17', from: '2026-09-17 Pull' };
+var RX_ASOF = { updated: '2026-09-17', from: '2026-09-17 Pull' };  /* next: Calisthenics, Sun 20 Sep */
 
 var SESSIONS = {
   push: { name: 'Push', mins: 50,
@@ -376,7 +380,7 @@ var SESSIONS = {
             why: 'Logged three sessions running now, against 8 recorded sets in the two years before this month.' } }
   ]},
   pull: { name: 'Pull', mins: 50, gate: true,
-    brief: 'The right-side iso-lateral row is the whole point of this session. Two greens banked; a third earns 52.5kg.',
+    brief: 'The right-side iso-lateral row is the point of this session. The count reset on 09-17 (4/10) — hold 50kg, log the score, and build three greens again from zero.',
     items: [
     { ex: 'Pull Up', p: '3 × AMRAP', bw: true, anchor: true,
       rx: { load: 'bodyweight', sets: 3,
@@ -419,7 +423,7 @@ var SESSIONS = {
             why: 'Core reads as zero in the export since March. That is the logging, not the training — but nobody can programme what is not written down.' } }
   ]},
   calis: { name: 'Calisthenics', mins: 55,
-    brief: 'In Week B this is your second upper body session, not an extra. Supersets: rest after the pair, not between.',
+    brief: 'Second upper-body session of Week B, not an extra. Supersets — rest after the pair. This one is pull-heavy and you read 4/10 on 09-17, so the pulling is dialled back and the dead hang is out.',
     items: [
     { ex: 'Chest-to-Wall Handstand', p: '3 × 20–30s', slot: 'A1', skill: true, bw: true, timed: true,
       rx: { load: 'bodyweight', sets: 3,
@@ -434,9 +438,9 @@ var SESSIONS = {
     { ex: 'Pull Up', p: '3 × AMRAP−1', slot: 'B1', anchor: true, bw: true,
       alts: ['Chin Up'],
       rx: { load: 'bodyweight', sets: 3,
-            last: '09-13 · 10, 9, 8 (pull day)',
-            do: 'Leave one rep in the tank on every set. This is not the pull-day AMRAP.',
-            why: 'Week B gives you one Pull day, so this is the second dose of vertical pulling — quality over a number.' } },
+            last: '09-17 · 10, 10, 9 on pull day — 29 total',
+            do: 'Leave TWO in the tank this week, not one. Stop the set the moment the right side talks.',
+            why: 'Normally one; two because 09-17 read 4/10 with extreme tightness and this is three days later. Quality over a number — the 29 was set on pull day and belongs there.' } },
     { ex: 'Triceps Dip', p: '3 × 8–10', slot: 'B2', anchor: true, bw: true,
       rx: { load: 'bodyweight', sets: 3,
             last: '09-11 · 10, 10, 8',
@@ -446,8 +450,8 @@ var SESSIONS = {
       alts: ['Inverted Row'],
       rx: { load: 'bodyweight', sets: 3,
             last: '09-06 · 12, 12, 12',
-            do: 'Walk your feet further in to make it harder — you topped the band last time.',
-            why: 'Horizontal pull. Back off the angle if the right side talks; that is the lever here, not reps.' } },
+            do: 'Feet BACK, not further in — take the angle easier this week and keep the reps at 12.',
+            why: 'This reverses the instruction that stood before 09-17. You topped the band last time and would normally make it harder; with the right lat at 4/10 the angle is the lever to give back, not take.' } },
     { ex: 'Pike Push-Up', p: '3 × 8–12', slot: 'C2', bw: true,
       alts: ['Box Pike Push-Up', 'Deficit Pike Push-Up'],
       rx: { load: 'bodyweight', sets: 3,
@@ -460,12 +464,12 @@ var SESSIONS = {
             last: '09-10 · 10, 10, 10',
             do: '10–12, strict. Legs straight if the hamstrings allow.',
             why: 'Core, logged.' } },
-    { ex: 'Dead Hang', p: '3 × 20–30s', slot: 'D2', bw: true, fin: true, timed: true,
-      alts: ['Farmer Carry'],
-      rx: { load: 'bodyweight', sets: 3,
+    { ex: 'Farmer Carry', p: '3 × 40m', slot: 'D2', bw: true, fin: true,
+      alts: ['Dead Hang'],
+      rx: { load: '24kg', sets: 3,
             last: '09-06 · farmer walks, 24kg',
-            do: '30s hangs. Clear this with your physio first.',
-            why: 'Grip and decompression — but it loads the lat passively, so it is their call, not mine.' } }
+            do: '24kg per hand, three walks. Dead hang is out this week.',
+            why: 'The hang loads the lat passively under bodyweight, which is the wrong thing three days after a 4/10 and "extreme tightness". The carry gets the same grip work with the shoulder packed instead of hanging. Hang goes back in when the gate reads green again — or sooner if your physio says so.' } }
   ]},
   legs: { name: 'Legs', mins: 45,
     brief: 'Squat comes down because of the knees. RDL is the one lift here that earned an increase.',
@@ -806,6 +810,29 @@ function renderSheet() {
   var html = '';
 
   if (!draft) {
+    /* Lead with what he trains next rather than a row of chips. The chips stay below
+       for a session taken out of order. */
+    var nx = (typeof window.nextSession === 'function') ? window.nextSession(iso) : null;
+    if (nx) {
+      var NS = SESSIONS[nx.key];
+      var when = nx.days === 0 ? 'Today' : (nx.days === 1 ? 'Tomorrow' : nx.dow + ' ' + nx.iso.slice(5));
+      html += '<div class="card"><div class="card-h"><h2>Next up</h2>' +
+              '<span class="hint">Week ' + nx.week + ' · ' + esc(when) + '</span></div><div class="card-b">' +
+              '<div class="nextline"><span class="nextname">' + esc(NS.name) + '</span>' +
+              '<span class="nextmins">~' + NS.mins + ' min</span></div>';
+      if (NS.brief) html += '<p class="note brief" style="margin-top:10px">' + esc(NS.brief) + '</p>';
+      html += '<div class="list" style="font-size:12.5px;line-height:1.6;color:var(--ink-2);margin-top:10px">' +
+              NS.items.map(function (it) {
+                var nm = it.ex.replace(/ \(.*\)$/, '') + (it.side ? ' ' + it.side.slice(0, 1) : '');
+                return esc(nm) + (it.rx && /kg$/.test(it.rx.load) ? ' <b>' + esc(it.rx.load) + '</b>' : '');
+              }).join(' · ') + '</div>';
+      html += '<div class="btnbar"><button class="btn" data-pick="' + nx.key + '" data-date="' + nx.iso + '">' +
+              'Open ' + esc(NS.name) + '</button></div>';
+      html += '<p class="note" style="font-size:12px">Set by Claude on <b>' + esc(RX_ASOF.updated) +
+              '</b> from your ' + esc(RX_ASOF.from) + ' session.</p>';
+      html += '</div></div>';
+    }
+
     html += '<div class="card"><div class="card-h"><h2>' + DOW[dow] + ' ' + iso + '</h2>' +
             '<span class="hint">' + esc(ph.label) + '</span></div><div class="card-b">';
     if (dow === 2) html += '<p class="note" style="margin-top:0"><strong>Football.</strong> 2h, 7-a-side. Fixed — nothing else goes here.</p>';
@@ -818,7 +845,7 @@ function renderSheet() {
               '>' + esc(SESSIONS[k].name) + '</button>';
     });
     html += '</div>';
-    html += '<p class="note">Check the <strong>Week</strong> tab for what the template has today. Miss a day and take the next one in the template — do not shuffle sessions to catch up.</p>';
+    html += '<p class="note">Only if you are training something other than what is queued above. Miss a day and take the next one in the template — do not shuffle sessions to catch up.</p>';
     html += '</div></div>';
 
     html += '<div class="card"><div class="card-h"><h2>Paste from Strong</h2>' +
@@ -1005,7 +1032,10 @@ function wire() {
     renderSheet();
   };
   lane.querySelectorAll('[data-pick]').forEach(function (b) {
-    b.onclick = function () { draft = newDraft(b.dataset.pick); saveNote = ''; renderSheet(); };
+    b.onclick = function () {
+      draft = newDraft(b.dataset.pick, b.dataset.date || undefined);
+      saveNote = ''; renderSheet();
+    };
   });
   lane.querySelectorAll('[data-add]').forEach(function (b) {
     b.onclick = function () {
@@ -1112,6 +1142,34 @@ function weekFor(iso) {
   var a = new Date(WEEK_ANCHOR + 'T12:00:00'), t = new Date(iso + 'T12:00:00');
   return (Math.floor((t - a) / (7 * 864e5)) % 2 === 0) ? 'A' : 'B';
 }
+
+/* What he trains next, from the template — not "what could you pick today".
+
+   After a session is logged, the thing he wants ready is the NEXT one, whatever type it
+   is (his instruction, 2026-09-17). Walk forward from today through Week A/Week B until
+   a day carries a session key; football, rest and yoga-only days are skipped. Returns
+   null only if something is badly wrong with the template. */
+function nextSession(fromISO) {
+  var start = new Date((fromISO || todayISO()) + 'T12:00:00');
+  /* Anything already in the queue or already written to log.md is finished. Without
+     this the card offers him the session he has just logged, which is how it read on
+     2026-09-17 with the Pull day already saved. */
+  var done = {};
+  (STATE.queue || []).forEach(function (q) { done[q.date + ':' + q.key] = 1; });
+  (STATE.written || []).forEach(function (q) { done[q.date + ':' + q.key] = 1; });
+  for (var i = 0; i <= 14; i++) {
+    var d = new Date(start); d.setDate(start.getDate() + i);
+    var iso = new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+    var wk = phaseFor(iso).forceWeek || weekFor(iso) || 'B';
+    var row = WEEK[wk].filter(function (r) { return r.d === d.getDay(); })[0];
+    if (!row || !row.key) continue;
+    if (row.key === 'legs' && phaseFor(iso).skipLegs) continue;
+    if (done[iso + ':' + row.key]) continue;      /* already trained and logged */
+    return { key: row.key, iso: iso, dow: DOW[d.getDay()], week: wk, note: row.note || '', days: i };
+  }
+  return null;
+}
+window.nextSession = nextSession;
 
 function dateForDow(dow) {
   var t = new Date(todayISO() + 'T12:00:00');

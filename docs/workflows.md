@@ -141,7 +141,23 @@ having trained.
    the artifact is updating with claude recommended exercises after each workout and
    it's not just static exercises leaning on me to vary them."*
 
-   For every slot the session touched, in **both** `plan.md` and the `rx` blocks in
+   **Two passes, and the second is the one that matters.**
+
+   **Pass 1 — the session he just did.** Update its slots so the `last:` lines are true.
+
+   **Pass 2 — the session he does next.** Work out which it is from the Week A/Week B
+   template (the page's `nextSession()` does the same walk: forward from today, skipping
+   football, rest, yoga-only days and anything already logged), then make that entire
+   session current. **This is the one he opens at the gym**, and it is what he asked for
+   on 2026-09-17: *"after logging a pull day, ensure the next session (be it push/pull/
+   legs or calisthenics) is updated."*
+
+   The two passes are usually different sessions. A pull day ending at 4/10 should change
+   the **calisthenics** day that follows — that is exactly what happened on 09-17, when
+   the dead hang came out of the 09-20 session and the pulling was dialled back. Carrying
+   a finding across session types is the job; updating only what he just did is not.
+
+   For every slot you touch, in **both** `plan.md` and the `rx` blocks in
    `ui/matchday.html`:
 
    - **`last:`** — what he actually did, in the form `MM-DD · 65kg × 8, 8`. This is what

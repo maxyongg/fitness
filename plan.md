@@ -255,7 +255,23 @@ so this costs nothing in performance and takes about fifteen minutes off the ses
 | **C** | C1 | ★ Ring Row *or* Inverted Row — horizontal pull | 3 × 10–12 | pair, then 90s |
 | | C2 | Pike Push-Up — vertical push | 3 × 8–12 | harder variant |
 | **D** finisher | D1 | Hanging Leg Raise — core | 3 × 10–12 | pair, then 60s |
-| | D2 | ★ Dead Hang — grip | 3 × 20–30s | |
+| | D2 | **Farmer Carry** — grip | 3 × 40m @ 24kg | |
+
+**Dialled back for 2026-09-20 after the 4/10 on 09-17.** Three of these slots load the
+right lat and the session falls three days after his strongest report of tightness so
+far. Changes, all reversible the moment the gate reads green again:
+
+- **D2: dead hang out, farmer carry in.** The hang loads the lat passively under
+  bodyweight, which is the wrong stimulus this week. The carry gets the same grip work
+  with the shoulder packed rather than hanging. This is the rotation rule working — a
+  named swap with a reason, not a silent one.
+- **B1 leaves two reps in the tank, not one**, and the set stops the moment that side
+  talks.
+- **C1 takes the angle easier — feet back, not in.** That reverses the standing
+  instruction, which was to make it harder because he topped the band on 09-06. With the
+  lat at 4/10 the angle is the lever to give back.
+
+None of this is a verdict on the injury and none of it overrides his physio.
 
 Eight movements, four blocks, about 55 minutes. Coverage: vertical pull (B1),
 horizontal pull (C1), vertical push (C2), horizontal push (B2), core (A2, D1), grip
