@@ -69,7 +69,14 @@ entries queue up and are drained on request; a screenshot you handle now.
    Push *before* you reply — he has no way to do it afterwards. **Everything goes to
    `main`**, `plan.md` and this file included (his instruction, 2026-09-10; branches sat
    unmerged and stranded a session for days). Branch only if he asks in that message.
-3. **Reply in two sentences**, flagging only what earns it: right-side row load and
+3. **Re-prescribe, then republish the page.** Not optional, and not only when something
+   changed. Every slot in `plan.md` and `ui/matchday.html` carries a load, a rep target
+   and a `last:` line; walk the ones this session touched and update all three, bump
+   `RX_ASOF`, and publish. **The page is static HTML — the prescriptions only move when
+   you move them**, so a drain that skips this leaves him training off stale numbers and
+   quietly puts him back in charge of varying his own programme, which is the thing he
+   asked not to do (2026-09-17). Procedure in `docs/workflows.md`.
+4. **Reply in two sentences**, flagging only what earns it: right-side row load and
    whether he noted pain, whether pull-ups were first on pull day, a lift that moved up
    or has stalled 3+ sessions. Nothing notable → say nothing.
 

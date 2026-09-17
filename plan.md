@@ -316,9 +316,17 @@ at 50kg. Re-establish where the left actually is before assuming a 20kg gap.
 **Right** — start at the heaviest genuinely pain-free load. Three green lights held for
 two consecutive weeks → +2.5kg. Any red → back to the last green load and stay there.
 
-**Where it actually stands, 2026-09-14.** The gate counts the **right-side iso-lateral
-row and nothing else.** On that lift: 3/10 at 50kg (09-03), 2/10 at 50kg (09-10).
-**Two greens on the pain criterion, at 50kg. One more and 52.5kg is earned.**
+**Where it actually stands, 2026-09-17. The count has reset.** The gate counts the
+**right-side iso-lateral row and nothing else.** On that lift: 3/10 at 50kg (09-03),
+2/10 at 50kg (09-10), **4/10 at 50kg (09-17)**. Two greens then an amber, so the streak
+is broken and 52.5kg is not earned. Hold 50kg; add nothing.
+
+**And a flag that is not about the protocol.** 09-17 read 50kg × 10, 8 and then he took
+himself down to 40kg, against 50kg × 10, 10, 8 on 09-10 — fewer reps at the same load
+plus a self-directed back-off, with "extreme tightness" in his note. That is also the
+**second 4/10 in five days** (09-13 on the seated row, 09-17 on the iso-lateral):
+different exercises, same side, same number. Two readings are a pattern to raise with
+his physio, not a conclusion to draw here. Their call, and it overrides this file.
 
 The 09-13 session does not appear in that count. He rowed 57kg on the **Uni Lateral
 Seated Row**, both sides equal — and that is a different exercise from the iso-lateral

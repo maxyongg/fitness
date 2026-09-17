@@ -320,6 +320,50 @@ pain(R): 4/10 | note: reduced session — tired from physio, and general fatigue
      rotate slot went to Chest Fly today. plan.md's four-session rule counts runs of the
      exercise, not push days; see the note added there. -->
 
+## 2026-09-17 · Thu · Pull
+pain(R): 4/10 | note: dropped abs for time; extreme tightness in the right lat.
+- Pull Up — bodyweight × 10, 10, 9
+- Iso Lateral Row - Right — 40kg × 10, 50kg × 10, 8, 40kg × 10
+- Iso Lateral Row - Left — 40kg × 10, 60kg × 8, 8, 40kg × 12
+- Lat Pulldown (Cable) — 67kg × 8, 10, 7
+- Face Pull (Cable) — 17.5kg × 12, 12, 12
+- Bicep Curl (Barbell) — 30kg × 8, 8, 7
+
+<!-- From the phone page store (id p1789616330866), drained 2026-09-17. Titled "Pull (2)";
+     normalised to Pull. Week B Thursday, on template.
+
+     **The gate reads 4/10 and the streak is broken.** This is the right-side iso-lateral
+     row itself — the lift the protocol actually counts — performed at 50kg for the first
+     time since 09-10. Readings at 50kg now run 3/10 (09-03), 2/10 (09-10), **4/10
+     today**. Two greens then an amber, so the count resets to zero and 52.5kg is not
+     earned. Under plan.md, 4-5 means hold the load and add nothing.
+
+     **The part that is not about the protocol.** His note says "extreme tightness", and
+     the sets say the same thing without being asked: 50kg x 10, 8 and then he took
+     himself down to 40kg rather than finish at load. On 09-10 the same lift gave
+     50kg x 10, 10, 8. That is fewer reps at the same weight plus a self-directed
+     back-off, alongside his strongest language about that side so far.
+
+     It is also the **second 4/10 in five days** — 09-13 on the seated row, today on the
+     iso-lateral. Different exercises, same side, same number. Two readings are a pattern
+     worth naming to his physio, not a conclusion to draw here, and this file does not
+     get to have an opinion about the tissue. Flagged to him; their call.
+
+     **Pull-up best in the record: 10, 10, 9 for 29**, beating the 27 of 08-27 and 09-13.
+     First in the session, as always. That is the order effect doing exactly what
+     docs/findings.md says it does.
+
+     Face Pull 17.5kg x 12, 12, 12, up from 10, 10, 10 on 09-10. The prescription asked
+     for reps and got them. Rear delts are the one gap the export supports, so this is
+     the most useful non-gated number in the session.
+
+     Lat Pulldown 67kg x 8, 10, 7 against a 3 x 10 target — one set there, two short.
+     Load holds. Bicep Curl 30kg x 8, 8, 7, **identical to 09-13**. Two sessions at the
+     same numbers; plan.md's rule is that three is the prompt to propose a change, so it
+     holds one more time and then the slot moves.
+
+     Abs dropped for time and he said so. Noted, not chased. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

@@ -133,8 +133,32 @@ having trained.
 
    If `write_db` ever starts accepting `if_version`, go back to flagging the document:
    it survives a stale republish, and the array does not.
-5. **Publish `ui/matchday.html`** if you changed it, with `capabilities` naming both
-   `artifact` and `db`.
+5. **Re-prescribe from what he just did — required, every drain.**
+
+   The team sheet is static HTML. A load only changes when you change it, so a drain
+   that stops at `log.md` leaves the page recommending numbers from the last time
+   someone remembered. He raised exactly this on 2026-09-17: *"just want to ensure that
+   the artifact is updating with claude recommended exercises after each workout and
+   it's not just static exercises leaning on me to vary them."*
+
+   For every slot the session touched, in **both** `plan.md` and the `rx` blocks in
+   `ui/matchday.html`:
+
+   - **`last:`** — what he actually did, in the form `MM-DD · 65kg × 8, 8`. This is what
+     he checks at the rack, so it has to be the real numbers.
+   - **`load:`** — moves only when a progression rule fires or something says come down.
+     Say which in `why:`. Never nudge a load because it feels due.
+   - **`do:` / `why:`** — the instruction and the evidence for it. One line each.
+   - **The exercise itself** — rotate slots are yours to change when the data says so
+     (a stall of three, a rep band that does not fit, a movement the injury dislikes).
+     Write the reason into `plan.md`; a silent swap is the thing the prescription model
+     replaced.
+   - **`RX_ASOF`** — bump `updated` and `from`. The sheet renders it, and it is how he
+     can tell at a glance whether the page is current.
+
+   Anchors keep their exercise always; only their numbers move.
+
+6. **Publish `ui/matchday.html`**, with `capabilities` naming both `artifact` and `db`.
 
 If a publish is refused because someone republished in between, re-read and start again.
 Do not use `force`.
