@@ -107,6 +107,23 @@ since 09-07 and is his heaviest ever on the lift. Slot 2 comes **down** to 32.5k
 triceps extension is the longest stall in the export at 17.5kg for seven sessions, and
 it has been drifting because the slot kept going elsewhere.
 
+**Carried across from 2026-09-20 for Monday 21 Sep — the next session he opens.** A
+calisthenics day read 4/10, the third in eight days, so two push slots inherit it:
+
+- **Slot 2 stays the Shoulder Press (Plate Loaded), and the machine is the point.** Both
+  push days that logged right-lat pain had a *free* overhead press in this slot — the
+  barbell OHP on 09-07, the Arnold on 09-11, 2/10 each. The plate-loaded press is the
+  supported option and it is already the call for an unrelated reason (the 8–10 band).
+  It is kept, not changed; the reason for keeping it is now twofold. Do not substitute
+  the Arnold or the barbell out of the alternates this week.
+- **Slot 3 stays the Chest Fly, and the Dumbbell Pullover trial does not resume Monday.**
+  The pullover is a lat movement; running it with the reading at 4/10 tests the wrong
+  thing. **The trial stays at run 1 of 4** — it pauses, it does not fail, and it resumes
+  when the reading comes back green. Counting runs rather than push days is what makes
+  that possible.
+
+Neither is a load change and neither costs him anything on the day.
+
 ### Slot 2 stays a rotate slot — decided 2026-09-12
 
 An earlier version of this file carried a standing proposal to anchor the overhead
@@ -257,19 +274,47 @@ so this costs nothing in performance and takes about fifteen minutes off the ses
 | **D** finisher | D1 | Hanging Leg Raise — core | 3 × 10–12 | pair, then 60s |
 | | D2 | **Farmer Carry** — grip | 3 × 40m @ 24kg | |
 
-**Dialled back for 2026-09-20 after the 4/10 on 09-17.** Three of these slots load the
-right lat and the session falls three days after his strongest report of tightness so
-far. Changes, all reversible the moment the gate reads green again:
+**Ran in full on 2026-09-20 — the first complete run, and the second ever logged.**
+All eight slots, in the prescribed order, block for block. The dial-back written here
+for that session (B1 at AMRAP−2, C1 angle easier, D2 carry instead of hang) is recorded
+below with what it actually produced. It stays in force for 4 Oct: the reading came back
+4/10 again, so nothing here gets harder yet.
 
-- **D2: dead hang out, farmer carry in.** The hang loads the lat passively under
-  bodyweight, which is the wrong stimulus this week. The carry gets the same grip work
-  with the shoulder packed rather than hanging. This is the rotation rule working — a
-  named swap with a reason, not a silent one.
-- **B1 leaves two reps in the tank, not one**, and the set stops the moment that side
-  talks.
-- **C1 takes the angle easier — feet back, not in.** That reverses the standing
-  instruction, which was to make it harder because he topped the band on 09-06. With the
-  lat at 4/10 the angle is the lever to give back.
+| Slot | Prescribed | Did | Read |
+|---|---|---|---|
+| A1 Handstand | 3 × 30s | 0:30, 0:30, 0:30 | checkpoint met on time |
+| A2 Hollow hold | 3 × 30s | 0:30, 0:30, 0:30 | arm position unrecorded |
+| B1 Pull Up | AMRAP−2 | 10, 10, 7 (27) | instruction working |
+| B2 Dip | 10, 10, 10 → add weight | 10, 10, 10 | **rule was wrong — see below** |
+| C1 Ring Row | feet back, reps at 12 | 10, 10, 10 | eased as told |
+| C2 Pike Push-Up | harder rung, 8–12 | 10, 10, 10 | **rung unrecorded** |
+| D1 Hanging Leg Raise | 10–12 | 10, 10, 10 | in band |
+| D2 Farmer Carry 24kg | carry, not hang | Dead Hang 0:30 × 3 | the one slot not run as written |
+
+**B2's progression rule was written wrong and is corrected.** It read "10, 10, 10 clean,
+then start adding weight", and its evidence line was `09-11 · 10, 10, 8` — a push-day
+set at slot 5. But this slot gave **12, 12, 12 on 09-06**, in this session. Judged
+against the only comparable run, 10, 10, 10 is six reps down, not a rep up. **The dip
+holds bodyweight and the target returns to 12, 12, 12 before any weight goes on.** This
+is the docs/incidents.md pattern — a number compared against one from a different
+context — caught here rather than reported as a gain.
+
+**C2's rung is unrecorded and the number cannot be read without it.** 20, 20, 20
+feet-elevated on 09-06 → 10, 10, 10 today, under an instruction to make it harder. That
+is what a harder rung looks like, and it is still a guess. Logged as a question, not a
+progression; `docs/calisthenics.md` has the four rungs. Same ambiguity as 09-06, when he
+had to be asked.
+
+**Both Phase 1 holds are one answer from their checkpoint.** The handstand met 3 × 30s;
+the remaining condition is ribs down and no arch. The hollow hold met 3 × 30s; its
+checkpoint specifies arms overhead and the log does not say. Ask before moving either —
+Phase 2 in `docs/calisthenics.md` (tuck L-sit, support hold) is what comes next, and it
+is a proposal for him, not a promotion to hand out.
+
+**D2 went back to the dead hang.** The carry was the one change made specifically to
+take passive load off the lat, and it is the slot that did not run as written. Ask why
+before reading anything into it — the kettlebells may simply not have been there. The
+hang stays a listed alternative and the carry stays the call while the reading is amber.
 
 None of this is a verdict on the injury and none of it overrides his physio.
 
@@ -352,9 +397,21 @@ the ceiling was gone. That was wrong and is struck. **Never compare loads across
 machines here.** The 4/10 that came with it is right-lat discomfort on a different
 horizontal pull, logged as its own point and outside the gate.
 
-So nothing about the right iso-lateral row has changed since 09-10: **50kg, two greens,
-one to go.** The only thing to do is perform it — it has not been done since 09-10, and
-the 09-13 pull day substituted a different row.
+**A third 4/10 on 2026-09-20, and it is also outside the gate.** The calisthenics
+session read 4/10 with no right iso-lateral row in it, so the count is untouched: still
+zero since the 09-17 reset, still 50kg, nothing added. But the readings now run 3/10
+(09-03), 2/10 (09-10), **4/10 (09-13), 4/10 (09-17), 4/10 (09-20)** — three different
+sessions, three different movements, same side, same number, eight days.
+
+That is not a spike, and it is not the gate. It is his own third green-light criterion —
+*not creeping week to week* — returning the same amber a fortnight running. **Raise it
+with his physio; this file does not get an opinion about the tissue, and their guidance
+overrides everything here.** What this file does is stop adding load while it reads
+amber, which it already does.
+
+So nothing about the right iso-lateral row has changed since 09-10: **50kg, zero greens
+since the reset.** The only thing to do is perform it — it has not been done since 09-17,
+and it is not in Monday's Push.
 
 | Green light | Means |
 |---|---|

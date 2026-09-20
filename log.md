@@ -364,6 +364,74 @@ pain(R): 4/10 | note: dropped abs for time; extreme tightness in the right lat.
 
      Abs dropped for time and he said so. Noted, not chased. -->
 
+## 2026-09-20 · Sun · Calisthenics
+pain(R): 4/10
+- Chest-to-wall Handstand — 0:30, 0:30, 0:30
+- Hollow Body Hold — 0:30, 0:30, 0:30
+- Pull Up — bodyweight × 10, 10, 7
+- Triceps Dip — bodyweight × 10, 10, 10
+- Ring Row — bodyweight × 10, 10, 10
+- Pike Push Up — bodyweight × 10, 10, 10
+- Hanging Leg Raise — bodyweight × 10, 10, 10
+- Dead Hang — 0:30, 0:30, 0:30
+
+<!-- From the phone page store (id p1789873372174), drained 2026-09-20. Week B Sunday, on
+     template. Order is as saved and it is the prescribed order, block for block — the
+     session ran as written for the first time.
+
+     **Second time this session has ever been logged, and the first complete run.** All
+     eight slots present. 09-06 was the only prior entry and he swapped two pairs that
+     day. plan.md has said since 09-01 that calisthenics "reads as though it does not
+     exist"; two entries is not a trend, but it is no longer nothing.
+
+     **pain(R) 4/10 — the third 4/10 in eight days.** 09-13 (seated row), 09-17
+     (iso-lateral row), today. Three different sessions, same side, same number, and no
+     note this time about what provoked it. **This is NOT a gate reading**: no right-side
+     iso-lateral row was performed, and plan.md's protocol counts that lift and nothing
+     else. The streak stays where 09-17 left it — reset to zero, 50kg held.
+
+     What it does touch is his own third green-light criterion, "not creeping week to
+     week". The readings run 3/10 (09-03), 2/10 (09-10), 4, 4, 4. That is a flat amber
+     across a fortnight rather than a spike, and it is a physio question, not a
+     conclusion for this file. Raised with him.
+
+     **D2 was prescribed as Farmer Carry and he did the Dead Hang.** The swap on 09-17
+     was the one change made specifically to take passive load off the lat, and it is the
+     one slot that did not run as written. Asked why — kettlebells may simply not have
+     been there. Not chased, and the hang is a listed alternative.
+
+     **Chest-to-wall Handstand 0:30 × 3 meets the docs/calisthenics.md checkpoint on
+     time** (3 × 30s), up from 0:20, 0:30, 0:30 on 09-06. The rest of that checkpoint is
+     form — ribs down, no arch — which only he can report. Asked.
+
+     **Hollow Body Hold 0:30 × 3**, also up from 09-06. Its checkpoint is 3 × 30s *arms
+     overhead*; the log does not record arm position. Asked. Both holds are one answer
+     away from Phase 2, and neither moves until he gives it.
+
+     **Pike Push-Up 10, 10, 10 and the rung is unrecorded.** He ran 20, 20, 20 feet-
+     elevated on 09-06 against a 6–8 band; the standing instruction was to make it
+     harder and the band moved to 8–12. Landing on 10s is exactly what a harder rung
+     looks like — but "Pike Push Up" without a rung is the same ambiguity as 09-06, when
+     he had to be asked which of the four it was. 3 × 10 means nothing against an unknown
+     rung. Asked; not guessed.
+
+     **Triceps Dip 10, 10, 10 — the prescription said this earns weight. It does not, and
+     the prescription was wrong.** Its `last:` read 09-11 · 10, 10, 8, a push-day set at
+     slot 5, and the rule "10, 10, 10 clean, then start adding weight" was written
+     against that. It missed that this same slot gave **12, 12, 12 on 09-06**, in this
+     session. Today is six reps down on the only comparable run, not a rep up on it.
+     Holding bodyweight; the target goes back to 12, 12, 12. Same family of error as the
+     leg press and the 57kg row in docs/incidents.md — a number compared to a number from
+     a different context.
+
+     **Pull Up 10, 10, 7 (27) and Ring Row 10, 10, 10 are both down on 09-06** (30 and
+     36) — and both were told to be. Pull-ups were prescribed AMRAP−2 rather than −1, and
+     the ring row was told to take the angle easier. Two drops with the instruction
+     printed next to them are the instruction working, not a finding. The dip is the only
+     one of the three that dropped without being asked to, which is why it is flagged
+     above and not explained here. One session is not a pattern; the 4 Oct run is the
+     comparison. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
