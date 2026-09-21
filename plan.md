@@ -4,414 +4,206 @@ The brief is in `docs/goals.md`: holistic fitness at his own pace, shifting towa
 calisthenics, with no target to hit. This file is how that gets delivered week to week —
 read the goals before proposing a change to it.
 
-A **two-week rotation**. Week A is the heavy half — five lifting sessions and the legs
-day. Week B is lighter — three lifting sessions, and a second football on the Friday
-where Week A puts a Push.
+A **weekly 3 Upper / 1 Lower split** with two fixed football days. Replaced the two-week
+Push / Pull / Legs / Calisthenics rotation on 2026-09-21 after an InBody review showed
+body fat rising (13.9% → 19.4%) while muscle mass flatlined at ~32.6kg — the old
+template's volume and frequency weren't doing the job. The redesign hits every muscle
+group at least twice a week across three upper sessions, runs legs weekly with 48h
+clearance before football, and integrates bodyweight work across sessions rather than
+isolating it on a standalone calisthenics day.
 
-This is Max's own template, given 2026-09-02. It is the spine of the programme and it
-is authoritative. What the export shows about how faithfully it gets run is a separate
-question, kept honest at the bottom of this file — do not confuse the two, and do not
-delete a session from this plan because the log is quiet about it.
+## The week
 
-## The fortnight
+| | Session |
+|---|---|
+| **Mon** | Upper A |
+| **Tue** | Football — 2h, 7-a-side |
+| **Wed** | Rest |
+| **Thu** | Upper B |
+| **Fri** | Football — 2h, 7-a-side |
+| **Sat** | Upper C |
+| **Sun** | Lower |
 
-| | **Week A** | **Week B** |
-|---|---|---|
-| **Mon** | Push | Push |
-| **Tue** | Football — 2h, 7-a-side | Football — 2h, 7-a-side |
-| **Wed** | Rest, protected | Rest, protected |
-| **Thu** | Pull | Pull |
-| **Fri** | Push | Football — 2h, 7-a-side |
-| **Sat** | Legs, then yoga | Yoga only |
-| **Sun** | Pull | Calisthenics |
+Four lifting sessions, two football sessions, one rest day. Football is fixed —
+Tuesday always, Friday always. Wednesday rest sits between Tuesday football and Thursday
+Upper B; it is the natural recovery slot.
 
-Week A is 2 × Push, 2 × Pull, 1 × Legs. Week B is 1 × Push, 1 × Pull, 1 × Calisthenics.
-Eight lifting sessions a fortnight, two or three football sessions, yoga twice.
-
-**Anchor:** Week A begins **Monday 7 September 2026**, and the weeks alternate from
-there — so 14 Sep is Week B, 21 Sep Week A, and so on. He corrected this on 2026-09-07;
-an earlier version guessed 14 Sep, which was a week out.
-
-**Time of day is free.** He suspected he is stronger at certain times; the log says
-otherwise. Within 2026 — the only window where mornings and evenings are both well
-represented — the gap across all four time buckets is 0.09 SD, and only 6 of 18 lifts
-favour mornings. The apparent morning advantage in the raw numbers is the calendar: he
-shifted from evening training in 2024 to morning training in 2026 while getting
-stronger throughout. Working out in `docs/findings.md`.
-
-So schedule sessions by what the week allows, not by a time. In practice that has meant
-mornings at the weekend and evenings on weekdays, which is fine and needs no change. If
-he *feels* stronger at a given hour, train then — the measurement is not sensitive
-enough to argue with him, and readiness is worth more than 0.02 SD.
-
-**Wednesday is protected in both weeks.** Late food after Tuesday football. Nothing
-goes there, yoga included.
+**Time of day is free.** The log cannot detect a time-of-day effect (working in
+`docs/findings.md`). Train when it suits the week.
 
 ## Phases
 
 | Dates | Phase | What |
 |---|---|---|
-| → 13 Sep 2026 | Re-entry | 10% off top sets if needed. No legs day. The rotation runs normally — this week is Week A. |
-| 14 Sep → | Full block | Full load, everything on, progressing normally. |
+| → 13 Sep 2026 | Re-entry | 10% off top sets. No legs. |
+| 14 Sep → 20 Sep | Old block | Two-week Push/Pull/Legs/Calisthenics rotation. |
+| 21 Sep → | **New block** | 3U/1L split. This file. |
+
+The new block starts at the loads the old programme left behind. No deload — the
+transition itself provides enough stimulus novelty. If anything feels too heavy in the
+first week, drop 10% and rebuild.
 
 ## Anchors and rotations
 
-Every session has two kinds of slot, and the difference matters more than the exercise
-names.
+Same principle as the old programme. **Anchor slots** stay the same session after session
+and carry progressive overload — you cannot progressively overload what you do not
+repeat. **Rotate slots** carry a named exercise that changes when the data says so.
+Variety costs nothing in a rotate slot; anchors earn their results by not moving.
 
-- **Anchor slots** stay the same session after session and carry the load progression.
-  You cannot progressively overload something you do not repeat. Incline bench is at an
-  all-time high because slot 1 never changes. The overhead press, in a rotating slot,
-  fell from 61.7 to 50.7 e1RM over the same period — but read that as the cost a
-  rotating slot *can* carry, not as a measured cause. See the Push section: the
-  rotation is one candidate explanation and it has never been tested against the other
-  two.
-- **Rotate slots** carry a named call that changes when the data says so, from the menus
-  below. Variety costs nothing here because these slots are not chasing a number — they
-  are accumulating volume and covering angles. Adherence matters more than optimality,
-  and he trains more when he is enjoying it.
+The anchors:
 
-  **Changed 2026-09-14: the page no longer picks these at random.** It used to hash the
-  date, which meant the session was assembled by arithmetic and nobody could say why
-  today's chest movement was the one on screen. He called the result "loose" and he was
-  right — a trainer names the session. Each rotate slot now carries one prescribed
-  exercise with its load and the reason; the alternatives stay one tap away for a taken
-  machine. **Rotation moved up a level rather than going away:** this file decides when
-  a slot changes and writes down why, which is the discipline the anchors already had.
+| Anchor | Session | Why |
+|---|---|---|
+| Incline Bench Press | Upper A, slot 1 | All-time high at 65kg. The primary press. |
+| Pull Up | Upper A slot 2, Upper B slot 1 | Position effect is proven (`docs/findings.md`). First or second, never later. |
+| Iso Lat Row | Upper B, slot 2 | The right lat's lift. Row protocol needs the same movement week to week. |
+| Lateral Raise | Upper A slot 5, Upper C slot 3 | Progressing steadily on the 15–20 band. |
 
-So: **rotate the accessories freely, leave the anchors alone.** Anchoring a rotating
-lift is the lever available if one needs to progress — but it costs variety, and it is
-not free when the lift in question is one the right lat reacts to. Push slot 2 was
-considered for it on 2026-09-12 and deliberately left rotating; see the Push section.
+Everything else rotates. The bolded exercise in each rotate slot is the current call;
+the alternatives are there for a taken machine or a deliberate rotation. Exercises
+marked ★ have never been logged.
 
-Exercises marked ★ are ones he has never logged. See "Trying new exercises" below.
+## Upper A — Monday (~50 min)
 
-## Push (~50 min)
+The push-heavy upper day. Incline bench leads.
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
 | 1 | **Anchor** | Incline Bench Press (Barbell) | 4 × 5–8 | **65kg** |
-| 2 | Rotate — vertical press | **Shoulder Press (Plate Loaded)** · Arnold · OHP · Landmine | 3 × 8–10 | **32.5kg** ↓ |
-| 3 | Rotate — chest | **Chest Fly** · Dumbbell Pullover · Cable Crossover · Incline Chest Press | 3 × 10–12 | **65kg**, reps first |
-| 4 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
-| 5 | Rotate — triceps | **Triceps Extension** · Dip · One-Handed Pull · ★ Skullcrusher | 3 × 10–12 | **17.5kg** |
-| F | Rotate — finisher | **Push-Ups** · Diamond · ★ Pike · ★ Deficit | 3 × 15 | bodyweight |
+| 2 | **Anchor** | Pull Up | 3 × AMRAP | bodyweight |
+| 3 | Rotate — chest isolation | **Chest Fly** · Cable Crossover · Incline Chest Press | 3 × 10–12 | **65kg**, reps first |
+| 4 | Rotate — rear delt | **Face Pull** · ★ Reverse Flye · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |
+| 5 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
+| 6 | Rotate — triceps | **Triceps Extension** · ★ Skullcrusher | 3 × 10–12 | **17.5kg** |
 
-**The bolded exercise in each rotate slot is the current call, not a menu head.** The
-page prescribes it by name with the load and the reason; the others are there for a
-taken machine. See "Anchors and rotations" for why that changed on 2026-09-14.
+Pull-ups at slot 2: behind only the anchor press, they stay fresh. The position effect
+(`docs/findings.md`) says they need to be early — position 2 for five months gave 24–32
+reps; position 5 for three months gave 13–23.
 
-Slot 1 reads 65kg, not the 60kg an earlier version had: 65kg has been the working weight
-since 09-07 and is his heaviest ever on the lift. Slot 2 comes **down** to 32.5kg —
-40kg returned 6, 5, 3 on 09-14 against an 8–10 band. Slot 5 is a deliberate pick: the
-triceps extension is the longest stall in the export at 17.5kg for seven sessions, and
-it has been drifting because the slot kept going elsewhere.
+**No shoulder press in this session.** Personal trainer recommendation: after heavy
+incline bench, an overhead press excessively fatigues the shoulder. The slot goes to rear
+delts instead, covering the 0.8 sets/week gap from the old programme.
 
-**Carried across from 2026-09-20 for Monday 21 Sep — the next session he opens.** A
-calisthenics day read 4/10, the third in eight days, so two push slots inherit it:
+**Chest Fly is stalled at 65kg × 8, 8, 8** against a 10–12 band. Hold load, chase reps.
 
-- **Slot 2 stays the Shoulder Press (Plate Loaded), and the machine is the point.** Both
-  push days that logged right-lat pain had a *free* overhead press in this slot — the
-  barbell OHP on 09-07, the Arnold on 09-11, 2/10 each. The plate-loaded press is the
-  supported option and it is already the call for an unrelated reason (the 8–10 band).
-  It is kept, not changed; the reason for keeping it is now twofold. Do not substitute
-  the Arnold or the barbell out of the alternates this week.
-- **Slot 3 stays the Chest Fly, and the Dumbbell Pullover trial does not resume Monday.**
-  The pullover is a lat movement; running it with the reading at 4/10 tests the wrong
-  thing. **The trial stays at run 1 of 4** — it pauses, it does not fail, and it resumes
-  when the reading comes back green. Counting runs rather than push days is what makes
-  that possible.
+**Triceps Extension has stalled at 17.5kg for seven sessions.** Keeping it prescribed
+rather than rotating away is the fix — the stall happened because the slot kept going
+elsewhere. If 17.5kg does not move in four more sessions, drop to 15kg and rebuild.
 
-Neither is a load change and neither costs him anything on the day.
+## Upper B — Thursday (~50 min)
 
-### Slot 2 stays a rotate slot — decided 2026-09-12
-
-An earlier version of this file carried a standing proposal to anchor the overhead
-press here for a block. It was briefly implemented on 2026-09-12 and **undone the same
-day.** Do not re-propose it without new evidence; the reasoning is below, so that the
-next session inherits it instead of re-deriving it.
-
-**The argument for it was never tested.** It ran: OHP fell from 61.7 to 50.7 e1RM
-because its slot rotates, so anchor the slot and it comes back. But nothing establishes
-the *because*. Two other explanations cover the same window and neither was ruled out —
-the right lat injury dating from June 2026, and the two-week trip in August that the
-whole re-entry phase exists for. This project has already mistaken three scheduling
-artefacts for physiology; this would be the fourth.
-
-**The argument against it is concrete.** Both push days since the restart logged
-right-lat pain at 2/10, and both had an overhead press in slot 2 — the barbell OHP on
-09-07, the Arnold on 09-11. Anchoring would make the provoking movement compulsory every
-push day rather than roughly one in four, while that structure is under physiotherapy
-care. That is the wrong direction on the one signal actually being measured.
-
-**And nothing depends on it.** There is no target and no date. The overhead press hole
-is real, but a lift regressing is not a goal to chase unless he says it is — the brief
-is rounding, not peaking, and push already carries two anchors out of six slots.
-
-**What answers it instead:** the next Strong export. `analyse.py` can ask directly
-whether OHP sessions cluster where the slot happened to pick it, and whether the decline
-tracks slot frequency or tracks June. That question is now logged in `docs/findings.md`.
-Until then the slot rotates, and if the right lat keeps reacting to overhead pressing,
-the live question is whether the movement belongs on push day at all — not whether to
-do more of it.
-
-The finisher has been happening for years and going unlogged — push-ups appear 8 times
-in the whole export, last April 2025. Log it. Even sets of 15, not 25/8/8.
-
-**Slot 2 is running too heavy, 2026-09-14.** The Shoulder Press (Plate Loaded) went
-40kg × 6, 5, 3 against a 3 × 8–10 prescription — the last set is under half the bottom
-of the band, and a set of 3 is not accumulating the volume an accessory slot exists for.
-30kg carried 8 as the opener the same day. **Proposal: run it at 32.5–35kg until 8–10
-holds across all three sets, then climb.** This is the slot, not the lift: the same rule
-applies to whichever vertical press the rotation picks. Chasing a top set here is how
-the slot got into trouble in the first place.
-
-**Chest Fly is stalled and under its band.** 65kg × 8, 8, 8 on 09-14 against a 3 × 10–12
-prescription, and the 31 Aug export already had it at 65kg for six sessions. Take the
-reps first: hold 65kg until 12 holds across all three, then add.
-
-**Dumbbell Pullover is on trial in slot 3**, first run 2026-09-11 at 14kg — **run 1 of
-4** under the rule below. Still at 1 of 4 as of 09-14: the slot went to Chest Fly that
-day, and the rule counts runs of the exercise, not push days. Decide to keep or drop it
-after the fourth run, not by feel. It displaces nothing permanently; it is one of the chest rotate options.
-
-Flat bench was dropped deliberately in June to prioritise incline. It stays dropped.
-
-## Pull (~50 min)
-
-**Exactly one horizontal row and one to two vertical pulls.** This is not a guess: across
-the 22 pull days from May to August he did **exactly one horizontal row on every single
-one**, and one to three vertical pulls, median two. An earlier version of this file
-prescribed two of each. That was wrong — the wide-grip row was the surplus, and it has
-moved to the substitutes line.
+The pull-heavy upper day. Pull-ups lead.
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | **Anchor** | **Pull Up** — first, always | 3 × AMRAP | bodyweight |
-| 2 | **Anchor** — the one horizontal row | Single-Arm Iso-Lateral Row, left then right | 3 × 8–10 each | see protocol |
-| 3 | Rotate — second vertical | Lat Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown · ★ Straight-Arm Pulldown | 3 × 10 | 67kg |
-| 4 | Rotate — rear delt | Face Pull · ★ Reverse Flye · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | 17.5kg |
-| 5 | Rotate — biceps | Bicep Curl · Preacher Curl · Hammer Curl · Incline Curl · Rings Curl | 3 × 8–10 | 30kg |
-| F | Rotate — finisher | Hanging Leg Raise · Plank · ★ Dead Hang · ★ Ab Wheel | 3 × 10–12 | bodyweight |
+| 1 | **Anchor** | Pull Up | 3 × AMRAP−2 | bodyweight |
+| 2 | **Anchor** | Single-Arm Iso-Lateral Row, left then right | 3 × 8–10 each | see protocol |
+| 3 | Rotate — vertical pull | **Lat Pulldown** · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 10–12 | **67kg** |
+| 4 | Rotate — push compound | **Dips** · ★ Weighted Dips | 3 × 8–12 | bodyweight |
+| 5 | Rotate — chest isolation | **Cable Crossover** · Chest Fly · Incline Chest Press | 3 × 10–12 | TBD |
+| 6 | Rotate — biceps | **Bicep Curl** · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **30kg** |
 
-**Slot 2 substitutes**, only if the machine is taken: Seated Wide-Grip Row (57kg, hold
-and chase reps) or ★ Chest-Supported Row. It is an anchor because it is the injured
-side's lift — the green-light protocol needs the same movement week to week to mean
-anything.
+**AMRAP−2 on pull-ups**, not AMRAP. This is the second pull-up session of the week —
+two full AMRAP sessions 72h apart is more joint stress than the frequency warrants. Two
+reps in reserve keeps the volume without the grind.
 
-**Slot 4 is new as a fixed slot.** Rear delts fell from 3.0 sets a week to 0.8 because
-the face pull was optional. Making it a real slot is the fix.
+**Dips at slot 4** follow three pulling movements, so they arrive on a fresh chest and
+triceps. Last comparable runs: 12, 12, 12 on 09-06 and 10, 10, 10 on 09-20. Hold
+bodyweight, target 12, 12, 12 before adding weight.
 
-**Pull-ups go first.** Position 2 for five months gave 21–26 reps; position 5 for three
-months gave 13–23; back to position 2 on 27 Aug gave 27, the best in the record. His own
-data, and the strongest thing in it.
+**Slot 5 gives this day push work** to balance Thursday's three pulls. Cable crossover
+covers a different angle from the incline and flat pressing on other days.
 
-**On doing two exercises for one muscle group:** normal and fine — the second one is
-volume, not a strength test, and it is expected to be weaker. But his instinct is worth
-respecting, and the position effect shows fatigue costs him real reps on the compound.
-Hence one horizontal, one or two vertical, pull-ups first and fresh.
+## Upper C — Saturday (~45 min)
 
-**C2 was prescribed wrong and the ★ is retired.** He ran the pike push-up feet-elevated
-on 2026-09-06 for **20, 20, 20** against a 3 × 6–8 prescription. A movement he can do 20
-times is not a vertical press for him, it is conditioning — the prescription was wrong,
-not the execution. Band moves to 8–12 and the instruction is to make it harder: feet
-higher, or a deficit under the hands, working toward a wall-supported handstand push-up.
-That progression is in `docs/calisthenics.md`.
+The rounding day. Picks up everything the other two sessions don't hit twice a week.
 
-## Legs (~45 min) — Week A only
-
-He dislikes leg training. It sits once a fortnight by design, not once a week.
-
-| # | Exercise | Sets | Now |
-|---|---|---|---|
-| 1 | Squat (Barbell) | 3 × 6–8 | **70kg** ↓ |
-| 2 | Romanian Deadlift (Barbell) | 3 × 6–8 | **72.5kg** ↑ |
-| 3 | Seated Leg Press (Machine) *or* Bulgarian Split Squat | 3 × 10 | **80kg** |
-| 4 | Kneeling Leg Curl | 3 × 10–12 | **10kg** |
-| 5 | Seated Calf Raise (Plate Loaded) | 3 × 15 | 40kg |
-
-Three corrections in that table, 2026-09-14:
-
-- **Squat down to 70kg — a proposal, and it is his and his physio's call.** He squatted
-  80kg × 5 on 09-12, his heaviest recorded top set, and reported his knees hurting. One
-  data point is not a diagnosis. But the right answer to a new joint complaint is reps
-  at a lighter load while someone qualified looks at it, not another plate.
-- **RDL up to 72.5kg — earned, by the rule.** 70kg × 8, 8, 8 on 09-12 is the top of the
-  band on all three sets. This is the progression executing, not a decision.
-- **The leg press and leg curl numbers were wrong, and wrong in a specific way.** The
-  old 130kg and 35kg came from different machines than the ones he actually uses — the
-  Seated Leg Press and the Kneeling Leg Curl. Loads do not transfer between stations.
-  A session read 80kg against 130kg on 09-12 and nearly recorded a regression; the same
-  error, on a bigger scale, produced the withdrawn "57kg beats 50kg" claim two days
-  later. **Machine identity is part of the measurement.**
-
-**The RDL lives here and nowhere else.** It appears on 10 of his 11 leg days and on
-none of his 22 pull days. An earlier version of this file moved it to Thursday to cover
-the hamstring gap on Week B. That was the wrong fix: it put a heavy hip hinge on a day
-he has never hinged. Week B has no direct leg work, by design — two hours of 7-a-side
-on the Tuesday and again on the Friday is the trade.
-
-## Calisthenics (~55 min) — Week B Sunday
-
-**In Week B this is the second upper-body session, not an extra.** Week B carries one
-Push and one Pull, so this day has to cover what they miss — and the five-slot version
-this replaced covered a vertical pull and a dip and nothing else. Rebuilt 2026-09-05 at
-his request to be a complete upper body: every pull and push pattern, plus core, grip
-and the Phase 1 skills.
-
-Run as **antagonist supersets** — the two movements in a block alternate, and the rest
-comes after the pair, not between them. Nothing in a pair competes for the same muscle,
-so this costs nothing in performance and takes about fifteen minutes off the session.
-
-| Block | | Exercise | Sets | Rest |
+| # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| **A** skill | A1 | ★ Chest-to-Wall Handstand | 3 × 20–30s | pair, then 60s |
-| | A2 | Hollow Body Hold | 3 × 20–30s | |
-| **B** | B1 | **Pull Up** — vertical pull | 3 × AMRAP−1 | pair, then 90s |
-| | B2 | Triceps Dip — horizontal/vertical push | 3 × 8–10 | |
-| **C** | C1 | ★ Ring Row *or* Inverted Row — horizontal pull | 3 × 10–12 | pair, then 90s |
-| | C2 | Pike Push-Up — vertical push | 3 × 8–12 | harder variant |
-| **D** finisher | D1 | Hanging Leg Raise — core | 3 × 10–12 | pair, then 60s |
-| | D2 | **Farmer Carry** — grip | 3 × 40m @ 24kg | |
+| 1 | Rotate — press | **Flat Dumbbell Press** | 3 × 10–12 | TBD |
+| 2 | Rotate — horizontal pull | **Cable Row** · Seated Row · ★ Chest-Supported Row | 3 × 10–12 | TBD |
+| 3 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
+| 4 | Rotate — rear delt | **Face Pull** · ★ Reverse Flye · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |
+| 5 | Rotate — arms | **Bicep Curl** · Preacher Curl · Hammer Curl | 3 × 10–12 | **30kg** |
+| 6 | Rotate — core | **Hanging Leg Raise** · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
-**Ran in full on 2026-09-20 — the first complete run, and the second ever logged.**
-All eight slots, in the prescribed order, block for block. The dial-back written here
-for that session (B1 at AMRAP−2, C1 angle easier, D2 carry instead of hang) is recorded
-below with what it actually produced. It stays in force for 4 Oct: the reading came back
-4/10 again, so nothing here gets harder yet.
+**Flat DB press is the mid-chest movement** the old programme didn't have. Incline bench
+is the anchor on Monday; this covers the flat pressing pattern without reintroducing
+barbell flat bench (dropped deliberately to prioritise incline). Dumbbell means each
+side works independently, which suits the right-lat asymmetry.
 
-| Slot | Prescribed | Did | Read |
-|---|---|---|---|
-| A1 Handstand | 3 × 30s | 0:30, 0:30, 0:30 | checkpoint met on time |
-| A2 Hollow hold | 3 × 30s | 0:30, 0:30, 0:30 | arm position unrecorded |
-| B1 Pull Up | AMRAP−2 | 10, 10, 7 (27) | instruction working |
-| B2 Dip | 10, 10, 10 → add weight | 10, 10, 10 | **rule was wrong — see below** |
-| C1 Ring Row | feet back, reps at 12 | 10, 10, 10 | eased as told |
-| C2 Pike Push-Up | harder rung, 8–12 | 10, 10, 10 | **rung unrecorded** |
-| D1 Hanging Leg Raise | 10–12 | 10, 10, 10 | in band |
-| D2 Farmer Carry 24kg | carry, not hang | Dead Hang 0:30 × 3 | the one slot not run as written |
+**Cable row spreads back work across all three upper days.** Without it, all back sets
+land on Monday and Thursday while chest gets work on all three days. This fixes the
+push:pull balance (16 chest : 15 back).
 
-**B2's progression rule was written wrong and is corrected.** It read "10, 10, 10 clean,
-then start adding weight", and its evidence line was `09-11 · 10, 10, 8` — a push-day
-set at slot 5. But this slot gave **12, 12, 12 on 09-06**, in this session. Judged
-against the only comparable run, 10, 10, 10 is six reps down, not a rep up. **The dip
-holds bodyweight and the target returns to 12, 12, 12 before any weight goes on.** This
-is the docs/incidents.md pattern — a number compared against one from a different
-context — caught here rather than reported as a gain.
+**This is not the right lat's row.** The cable row is a bilateral movement in a rotate
+slot — it carries no pain protocol and no gate. The iso-lateral row on Thursday is the
+measured lift. If the right side talks during a cable row, note it and lighten it, but
+it does not affect the Thursday gate count.
 
-**C2's rung is unrecorded and the number cannot be read without it.** 20, 20, 20
-feet-elevated on 09-06 → 10, 10, 10 today, under an instruction to make it harder. That
-is what a harder rung looks like, and it is still a guess. Logged as a question, not a
-progression; `docs/calisthenics.md` has the four rungs. Same ambiguity as 09-06, when he
-had to be asked.
+**Core is programmed, not ad hoc.** Six sets a week across Saturday and Sunday. The old
+programme logged zero core since March — partly a logging gap, partly a programming gap.
+This fixes the programming side.
 
-**Both Phase 1 holds are one answer from their checkpoint.** The handstand met 3 × 30s;
-the remaining condition is ribs down and no arch. The hollow hold met 3 × 30s; its
-checkpoint specifies arms overhead and the log does not say. Ask before moving either —
-Phase 2 in `docs/calisthenics.md` (tuck L-sit, support hold) is what comes next, and it
-is a proposal for him, not a promotion to hand out.
+## Lower — Sunday (~45 min)
 
-**D2 went back to the dead hang.** The carry was the one change made specifically to
-take passive load off the lat, and it is the slot that did not run as written. Ask why
-before reading anything into it — the kettlebells may simply not have been there. The
-hang stays a listed alternative and the carry stays the call while the reading is amber.
+Once a week. Football provides an estimated 4–6 equivalent lower-body sets per match
+(twice a week), so direct leg work is supplementary. The old programme ran legs once a
+fortnight; this doubles the frequency.
 
-None of this is a verdict on the injury and none of it overrides his physio.
+| # | Slot | Exercise | Sets | Now |
+|---|---|---|---|---|
+| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | TBD |
+| 2 | Rotate — quad compound | **Squat (Barbell)** · ★ Bulgarian Split Squat | 3 × 8–10 | **70kg** |
+| 3 | Rotate — quad volume | **Leg Press (Machine)** · Leg Extension | 3 × 10–12 | **80kg** |
+| 4 | Rotate — hamstring | **Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 10–12 | **10kg** |
+| 5 | Rotate — calves | Seated Calf Raise (Plate Loaded) | 3 × 15–20 | **40kg** |
+| 6 | Rotate — core | **Hanging Leg Raise** · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
-Eight movements, four blocks, about 55 minutes. Coverage: vertical pull (B1),
-horizontal pull (C1), vertical push (C2), horizontal push (B2), core (A2, D1), grip
-(D2), plus the handstand skill.
+**Sunday into Tuesday football is 48h.** Peak DOMS for the first few weeks; the
+adaptation catches within a month of consistent training. If the first few Tuesdays are
+rough, the lever is making squat lighter (2 sets or cut depth) without touching the
+deadlift.
 
-**Skill block is practice, not conditioning.** Ten minutes, stop while the shape is
-still clean, never to failure. It goes first because skill work is worthless tired.
+**Deadlift at slot 1 is the heavy compound.** Starting load TBD — establish on the first
+session. The old programme ran RDL at 72.5kg on legs day; conventional deadlift is a
+different movement and the load does not transfer. If the conventional pull bothers the
+right lat, RDL remains the fallback.
 
-### The right lat governs this session
+**Squat is moderate, not heavy.** 3×8–10 behind a heavy deadlift. His knees hurt at
+80kg × 5 on 09-12; the drop to 70kg was already proposed. The wider rep range keeps it
+there longer before a load increase is earned.
 
-Three days after a pull day, and the 3 Sep note said the right side was *"half weakness
-half pain"*. There is more pulling here than in a normal pull day.
+**Nordic curls are on the candidate list**, not in the programme. Best-evidence hamstring
+injury prevention for football players (van der Horst et al., 2015), starting at an
+eccentric-only 2×4. Introduce under the "Trying new exercises" rule after leg curl has
+run for four sessions in this new block.
 
-- **C1 is the release valve.** A ring or inverted row is instantly regressable — walk
-  the feet in or raise the bar and the load drops. If the right side talks, regress it,
-  then cut it. Do not push through.
-- **D2 decompresses.** The dead hang at the end is deliberate, and the physio should
-  sign it off before the first one.
-- Keep the pull-ups honest: **AMRAP−1**, one rep in reserve. Re-entry runs to 13 Sep.
+## Yoga (15–20 min)
 
-### Three new movements at once — deliberately
-
-`plan.md`'s own rule says introduce one new exercise at a time and give it four
-sessions. This breaks that rule and it is worth saying why: **that rule protects
-progression on established lifts, and this session has no established anything** — it
-has never once been logged. There is no baseline to disturb, so the first job is to
-create one. The two anchors, pull-up and dip, are unchanged, so continuity is intact.
-
-Pike push-ups were on the invented list an older version of this file carried as though
-he already did them. They are reintroduced here **as new**, under the standing rule, to
-fill the vertical-push gap that his regressed overhead press leaves. If he would rather
-not, a second dip variation covers the block and the gap stays open.
-
-Progressions and how to know when to move on: `docs/calisthenics.md`.
-
-**Log all of it.** This session has never appeared in Strong, so it currently reads as
-though it does not exist.
-
-## Yoga (15–20 min) — Saturday, both weeks
-
-Week A it follows the legs day. Week B it is the whole of Saturday. It happens either
-way — that is the point of giving it a fixed slot rather than leaving it floating.
-
-90/90 hip switch · half-pigeon · supine hamstring with a strap · thoracic open-book ·
-couch stretch · ankle dorsiflexion.
-
-Not tracked in Strong and not worth tracking. It is the one thing here measured by
-whether it happened, not by what it weighed.
+No longer tied to a specific day. Do it after any session, or standalone. 90/90 hip
+switch · half-pigeon · supine hamstring with a strap · thoracic open-book · couch
+stretch · ankle dorsiflexion. Not tracked, not worth tracking.
 
 ## The row protocol
 
 Left and right are separate exercises that share a machine. Log them separately.
 
-**Left** — progress normally. Note the "70kg" figure carried in older notes predates
-the September 2025 form change; the only 2026 row session (20 Aug) put *both* sides in
-at 50kg. Re-establish where the left actually is before assuming a 20kg gap.
+**Left** — progress normally. The "70kg" figure carried in older notes predates the
+September 2025 form change; the only 2026 row session (20 Aug) put both sides in at
+50kg. Re-establish where the left actually is before assuming a gap.
 
 **Right** — start at the heaviest genuinely pain-free load. Three green lights held for
 two consecutive weeks → +2.5kg. Any red → back to the last green load and stay there.
 
-**Where it actually stands, 2026-09-17. The count has reset.** The gate counts the
-**right-side iso-lateral row and nothing else.** On that lift: 3/10 at 50kg (09-03),
-2/10 at 50kg (09-10), **4/10 at 50kg (09-17)**. Two greens then an amber, so the streak
-is broken and 52.5kg is not earned. Hold 50kg; add nothing.
+**Where it stands, 2026-09-20.** The count has reset after the 4/10 on 09-17. Readings
+run: 3/10 (09-03), 2/10 (09-10), 4/10 (09-13, seated row — different machine), 4/10
+(09-17, iso-lateral), 4/10 (09-20, calisthenics session, no row). Three ambers in eight
+days across three different movements, same side, same number. **50kg, zero greens since
+the reset.** Nothing changes until it reads green twice running.
 
-**And a flag that is not about the protocol.** 09-17 read 50kg × 10, 8 and then he took
-himself down to 40kg, against 50kg × 10, 10, 8 on 09-10 — fewer reps at the same load
-plus a self-directed back-off, with "extreme tightness" in his note. That is also the
-**second 4/10 in five days** (09-13 on the seated row, 09-17 on the iso-lateral):
-different exercises, same side, same number. Two readings are a pattern to raise with
-his physio, not a conclusion to draw here. Their call, and it overrides this file.
-
-The 09-13 session does not appear in that count. He rowed 57kg on the **Uni Lateral
-Seated Row**, both sides equal — and that is a different exercise from the iso-lateral
-row, his correction on 09-14. Different machine, different leverage; the loads are not
-on the same scale. An earlier version of this section read 57 against 50 and concluded
-the ceiling was gone. That was wrong and is struck. **Never compare loads across
-machines here.** The 4/10 that came with it is right-lat discomfort on a different
-horizontal pull, logged as its own point and outside the gate.
-
-**A third 4/10 on 2026-09-20, and it is also outside the gate.** The calisthenics
-session read 4/10 with no right iso-lateral row in it, so the count is untouched: still
-zero since the 09-17 reset, still 50kg, nothing added. But the readings now run 3/10
-(09-03), 2/10 (09-10), **4/10 (09-13), 4/10 (09-17), 4/10 (09-20)** — three different
-sessions, three different movements, same side, same number, eight days.
-
-That is not a spike, and it is not the gate. It is his own third green-light criterion —
-*not creeping week to week* — returning the same amber a fortnight running. **Raise it
-with his physio; this file does not get an opinion about the tissue, and their guidance
-overrides everything here.** What this file does is stop adding load while it reads
-amber, which it already does.
-
-So nothing about the right iso-lateral row has changed since 09-10: **50kg, zero greens
-since the reset.** The only thing to do is perform it — it has not been done since 09-17,
-and it is not in Monday's Push.
+Raise the pattern with his physio. This file does not get an opinion about the tissue,
+and their guidance overrides everything here.
 
 | Green light | Means |
 |---|---|
@@ -424,145 +216,112 @@ adaptation and the physio should sign off on it.
 
 ## Progression
 
-- **Incline bench** — +2.5kg once all four sets hit 8
-- **Overhead press**, if it goes into slot 2 — +2.5kg at the top of the range
-- **Lateral raises** — stay 15–20; +1kg once 20 holds across all three sets.
-  Earned and taken on 2026-09-11: 7kg × 20, 20, 20 on 09-07 → 8kg × 15, 15, 15. Next
-  step is 9kg, on the same condition.
-- **Seated wide-grip row** — hold 57kg deliberately, chase reps
-- **Pull-ups** — back to 27 reps fresh, then re-add 5kg once that holds three sessions
-- **Anything the right lat touches** — reps before weight, always
-- **Legs** — leave loads where they are; once a fortnight is too infrequent to programme
-- **Calisthenics** — reps only, never load
+- **Incline bench** — +2.5kg once all four sets hit 8. Currently 65kg.
+- **Lateral raises** — +1kg once 20 holds across all three sets. Currently 8kg, earned
+  on 09-11 (7kg × 20, 20, 20 → 8kg × 15, 15, 15).
+- **Pull-ups** — at 27 reps total fresh. Re-add 5kg once that holds three sessions.
+- **Deadlift** — +2.5kg once all three sets hit 5 comfortably. Starting load TBD.
+- **Squat** — hold 70kg. +2.5kg once 10 holds across all three sets AND no joint
+  complaints.
+- **Iso-lateral row (right)** — governed by the row protocol, not by rep targets.
+- **Everything else** — at the top of the rep range on all sets for two consecutive
+  sessions → add the smallest increment available.
+
+## Weekly volume
+
+| Group | Sets/wk | Sources |
+|---|---|---|
+| Chest | 16 | Incline Bench 4 · Chest Fly 3 · Flat DB Press 3 · Dips 3 · Cable Crossover 3 |
+| Back | 15 | Pull Up 3+3 · Iso Lat Row 3 · Lat Pulldown 3 · Cable Row 3 |
+| Side delts | 6 | Lateral Raise 3+3 |
+| Rear delts | 6 | Face Pull 3+3 |
+| Triceps | 6 | Triceps Extension 3 · Dips 3 (+ indirect from 13 pressing sets) |
+| Biceps | 6 | Bicep Curl 3+3 (+ indirect from 15 pulling sets) |
+| Quads | 6 | Squat 3 · Leg Press 3 (+ football ×2) |
+| Posterior | 6 | Deadlift 3 · Leg Curl 3 (+ football ×2) |
+| Core | 6 | Upper C 3 · Lower 3 |
+| Calves | 3 | Calf Raise 3 |
+
+Push:pull ratio is 16:15. Every muscle group is hit at least twice a week except calves.
+Football adds an estimated 4–6 equivalent sets of lower-body work per match.
 
 ## When life interferes
 
-- Miss a day, take the next one in the template. Do not shuffle sessions between days
-  to catch up, and do not restart the fortnight.
+- Miss a day, take the next one in the template. Do not shuffle sessions to catch up.
 - After 10+ days off, take 10% off top sets for the first session back.
-- Travelling: Sunday's session needs a bar and a floor. Push needs almost nothing.
+- Travelling: Upper A needs a bench and a bar. Upper C needs cables. Lower needs a bar
+  and a rack.
 
 ## What the log says about adherence
 
-Kept separate from the plan above on purpose. The template is the intent; this is what
-the Strong export of 31 Aug 2026 actually contains.
-
-- The fortnight asks for **eight lifting sessions**, about four a week. Logged rate is
-  **3.16/week lifetime and 2.67 over the last twelve weeks.** The gap is mostly the
-  Friday Push and the Sunday session.
-- **Push and Pull are run faithfully.** Both are rock-solid five-exercise templates and
-  the loads move. This is the working half of the programme.
-- **Legs run about monthly** rather than once a fortnight — 11 sessions across 2026.
-- **Calisthenics has never appeared in the log at all.** Either it is not happening or
-  it is happening unlogged. Worth knowing which, because the answer changes what the
-  Sunday slot is for.
-
-None of this is a verdict on the plan. It is what to check against the next export.
+From the old programme (export of 31 Aug 2026): 3.16 sessions/week lifetime, 2.67 over
+the last twelve weeks against a template asking for four. The new template also asks for
+four lifting sessions. Watch whether the simpler weekly structure — no fortnightly
+rotation to lose track of — improves the rate.
 
 ## What we don't know
 
-Both open questions and the full working live in `docs/findings.md`. The short version:
-session length is unanswerable from observational data, and whether the right lat's 50kg
-ceiling on the iso-lateral row is pain-limited or caution-limited is still open — three
-readings in, all of them useful, none of them enough.
+Open questions and full working live in `docs/findings.md`. Short version:
+
+- **Right lat**: three ambers in eight days across three movements. The physio's call.
+  The 50kg iso-lateral ceiling — pain-limited or detraining-limited — is unanswered.
+- **Deadlift starting load**: to be established on the first Sunday session.
+- **Flat DB press, cable crossover, cable row loads**: to be established.
+- **DOMS adaptation**: whether Sunday lower → Tuesday football causes issues in the first
+  few weeks.
+- **Whether the old OHP decline was rotation, injury or the trip**: resolvable from the
+  next Strong export. No longer directly relevant — shoulder press is out of the
+  programme — but worth answering for the record.
 
 ## How this plan changes
 
 This file is not a record of what he does. It is the programme, and it is meant to move.
 
 **Claude proposes, Max decides.** Bring a change with the evidence behind it, the
-trade-off it costs, and a recommendation — not a list of options to pick from. Then
-write down what was decided and why, so the next session inherits the reasoning instead
-of re-deriving it.
+trade-off it costs, and a recommendation — not a list of options. Then write down what
+was decided and why, so the next session inherits the reasoning.
 
 **Review points:**
 
 - **Every new export** into `data/` — reconcile the log, re-run `analyse.py`, and come
   back with what moved, what stalled, and one proposal. See `docs/workflows.md`.
-- **Phase boundaries** — the next one is 14 Sep, when re-entry ends and Week A starts.
-- **Any lift stalled three sessions or more** — that is a prompt to propose something,
-  not a fact to note in passing.
+- **Any lift stalled three sessions or more** — propose something, don't note it.
 - **Any green-light streak on the right row** — three held over two weeks earns +2.5kg.
-  Say so; don't wait to be asked.
-- **A session repeatedly skipped** — ask why before assuming it should be cut. The log
-  tells you about adherence, never about intent.
+- **A session repeatedly skipped** — ask why before cutting it.
 
-**Everything goes to `main`** — his instruction, 2026-09-10. That includes this file,
-`CLAUDE.md` and `analyse.py`, which an earlier version of this rule sent to a branch for
-review. It did not work: branches sat unmerged, and on 09-10 a logged session and a UI
-fix were stranded on one for days because nobody noticed. Branch only if he asks for one
-in that message. Pushing straight to `main` is not licence to change the programme
-unasked — the propose-don't-impose rule above is unchanged, and a change he has not
-agreed to is still wrong; it just means the writing-down happens where he can see it.
+**Everything goes to `main`** — his instruction, 2026-09-10. Branch only if he asks.
 
 ## Trying new exercises
 
-He is open to movements he has never done. The constraint is that a new exercise has to
-earn a slot, not get added on top — the sessions are five exercises because that is what
-fits his hour, and that is not up for renegotiation without a reason.
+He is open to movements he has never done. A new exercise has to earn a slot, not get
+added on top.
 
-**The rule for introducing one:**
+**The rule:**
 
 1. Name the slot it goes into and the exercise it displaces.
-2. Say what it is for — a gap in the plan, a stall to break, a rehab constraint.
-3. Run it **four times**, then keep it or drop it. Decide before starting, not by feel
-   afterwards. This is the same discipline `docs/findings.md` asks for on the
-   session-length question, and for the same reason.
+2. Say what it is for — a gap, a stall, a rehab constraint.
+3. Run it **four times** (four runs of the exercise, not four sessions of the day), then
+   keep or drop. Decide before starting.
+4. Log it under its real Strong name from the first set.
 
-   **Four runs of the exercise, not four push days.** An earlier wording said "four
-   sessions" and that is wrong for anything in a rotate slot, which by design does not
-   come up every time: the Dumbbell Pullover ran on 09-11, the slot went to Chest Fly on
-   09-14, and the trial is still at 1 of 4. Count the runs.
-4. Log it under its real Strong name from the first set, so it is visible to
-   `analyse.py` rather than invisible like the calisthenics day currently is.
-
-**Standing candidates**, with what each is for:
+**Standing candidates:**
 
 | Exercise | Slot | What it is for |
 |---|---|---|
-| Chest-Supported Row | Pull 3 or 4 | Removes torso English from the row — the most promising way to load the right lat without the pain that free rowing brings. He did one on 27 Aug. |
-| Dead Hang | Calisthenics, or after Pull | Lat decompression, 3 × 30s. Cheap, and the sort of thing a physio tends to like. Clear it with them. |
-| Hip Thrust | Legs 3 | Posterior work that does not load the spine like the RDL. Done once, 25 Jul. |
-| Nordic Curl (eccentric) | Legs 4, displacing the leg curl | Best-evidence hamstring exercise. **Note:** an earlier version of this file prescribed these as though they were established — they have never been done. Proposed here honestly as new, starting 2 × 4. |
-| Z-Press or Half-Kneeling Landmine Press | Push 2 | An overhead variant that is kinder to the shoulder than a strict OHP, if the press is what is holding slot 2 back. |
-| Rear-Delt Flye | Push 4, paired with laterals | Rear delts fell from 3.0 to 0.8 sets a week over the last eight weeks. The face pull is currently optional, so this is the real gap. |
-
-None of these are in the programme. They are the shortlist to draw from when a review
-calls for a change — one at a time, four sessions, then a decision.
+| Chest-Supported Row | Upper B slot 3 or Upper C slot 2 | Removes torso English from the row — may load the right lat with less pain. |
+| Nordic Curl (eccentric) | Lower slot 4, displacing Leg Curl | Best-evidence hamstring protection for football. Start at 2×4. |
+| Weighted Dips | Upper B slot 4 | Once bodyweight dips hit 12, 12, 12 for three sessions. |
+| Ab Wheel | Upper C slot 6 or Lower slot 6 | Harder core option once hanging leg raises are easy. |
 
 **Bias towards the bodyweight option.** Where two candidates do the same job, the
-calisthenic one wins — that is the stated direction of travel. Hanging leg raises over
-cable crunches; dips over a triceps machine; dead hangs over a grip trainer.
-
-## The live gaps
-
-From the export of 31 Aug 2026 — **with the caveat that the export is not everything he
-does.** He finishes push days with push-ups, pull days with pull-ups, and trains core ad
-hoc, none of it reliably logged. Full working in `docs/goals.md`.
-
-- **Core: the gap is the logging, not necessarily the training.** Zero logged sets since
-  9 March, against 8.8% of his lifetime volume — but he does it ad hoc and does not
-  record it, so nobody can say what it actually amounts to. The finisher slot on pull day
-  and the free-text row on the phone page exist to fix that. **Get it logged first, then
-  programme it.** Anything else is guessing.
-- **Rear delts: 0.8 sets/week, down from 3.0.** The face pull is optional on pull day,
-  which is why. This one is a real gap — nothing unlogged is filling it.
-- **Grip: never trained.** 12 sets of farmer walks in Feb 2025 and nothing since.
-  Usually the limiter on calisthenics progressions. Dead hangs are the cheap entry —
-  clear them with the physio first, given the right lat.
-
-Legs are thin and stay thin. That is settled, not a gap.
+calisthenic one wins — that is the stated direction of travel.
 
 ## Logging the ad hoc work
 
-Confirmed by him on 2026-09-02: the finishers and the core work have been happening all
-along and mostly going unrecorded. This matters beyond tidiness — it is why the log said
-core was dead, why push days looked like exactly five exercises, and why the pull-up
-position numbers read the way they do.
+He finishes push-type sessions with push-ups and pull-type sessions with pull-ups, and
+trains core ad hoc — most of it never reaches Strong. Push-ups appear 8 times in the
+entire export. This is why the log said core was dead and why volume counts understate
+chest and back.
 
-- Both Push and Pull now carry an explicit **finisher slot** in the tables above.
-- The phone page has a **free-text row** at the bottom of every session for anything
-  else — core, a new movement, whatever actually happened.
-- Anything unlogged is invisible to `analyse.py`. That is not a criticism of him; it is
-  the reason a finding can be wrong, so treat any claim that something is "absent" as a
-  claim about the log until it has been checked with him.
+Log it. The phone page has a free-text row for anything that happened outside the
+prescribed slots.

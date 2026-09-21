@@ -71,11 +71,11 @@ entries queue up and are drained on request; a screenshot you handle now.
    unmerged and stranded a session for days). Branch only if he asks in that message.
 3. **Re-prescribe the NEXT session, then republish.** Not optional, and not only when
    something changed. Two passes: update the slots this session touched, then **work out
-   what the template says he trains next — Push, Pull, Legs or Calisthenics — and make
+   what the template says he trains next — Upper A, Upper B, Upper C or Lower — and make
    that whole session current**, because it is the one he opens at the gym (his
-   instruction, 2026-09-17). A pull day that ends with a bad pain reading should change
-   the calisthenics day that follows it; that is the whole point. Bump `RX_ASOF` and
-   publish. **The page is static HTML — the prescriptions only move when you move them.**
+   instruction, 2026-09-17). An Upper B that ends with a bad pain reading should change
+   the Upper C that follows it; that is the whole point. Bump `RX_ASOF` and publish.
+   **The page is static HTML — the prescriptions only move when you move them.**
    Procedure in `docs/workflows.md`.
 4. **Reply in two sentences**, flagging only what earns it: right-side row load and
    whether he noted pain, whether pull-ups were first on pull day, a lift that moved up
@@ -97,24 +97,22 @@ publishing over it.**
 
 ## Settled — do not relitigate
 
-- **The two-week template is his**, given 2026-09-02 and written out in `plan.md`.
-  Week A: Push / Football / Rest / Pull / Push / Legs+yoga / Pull.
-  Week B: Push / Football / Rest / Pull / Football / yoga / Calisthenics.
-  Don't redesign it. Don't infer it from the log.
+- **The weekly template is his**, redesigned 2026-09-21 and written out in `plan.md`.
+  Mon Upper A / Tue Football / Wed Rest / Thu Upper B / Fri Football / Sat Upper C /
+  Sun Lower. Don't redesign it. Don't infer it from the log.
 - **The log tells you about adherence, never about intent.** Absence from the export is
   a question to ask him, not a licence to cut a session.
 - **The export is not the whole truth.** He does ad hoc finishers and core without
   logging them — push-ups appear 8 times in two years. Before calling anything absent
   from his *training*, check whether it's merely absent from the *log*, then ask.
-- **He dislikes leg training.** Once a fortnight, Week A only, about monthly in practice.
-  Never push it, never guilt him, never offer "just a short one". Week B has no direct
-  leg work by design — that's the accepted trade, not a gap to fill by smuggling a leg
-  lift onto another day.
-- **Wednesday is protected rest.** Late food after Tuesday football. Nothing goes there.
-- **Football is fixed** — Tuesday evening, sometimes Friday, 2h of 7-a-side. Schedule
-  under it, never around it.
-- **The RDL lives on the legs day** and nowhere else. **Push ends on triceps**, 23 of 23.
-  **Flat bench was dropped** deliberately to prioritise incline; it stands.
+- **He dislikes leg training.** Once a week on Sunday, historically about monthly.
+  Never push for more, never guilt him.
+- **Football is fixed** — Tuesday and Friday, 2h of 7-a-side. Schedule under it, never
+  around it. Wednesday rest sits between football and Upper B.
+- **No shoulder press in the programme** — personal trainer recommendation (shoulder
+  burnout after heavy incline bench). The slot goes to rear delts. Don't reintroduce it.
+- **Flat barbell bench was dropped** deliberately to prioritise incline; flat DB press
+  covers the mid-chest pattern instead.
 - **Right lat injury since June 2026**, under physiotherapy care. He declined imaging.
   **Their guidance overrides anything in this repo.** The old "left 70kg / right 50kg"
   split is not established by any 2026 data — treat the gap as unmeasured until he logs
