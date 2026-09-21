@@ -46,13 +46,15 @@ question. He is open to movements he has never done, provided they earn a slot �
 
 ## Every session
 
-- **Read:** this file, `plan.md`, tail of `log.md`. Nothing else by default.
-- **Programming mode: also `docs/goals.md`.** You can't propose a change without it.
+- **Logging mode:** read this file and `state.json`. That is the whole briefing — do not
+  read `plan.md`, `index.html` or the full `log.md` unless you need to programme.
+- **Programming mode: also `plan.md`, `docs/goals.md`, tail of `log.md`.**
 - **Never read `data/*.csv`** — ~7,500 rows. Reach it only through `analyse.py`, monthly,
   when a new export lands.
 - Baseline numbers are in the comment at the foot of `log.md`. Don't re-derive them.
-- If `inbox/` holds anything, append it to `log.md` and delete it in the same commit,
-  before anything else. It is empty at rest.
+- If `inbox/` holds anything, run `python3 drain.py` — it transcribes to `log.md` and
+  updates `state.json`. Read the stdout summary, then commit `log.md` + `state.json`,
+  delete the inbox file(s), and push. Re-prescribing is still your job (step 3 below).
 
 He starts a fresh task per workout so no thread has to re-read itself. Keep it cheap.
 
@@ -62,9 +64,9 @@ He drops a Strong screenshot into the chat, or logs the session in the phone pag
 page saves sessions as JSON files to `inbox/` via the GitHub API — a screenshot you
 handle now, an inbox file you drain when you next see it.
 
-1. **Transcribe** into `log.md` — the format is at the top of that file. Newest at the
-   bottom, exercises in performed order. Mark anything unreadable `?` rather than
-   guessing; the monthly CSV export is the fix.
+1. **Transcribe** into `log.md`. If the session came from `inbox/`, run `python3 drain.py`
+   — it handles the formatting. For a screenshot, transcribe manually (format is at the
+   top of `log.md`). Mark anything unreadable `?` rather than guessing.
 2. **Commit and push to `main`**, one commit, subject `log: YYYY-MM-DD <session name>`.
    Push *before* you reply — he has no way to do it afterwards. **Everything goes to
    `main`**, `plan.md` and this file included (his instruction, 2026-09-10; branches sat
@@ -153,9 +155,11 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `docs/findings.md` | What the data supports, what it doesn't, what's open. |
 | `docs/incidents.md` | Past mistakes and the rules that came out of them. |
 | `docs/calisthenics.md` | The beginner skill route. On demand. |
+| `drain.py` | Transcribes inbox JSON → `log.md`, updates `state.json`. Run it, don't hand-parse. |
+| `state.json` | Compact briefing: last session, next session, all slot prescriptions, row protocol. Read this instead of `plan.md` + `index.html` in logging mode. |
 | `analyse.py` | Full analysis of a Strong export. Monthly, not per session. |
 | `data/` | Strong CSV exports. Never read directly. |
-| `inbox/` | Sessions saved from the phone page (JSON). Drain into `log.md`, then delete. Empty at rest. |
+| `inbox/` | Sessions saved from the phone page (JSON). Drain with `python3 drain.py`, then delete. Empty at rest. |
 | `index.html` | The phone page, served by GitHub Pages. Prescriptions live in the `RX` object. |
 | `ui/matchday.html` | Old artifact-hosted page. Superseded by `index.html`. |
 | `README.md` | Orientation for a human landing on the repo. Not for you. |

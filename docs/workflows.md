@@ -18,14 +18,13 @@ draining. The page's Import tab can also parse pasted Strong text and save to `i
 
 ### Draining procedure
 
-1. **Check `inbox/` for JSON files.** `ls inbox/` or `git ls-files inbox/`. If empty,
-   nothing to drain.
-2. **Read each file**, transcribe into `log.md` in the standard format (newest at the
-   bottom, exercises in performed order). The JSON fields map directly: `name`, `weight`
-   (or `weightL`/`weightR` for bilateral), `sets[].reps`, `pain.right_lat`, `notes`,
-   `extra`.
-3. **Delete the inbox files and commit in one go.** One commit, subject
-   `log: YYYY-MM-DD <session name>`. Push to `main`.
+1. **Run `python3 drain.py`.** It reads every JSON in `inbox/`, appends formatted entries
+   to `log.md`, updates `state.json`, and prints an editorial summary. If the inbox is
+   empty it says so and exits.
+2. **Read the stdout summary.** It tells you the session, pain reading, next session, and
+   any flags worth attention.
+3. **Commit `log.md` + `state.json`, delete the inbox files, push to `main`.** One commit,
+   subject `log: YYYY-MM-DD <session name>`.
 4. **Re-prescribe — required, every drain.** See below.
 
 ### Re-prescribing after a drain

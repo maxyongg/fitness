@@ -1,0 +1,337 @@
+{
+  "_generated": "2026-09-21T00:00:00",
+  "_by": "bootstrap",
+  "last_session": {
+    "date": "2026-09-21",
+    "type": "upper_a",
+    "name": "Upper A",
+    "exercise_count": 8,
+    "pain_right_lat": null,
+    "top_sets": [
+      {
+        "name": "Incline Bench Press (Barbell)",
+        "weight": 65,
+        "best_reps": 10,
+        "set_count": 5
+      },
+      {
+        "name": "Pull Up",
+        "weight": "BW",
+        "best_reps": 12,
+        "set_count": 4
+      },
+      {
+        "name": "Chest Fly",
+        "weight": 65,
+        "best_reps": 10,
+        "set_count": 3
+      },
+      {
+        "name": "Reverse Fly (Machine)",
+        "weight": 42.5,
+        "best_reps": 8,
+        "set_count": 3
+      },
+      {
+        "name": "Lateral Raise (Dumbbell)",
+        "weight": 8,
+        "best_reps": 15,
+        "set_count": 3
+      },
+      {
+        "name": "Pike Push Up",
+        "weight": "BW",
+        "best_reps": 12,
+        "set_count": 3
+      },
+      {
+        "name": "Triceps Dip",
+        "weight": "BW",
+        "best_reps": 10,
+        "set_count": 3
+      },
+      {
+        "name": "Hollow Body Hold",
+        "weight": "BW",
+        "best_reps": 0,
+        "set_count": 3
+      }
+    ]
+  },
+  "next_session": {
+    "type": "upper_b",
+    "name": "Upper B",
+    "expected_date": "2026-09-24"
+  },
+  "slots": {
+    "upper_a": [
+      {
+        "name": "Incline Bench Press (Barbell)",
+        "type": "anchor",
+        "sets": 4,
+        "reps": "5-8",
+        "load": 65,
+        "unit": "kg"
+      },
+      {
+        "name": "Pull Up",
+        "type": "anchor",
+        "sets": 3,
+        "reps": "AMRAP",
+        "load": 0,
+        "unit": "BW"
+      },
+      {
+        "name": "Chest Fly",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "10-12",
+        "load": 65,
+        "unit": "kg",
+        "alts": [
+          "Cable Crossover",
+          "Incline Chest Press"
+        ]
+      },
+      {
+        "name": "Face Pull",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "12-15",
+        "load": 17.5,
+        "unit": "kg",
+        "alts": [
+          "Reverse Flye",
+          "Bent-Over Rear-Delt Raise"
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "type": "anchor",
+        "sets": 3,
+        "reps": "15-20",
+        "load": 8,
+        "unit": "kg"
+      },
+      {
+        "name": "Triceps Extension",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "10-12",
+        "load": 17.5,
+        "unit": "kg",
+        "alts": [
+          "Skullcrusher"
+        ]
+      }
+    ],
+    "upper_b": [
+      {
+        "name": "Pull Up",
+        "type": "anchor",
+        "sets": 3,
+        "reps": "AMRAP-2",
+        "load": 0,
+        "unit": "BW"
+      },
+      {
+        "name": "Iso Lateral Row",
+        "type": "anchor",
+        "sets": 3,
+        "reps": "8-10",
+        "load": 0,
+        "unit": "kg",
+        "loadL": 60,
+        "loadR": 50
+      },
+      {
+        "name": "Lat Pulldown",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "10-12",
+        "load": 67,
+        "unit": "kg",
+        "alts": [
+          "Single-Arm Lat Pulldown",
+          "Underhand Pulldown"
+        ]
+      },
+      {
+        "name": "Dips",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "8-12",
+        "load": 0,
+        "unit": "BW",
+        "alts": [
+          "Weighted Dips"
+        ]
+      },
+      {
+        "name": "Cable Crossover",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "10-12",
+        "load": 0,
+        "unit": "kg",
+        "alts": [
+          "Chest Fly",
+          "Incline Chest Press"
+        ]
+      },
+      {
+        "name": "Bicep Curl",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "8-10",
+        "load": 30,
+        "unit": "kg",
+        "alts": [
+          "Preacher Curl",
+          "Hammer Curl",
+          "Incline Curl"
+        ]
+      }
+    ],
+    "upper_c": [
+      {
+        "name": "Flat Dumbbell Press",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "10-12",
+        "load": 0,
+        "unit": "kg"
+      },
+      {
+        "name": "Cable Row",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "10-12",
+        "load": 0,
+        "unit": "kg",
+        "alts": [
+          "Seated Row",
+          "Chest-Supported Row"
+        ]
+      },
+      {
+        "name": "Lateral Raise",
+        "type": "anchor",
+        "sets": 3,
+        "reps": "15-20",
+        "load": 8,
+        "unit": "kg"
+      },
+      {
+        "name": "Face Pull",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "12-15",
+        "load": 17.5,
+        "unit": "kg",
+        "alts": [
+          "Reverse Flye",
+          "Bent-Over Rear-Delt Raise"
+        ]
+      },
+      {
+        "name": "Bicep Curl",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "10-12",
+        "load": 30,
+        "unit": "kg",
+        "alts": [
+          "Preacher Curl",
+          "Hammer Curl"
+        ]
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "10-12",
+        "load": 0,
+        "unit": "BW",
+        "alts": [
+          "Plank",
+          "Ab Wheel"
+        ]
+      }
+    ],
+    "lower": [
+      {
+        "name": "Deadlift (Barbell)",
+        "type": "anchor",
+        "sets": 3,
+        "reps": "5",
+        "load": 0,
+        "unit": "kg"
+      },
+      {
+        "name": "Squat (Barbell)",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "8-10",
+        "load": 70,
+        "unit": "kg",
+        "alts": [
+          "Bulgarian Split Squat"
+        ]
+      },
+      {
+        "name": "Leg Press",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "10-12",
+        "load": 80,
+        "unit": "kg",
+        "alts": [
+          "Leg Extension"
+        ]
+      },
+      {
+        "name": "Leg Curl",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "10-12",
+        "load": 10,
+        "unit": "kg",
+        "alts": [
+          "Nordic Curl"
+        ]
+      },
+      {
+        "name": "Seated Calf Raise",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "15-20",
+        "load": 40,
+        "unit": "kg"
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "type": "rotate",
+        "sets": 3,
+        "reps": "10-12",
+        "load": 0,
+        "unit": "BW",
+        "alts": [
+          "Plank",
+          "Ab Wheel"
+        ]
+      }
+    ]
+  },
+  "rx_asof": "2026-09-21",
+  "row_protocol": {
+    "load_right": 50,
+    "load_left": 60,
+    "green_count": 0,
+    "status": "zero greens since 09-17 reset"
+  },
+  "flags": [
+    "Pull-up: top set 12 (new record), total 33",
+    "Chest Fly 65kg x 10 — broke stall, first rep in 10-12 band"
+  ]
+}
