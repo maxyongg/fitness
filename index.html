@@ -232,7 +232,25 @@ input[type=number] { -moz-appearance: textfield; }
   padding: 12px 14px; margin-bottom: 8px; }
 .parsed-ex .pe-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
 .parsed-ex .pe-sets { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.parsed-ex .pe-note { font-size: 12px; color: var(--amber); margin-top: 4px; font-style: italic; }
 .parsed-detect { font-size: 13px; color: var(--accent); margin-bottom: 12px; font-weight: 500; }
+
+/* superset toggle */
+.ss-join { display: flex; align-items: center; justify-content: center; margin: -4px 0; position: relative; z-index: 1; }
+.ss-btn { appearance: none; border: 1px solid var(--rule); border-radius: 12px;
+  background: var(--surface-2); color: var(--ink-3); font-size: 11px; font-weight: 600;
+  letter-spacing: .06em; padding: 3px 10px; cursor: pointer; font-family: inherit; }
+.ss-btn:active { opacity: .85; }
+.ss-btn.on { background: var(--accent); color: #0e1618; border-color: var(--accent); }
+.parsed-ex.ss-top { margin-bottom: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0;
+  border-bottom-color: transparent; }
+.parsed-ex.ss-mid { margin-bottom: 0; border-radius: 0; border-bottom-color: transparent; border-top-color: transparent; }
+.parsed-ex.ss-bot { border-top-left-radius: 0; border-top-right-radius: 0; border-top-color: transparent; }
+.parsed-ex.ss-top, .parsed-ex.ss-mid, .parsed-ex.ss-bot {
+  border-left: 3px solid var(--accent); }
+.ss-join.linked { margin: 0; }
+.ss-join.linked .ss-btn { border-radius: 0; border: none; background: var(--accent);
+  color: #0e1618; font-size: 10px; padding: 1px 8px; }
 
 /* history view */
 .hist-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
@@ -919,17 +937,29 @@ function renderHistory() {
       + '<div class="hist-detail" id="hist-'+i+'">';
 
     if (item.exercises) {
+      var lastSS = 0;
       item.exercises.forEach(function(ex) {
-        var reps = ex.sets.map(function(s){ return s.reps; }).join(", ");
+        var hasDuration = ex.sets.some(function(s){ return s.duration; });
+        var reps = ex.sets.map(function(s){
+          if (s.duration) return fmtDuration(s.duration);
+          return s.reps;
+        }).join(", ");
         var wt = "";
         if (ex.weightL !== undefined) {
           wt = "L:" + ex.weightL + "kg R:" + ex.weightR + "kg";
         } else if (ex.bodyweight) {
-          wt = "BW";
+          wt = hasDuration ? "" : "BW";
         } else if (ex.weight) {
           wt = ex.weight + "kg";
         }
-        h += '<div class="hist-ex"><b>'+ex.name+'</b> '+wt+' &mdash; '+reps+'</div>';
+        var ssTag = "";
+        if (ex.supersetGroup && ex.supersetGroup !== lastSS) {
+          ssTag = '<span style="color:var(--accent);font-size:10px;letter-spacing:.06em;font-weight:600"> SS</span>';
+        }
+        lastSS = ex.supersetGroup || 0;
+        h += '<div class="hist-ex"><b>'+ex.name+'</b>'+ssTag+' '+(wt ? wt+' &mdash; ' : '&mdash; ')+reps
+          + (ex.notes ? ' <span style="color:var(--amber);font-size:12px;font-style:italic">'+ex.notes+'</span>' : '')
+          + '</div>';
       });
     }
     if (item.pain && item.pain.right_lat) {
@@ -1011,6 +1041,15 @@ function parseStrong() {
     }
 
     if (!isSet) {
+      var timed = line.match(/^(?:Set\s*\d+\s*[:.]?\s*)?(\d+):(\d{2})\s*$/);
+      if (timed && current) {
+        var secs = parseInt(timed[1]) * 60 + parseInt(timed[2]);
+        current.sets.push({ weight: 0, reps: 0, duration: secs });
+        isSet = true;
+      }
+    }
+
+    if (!isSet) {
       var csv = line.match(/^(\d+\s*,\s*)+\d+$/);
       if (csv && current) {
         line.split(",").forEach(function(r) {
@@ -1021,13 +1060,20 @@ function parseStrong() {
     }
 
     if (!isSet) {
+      var noteMatch = line.match(/^Notes?\s*:\s*(.*)/i);
+      if (noteMatch && current) {
+        current.notes = noteMatch[1].trim();
+        continue;
+      }
+
       if (line.match(/^\d{1,2}\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/i)) continue;
+      if (line.match(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b/i)) continue;
       if (line.match(/^(Morning|Afternoon|Evening|Night|Workout)/i)) continue;
       if (line.match(/^\d{4}-\d{2}-\d{2}/)) continue;
       if (line.match(/^Duration:/i)) continue;
       if (line.match(/^Volume:/i)) continue;
       if (line.match(/^Personal Records?/i)) continue;
-      if (line.match(/^Notes?:/i)) continue;
+      if (line.match(/^https?:\/\//i)) continue;
 
       if (current && current.sets.length) exercises.push(current);
       current = { name: line, sets: [] };
@@ -1064,26 +1110,57 @@ function detectSession(exercises) {
   return bestScore > 0 ? best : null;
 }
 
+function fmtDuration(secs) {
+  var m = Math.floor(secs / 60), s = secs % 60;
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
 function renderParseResult(exercises, detected) {
   var h = "";
   if (detected) {
     h += '<div class="parsed-detect" style="margin-top:12px">Detected: ' + RX.sessions[detected].name + '</div>';
   }
 
-  exercises.forEach(function(ex) {
+  exercises.forEach(function(ex, i) {
+    var ssClass = ssCardClass(i, exercises);
     var setsStr = ex.sets.map(function(s) {
+      if (s.duration) return fmtDuration(s.duration);
       return s.weight ? s.weight + "kg x " + s.reps : s.reps + " reps";
     }).join(" / ");
-    h += '<div class="parsed-ex"><div class="pe-name">'+ex.name+'</div>'
-      + '<div class="pe-sets">'+setsStr+'</div></div>';
+    h += '<div class="parsed-ex'+ssClass+'" data-pi="'+i+'"><div class="pe-name">'+ex.name+'</div>'
+      + '<div class="pe-sets">'+setsStr+'</div>'
+      + (ex.notes ? '<div class="pe-note">'+ex.notes+'</div>' : '')
+      + '</div>';
+    if (i < exercises.length - 1) {
+      var linked = ex.supersetNext;
+      h += '<div class="ss-join'+(linked ? " linked" : "")+'" data-ssi="'+i+'">'
+        + '<button class="ss-btn'+(linked ? " on" : "")+'" onclick="toggleSS('+i+')">'
+        + (linked ? "SS" : "superset") + '</button></div>';
+    }
   });
 
   h += '<button class="action-btn btn-green" onclick="saveImport(\''+(detected||"")+'\')" '
     + (!getToken() ? 'disabled title="Add a GitHub token first"' : '')
-    + '>Save to inbox</button>';
+    + ' style="margin-top:12px">Save to inbox</button>';
   h += '<button class="action-btn btn-outline" onclick="clearImport()" style="margin-top:8px">Clear</button>';
 
   document.getElementById("parse-result").innerHTML = h;
+}
+
+function ssCardClass(i, exs) {
+  var prev = i > 0 && exs[i-1].supersetNext;
+  var next = exs[i].supersetNext;
+  if (prev && next) return " ss-mid";
+  if (prev) return " ss-bot";
+  if (next) return " ss-top";
+  return "";
+}
+
+function toggleSS(i) {
+  if (!parsedData || i >= parsedData.length - 1) return;
+  parsedData[i].supersetNext = !parsedData[i].supersetNext;
+  var detected = detectSession(parsedData);
+  renderParseResult(parsedData, detected);
 }
 
 async function saveImport(sessionId) {
@@ -1092,15 +1169,21 @@ async function saveImport(sessionId) {
   var today = new Date().toISOString().split("T")[0];
   var sessionName = sessionId ? RX.sessions[sessionId].name : "Imported";
 
+  var ssGroup = 0;
+  var inGroup = false;
   var data = {
     date: today,
     session: sessionName,
     session_id: sessionId || "import",
-    exercises: parsedData.map(function(ex) {
+    exercises: parsedData.map(function(ex, i) {
+      if (!inGroup && ex.supersetNext) { ssGroup++; inGroup = true; }
       var entry = { name: ex.name, sets: ex.sets };
       var hasWeight = ex.sets.some(function(s){ return s.weight > 0; });
       if (hasWeight) entry.weight = ex.sets[0].weight;
       else entry.bodyweight = true;
+      if (ex.notes) entry.notes = ex.notes;
+      if (inGroup) entry.supersetGroup = ssGroup;
+      if (!ex.supersetNext) inGroup = false;
       return entry;
     }),
     pain: { right_lat: null },
