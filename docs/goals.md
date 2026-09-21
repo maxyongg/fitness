@@ -16,8 +16,9 @@ That is the brief. Read it before proposing anything.
 - **Holistic rounding is the aim.** The question is not "is the bench going up" but
   "is anything missing". Balance across movement patterns beats a peak in any one.
 - **Calisthenics is the direction of travel.** Where a bodyweight option does the same
-  job as a machine, prefer it, and grow the calisthenics day rather than treating it as
-  the odd one out.
+  job as a machine, prefer it. Bodyweight work (pull-ups, dips, hanging leg raises) is
+  now integrated across the upper and lower sessions rather than isolated on a standalone
+  day.
 - **His pace.** Suggest, don't schedule. Never ramp volume he did not ask for, never
   chase a number on his behalf, never nag about a missed session. "Improve at my own
   pace" is a constraint on you, not an aspiration for him.
@@ -33,8 +34,8 @@ He asked Claude to decide this. In order:
    one.
 4. **Keeping the working lifts working.** Incline bench is progressing and should keep
    progressing — but as an output, not a goal to chase.
-5. **Football availability.** Fixed Tuesday input. Mostly a scheduling constraint, but
-   it is also the only leg and conditioning work that reliably happens.
+5. **Football availability.** Fixed Tuesday and Friday, 2h 7-a-side. Mostly a
+   scheduling constraint, but it is also significant lower-body and conditioning work.
 
 Explicitly **not** goals: size, leg strength, more sessions per week, or a return to any
 particular past number.
@@ -134,9 +135,8 @@ moves, and overhead press fell from 61.7 to 50.7 e1RM because its slot rotates b
 the Arnold, the machine and the barbell. That is the cost of variety in the wrong place,
 measured on his own data rather than asserted.
 
-The phone page picks the rotating exercises for him — a different combination each
-session, derived from the date — with a swap control on each slot and a "Vary it" button
-for the whole session. Anchors have no swap control.
+The phone page shows the prescribed rotate exercise with a tappable badge to swap in an
+alternative from the same slot. Anchors have no swap control.
 
 ## Nothing is pointed at a date
 

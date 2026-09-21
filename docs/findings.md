@@ -21,8 +21,8 @@ Three consequences, and they touch most of this file:
 - **"Absent" claims are unsafe.** Core reading as zero since 9 March is a fact about the
   log. It was written up here and in `docs/goals.md` as a training gap; that was wrong.
 
-He is now logging the ad hoc work: both Push and Pull carry a finisher slot in
-`plan.md`, and the phone page has a free-text row on every session. Numbers from exports
+He is now logging the ad hoc work: each session has an extra/finisher field on the
+phone page, and the free-text row captures anything done outside the prescribed slots. Numbers from exports
 after September 2026 should be progressively more complete — which also means **do not
 compare set counts across that boundary** and read a rise as improvement.
 

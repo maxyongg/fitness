@@ -105,6 +105,10 @@ tested is a hypothesis, and it goes in `docs/findings.md`, not in a rule.**
 
 ## The machinery
 
+*The incidents below describe the old artifact-hosted phone page and its queue/db system,
+which was replaced by GitHub Pages + inbox on 2026-09-21. They are kept as historical
+record — the data-reading incidents above remain fully relevant.*
+
 ### Three sessions lost to republishing — 9–10 Sep 2026
 
 Saving a session used to mean republishing the whole page. That fails two ways which

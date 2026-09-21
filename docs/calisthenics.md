@@ -61,7 +61,7 @@ straight line.
 
 ## The strength movements — progressions
 
-Added 2026-09-05, when the Sunday session became Week B's second upper-body day. These
+Added 2026-09-05, originally for the old Week B calisthenics day. These
 are strength, not skill, so they run to near-failure and they belong after the skill
 block.
 
@@ -141,8 +141,10 @@ just tells you when to stop practising one thing and start practising the next.
 
 ## What this is not
 
-- **Not a second calisthenics day.** Week B's Sunday is the slot. Grow what is there
-  before asking for more room.
+- **Not a standalone day.** The old calisthenics day was replaced on 2026-09-21 by
+  integrating bodyweight work across the 3U/1L split (pull-ups, dips, hanging leg
+  raises). These progressions remain reference material for adding skill work to any
+  session.
 - **Not a replacement for the barbell work.** The presses and rows are progressing and
   the shift towards calisthenics is a direction, not a switch.
 - **Not a reason to add volume.** Skill work is ten minutes and low fatigue. If it starts
