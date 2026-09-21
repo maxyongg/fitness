@@ -135,8 +135,10 @@ moves, and overhead press fell from 61.7 to 50.7 e1RM because its slot rotates b
 the Arnold, the machine and the barbell. That is the cost of variety in the wrong place,
 measured on his own data rather than asserted.
 
-The phone page shows the prescribed rotate exercise with a tappable badge to swap in an
-alternative from the same slot. Anchors have no swap control.
+The phone page carries a named prescription for every slot — exercise, load, rep target,
+last result, and the reason it was chosen — set by Claude after each logged session and
+stamped with `RX_ASOF`. Rotate slots have a swap button for alternatives; anchors do not.
+The prescriptions are static HTML and only move when a session republishes the page.
 
 ## Nothing is pointed at a date
 

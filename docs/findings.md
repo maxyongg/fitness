@@ -162,8 +162,16 @@ inferring from it; he is right about his own body more often than the log is.
   This is the fourth time in this project a number has been read against a number it
   does not belong with, and the first three are the whole reason the "Read this before
   trusting any number below" section exists. **Machine identity is part of the
-  measurement.** The right-side iso-lateral row still sits where it did on 09-10: 50kg,
-  two green pain readings, unperformed since.
+  measurement.**
+
+  **Updated 2026-09-20.** On 09-17 he performed the right-side iso-lateral row at 50kg
+  and reported **4/10** with "extreme tightness" — an amber under the protocol. The two
+  greens from 09-03 and 09-10 are struck and the count resets to zero. On 09-20 a
+  calisthenics session also read 4/10 with no iso-lateral row in it, so the gate count is
+  untouched but the pattern is now three consecutive 4/10 readings across three different
+  sessions. Readings run: 3/10 (09-03), 2/10 (09-10), 4/10 (09-13 seated row), 4/10
+  (09-17 iso-lateral row), 4/10 (09-20 calisthenics). That is a physio question, not one
+  for this file. The row holds at 50kg; nothing is added.
 - **Did the overhead press decline because its slot rotates?** Asserted in `plan.md`
   for a fortnight as though settled; it is not. OHP e1RM ran 49.6 → 60.2 → **61.7**
   (2026Q1) → 57.0 → 50.7. The rotation story says it fell because push slot 2 picks it
