@@ -432,6 +432,39 @@ pain(R): 4/10
      above and not explained here. One session is not a pattern; the 4 Oct run is the
      comparison. -->
 
+## 2026-09-21 · Mon · Upper A
+- Incline Bench Press (Barbell) — 40kg × 10, 60kg × 10, 65kg × 8, 7, 45kg × 10
+- Pull Up — bodyweight × 12, 10, 6, 5 | note: last set negatives
+- Chest Fly — 65kg × 10, 8, 67.5kg × 6
+- Reverse Fly (Machine) — 42.5kg × 8, 8, 7
+- Lateral Raise (Dumbbell) — 8kg × 15, 15, 15
+- Pike Push Up — bodyweight × 12, 12, 10
+- Triceps Dip — bodyweight × 10, 8, 6
+- Hollow Body Hold — 0:30, 0:30, 0:30
+
+<!-- From inbox/2026-09-21-upper_a.json (Strong import). First Upper A of the new
+     programme. Eight exercises instead of the prescribed six — he ran Pike Push Up,
+     Triceps Dip and Hollow Body Hold as a superset in place of the prescribed Triceps
+     Extension, carrying the calisthenics bodyweight work into the new structure.
+
+     **Pull-up top set 12 — new single-set record.** Previous best was 10 (multiple
+     occasions). Position 2, after incline bench. Total across first three sets: 28
+     (fourth set was negatives). At AMRAP as prescribed.
+
+     **Chest Fly 65kg × 10 breaks the stall.** Stalled at 8, 8, 8 for six sessions.
+     First set hit 10 — into the 10–12 band for the first time. He also tested 67.5kg × 6
+     on the third set. Hold 65kg, keep chasing reps.
+
+     **Reverse Fly (Machine) 42.5kg in the rear delt slot** — listed alternative to
+     Face Pull. First run in this programme.
+
+     Incline Bench 65kg × 8, 7 working sets. Within the 5–8 band; needs all four at 8
+     to earn +2.5kg. Not there yet.
+
+     Lateral Raise 8kg × 15, 15, 15 — steady. Needs 20 across all three for +1kg.
+
+     No pain(R) recorded despite pulling at slot 2. Not chased. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

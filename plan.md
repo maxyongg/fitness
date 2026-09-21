@@ -84,7 +84,8 @@ reps; position 5 for three months gave 13–23.
 incline bench, an overhead press excessively fatigues the shoulder. The slot goes to rear
 delts instead, covering the 0.8 sets/week gap from the old programme.
 
-**Chest Fly is stalled at 65kg × 8, 8, 8** against a 10–12 band. Hold load, chase reps.
+**Chest Fly broke the stall on 09-21**: 65kg × 10, 8, then 67.5kg × 6. First set in the
+10–12 band after six sessions stuck at 8. Hold 65kg until 10–12 across all three sets.
 
 **Triceps Extension has stalled at 17.5kg for seven sessions.** Keeping it prescribed
 rather than rotating away is the fix — the stall happened because the slot kept going
