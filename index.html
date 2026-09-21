@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Matchday</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root {
+  --bg: #0e1618;
+  --surface: #16211f;
+  --surface-2: #1d2a28;
+  --ink: #e8ece7;
+  --ink-2: #a4b0ac;
+  --ink-3: #78857f;
+  --rule: #2a3836;
+  --accent: #63b6d9;
+  --green: #52b37a;
+  --green-soft: #142c1f;
+  --amber: #d9a83f;
+  --amber-soft: #2e2413;
+  --red: #d9705a;
+  --radius: 3px;
+  --gap: 16px;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg); color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 80px;
+}
+.wrap { max-width: 660px; margin: 0 auto; padding: 0 var(--gap); }
+
+/* header */
+header { background: var(--surface); border-bottom: 1px solid var(--rule); }
+.mast { max-width: 660px; margin: 0 auto; padding: 16px var(--gap) 12px;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.mast h1 { font-size: 22px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+.mast .date { font-size: 12px; color: var(--ink-3); letter-spacing: .1em; text-transform: uppercase; font-weight: 600; }
+.settings-btn { background: none; border: 0; color: var(--ink-3); font-size: 18px;
+  cursor: pointer; padding: 8px; line-height: 1; }
+
+/* tabs */
+.tabs { position: sticky; top: 0; z-index: 20; background: var(--surface); border-bottom: 1px solid var(--rule); }
+.tabs-in { max-width: 660px; margin: 0 auto; padding: 0 var(--gap); display: flex; gap: 2px; }
+.tab { flex: 1; appearance: none; border: 0; background: none; cursor: pointer;
+  padding: 12px 2px 10px; white-space: nowrap; text-align: center;
+  font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--ink-3); border-bottom: 2px solid transparent; font-family: inherit; }
+.tab.active { color: var(--ink); border-bottom-color: var(--accent); }
+.tab-day { display: block; font-size: 10px; font-weight: 500; letter-spacing: .08em; margin-top: 1px; }
+
+/* cards */
+.lane { padding-top: 16px; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
+  box-shadow: var(--shadow); margin-bottom: 12px; }
+.card-head { padding: 12px 14px 10px; border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.card-head .name { font-size: 16px; font-weight: 600; letter-spacing: .01em; }
+.card-head .badge { font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  font-weight: 600; padding: 3px 7px; border-radius: 2px; }
+.badge-anchor { background: rgba(99,182,217,.15); color: var(--accent); }
+.badge-rotate { background: var(--surface-2); color: var(--ink-3); }
+.card-body { padding: 14px; }
+.prescription { font-size: 13px; color: var(--ink-3); margin-bottom: 12px; letter-spacing: .02em; }
+
+/* weight row */
+.wt-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.wt-row label { font-size: 12px; color: var(--ink-3); font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase; min-width: 44px; }
+.wt-input { width: 72px; padding: 7px 8px; border: 1px solid var(--rule); border-radius: 2px;
+  background: var(--bg); color: var(--ink); font-size: 16px; text-align: right;
+  font-variant-numeric: tabular-nums; }
+.wt-unit { font-size: 13px; color: var(--ink-3); }
+
+/* bilateral weight */
+.bi-row { display: flex; gap: 12px; margin-bottom: 12px; }
+.bi-side { display: flex; align-items: center; gap: 6px; flex: 1; }
+
+/* set inputs */
+.sets-grid { display: flex; gap: 6px; }
+.set-col { flex: 1; text-align: center; }
+.set-lbl { font-size: 10px; color: var(--ink-3); letter-spacing: .1em; text-transform: uppercase;
+  font-weight: 600; margin-bottom: 4px; }
+.set-in { width: 100%; padding: 10px 4px; border: 1px solid var(--rule); border-radius: 2px;
+  background: var(--bg); color: var(--ink); font-size: 18px; text-align: center;
+  font-weight: 500; font-variant-numeric: tabular-nums; }
+.set-in:focus { border-color: var(--accent); outline: none; }
+.reps-total { font-size: 12px; color: var(--ink-3); text-align: right; margin-top: 6px;
+  font-variant-numeric: tabular-nums; }
+
+/* pain section */
+.pain-card { border-left: 3px solid var(--amber); }
+.pain-card .card-head { border-bottom-color: var(--rule); }
+.pain-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.pain-in { width: 56px; padding: 7px 8px; border: 1px solid var(--rule); border-radius: 2px;
+  background: var(--bg); color: var(--ink); font-size: 16px; text-align: center; }
+.pain-hint { font-size: 11px; color: var(--ink-3); }
+.notes-in { width: 100%; padding: 9px 10px; border: 1px solid var(--rule); border-radius: 2px;
+  background: var(--bg); color: var(--ink); font-size: 14px; font-family: inherit;
+  resize: vertical; min-height: 56px; line-height: 1.45; }
+.notes-in::placeholder { color: var(--ink-3); }
+
+/* extra */
+.extra-card .card-body { padding: 12px 14px; }
+
+/* section label */
+.sec-lbl { font-size: 11px; color: var(--ink-3); letter-spacing: .12em; text-transform: uppercase;
+  font-weight: 600; margin: 20px 0 8px; }
+
+/* save bar */
+.save-bar { position: fixed; bottom: 0; left: 0; right: 0; padding: 10px var(--gap);
+  background: var(--bg); border-top: 1px solid var(--rule); z-index: 30; }
+.save-bar-in { max-width: 660px; margin: 0 auto; }
+.save-btn { width: 100%; padding: 13px; border: none; border-radius: var(--radius);
+  background: var(--green); color: #fff; font-size: 15px; font-weight: 600;
+  letter-spacing: .04em; text-transform: uppercase; cursor: pointer; transition: opacity .15s; }
+.save-btn:active { opacity: .85; }
+.save-btn:disabled { opacity: .5; cursor: not-allowed; }
+.save-btn.saving { background: var(--accent); }
+.save-btn.error { background: var(--red); }
+
+/* toast */
+.toast { position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+  padding: 9px 18px; border-radius: 3px; font-size: 14px; font-weight: 500;
+  z-index: 100; opacity: 0; transition: opacity .25s; pointer-events: none; }
+.toast.show { opacity: 1; }
+.toast.ok { background: var(--green); color: #fff; }
+.toast.err { background: var(--red); color: #fff; }
+
+/* setup notice */
+.setup { background: var(--amber-soft); border: 1px solid var(--amber);
+  border-radius: var(--radius); padding: 12px 14px; margin-bottom: 16px;
+  font-size: 13px; color: var(--ink-2); line-height: 1.45; }
+.setup b { color: var(--amber); }
+
+/* asof */
+.asof { font-size: 11px; color: var(--ink-3); text-align: center; margin-top: 20px;
+  letter-spacing: .06em; }
+
+/* hide spinners */
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+
+/* modal */
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 50;
+  justify-content: center; align-items: center; }
+.modal-bg.show { display: flex; }
+.modal { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
+  padding: 20px; width: calc(100% - 32px); max-width: 400px; }
+.modal h2 { font-size: 17px; font-weight: 600; margin-bottom: 14px; }
+.modal label { display: block; font-size: 11px; color: var(--ink-3); letter-spacing: .1em;
+  text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
+.modal input { width: 100%; padding: 9px 10px; border: 1px solid var(--rule); border-radius: 2px;
+  background: var(--bg); color: var(--ink); font-size: 14px; margin-bottom: 12px; font-family: inherit; }
+.modal .hint { font-size: 12px; color: var(--ink-3); margin-bottom: 14px; line-height: 1.4; }
+.modal-btns { display: flex; gap: 8px; justify-content: flex-end; }
+.modal-btn { padding: 9px 16px; border: none; border-radius: 2px; font-size: 14px;
+  font-weight: 500; cursor: pointer; font-family: inherit; }
+.modal-btn.pri { background: var(--accent); color: #0e1618; }
+.modal-btn.sec { background: var(--surface-2); color: var(--ink-2); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mast">
+    <div>
+      <h1>Matchday</h1>
+      <div class="date" id="hdr-date"></div>
+    </div>
+    <button class="settings-btn" onclick="openSettings()" aria-label="Settings">&#9881;</button>
+  </div>
+</header>
+
+<div class="tabs">
+  <div class="tabs-in" id="tabs"></div>
+</div>
+
+<div class="wrap">
+  <main class="lane" id="main"></main>
+  <div class="asof" id="asof"></div>
+</div>
+
+<div class="save-bar" id="save-bar" style="display:none">
+  <div class="save-bar-in">
+    <button class="save-btn" id="save-btn" onclick="save()">Save Session</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal-bg" id="settings-modal" onclick="if(event.target===this)closeSettings()">
+  <div class="modal">
+    <h2>GitHub Access</h2>
+    <div class="hint">Create a fine-grained Personal Access Token at
+      github.com/settings/tokens scoped to <b>maxyongg/fitness</b> with
+      <b>Contents: Read and write</b>. The token stays in this browser only.</div>
+    <label for="pat-input">Token</label>
+    <input type="password" id="pat-input" placeholder="github_pat_...">
+    <div class="modal-btns">
+      <button class="modal-btn sec" onclick="closeSettings()">Cancel</button>
+      <button class="modal-btn pri" onclick="saveToken()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---- prescriptions ---- */
+const RX = {
+  asof: "2026-09-21",
+  repo: "maxyongg/fitness",
+  schedule: { 1:"upper_a", 2:"football", 3:"rest", 4:"upper_b", 5:"football", 6:"upper_c", 0:"lower" },
+  sessions: {
+    upper_a: {
+      name: "Upper A", day: "Monday", mins: "~50 min",
+      exercises: [
+        { name:"Incline Bench Press (Barbell)", type:"anchor", sets:4, reps:"5–8", load:65, unit:"kg" },
+        { name:"Pull Up", type:"anchor", sets:3, reps:"AMRAP", load:0, unit:"BW" },
+        { name:"Chest Fly", type:"rotate", sets:3, reps:"10–12", load:65, unit:"kg" },
+        { name:"Face Pull", type:"rotate", sets:3, reps:"12–15", load:17.5, unit:"kg" },
+        { name:"Lateral Raise", type:"anchor", sets:3, reps:"15–20", load:8, unit:"kg" },
+        { name:"Triceps Extension", type:"rotate", sets:3, reps:"10–12", load:17.5, unit:"kg" }
+      ]
+    },
+    upper_b: {
+      name: "Upper B", day: "Thursday", mins: "~50 min",
+      exercises: [
+        { name:"Pull Up", type:"anchor", sets:3, reps:"AMRAP−2", load:0, unit:"BW" },
+        { name:"Iso Lateral Row", type:"anchor", sets:3, reps:"8–10", load:0, unit:"kg",
+          bilateral:true, loadL:0, loadR:50, note:"Row protocol — log L/R separately" },
+        { name:"Lat Pulldown", type:"rotate", sets:3, reps:"10–12", load:67, unit:"kg" },
+        { name:"Dips", type:"rotate", sets:3, reps:"8–12", load:0, unit:"BW" },
+        { name:"Cable Crossover", type:"rotate", sets:3, reps:"10–12", load:0, unit:"kg" },
+        { name:"Bicep Curl", type:"rotate", sets:3, reps:"8–10", load:30, unit:"kg" }
+      ]
+    },
+    upper_c: {
+      name: "Upper C", day: "Saturday", mins: "~45 min",
+      exercises: [
+        { name:"Flat Dumbbell Press", type:"rotate", sets:3, reps:"10–12", load:0, unit:"kg" },
+        { name:"Cable Row", type:"rotate", sets:3, reps:"10–12", load:0, unit:"kg" },
+        { name:"Lateral Raise", type:"anchor", sets:3, reps:"15–20", load:8, unit:"kg" },
+        { name:"Face Pull", type:"rotate", sets:3, reps:"12–15", load:17.5, unit:"kg" },
+        { name:"Bicep Curl", type:"rotate", sets:3, reps:"10–12", load:30, unit:"kg" },
+        { name:"Hanging Leg Raise", type:"rotate", sets:3, reps:"10–12", load:0, unit:"BW" }
+      ]
+    },
+    lower: {
+      name: "Lower", day: "Sunday", mins: "~45 min",
+      exercises: [
+        { name:"Deadlift (Barbell)", type:"anchor", sets:3, reps:"5", load:0, unit:"kg" },
+        { name:"Squat (Barbell)", type:"rotate", sets:3, reps:"8–10", load:70, unit:"kg" },
+        { name:"Leg Press", type:"rotate", sets:3, reps:"10–12", load:80, unit:"kg" },
+        { name:"Leg Curl", type:"rotate", sets:3, reps:"10–12", load:10, unit:"kg" },
+        { name:"Seated Calf Raise", type:"rotate", sets:3, reps:"15–20", load:40, unit:"kg" },
+        { name:"Hanging Leg Raise", type:"rotate", sets:3, reps:"10–12", load:0, unit:"BW" }
+      ]
+    }
+  }
+};
+
+/* ---- state ---- */
+let cur = null;
+
+/* ---- init ---- */
+(function init() {
+  var d = new Date();
+  document.getElementById("hdr-date").textContent =
+    d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"short",year:"numeric"});
+  document.getElementById("asof").textContent = "Prescribed " + RX.asof;
+  renderTabs();
+  var id = RX.schedule[d.getDay()];
+  if (id === "football" || id === "rest") id = nextLift(d.getDay());
+  pick(id);
+})();
+
+function renderTabs() {
+  var order = [
+    {id:"upper_a",label:"Upper A",day:"Mon"},
+    {id:"upper_b",label:"Upper B",day:"Thu"},
+    {id:"upper_c",label:"Upper C",day:"Sat"},
+    {id:"lower",label:"Lower",day:"Sun"}
+  ];
+  document.getElementById("tabs").innerHTML = order.map(function(t) {
+    return '<button class="tab" data-id="'+t.id+'" onclick="pick(\''+t.id+'\')">'
+      +t.label+'<span class="tab-day">'+t.day+'</span></button>';
+  }).join("");
+}
+
+function nextLift(dow) {
+  var map = {2:"upper_b",3:"upper_b",5:"upper_c"};
+  return map[dow] || "upper_a";
+}
+
+function pick(id) {
+  cur = id;
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.toggle("active",t.dataset.id===id)});
+  renderSession(id);
+  document.getElementById("save-bar").style.display = "block";
+  window.scrollTo(0,0);
+}
+
+/* ---- render ---- */
+function renderSession(id) {
+  var s = RX.sessions[id];
+  var h = '<div class="sec-lbl">'+s.name+' &middot; '+s.day+' &middot; '+s.mins+'</div>';
+
+  var noToken = !getToken();
+  if (noToken) {
+    h += '<div class="setup"><b>Save is off.</b> Tap &#9881; to add a GitHub token. '
+       + 'You can still view prescriptions without one.</div>';
+  }
+
+  s.exercises.forEach(function(ex,i){ h += exCard(ex,i); });
+
+  h += '<div class="sec-lbl">Recovery</div>';
+  h += '<div class="card pain-card"><div class="card-head"><span class="name">Right Lat</span></div>'
+     + '<div class="card-body">'
+     + '<div class="pain-row"><label style="font-size:12px;color:var(--ink-3);font-weight:600;min-width:36px">PAIN</label>'
+     + '<input type="number" class="pain-in" id="pain" min="0" max="10" inputmode="numeric" placeholder="0–10">'
+     + '<span class="pain-hint">/ 10</span></div>'
+     + '<textarea class="notes-in" id="notes" placeholder="Notes — pain, feel, anything worth flagging…"></textarea>'
+     + '</div></div>';
+
+  h += '<div class="card extra-card"><div class="card-body">'
+     + '<label style="font-size:11px;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:6px;display:block">Extra / finisher</label>'
+     + '<textarea class="notes-in" id="extra" placeholder="e.g. Push-ups 3×15, Dead hang 30s×3…" style="min-height:40px"></textarea>'
+     + '</div></div>';
+
+  document.getElementById("main").innerHTML = h;
+}
+
+function exCard(ex, idx) {
+  var anc = ex.type === "anchor";
+  var bw = ex.unit === "BW";
+  var tbd = !bw && ex.load === 0 && !ex.bilateral;
+  var loadStr = bw ? "BW" : (tbd ? "TBD" : ex.load+"kg");
+
+  var badge = anc
+    ? '<span class="badge badge-anchor">Anchor</span>'
+    : '<span class="badge badge-rotate">Rotate</span>';
+
+  var wHtml = "";
+  if (ex.bilateral) {
+    wHtml = '<div class="bi-row">'
+      + biSide("L", idx, ex.loadL)
+      + biSide("R", idx, ex.loadR)
+      + '</div>';
+  } else if (!bw) {
+    wHtml = '<div class="wt-row">'
+      + '<label>Weight</label>'
+      + '<input type="number" class="wt-input" data-ex="'+idx+'" inputmode="decimal"'
+      + ' value="'+(tbd?"":ex.load)+'" placeholder="'+(tbd?"TBD":"")+'">'
+      + '<span class="wt-unit">kg</span></div>';
+  }
+
+  var sHtml = '<div class="sets-grid">';
+  for (var s=0; s<ex.sets; s++) {
+    sHtml += '<div class="set-col"><div class="set-lbl">S'+(s+1)+'</div>'
+      + '<input type="number" class="set-in" data-ex="'+idx+'" data-set="'+s
+      + '" inputmode="numeric" placeholder="'+ex.reps+'"></div>';
+  }
+  sHtml += '</div>';
+
+  var totalHtml = "";
+  if (ex.reps.indexOf("AMRAP") !== -1) {
+    totalHtml = '<div class="reps-total" data-ex="'+idx+'" data-total>Total: –</div>';
+  }
+
+  var noteHtml = "";
+  if (ex.note) {
+    noteHtml = '<div style="font-size:12px;color:var(--amber);margin-bottom:10px">'+ex.note+'</div>';
+  }
+
+  return '<div class="card">'
+    + '<div class="card-head"><span class="name">'+ex.name+'</span>'+badge+'</div>'
+    + '<div class="card-body">'
+    + '<div class="prescription">'+ex.sets+' &times; '+ex.reps+' &middot; '+loadStr+'</div>'
+    + noteHtml + wHtml + sHtml + totalHtml
+    + '</div></div>';
+}
+
+function biSide(side, idx, load) {
+  return '<div class="bi-side">'
+    + '<label style="font-size:12px;color:var(--ink-3);font-weight:600;min-width:14px">'+side+'</label>'
+    + '<input type="number" class="wt-input" data-ex="'+idx+'" data-side="'+side
+    + '" inputmode="decimal" value="'+(load||"")+'" placeholder="kg">'
+    + '<span class="wt-unit">kg</span></div>';
+}
+
+/* ---- AMRAP total ---- */
+document.addEventListener("input", function(e) {
+  if (!e.target.classList.contains("set-in")) return;
+  var idx = e.target.dataset.ex;
+  var el = document.querySelector('[data-ex="'+idx+'"][data-total]');
+  if (!el) return;
+  var inputs = document.querySelectorAll('.set-in[data-ex="'+idx+'"]');
+  var sum = 0;
+  inputs.forEach(function(inp){ sum += parseInt(inp.value)||0; });
+  el.textContent = "Total: " + (sum || "–");
+});
+
+/* ---- collect ---- */
+function collectData() {
+  var s = RX.sessions[cur];
+  var today = new Date().toISOString().split("T")[0];
+  var exercises = [];
+
+  s.exercises.forEach(function(ex, i) {
+    var entry = { name: ex.name, sets: [] };
+
+    if (ex.bilateral) {
+      var lIn = document.querySelector('[data-ex="'+i+'"][data-side="L"]');
+      var rIn = document.querySelector('[data-ex="'+i+'"][data-side="R"]');
+      entry.weightL = lIn ? parseFloat(lIn.value)||0 : 0;
+      entry.weightR = rIn ? parseFloat(rIn.value)||0 : 0;
+    } else if (ex.unit !== "BW") {
+      var wIn = document.querySelector('.wt-input[data-ex="'+i+'"]');
+      entry.weight = wIn ? parseFloat(wIn.value)||0 : 0;
+    } else {
+      entry.weight = 0;
+      entry.bodyweight = true;
+    }
+
+    for (var j=0; j<ex.sets; j++) {
+      var rIn = document.querySelector('[data-ex="'+i+'"][data-set="'+j+'"]');
+      entry.sets.push({ reps: rIn ? parseInt(rIn.value)||0 : 0 });
+    }
+
+    if (entry.sets.some(function(st){ return st.reps > 0; })) exercises.push(entry);
+  });
+
+  return {
+    date: today,
+    session: s.name,
+    session_id: cur,
+    exercises: exercises,
+    pain: { right_lat: parseInt(document.getElementById("pain").value) || null },
+    notes: (document.getElementById("notes").value || "").trim(),
+    extra: (document.getElementById("extra").value || "").trim()
+  };
+}
+
+/* ---- save ---- */
+async function save() {
+  var token = getToken();
+  if (!token) { openSettings(); return; }
+
+  var btn = document.getElementById("save-btn");
+  btn.textContent = "Saving…";
+  btn.className = "save-btn saving";
+  btn.disabled = true;
+
+  try {
+    var data = collectData();
+    if (data.exercises.length === 0) throw new Error("No reps entered");
+    var path = "inbox/" + data.date + "-" + cur.replace(/_/g,"-") + ".json";
+    var body = JSON.stringify(data, null, 2);
+    await ghPut(path, body, "session: " + data.date + " " + data.session);
+    btn.textContent = "Saved";
+    btn.className = "save-btn";
+    toast("Session saved to inbox/", "ok");
+  } catch (e) {
+    btn.textContent = "Failed — tap to retry";
+    btn.className = "save-btn error";
+    toast(e.message, "err");
+  }
+
+  setTimeout(function(){
+    btn.textContent = "Save Session";
+    btn.className = "save-btn";
+    btn.disabled = false;
+  }, 3000);
+}
+
+/* ---- github api ---- */
+function toB64(str) {
+  var bytes = new TextEncoder().encode(str);
+  var bin = "";
+  for (var i=0; i<bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+  return btoa(bin);
+}
+
+async function ghPut(path, content, message) {
+  var token = getToken();
+  var url = "https://api.github.com/repos/" + RX.repo + "/contents/" + path;
+
+  var sha;
+  var check = await fetch(url, { headers: { Authorization: "token " + token } });
+  if (check.ok) {
+    var existing = await check.json();
+    sha = existing.sha;
+  } else if (check.status === 401 || check.status === 403) {
+    throw new Error("Token invalid or missing permissions");
+  }
+
+  var payload = { message: message, content: toB64(content) };
+  if (sha) payload.sha = sha;
+
+  var res = await fetch(url, {
+    method: "PUT",
+    headers: { Authorization: "token " + token, "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  if (!res.ok) {
+    var err = await res.json().catch(function(){ return {}; });
+    throw new Error(err.message || "GitHub API error " + res.status);
+  }
+}
+
+/* ---- token ---- */
+function getToken() {
+  try { return localStorage.getItem("matchday_pat") || ""; }
+  catch(e) { return ""; }
+}
+
+function openSettings() {
+  document.getElementById("settings-modal").classList.add("show");
+  var inp = document.getElementById("pat-input");
+  inp.value = getToken();
+  inp.focus();
+}
+
+function closeSettings() {
+  document.getElementById("settings-modal").classList.remove("show");
+}
+
+function saveToken() {
+  var v = document.getElementById("pat-input").value.trim();
+  try { localStorage.setItem("matchday_pat", v); }
+  catch(e) { toast("Could not save token", "err"); return; }
+  closeSettings();
+  toast("Token saved", "ok");
+  pick(cur);
+}
+
+/* ---- toast ---- */
+function toast(msg, cls) {
+  var el = document.getElementById("toast");
+  el.textContent = msg;
+  el.className = "toast show " + cls;
+  setTimeout(function(){ el.classList.remove("show"); }, 3000);
+}
+</script>
+</body>
+</html>
