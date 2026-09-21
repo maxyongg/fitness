@@ -3,9 +3,8 @@
 Read this, `plan.md`, and the last ~40 lines of `log.md`. That is the whole briefing —
 don't ask him to re-explain the background.
 
-He runs this from his phone, thumb-typing, usually straight after training. He cannot go
-and check something on a computer, and he cannot push a commit himself. The GitHub repo
-`maxyongg/fitness` is the source of truth; nothing counts until it is pushed.
+He runs this from his phone, thumb-typing, usually straight after training. The GitHub
+repo `maxyongg/fitness` is the source of truth; nothing counts until it is pushed.
 
 ## What this is for
 
@@ -59,8 +58,9 @@ He starts a fresh task per workout so no thread has to re-read itself. Keep it c
 
 ## The standing job
 
-He drops a Strong screenshot into the chat, or logs the session in the phone page. Page
-entries queue up and are drained on request; a screenshot you handle now.
+He drops a Strong screenshot into the chat, or logs the session in the phone page. The
+page saves sessions as JSON files to `inbox/` via the GitHub API — a screenshot you
+handle now, an inbox file you drain when you next see it.
 
 1. **Transcribe** into `log.md` — the format is at the top of that file. Newest at the
    bottom, exercises in performed order. Mark anything unreadable `?` rather than
@@ -69,31 +69,26 @@ entries queue up and are drained on request; a screenshot you handle now.
    Push *before* you reply — he has no way to do it afterwards. **Everything goes to
    `main`**, `plan.md` and this file included (his instruction, 2026-09-10; branches sat
    unmerged and stranded a session for days). Branch only if he asks in that message.
-3. **Re-prescribe the NEXT session, then republish.** Not optional, and not only when
+3. **Re-prescribe the NEXT session, then push.** Not optional, and not only when
    something changed. Two passes: update the slots this session touched, then **work out
    what the template says he trains next — Upper A, Upper B, Upper C or Lower — and make
    that whole session current**, because it is the one he opens at the gym (his
    instruction, 2026-09-17). An Upper B that ends with a bad pain reading should change
-   the Upper C that follows it; that is the whole point. Bump `RX_ASOF` and publish.
-   **The page is static HTML — the prescriptions only move when you move them.**
-   Procedure in `docs/workflows.md`.
+   the Upper C that follows it; that is the whole point. Update the `RX` object in
+   `index.html`, bump `RX.asof`, commit to `main` and push.
+   **The page is static HTML on GitHub Pages — the prescriptions only move when you
+   move them.** Procedure in `docs/workflows.md`.
 4. **Reply in two sentences**, flagging only what earns it: right-side row load and
    whether he noted pain, whether pull-ups were first on pull day, a lift that moved up
    or has stalled 3+ sessions. Nothing notable → say nothing.
 
-**Nothing notifies you when he saves a session** — wake subscriptions don't register
-here, so the queue is only ever found by looking. Check whenever he mentions training,
-and at the start of any programming session:
-
-```
-Artifact  action: "read_db"  url: <the artifact>  db_op: "list"  collection: "queue"
-```
+**Nothing notifies you when he saves a session.** The inbox is only ever found by
+looking — check `inbox/` whenever he mentions training, and at the start of any
+programming session. If it holds anything, append it to `log.md` and delete it in the
+same commit, before anything else.
 
 Draining, logging when git is unreachable, the monthly reconcile and republishing all
-live in `docs/workflows.md` — read it when one comes up, not before. Two rules from it
-that are easy to get wrong: **every publish must declare `capabilities: {artifact: {},
-db: {}}`** — both, or one is silently revoked — and **you must read the live page before
-publishing over it.**
+live in `docs/workflows.md` — read it when one comes up, not before.
 
 ## Settled — do not relitigate
 
@@ -160,6 +155,7 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `docs/calisthenics.md` | The beginner skill route. On demand. |
 | `analyse.py` | Full analysis of a Strong export. Monthly, not per session. |
 | `data/` | Strong CSV exports. Never read directly. |
-| `inbox/` | Sessions logged while the repo was unreachable. Empty at rest. |
-| `ui/matchday.html` | Source of the published phone page. Republish after editing. |
+| `inbox/` | Sessions saved from the phone page (JSON). Drain into `log.md`, then delete. Empty at rest. |
+| `index.html` | The phone page, served by GitHub Pages. Prescriptions live in the `RX` object. |
+| `ui/matchday.html` | Old artifact-hosted page. Superseded by `index.html`. |
 | `README.md` | Orientation for a human landing on the repo. Not for you. |
