@@ -1,0 +1,53 @@
+name: Drain inbox
+
+on:
+  push:
+    branches: [main]
+    paths: ['inbox/*.json']
+
+permissions:
+  contents: write
+
+jobs:
+  drain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check inbox
+        id: check
+        run: |
+          if ls inbox/*.json 1>/dev/null 2>&1; then
+            echo "has_files=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_files=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run drain.py
+        if: steps.check.outputs.has_files == 'true'
+        run: python3 drain.py
+
+      - name: Commit and push
+        if: steps.check.outputs.has_files == 'true'
+        run: |
+          subject=""
+          count=0
+          for f in inbox/*.json; do
+            date=$(python3 -c "import json; print(json.load(open('$f'))['date'])")
+            session=$(python3 -c "import json; print(json.load(open('$f'))['session'])")
+            if [ $count -eq 0 ]; then
+              subject="log: $date $session"
+            fi
+            count=$((count + 1))
+          done
+          if [ $count -gt 1 ]; then
+            subject="$subject (+$((count - 1)) more)"
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add log.md state.json
+          git rm inbox/*.json
+          git diff --cached --quiet && exit 0
+          git commit -m "$subject"
+          git push
