@@ -84,6 +84,12 @@ handle now, an inbox file you drain when you next see it.
    whether he noted pain, whether pull-ups were first on pull day, a lift that moved up
    or has stalled 3+ sessions. Nothing notable → say nothing.
 
+**Automated post-session processing.** A Claude routine fires every 3h, checks the
+inbox, and handles the full post-session job: drain, debrief, re-prescribe all four
+sessions, update the page and docs. If a session lands in `inbox/` from the phone page,
+the routine picks it up and processes it without human intervention. Manual sessions
+(screenshots, questions) still go through a human-initiated Claude session.
+
 **Nothing notifies you when he saves a session.** The inbox is only ever found by
 looking — check `inbox/` whenever he mentions training, and at the start of any
 programming session. If it holds anything, append it to `log.md` and delete it in the
