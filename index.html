@@ -144,6 +144,20 @@ header { background: var(--surface); border-bottom: 1px solid var(--rule); }
 .toast.ok { background: var(--green); color: #fff; }
 .toast.err { background: var(--red); color: #fff; }
 
+/* debrief card */
+.debrief-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
+  box-shadow: var(--shadow); margin: 16px 0; display: none; }
+.debrief-card.show { display: block; }
+.debrief-head { padding: 12px 14px 10px; border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: space-between; }
+.debrief-head .name { font-size: 14px; font-weight: 600; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--accent); }
+.debrief-dismiss { background: none; border: 0; color: var(--ink-3); font-size: 18px;
+  cursor: pointer; padding: 4px 8px; line-height: 1; }
+.debrief-body { padding: 14px; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+.debrief-loading { color: var(--ink-3); font-style: italic; }
+.debrief-error { color: var(--red); }
+
 /* setup notice */
 .setup { background: var(--amber-soft); border: 1px solid var(--amber);
   border-radius: var(--radius); padding: 12px 14px; margin-bottom: 16px;
@@ -420,6 +434,17 @@ input[type=number] { -moz-appearance: textfield; }
   </button>
 </nav>
 
+<!-- DEBRIEF -->
+<div class="wrap">
+  <div class="debrief-card" id="debrief-card">
+    <div class="debrief-head">
+      <span class="name">Debrief</span>
+      <button class="debrief-dismiss" onclick="dismissDebrief()">&times;</button>
+    </div>
+    <div class="debrief-body" id="debrief-body"></div>
+  </div>
+</div>
+
 <!-- SAVE BAR -->
 <div class="save-bar" id="save-bar" style="display:none">
   <div class="save-bar-in">
@@ -432,15 +457,18 @@ input[type=number] { -moz-appearance: textfield; }
 <!-- SETTINGS MODAL -->
 <div class="modal-bg" id="settings-modal" onclick="if(event.target===this)closeSettings()">
   <div class="modal">
-    <h2>GitHub Access</h2>
+    <h2>Settings</h2>
     <div class="hint">Create a fine-grained Personal Access Token at
       github.com/settings/tokens scoped to <b>maxyongg/fitness</b> with
-      <b>Contents: Read and write</b>. The token stays in this browser only.</div>
-    <label for="pat-input">Token</label>
+      <b>Contents: Read and write</b>. Tokens stay in this browser only.</div>
+    <label for="pat-input">GitHub Token</label>
     <input type="password" id="pat-input" placeholder="github_pat_...">
+    <label for="worker-input">Debrief Worker URL</label>
+    <input type="url" id="worker-input" placeholder="https://matchday-debrief.you.workers.dev">
+    <div class="hint">Optional. Cloudflare Worker that returns an AI debrief after saving.</div>
     <div class="modal-btns">
       <button class="modal-btn sec" onclick="closeSettings()">Cancel</button>
-      <button class="modal-btn pri" onclick="saveToken()">Save</button>
+      <button class="modal-btn pri" onclick="saveSettings()">Save</button>
     </div>
   </div>
 </div>
@@ -817,6 +845,7 @@ async function save() {
     btn.textContent = "Saved";
     btn.className = "save-btn";
     toast("Session saved to inbox/", "ok");
+    requestDebrief(data);
   } catch (e) {
     btn.textContent = "Failed \u2014 tap to retry";
     btn.className = "save-btn error";
@@ -828,6 +857,36 @@ async function save() {
     btn.className = "save-btn";
     btn.disabled = false;
   }, 3000);
+}
+
+/* ---- debrief ---- */
+async function requestDebrief(data) {
+  var url = getWorkerUrl();
+  if (!url) return;
+
+  var card = document.getElementById("debrief-card");
+  var body = document.getElementById("debrief-body");
+  card.classList.add("show");
+  body.innerHTML = '<span class="debrief-loading">Analysing session\u2026</span>';
+  window.scrollTo({ top: card.offsetTop - 80, behavior: "smooth" });
+
+  try {
+    var res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session: data, rx: RX })
+    });
+    if (!res.ok) throw new Error("Worker error " + res.status);
+    var result = await res.json();
+    body.textContent = result.debrief;
+  } catch (e) {
+    body.innerHTML = '<span class="debrief-error">Debrief unavailable \u2014 ' +
+      e.message.replace(/</g,"&lt;") + '</span>';
+  }
+}
+
+function dismissDebrief() {
+  document.getElementById("debrief-card").classList.remove("show");
 }
 
 /* ---- github api ---- */
@@ -875,29 +934,37 @@ async function ghGet(path) {
   return res.json();
 }
 
-/* ---- token ---- */
+/* ---- settings ---- */
 function getToken() {
   try { return localStorage.getItem("matchday_pat") || ""; }
   catch(e) { return ""; }
 }
 
+function getWorkerUrl() {
+  try { return localStorage.getItem("matchday_worker_url") || ""; }
+  catch(e) { return ""; }
+}
+
 function openSettings() {
   document.getElementById("settings-modal").classList.add("show");
-  var inp = document.getElementById("pat-input");
-  inp.value = getToken();
-  inp.focus();
+  document.getElementById("pat-input").value = getToken();
+  document.getElementById("worker-input").value = getWorkerUrl();
+  document.getElementById("pat-input").focus();
 }
 
 function closeSettings() {
   document.getElementById("settings-modal").classList.remove("show");
 }
 
-function saveToken() {
-  var v = document.getElementById("pat-input").value.trim();
-  try { localStorage.setItem("matchday_pat", v); }
-  catch(e) { toast("Could not save token", "err"); return; }
+function saveSettings() {
+  var pat = document.getElementById("pat-input").value.trim();
+  var worker = document.getElementById("worker-input").value.trim();
+  try {
+    localStorage.setItem("matchday_pat", pat);
+    localStorage.setItem("matchday_worker_url", worker);
+  } catch(e) { toast("Could not save settings", "err"); return; }
   closeSettings();
-  toast("Token saved", "ok");
+  toast("Settings saved", "ok");
   pick(cur);
 }
 

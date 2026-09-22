@@ -84,11 +84,13 @@ handle now, an inbox file you drain when you next see it.
    whether he noted pain, whether pull-ups were first on pull day, a lift that moved up
    or has stalled 3+ sessions. Nothing notable → say nothing.
 
-**Automated post-session processing.** A Claude routine fires every 3h, checks the
-inbox, and handles the full post-session job: drain, debrief, re-prescribe all four
-sessions, update the page and docs. If a session lands in `inbox/` from the phone page,
-the routine picks it up and processes it without human intervention. Manual sessions
-(screenshots, questions) still go through a human-initiated Claude session.
+**Automated post-session processing.** When a session is saved from the phone page:
+(1) the browser calls a Cloudflare Worker that returns an instant AI debrief on screen,
+(2) the GitHub Action runs `drain.py` + `prescribe.py` to commit `log.md`,
+`state.json`, and bump `RX.asof` in `index.html`. No routine — the debrief is
+instant via the Worker, and the repo bookkeeping is handled by the Action within a
+minute. Manual sessions (screenshots, questions) still go through a human-initiated
+Claude session. Setup: `docs/cloudflare-worker-setup.md`.
 
 **Nothing notifies you when he saves a session.** The inbox is only ever found by
 looking — check `inbox/` whenever he mentions training, and at the start of any
@@ -162,10 +164,12 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `docs/incidents.md` | Past mistakes and the rules that came out of them. |
 | `docs/calisthenics.md` | The beginner skill route. On demand. |
 | `drain.py` | Transcribes inbox JSON → `log.md`, updates `state.json`. Run it, don't hand-parse. |
+| `prescribe.py` | Bumps `RX.asof` in `index.html` to today. Run by GH Action after drain. |
 | `state.json` | Compact briefing: last session, next session, all slot prescriptions, row protocol. Read this instead of `plan.md` + `index.html` in logging mode. |
 | `analyse.py` | Full analysis of a Strong export. Monthly, not per session. |
 | `data/` | Strong CSV exports. Never read directly. |
 | `inbox/` | Sessions saved from the phone page (JSON). Drain with `python3 drain.py`, then delete. Empty at rest. |
 | `index.html` | The phone page, served by GitHub Pages. Prescriptions live in the `RX` object. |
+| `worker/` | Cloudflare Worker for instant debriefs. Setup: `docs/cloudflare-worker-setup.md`. |
 | `ui/matchday.html` | Old artifact-hosted page. Superseded by `index.html`. |
 | `README.md` | Orientation for a human landing on the repo. Not for you. |
