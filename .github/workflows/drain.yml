@@ -27,6 +27,10 @@ jobs:
         if: steps.check.outputs.has_files == 'true'
         run: python3 drain.py
 
+      - name: Run prescribe.py
+        if: steps.check.outputs.has_files == 'true'
+        run: python3 prescribe.py
+
       - name: Commit and push
         if: steps.check.outputs.has_files == 'true'
         run: |
@@ -46,7 +50,7 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add log.md state.json
+          git add log.md state.json index.html
           git rm inbox/*.json
           git diff --cached --quiet && exit 0
           git commit -m "$subject"
