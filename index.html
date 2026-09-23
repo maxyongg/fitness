@@ -486,6 +486,7 @@ input[type=number] { -moz-appearance: textfield; }
 var RX = {
   asof: "2026-09-21",
   repo: "maxyongg/fitness",
+  workerUrl: "https://matchday-debrief.maxyongg.workers.dev",
   schedule: { 1:"upper_a", 2:"football", 3:"rest", 4:"upper_b", 5:"football", 6:"upper_c", 0:"lower" },
   sessions: {
     upper_a: {
@@ -941,8 +942,8 @@ function getToken() {
 }
 
 function getWorkerUrl() {
-  try { return localStorage.getItem("matchday_worker_url") || ""; }
-  catch(e) { return ""; }
+  try { return localStorage.getItem("matchday_worker_url") || RX.workerUrl || ""; }
+  catch(e) { return RX.workerUrl || ""; }
 }
 
 function openSettings() {
