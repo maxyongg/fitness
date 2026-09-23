@@ -76,6 +76,28 @@ prompt in `worker/index.js`. The reply is 3-5 labelled paragraphs — Today, Tre
 Right lat, Next session, Rounding — about 180-300 words. If the page can't read
 `log.md`, the debrief still runs and says the history was missing.
 
+## Replies and follow-ups
+
+Under every debrief there's a reply box. When the log can't explain something (a set
+that dropped, a swapped slot) the debrief ends with one **Question:**, and he can
+answer it, or ask anything about the session. The page keeps the conversation and sends
+it back to the Worker as `thread`; the Worker is stateless and rebuilds the same context
+each time, so the prompt cache serves it on follow-ups (about a tenth of the input cost).
+Capped at 25 turns and 2,000 characters a message.
+
+The debrief coach can't change the programme. If he asks for a change it gives a view
+and points him at his next planning session.
+
+## Where debriefs are kept
+
+Each debrief is saved to `debriefs/<date>-<session>.json` in the repo with the session
+it was about and the whole conversation, updated after every reply. The phone keeps a
+copy for the **History → Debriefs** tab, and pulls any it's missing from the repo when
+that tab opens. Planning sessions read these files (see `CLAUDE.md`).
+
+The drain Action and these commits both write to `main`, so the Action queues its runs
+and rebases before pushing.
+
 ## Redeploying
 
 When the Worker code in `worker/index.js` changes, redeploy from a terminal:

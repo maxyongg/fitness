@@ -230,10 +230,29 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .debrief-h span { font-family: var(--font-m); font-size: 10px; letter-spacing: .14em;
   text-transform: uppercase; color: var(--accent); }
 .debrief-b { padding: 4px 12px 14px; font-size: 14px; line-height: 1.55; color: var(--ink); }
-.debrief-b p + p { margin-top: 10px; }
-.debrief-b b { font-family: var(--font-m); font-size: 10px; font-weight: 600; letter-spacing: .12em;
+.msg p + p { margin-top: 10px; }
+.msg.coach b { font-family: var(--font-m); font-size: 10px; font-weight: 600; letter-spacing: .12em;
   text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1px; }
 .debrief-loading { color: var(--ink-3); font-style: italic; }
+.msg + .msg { margin-top: 12px; }
+.msg.max { background: var(--surface-2); border-radius: 10px; padding: 8px 10px; color: var(--ink); }
+.msg.max span { display: block; font-family: var(--font-m); font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-3); margin-bottom: 1px; }
+.msg.pending { color: var(--ink-3); font-style: italic; }
+.ask { display: flex; gap: 8px; align-items: flex-end; margin-top: 14px; }
+.ask .field { min-height: 46px; height: 46px; padding: 12px; resize: none; font-size: 16px; line-height: 1.35; }
+.ask-btn { flex: 0 0 46px; height: 46px; border: 0; border-radius: 10px; background: var(--accent);
+  color: var(--accent-ink); display: grid; place-items: center; cursor: pointer; }
+.ask-btn:disabled { opacity: .5; }
+.seg { display: flex; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px;
+  padding: 3px; margin-bottom: 14px; }
+.segb { flex: 1; appearance: none; border: 0; background: none; border-radius: 8px; padding: 9px 4px;
+  cursor: pointer; font-family: var(--font-m); font-size: 11px; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-3); }
+.segb.active { background: var(--surface-2); color: var(--ink); }
+.hist-link { appearance: none; border: 0; background: none; cursor: pointer; padding: 10px 0 0;
+  font-family: var(--font-m); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.dbr .hist-d { padding-top: 12px; font-size: 14px; line-height: 1.55; }
 .debrief-error { color: var(--red); }
 
 /* ---- bottom nav ---- */
@@ -418,9 +437,19 @@ input[type=number] { -moz-appearance: textfield; }
 <div class="view" id="view-history">
   <div class="wrap">
     <h1 class="page-title">History</h1>
-    <p class="page-sub">Sessions saved from this phone.</p>
-    <div id="history-list"></div>
-    <div style="margin-top:14px"><button class="btn btn-ghost" onclick="checkInbox()" id="inbox-btn" hidden>Check inbox on GitHub</button></div>
+    <div class="seg" role="tablist">
+      <button class="segb active" data-h="sessions" onclick="histTab('sessions')">Sessions</button>
+      <button class="segb" data-h="debriefs" onclick="histTab('debriefs')">Debriefs</button>
+    </div>
+    <div id="hist-sessions">
+      <p class="page-sub">Sessions saved from this phone.</p>
+      <div id="history-list"></div>
+      <div style="margin-top:14px"><button class="btn btn-ghost" onclick="checkInbox()" id="inbox-btn" hidden>Check inbox on GitHub</button></div>
+    </div>
+    <div id="hist-debriefs" hidden>
+      <p class="page-sub">Every debrief and what you said back. Saved to the repo in <span class="mono">debriefs/</span>.</p>
+      <div id="debrief-list"></div>
+    </div>
   </div>
 </div>
 
@@ -701,6 +730,7 @@ var DRAFT_TTL = 16 * 3600 * 1000;
 
 var ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>';
 var ICON_SWAP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>';
+var ICON_SEND = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
 var ICON_CHEV = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>';
 
 /* ---- state ---- */
@@ -763,7 +793,7 @@ function switchView(v) {
   document.querySelectorAll(".view").forEach(function(el) { el.classList.remove("active"); });
   document.getElementById("view-" + v).classList.add("active");
   document.querySelectorAll(".nav-item").forEach(function(el) { el.classList.toggle("active", el.dataset.view === v); });
-  if (v === "history") renderHistory();
+  if (v === "history") { renderHistory(); if (histMode === "debriefs") { renderDebriefList(); syncDebriefs(); } }
   window.scrollTo(0, 0);
 }
 
@@ -944,6 +974,13 @@ function refreshProgress() {
   var el = document.getElementById("prog");
   if (el) el.textContent = logged;
 }
+
+/* reply box grows with what's typed */
+document.addEventListener("input", function(e) {
+  if (!e.target.classList || !e.target.classList.contains("ask-in")) return;
+  e.target.style.height = "auto";
+  e.target.style.height = Math.min(e.target.scrollHeight + 2, 160) + "px";
+});
 
 document.addEventListener("input", function(e) {
   if (!e.target.closest || !e.target.closest("#main")) return;
@@ -1171,6 +1208,7 @@ async function requestDebrief(data, cardId) {
 
   var card = document.getElementById(cardId);
   var body = card.querySelector(".debrief-b");
+  delete body.dataset.dkey;
   card.hidden = false;
   body.innerHTML = '<span class="debrief-loading">Reading the session against your recent history…</span>';
   card.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -1186,9 +1224,113 @@ async function requestDebrief(data, cardId) {
     });
     var result = await res.json().catch(function() { return {}; });
     if (!res.ok) throw new Error(result.error || "Worker error " + res.status);
-    body.innerHTML = renderDebrief(result.debrief || "");
+    if (!result.debrief) throw new Error("Empty reply from the Worker");
+    var rec = {
+      key: debriefKey(data), date: data.date, session: data.session, session_id: data.session_id,
+      model: result.model || "", created: new Date().toISOString(), logged: data,
+      thread: [{ role: "coach", text: result.debrief, at: new Date().toISOString() }]
+    };
+    body.dataset.dkey = rec.key;
+    cacheDebrief(rec);
+    renderThreads(rec.key);
+    storeDebrief(rec);
   } catch (e) {
     body.innerHTML = '<span class="debrief-error">Debrief unavailable — ' + esc(e.message) + '</span>';
+  }
+}
+
+/* ---- debrief records ----
+
+   Every debrief is saved to debriefs/<date>-<session>.json in the repo, with the session
+   it was about and the conversation that followed. This browser keeps a copy so the
+   History tab opens instantly; planning sessions read the repo copy.              */
+function debriefKey(s) { return s.date + "-" + String(s.session_id || "session").replace(/_/g, "-"); }
+
+function getDebriefs() {
+  try { return JSON.parse(localStorage.getItem("matchday_debriefs") || "{}"); }
+  catch (e) { return {}; }
+}
+
+function cacheDebrief(rec) {
+  var all = getDebriefs();
+  all[rec.key] = rec;
+  var keys = Object.keys(all).sort().reverse();
+  keys.slice(100).forEach(function(k) { delete all[k]; });
+  try { localStorage.setItem("matchday_debriefs", JSON.stringify(all)); } catch (e) {}
+}
+
+async function storeDebrief(rec) {
+  if (!getToken()) return;
+  var turns = rec.thread.length;
+  try {
+    await ghPut("debriefs/" + rec.key + ".json", JSON.stringify(rec, null, 2),
+      (turns > 1 ? "debrief reply: " : "debrief: ") + rec.date + " " + rec.session);
+  } catch (e) {
+    toast("Debrief not saved to GitHub — " + e.message, "err");
+  }
+}
+
+function threadHtml(rec, pending) {
+  var h = rec.thread.map(function(t) {
+    return t.role === "coach"
+      ? '<div class="msg coach">' + renderDebrief(t.text) + '</div>'
+      : '<div class="msg max"><span>You</span>' + esc(t.text).replace(/\n/g, "<br>") + '</div>';
+  }).join("");
+  if (pending) h += '<div class="msg pending">Thinking…</div>';
+  return h + '<div class="ask"><textarea class="field ask-in" rows="1" maxlength="2000"'
+    + ' placeholder="Reply or ask…"' + (pending ? ' disabled' : '') + '></textarea>'
+    + '<button class="ask-btn" onclick="askFollowup(this)" aria-label="Send"' + (pending ? ' disabled' : '') + '>'
+    + ICON_SEND + '</button></div>';
+}
+
+/* The same debrief can be open in the Train card and in History at once: redraw every copy. */
+function renderThreads(key, pending) {
+  var rec = getDebriefs()[key];
+  if (!rec) return;
+  document.querySelectorAll('[data-dkey="' + key + '"]').forEach(function(el) {
+    el.innerHTML = threadHtml(rec, pending);
+  });
+}
+
+async function askFollowup(btn) {
+  var holder = btn.closest("[data-dkey]");
+  var key = holder.dataset.dkey;
+  var input = holder.querySelector(".ask-in");
+  var q = input.value.trim();
+  if (!q) return;
+  var url = getWorkerUrl(), pin = getPin();
+  if (!url || !pin) { openSettings(); return; }
+  var rec = getDebriefs()[key];
+  if (!rec) return;
+
+  rec.thread.push({ role: "max", text: q, at: new Date().toISOString() });
+  cacheDebrief(rec);
+  renderThreads(key, true);
+
+  try {
+    var history = "";
+    try { history = recentHistory(await fetchLog(), rec.logged); } catch (e) {}
+    var res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        session: rec.logged, rx: RX, history: history, pin: pin,
+        thread: rec.thread.map(function(t) { return { role: t.role, text: t.text }; })
+      })
+    });
+    var result = await res.json().catch(function() { return {}; });
+    if (!res.ok) throw new Error(result.error || "Worker error " + res.status);
+    if (!result.reply) throw new Error("Replies need the Worker redeployed");
+    rec.thread.push({ role: "coach", text: result.reply, at: new Date().toISOString() });
+    cacheDebrief(rec);
+    renderThreads(key);
+    storeDebrief(rec);
+  } catch (e) {
+    rec.thread.pop();
+    cacheDebrief(rec);
+    renderThreads(key);
+    document.querySelectorAll('[data-dkey="' + key + '"] .ask-in').forEach(function(el) { el.value = q; });
+    toast(e.message, "err");
   }
 }
 
@@ -1204,12 +1346,12 @@ function toB64(str) {
   return btoa(bin);
 }
 
-async function ghPut(path, content, message) {
+async function ghPut(path, content, message, retried) {
   var token = getToken();
   var url = "https://api.github.com/repos/" + RX.repo + "/contents/" + path;
 
   var sha;
-  var check = await fetch(url, { headers: { Authorization: "token " + token } });
+  var check = await fetch(url, { headers: { Authorization: "token " + token }, cache: "no-store" });
   if (check.ok) {
     var existing = await check.json();
     sha = existing.sha;
@@ -1226,6 +1368,11 @@ async function ghPut(path, content, message) {
     body: JSON.stringify(payload)
   });
 
+  /* 409/422: the file or branch moved under us (e.g. the drain Action committing) */
+  if ((res.status === 409 || res.status === 422) && !retried) {
+    await new Promise(function(r) { setTimeout(r, 1500); });
+    return ghPut(path, content, message, true);
+  }
   if (!res.ok) {
     var err = await res.json().catch(function() { return {}; });
     throw new Error(err.message || "GitHub API error " + res.status);
@@ -1334,6 +1481,7 @@ function renderHistory() {
     return;
   }
 
+  var debriefsCache = getDebriefs();
   el.innerHTML = hist.map(function(item, i) {
     var p = (item.date || "").split("-");
     var d = p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null;
@@ -1356,12 +1504,75 @@ function renderHistory() {
     if (item.pain && item.pain.right_lat != null) h += '<div class="hist-note pain">Right lat ' + item.pain.right_lat + '/10</div>';
     if (item.notes) h += '<div class="hist-note">' + esc(item.notes) + '</div>';
     if (item.extra) h += '<div class="hist-note">Extra: ' + esc(item.extra) + '</div>';
+    if (item.date && item.session_id && debriefsCache[debriefKey(item)]) {
+      h += '<button class="hist-link" onclick="openDebrief(\'' + debriefKey(item) + '\')">Read the debrief →</button>';
+    }
     return h + '</div></div>';
   }).join("");
 }
 
 function toggleHist(i) {
   document.getElementById("hist-" + i).classList.toggle("open");
+}
+
+var histMode = "sessions";
+function histTab(mode) {
+  histMode = mode;
+  document.querySelectorAll(".segb").forEach(function(b) { b.classList.toggle("active", b.dataset.h === mode); });
+  document.getElementById("hist-sessions").hidden = mode !== "sessions";
+  document.getElementById("hist-debriefs").hidden = mode !== "debriefs";
+  if (mode === "debriefs") { renderDebriefList(); syncDebriefs(); }
+}
+
+function renderDebriefList(openKey) {
+  var all = getDebriefs();
+  var keys = Object.keys(all).sort().reverse();
+  var el = document.getElementById("debrief-list");
+  if (!keys.length) {
+    el.innerHTML = '<div class="empty">No debriefs yet.<br>One appears after each saved session.</div>';
+    return;
+  }
+  el.innerHTML = keys.map(function(k) {
+    var rec = all[k];
+    var p = (rec.date || "").split("-");
+    var d = p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null;
+    var replies = rec.thread.filter(function(t) { return t.role === "max"; }).length;
+    return '<div class="hist dbr' + (k === openKey ? " open" : "") + '" id="dbr-' + esc(k) + '">'
+      + '<div class="hist-h" onclick="this.parentNode.classList.toggle(\'open\')">'
+      + '<div class="hist-date">' + (d ? '<b>' + d.getDate() + '</b>' + SHORT_MON[d.getMonth()] : esc(rec.date)) + '</div>'
+      + '<div class="hist-t"><b>' + esc(rec.session) + '</b><span>Debrief'
+      + (replies ? ' · ' + replies + (replies === 1 ? ' reply' : ' replies') : '') + '</span></div>'
+      + '<span class="hist-chev">' + ICON_CHEV + '</span></div>'
+      + '<div class="hist-d" data-dkey="' + esc(k) + '">' + threadHtml(rec) + '</div></div>';
+  }).join("");
+}
+
+/* Pull any debriefs this browser hasn't seen (another device, cleared storage). */
+async function syncDebriefs() {
+  if (!getToken()) return;
+  try {
+    var files = await ghGet("debriefs");
+    var have = getDebriefs();
+    var missing = files.filter(function(f) { return /\.json$/.test(f.name) && !have[f.name.replace(/\.json$/, "")]; })
+      .map(function(f) { return f.name; }).sort().reverse().slice(0, 20);
+    for (var i = 0; i < missing.length; i++) {
+      var detail = await ghGet("debriefs/" + missing[i]);
+      var bin = atob(detail.content.replace(/\n/g, ""));
+      var bytes = new Uint8Array(bin.length);
+      for (var j = 0; j < bin.length; j++) bytes[j] = bin.charCodeAt(j);
+      cacheDebrief(JSON.parse(new TextDecoder().decode(bytes)));
+    }
+    if (missing.length && histMode === "debriefs") renderDebriefList();
+  } catch (e) {
+    if (e.message.indexOf("404") === -1) toast("Could not sync debriefs — " + e.message, "err");
+  }
+}
+
+function openDebrief(key) {
+  histTab("debriefs");
+  renderDebriefList(key);
+  var el = document.getElementById("dbr-" + key);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 async function checkInbox() {

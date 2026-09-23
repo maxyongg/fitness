@@ -48,7 +48,9 @@ question. He is open to movements he has never done, provided they earn a slot �
 
 - **Logging mode:** read this file and `state.json`. That is the whole briefing — do not
   read `plan.md`, `index.html` or the full `log.md` unless you need to programme.
-- **Programming mode: also `plan.md`, `docs/goals.md`, tail of `log.md`.**
+- **Programming mode: also `plan.md`, `docs/goals.md`, tail of `log.md`, and the
+  recent files in `debriefs/`** — he may have answered the debrief's question or asked
+  for a change there. What he tells it about his body is evidence the log can't hold.
 - **Never read `data/*.csv`** — ~7,500 rows. Reach it only through `analyse.py`, monthly,
   when a new export lands.
 - Baseline numbers are in the comment at the foot of `log.md`. Don't re-derive them.
@@ -85,7 +87,8 @@ handle now, an inbox file you drain when you next see it.
    or has stalled 3+ sessions. Nothing notable → say nothing.
 
 **Automated post-session processing.** When a session is saved from the phone page:
-(1) the browser calls a Cloudflare Worker that returns an instant AI debrief on screen,
+(1) the browser calls a Cloudflare Worker that returns an AI debrief on screen — he can
+reply to it, and the debrief plus the conversation are saved to `debriefs/`,
 (2) the GitHub Action runs `drain.py` + `prescribe.py` to commit `log.md`,
 `state.json`, and bump `RX.asof` in `index.html`. No routine — the debrief is
 instant via the Worker, and the repo bookkeeping is handled by the Action within a
@@ -171,6 +174,7 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `analyse.py` | Full analysis of a Strong export. Monthly, not per session. |
 | `data/` | Strong CSV exports. Never read directly. |
 | `inbox/` | Sessions saved from the phone page (JSON). Drain with `python3 drain.py`, then delete. Empty at rest. |
+| `debriefs/` | One JSON per debrief: the session, the Worker's debrief, and any follow-up conversation. Written by the phone page. Read in programming mode; never edit. |
 | `index.html` | The phone page, served by GitHub Pages. Prescriptions live in the `RX` object. |
 | `worker/` | Cloudflare Worker for instant debriefs. Setup: `docs/cloudflare-worker-setup.md`. |
 | `ui/matchday.html` | Old artifact-hosted page. Superseded by `index.html`. |

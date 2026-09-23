@@ -46,11 +46,19 @@ on:
 permissions:
   contents: write
 
+# One drain at a time, each starting from the latest main, so two quick saves
+# can't drain the same inbox file twice.
+concurrency:
+  group: drain
+  cancel-in-progress: false
+
 jobs:
   drain:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Check inbox
         id: check
@@ -92,7 +100,13 @@ jobs:
           git rm inbox/*.json
           git diff --cached --quiet && exit 0
           git commit -m "$subject"
-          git push
+          # The page commits debriefs to main while this runs; rebase onto them and retry.
+          for i in 1 2 3 4; do
+            git push && exit 0
+            sleep $((i * 3))
+            git pull --rebase origin main
+          done
+          exit 1
 ```
 
 ## What happens

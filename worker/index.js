@@ -2,6 +2,8 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const MODEL = "claude-sonnet-5";
 const HISTORY_CHARS = 40000;
+const MAX_TURNS = 25;
+const MAX_QUESTION_CHARS = 2000;
 const DAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -28,17 +30,21 @@ export default {
       return Response.json({ error: "Bad request body" }, { status: 400, headers: cors });
     }
 
-    const { session, rx, history, pin } = body;
+    const { session, rx, history, pin, thread } = body;
     if (!env.DEBRIEF_PIN || pin !== env.DEBRIEF_PIN) {
       return Response.json({ error: "Invalid PIN" }, { status: 403, headers: cors });
     }
     if (!session || !Array.isArray(session.exercises) || session.exercises.length === 0) {
       return Response.json({ error: "No session data" }, { status: 400, headers: cors });
     }
+    const threadError = thread === undefined ? null : checkThread(thread);
+    if (threadError) {
+      return Response.json({ error: threadError }, { status: 400, headers: cors });
+    }
 
     try {
-      const debrief = await getDebrief(session, rx, history, env);
-      return Response.json({ debrief }, { headers: cors });
+      const text = await askClaude(session, rx, history, thread, env);
+      return Response.json(thread ? { reply: text, model: MODEL } : { debrief: text, model: MODEL }, { headers: cors });
     } catch (e) {
       return Response.json({ error: describeError(e) }, { status: 502, headers: cors });
     }
@@ -50,7 +56,12 @@ export default {
    The system prompt is the standing brief: who he is, how the programme works, how
    to read the log without repeating the mistakes in docs/incidents.md, and the shape
    of the reply. The user message carries this session, its prescription, the next
-   session's prescription and the last eight weeks of log.md.                        */
+   session's prescription and the last eight weeks of log.md.
+
+   Follow-ups: the page keeps the conversation and sends it back as `thread`
+   ([{role: "coach" | "max", text}], starting with the debrief). The Worker stays
+   stateless — the context message is rebuilt identically each time, so the prompt
+   cache serves it on every follow-up after the first.                              */
 
 const SYSTEM = `You debrief a gym session for Max straight after he logs it. He reads it on his phone.
 
@@ -72,37 +83,65 @@ How to read the data:
 
 What to write:
 - Plain text with no markdown, bullets or headings. Three to five short paragraphs separated by blank lines, about 180-300 words in total.
-- Start each paragraph with one of these labels and a colon: "Today:", "Trend:", "Right lat:", "Next session:", "Rounding:". Always include Today and Next session. Include the others only when there is something real to say.
+- Start each paragraph with one of these labels and a colon: "Today:", "Trend:", "Right lat:", "Next session:", "Rounding:", "Question:". Always include Today and Next session. Include the others only when there is something real to say.
 - Today: how the session went against the prescription. Name the slots that hit, missed or beat their targets, with the numbers.
 - Trend: what moved or stalled against earlier sessions of the same exercise, citing dates and numbers. Call out any progression rule that has just been met, and anything stalled for three or more sessions.
 - Right lat: the pain reading and what it means for the row protocol. If a session with pulling has no reading, say so once, plainly.
 - Next session: name it and give one or two concrete things to carry into it: a load, a rep target or an order.
 - Rounding: something the week is missing, only when the data clearly shows it.
-- Direct tone. He is not a beginner, so do not explain basics. No greetings, no sign-offs, no praise for its own sake.`;
+- Question: he is right about his own body more often than the log is. When something in the session can't be explained from the data and his answer would change your advice (a set that dropped sharply, a skipped or swapped slot, a pain reading that jumped), end with one short question to him. At most one. Leave it out when nothing needs asking.
+- Direct tone. He is not a beginner, so do not explain basics. No greetings, no sign-offs, no praise for its own sake.
 
-async function getDebrief(session, rx, history, env) {
+Follow-ups:
+- After the debrief he may answer your question or ask his own. Reply in plain text without labels, one to three short paragraphs, in the same direct tone. Work from the same data and don't repeat the debrief back.
+- You can't change the programme. If he wants a change, give your view with the reason, and tell him it goes to his next planning session with his coach, who reads this conversation.
+- If he tells you something the log can't show (why he stopped, how a set felt, a niggle), take it as fact and adjust your advice.`;
+
+function checkThread(thread) {
+  if (!Array.isArray(thread) || thread.length < 2) return "Thread must hold the debrief and a reply";
+  if (thread.length > MAX_TURNS) return "Thread too long — start from a fresh debrief";
+  for (const t of thread) {
+    if (!t || (t.role !== "coach" && t.role !== "max") || typeof t.text !== "string" || !t.text.trim()) {
+      return "Malformed thread";
+    }
+  }
+  if (thread[0].role !== "coach") return "Thread must start with the debrief";
+  const last = thread[thread.length - 1];
+  if (last.role !== "max") return "Thread must end with his message";
+  if (last.text.length > MAX_QUESTION_CHARS) return "Message too long";
+  return null;
+}
+
+async function askClaude(session, rx, history, thread, env) {
   const client = new Anthropic({
     apiKey: env.ANTHROPIC_API_KEY,
     // Only for local testing against a mock; unset in production.
     ...(env.ANTHROPIC_BASE_URL ? { baseURL: env.ANTHROPIC_BASE_URL } : {}),
   });
 
+  const messages = [{ role: "user", content: buildMessage(session, rx, history) }];
+  for (const t of thread || []) {
+    messages.push({ role: t.role === "coach" ? "assistant" : "user", content: t.text });
+  }
+
   const response = await client.messages.create({
     model: MODEL,
     max_tokens: 16000,
     system: SYSTEM,
-    messages: [{ role: "user", content: buildMessage(session, rx, history) }],
+    messages,
+    // Automatic caching: the context message is re-read on every follow-up.
+    cache_control: { type: "ephemeral" },
   });
 
   if (response.stop_reason === "refusal") {
-    throw new Error("Claude declined to write this debrief");
+    throw new Error("Claude declined to answer this");
   }
   const text = response.content
     .filter((b) => b.type === "text")
     .map((b) => b.text)
     .join("\n")
     .trim();
-  if (!text) throw new Error("Empty debrief (stop reason: " + response.stop_reason + ")");
+  if (!text) throw new Error("Empty reply (stop reason: " + response.stop_reason + ")");
   return text;
 }
 
