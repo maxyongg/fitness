@@ -229,7 +229,10 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .debrief-h { display: flex; align-items: center; justify-content: space-between; padding: 8px 4px 0 12px; }
 .debrief-h span { font-family: var(--font-m); font-size: 10px; letter-spacing: .14em;
   text-transform: uppercase; color: var(--accent); }
-.debrief-b { padding: 4px 12px 12px; font-size: 14px; line-height: 1.55; color: var(--ink); }
+.debrief-b { padding: 4px 12px 14px; font-size: 14px; line-height: 1.55; color: var(--ink); }
+.debrief-b p + p { margin-top: 10px; }
+.debrief-b b { font-family: var(--font-m); font-size: 10px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1px; }
 .debrief-loading { color: var(--ink-3); font-style: italic; }
 .debrief-error { color: var(--red); }
 
@@ -386,10 +389,10 @@ input[type=number] { -moz-appearance: textfield; }
     <div class="save-wrap">
       <button class="btn btn-pri" id="save-btn" onclick="save()">Save session</button>
     </div>
-    <div class="debrief" id="debrief" hidden>
+    <div class="debrief" id="debrief-train" hidden>
       <div class="debrief-h"><span>Debrief</span>
-        <button class="icon-btn" onclick="dismissDebrief()" aria-label="Dismiss">&times;</button></div>
-      <div class="debrief-b" id="debrief-body"></div>
+        <button class="icon-btn" onclick="dismissDebrief('debrief-train')" aria-label="Dismiss">&times;</button></div>
+      <div class="debrief-b"></div>
     </div>
     <div class="asof" id="asof"></div>
   </div>
@@ -403,6 +406,11 @@ input[type=number] { -moz-appearance: textfield; }
     <textarea class="field import-area" id="strong-input" placeholder="Incline Bench Press (Barbell)&#10;65 kg x 8&#10;65 kg x 7&#10;&#10;Pull Up&#10;10&#10;9"></textarea>
     <div style="margin-top:10px"><button class="btn btn-pri" onclick="parseStrong()">Parse</button></div>
     <div id="parse-result"></div>
+    <div class="debrief" id="debrief-import" hidden>
+      <div class="debrief-h"><span>Debrief</span>
+        <button class="icon-btn" onclick="dismissDebrief('debrief-import')" aria-label="Dismiss">&times;</button></div>
+      <div class="debrief-b"></div>
+    </div>
   </div>
 </div>
 
@@ -1102,7 +1110,7 @@ async function save() {
     btn.textContent = "Saved ✓";
     btn.className = "btn btn-pri";
     toast("Session saved to inbox/", "ok");
-    requestDebrief(data);
+    requestDebrief(data, "debrief-train");
   } catch (e) {
     btn.textContent = "Failed — tap to retry";
     btn.className = "btn btn-pri error";
@@ -1116,34 +1124,76 @@ async function save() {
   }, 3000);
 }
 
-/* ---- debrief ---- */
-async function requestDebrief(data) {
+/* ---- debrief ----
+
+   After a save, the Worker (worker/index.js) asks Claude for a debrief. It gets the
+   session, the prescriptions, and recent history: the last HISTORY_DAYS of log.md, read
+   through the GitHub API with the same token that saved the session. Claude's commentary
+   comments are stripped; the session being debriefed is left out if the Action has
+   already drained it.                                                                  */
+var HISTORY_DAYS = 56;
+var HISTORY_MAX = 40;
+
+async function fetchLog() {
+  var res = await fetch("https://api.github.com/repos/" + RX.repo + "/contents/log.md", {
+    headers: { Authorization: "token " + getToken(), Accept: "application/vnd.github.raw+json" }
+  });
+  if (!res.ok) throw new Error("log.md " + res.status);
+  return res.text();
+}
+
+function recentHistory(text, session) {
+  var p = session.date.split("-");
+  var cutoff = isoDate(new Date(+p[0], +p[1] - 1, +p[2] - HISTORY_DAYS));
+  var blocks = text.replace(/<!--[\s\S]*?-->/g, "")
+    .split(/\n(?=## \d{4}-\d{2}-\d{2} )/)
+    .filter(function(b) { return /^## \d{4}-\d{2}-\d{2} /.test(b); })
+    .map(function(b) { return b.replace(/\n{2,}/g, "\n").trim(); })
+    .filter(function(b) {
+      var date = b.slice(3, 13);
+      var name = b.split("\n")[0].split(" · ").pop().trim();
+      return date >= cutoff && date <= session.date && !(date === session.date && name === session.session);
+    });
+  return blocks.slice(-HISTORY_MAX).join("\n\n");
+}
+
+function renderDebrief(text) {
+  return String(text).trim().split(/\n\s*\n/).map(function(para) {
+    var m = para.match(/^([A-Za-z][A-Za-z ]{1,22}):\s+([\s\S]*)$/);
+    return m ? '<p><b>' + esc(m[1]) + '</b>' + esc(m[2]) + '</p>' : '<p>' + esc(para) + '</p>';
+  }).join("");
+}
+
+async function requestDebrief(data, cardId) {
   var url = getWorkerUrl();
   var pin = getPin();
   if (!url || !pin) return;
 
-  var card = document.getElementById("debrief");
-  var body = document.getElementById("debrief-body");
+  var card = document.getElementById(cardId);
+  var body = card.querySelector(".debrief-b");
   card.hidden = false;
-  body.innerHTML = '<span class="debrief-loading">Reading the session…</span>';
+  body.innerHTML = '<span class="debrief-loading">Reading the session against your recent history…</span>';
   card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  var history = "";
+  try { history = recentHistory(await fetchLog(), data); } catch (e) {}
 
   try {
     var res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session: data, rx: RX, pin: pin })
+      body: JSON.stringify({ session: data, rx: RX, history: history, pin: pin })
     });
-    if (!res.ok) throw new Error("Worker error " + res.status);
-    var result = await res.json();
-    body.textContent = result.debrief;
+    var result = await res.json().catch(function() { return {}; });
+    if (!res.ok) throw new Error(result.error || "Worker error " + res.status);
+    body.innerHTML = renderDebrief(result.debrief || "");
   } catch (e) {
     body.innerHTML = '<span class="debrief-error">Debrief unavailable — ' + esc(e.message) + '</span>';
   }
 }
 
-function dismissDebrief() {
-  document.getElementById("debrief").hidden = true;
+function dismissDebrief(cardId) {
+  document.getElementById(cardId).hidden = true;
 }
 
 /* ---- github api ---- */
@@ -1526,6 +1576,7 @@ async function saveImport(sessionId) {
     addToHistory(data);
     toast("Saved to inbox", "ok");
     clearImport();
+    requestDebrief(data, "debrief-import");
   } catch (e) {
     toast(e.message, "err");
   }

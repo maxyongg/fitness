@@ -1,8 +1,8 @@
 # Cloudflare Worker setup — instant debriefs
 
-After you save a session on the phone page, the browser calls a Cloudflare Worker
-that sends the session data to Claude and returns a 2-4 sentence debrief within
-seconds. No repo writes, no waiting — just a card on screen.
+After you save a session on the phone page — from Train or from Import — the browser
+calls a Cloudflare Worker that sends the session to Claude (Sonnet 5) and puts a short
+debrief on screen. No repo writes — just a card under the save button.
 
 Requests are gated by a PIN: the Worker rejects any call without a valid PIN,
 so random visitors can't burn your API credits.
@@ -21,6 +21,7 @@ From a terminal (not Claude Code — it needs interactive input for secrets):
 
 ```bash
 cd fitness/worker
+npm install
 npx wrangler login
 npx wrangler deploy
 ```
@@ -52,13 +53,28 @@ stored in your browser's `localStorage` — it never appears in the repo.
 ## What happens after setup
 
 1. You save a session on the phone page → JSON goes to `inbox/`
-2. **Immediately:** the page calls the Worker with your PIN, which calls
-   Claude Sonnet and returns a debrief card on screen (2-5 seconds)
+2. **Immediately:** the page reads `log.md` through the GitHub API (same token), keeps
+   the last 8 weeks, and sends it to the Worker with the session, the `RX` prescriptions
+   and your PIN. The Worker calls Claude and the debrief lands on screen, usually within
+   10-30 seconds.
 3. **Within ~1 minute:** GitHub Action runs `drain.py` + `prescribe.py`, commits
    log + state + updated RX.asof, deletes inbox file
 
-The debrief is display-only — it doesn't write to the repo. The GH Action handles
-all the repo bookkeeping.
+The debrief is display-only — it doesn't write to the repo, and it is gone once
+dismissed. The GH Action handles all the repo bookkeeping.
+
+## What the debrief sees
+
+- **The session just logged** — every set, weights, holds, supersets, pain, notes, extra.
+- **Its prescription** — each slot's load and rep target plus the `do`, `last` and `why`
+  lines from `RX`, so the coach's context travels with it.
+- **The next session's prescription**, worked out from `RX.schedule`.
+- **The last 8 weeks of `log.md`**, with the HTML commentary stripped.
+
+The standing brief (programme rules, row protocol, how to read the log) is the `SYSTEM`
+prompt in `worker/index.js`. The reply is 3-5 labelled paragraphs — Today, Trend,
+Right lat, Next session, Rounding — about 180-300 words. If the page can't read
+`log.md`, the debrief still runs and says the history was missing.
 
 ## Redeploying
 
@@ -66,13 +82,16 @@ When the Worker code in `worker/index.js` changes, redeploy from a terminal:
 
 ```bash
 cd fitness/worker
+npm install
 npx wrangler deploy
 ```
 
-Secrets persist across deploys — you only set them once.
+Secrets persist across deploys — you only set them once. `npm install` pulls the
+Anthropic SDK the Worker is built on; wrangler bundles it into the deploy.
 
 ## Costs
 
 - **Cloudflare Workers:** free tier covers 100k requests/day. One debrief = one request.
-- **Anthropic API:** ~$0.005-0.01 per debrief (Sonnet, short prompt + 300 token reply).
-  At 4 sessions/week that's ~$2/month.
+- **Anthropic API:** roughly 3-5 cents per debrief (Claude Sonnet 5 at $2/$10 per million
+  tokens: a few thousand tokens of session + history in, the reply and its thinking out).
+  At 4-5 sessions a week that's about $1/month.
