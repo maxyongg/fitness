@@ -67,8 +67,16 @@ For every slot you touch, update both `plan.md` and the `RX` object in `index.ht
   (a stall of three, a rep band that does not fit, a movement the injury dislikes).
   Write the reason into `plan.md`; a silent swap is the thing the prescription model
   replaced.
+- **`last`, `do`, `why`** — the three lines the page prints on every slot. `last` is
+  what he did last time on *that machine*, from `log.md` (never a number from a different
+  station); `do` is today's instruction in a sentence or two; `why` is the reason the
+  slot is what it is. Each session also carries a one-line `brief`. A stale `last` is
+  worse than none, so rewrite it whenever the slot runs.
 - **`RX.asof`** — bump the date. The page renders it, and it is how he can tell at a
   glance whether prescriptions are current.
+
+Keep `RX` in its current shape: bare keys, double-quoted strings. `drain.py` parses it
+and `prescribe.py` rewrites `asof:` by regex.
 
 Anchors keep their exercise always; only their numbers move.
 

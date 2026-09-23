@@ -190,6 +190,88 @@ def append_to_log(entry_text):
         f.write(new_content)
 
 
+def _js_object_to_json(src):
+    """Convert a JS object literal to JSON text.
+
+    Handles bare keys (including numeric ones), single- or double-quoted
+    strings, trailing commas and comments. String-aware: colons, commas and
+    braces inside strings are left alone, so a prescription line like
+    "09-20 · 0:30, 0:30" survives intact.
+    """
+    out = []
+    i, n = 0, len(src)
+    while i < n:
+        c = src[i]
+        if c in "\"'":
+            j = i + 1
+            body = []
+            while j < n and src[j] != c:
+                if src[j] == "\\" and j + 1 < n:
+                    esc = src[j + 1]
+                    body.append("'" if esc == "'" else src[j:j + 2])
+                    j += 2
+                    continue
+                body.append('\\"' if src[j] == '"' else src[j])
+                j += 1
+            out.append('"' + "".join(body) + '"')
+            i = j + 1
+            continue
+        if src.startswith("//", i):
+            j = src.find("\n", i)
+            i = n if j == -1 else j
+            continue
+        if src.startswith("/*", i):
+            j = src.find("*/", i + 2)
+            i = n if j == -1 else j + 2
+            continue
+        if c.isalnum() or c in "_$":
+            j = i
+            while j < n and (src[j].isalnum() or src[j] in "_$."):
+                j += 1
+            word = src[i:j]
+            k = j
+            while k < n and src[k] in " \t\r\n":
+                k += 1
+            out.append('"' + word + '"' if k < n and src[k] == ":" else word)
+            i = j
+            continue
+        if c == ",":
+            k = i + 1
+            while k < n and src[k] in " \t\r\n":
+                k += 1
+            if k < n and src[k] in "}]":
+                i += 1
+                continue
+        out.append(c)
+        i += 1
+    return "".join(out)
+
+
+def _object_span(text, start):
+    """Index just past the brace that closes the object opening at `start`."""
+    depth = 0
+    i = start
+    quote = None
+    while i < len(text):
+        c = text[i]
+        if quote:
+            if c == "\\":
+                i += 2
+                continue
+            if c == quote:
+                quote = None
+        elif c in "\"'":
+            quote = c
+        elif c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth == 0:
+                return i + 1
+        i += 1
+    return len(text)
+
+
 def load_rx():
     with open(INDEX, "r") as f:
         html = f.read()
@@ -198,28 +280,13 @@ def load_rx():
     if not match:
         return None
 
-    start = match.start() + len("var RX = ")
-    depth = 0
-    end = start
-    for i in range(start, len(html)):
-        if html[i] == "{":
-            depth += 1
-        elif html[i] == "}":
-            depth -= 1
-            if depth == 0:
-                end = i + 1
-                break
-
-    js_obj = html[start:end]
-    json_str = js_obj
-    json_str = re.sub(r'(?<=[{,\n])\s*(\w+)\s*:', r' "\1":', json_str)
-    json_str = re.sub(r",\s*([}\]])", r"\1", json_str)
-    json_str = json_str.replace("—", "—")
-    json_str = re.sub(r':\s*"([^"]*)—([^"]*)"', r': "\1—\2"', json_str)
+    start = match.end() - 1
+    js_obj = html[start:_object_span(html, start)]
 
     try:
-        return json.loads(json_str)
-    except json.JSONDecodeError:
+        return json.loads(_js_object_to_json(js_obj))
+    except json.JSONDecodeError as e:
+        print(f"Could not parse RX in index.html: {e}", file=sys.stderr)
         return None
 
 

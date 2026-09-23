@@ -2,305 +2,395 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Matchday</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#131a18" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 :root {
-  --bg: #0e1618;
-  --surface: #16211f;
-  --surface-2: #1d2a28;
-  --ink: #e8ece7;
-  --ink-2: #a4b0ac;
-  --ink-3: #78857f;
-  --rule: #2a3836;
-  --accent: #63b6d9;
-  --green: #52b37a;
-  --green-soft: #142c1f;
-  --amber: #d9a83f;
-  --amber-soft: #2e2413;
-  --red: #d9705a;
-  --radius: 3px;
-  --gap: 16px;
-  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
-  --nav-h: 56px;
+  --ground: #0b100f;
+  --surface: #131a18;
+  --surface-2: #1a2320;
+  --ink: #eef2ec;
+  --ink-2: #aab5af;
+  --ink-3: #6f7c76;
+  --rule: #232e2a;
+  --rule-2: #33423d;
+  --accent: #b4f05a;
+  --accent-ink: #0b100f;
+  --accent-soft: rgba(180,240,90,.13);
+  --amber: #f2b33d;
+  --amber-ink: #1c1405;
+  --amber-soft: rgba(242,179,61,.13);
+  --red: #ff6b57;
+  --scrim: rgba(0,0,0,.6);
+  --font-d: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-m: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-b: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --nav-h: 54px;
+  --r: 12px;
 }
+@media (prefers-color-scheme: light) {
+  :root {
+    --ground: #eef0ea;
+    --surface: #ffffff;
+    --surface-2: #f3f5f0;
+    --ink: #111816;
+    --ink-2: #47534e;
+    --ink-3: #7a8580;
+    --rule: #dde2da;
+    --rule-2: #c9d0c6;
+    --accent: #3b7a17;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(59,122,23,.11);
+    --amber: #b06f06;
+    --amber-ink: #ffffff;
+    --amber-soft: rgba(176,111,6,.11);
+    --red: #c23b26;
+    --scrim: rgba(17,24,22,.45);
+  }
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
 body {
-  font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg); color: var(--ink);
+  font: 400 15px/1.45 var(--font-b);
+  background: var(--ground); color: var(--ink);
   -webkit-font-smoothing: antialiased;
-  padding-bottom: calc(var(--nav-h) + 80px);
+  padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 28px);
 }
-.wrap { max-width: 660px; margin: 0 auto; padding: 0 var(--gap); }
+/* solid backdrop under the status bar when launched from the home screen */
+body::before { content: ""; position: fixed; top: 0; left: 0; right: 0;
+  height: env(safe-area-inset-top); background: var(--surface); z-index: 60; }
+button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px; }
+.mono { font-family: var(--font-m); font-variant-numeric: tabular-nums; }
+[hidden] { display: none !important; }
 
-/* header */
-header { background: var(--surface); border-bottom: 1px solid var(--rule); }
-.mast { max-width: 660px; margin: 0 auto; padding: 16px var(--gap) 12px;
-  display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-.mast h1 { font-size: 22px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
-.mast .date { font-size: 12px; color: var(--ink-3); letter-spacing: .1em; text-transform: uppercase; font-weight: 600; }
-.hdr-right { display: flex; align-items: center; gap: 4px; }
-.settings-btn { background: none; border: 0; color: var(--ink-3); font-size: 18px;
-  cursor: pointer; padding: 8px; line-height: 1; }
+/* ---- top bar ---- */
+.top { background: var(--surface); padding-top: env(safe-area-inset-top); }
+.top-in { max-width: 640px; margin: 0 auto; padding: 8px 6px 4px 16px;
+  display: flex; align-items: center; gap: 10px; }
+.brand { display: flex; align-items: center; gap: 8px; font-family: var(--font-d);
+  font-weight: 700; font-size: 20px; letter-spacing: .12em; text-transform: uppercase; }
+.brand svg { color: var(--accent); flex: none; }
+.top-date { margin-left: auto; font-size: 11px; color: var(--ink-3); letter-spacing: .08em;
+  text-transform: uppercase; }
+.icon-btn { appearance: none; background: none; border: 0; color: var(--ink-3);
+  width: 42px; height: 42px; display: grid; place-items: center; cursor: pointer; border-radius: 10px; }
+.icon-btn:active { background: var(--surface-2); }
 
-/* tabs */
-.tabs { position: sticky; top: 0; z-index: 20; background: var(--surface); border-bottom: 1px solid var(--rule); }
-.tabs-in { max-width: 660px; margin: 0 auto; padding: 0 var(--gap); display: flex; gap: 2px; }
+/* ---- session tabs ---- */
+.tabs { position: sticky; top: env(safe-area-inset-top); z-index: 20;
+  background: var(--surface); border-bottom: 1px solid var(--rule); }
+.tabs-in { max-width: 640px; margin: 0 auto; padding: 0 10px; display: flex; }
 .tab { flex: 1; appearance: none; border: 0; background: none; cursor: pointer;
-  padding: 12px 2px 10px; white-space: nowrap; text-align: center;
-  font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
-  color: var(--ink-3); border-bottom: 2px solid transparent; font-family: inherit; }
-.tab.active { color: var(--ink); border-bottom-color: var(--accent); }
-.tab-day { display: block; font-size: 10px; font-weight: 500; letter-spacing: .08em; margin-top: 1px; }
+  padding: 8px 2px 10px; position: relative; color: var(--ink-3); text-align: center; }
+.tab b { display: block; font-family: var(--font-d); font-weight: 700; font-size: 18px;
+  letter-spacing: .05em; text-transform: uppercase; line-height: 1.1; white-space: nowrap; }
+.tab small { display: flex; align-items: center; justify-content: center; gap: 5px;
+  font-family: var(--font-m); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; margin-top: 1px; }
+.tab::after { content: ""; position: absolute; left: 16%; right: 16%; bottom: -1px; height: 3px;
+  border-radius: 3px 3px 0 0; background: transparent; }
+.tab.active { color: var(--ink); }
+.tab.active::after { background: var(--accent); }
+.nx { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
-/* cards */
-.lane { padding-top: 16px; }
-.card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
-  box-shadow: var(--shadow); margin-bottom: 12px; }
-.card-head { padding: 12px 14px 10px; border-bottom: 1px solid var(--rule);
-  display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.card-head .name { font-size: 16px; font-weight: 600; letter-spacing: .01em; }
-.card-head .badge { font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
-  font-weight: 600; padding: 3px 7px; border-radius: 2px; cursor: default; }
-.badge-anchor { background: rgba(99,182,217,.15); color: var(--accent); }
-.badge-rotate { background: var(--surface-2); color: var(--ink-3); cursor: pointer; }
-.card-body { padding: 14px; }
-.prescription { font-size: 13px; color: var(--ink-3); margin-bottom: 12px; letter-spacing: .02em; }
+/* ---- session brief ---- */
+.brief { padding: 16px 0 14px; }
+.brief-meta { display: flex; align-items: center; gap: 8px; font-size: 11px;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.pill { font-family: var(--font-m); font-size: 10px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; padding: 2px 7px; border-radius: 5px;
+  background: var(--accent-soft); color: var(--accent); }
+.brief-title { font-family: var(--font-d); font-weight: 700; font-size: 40px; line-height: .92;
+  letter-spacing: .01em; text-transform: uppercase; margin: 6px 0 6px; }
+.brief-text { font-size: 14px; color: var(--ink-2); line-height: 1.45; }
+.stats { display: flex; align-items: baseline; gap: 14px; margin-top: 10px; font-family: var(--font-m);
+  font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.stats b { color: var(--ink); font-weight: 600; font-size: 13px; letter-spacing: 0; }
+.stats .live { margin-left: auto; }
+.stats .live b { color: var(--accent); }
 
-/* weight row */
-.wt-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-.wt-row label { font-size: 12px; color: var(--ink-3); font-weight: 600;
-  letter-spacing: .08em; text-transform: uppercase; min-width: 44px; }
-.wt-input { width: 72px; padding: 7px 8px; border: 1px solid var(--rule); border-radius: 2px;
-  background: var(--bg); color: var(--ink); font-size: 16px; text-align: right;
-  font-variant-numeric: tabular-nums; }
-.wt-unit { font-size: 13px; color: var(--ink-3); }
+/* ---- slot cards (the team sheet) ---- */
+.slots { display: flex; flex-direction: column; gap: 10px; }
+.slot { display: flex; background: var(--surface); border: 1px solid var(--rule);
+  border-radius: var(--r); overflow: hidden; }
+.slot-no { flex: 0 0 34px; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding-top: 12px; background: var(--surface-2); border-right: 1px solid var(--rule);
+  font-family: var(--font-d); font-weight: 700; font-size: 26px; line-height: 1; color: var(--ink-3); }
+.slot.anchor .slot-no { color: var(--ink); }
+.slot-no svg { width: 16px; height: 16px; opacity: 0; }
+.slot.done .slot-no { background: var(--accent-soft); color: var(--accent); }
+.slot.done .slot-no svg { opacity: 1; }
+.slot-b { flex: 1; min-width: 0; padding: 10px 12px 12px; }
+.slot-top { display: flex; align-items: baseline; gap: 10px; min-height: 16px; }
+.kick { display: flex; align-items: center; gap: 6px; font-family: var(--font-m); font-size: 10px;
+  font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.slot.anchor .kick { color: var(--accent); }
+button.kick { appearance: none; background: none; border: 0; padding: 4px 0; margin: -4px 0;
+  cursor: pointer; text-align: left; }
+button.kick svg { width: 13px; height: 13px; flex: none; }
+.ex { font-family: var(--font-d); font-weight: 600; font-size: 23px; line-height: 1.08;
+  letter-spacing: .005em; margin-top: 3px; }
+.swapped { font-size: 12px; color: var(--ink-3); font-style: italic; margin-top: 2px; }
+.tgt { margin-left: auto; flex: none; font-size: 12px; color: var(--ink-2); white-space: nowrap; }
+.tgt b { color: var(--ink); font-weight: 600; }
+.tgt .tot { color: var(--accent); font-weight: 600; margin-left: 6px; }
+.do { font-size: 14px; line-height: 1.42; color: var(--ink); margin-top: 6px; }
+.last { display: flex; align-items: baseline; gap: 8px; margin-top: 5px; font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
+.last .lbl { flex: none; font-family: var(--font-m); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.last .txt { flex: 1; min-width: 0; font-variant-numeric: tabular-nums; }
+.why-btn { flex: none; appearance: none; border: 0; background: none; cursor: pointer;
+  font-family: var(--font-m); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-3); padding: 6px 0 6px 8px; margin: -6px 0; }
+.why-btn[aria-expanded="true"] { color: var(--ink); }
+.why { font-size: 13px; line-height: 1.5; color: var(--ink-2); margin-top: 8px;
+  padding-left: 10px; border-left: 2px solid var(--rule-2); }
 
-/* bilateral weight */
-.bi-row { display: flex; gap: 12px; margin-bottom: 12px; }
-.bi-side { display: flex; align-items: center; gap: 6px; flex: 1; }
+/* ---- logging row ---- */
+.log { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+.log-row { display: flex; gap: 6px; }
+.side { flex: 0 0 14px; display: grid; place-items: center; font-family: var(--font-m);
+  font-size: 11px; font-weight: 600; color: var(--ink-3); }
+.kg { flex: 0 0 68px; position: relative; }
+.kg input { width: 100%; height: 46px; padding: 0 24px 0 6px; border: 1px solid var(--rule-2);
+  border-radius: 9px; background: var(--ground); color: var(--ink); text-align: right;
+  font-family: var(--font-m); font-size: 16px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.kg span { position: absolute; right: 7px; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-m); font-size: 10px; color: var(--ink-3); pointer-events: none; }
+.kg.bw { display: grid; place-items: center; height: 46px; border: 1px dashed var(--rule-2);
+  border-radius: 9px; font-family: var(--font-m); font-size: 11px; letter-spacing: .1em; color: var(--ink-3); }
+.sets { flex: 1; display: flex; gap: 6px; min-width: 0; }
+.set { flex: 1; min-width: 0; position: relative; }
+.set i { position: absolute; top: 4px; left: 6px; font-style: normal; font-family: var(--font-m);
+  font-size: 9px; color: var(--ink-3); pointer-events: none; }
+.set-in { width: 100%; height: 46px; border: 1px solid var(--rule-2); border-radius: 9px;
+  background: var(--ground); color: var(--ink); text-align: center; font-family: var(--font-m);
+  font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.set-in::placeholder { color: var(--ink-3); opacity: .6; font-size: 12px; font-weight: 400; }
+.set-in:not(:placeholder-shown) { background: var(--accent-soft); border-color: transparent; }
+input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
 
-/* set inputs */
-.sets-grid { display: flex; gap: 6px; }
-.set-col { flex: 1; text-align: center; }
-.set-lbl { font-size: 10px; color: var(--ink-3); letter-spacing: .1em; text-transform: uppercase;
-  font-weight: 600; margin-bottom: 4px; }
-.set-in { width: 100%; padding: 10px 4px; border: 1px solid var(--rule); border-radius: 2px;
-  background: var(--bg); color: var(--ink); font-size: 18px; text-align: center;
-  font-weight: 500; font-variant-numeric: tabular-nums; }
-.set-in:focus { border-color: var(--accent); outline: none; }
-.reps-total { font-size: 12px; color: var(--ink-3); text-align: right; margin-top: 6px;
-  font-variant-numeric: tabular-nums; }
+/* ---- section label ---- */
+.sec { display: flex; align-items: center; gap: 10px; margin: 24px 0 10px; font-family: var(--font-m);
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.sec::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
 
-/* pain section */
-.pain-card { border-left: 3px solid var(--amber); }
-.pain-card .card-head { border-bottom-color: var(--rule); }
-.pain-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.pain-in { width: 56px; padding: 7px 8px; border: 1px solid var(--rule); border-radius: 2px;
-  background: var(--bg); color: var(--ink); font-size: 16px; text-align: center; }
-.pain-hint { font-size: 11px; color: var(--ink-3); }
-.notes-in { width: 100%; padding: 9px 10px; border: 1px solid var(--rule); border-radius: 2px;
-  background: var(--bg); color: var(--ink); font-size: 14px; font-family: inherit;
-  resize: vertical; min-height: 56px; line-height: 1.45; }
-.notes-in::placeholder { color: var(--ink-3); }
+/* ---- blocks (recovery, extra, info) ---- */
+.block { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r);
+  padding: 12px; margin-bottom: 10px; }
+.block-h { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.block-h b { font-family: var(--font-d); font-size: 21px; font-weight: 600; line-height: 1.1; }
+.block-h span { font-family: var(--font-m); font-size: 10px; letter-spacing: .08em; color: var(--ink-3); text-transform: uppercase; }
+.pain-scale { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.pv { appearance: none; height: 44px; border: 1px solid var(--rule-2); border-radius: 9px;
+  background: var(--ground); font-family: var(--font-m); font-size: 16px; font-weight: 600;
+  color: var(--ink-2); cursor: pointer; position: relative; }
+.pv::after { content: ""; position: absolute; left: 30%; right: 30%; bottom: 6px; height: 2px; border-radius: 2px; }
+.pv.g::after { background: var(--accent); opacity: .5; }
+.pv.a::after { background: var(--amber); opacity: .5; }
+.pv.clr { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.pv.on.g { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.pv.on.a { background: var(--amber); border-color: var(--amber); color: var(--amber-ink); }
+.pv.on::after { opacity: 0; }
+.pain-read { font-family: var(--font-m); font-size: 12px; color: var(--ink-3); margin-top: 10px; }
+.pain-read.g { color: var(--accent); }
+.pain-read.a { color: var(--amber); }
+.field { width: 100%; min-height: 64px; padding: 10px 12px; border: 1px solid var(--rule-2);
+  border-radius: 9px; background: var(--ground); color: var(--ink);
+  font: 16px/1.4 var(--font-b); resize: vertical; }
+.field::placeholder { color: var(--ink-3); }
+.field + .field { margin-top: 8px; }
 
-/* extra */
-.extra-card .card-body { padding: 12px 14px; }
+/* ---- buttons ---- */
+.btn { display: flex; align-items: center; justify-content: center; width: 100%; height: 54px;
+  border: 0; border-radius: var(--r); cursor: pointer; font-family: var(--font-d); font-weight: 700;
+  font-size: 20px; letter-spacing: .08em; text-transform: uppercase; transition: opacity .15s; }
+.btn:active { opacity: .85; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-pri { background: var(--accent); color: var(--accent-ink); }
+.btn-ghost { background: none; border: 1px solid var(--rule-2); color: var(--ink-2); height: 48px; font-size: 17px; }
+.btn.saving { background: var(--surface-2); color: var(--ink-2); }
+.btn.error { background: var(--red); color: #fff; }
+.btn + .btn { margin-top: 8px; }
+.save-wrap { margin-top: 18px; }
+.asof { font-family: var(--font-m); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ink-3); text-align: center; margin-top: 16px; }
 
-/* section label */
-.sec-lbl { font-size: 11px; color: var(--ink-3); letter-spacing: .12em; text-transform: uppercase;
-  font-weight: 600; margin: 20px 0 8px; }
-
-/* save bar */
-.save-bar { position: fixed; bottom: var(--nav-h); left: 0; right: 0; padding: 10px var(--gap);
-  background: var(--bg); border-top: 1px solid var(--rule); z-index: 30; }
-.save-bar-in { max-width: 660px; margin: 0 auto; }
-.save-btn { width: 100%; padding: 13px; border: none; border-radius: var(--radius);
-  background: var(--green); color: #fff; font-size: 15px; font-weight: 600;
-  letter-spacing: .04em; text-transform: uppercase; cursor: pointer; transition: opacity .15s; }
-.save-btn:active { opacity: .85; }
-.save-btn:disabled { opacity: .5; cursor: not-allowed; }
-.save-btn.saving { background: var(--accent); }
-.save-btn.error { background: var(--red); }
-
-/* bottom nav */
-.nav { position: fixed; bottom: 0; left: 0; right: 0; height: var(--nav-h);
-  background: var(--surface); border-top: 1px solid var(--rule); z-index: 40;
-  display: flex; padding-bottom: env(safe-area-inset-bottom, 0); }
-.nav-item { flex: 1; display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 3px; appearance: none; border: 0; background: none;
-  color: var(--ink-3); font-size: 10px; font-weight: 600; letter-spacing: .08em;
-  text-transform: uppercase; cursor: pointer; font-family: inherit; padding: 4px 0; }
-.nav-item.active { color: var(--accent); }
-.nav-item svg { width: 20px; height: 20px; }
-
-/* toast */
-.toast { position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
-  padding: 9px 18px; border-radius: 3px; font-size: 14px; font-weight: 500;
-  z-index: 100; opacity: 0; transition: opacity .25s; pointer-events: none; }
-.toast.show { opacity: 1; }
-.toast.ok { background: var(--green); color: #fff; }
-.toast.err { background: var(--red); color: #fff; }
-
-/* debrief card */
-.debrief-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
-  box-shadow: var(--shadow); margin: 16px 0; display: none; }
-.debrief-card.show { display: block; }
-.debrief-head { padding: 12px 14px 10px; border-bottom: 1px solid var(--rule);
-  display: flex; align-items: center; justify-content: space-between; }
-.debrief-head .name { font-size: 14px; font-weight: 600; letter-spacing: .04em;
+/* ---- debrief ---- */
+.debrief { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+  border-radius: var(--r); margin-top: 12px; }
+.debrief-h { display: flex; align-items: center; justify-content: space-between; padding: 8px 4px 0 12px; }
+.debrief-h span { font-family: var(--font-m); font-size: 10px; letter-spacing: .14em;
   text-transform: uppercase; color: var(--accent); }
-.debrief-dismiss { background: none; border: 0; color: var(--ink-3); font-size: 18px;
-  cursor: pointer; padding: 4px 8px; line-height: 1; }
-.debrief-body { padding: 14px; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+.debrief-b { padding: 4px 12px 12px; font-size: 14px; line-height: 1.55; color: var(--ink); }
 .debrief-loading { color: var(--ink-3); font-style: italic; }
 .debrief-error { color: var(--red); }
 
-/* setup notice */
-.setup { background: var(--amber-soft); border: 1px solid var(--amber);
-  border-radius: var(--radius); padding: 12px 14px; margin-bottom: 16px;
-  font-size: 13px; color: var(--ink-2); line-height: 1.45; }
-.setup b { color: var(--amber); }
+/* ---- bottom nav ---- */
+.nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--surface);
+  border-top: 1px solid var(--rule); height: calc(var(--nav-h) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom); }
+.nav-in { max-width: 640px; height: 100%; margin: 0 auto; display: flex; }
+.nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; appearance: none; border: 0; background: none; cursor: pointer; color: var(--ink-3);
+  font-family: var(--font-m); font-size: 9.5px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+.nav-item svg { width: 21px; height: 21px; }
+.nav-item.active { color: var(--ink); }
+.nav-item.active svg { color: var(--accent); }
 
-/* asof */
-.asof { font-size: 11px; color: var(--ink-3); text-align: center; margin-top: 20px;
-  letter-spacing: .06em; }
-
-/* hide spinners */
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-input[type=number] { -moz-appearance: textfield; }
-
-/* modal */
-.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 50;
-  justify-content: center; align-items: center; }
-.modal-bg.show { display: flex; }
-.modal { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
-  padding: 20px; width: calc(100% - 32px); max-width: 400px; }
-.modal h2 { font-size: 17px; font-weight: 600; margin-bottom: 14px; }
-.modal label { display: block; font-size: 11px; color: var(--ink-3); letter-spacing: .1em;
-  text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
-.modal input { width: 100%; padding: 9px 10px; border: 1px solid var(--rule); border-radius: 2px;
-  background: var(--bg); color: var(--ink); font-size: 14px; margin-bottom: 12px; font-family: inherit; }
-.modal .hint { font-size: 12px; color: var(--ink-3); margin-bottom: 14px; line-height: 1.4; }
-.modal-btns { display: flex; gap: 8px; justify-content: flex-end; }
-.modal-btn { padding: 9px 16px; border: none; border-radius: 2px; font-size: 14px;
-  font-weight: 500; cursor: pointer; font-family: inherit; }
-.modal-btn.pri { background: var(--accent); color: #0e1618; }
-.modal-btn.sec { background: var(--surface-2); color: var(--ink-2); }
-
-/* bottom sheet */
-.sheet-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 55; }
-.sheet-bg.show { display: block; }
-.sheet { position: fixed; bottom: 0; left: 0; right: 0; z-index: 56;
-  background: var(--surface); border-top: 1px solid var(--rule);
-  border-radius: 12px 12px 0 0; max-height: 55vh; overflow-y: auto;
-  transform: translateY(100%); transition: transform .25s ease; padding-bottom: env(safe-area-inset-bottom, 0); }
-.sheet.show { transform: translateY(0); }
-.sheet-handle { width: 36px; height: 4px; background: var(--rule); border-radius: 2px;
-  margin: 10px auto 6px; }
-.sheet h3 { font-size: 13px; color: var(--ink-3); letter-spacing: .1em; text-transform: uppercase;
-  font-weight: 600; padding: 6px 20px 10px; }
-.sheet-opt { display: flex; align-items: center; gap: 12px; padding: 14px 20px;
-  border-top: 1px solid var(--rule); cursor: pointer; }
-.sheet-opt:active { background: var(--surface-2); }
-.sheet-opt .so-name { font-size: 15px; font-weight: 500; flex: 1; }
-.sheet-opt .so-tag { font-size: 11px; color: var(--ink-3); letter-spacing: .06em; }
-.sheet-opt .so-check { color: var(--accent); font-size: 16px; width: 20px; text-align: center; }
-
-/* view panels */
+/* ---- views ---- */
 .view { display: none; }
 .view.active { display: block; }
+.page-title { font-family: var(--font-d); font-weight: 700; font-size: 40px; line-height: .95;
+  text-transform: uppercase; letter-spacing: .01em; margin: 20px 0 6px; }
+.page-sub { font-size: 14px; color: var(--ink-2); margin-bottom: 14px; }
 
-/* info view */
-.info-section { margin-bottom: 24px; }
-.info-section h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
-.info-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.info-table th { text-align: left; font-size: 11px; color: var(--ink-3); letter-spacing: .08em;
-  text-transform: uppercase; font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--rule); }
-.info-table td { padding: 8px 10px; border-bottom: 1px solid var(--rule); color: var(--ink-2); }
-.info-table tr:last-child td { border-bottom: none; }
-.info-text { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
-.info-text p { margin-bottom: 10px; }
-.info-rule { font-size: 13px; color: var(--ink-2); line-height: 1.5; padding: 10px 14px;
-  background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
-  margin-bottom: 8px; }
-.info-rule b { color: var(--ink); font-weight: 600; }
+/* ---- history ---- */
+.hist { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r); margin-bottom: 8px; }
+.hist-h { display: flex; align-items: center; gap: 12px; padding: 12px; cursor: pointer; }
+.hist-date { flex: 0 0 auto; text-align: center; min-width: 38px; font-family: var(--font-m);
+  font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); line-height: 1.2; }
+.hist-date b { display: block; font-family: var(--font-d); font-size: 24px; color: var(--ink); letter-spacing: 0; line-height: 1; }
+.hist-t { flex: 1; min-width: 0; }
+.hist-t b { display: block; font-family: var(--font-d); font-size: 20px; font-weight: 600; line-height: 1.1; }
+.hist-t span { font-family: var(--font-m); font-size: 11px; color: var(--ink-3); }
+.hist-chev { color: var(--ink-3); transition: transform .2s; }
+.hist.open .hist-chev { transform: rotate(90deg); }
+.hist-d { display: none; border-top: 1px solid var(--rule); padding: 8px 12px 12px; }
+.hist.open .hist-d { display: block; }
+.hist-ex { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; font-size: 13px;
+  border-bottom: 1px dashed var(--rule); }
+.hist-ex:last-child { border-bottom: 0; }
+.hist-ex b { font-weight: 500; min-width: 0; }
+.hist-ex span { font-family: var(--font-m); font-size: 12px; color: var(--ink-2); text-align: right; flex: none; max-width: 55%; }
+.hist-ex .ss { color: var(--accent); font-family: var(--font-m); font-size: 10px; margin-left: 4px; }
+.hist-note { font-size: 13px; color: var(--ink-2); font-style: italic; padding-top: 6px; }
+.hist-note.pain { color: var(--amber); font-style: normal; font-family: var(--font-m); font-size: 12px; }
+.hist-ex .exn { color: var(--amber); font-style: italic; font-size: 12px; }
+.empty { text-align: center; color: var(--ink-3); font-size: 14px; line-height: 1.6; padding: 40px 0; }
 
-/* import view */
-.import-area { width: 100%; min-height: 160px; padding: 12px; border: 1px solid var(--rule);
-  border-radius: var(--radius); background: var(--bg); color: var(--ink); font-size: 14px;
-  font-family: inherit; resize: vertical; line-height: 1.45; }
-.import-area::placeholder { color: var(--ink-3); }
-.import-area:focus { border-color: var(--accent); outline: none; }
-.action-btn { display: block; width: 100%; padding: 13px; border: none; border-radius: var(--radius);
-  font-size: 15px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
-  cursor: pointer; font-family: inherit; margin-top: 12px; transition: opacity .15s; }
-.action-btn:active { opacity: .85; }
-.action-btn:disabled { opacity: .5; cursor: not-allowed; }
-.btn-accent { background: var(--accent); color: #0e1618; }
-.btn-green { background: var(--green); color: #fff; }
-.btn-outline { background: none; border: 1px solid var(--rule); color: var(--ink-2); }
-.parsed-ex { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
-  padding: 12px 14px; margin-bottom: 8px; }
-.parsed-ex .pe-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-.parsed-ex .pe-sets { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
-.parsed-ex .pe-note { font-size: 12px; color: var(--amber); margin-top: 4px; font-style: italic; }
-.parsed-detect { font-size: 13px; color: var(--accent); margin-bottom: 12px; font-weight: 500; }
+/* ---- import ---- */
+.import-area { min-height: 170px; font-family: var(--font-m); font-size: 14px; }
+.parsed-detect { display: flex; align-items: center; gap: 8px; margin: 16px 0 10px; font-family: var(--font-m);
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.parsed-ex { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--r); padding: 10px 12px; }
+.parsed-ex + .ss-join, .ss-join + .parsed-ex { margin-top: 0; }
+.pe-name { font-family: var(--font-d); font-size: 19px; font-weight: 600; line-height: 1.15; }
+.pe-sets { font-family: var(--font-m); font-size: 12px; color: var(--ink-2); margin-top: 3px; }
+.pe-note { font-size: 12px; color: var(--amber); margin-top: 4px; font-style: italic; }
+.ss-join { display: flex; justify-content: center; padding: 3px 0; }
+.ss-btn { appearance: none; border: 1px solid var(--rule-2); border-radius: 20px; background: var(--ground);
+  color: var(--ink-3); font-family: var(--font-m); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 10px; cursor: pointer; }
+.ss-btn.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.parsed-ex.ss-top, .parsed-ex.ss-mid, .parsed-ex.ss-bot { border-left: 3px solid var(--accent); }
+.parsed-ex.ss-top { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.parsed-ex.ss-mid { border-radius: 0; }
+.parsed-ex.ss-bot { border-top-left-radius: 0; border-top-right-radius: 0; }
+.ss-join.linked { padding: 0; margin: -1px 0; position: relative; z-index: 1; }
 
-/* superset toggle */
-.ss-join { display: flex; align-items: center; justify-content: center; margin: -4px 0; position: relative; z-index: 1; }
-.ss-btn { appearance: none; border: 1px solid var(--rule); border-radius: 12px;
-  background: var(--surface-2); color: var(--ink-3); font-size: 11px; font-weight: 600;
-  letter-spacing: .06em; padding: 3px 10px; cursor: pointer; font-family: inherit; }
-.ss-btn:active { opacity: .85; }
-.ss-btn.on { background: var(--accent); color: #0e1618; border-color: var(--accent); }
-.parsed-ex.ss-top { margin-bottom: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0;
-  border-bottom-color: transparent; }
-.parsed-ex.ss-mid { margin-bottom: 0; border-radius: 0; border-bottom-color: transparent; border-top-color: transparent; }
-.parsed-ex.ss-bot { border-top-left-radius: 0; border-top-right-radius: 0; border-top-color: transparent; }
-.parsed-ex.ss-top, .parsed-ex.ss-mid, .parsed-ex.ss-bot {
-  border-left: 3px solid var(--accent); }
-.ss-join.linked { margin: 0; }
-.ss-join.linked .ss-btn { border-radius: 0; border: none; background: var(--accent);
-  color: #0e1618; font-size: 10px; padding: 1px 8px; }
+/* ---- info ---- */
+.week { padding: 4px 0; }
+.wk { display: flex; align-items: center; gap: 12px; padding: 7px 12px; }
+.wk + .wk { border-top: 1px solid var(--rule); }
+.wk .d { flex: 0 0 34px; font-family: var(--font-m); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.wk .s { flex: 1; font-family: var(--font-d); font-size: 19px; font-weight: 600; }
+.wk .t { font-family: var(--font-m); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.wk.rest .s { color: var(--ink-3); }
+.wk.today { background: var(--accent-soft); }
+.wk.today .d { color: var(--accent); }
+.info-block { padding: 0; overflow: hidden; }
+.rule { padding: 10px 12px; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
+.rule + .rule { border-top: 1px solid var(--rule); }
+.rule b { display: block; font-family: var(--font-d); font-size: 18px; font-weight: 600; color: var(--ink); line-height: 1.2; }
+.info-p { font-size: 14px; line-height: 1.55; color: var(--ink-2); padding: 12px 12px 4px; }
+.info-p b { color: var(--ink); }
+.vol { width: 100%; border-collapse: collapse; font-size: 13px; }
+.vol th { text-align: left; font-family: var(--font-m); font-size: 9.5px; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-3); padding: 9px 12px 7px; border-bottom: 1px solid var(--rule); }
+.vol td { padding: 7px 12px; border-bottom: 1px solid var(--rule); color: var(--ink-2); vertical-align: top; }
+.vol tr:last-child td { border-bottom: 0; }
+.vol td:first-child { color: var(--ink); font-weight: 500; white-space: nowrap; }
+.vol td.n { font-family: var(--font-m); color: var(--ink); text-align: right; }
+.vol td.src { font-size: 12px; }
 
-/* history view */
-.hist-item { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius);
-  margin-bottom: 8px; cursor: pointer; }
-.hist-head { padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; }
-.hist-head .hi-date { font-size: 15px; font-weight: 600; }
-.hist-head .hi-session { font-size: 12px; color: var(--accent); letter-spacing: .06em;
-  text-transform: uppercase; font-weight: 600; }
-.hist-detail { display: none; padding: 0 14px 12px; border-top: 1px solid var(--rule); }
-.hist-detail.show { display: block; padding-top: 10px; }
-.hist-ex { font-size: 13px; color: var(--ink-2); padding: 4px 0; }
-.hist-ex b { color: var(--ink); font-weight: 500; }
-.hist-empty { font-size: 14px; color: var(--ink-3); text-align: center; padding: 40px 0; line-height: 1.6; }
+/* ---- sheet / modal / toast ---- */
+.scrim { display: none; position: fixed; inset: 0; background: var(--scrim); z-index: 55; }
+.scrim.show { display: block; }
+.sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 56; max-width: 640px; margin: 0 auto;
+  background: var(--surface); border-radius: 18px 18px 0 0; max-height: 70vh; overflow-y: auto;
+  transform: translateY(105%); visibility: hidden; transition: transform .25s ease, visibility 0s linear .25s;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+.sheet.show { transform: translateY(0); visibility: visible; transition: transform .25s ease; }
+/* settings: anchored to the top so the keyboard never covers the fields */
+.sheet.dialog { bottom: auto; top: calc(env(safe-area-inset-top) + 56px); left: 12px; right: 12px;
+  border-radius: 18px; padding: 8px 0 12px; transform: translateY(-12px); opacity: 0;
+  transition: transform .2s ease, opacity .2s ease, visibility 0s linear .2s; }
+.sheet.dialog.show { transform: none; opacity: 1; transition: transform .2s ease, opacity .2s ease; }
+.sheet-handle { width: 38px; height: 4px; background: var(--rule-2); border-radius: 2px; margin: 10px auto 4px; }
+.sheet-h { padding: 8px 20px 12px; }
+.sheet-h span { font-family: var(--font-m); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.sheet-h b { display: block; font-family: var(--font-d); font-size: 24px; font-weight: 700; text-transform: uppercase; line-height: 1.1; }
+.sheet-opt { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-top: 1px solid var(--rule); cursor: pointer; }
+.sheet-opt:active { background: var(--surface-2); }
+.so-name { flex: 1; font-family: var(--font-d); font-size: 20px; font-weight: 600; }
+.so-tag { font-family: var(--font-m); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.so-check { width: 20px; color: var(--accent); text-align: center; font-weight: 700; }
+.sheet-body { padding: 0 20px 8px; }
+.sheet-body label { display: block; font-family: var(--font-m); font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-3); margin: 12px 0 6px; }
+.sheet-body input { width: 100%; height: 46px; padding: 0 12px; border: 1px solid var(--rule-2); border-radius: 9px;
+  background: var(--ground); color: var(--ink); font: 16px var(--font-m); }
+.hint { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+.hint b { color: var(--ink); }
+.sheet-btns { display: flex; gap: 8px; margin-top: 18px; }
+.sheet-btns .btn { flex: 1; height: 48px; font-size: 17px; margin: 0; }
+.toast { position: fixed; top: calc(12px + env(safe-area-inset-top)); left: 50%; transform: translate(-50%, -8px);
+  padding: 10px 16px; border-radius: 10px; font-size: 14px; font-weight: 500; z-index: 100; opacity: 0;
+  transition: opacity .2s, transform .2s; pointer-events: none; max-width: calc(100% - 32px); }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+.toast.ok { background: var(--accent); color: var(--accent-ink); }
+.toast.err { background: var(--red); color: #fff; }
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="mast">
-    <div>
-      <h1>Matchday</h1>
-      <div class="date" id="hdr-date"></div>
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="12" y1="5" x2="12" y2="19"/><circle cx="12" cy="12" r="3"/></svg>
+      Matchday
     </div>
-    <div class="hdr-right">
-      <button class="settings-btn" onclick="openSettings()" aria-label="Settings">&#9881;</button>
-    </div>
+    <div class="top-date mono" id="hdr-date"></div>
+    <button class="icon-btn" onclick="openSettings()" aria-label="Settings">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>
+    </button>
   </div>
 </header>
 
 <!-- TRAIN VIEW -->
 <div class="view active" id="view-train">
-  <div class="tabs">
-    <div class="tabs-in" id="tabs"></div>
-  </div>
+  <nav class="tabs"><div class="tabs-in" id="tabs"></div></nav>
   <div class="wrap">
-    <main class="lane" id="main"></main>
+    <main id="main"></main>
+    <div class="save-wrap">
+      <button class="btn btn-pri" id="save-btn" onclick="save()">Save session</button>
+    </div>
+    <div class="debrief" id="debrief" hidden>
+      <div class="debrief-h"><span>Debrief</span>
+        <button class="icon-btn" onclick="dismissDebrief()" aria-label="Dismiss">&times;</button></div>
+      <div class="debrief-b" id="debrief-body"></div>
+    </div>
     <div class="asof" id="asof"></div>
   </div>
 </div>
@@ -308,11 +398,10 @@ input[type=number] { -moz-appearance: textfield; }
 <!-- IMPORT VIEW -->
 <div class="view" id="view-import">
   <div class="wrap">
-    <div class="sec-lbl" style="margin-top:16px">Import from Strong</div>
-    <p style="font-size:13px;color:var(--ink-3);margin-bottom:12px">
-      Share a workout from Strong, then paste the text here.</p>
-    <textarea class="import-area" id="strong-input" placeholder="Incline Bench Press (Barbell)&#10;65 kg x 8&#10;65 kg x 7&#10;65 kg x 7&#10;&#10;Pull Up&#10;10&#10;9&#10;8"></textarea>
-    <button class="action-btn btn-accent" onclick="parseStrong()">Parse</button>
+    <h1 class="page-title">Import</h1>
+    <p class="page-sub">Share a workout from Strong as text, paste it here, and it goes to the inbox like any other session.</p>
+    <textarea class="field import-area" id="strong-input" placeholder="Incline Bench Press (Barbell)&#10;65 kg x 8&#10;65 kg x 7&#10;&#10;Pull Up&#10;10&#10;9"></textarea>
+    <div style="margin-top:10px"><button class="btn btn-pri" onclick="parseStrong()">Parse</button></div>
     <div id="parse-result"></div>
   </div>
 </div>
@@ -320,88 +409,72 @@ input[type=number] { -moz-appearance: textfield; }
 <!-- HISTORY VIEW -->
 <div class="view" id="view-history">
   <div class="wrap">
-    <div class="sec-lbl" style="margin-top:16px">Session History</div>
+    <h1 class="page-title">History</h1>
+    <p class="page-sub">Sessions saved from this phone.</p>
     <div id="history-list"></div>
-    <button class="action-btn btn-outline" onclick="checkInbox()" id="inbox-btn" style="margin-top:16px;display:none">
-      Check inbox on GitHub</button>
+    <div style="margin-top:14px"><button class="btn btn-ghost" onclick="checkInbox()" id="inbox-btn" hidden>Check inbox on GitHub</button></div>
   </div>
 </div>
 
 <!-- INFO VIEW -->
 <div class="view" id="view-info">
-  <div class="wrap" style="padding-top:16px;padding-bottom:20px">
+  <div class="wrap">
+    <h1 class="page-title">The programme</h1>
+    <p class="page-sub">Three upper, one lower, football twice. No target, no date.</p>
 
-    <div class="info-section">
-      <h3>The Week</h3>
-      <table class="info-table">
-        <tr><th>Day</th><th>Session</th></tr>
-        <tr><td>Mon</td><td>Upper A</td></tr>
-        <tr><td>Tue</td><td>Football</td></tr>
-        <tr><td>Wed</td><td>Rest</td></tr>
-        <tr><td>Thu</td><td>Upper B</td></tr>
-        <tr><td>Fri</td><td>Football</td></tr>
-        <tr><td>Sat</td><td>Upper C</td></tr>
-        <tr><td>Sun</td><td>Lower</td></tr>
+    <div class="sec">The week</div>
+    <div class="block info-block week" id="week"></div>
+
+    <div class="sec">Progression</div>
+    <div class="block info-block">
+      <div class="rule"><b>Incline Bench</b>+2.5kg once all 4 sets hit 8. Currently 65kg.</div>
+      <div class="rule"><b>Lateral Raise</b>+1kg once 20 holds across all 3 sets. Currently 8kg.</div>
+      <div class="rule"><b>Pull-ups</b>At 27 total fresh. Re-add 5kg once that holds 3 sessions.</div>
+      <div class="rule"><b>Deadlift</b>+2.5kg once all 3 sets hit 5. Starting load TBD.</div>
+      <div class="rule"><b>Squat</b>Hold 70kg. +2.5kg once 10 holds all sets AND no joint pain.</div>
+      <div class="rule"><b>Iso Lat Row (R)</b>Governed by the row protocol, not rep targets.</div>
+      <div class="rule"><b>Everything else</b>Top of range on all sets for 2 consecutive sessions &rarr; smallest increment.</div>
+    </div>
+
+    <div class="sec">Row protocol</div>
+    <div class="block info-block">
+      <p class="info-p">Left and right are separate lifts. Left progresses normally. Right starts at the heaviest pain-free load.</p>
+      <p class="info-p"><b>3 green lights held for 2 consecutive weeks &rarr; +2.5kg.</b> Any red &rarr; back to the last green load.</p>
+      <div class="rule" style="margin-top:8px;border-top:1px solid var(--rule)"><b>Green light</b>Pain &le;3/10 during the set, baseline within 24h, not creeping week to week.</div>
+      <div class="rule"><b>Where it stands</b>Right at 50kg, zero greens since the reset after 4/10 on 09-17.</div>
+    </div>
+
+    <div class="sec">Weekly volume</div>
+    <div class="block info-block">
+      <table class="vol">
+        <tr><th>Group</th><th style="text-align:right">Sets</th><th>From</th></tr>
+        <tr><td>Chest</td><td class="n">16</td><td class="src">Incline 4, Fly 3, Flat DB 3, Dips 3, Cable X 3</td></tr>
+        <tr><td>Back</td><td class="n">15</td><td class="src">Pull Up 6, Iso Row 3, Lat PD 3, Cable Row 3</td></tr>
+        <tr><td>Side delts</td><td class="n">6</td><td class="src">Lat Raise 3+3</td></tr>
+        <tr><td>Rear delts</td><td class="n">6</td><td class="src">Face Pull 3+3</td></tr>
+        <tr><td>Triceps</td><td class="n">6</td><td class="src">Extension 3, Dips 3</td></tr>
+        <tr><td>Biceps</td><td class="n">6</td><td class="src">Curl 3+3</td></tr>
+        <tr><td>Quads</td><td class="n">6</td><td class="src">Squat 3, Leg Press 3</td></tr>
+        <tr><td>Posterior</td><td class="n">6</td><td class="src">Deadlift 3, Leg Curl 3</td></tr>
+        <tr><td>Core</td><td class="n">6</td><td class="src">HLR 3+3</td></tr>
+        <tr><td>Calves</td><td class="n">3</td><td class="src">Calf Raise 3</td></tr>
       </table>
     </div>
 
-    <div class="info-section">
-      <h3>Progression</h3>
-      <div class="info-rule"><b>Incline Bench</b> &mdash; +2.5kg once all 4 sets hit 8. Currently 65kg.</div>
-      <div class="info-rule"><b>Lateral Raise</b> &mdash; +1kg once 20 holds across all 3 sets. Currently 8kg.</div>
-      <div class="info-rule"><b>Pull-ups</b> &mdash; at 27 total fresh. Re-add 5kg once that holds 3 sessions.</div>
-      <div class="info-rule"><b>Deadlift</b> &mdash; +2.5kg once all 3 sets hit 5. Starting load TBD.</div>
-      <div class="info-rule"><b>Squat</b> &mdash; hold 70kg. +2.5kg once 10 holds all sets AND no joint pain.</div>
-      <div class="info-rule"><b>Iso Lat Row (R)</b> &mdash; governed by row protocol, not rep targets.</div>
-      <div class="info-rule"><b>Everything else</b> &mdash; top of range on all sets for 2 consecutive sessions &rarr; smallest increment.</div>
+    <div class="sec">Standing candidates</div>
+    <div class="block info-block">
+      <div class="rule"><b>Chest-Supported Row</b>Upper B/C pull. Less torso English; may load the right lat with less pain.</div>
+      <div class="rule"><b>Nordic Curl</b>Lower, replacing Leg Curl. Hamstring protection for football, 2&times;4 eccentric.</div>
+      <div class="rule"><b>Weighted Dips</b>Upper B push, once bodyweight dips hit 12, 12, 12 for three sessions.</div>
+      <div class="rule"><b>Ab Wheel</b>Upper C / Lower core, once hanging leg raises are easy.</div>
     </div>
 
-    <div class="info-section">
-      <h3>Weekly Volume</h3>
-      <table class="info-table">
-        <tr><th>Group</th><th>Sets</th><th>Sources</th></tr>
-        <tr><td>Chest</td><td>16</td><td>Incline 4, Fly 3, Flat DB 3, Dips 3, Cable X 3</td></tr>
-        <tr><td>Back</td><td>15</td><td>Pull Up 6, Iso Row 3, Lat PD 3, Cable Row 3</td></tr>
-        <tr><td>Side delts</td><td>6</td><td>Lat Raise 3+3</td></tr>
-        <tr><td>Rear delts</td><td>6</td><td>Face Pull 3+3</td></tr>
-        <tr><td>Triceps</td><td>6</td><td>Extension 3, Dips 3</td></tr>
-        <tr><td>Biceps</td><td>6</td><td>Curl 3+3</td></tr>
-        <tr><td>Quads</td><td>6</td><td>Squat 3, Leg Press 3</td></tr>
-        <tr><td>Posterior</td><td>6</td><td>Deadlift 3, Leg Curl 3</td></tr>
-        <tr><td>Core</td><td>6</td><td>HLR 3+3</td></tr>
-        <tr><td>Calves</td><td>3</td><td>Calf Raise 3</td></tr>
-      </table>
-    </div>
-
-    <div class="info-section">
-      <h3>Row Protocol</h3>
-      <div class="info-text">
-        <p>Left and right are separate exercises. Left progresses normally. Right starts at
-          heaviest pain-free load.</p>
-        <p><b>3 green lights held for 2 consecutive weeks &rarr; +2.5kg.</b>
-          Any red &rarr; back to last green load.</p>
-      </div>
-      <div class="info-rule"><b>Green light:</b> pain &le;3/10 during set, baseline within 24h, not creeping week to week.</div>
-      <div class="info-rule"><b>Current status:</b> 50kg, zero greens since reset after 4/10 on 09-17.</div>
-    </div>
-
-    <div class="info-section">
-      <h3>Standing Candidates</h3>
-      <table class="info-table">
-        <tr><th>Exercise</th><th>Slot</th><th>Why</th></tr>
-        <tr><td>Chest-Supported Row</td><td>Upper B/C pull</td><td>Less torso English, may load R lat with less pain</td></tr>
-        <tr><td>Nordic Curl</td><td>Lower, replaces Leg Curl</td><td>Hamstring protection for football (2x4 eccentric)</td></tr>
-        <tr><td>Weighted Dips</td><td>Upper B push</td><td>Once BW dips hit 12,12,12 x3</td></tr>
-        <tr><td>Ab Wheel</td><td>Upper C / Lower core</td><td>Harder core option once HLR is easy</td></tr>
-      </table>
-    </div>
-
-    <div class="info-section">
-      <h3>Rules</h3>
-      <div class="info-rule"><b>Miss a day</b> &mdash; take the next one in the template. Don't shuffle to catch up.</div>
-      <div class="info-rule"><b>10+ days off</b> &mdash; 10% off top sets for the first session back.</div>
-      <div class="info-rule"><b>No shoulder press</b> &mdash; PT recommendation, shoulder burnout after heavy incline.</div>
-      <div class="info-rule"><b>No flat barbell bench</b> &mdash; dropped to prioritise incline. Flat DB covers mid-chest.</div>
+    <div class="sec">Rules</div>
+    <div class="block info-block">
+      <div class="rule"><b>Miss a day</b>Take the next one in the template. Don&rsquo;t shuffle to catch up.</div>
+      <div class="rule"><b>10+ days off</b>10% off top sets for the first session back.</div>
+      <div class="rule"><b>No shoulder press</b>PT recommendation: shoulder burnout after heavy incline.</div>
+      <div class="rule"><b>No flat barbell bench</b>Dropped to prioritise incline. Flat DB covers mid-chest.</div>
     </div>
 
     <div class="asof" id="asof-info"></div>
@@ -409,80 +482,61 @@ input[type=number] { -moz-appearance: textfield; }
 </div>
 
 <!-- BOTTOM NAV -->
-<nav class="nav" id="nav">
+<nav class="nav" id="nav"><div class="nav-in">
   <button class="nav-item active" data-view="train" onclick="switchView('train')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-      <rect x="1" y="9" width="3" height="6" rx="1"/><rect x="20" y="9" width="3" height="6" rx="1"/>
-      <line x1="4" y1="12" x2="20" y2="12"/><rect x="5" y="7" width="2" height="10" rx=".5"/><rect x="17" y="7" width="2" height="10" rx=".5"/>
-    </svg>Train
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="9" width="3" height="6" rx="1"/><rect x="20" y="9" width="3" height="6" rx="1"/><line x1="4" y1="12" x2="20" y2="12"/><rect x="5" y="7" width="2" height="10" rx=".5"/><rect x="17" y="7" width="2" height="10" rx=".5"/></svg>Train
   </button>
   <button class="nav-item" data-view="import" onclick="switchView('import')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-      <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/>
-      <rect x="8" y="2" width="8" height="4" rx="1"/><path d="M12 11v6M9 14l3 3 3-3"/>
-    </svg>Import
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M12 11v6M9 14l3 3 3-3"/></svg>Import
   </button>
   <button class="nav-item" data-view="history" onclick="switchView('history')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-      <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-    </svg>History
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>History
   </button>
   <button class="nav-item" data-view="info" onclick="switchView('info')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-      <circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>
-    </svg>Info
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>Info
   </button>
-</nav>
-
-<!-- DEBRIEF -->
-<div class="wrap">
-  <div class="debrief-card" id="debrief-card">
-    <div class="debrief-head">
-      <span class="name">Debrief</span>
-      <button class="debrief-dismiss" onclick="dismissDebrief()">&times;</button>
-    </div>
-    <div class="debrief-body" id="debrief-body"></div>
-  </div>
-</div>
-
-<!-- SAVE BAR -->
-<div class="save-bar" id="save-bar" style="display:none">
-  <div class="save-bar-in">
-    <button class="save-btn" id="save-btn" onclick="save()">Save Session</button>
-  </div>
-</div>
+</div></nav>
 
 <div class="toast" id="toast"></div>
 
-<!-- SETTINGS MODAL -->
-<div class="modal-bg" id="settings-modal" onclick="if(event.target===this)closeSettings()">
-  <div class="modal">
-    <h2>Settings</h2>
-    <div class="hint">Create a fine-grained Personal Access Token at
-      github.com/settings/tokens scoped to <b>maxyongg/fitness</b> with
-      <b>Contents: Read and write</b>. Tokens stay in this browser only.</div>
-    <label for="pat-input">GitHub Token</label>
-    <input type="password" id="pat-input" placeholder="github_pat_...">
+<!-- SETTINGS SHEET -->
+<div class="scrim" id="settings-bg" onclick="closeSettings()"></div>
+<div class="sheet dialog" id="settings-sheet" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+  <div class="sheet-h"><span>Stored in this browser only</span><b id="settings-title">Settings</b></div>
+  <div class="sheet-body">
+    <p class="hint">Fine-grained Personal Access Token from github.com/settings/tokens, scoped to
+      <b>maxyongg/fitness</b> with <b>Contents: Read and write</b>.</p>
+    <label for="pat-input">GitHub token</label>
+    <input type="password" id="pat-input" placeholder="github_pat_..." autocomplete="off">
     <label for="pin-input">Debrief PIN</label>
-    <input type="password" id="pin-input" placeholder="Enter PIN">
-    <div class="hint">Required for AI debrief after saving. Set the same PIN in your Cloudflare Worker secrets.</div>
-    <div class="modal-btns">
-      <button class="modal-btn sec" onclick="closeSettings()">Cancel</button>
-      <button class="modal-btn pri" onclick="saveSettings()">Save</button>
+    <input type="password" id="pin-input" placeholder="PIN" autocomplete="off">
+    <p class="hint" style="margin-top:8px">Needed for the AI debrief after saving. Same PIN as the Cloudflare Worker secret.</p>
+    <div class="sheet-btns">
+      <button class="btn btn-ghost" onclick="closeSettings()">Cancel</button>
+      <button class="btn btn-pri" onclick="saveSettings()">Save</button>
     </div>
   </div>
 </div>
 
 <!-- ROTATE PICKER SHEET -->
-<div class="sheet-bg" id="rotate-bg" onclick="closeRotateSheet()"></div>
+<div class="scrim" id="rotate-bg" onclick="closeRotateSheet()"></div>
 <div class="sheet" id="rotate-sheet">
   <div class="sheet-handle"></div>
-  <h3 id="rotate-title">Swap exercise</h3>
+  <div class="sheet-h"><span>Swap for today</span><b id="rotate-title">Swap exercise</b></div>
   <div id="rotate-opts"></div>
 </div>
 
 <script>
-/* ---- prescriptions ---- */
+/* ---- prescriptions ----
+
+   The page renders exactly what is written here. Every slot carries the prescription
+   (sets, reps, load) plus three lines he reads at the gym:
+     last — what he actually did last time on THIS machine, from log.md
+     do   — the instruction for today, one or two sentences
+     why  — the reason the slot is what it is (tucked behind a "Why" toggle)
+   Each session has a `brief`: what today is for, in a sentence or two.
+   Re-prescribing means updating these too — see docs/workflows.md.
+   Strings use double quotes (drain.py parses this object).                              */
 var RX = {
   asof: "2026-09-21",
   repo: "maxyongg/fitness",
@@ -491,125 +545,235 @@ var RX = {
   sessions: {
     upper_a: {
       name: "Upper A", day: "Monday", mins: "~50 min",
+      brief: "Push-heavy. Incline leads, pull-ups go second while they are fresh. No shoulder press — rear delts take that slot.",
       exercises: [
-        { name:"Incline Bench Press (Barbell)", type:"anchor", sets:4, reps:"5-8", load:65, unit:"kg" },
-        { name:"Pull Up", type:"anchor", sets:3, reps:"AMRAP", load:0, unit:"BW" },
+        { name:"Incline Bench Press (Barbell)", type:"anchor", sets:4, reps:"5-8", load:65, unit:"kg",
+          last:"09-21 · 60kg × 10, then 65kg × 8, 7",
+          do:"Hold 65kg. All four sets at 8 earns 67.5kg.",
+          why:"The primary press, at an all-time high. Anchors carry the overload, so the exercise never changes — only the number does." },
+        { name:"Pull Up", type:"anchor", sets:3, reps:"AMRAP", load:0, unit:"BW",
+          last:"09-21 · 12, 10, 6, 5 (negatives) — 12 is a record",
+          do:"Slot 2, straight after the press. All-out sets. 27 total held for three sessions re-adds the 5kg.",
+          why:"Order beats content: slot 2 gave 24–32 reps for five months, slot 5 gave 13–23." },
         { name:"Chest Fly", type:"rotate", sets:3, reps:"10-12", load:65, unit:"kg",
-          slot:"Chest isolation", alts:["Cable Crossover","Incline Chest Press"] },
+          slot:"Chest isolation", alts:["Cable Crossover","Incline Chest Press"],
+          last:"09-21 · 65kg × 10, 8, then 67.5kg × 6",
+          do:"Hold 65kg and chase reps — 10–12 on all three sets before adding weight.",
+          why:"Broke a six-session stall at 8 on 09-21: the first set into the 10–12 band." },
         { name:"Face Pull", type:"rotate", sets:3, reps:"12-15", load:17.5, unit:"kg",
-          slot:"Rear delt", alts:["Reverse Flye","Bent-Over Rear-Delt Raise"] },
-        { name:"Lateral Raise", type:"anchor", sets:3, reps:"15-20", load:8, unit:"kg" },
+          slot:"Rear delt", alts:["Reverse Flye","Bent-Over Rear-Delt Raise"],
+          last:"09-17 · 17.5kg × 12, 12, 12",
+          do:"17.5kg. 15 on all three sets, two sessions running, earns the next plate.",
+          why:"The shoulder-press slot, given to rear delts on your PT's advice. 09-21 ran the reverse fly machine here (42.5kg × 8, 8, 7) — a different machine, so it is not a reading on this number." },
+        { name:"Lateral Raise", type:"anchor", sets:3, reps:"15-20", load:8, unit:"kg",
+          last:"09-21 · 8kg × 15, 15, 15",
+          do:"8kg. 20 on all three sets earns 9kg.",
+          why:"Progressing steadily on the 15–20 band: 7kg × 20, 20, 20 earned 8kg on 09-11." },
         { name:"Triceps Extension", type:"rotate", sets:3, reps:"10-12", load:17.5, unit:"kg",
-          slot:"Triceps", alts:["Skullcrusher"] }
+          slot:"Triceps", alts:["Skullcrusher"],
+          last:"Aug export · 17.5kg, seven sessions running",
+          do:"17.5kg. If it has not moved in four more sessions, drop to 15kg and rebuild.",
+          why:"The longest stall in the data. It drifted because the slot kept going elsewhere — keeping it prescribed is the fix." }
       ]
     },
     upper_b: {
       name: "Upper B", day: "Thursday", mins: "~50 min",
+      brief: "Pull-heavy. Pull-ups lead at two in reserve, the row protocol governs the right side, and slots 4–5 balance the pulls with push work. Rate right-lat pain at the bottom.",
       exercises: [
-        { name:"Pull Up", type:"anchor", sets:3, reps:"AMRAP-2", load:0, unit:"BW" },
+        { name:"Pull Up", type:"anchor", sets:3, reps:"AMRAP-2", load:0, unit:"BW",
+          last:"09-21 · 12, 10, 6, 5 on Upper A, all-out",
+          do:"Slot 1. Stop every set two reps short of failure.",
+          why:"Second pull-up day, 72h after Monday. Two full AMRAPs that close is more joint stress than the frequency is worth — two in reserve keeps the volume without the grind." },
         { name:"Iso Lateral Row", type:"anchor", sets:3, reps:"8-10", load:0, unit:"kg",
-          bilateral:true, loadL:60, loadR:50, note:"Row protocol \u2014 log L/R separately" },
+          bilateral:true, loadL:60, loadR:50,
+          last:"09-17 · L 60kg × 8, 8 · R 50kg × 10, 8 — pain 4/10",
+          do:"Left then right, logged separately. Right stays at 50kg — rate the pain during the set below.",
+          why:"The right lat's measured lift. Zero greens since the 4/10 on 09-17; three greens held over two weeks earns the right +2.5kg. Your physio's guidance overrides all of this." },
         { name:"Lat Pulldown", type:"rotate", sets:3, reps:"10-12", load:67, unit:"kg",
-          slot:"Vertical pull", alts:["Single-Arm Lat Pulldown","Underhand Pulldown"] },
+          slot:"Vertical pull", alts:["Single-Arm Lat Pulldown","Underhand Pulldown"],
+          last:"09-17 · 67kg × 8, 10, 7",
+          do:"Hold 67kg. 12 on all three sets, two sessions running, earns the next plate.",
+          why:"Vertical pull volume behind the pull-ups. The reps are the gap, not the plate." },
         { name:"Dips", type:"rotate", sets:3, reps:"8-12", load:0, unit:"BW",
-          slot:"Push compound", alts:["Weighted Dips"] },
+          slot:"Push compound", alts:["Weighted Dips"],
+          last:"09-20 · 10, 10, 10 · 09-06 · 12, 12, 12",
+          do:"Bodyweight. 12, 12, 12 comes before any added weight.",
+          why:"At slot 4 they land on a fresh chest and triceps, after three pulls. Weighted dips are the next rung." },
         { name:"Cable Crossover", type:"rotate", sets:3, reps:"10-12", load:0, unit:"kg",
-          slot:"Chest isolation", alts:["Chest Fly","Incline Chest Press"] },
+          slot:"Chest isolation", alts:["Chest Fly","Incline Chest Press"],
+          last:"09-07 · 15kg × 8, 8, then 12.5kg × 12",
+          do:"Load to be set: find the weight that gives 10–12 on all three and log it.",
+          why:"Push work for a pull-heavy day, at a different angle from Monday's incline and Saturday's flat press." },
         { name:"Bicep Curl", type:"rotate", sets:3, reps:"8-10", load:30, unit:"kg",
-          slot:"Biceps", alts:["Preacher Curl","Hammer Curl","Incline Curl"] }
+          slot:"Biceps", alts:["Preacher Curl","Hammer Curl","Incline Curl"],
+          last:"09-17 · 30kg × 8, 8, 7 — same as 09-13",
+          do:"30kg. 10 on all three sets, two sessions running, earns the next increment.",
+          why:"Direct biceps on top of 15 pulling sets a week. Two identical sessions running — a third makes it a stall worth acting on." }
       ]
     },
     upper_c: {
       name: "Upper C", day: "Saturday", mins: "~45 min",
+      brief: "The rounding day — picks up what Monday and Thursday don't hit twice. Two loads to set today: flat DB press and cable row.",
       exercises: [
         { name:"Flat Dumbbell Press", type:"rotate", sets:3, reps:"10-12", load:0, unit:"kg",
-          slot:"Press" },
+          slot:"Press",
+          last:"Not logged yet",
+          do:"Load to be set: find the weight that gives 10–12 on all three and log it.",
+          why:"The mid-chest pattern without flat barbell bench. Dumbbells work each side on its own, which suits the right-lat asymmetry." },
         { name:"Cable Row", type:"rotate", sets:3, reps:"10-12", load:0, unit:"kg",
-          slot:"Horizontal pull", alts:["Seated Row","Chest-Supported Row"] },
-        { name:"Lateral Raise", type:"anchor", sets:3, reps:"15-20", load:8, unit:"kg" },
+          slot:"Horizontal pull", alts:["Seated Row","Chest-Supported Row"],
+          last:"Not logged under this name",
+          do:"Load to be set. If the right side talks, note it and lighten — this row carries no gate.",
+          why:"Spreads back work across all three upper days. Not the right lat's row: Thursday's iso-lateral is the only one that counts." },
+        { name:"Lateral Raise", type:"anchor", sets:3, reps:"15-20", load:8, unit:"kg",
+          last:"09-21 · 8kg × 15, 15, 15",
+          do:"8kg. 20 on all three sets earns 9kg.",
+          why:"Progressing steadily on the 15–20 band: 7kg × 20, 20, 20 earned 8kg on 09-11." },
         { name:"Face Pull", type:"rotate", sets:3, reps:"12-15", load:17.5, unit:"kg",
-          slot:"Rear delt", alts:["Reverse Flye","Bent-Over Rear-Delt Raise"] },
+          slot:"Rear delt", alts:["Reverse Flye","Bent-Over Rear-Delt Raise"],
+          last:"09-17 · 17.5kg × 12, 12, 12",
+          do:"17.5kg. 15 on all three sets, two sessions running, earns the next plate.",
+          why:"Rear delts twice a week — the one gap the export supports, and the slot a shoulder press used to take." },
         { name:"Bicep Curl", type:"rotate", sets:3, reps:"10-12", load:30, unit:"kg",
-          slot:"Arms", alts:["Preacher Curl","Hammer Curl"] },
+          slot:"Arms", alts:["Preacher Curl","Hammer Curl"],
+          last:"09-17 · 30kg × 8, 8, 7",
+          do:"30kg. 12 on all three sets, two sessions running, earns the next increment.",
+          why:"Second arms hit of the week, higher in the rep range than Thursday." },
         { name:"Hanging Leg Raise", type:"rotate", sets:3, reps:"10-12", load:0, unit:"BW",
-          slot:"Core", alts:["Plank","Ab Wheel"] }
+          slot:"Core", alts:["Plank","Ab Wheel"],
+          last:"09-20 · 10, 10, 10",
+          do:"Bodyweight, 10–12. The ab wheel is the next rung once these are easy.",
+          why:"Core is programmed, not ad hoc — six sets a week across Saturday and Sunday." }
       ]
     },
     lower: {
       name: "Lower", day: "Sunday", mins: "~45 min",
+      brief: "Once a week, 48h before Tuesday football. The deadlift load gets set today. If Tuesdays come out rough, the squat is the lever, not the deadlift.",
       exercises: [
-        { name:"Deadlift (Barbell)", type:"anchor", sets:3, reps:"5", load:0, unit:"kg" },
+        { name:"Deadlift (Barbell)", type:"anchor", sets:3, reps:"5", load:0, unit:"kg",
+          last:"No conventional deadlift logged · RDL 70kg × 8, 8, 8 (09-12) is a different lift",
+          do:"Set the starting load: three clean sets of 5. If the pull bothers the right lat, RDL is the fallback.",
+          why:"The heavy compound, first while fresh. +2.5kg once all three sets hit 5 comfortably." },
         { name:"Squat (Barbell)", type:"rotate", sets:3, reps:"8-10", load:70, unit:"kg",
-          slot:"Quad compound", alts:["Bulgarian Split Squat"] },
+          slot:"Quad compound", alts:["Bulgarian Split Squat"],
+          last:"09-12 · 70kg × 5, 80kg × 5 — knees hurt",
+          do:"Hold 70kg. 10 on all three sets AND no joint complaints earns 72.5kg.",
+          why:"Moderate on purpose, behind a heavy deadlift. Your knees talked at 80kg × 5 — the answer is reps, not plates." },
         { name:"Leg Press", type:"rotate", sets:3, reps:"10-12", load:80, unit:"kg",
-          slot:"Quad volume", alts:["Leg Extension"] },
+          slot:"Quad volume", alts:["Leg Extension"],
+          last:"09-12 · 80kg × 8, 8 (seated leg press)",
+          do:"80kg. 12 on all three sets, two sessions running, earns the next plate.",
+          why:"Quad volume. The 130kg in older notes is a different machine — that number is not on this scale." },
         { name:"Leg Curl", type:"rotate", sets:3, reps:"10-12", load:10, unit:"kg",
-          slot:"Hamstring", alts:["Nordic Curl"] },
+          slot:"Hamstring", alts:["Nordic Curl"],
+          last:"09-12 · 10kg × 8, 8, 8 (kneeling)",
+          do:"10kg. 12 on all three sets, two sessions running, earns the next increment.",
+          why:"Hamstrings for football. The 35kg in older notes is a different station. Nordic curls are the candidate once this has run four sessions in the block." },
         { name:"Seated Calf Raise", type:"rotate", sets:3, reps:"15-20", load:40, unit:"kg",
-          slot:"Calves" },
+          slot:"Calves",
+          last:"09-12 · 40kg × 12, 12, 12",
+          do:"40kg. 20 on all three sets, two sessions running, earns the next plate.",
+          why:"The one group trained once a week. Football covers the rest." },
         { name:"Hanging Leg Raise", type:"rotate", sets:3, reps:"10-12", load:0, unit:"BW",
-          slot:"Core", alts:["Plank","Ab Wheel"] }
+          slot:"Core", alts:["Plank","Ab Wheel"],
+          last:"09-20 · 10, 10, 10",
+          do:"Bodyweight, 10–12. The ab wheel is the next rung once these are easy.",
+          why:"Core is programmed, not ad hoc — six sets a week across Saturday and Sunday." }
       ]
     }
   }
 };
 
+/* ---- constants ---- */
+var ORDER = ["upper_a", "upper_b", "upper_c", "lower"];
+var DOW = { upper_a: 1, upper_b: 4, upper_c: 6, lower: 0 };
+var SHORT_DAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var SHORT_MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var DRAFT_TTL = 16 * 3600 * 1000;
+
+var ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>';
+var ICON_SWAP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>';
+var ICON_CHEV = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>';
+
 /* ---- state ---- */
 var cur = null;
+var nextId = null;
 var swaps = {};
+var painVal = null;
 var parsedData = null;
 
 /* ---- init ---- */
 (function init() {
   var d = new Date();
-  document.getElementById("hdr-date").textContent =
-    d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"short",year:"numeric"});
-  document.getElementById("asof").textContent = "Prescribed " + RX.asof;
-  document.getElementById("asof-info").textContent = "Prescribed " + RX.asof;
+  document.getElementById("hdr-date").textContent = SHORT_DAY[d.getDay()] + " " + d.getDate() + " " + SHORT_MON[d.getMonth()];
+  document.getElementById("asof").textContent = "Prescribed " + fmtDate(RX.asof);
+  document.getElementById("asof-info").textContent = "Prescribed " + fmtDate(RX.asof);
   loadSwaps();
+  nextId = pickNext(d);
   renderTabs();
-  var id = RX.schedule[d.getDay()];
-  if (id === "football" || id === "rest") id = nextLift(d.getDay());
-  pick(id);
+  pick(nextId);
+  renderWeek();
   renderHistory();
 })();
 
+/* Today's lift if it's a lift day and not already saved; otherwise the next one. */
+function pickNext(d) {
+  var id = RX.schedule[d.getDay()];
+  if (id === "football" || id === "rest") return nextLift(d.getDay());
+  var today = isoDate(d);
+  var done = getHistory().some(function(h) { return h.date === today && h.session_id === id; });
+  return done ? ORDER[(ORDER.indexOf(id) + 1) % ORDER.length] : id;
+}
+
+function nextLift(dow) {
+  var map = { 2: "upper_b", 3: "upper_b", 5: "upper_c" };
+  return map[dow] || "upper_a";
+}
+
+/* ---- dates ---- */
+function isoDate(d) {
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+function fmtDate(iso) {
+  var p = iso.split("-");
+  if (p.length !== 3) return iso;
+  return (+p[2]) + " " + SHORT_MON[+p[1] - 1];
+}
+function nextDateFor(sid) {
+  var d = new Date();
+  var diff = (DOW[sid] - d.getDay() + 7) % 7;
+  var n = new Date(d.getFullYear(), d.getMonth(), d.getDate() + diff);
+  return { diff: diff, label: SHORT_DAY[n.getDay()] + " " + n.getDate() + " " + SHORT_MON[n.getMonth()] };
+}
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
 /* ---- view switching ---- */
 function switchView(v) {
-  document.querySelectorAll(".view").forEach(function(el){ el.classList.remove("active"); });
-  document.getElementById("view-"+v).classList.add("active");
-  document.querySelectorAll(".nav-item").forEach(function(el){ el.classList.toggle("active", el.dataset.view===v); });
-  document.getElementById("save-bar").style.display = v === "train" ? "block" : "none";
+  document.querySelectorAll(".view").forEach(function(el) { el.classList.remove("active"); });
+  document.getElementById("view-" + v).classList.add("active");
+  document.querySelectorAll(".nav-item").forEach(function(el) { el.classList.toggle("active", el.dataset.view === v); });
   if (v === "history") renderHistory();
-  if (v === "import" && getToken()) document.getElementById("inbox-btn").style.display = "none";
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
 
 /* ---- tabs ---- */
 function renderTabs() {
-  var order = [
-    {id:"upper_a",label:"Upper A",day:"Mon"},
-    {id:"upper_b",label:"Upper B",day:"Thu"},
-    {id:"upper_c",label:"Upper C",day:"Sat"},
-    {id:"lower",label:"Lower",day:"Sun"}
-  ];
-  document.getElementById("tabs").innerHTML = order.map(function(t) {
-    return '<button class="tab" data-id="'+t.id+'" onclick="pick(\''+t.id+'\')">'
-      +t.label+'<span class="tab-day">'+t.day+'</span></button>';
+  document.getElementById("tabs").innerHTML = ORDER.map(function(id) {
+    var s = RX.sessions[id];
+    return '<button class="tab" data-id="' + id + '" onclick="pick(\'' + id + '\')">'
+      + '<b>' + s.name + '</b><small>' + s.day.slice(0, 3) + (id === nextId ? '<i class="nx"></i>' : '') + '</small></button>';
   }).join("");
-}
-
-function nextLift(dow) {
-  var map = {2:"upper_b",3:"upper_b",5:"upper_c"};
-  return map[dow] || "upper_a";
 }
 
 function pick(id) {
   cur = id;
-  document.querySelectorAll(".tab").forEach(function(t){t.classList.toggle("active",t.dataset.id===id)});
+  document.querySelectorAll(".tab").forEach(function(t) { t.classList.toggle("active", t.dataset.id === id); });
   renderSession(id);
-  document.getElementById("save-bar").style.display = "block";
-  window.scrollTo(0,0);
+  updateSaveBtn();
+  window.scrollTo(0, 0);
 }
 
 /* ---- swap persistence ---- */
@@ -619,130 +783,214 @@ function loadSwaps() {
   try {
     var raw = localStorage.getItem("matchday_swaps");
     swaps = raw ? JSON.parse(raw) : {};
-  } catch(e) { swaps = {}; }
+  } catch (e) { swaps = {}; }
 }
 
 function saveSwap(sid, idx, name) {
-  swaps[swapKey(sid,idx)] = name;
-  try { localStorage.setItem("matchday_swaps", JSON.stringify(swaps)); } catch(e) {}
+  var ex = RX.sessions[sid].exercises[idx];
+  if (name === ex.name) delete swaps[swapKey(sid, idx)];
+  else swaps[swapKey(sid, idx)] = name;
+  try { localStorage.setItem("matchday_swaps", JSON.stringify(swaps)); } catch (e) {}
 }
 
 function getActiveName(sid, idx) {
-  return swaps[swapKey(sid,idx)] || RX.sessions[sid].exercises[idx].name;
+  return swaps[swapKey(sid, idx)] || RX.sessions[sid].exercises[idx].name;
 }
 
 /* ---- render session ---- */
 function renderSession(id) {
   var s = RX.sessions[id];
-  var h = '<div class="sec-lbl">'+s.name+' &middot; '+s.day+' &middot; '+s.mins+'</div>';
+  var when = nextDateFor(id);
+  var totalSets = s.exercises.reduce(function(n, ex) { return n + ex.sets * (ex.bilateral ? 2 : 1); }, 0);
 
-  var noToken = !getToken();
-  if (noToken) {
-    h += '<div class="setup"><b>Save is off.</b> Tap &#9881; to add a GitHub token. '
-       + 'You can still view prescriptions without one.</div>';
+  var h = '<section class="brief">'
+    + '<div class="brief-meta mono">' + (when.diff === 0 ? "Today" : when.label)
+    + (id === nextId ? ' <span class="pill">Next up</span>' : '') + '</div>'
+    + '<h1 class="brief-title">' + s.name + '</h1>'
+    + (s.brief ? '<p class="brief-text">' + esc(s.brief) + '</p>' : '')
+    + '<div class="stats"><span><b>' + s.exercises.length + '</b> slots</span>'
+    + '<span><b>' + totalSets + '</b> sets</span>'
+    + '<span><b>' + s.mins.replace(/\s*min/, "") + '</b> min</span>'
+    + '<span class="live"><b id="prog">0</b>/' + totalSets + ' logged</span>'
+    + '</div></section>';
+
+  h += '<div class="slots">';
+  s.exercises.forEach(function(ex, i) { h += slotCard(ex, i, id); });
+  h += '</div>';
+
+  h += '<div class="sec">Recovery</div>'
+    + '<div class="block"><div class="block-h"><b>Right lat</b><span>Pain during sets</span></div>'
+    + '<div class="pain-scale" id="pain-scale">';
+  for (var p = 0; p <= 10; p++) {
+    h += '<button class="pv ' + (p <= 3 ? "g" : "a") + '" data-v="' + p + '" onclick="setPain(' + p + ')">' + p + '</button>';
   }
+  h += '<button class="pv clr" onclick="setPain(null)">Clear</button></div>'
+    + '<div class="pain-read" id="pain-read"></div></div>';
 
-  s.exercises.forEach(function(ex,i){ h += exCard(ex,i,id); });
-
-  h += '<div class="sec-lbl">Recovery</div>';
-  h += '<div class="card pain-card"><div class="card-head"><span class="name">Right Lat</span></div>'
-     + '<div class="card-body">'
-     + '<div class="pain-row"><label style="font-size:12px;color:var(--ink-3);font-weight:600;min-width:36px">PAIN</label>'
-     + '<input type="number" class="pain-in" id="pain" min="0" max="10" inputmode="numeric" placeholder="0-10">'
-     + '<span class="pain-hint">/ 10</span></div>'
-     + '<textarea class="notes-in" id="notes" placeholder="Notes \u2014 pain, feel, anything worth flagging\u2026"></textarea>'
-     + '</div></div>';
-
-  h += '<div class="card extra-card"><div class="card-body">'
-     + '<label style="font-size:11px;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:6px;display:block">Extra / finisher</label>'
-     + '<textarea class="notes-in" id="extra" placeholder="e.g. Push-ups 3x15, Dead hang 30sx3\u2026" style="min-height:40px"></textarea>'
-     + '</div></div>';
+  h += '<div class="block"><div class="block-h"><b>Notes</b><span>Saved with the session</span></div>'
+    + '<textarea class="field" id="notes" data-k="notes" placeholder="Notes — pain, feel, anything worth flagging…"></textarea>'
+    + '<textarea class="field" id="extra" data-k="extra" placeholder="Extra — finishers, core… e.g. push-ups 3×15, dead hang 30s×3" style="min-height:52px"></textarea>'
+    + '</div>';
 
   document.getElementById("main").innerHTML = h;
+
+  painVal = null;
+  restoreDraft(id);
+  renderPain();
+  refreshProgress();
 }
 
-function exCard(ex, idx, sid) {
+function slotCard(ex, idx, sid) {
   var anc = ex.type === "anchor";
   var activeName = getActiveName(sid, idx);
   var isSwapped = activeName !== ex.name;
   var bw = ex.unit === "BW";
-  var tbd = !bw && ex.load === 0 && !ex.bilateral;
-  var loadStr = bw ? "BW" : (tbd || isSwapped ? "TBD" : ex.load+"kg");
+  var tbd = !bw && !ex.bilateral && !ex.load;
 
-  var badge = "";
-  if (anc) {
-    badge = '<span class="badge badge-anchor">Anchor</span>';
-  } else {
-    var hasAlts = ex.alts && ex.alts.length > 0;
-    badge = '<span class="badge badge-rotate"'
-      + (hasAlts ? ' onclick="openRotateSheet(\''+sid+'\','+idx+')"' : '')
-      + '>Rotate' + (hasAlts ? ' &#9662;' : '') + '</span>';
+  var loadStr;
+  if (ex.bilateral) loadStr = "L" + ex.loadL + " R" + ex.loadR;
+  else if (bw) loadStr = "BW";
+  else if (tbd || isSwapped) loadStr = "TBD";
+  else loadStr = ex.load + "kg";
+
+  var hasAlts = !anc && ex.alts && ex.alts.length > 0;
+  var kick;
+  if (anc) kick = '<div class="kick">Anchor</div>';
+  else if (hasAlts) kick = '<button class="kick" onclick="openRotateSheet(\'' + sid + '\',' + idx + ')">'
+    + esc(ex.slot || "Rotate") + ICON_SWAP + '</button>';
+  else kick = '<div class="kick">' + esc(ex.slot || "Rotate") + '</div>';
+
+  var tgt = '<span class="tgt mono"><b>' + loadStr + '</b> · ' + ex.sets + '×' + ex.reps.replace("-", "–")
+    + (ex.bilateral ? " each" : "")
+    + (ex.reps.indexOf("AMRAP") !== -1 ? '<span class="tot" id="tot-' + idx + '"></span>' : '') + '</span>';
+
+  var h = '<article class="slot ' + (anc ? "anchor" : "rotate") + '" id="slot-' + idx + '">'
+    + '<div class="slot-no">' + (idx + 1) + ICON_CHECK + '</div>'
+    + '<div class="slot-b"><div class="slot-top">' + kick + tgt + '</div>'
+    + '<h2 class="ex">' + esc(activeName) + '</h2>'
+    + (isSwapped ? '<div class="swapped">Swapped from ' + esc(ex.name) + ' — no history here, set the load</div>' : '');
+
+  if (!isSwapped) {
+    if (ex.do) h += '<p class="do">' + esc(ex.do) + '</p>';
+    if (ex.last || ex.why) {
+      h += '<div class="last"><span class="lbl">Last</span><span class="txt">' + esc(ex.last || "—") + '</span>'
+        + (ex.why ? '<button class="why-btn" aria-expanded="false" onclick="toggleWhy(this,' + idx + ')">Why</button>' : '')
+        + '</div>';
+      if (ex.why) h += '<p class="why" id="why-' + idx + '" hidden>' + esc(ex.why) + '</p>';
+    }
   }
 
-  var wHtml = "";
+  h += '<div class="log">';
   if (ex.bilateral) {
-    wHtml = '<div class="bi-row">'
-      + biSide("L", idx, ex.loadL)
-      + biSide("R", idx, ex.loadR)
-      + '</div>';
-  } else if (!bw) {
-    var prefill = isSwapped ? "" : (tbd ? "" : ex.load);
-    wHtml = '<div class="wt-row">'
-      + '<label>Weight</label>'
-      + '<input type="number" class="wt-input" data-ex="'+idx+'" inputmode="decimal"'
-      + ' value="'+prefill+'" placeholder="'+(tbd||isSwapped?"kg":"")+'">'
-      + '<span class="wt-unit">kg</span></div>';
+    h += logRow(ex, idx, "L", ex.loadL) + logRow(ex, idx, "R", ex.loadR);
+  } else {
+    h += logRow(ex, idx, null, (tbd || isSwapped) ? "" : ex.load);
   }
-
-  var sHtml = '<div class="sets-grid">';
-  for (var s=0; s<ex.sets; s++) {
-    sHtml += '<div class="set-col"><div class="set-lbl">S'+(s+1)+'</div>'
-      + '<input type="number" class="set-in" data-ex="'+idx+'" data-set="'+s
-      + '" inputmode="numeric" placeholder="'+ex.reps+'"></div>';
-  }
-  sHtml += '</div>';
-
-  var totalHtml = "";
-  if (ex.reps.indexOf("AMRAP") !== -1) {
-    totalHtml = '<div class="reps-total" data-ex="'+idx+'" data-total>Total: \u2013</div>';
-  }
-
-  var noteHtml = "";
-  if (ex.note && !isSwapped) {
-    noteHtml = '<div style="font-size:12px;color:var(--amber);margin-bottom:10px">'+ex.note+'</div>';
-  }
-  if (isSwapped) {
-    noteHtml = '<div style="font-size:12px;color:var(--ink-3);margin-bottom:10px;font-style:italic">'
-      + 'Swapped from ' + ex.name + '</div>';
-  }
-
-  return '<div class="card">'
-    + '<div class="card-head"><span class="name">'+activeName+'</span>'+badge+'</div>'
-    + '<div class="card-body">'
-    + '<div class="prescription">'+ex.sets+' &times; '+ex.reps+' &middot; '+loadStr+'</div>'
-    + noteHtml + wHtml + sHtml + totalHtml
-    + '</div></div>';
+  h += '</div></div></article>';
+  return h;
 }
 
-function biSide(side, idx, load) {
-  return '<div class="bi-side">'
-    + '<label style="font-size:12px;color:var(--ink-3);font-weight:600;min-width:14px">'+side+'</label>'
-    + '<input type="number" class="wt-input" data-ex="'+idx+'" data-side="'+side
-    + '" inputmode="decimal" value="'+(load||"")+'" placeholder="kg">'
-    + '<span class="wt-unit">kg</span></div>';
+function logRow(ex, idx, side, load) {
+  var sfx = side ? "-" + side : "";
+  var ph = ex.reps.replace("AMRAP", "max").replace("-", "–");
+  var h = '<div class="log-row">';
+  if (side) h += '<div class="side">' + side + '</div>';
+  if (ex.unit === "BW") {
+    h += '<div class="kg bw">BW</div>';
+  } else {
+    h += '<label class="kg"><input type="number" class="wt-in" id="w-' + idx + sfx + '" data-k="w-' + idx + sfx + '"'
+      + ' inputmode="decimal" step="any" value="' + (load === "" || load == null ? "" : load) + '" placeholder="–"'
+      + ' aria-label="Weight"><span>kg</span></label>';
+  }
+  h += '<div class="sets">';
+  for (var s = 0; s < ex.sets; s++) {
+    h += '<div class="set"><i>' + (s + 1) + '</i><input type="number" class="set-in" data-ex="' + idx + '"'
+      + ' id="s-' + idx + sfx + '-' + s + '" data-k="s-' + idx + sfx + '-' + s + '"'
+      + ' inputmode="numeric" placeholder="' + ph + '" aria-label="Set ' + (s + 1) + ' reps"></div>';
+  }
+  return h + '</div></div>';
 }
 
-/* ---- AMRAP total ---- */
+function toggleWhy(btn, idx) {
+  var el = document.getElementById("why-" + idx);
+  var open = el.hidden;
+  el.hidden = !open;
+  btn.setAttribute("aria-expanded", open ? "true" : "false");
+  btn.textContent = open ? "Hide" : "Why";
+}
+
+/* ---- live feedback: logged count, done slots, AMRAP totals ---- */
+function refreshProgress() {
+  var s = RX.sessions[cur];
+  var logged = 0;
+  s.exercises.forEach(function(ex, i) {
+    var ins = document.querySelectorAll('.set-in[data-ex="' + i + '"]');
+    var n = 0, sum = 0;
+    ins.forEach(function(inp) { if (inp.value !== "") { n++; sum += parseInt(inp.value) || 0; } });
+    logged += n;
+    var card = document.getElementById("slot-" + i);
+    if (card) card.classList.toggle("done", ins.length > 0 && n === ins.length);
+    var tot = document.getElementById("tot-" + i);
+    if (tot) tot.textContent = sum ? "Σ " + sum : "";
+  });
+  var el = document.getElementById("prog");
+  if (el) el.textContent = logged;
+}
+
 document.addEventListener("input", function(e) {
-  if (!e.target.classList.contains("set-in")) return;
-  var idx = e.target.dataset.ex;
-  var el = document.querySelector('[data-ex="'+idx+'"][data-total]');
-  if (!el) return;
-  var inputs = document.querySelectorAll('.set-in[data-ex="'+idx+'"]');
-  var sum = 0;
-  inputs.forEach(function(inp){ sum += parseInt(inp.value)||0; });
-  el.textContent = "Total: " + (sum || "\u2013");
+  if (!e.target.closest || !e.target.closest("#main")) return;
+  if (e.target.classList.contains("set-in")) refreshProgress();
+  saveDraft();
 });
+
+/* ---- pain ---- */
+function setPain(v) {
+  painVal = (v === painVal) ? null : v;
+  renderPain();
+  saveDraft();
+}
+
+function renderPain() {
+  document.querySelectorAll("#pain-scale .pv[data-v]").forEach(function(b) {
+    b.classList.toggle("on", +b.dataset.v === painVal);
+  });
+  var el = document.getElementById("pain-read");
+  if (!el) return;
+  if (painVal === null) { el.textContent = "Not recorded"; el.className = "pain-read"; }
+  else if (painVal <= 3) { el.textContent = painVal + " / 10 — green light"; el.className = "pain-read g"; }
+  else { el.textContent = painVal + " / 10 — amber"; el.className = "pain-read a"; }
+}
+
+/* ---- draft: survives a reload, a locked phone, or a peek at another tab ---- */
+function draftKey(sid) { return "matchday_draft_" + sid; }
+
+function saveDraft() {
+  if (!cur) return;
+  var v = {};
+  document.querySelectorAll("#main [data-k]").forEach(function(el) {
+    if (el.value !== el.defaultValue) v[el.dataset.k] = el.value;
+  });
+  if (painVal !== null) v.pain = painVal;
+  try {
+    if (Object.keys(v).length) localStorage.setItem(draftKey(cur), JSON.stringify({ t: Date.now(), v: v }));
+    else localStorage.removeItem(draftKey(cur));
+  } catch (e) {}
+}
+
+function restoreDraft(sid) {
+  var d = null;
+  try { d = JSON.parse(localStorage.getItem(draftKey(sid)) || "null"); } catch (e) {}
+  if (!d || !d.v || Date.now() - d.t > DRAFT_TTL) return;
+  Object.keys(d.v).forEach(function(k) {
+    if (k === "pain") { painVal = d.v.pain; return; }
+    var el = document.querySelector('#main [data-k="' + k + '"]');
+    if (el) el.value = d.v[k];
+  });
+}
+
+function clearDraft(sid) {
+  try { localStorage.removeItem(draftKey(sid)); } catch (e) {}
+}
 
 /* ---- rotate sheet ---- */
 var rotateTarget = null;
@@ -751,22 +999,14 @@ function openRotateSheet(sid, idx) {
   rotateTarget = { sid: sid, idx: idx };
   var ex = RX.sessions[sid].exercises[idx];
   var activeName = getActiveName(sid, idx);
-
   document.getElementById("rotate-title").textContent = ex.slot || "Swap exercise";
-
   var opts = [ex.name].concat(ex.alts || []);
-  var h = "";
-  opts.forEach(function(name) {
-    var sel = name === activeName;
-    var isDefault = name === ex.name;
-    h += '<div class="sheet-opt" onclick="pickRotate(\''+name.replace(/'/g,"\\'")+'\')">'
-      + '<span class="so-name">'+name+'</span>'
-      + (isDefault ? '<span class="so-tag">default</span>' : '')
-      + '<span class="so-check">'+(sel ? '\u2713' : '')+'</span>'
-      + '</div>';
-  });
-  document.getElementById("rotate-opts").innerHTML = h;
-
+  document.getElementById("rotate-opts").innerHTML = opts.map(function(name, i) {
+    return '<div class="sheet-opt" onclick="pickRotate(' + i + ')">'
+      + '<span class="so-name">' + esc(name) + '</span>'
+      + (i === 0 ? '<span class="so-tag">Prescribed</span>' : '')
+      + '<span class="so-check">' + (name === activeName ? "✓" : "") + '</span></div>';
+  }).join("");
   document.getElementById("rotate-bg").classList.add("show");
   document.getElementById("rotate-sheet").classList.add("show");
 }
@@ -777,86 +1017,102 @@ function closeRotateSheet() {
   rotateTarget = null;
 }
 
-function pickRotate(name) {
+function pickRotate(i) {
   if (!rotateTarget) return;
+  var ex = RX.sessions[rotateTarget.sid].exercises[rotateTarget.idx];
+  var name = [ex.name].concat(ex.alts || [])[i];
+  saveDraft();
   saveSwap(rotateTarget.sid, rotateTarget.idx, name);
   closeRotateSheet();
+  var y = window.scrollY;
   renderSession(cur);
+  window.scrollTo(0, y);
 }
 
 /* ---- collect ---- */
+function repsOf(idx, sfx, n) {
+  var out = [];
+  for (var j = 0; j < n; j++) {
+    var el = document.getElementById("s-" + idx + sfx + "-" + j);
+    out.push({ reps: el ? parseInt(el.value) || 0 : 0 });
+  }
+  return out;
+}
+function weightOf(id) {
+  var el = document.getElementById(id);
+  return el ? parseFloat(el.value) || 0 : 0;
+}
+function anyReps(sets) { return sets.some(function(st) { return st.reps > 0; }); }
+
 function collectData() {
   var s = RX.sessions[cur];
-  var today = new Date().toISOString().split("T")[0];
   var exercises = [];
 
   s.exercises.forEach(function(ex, i) {
     var activeName = getActiveName(cur, i);
-    var entry = { name: activeName, sets: [] };
 
+    /* Left and right are separate lifts: log them as two exercises, the way log.md names them. */
     if (ex.bilateral) {
-      var lIn = document.querySelector('[data-ex="'+i+'"][data-side="L"]');
-      var rIn = document.querySelector('[data-ex="'+i+'"][data-side="R"]');
-      entry.weightL = lIn ? parseFloat(lIn.value)||0 : 0;
-      entry.weightR = rIn ? parseFloat(rIn.value)||0 : 0;
-    } else if (ex.unit !== "BW") {
-      var wIn = document.querySelector('.wt-input[data-ex="'+i+'"]');
-      entry.weight = wIn ? parseFloat(wIn.value)||0 : 0;
-    } else {
-      entry.weight = 0;
-      entry.bodyweight = true;
+      [["L", " - Left"], ["R", " - Right"]].forEach(function(p) {
+        var sets = repsOf(i, "-" + p[0], ex.sets);
+        if (anyReps(sets)) exercises.push({ name: activeName + p[1], weight: weightOf("w-" + i + "-" + p[0]), sets: sets });
+      });
+      return;
     }
 
-    for (var j=0; j<ex.sets; j++) {
-      var rIn = document.querySelector('[data-ex="'+i+'"][data-set="'+j+'"]');
-      entry.sets.push({ reps: rIn ? parseInt(rIn.value)||0 : 0 });
-    }
-
-    if (entry.sets.some(function(st){ return st.reps > 0; })) exercises.push(entry);
+    var entry = { name: activeName, sets: repsOf(i, "", ex.sets) };
+    if (ex.unit === "BW") { entry.weight = 0; entry.bodyweight = true; }
+    else entry.weight = weightOf("w-" + i);
+    if (anyReps(entry.sets)) exercises.push(entry);
   });
 
   return {
-    date: today,
+    date: isoDate(new Date()),
     session: s.name,
     session_id: cur,
     exercises: exercises,
-    pain: { right_lat: parseInt(document.getElementById("pain").value) || null },
+    pain: { right_lat: painVal },
     notes: (document.getElementById("notes").value || "").trim(),
     extra: (document.getElementById("extra").value || "").trim()
   };
 }
 
 /* ---- save ---- */
+function updateSaveBtn() {
+  var btn = document.getElementById("save-btn");
+  if (btn.disabled) return;
+  btn.textContent = getToken() ? "Save session" : "Add a GitHub token to save";
+}
+
 async function save() {
-  var token = getToken();
-  if (!token) { openSettings(); return; }
+  if (!getToken()) { openSettings(); return; }
 
   var btn = document.getElementById("save-btn");
-  btn.textContent = "Saving\u2026";
-  btn.className = "save-btn saving";
+  btn.textContent = "Saving…";
+  btn.className = "btn btn-pri saving";
   btn.disabled = true;
 
   try {
     var data = collectData();
     if (data.exercises.length === 0) throw new Error("No reps entered");
-    var path = "inbox/" + data.date + "-" + cur.replace(/_/g,"-") + ".json";
-    var body = JSON.stringify(data, null, 2);
-    await ghPut(path, body, "session: " + data.date + " " + data.session);
+    var path = "inbox/" + data.date + "-" + cur.replace(/_/g, "-") + ".json";
+    await ghPut(path, JSON.stringify(data, null, 2), "session: " + data.date + " " + data.session);
     addToHistory(data);
-    btn.textContent = "Saved";
-    btn.className = "save-btn";
+    clearDraft(cur);
+    btn.textContent = "Saved ✓";
+    btn.className = "btn btn-pri";
     toast("Session saved to inbox/", "ok");
     requestDebrief(data);
   } catch (e) {
-    btn.textContent = "Failed \u2014 tap to retry";
-    btn.className = "save-btn error";
+    btn.textContent = "Failed — tap to retry";
+    btn.className = "btn btn-pri error";
     toast(e.message, "err");
   }
 
-  setTimeout(function(){
-    btn.textContent = "Save Session";
-    btn.className = "save-btn";
+  setTimeout(function() {
+    btn.className = "btn btn-pri";
     btn.disabled = false;
+    updateSaveBtn();
   }, 3000);
 }
 
@@ -866,11 +1122,11 @@ async function requestDebrief(data) {
   var pin = getPin();
   if (!url || !pin) return;
 
-  var card = document.getElementById("debrief-card");
+  var card = document.getElementById("debrief");
   var body = document.getElementById("debrief-body");
-  card.classList.add("show");
-  body.innerHTML = '<span class="debrief-loading">Analysing session\u2026</span>';
-  window.scrollTo({ top: card.offsetTop - 80, behavior: "smooth" });
+  card.hidden = false;
+  body.innerHTML = '<span class="debrief-loading">Reading the session…</span>';
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
 
   try {
     var res = await fetch(url, {
@@ -882,20 +1138,19 @@ async function requestDebrief(data) {
     var result = await res.json();
     body.textContent = result.debrief;
   } catch (e) {
-    body.innerHTML = '<span class="debrief-error">Debrief unavailable \u2014 ' +
-      e.message.replace(/</g,"&lt;") + '</span>';
+    body.innerHTML = '<span class="debrief-error">Debrief unavailable — ' + esc(e.message) + '</span>';
   }
 }
 
 function dismissDebrief() {
-  document.getElementById("debrief-card").classList.remove("show");
+  document.getElementById("debrief").hidden = true;
 }
 
 /* ---- github api ---- */
 function toB64(str) {
   var bytes = new TextEncoder().encode(str);
   var bin = "";
-  for (var i=0; i<bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+  for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
   return btoa(bin);
 }
 
@@ -922,7 +1177,7 @@ async function ghPut(path, content, message) {
   });
 
   if (!res.ok) {
-    var err = await res.json().catch(function(){ return {}; });
+    var err = await res.json().catch(function() { return {}; });
     throw new Error(err.message || "GitHub API error " + res.status);
   }
 }
@@ -939,28 +1194,29 @@ async function ghGet(path) {
 /* ---- settings ---- */
 function getToken() {
   try { return localStorage.getItem("matchday_pat") || ""; }
-  catch(e) { return ""; }
+  catch (e) { return ""; }
 }
 
 function getWorkerUrl() {
   try { return localStorage.getItem("matchday_worker_url") || RX.workerUrl || ""; }
-  catch(e) { return RX.workerUrl || ""; }
+  catch (e) { return RX.workerUrl || ""; }
 }
 
 function getPin() {
   try { return localStorage.getItem("matchday_pin") || ""; }
-  catch(e) { return ""; }
+  catch (e) { return ""; }
 }
 
 function openSettings() {
-  document.getElementById("settings-modal").classList.add("show");
   document.getElementById("pat-input").value = getToken();
   document.getElementById("pin-input").value = getPin();
-  document.getElementById("pat-input").focus();
+  document.getElementById("settings-bg").classList.add("show");
+  document.getElementById("settings-sheet").classList.add("show");
 }
 
 function closeSettings() {
-  document.getElementById("settings-modal").classList.remove("show");
+  document.getElementById("settings-bg").classList.remove("show");
+  document.getElementById("settings-sheet").classList.remove("show");
 }
 
 function saveSettings() {
@@ -969,10 +1225,27 @@ function saveSettings() {
   try {
     localStorage.setItem("matchday_pat", pat);
     localStorage.setItem("matchday_pin", pin);
-  } catch(e) { toast("Could not save settings", "err"); return; }
+  } catch (e) { toast("Could not save settings", "err"); return; }
   closeSettings();
   toast("Settings saved", "ok");
-  pick(cur);
+  updateSaveBtn();
+  renderHistory();
+}
+
+/* ---- info: the week ---- */
+function renderWeek() {
+  var names = { upper_a: "Upper A", upper_b: "Upper B", upper_c: "Upper C", lower: "Lower", football: "Football", rest: "Rest" };
+  var tags = { football: "2h · 7-a-side", rest: "Protected" };
+  var today = new Date().getDay();
+  var h = "";
+  [1, 2, 3, 4, 5, 6, 0].forEach(function(dow) {
+    var id = RX.schedule[dow];
+    var t = tags[id] || (RX.sessions[id] ? RX.sessions[id].mins : "");
+    h += '<div class="wk' + (id === "rest" ? " rest" : "") + (dow === today ? " today" : "") + '">'
+      + '<span class="d">' + SHORT_DAY[dow] + '</span><span class="s">' + names[id] + '</span>'
+      + '<span class="t">' + (dow === today ? "Today" : t) + '</span></div>';
+  });
+  document.getElementById("week").innerHTML = h;
 }
 
 /* ---- history ---- */
@@ -980,104 +1253,91 @@ function getHistory() {
   try {
     var raw = localStorage.getItem("matchday_history");
     return raw ? JSON.parse(raw) : [];
-  } catch(e) { return []; }
+  } catch (e) { return []; }
 }
 
 function addToHistory(data) {
   var hist = getHistory();
   hist.unshift(data);
   if (hist.length > 50) hist = hist.slice(0, 50);
-  try { localStorage.setItem("matchday_history", JSON.stringify(hist)); } catch(e) {}
+  try { localStorage.setItem("matchday_history", JSON.stringify(hist)); } catch (e) {}
+}
+
+function fmtSets(ex) {
+  var reps = ex.sets.map(function(s) { return s.duration ? fmtDuration(s.duration) : s.reps; })
+    .filter(function(r) { return r !== 0 && r !== "0"; }).join(", ");
+  var hasDuration = ex.sets.some(function(s) { return s.duration; });
+  var wt = "";
+  if (ex.weightL !== undefined) wt = "L " + ex.weightL + " R " + ex.weightR + "kg";
+  else if (ex.bodyweight) wt = hasDuration ? "" : "BW";
+  else if (ex.weight) wt = ex.weight + "kg";
+  return (wt ? wt + " × " : "") + reps;
 }
 
 function renderHistory() {
   var hist = getHistory();
   var el = document.getElementById("history-list");
+  document.getElementById("inbox-btn").hidden = !getToken();
 
   if (hist.length === 0) {
-    el.innerHTML = '<div class="hist-empty">No sessions saved yet.<br>Log a workout from the Train tab.</div>';
-    document.getElementById("inbox-btn").style.display = getToken() ? "block" : "none";
+    el.innerHTML = '<div class="empty">Nothing saved from this phone yet.<br>Log a session from Train.</div>';
     return;
   }
 
-  var h = "";
-  hist.forEach(function(item, i) {
-    var exCount = item.exercises ? item.exercises.length : 0;
-    h += '<div class="hist-item" onclick="toggleHist('+i+')">'
-      + '<div class="hist-head">'
-      + '<span class="hi-date">'+item.date+'</span>'
-      + '<span class="hi-session">'+item.session+' &middot; '+exCount+' exercises</span>'
-      + '</div>'
-      + '<div class="hist-detail" id="hist-'+i+'">';
-
-    if (item.exercises) {
-      var lastSS = 0;
-      item.exercises.forEach(function(ex) {
-        var hasDuration = ex.sets.some(function(s){ return s.duration; });
-        var reps = ex.sets.map(function(s){
-          if (s.duration) return fmtDuration(s.duration);
-          return s.reps;
-        }).join(", ");
-        var wt = "";
-        if (ex.weightL !== undefined) {
-          wt = "L:" + ex.weightL + "kg R:" + ex.weightR + "kg";
-        } else if (ex.bodyweight) {
-          wt = hasDuration ? "" : "BW";
-        } else if (ex.weight) {
-          wt = ex.weight + "kg";
-        }
-        var ssTag = "";
-        if (ex.supersetGroup && ex.supersetGroup !== lastSS) {
-          ssTag = '<span style="color:var(--accent);font-size:10px;letter-spacing:.06em;font-weight:600"> SS</span>';
-        }
-        lastSS = ex.supersetGroup || 0;
-        h += '<div class="hist-ex"><b>'+ex.name+'</b>'+ssTag+' '+(wt ? wt+' &mdash; ' : '&mdash; ')+reps
-          + (ex.notes ? ' <span style="color:var(--amber);font-size:12px;font-style:italic">'+ex.notes+'</span>' : '')
-          + '</div>';
-      });
-    }
-    if (item.pain && item.pain.right_lat) {
-      h += '<div class="hist-ex" style="color:var(--amber)">Right lat pain: '+item.pain.right_lat+'/10</div>';
-    }
-    if (item.notes) {
-      h += '<div class="hist-ex" style="font-style:italic">'+item.notes+'</div>';
-    }
-    if (item.extra) {
-      h += '<div class="hist-ex" style="font-style:italic">Extra: '+item.extra+'</div>';
-    }
-
-    h += '</div></div>';
-  });
-
-  el.innerHTML = h;
-  document.getElementById("inbox-btn").style.display = getToken() ? "block" : "none";
+  el.innerHTML = hist.map(function(item, i) {
+    var p = (item.date || "").split("-");
+    var d = p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null;
+    var exs = item.exercises || [];
+    var h = '<div class="hist" id="hist-' + i + '">'
+      + '<div class="hist-h" onclick="toggleHist(' + i + ')">'
+      + '<div class="hist-date">' + (d ? '<b>' + d.getDate() + '</b>' + SHORT_MON[d.getMonth()] : esc(item.date)) + '</div>'
+      + '<div class="hist-t"><b>' + esc(item.session) + '</b><span>' + exs.length + ' exercises'
+      + (item.pain && item.pain.right_lat != null ? ' · pain ' + item.pain.right_lat + '/10' : '') + '</span></div>'
+      + '<span class="hist-chev">' + ICON_CHEV + '</span></div>'
+      + '<div class="hist-d">';
+    var lastSS = 0;
+    exs.forEach(function(ex) {
+      var ss = ex.supersetGroup && ex.supersetGroup !== lastSS ? '<span class="ss">SS</span>' : '';
+      lastSS = ex.supersetGroup || 0;
+      h += '<div class="hist-ex"><b>' + esc(ex.name) + ss
+        + (ex.notes ? ' <span class="exn">' + esc(ex.notes) + '</span>' : '')
+        + '</b><span>' + esc(fmtSets(ex)) + '</span></div>';
+    });
+    if (item.pain && item.pain.right_lat != null) h += '<div class="hist-note pain">Right lat ' + item.pain.right_lat + '/10</div>';
+    if (item.notes) h += '<div class="hist-note">' + esc(item.notes) + '</div>';
+    if (item.extra) h += '<div class="hist-note">Extra: ' + esc(item.extra) + '</div>';
+    return h + '</div></div>';
+  }).join("");
 }
 
 function toggleHist(i) {
-  document.getElementById("hist-"+i).classList.toggle("show");
+  document.getElementById("hist-" + i).classList.toggle("open");
 }
 
 async function checkInbox() {
   var btn = document.getElementById("inbox-btn");
-  btn.textContent = "Checking\u2026";
+  btn.textContent = "Checking…";
   btn.disabled = true;
   try {
     var files = await ghGet("inbox");
-    var jsons = files.filter(function(f){ return f.name.endsWith(".json"); });
+    var jsons = files.filter(function(f) { return f.name.endsWith(".json"); });
     if (jsons.length === 0) {
       toast("Inbox is empty", "ok");
     } else {
       toast(jsons.length + " pending in inbox", "ok");
       for (var i = 0; i < jsons.length; i++) {
         var detail = await ghGet("inbox/" + jsons[i].name);
-        var content = JSON.parse(atob(detail.content.replace(/\n/g, "")));
+        var bin = atob(detail.content.replace(/\n/g, ""));
+        var bytes = new Uint8Array(bin.length);
+        for (var j = 0; j < bin.length; j++) bytes[j] = bin.charCodeAt(j);
+        var content = JSON.parse(new TextDecoder().decode(bytes));
         var hist = getHistory();
-        var exists = hist.some(function(h){ return h.date === content.date && h.session_id === content.session_id; });
+        var exists = hist.some(function(h) { return h.date === content.date && h.session_id === content.session_id; });
         if (!exists) addToHistory(content);
       }
       renderHistory();
     }
-  } catch(e) {
+  } catch (e) {
     if (e.message.indexOf("404") !== -1) toast("Inbox is empty", "ok");
     else toast("Error: " + e.message, "err");
   }
@@ -1100,7 +1360,7 @@ function parseStrong() {
 
     var isSet = false;
 
-    var wtReps = line.match(/^(?:Set\s*\d+\s*[:.]?\s*)?(\d+(?:\.\d+)?)\s*(?:kg|lbs?)?\s*[*xX\u00d7]\s*(\d+)/);
+    var wtReps = line.match(/^(?:Set\s*\d+\s*[:.]?\s*)?(\d+(?:\.\d+)?)\s*(?:kg|lbs?)?\s*[*xX×]\s*(\d+)/);
     if (wtReps && current) {
       current.sets.push({ weight: parseFloat(wtReps[1]), reps: parseInt(wtReps[2]) });
       isSet = true;
@@ -1155,7 +1415,7 @@ function parseStrong() {
   }
 
   if (current && current.sets.length) exercises.push(current);
-  exercises = exercises.filter(function(e){ return e.sets.length > 0; });
+  exercises = exercises.filter(function(e) { return e.sets.length > 0; });
 
   if (exercises.length === 0) {
     toast("No exercises found", "err");
@@ -1163,16 +1423,15 @@ function parseStrong() {
   }
 
   parsedData = exercises;
-  var detected = detectSession(exercises);
-  renderParseResult(exercises, detected);
+  renderParseResult(exercises, detectSession(exercises));
 }
 
 function detectSession(exercises) {
-  var names = exercises.map(function(e){ return e.name.toLowerCase(); });
+  var names = exercises.map(function(e) { return e.name.toLowerCase(); });
   var best = null;
   var bestScore = 0;
   Object.keys(RX.sessions).forEach(function(sid) {
-    var rxNames = RX.sessions[sid].exercises.map(function(e){ return e.name.toLowerCase(); });
+    var rxNames = RX.sessions[sid].exercises.map(function(e) { return e.name.toLowerCase(); });
     var score = 0;
     names.forEach(function(n) {
       rxNames.forEach(function(r) {
@@ -1190,39 +1449,36 @@ function fmtDuration(secs) {
 }
 
 function renderParseResult(exercises, detected) {
-  var h = "";
-  if (detected) {
-    h += '<div class="parsed-detect" style="margin-top:12px">Detected: ' + RX.sessions[detected].name + '</div>';
-  }
+  var h = '<div class="parsed-detect">' + exercises.length + ' exercises'
+    + (detected ? ' · <span class="pill">' + RX.sessions[detected].name + '</span>' : ' · session not recognised') + '</div>';
 
   exercises.forEach(function(ex, i) {
-    var ssClass = ssCardClass(i, exercises);
     var setsStr = ex.sets.map(function(s) {
       if (s.duration) return fmtDuration(s.duration);
-      return s.weight ? s.weight + "kg x " + s.reps : s.reps + " reps";
-    }).join(" / ");
-    h += '<div class="parsed-ex'+ssClass+'" data-pi="'+i+'"><div class="pe-name">'+ex.name+'</div>'
-      + '<div class="pe-sets">'+setsStr+'</div>'
-      + (ex.notes ? '<div class="pe-note">'+ex.notes+'</div>' : '')
+      return s.weight ? s.weight + "×" + s.reps : s.reps;
+    }).join(" · ");
+    h += '<div class="parsed-ex' + ssCardClass(i, exercises) + '"><div class="pe-name">' + esc(ex.name) + '</div>'
+      + '<div class="pe-sets">' + setsStr + '</div>'
+      + (ex.notes ? '<div class="pe-note">' + esc(ex.notes) + '</div>' : '')
       + '</div>';
     if (i < exercises.length - 1) {
       var linked = ex.supersetNext;
-      h += '<div class="ss-join'+(linked ? " linked" : "")+'" data-ssi="'+i+'">'
-        + '<button class="ss-btn'+(linked ? " on" : "")+'" onclick="toggleSS('+i+')">'
-        + (linked ? "SS" : "superset") + '</button></div>';
+      h += '<div class="ss-join' + (linked ? " linked" : "") + '">'
+        + '<button class="ss-btn' + (linked ? " on" : "") + '" onclick="toggleSS(' + i + ')">'
+        + (linked ? "Superset" : "+ superset") + '</button></div>';
     }
   });
 
-  h += '<button class="action-btn btn-green" onclick="saveImport(\''+(detected||"")+'\')" '
-    + (!getToken() ? 'disabled title="Add a GitHub token first"' : '')
-    + ' style="margin-top:12px">Save to inbox</button>';
-  h += '<button class="action-btn btn-outline" onclick="clearImport()" style="margin-top:8px">Clear</button>';
+  h += '<div style="margin-top:14px">'
+    + '<button class="btn btn-pri" onclick="saveImport(\'' + (detected || "") + '\')"'
+    + (!getToken() ? ' disabled title="Add a GitHub token first"' : '') + '>Save to inbox</button>'
+    + '<button class="btn btn-ghost" onclick="clearImport()">Clear</button></div>';
 
   document.getElementById("parse-result").innerHTML = h;
 }
 
 function ssCardClass(i, exs) {
-  var prev = i > 0 && exs[i-1].supersetNext;
+  var prev = i > 0 && exs[i - 1].supersetNext;
   var next = exs[i].supersetNext;
   if (prev && next) return " ss-mid";
   if (prev) return " ss-bot";
@@ -1233,14 +1489,13 @@ function ssCardClass(i, exs) {
 function toggleSS(i) {
   if (!parsedData || i >= parsedData.length - 1) return;
   parsedData[i].supersetNext = !parsedData[i].supersetNext;
-  var detected = detectSession(parsedData);
-  renderParseResult(parsedData, detected);
+  renderParseResult(parsedData, detectSession(parsedData));
 }
 
 async function saveImport(sessionId) {
   if (!parsedData || !getToken()) return;
 
-  var today = new Date().toISOString().split("T")[0];
+  var today = isoDate(new Date());
   var sessionName = sessionId ? RX.sessions[sessionId].name : "Imported";
 
   var ssGroup = 0;
@@ -1249,10 +1504,10 @@ async function saveImport(sessionId) {
     date: today,
     session: sessionName,
     session_id: sessionId || "import",
-    exercises: parsedData.map(function(ex, i) {
+    exercises: parsedData.map(function(ex) {
       if (!inGroup && ex.supersetNext) { ssGroup++; inGroup = true; }
       var entry = { name: ex.name, sets: ex.sets };
-      var hasWeight = ex.sets.some(function(s){ return s.weight > 0; });
+      var hasWeight = ex.sets.some(function(s) { return s.weight > 0; });
       if (hasWeight) entry.weight = ex.sets[0].weight;
       else entry.bodyweight = true;
       if (ex.notes) entry.notes = ex.notes;
@@ -1271,7 +1526,7 @@ async function saveImport(sessionId) {
     addToHistory(data);
     toast("Saved to inbox", "ok");
     clearImport();
-  } catch(e) {
+  } catch (e) {
     toast(e.message, "err");
   }
 }
@@ -1283,11 +1538,13 @@ function clearImport() {
 }
 
 /* ---- toast ---- */
+var toastTimer = null;
 function toast(msg, cls) {
   var el = document.getElementById("toast");
   el.textContent = msg;
   el.className = "toast show " + cls;
-  setTimeout(function(){ el.classList.remove("show"); }, 3000);
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { el.classList.remove("show"); }, 3000);
 }
 </script>
 </body>
