@@ -4,119 +4,72 @@ After you save a session on the phone page, the browser calls a Cloudflare Worke
 that sends the session data to Claude and returns a 2-4 sentence debrief within
 seconds. No repo writes, no waiting — just a card on screen.
 
+Requests are gated by a PIN: the Worker rejects any call without a valid PIN,
+so random visitors can't burn your API credits.
+
 ## One-time setup (~5 min)
 
 ### 1. Create a Cloudflare account
 
 Sign up at https://dash.cloudflare.com if you don't have one. The free tier
-covers this easily (~100k requests/day).
+covers this easily (~100k requests/day). You'll need to register a `workers.dev`
+subdomain — find it under **Workers & Pages** in the sidebar.
 
-### 2. Install Wrangler (Cloudflare CLI)
+### 2. Deploy the Worker
 
-```bash
-npm install -g wrangler
-wrangler login
-```
-
-### 3. Get an Anthropic API key
-
-Go to https://console.anthropic.com/settings/keys and create a key.
-Each debrief costs ~$0.005-0.01 (Sonnet, ~300 tokens out).
-
-### 4. Deploy the Worker
+From a terminal (not Claude Code — it needs interactive input for secrets):
 
 ```bash
 cd fitness/worker
-wrangler secret put ANTHROPIC_API_KEY
-# paste your Anthropic key when prompted
-
-wrangler deploy
+npx wrangler login
+npx wrangler deploy
 ```
 
-Wrangler prints the Worker URL (e.g. `https://matchday-debrief.<you>.workers.dev`).
+Wrangler prints the Worker URL: `https://matchday-debrief.<your-subdomain>.workers.dev`
 
-### 5. Add the URL to the phone page
+### 3. Set the secrets
 
-Open the page → tap the gear icon → paste the Worker URL into "Debrief Worker URL" → Save.
+Either via the Cloudflare dashboard (Worker → Settings → Variables and Secrets)
+or via the terminal:
+
+```bash
+npx wrangler secret put ANTHROPIC_API_KEY
+npx wrangler secret put DEBRIEF_PIN
+```
+
+- **ANTHROPIC_API_KEY** — get one at https://console.anthropic.com/settings/keys
+- **DEBRIEF_PIN** — any string you choose (e.g. `1234`, a word). You'll enter the
+  same PIN on the phone page.
+
+### 4. Enter the PIN on the phone page
+
+Open https://maxyongg.github.io/fitness/ → tap the gear icon → enter your PIN
+in the "Debrief PIN" field → Save.
+
+The Worker URL is already hardcoded in the page (`RX.workerUrl`). The PIN is
+stored in your browser's `localStorage` — it never appears in the repo.
 
 ## What happens after setup
 
 1. You save a session on the phone page → JSON goes to `inbox/`
-2. **Immediately:** the page calls the Worker, which calls Claude Sonnet and returns
-   a debrief card on screen (2-5 seconds)
+2. **Immediately:** the page calls the Worker with your PIN, which calls
+   Claude Sonnet and returns a debrief card on screen (2-5 seconds)
 3. **Within ~1 minute:** GitHub Action runs `drain.py` + `prescribe.py`, commits
    log + state + updated RX.asof, deletes inbox file
 
 The debrief is display-only — it doesn't write to the repo. The GH Action handles
 all the repo bookkeeping.
 
-## Updated drain.yml
+## Redeploying
 
-The GitHub Action needs one extra step (`prescribe.py`) and `index.html` in the
-commit. Since Claude Code can't push workflow files, update `.github/workflows/drain.yml`
-yourself — same as last time, via the GitHub web UI or local machine.
+When the Worker code in `worker/index.js` changes, redeploy from a terminal:
 
-Replace the full YAML with:
-
-```yaml
-name: Drain inbox
-
-on:
-  push:
-    branches: [main]
-    paths: ['inbox/*.json']
-
-permissions:
-  contents: write
-
-jobs:
-  drain:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Check inbox
-        id: check
-        run: |
-          if ls inbox/*.json 1>/dev/null 2>&1; then
-            echo "has_files=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_files=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Run drain.py
-        if: steps.check.outputs.has_files == 'true'
-        run: python3 drain.py
-
-      - name: Run prescribe.py
-        if: steps.check.outputs.has_files == 'true'
-        run: python3 prescribe.py
-
-      - name: Commit and push
-        if: steps.check.outputs.has_files == 'true'
-        run: |
-          subject=""
-          count=0
-          for f in inbox/*.json; do
-            date=$(python3 -c "import json; print(json.load(open('$f'))['date'])")
-            session=$(python3 -c "import json; print(json.load(open('$f'))['session'])")
-            if [ $count -eq 0 ]; then
-              subject="log: $date $session"
-            fi
-            count=$((count + 1))
-          done
-          if [ $count -gt 1 ]; then
-            subject="$subject (+$((count - 1)) more)"
-          fi
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add log.md state.json index.html
-          git rm inbox/*.json
-          git diff --cached --quiet && exit 0
-          git commit -m "$subject"
-          git push
+```bash
+cd fitness/worker
+npx wrangler deploy
 ```
+
+Secrets persist across deploys — you only set them once.
 
 ## Costs
 

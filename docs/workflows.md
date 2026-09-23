@@ -16,7 +16,24 @@ The page also stores sessions locally in `localStorage` under `matchday_history`
 pull from `inbox/` via its History tab, so saved sessions are visible to him even before
 draining. The page's Import tab can also parse pasted Strong text and save to `inbox/`.
 
-### Draining procedure
+### Automated path (normal case)
+
+When a session is saved from the phone page, two things happen automatically:
+
+1. **Instant debrief** — the browser calls the Cloudflare Worker, which returns a
+   2-4 sentence AI debrief card on screen within seconds. PIN-gated; doesn't write
+   to the repo. Setup: `docs/cloudflare-worker-setup.md`.
+2. **GitHub Action** (within ~1 minute) — runs `drain.py` (transcribes to `log.md`,
+   updates `state.json`), runs `prescribe.py` (bumps `RX.asof` in `index.html`),
+   commits everything, deletes the inbox file. Setup: `docs/github-actions-setup.md`.
+
+Re-prescribing (changing loads, exercises, or rep targets) is still a Claude decision
+in a manual session — the Action only bumps the date.
+
+### Manual draining procedure
+
+Use this when the Action hasn't run (e.g. it failed, or you're in a Claude session
+that finds unprocessed files in `inbox/`).
 
 1. **Run `python3 drain.py`.** It reads every JSON in `inbox/`, appends formatted entries
    to `log.md`, updates `state.json`, and prints an editorial summary. If the inbox is

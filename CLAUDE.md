@@ -159,7 +159,9 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `plan.md` | The programme — prescriptions, loads, progression rules. Edit here when it changes. |
 | `log.md` | Session log. Append-only, newest at the bottom. |
 | `docs/goals.md` | What the training is *for*. In his words — settled. |
-| `docs/workflows.md` | The occasional jobs. On demand. |
+| `docs/workflows.md` | The occasional jobs — draining, re-prescribing, monthly reconcile. On demand. |
+| `docs/cloudflare-worker-setup.md` | Cloudflare Worker deployment and PIN setup. |
+| `docs/github-actions-setup.md` | GitHub Action for automatic drain + prescribe. |
 | `docs/findings.md` | What the data supports, what it doesn't, what's open. |
 | `docs/incidents.md` | Past mistakes and the rules that came out of them. |
 | `docs/calisthenics.md` | The beginner skill route. On demand. |
