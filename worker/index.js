@@ -18,7 +18,12 @@ export default {
     }
 
     try {
-      const { session, rx } = await request.json();
+      const { session, rx, pin } = await request.json();
+
+      if (!env.DEBRIEF_PIN || pin !== env.DEBRIEF_PIN) {
+        return Response.json({ error: "Invalid PIN" }, { status: 403, headers: cors });
+      }
+
       if (!session || !session.exercises || session.exercises.length === 0) {
         return Response.json({ error: "No session data" }, { status: 400, headers: cors });
       }

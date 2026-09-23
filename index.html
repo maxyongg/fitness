@@ -463,9 +463,9 @@ input[type=number] { -moz-appearance: textfield; }
       <b>Contents: Read and write</b>. Tokens stay in this browser only.</div>
     <label for="pat-input">GitHub Token</label>
     <input type="password" id="pat-input" placeholder="github_pat_...">
-    <label for="worker-input">Debrief Worker URL</label>
-    <input type="url" id="worker-input" placeholder="https://matchday-debrief.you.workers.dev">
-    <div class="hint">Optional. Cloudflare Worker that returns an AI debrief after saving.</div>
+    <label for="pin-input">Debrief PIN</label>
+    <input type="password" id="pin-input" placeholder="Enter PIN">
+    <div class="hint">Required for AI debrief after saving. Set the same PIN in your Cloudflare Worker secrets.</div>
     <div class="modal-btns">
       <button class="modal-btn sec" onclick="closeSettings()">Cancel</button>
       <button class="modal-btn pri" onclick="saveSettings()">Save</button>
@@ -863,7 +863,8 @@ async function save() {
 /* ---- debrief ---- */
 async function requestDebrief(data) {
   var url = getWorkerUrl();
-  if (!url) return;
+  var pin = getPin();
+  if (!url || !pin) return;
 
   var card = document.getElementById("debrief-card");
   var body = document.getElementById("debrief-body");
@@ -875,7 +876,7 @@ async function requestDebrief(data) {
     var res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session: data, rx: RX })
+      body: JSON.stringify({ session: data, rx: RX, pin: pin })
     });
     if (!res.ok) throw new Error("Worker error " + res.status);
     var result = await res.json();
@@ -946,10 +947,15 @@ function getWorkerUrl() {
   catch(e) { return RX.workerUrl || ""; }
 }
 
+function getPin() {
+  try { return localStorage.getItem("matchday_pin") || ""; }
+  catch(e) { return ""; }
+}
+
 function openSettings() {
   document.getElementById("settings-modal").classList.add("show");
   document.getElementById("pat-input").value = getToken();
-  document.getElementById("worker-input").value = getWorkerUrl();
+  document.getElementById("pin-input").value = getPin();
   document.getElementById("pat-input").focus();
 }
 
@@ -959,10 +965,10 @@ function closeSettings() {
 
 function saveSettings() {
   var pat = document.getElementById("pat-input").value.trim();
-  var worker = document.getElementById("worker-input").value.trim();
+  var pin = document.getElementById("pin-input").value.trim();
   try {
     localStorage.setItem("matchday_pat", pat);
-    localStorage.setItem("matchday_worker_url", worker);
+    localStorage.setItem("matchday_pin", pin);
   } catch(e) { toast("Could not save settings", "err"); return; }
   closeSettings();
   toast("Settings saved", "ok");
