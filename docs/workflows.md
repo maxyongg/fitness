@@ -36,12 +36,12 @@ hand, the same way. The routine would otherwise pick it up at its next run.
 
 ### The routine
 
-Routine "Re-prescribe after logged sessions" (`trig_01FRxLVvPLuBk3PWCWvc3hvp`), cron `0 6,14 * * *`
-(UTC), a fresh session
-each run, created 2026-09-24 at his request. It replaced a Re-prescribe GitHub Action
-that billed about $1 a session in API credits; that Action is still documented in
-`docs/github-actions-setup.md` if instant re-prescription is ever worth paying for. The
-routine's instructions, verbatim:
+Routine "Re-prescribe after logged sessions" (`trig_01FRxLVvPLuBk3PWCWvc3hvp`), cron
+`0 6,14 * * *` (UTC), a fresh session each run, created 2026-09-24 at his request. It
+runs on the routine default model (Sonnet 5 at setup) and counts toward his Claude
+plan's usage. It replaced a Re-prescribe GitHub Action that billed about $1 a session
+in API credits. That Action is still documented in `docs/github-actions-setup.md` if
+instant re-prescription is ever worth paying for. The routine's instructions, verbatim:
 
 > Scheduled check for Max's training repo, maxyongg/fitness. Work on `main` and push
 > to `main`: that is his standing instruction in the repo's CLAUDE.md, so don't create
