@@ -70,7 +70,7 @@ The push-heavy upper day. Incline bench leads.
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
 | 1 | **Anchor** | Incline Bench Press (Barbell) | 4 × 5–8 | **65kg** |
-| 2 | **Anchor** | Pull Up | 3 × AMRAP | bodyweight |
+| 2 | **Anchor** | Pull Up | 3 × AMRAP | **+5kg** from 09-28 |
 | 3 | Rotate — chest isolation | **Chest Fly** · Cable Crossover · Incline Chest Press | 3 × 10–12 | **65kg**, reps first |
 | 4 | Rotate — rear delt | **Face Pull** · ★ Reverse Flye · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |
 | 5 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
@@ -121,10 +121,11 @@ covers a different angle from the incline and flat pressing on other days.
 calls stay and the alternatives are listed. **Biceps moved to the cable curl.** The
 barbell curl read 30kg × 8, 8, 7 twice running (09-13, 09-17), and he rotated off it
 himself. The cable is now the call at 10kg (10, 10, 10 on its first run).
-**Deadlift on Thursday: a one-off, or a move from Sunday? Asked 2026-09-24.**
-Until he answers, it stays in Lower. Against Thursday: it sits 24h before Friday
-football, where the template gives legs 48h. It also takes the pull-up anchor off
-slot 1. And it loads the lats before the row the right-side protocol reads.
+**Deadlift on Thursday: parked by him on 2026-09-24 for a later conversation.** Don't
+raise it until he does. Until then it stays in Lower. The case against Thursday, for when
+it comes up: it sits 24h before Friday football, where the template gives legs 48h. It
+also takes the pull-up anchor off slot 1. And it loads the lats before the row the
+right-side protocol reads.
 
 ## Upper C — Saturday (~45 min)
 
@@ -223,12 +224,12 @@ the reset.** Nothing changes until it reads green twice running.
 Raise the pattern with his physio. This file does not get an opinion about the tissue,
 and their guidance overrides everything here.
 
-**2026-09-24: both sides at 55kg × 8, 8, with no reading.** 09-21 and 09-24 were both
-Strong imports, and until 09-24 the Import tab had no pain field. So nothing has been
-recorded since the 4/10 on 09-20. A load without a reading can't count, so the right
-stays prescribed at 50kg. Asked him how 55kg felt, and whether his physio has moved the
-load. If they have, their number replaces this one. The left is prescribed at 60kg
-(60 × 8, 8 on 09-17). Don't hold it at 55 to match the right.
+**2026-09-24: both sides at 55kg × 8, 8, right side 3/10 — the first green since
+09-10.** He gave the reading after the import. Strong has no pain field, and the Import
+tab didn't have one until that day. He moved the right from 50 to 55kg himself. It read
+green, so **55kg is now the right's load: greens at 55, 1 of 3.** Three held over two
+weeks earns 57.5kg. An amber sends it back to 50kg, the last green before this. The left
+is prescribed at 60kg (60 × 8, 8 on 09-17). Don't hold it at 55 to match the right.
 
 | Green light | Means |
 |---|---|
@@ -245,10 +246,11 @@ adaptation and the physio should sign off on it.
 - **Lateral raises** — +1kg once 20 holds across all three sets. Currently 8kg, earned
   on 09-11 (7kg × 20, 20, 20 → 8kg × 15, 15, 15).
 - **Pull-ups** — at 27 reps total fresh. Re-add 5kg once that holds three sessions.
-  **Fired by 2026-09-24:** 27, 29, 27, 28, 27 across 09-13 → 09-24. Held at bodyweight
-  on purpose. The reps have earned it, but the right lat hasn't: no green since 09-10.
-  goals.md puts injury first, and progression waits for the lat. It goes on in Upper A
-  the first Monday after the Thursday row reads green. Told him; his call to overrule.
+  **Fired by 2026-09-24:** 27, 29, 27, 28, 27 across 09-13 → 09-24. It was held until
+  the right lat read green, because goals.md puts injury first. It read 3/10 on the 09-24
+  row, so **+5kg goes on at Upper A** (all-out day) from 2026-09-28. Upper B stays
+  bodyweight at AMRAP−2. If the right side reads 4+ during weighted sets, the weight
+  comes off for the rest of the session.
 - **Deadlift** — +2.5kg once all three sets hit 5 comfortably. Starting load 60kg.
 - **Squat** — hold 70kg. +2.5kg once 10 holds across all three sets AND no joint
   complaints.
@@ -294,7 +296,8 @@ Open questions and full working live in `docs/findings.md`. Short version:
 
 - **Right lat**: three ambers in eight days across three movements. The physio's call.
   The 50kg iso-lateral ceiling — pain-limited or detraining-limited — is unanswered.
-- **Deadlift on Thursday** (09-24): a one-off, or does it move out of Sunday? Asked.
+- **Deadlift on Thursday** (09-24): a one-off, or does it move out of Sunday? **Parked
+  by him** for a later conversation; not to be raised until he does.
 - **Flat DB press, cable crossover, cable row loads**: to be established.
 - **DOMS adaptation**: whether Sunday lower → Tuesday football causes issues in the first
   few weeks.

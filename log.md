@@ -466,6 +466,7 @@ pain(R): 4/10
      No pain(R) recorded despite pulling at slot 2. Not chased. -->
 
 ## 2026-09-24 · Thu · Upper B
+pain(R): 3/10 | note: given after the import; Strong has no pain field
 - Deadlift (Barbell) — 40kg × 10, 60kg × 6, 6
 - Pull Up — bodyweight × 10, 10, 7
 - Iso Lateral Row - Right — 40kg × 10, 50kg × 10, 55kg × 8, 8
@@ -481,15 +482,17 @@ pain(R): 4/10
 
      **Deadlift at slot 1 is not in Upper B.** 40kg × 10, 60kg × 6, 6 is the first
      conventional deadlift in the log, so it sets Sunday's starting load (60kg). Whether
-     it was a one-off or a move from Sunday is asked, not assumed.
+     it was a one-off or a move from Sunday: he parked it for a later conversation.
 
      **Pull-ups at slot 2, 10, 10, 7 (27)**, at AMRAP−2. That is five sessions at 27 or
-     more, so the re-add-5kg rule has fired. Held for the right lat; see plan.md.
+     more, so the re-add-5kg rule has fired. It was held until the right lat read green,
+     which it did today: +5kg goes on at Monday's Upper A.
 
-     **Iso-lateral row 55kg × 8, 8 on both sides, no pain reading.** Strong carries no
-     pain field and the Import tab had none, so the right side's 55kg cannot count
-     toward the gate. The Import tab asks for it from today. The left is the same machine
-     it did 60 × 8, 8 on 09-17. Today it followed a deadlift. Not a decline; asked.
+     **Iso-lateral row 55kg × 8, 8 on both sides, pain(R) 3/10.** He gave the reading
+     afterwards; Strong carries no pain field and the Import tab had none until today.
+     The right side's **first green since 09-10**, and at 55kg: greens at 55 are 1 of 3,
+     so it holds there. An amber sends it back to 50kg. The left did 60 × 8, 8 on this
+     machine on 09-17; today it followed a deadlift. Not a decline; it stays at 60.
 
      Rotate swaps: Straight Arm Pulldown for Lat Pulldown, Decline Chest Press for
      Cable Crossover. The Bicep Curl (Cable) replaces the barbell curl that read 8, 8, 7

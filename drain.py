@@ -341,38 +341,49 @@ def build_state(data, rx):
     }
 
     if rx and "sessions" in rx:
-        slots = {}
-        for sid, sdata in rx["sessions"].items():
-            slot_list = []
-            for ex in sdata.get("exercises", []):
-                entry = {
-                    "name": ex["name"],
-                    "type": ex.get("type", "rotate"),
-                    "sets": ex.get("sets", 3),
-                    "reps": ex.get("reps", ""),
-                    "load": ex.get("load", 0),
-                    "unit": ex.get("unit", "kg"),
-                }
-                if ex.get("bilateral"):
-                    entry["loadL"] = ex.get("loadL", 0)
-                    entry["loadR"] = ex.get("loadR", 0)
-                if ex.get("alts"):
-                    entry["alts"] = ex["alts"]
-                slot_list.append(entry)
-            slots[sid] = slot_list
-        state["slots"] = slots
-        state["rx_asof"] = rx.get("asof", "")
-
-    state["row_protocol"] = {
-        "load_right": 50,
-        "load_left": 60,
-        "green_count": 0,
-        "status": "zero greens since 09-17 reset",
-    }
+        apply_rx(state, rx)
 
     state["flags"] = build_flags(data)
 
     return state
+
+
+def apply_rx(state, rx):
+    """Copy the prescriptions from RX into state.json. Also run after an unattended
+    re-prescription (represcribe.py), so state.json never lags the page."""
+    slots = {}
+    row = None
+    for sid, sdata in rx["sessions"].items():
+        slot_list = []
+        for ex in sdata.get("exercises", []):
+            entry = {
+                "name": ex["name"],
+                "type": ex.get("type", "rotate"),
+                "sets": ex.get("sets", 3),
+                "reps": ex.get("reps", ""),
+                "load": ex.get("load", 0),
+                "unit": ex.get("unit", "kg"),
+            }
+            if ex.get("bilateral"):
+                entry["loadL"] = ex.get("loadL", 0)
+                entry["loadR"] = ex.get("loadR", 0)
+                row = row or entry
+            if ex.get("alts"):
+                entry["alts"] = ex["alts"]
+            slot_list.append(entry)
+        slots[sid] = slot_list
+    state["slots"] = slots
+    state["rx_asof"] = rx.get("asof", "")
+    state["rx_after"] = rx.get("after", "")
+
+    # The loads come from RX. The green count and the reasoning live in plan.md
+    # ("The row protocol"); a count hard-coded here went stale after every drain.
+    if row:
+        state["row_protocol"] = {
+            "load_left": row["loadL"],
+            "load_right": row["loadR"],
+            "status": "see plan.md, The row protocol",
+        }
 
 
 def build_flags(data):

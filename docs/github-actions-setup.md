@@ -1,9 +1,10 @@
 # GitHub Actions — automatic drain
 
 A GitHub Action runs whenever a session JSON lands in `inbox/`. Within a minute
-it runs `drain.py` (transcribes to `log.md`, updates `state.json`), runs
-`prescribe.py` (bumps `RX.asof` in `index.html`), commits everything, and
-deletes the inbox file. No manual intervention needed.
+it runs `drain.py` (transcribes to `log.md`, updates `state.json`), commits, and
+deletes the inbox file. Then the **Re-prescribe** Action (below) has Claude update the
+prescriptions. No manual intervention needed. (`drain.yml` still calls `prescribe.py`,
+which is now a no-op; drop that line the next time you edit it.)
 
 ## Why workflow changes have to be done manually
 
@@ -175,4 +176,99 @@ jobs:
             exit 1
           fi
           npx --yes wrangler@4 deploy
+```
+
+## Re-prescribe (add it by hand)
+
+Runs after every Drain inbox run. If `log.md` has a session newer than `RX.after`,
+Claude Code re-prescribes. It updates the slots that session touched and the whole next
+session in `RX` and `plan.md`, adds a note under the log entry, and writes `RX.note` for
+the page. `represcribe.py` then checks the edits and commits them. Claude can only read
+and edit files, and each run is capped at $3; a normal run costs about $1. If a check
+fails, nothing is pushed and the page keeps saying "updating for …".
+
+The model, the spend cap and the prompt live in `represcribe.py` and
+`docs/represcribe-prompt.md`, not in this file. They can change without re-pasting it.
+
+One-time setup, all from the phone:
+
+1. **Anthropic API key.** Open `console.anthropic.com/settings/keys` → **Create Key**,
+   name it `github-represcribe` → copy it. It is shown once. A separate key from the
+   Worker's means you can revoke one without breaking the other.
+2. **GitHub secret.** Open `github.com/maxyongg/fitness/settings/secrets/actions` →
+   **New repository secret**. Name: `ANTHROPIC_API_KEY`. Value: the key → **Add secret**.
+3. **The workflow file.** Repo → Add file → Create new file → name it
+   `.github/workflows/represcribe.yml` → paste the YAML below → commit to `main`.
+4. **Check it.** Actions → **Re-prescribe** → **Run workflow**. With nothing pending it
+   finishes in seconds with a green tick. A red cross naming `ANTHROPIC_API_KEY` means
+   step 2 didn't take. The real first run follows your next save.
+
+```yaml
+name: Re-prescribe
+
+# After Drain inbox writes a session into log.md, Claude re-prescribes: the slots that
+# session touched and the whole next session, in RX (index.html) and plan.md. The logic,
+# prompt, model and spend cap live in represcribe.py and docs/represcribe-prompt.md, so
+# this file rarely needs to change. Needs the ANTHROPIC_API_KEY repo secret.
+
+on:
+  workflow_run:
+    workflows: ["Drain inbox"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: represcribe
+  cancel-in-progress: false
+
+jobs:
+  represcribe:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Anything new since the last re-prescription?
+        id: check
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 represcribe.py pending >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@v4
+        if: steps.check.outputs.pending == 'true'
+        with:
+          node-version: 22
+
+      - name: Install Claude Code
+        if: steps.check.outputs.pending == 'true'
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Re-prescribe
+        if: steps.check.outputs.pending == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 represcribe.py run
+
+      - name: Check and commit
+        if: steps.check.outputs.pending == 'true'
+        run: |
+          subject=$(python3 represcribe.py finish)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html plan.md log.md state.json
+          git diff --cached --quiet && exit 0
+          git commit -m "$subject"
+          # The page and the drain also push to main; rebase onto them and retry.
+          for i in 1 2 3 4; do
+            git push && exit 0
+            sleep $((i * 3))
+            git pull --rebase origin main
+          done
+          exit 1
 ```

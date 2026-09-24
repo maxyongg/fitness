@@ -111,6 +111,10 @@ button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent
 .brief-title { font-family: var(--font-d); font-weight: 700; font-size: 40px; line-height: .92;
   letter-spacing: .01em; text-transform: uppercase; margin: 6px 0 6px; }
 .brief-text { font-size: 14px; color: var(--ink-2); line-height: 1.45; }
+.coach-note { margin-top: 10px; padding: 8px 0 8px 12px; border-left: 3px solid var(--accent);
+  font-size: 14px; color: var(--ink); line-height: 1.45; }
+.coach-note b { display: block; font-family: var(--font-m); font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
 .stats { display: flex; align-items: baseline; gap: 14px; margin-top: 10px; font-family: var(--font-m);
   font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
 .stats b { color: var(--ink); font-weight: 600; font-size: 13px; letter-spacing: 0; }
@@ -577,10 +581,16 @@ input[type=number] { -moz-appearance: textfield; }
      do   — the instruction for today, one or two sentences
      why  — the reason the slot is what it is (tucked behind a "Why" toggle)
    Each session has a `brief`: what today is for, in a sentence or two.
-   Re-prescribing means updating these too — see docs/workflows.md.
-   Strings use double quotes (drain.py parses this object).                              */
+   `after` names the last session re-prescribed from ("YYYY-MM-DD Name", matching the
+   log.md header). `note` is the coach's line on the next session: what changed and at
+   most one question.
+   Re-prescribing means updating these too — see docs/workflows.md. After a phone save
+   the Re-prescribe Action does it (represcribe.py); it checks and commits the result.
+   Strings use double quotes (drain.py and represcribe.py parse this object).            */
 var RX = {
   asof: "2026-09-24",
+  after: "2026-09-24 Upper B",
+  note: "After Thursday: the right row read green at 55kg, so it holds there (1 of 3 greens), and Monday's pull-ups go +5kg. Hammer curls take Saturday's arms slot — the barbell curl kept giving 8s against a 10–12 target.",
   repo: "maxyongg/fitness",
   workerUrl: "https://matchday-debrief.maxyongg.workers.dev",
   schedule: { 1:"upper_a", 2:"football", 3:"rest", 4:"upper_b", 5:"football", 6:"upper_c", 0:"lower" },
@@ -593,10 +603,10 @@ var RX = {
           last:"09-21 · 60kg × 10, then 65kg × 8, 7",
           do:"Hold 65kg. All four sets at 8 earns 67.5kg.",
           why:"The primary press, at an all-time high. Anchors carry the overload, so the exercise never changes — only the number does." },
-        { name:"Pull Up", type:"anchor", sets:3, reps:"AMRAP", load:0, unit:"BW",
-          last:"09-21 · 12, 10, 6, 5 (negatives) — 12 is a record",
-          do:"Slot 2, straight after the press. All-out sets, bodyweight. The 27-total rule has fired — the 5kg waits until the right lat reads green.",
-          why:"Order beats content: slot 2 gave 24–32 reps for five months, slot 5 gave 13–23." },
+        { name:"Pull Up", type:"anchor", sets:3, reps:"AMRAP", load:5, unit:"kg",
+          last:"09-21 · 12, 10, 6, 5 (negatives) at bodyweight — 12 is a record",
+          do:"Slot 2, straight after the press. +5kg added, all-out sets. If the right lat reads 4 or more, take the weight off and finish at bodyweight.",
+          why:"27+ total for five sessions running re-adds the 5kg. It waited for the right lat, which read green (3/10) on 09-24. Slot 2 matters: it gave 24–32 reps for five months, slot 5 gave 13–23." },
         { name:"Chest Fly", type:"rotate", sets:3, reps:"10-12", load:65, unit:"kg",
           slot:"Chest isolation", alts:["Cable Crossover","Incline Chest Press"],
           last:"09-21 · 65kg × 10, 8, then 67.5kg × 6",
@@ -627,10 +637,10 @@ var RX = {
           do:"Slot 1. Stop every set two reps short of failure.",
           why:"Second pull-up day, 72h after Monday. Two full AMRAPs that close is more joint stress than the frequency is worth — two in reserve keeps the volume without the grind." },
         { name:"Iso Lateral Row", type:"anchor", sets:3, reps:"8-10", load:0, unit:"kg",
-          bilateral:true, loadL:60, loadR:50,
-          last:"09-24 · L 55kg × 8, 8 · R 55kg × 8, 8 — no pain reading",
-          do:"Left 60kg (60 × 8, 8 on 09-17). Right 50kg: 55kg on 09-24 carried no reading, so it can't count yet. Rate the pain during the set.",
-          why:"The right lat's measured lift. Zero greens since the 4/10 on 09-17 — nothing since has carried a reading. Three greens held over two weeks earns the right +2.5kg. Your physio's guidance overrides all of this." },
+          bilateral:true, loadL:60, loadR:55,
+          last:"09-24 · L 55kg × 8, 8 · R 55kg × 8, 8 — pain 3/10",
+          do:"Left 60kg (60 × 8, 8 on 09-17). Right holds 55kg — 3/10 on 09-24 was its first green there. Rate the pain during the set.",
+          why:"The right lat's measured lift. Greens at 55kg: 1 of 3. Three held over two weeks earns 57.5kg; an amber sends it back to 50kg. Your physio's guidance overrides all of this." },
         { name:"Lat Pulldown", type:"rotate", sets:3, reps:"10-12", load:67, unit:"kg",
           slot:"Vertical pull", alts:["Straight Arm Pulldown","Single-Arm Lat Pulldown","Underhand Pulldown"],
           last:"09-17 · 67kg × 8, 10, 7",
@@ -745,13 +755,13 @@ var swaps = {};
 var painVal = null;
 var parsedData = null;
 var importPain = null;
+var importNotes = "";
 
 /* ---- init ---- */
 (function init() {
   var d = new Date();
   document.getElementById("hdr-date").textContent = SHORT_DAY[d.getDay()] + " " + d.getDate() + " " + SHORT_MON[d.getMonth()];
-  document.getElementById("asof").textContent = "Prescribed " + fmtDate(RX.asof);
-  document.getElementById("asof-info").textContent = "Prescribed " + fmtDate(RX.asof);
+  renderRxStatus();
   loadSwaps();
   nextId = pickNext(d);
   renderTabs();
@@ -778,6 +788,25 @@ function nextLift(dow) {
 function isoDate(d) {
   return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
 }
+/* Which session the prescriptions were last set after, and whether a newer one saved from
+   this phone is still waiting for the Re-prescribe Action (a few minutes after a save). */
+function rxStatus() {
+  var after = RX.after || "";
+  if (!after) return "Prescribed " + fmtDate(RX.asof);
+  var aDate = after.slice(0, 10), aName = after.slice(11);
+  var s = "Prescribed after " + aName + ", " + fmtDate(aDate);
+  var h = getHistory()[0];
+  if (h && h.date && (h.date > aDate || (h.date === aDate && h.session !== aName))) {
+    s += " · updating for " + h.session + "…";
+  }
+  return s;
+}
+
+function renderRxStatus() {
+  document.getElementById("asof").textContent = rxStatus();
+  document.getElementById("asof-info").textContent = rxStatus();
+}
+
 function fmtDate(iso) {
   var p = iso.split("-");
   if (p.length !== 3) return iso;
@@ -852,6 +881,7 @@ function renderSession(id) {
     + (id === nextId ? ' <span class="pill">Next up</span>' : '') + '</div>'
     + '<h1 class="brief-title">' + s.name + '</h1>'
     + (s.brief ? '<p class="brief-text">' + esc(s.brief) + '</p>' : '')
+    + (RX.note && id === nextId ? '<p class="coach-note"><b>Coach</b>' + esc(RX.note) + '</p>' : '')
     + '<div class="stats"><span><b>' + s.exercises.length + '</b> slots</span>'
     + '<span><b>' + totalSets + '</b> sets</span>'
     + '<span><b>' + s.mins.replace(/\s*min/, "") + '</b> min</span>'
@@ -1467,6 +1497,7 @@ function addToHistory(data) {
   hist.unshift(data);
   if (hist.length > 50) hist = hist.slice(0, 50);
   try { localStorage.setItem("matchday_history", JSON.stringify(hist)); } catch (e) {}
+  renderRxStatus();
 }
 
 function fmtSets(ex) {
@@ -1755,7 +1786,9 @@ function renderParseResult(exercises, detected) {
   for (var p = 0; p <= 10; p++) {
     h += '<button class="pv ' + (p <= 3 ? "g" : "a") + (p === importPain ? " on" : "") + '" onclick="setImportPain(' + p + ')">' + p + '</button>';
   }
-  h += '<button class="pv clr" onclick="setImportPain(null)">Clear</button></div></div>';
+  h += '<button class="pv clr" onclick="setImportPain(null)">Clear</button></div>'
+    + '<textarea class="field" id="import-notes" oninput="importNotes = this.value" style="margin-top:10px"'
+    + ' placeholder="Notes — how the right side felt, why a set stopped, a swap…">' + esc(importNotes) + '</textarea></div>';
 
   h += '<div style="margin-top:14px">'
     + '<button class="btn btn-pri" onclick="saveImport(\'' + (detected || "") + '\')"'
@@ -1809,7 +1842,7 @@ async function saveImport(sessionId) {
       return entry;
     }),
     pain: { right_lat: importPain },
-    notes: "Imported from Strong",
+    notes: importNotes.trim() || "Imported from Strong",
     extra: ""
   };
 
@@ -1830,6 +1863,7 @@ function clearImport() {
   document.getElementById("parse-result").innerHTML = "";
   parsedData = null;
   importPain = null;
+  importNotes = "";
 }
 
 /* ---- toast ---- */

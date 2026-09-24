@@ -23,12 +23,15 @@ When a session is saved from the phone page, two things happen automatically:
 1. **Instant debrief** — the browser calls the Cloudflare Worker, which returns a
    2-4 sentence AI debrief card on screen within seconds. PIN-gated; doesn't write
    to the repo. Setup: `docs/cloudflare-worker-setup.md`.
-2. **GitHub Action** (within ~1 minute) — runs `drain.py` (transcribes to `log.md`,
-   updates `state.json`), runs `prescribe.py` (bumps `RX.asof` in `index.html`),
-   commits everything, deletes the inbox file. Setup: `docs/github-actions-setup.md`.
+2. **Drain inbox Action** (within ~1 minute) — runs `drain.py` (transcribes to
+   `log.md`, updates `state.json`), commits, deletes the inbox file.
+3. **Re-prescribe Action** (a few minutes later) — `represcribe.py` runs Claude Code
+   headless with `docs/represcribe-prompt.md`. The steps are the ones below, unattended.
+   Claude can only read and edit files. The script checks its edits and commits them.
+   Setup for both Actions: `docs/github-actions-setup.md`.
 
-Re-prescribing (changing loads, exercises, or rep targets) is still a Claude decision
-in a manual session — the Action only bumps the date.
+A Claude session that finds the log ahead of `RX.after` re-prescribes from there by
+hand, the same way. The Action would otherwise pick it up at the next drain.
 
 ### Manual draining procedure
 
@@ -72,8 +75,10 @@ For every slot you touch, update both `plan.md` and the `RX` object in `index.ht
   station); `do` is today's instruction in a sentence or two; `why` is the reason the
   slot is what it is. Each session also carries a one-line `brief`. A stale `last` is
   worse than none, so rewrite it whenever the slot runs.
-- **`RX.asof`** — bump the date. The page renders it, and it is how he can tell at a
-  glance whether prescriptions are current.
+- **`RX.asof`** — bump the date. **`RX.after`** — the session re-prescribed from,
+  as "YYYY-MM-DD Name" matching its `log.md` header. The page shows "Prescribed after
+  …", and "updating" while a newer save is waiting. **`RX.note`** — one or two sentences
+  at the top of the next session: what changed and why, and at most one question.
 
 Keep `RX` in its current shape: bare keys, double-quoted strings. `drain.py` parses it
 and `prescribe.py` rewrites `asof:` by regex.

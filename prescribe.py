@@ -1,42 +1,14 @@
 #!/usr/bin/env python3
 """
-Bump RX.asof in index.html to today's date.
+Retired 2026-09-24. Used to bump RX.asof to today after every drain.
 
-Run after drain.py in the GitHub Action so the page shows
-prescriptions are current. Does not change exercises, loads,
-or rep targets — that is still a Claude decision.
+That made the page say "Prescribed today" when nothing had been re-prescribed, which is
+how an Upper B on 2026-09-24 left the plan untouched without anyone noticing. RX.asof and
+RX.after now move only when prescriptions do: represcribe.py after a phone save, or a
+Claude session that re-prescribes by hand.
+
+.github/workflows/drain.yml still calls this, so it stays as a no-op. Delete the call,
+and this file, the next time drain.yml is edited.
 """
 
-import re
-import sys
-from datetime import date
-
-ROOT = __import__("os").path.dirname(__import__("os").path.abspath(__file__))
-INDEX = __import__("os").path.join(ROOT, "index.html")
-
-
-def main():
-    today = date.today().isoformat()
-
-    with open(INDEX, "r") as f:
-        html = f.read()
-
-    new_html, count = re.subn(
-        r'(asof:\s*")[^"]*(")',
-        rf"\g<1>{today}\2",
-        html,
-        count=1,
-    )
-
-    if count == 0:
-        print("Could not find RX.asof in index.html", file=sys.stderr)
-        sys.exit(1)
-
-    with open(INDEX, "w") as f:
-        f.write(new_html)
-
-    print(f"RX.asof → {today}")
-
-
-if __name__ == "__main__":
-    main()
+print("prescribe.py: retired, RX.asof is left to represcribe.py")
