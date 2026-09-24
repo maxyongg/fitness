@@ -99,10 +99,10 @@ The pull-heavy upper day. Pull-ups lead.
 |---|---|---|---|---|
 | 1 | **Anchor** | Pull Up | 3 × AMRAP−2 | bodyweight |
 | 2 | **Anchor** | Single-Arm Iso-Lateral Row, left then right | 3 × 8–10 each | see protocol |
-| 3 | Rotate — vertical pull | **Lat Pulldown** · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 10–12 | **67kg** |
+| 3 | Rotate — vertical pull | **Lat Pulldown** · Straight Arm Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 10–12 | **67kg** |
 | 4 | Rotate — push compound | **Dips** · ★ Weighted Dips | 3 × 8–12 | bodyweight |
-| 5 | Rotate — chest isolation | **Cable Crossover** · Chest Fly · Incline Chest Press | 3 × 10–12 | TBD |
-| 6 | Rotate — biceps | **Bicep Curl** · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **30kg** |
+| 5 | Rotate — chest isolation | **Cable Crossover** · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | TBD |
+| 6 | Rotate — biceps | **Bicep Curl (Cable)** · Bicep Curl (Barbell) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **10kg** |
 
 **AMRAP−2 on pull-ups**, not AMRAP. This is the second pull-up session of the week —
 two full AMRAP sessions 72h apart is more joint stress than the frequency warrants. Two
@@ -115,6 +115,17 @@ bodyweight, target 12, 12, 12 before adding weight.
 **Slot 5 gives this day push work** to balance Thursday's three pulls. Cable crossover
 covers a different angle from the incline and flat pressing on other days.
 
+**First run, 2026-09-24.** He opened with a deadlift that is not in this session:
+40kg × 10, 60kg × 6, 6. Pull-ups went to slot 2 and still gave 27. He swapped slots
+3 and 5 (straight-arm pulldown, decline chest press). Those are rotate swaps, so the
+calls stay and the alternatives are listed. **Biceps moved to the cable curl.** The
+barbell curl read 30kg × 8, 8, 7 twice running (09-13, 09-17), and he rotated off it
+himself. The cable is now the call at 10kg (10, 10, 10 on its first run).
+**Deadlift on Thursday: a one-off, or a move from Sunday? Asked 2026-09-24.**
+Until he answers, it stays in Lower. Against Thursday: it sits 24h before Friday
+football, where the template gives legs 48h. It also takes the pull-up anchor off
+slot 1. And it loads the lats before the row the right-side protocol reads.
+
 ## Upper C — Saturday (~45 min)
 
 The rounding day. Picks up everything the other two sessions don't hit twice a week.
@@ -125,7 +136,7 @@ The rounding day. Picks up everything the other two sessions don't hit twice a w
 | 2 | Rotate — horizontal pull | **Cable Row** · Seated Row · ★ Chest-Supported Row | 3 × 10–12 | TBD |
 | 3 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
 | 4 | Rotate — rear delt | **Face Pull** · ★ Reverse Flye · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |
-| 5 | Rotate — arms | **Bicep Curl** · Preacher Curl · Hammer Curl | 3 × 10–12 | **30kg** |
+| 5 | Rotate — arms | **Hammer Curl** · Bicep Curl (Barbell) · Preacher Curl | 3 × 10–12 | TBD |
 | 6 | Rotate — core | **Hanging Leg Raise** · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
 **Flat DB press is the mid-chest movement** the old programme didn't have. Incline bench
@@ -142,6 +153,11 @@ slot — it carries no pain protocol and no gate. The iso-lateral row on Thursda
 measured lift. If the right side talks during a cable row, note it and lighten it, but
 it does not affect the Thursday gate count.
 
+**Hammer curl took the arms slot on 2026-09-24.** The barbell curl at 30kg gave
+8, 8, 7 twice, below this slot's 10–12. That is a rep band the load doesn't fit.
+The neutral grip adds brachialis and grip work. Grip is the one quality
+`docs/goals.md` says has never been trained. Load to be set on the first run.
+
 **Core is programmed, not ad hoc.** Six sets a week across Saturday and Sunday. The old
 programme logged zero core since March — partly a logging gap, partly a programming gap.
 This fixes the programming side.
@@ -154,7 +170,7 @@ fortnight; this doubles the frequency.
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | TBD |
+| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **60kg** |
 | 2 | Rotate — quad compound | **Squat (Barbell)** · ★ Bulgarian Split Squat | 3 × 8–10 | **70kg** |
 | 3 | Rotate — quad volume | **Leg Press (Machine)** · Leg Extension | 3 × 10–12 | **80kg** |
 | 4 | Rotate — hamstring | **Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 10–12 | **10kg** |
@@ -166,8 +182,9 @@ adaptation catches within a month of consistent training. If the first few Tuesd
 rough, the lever is making squat lighter (2 sets or cut depth) without touching the
 deadlift.
 
-**Deadlift at slot 1 is the heavy compound.** Starting load TBD — establish on the first
-session. The old programme ran RDL at 72.5kg on legs day; conventional deadlift is a
+**Deadlift at slot 1 is the heavy compound.** Starting load **60kg**, set by the first
+conventional pull in the log. That was 40kg × 10, 60kg × 6, 6, done on Upper B on
+2026-09-24. The old programme ran RDL at 72.5kg on legs day; conventional deadlift is a
 different movement and the load does not transfer. If the conventional pull bothers the
 right lat, RDL remains the fallback.
 
@@ -206,6 +223,13 @@ the reset.** Nothing changes until it reads green twice running.
 Raise the pattern with his physio. This file does not get an opinion about the tissue,
 and their guidance overrides everything here.
 
+**2026-09-24: both sides at 55kg × 8, 8, with no reading.** 09-21 and 09-24 were both
+Strong imports, and until 09-24 the Import tab had no pain field. So nothing has been
+recorded since the 4/10 on 09-20. A load without a reading can't count, so the right
+stays prescribed at 50kg. Asked him how 55kg felt, and whether his physio has moved the
+load. If they have, their number replaces this one. The left is prescribed at 60kg
+(60 × 8, 8 on 09-17). Don't hold it at 55 to match the right.
+
 | Green light | Means |
 |---|---|
 | Pain ≤ 3/10 during the set | Present, not sharp, doesn't change how you move |
@@ -221,7 +245,11 @@ adaptation and the physio should sign off on it.
 - **Lateral raises** — +1kg once 20 holds across all three sets. Currently 8kg, earned
   on 09-11 (7kg × 20, 20, 20 → 8kg × 15, 15, 15).
 - **Pull-ups** — at 27 reps total fresh. Re-add 5kg once that holds three sessions.
-- **Deadlift** — +2.5kg once all three sets hit 5 comfortably. Starting load TBD.
+  **Fired by 2026-09-24:** 27, 29, 27, 28, 27 across 09-13 → 09-24. Held at bodyweight
+  on purpose. The reps have earned it, but the right lat hasn't: no green since 09-10.
+  goals.md puts injury first, and progression waits for the lat. It goes on in Upper A
+  the first Monday after the Thursday row reads green. Told him; his call to overrule.
+- **Deadlift** — +2.5kg once all three sets hit 5 comfortably. Starting load 60kg.
 - **Squat** — hold 70kg. +2.5kg once 10 holds across all three sets AND no joint
   complaints.
 - **Iso-lateral row (right)** — governed by the row protocol, not by rep targets.
@@ -237,7 +265,7 @@ adaptation and the physio should sign off on it.
 | Side delts | 6 | Lateral Raise 3+3 |
 | Rear delts | 6 | Face Pull 3+3 |
 | Triceps | 6 | Triceps Extension 3 · Dips 3 (+ indirect from 13 pressing sets) |
-| Biceps | 6 | Bicep Curl 3+3 (+ indirect from 15 pulling sets) |
+| Biceps | 6 | Cable Curl 3 · Hammer Curl 3 (+ indirect from 15 pulling sets) |
 | Quads | 6 | Squat 3 · Leg Press 3 (+ football ×2) |
 | Posterior | 6 | Deadlift 3 · Leg Curl 3 (+ football ×2) |
 | Core | 6 | Upper C 3 · Lower 3 |
@@ -266,7 +294,7 @@ Open questions and full working live in `docs/findings.md`. Short version:
 
 - **Right lat**: three ambers in eight days across three movements. The physio's call.
   The 50kg iso-lateral ceiling — pain-limited or detraining-limited — is unanswered.
-- **Deadlift starting load**: to be established on the first Sunday session.
+- **Deadlift on Thursday** (09-24): a one-off, or does it move out of Sunday? Asked.
 - **Flat DB press, cable crossover, cable row loads**: to be established.
 - **DOMS adaptation**: whether Sunday lower → Tuesday football causes issues in the first
   few weeks.

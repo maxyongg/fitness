@@ -475,6 +475,26 @@ pain(R): 4/10
 - Decline Chest Press — 60kg × 10, 70kg × 10, 8
 - Bicep Curl (Cable) — 10kg × 10, 10, 10
 
+<!-- From inbox/2026-09-24-upper_b.json (Strong import), drained by the Action. First
+     Upper B of the new programme. Re-prescribed by hand the same day: the Action only
+     bumps RX.asof and nothing else re-prescribes.
+
+     **Deadlift at slot 1 is not in Upper B.** 40kg × 10, 60kg × 6, 6 is the first
+     conventional deadlift in the log, so it sets Sunday's starting load (60kg). Whether
+     it was a one-off or a move from Sunday is asked, not assumed.
+
+     **Pull-ups at slot 2, 10, 10, 7 (27)**, at AMRAP−2. That is five sessions at 27 or
+     more, so the re-add-5kg rule has fired. Held for the right lat; see plan.md.
+
+     **Iso-lateral row 55kg × 8, 8 on both sides, no pain reading.** Strong carries no
+     pain field and the Import tab had none, so the right side's 55kg cannot count
+     toward the gate. The Import tab asks for it from today. The left is the same machine
+     it did 60 × 8, 8 on 09-17. Today it followed a deadlift. Not a decline; asked.
+
+     Rotate swaps: Straight Arm Pulldown for Lat Pulldown, Decline Chest Press for
+     Cable Crossover. The Bicep Curl (Cable) replaces the barbell curl that read 8, 8, 7
+     twice. Triceps Dip 10, 10, 12, two short of 12, 12, 12. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

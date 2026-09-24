@@ -152,6 +152,7 @@
         "load": 67,
         "unit": "kg",
         "alts": [
+          "Straight Arm Pulldown",
           "Single-Arm Lat Pulldown",
           "Underhand Pulldown"
         ]
@@ -175,18 +176,20 @@
         "load": 0,
         "unit": "kg",
         "alts": [
+          "Decline Chest Press",
           "Chest Fly",
           "Incline Chest Press"
         ]
       },
       {
-        "name": "Bicep Curl",
+        "name": "Bicep Curl (Cable)",
         "type": "rotate",
         "sets": 3,
         "reps": "8-10",
-        "load": 30,
+        "load": 10,
         "unit": "kg",
         "alts": [
+          "Bicep Curl (Barbell)",
           "Preacher Curl",
           "Hammer Curl",
           "Incline Curl"
@@ -235,15 +238,15 @@
         ]
       },
       {
-        "name": "Bicep Curl",
+        "name": "Hammer Curl",
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 30,
+        "load": 0,
         "unit": "kg",
         "alts": [
-          "Preacher Curl",
-          "Hammer Curl"
+          "Bicep Curl (Barbell)",
+          "Preacher Curl"
         ]
       },
       {
@@ -265,7 +268,7 @@
         "type": "anchor",
         "sets": 3,
         "reps": "5",
-        "load": 0,
+        "load": 60,
         "unit": "kg"
       },
       {
@@ -323,7 +326,7 @@
       }
     ]
   },
-  "rx_asof": "2026-09-21",
+  "rx_asof": "2026-09-24",
   "row_protocol": {
     "load_right": 50,
     "load_left": 60,
