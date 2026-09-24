@@ -115,13 +115,35 @@ doable in a mobile browser:
 
 0. **The workflow file:** Claude can't push workflow files, so you add it once. Paste
    the YAML from `docs/github-actions-setup.md` into a new file via the web UI.
-1. **Cloudflare API token:** dash.cloudflare.com → My Profile → API Tokens → Create
-   Token → use the **Edit Cloudflare Workers** template → your account → Create.
-   Copy the token.
-2. **Account ID:** Workers & Pages overview → **Account ID** in the right-hand column.
-3. **GitHub:** repo Settings → Secrets and variables → Actions → New repository secret.
-   Add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
-4. Run **Deploy Worker** once from the Actions tab.
+1. **Cloudflare API token.** Open `dash.cloudflare.com/profile/api-tokens` (or tap
+   the profile icon → My Profile → API Tokens) → **Create Token** → on the
+   **Edit Cloudflare Workers** row tap **Use template**. Leave the permissions alone.
+   Set **Account Resources** to *Include* → your account. Set **Zone Resources** to
+   *Include* → *All zones*; the Worker is on `workers.dev`, so zones don't matter here.
+   Tap **Continue to summary** → **Create Token**. Copy the token straight away,
+   because Cloudflare only shows it once. Paste it into GitHub (step 3), not into a chat.
+2. **Account ID.** Tap **Workers & Pages** in the menu. The **Account details** box
+   shows **Account ID** with a copy button. You can also take it from the address bar:
+   it is the 32-character string straight after `dash.cloudflare.com/`.
+3. **GitHub secrets.** Use the browser; the GitHub app can't edit secrets. Open
+   `github.com/maxyongg/fitness/settings/secrets/actions`, or go to repo → Settings →
+   Secrets and variables → Actions. If Settings is hidden, turn on Request Desktop
+   Website. Tap **New repository secret** and add two secrets, one at a time. Names
+   must match exactly:
+   - Name `CLOUDFLARE_API_TOKEN`, value the token from step 1 → **Add secret**
+   - Name `CLOUDFLARE_ACCOUNT_ID`, value the ID from step 2 → **Add secret**
+4. **Run it.** Open `github.com/maxyongg/fitness/actions/workflows/deploy-worker.yml`,
+   or go to Actions → **Deploy Worker** in the list. Tap **Run workflow** → branch
+   `main` → **Run workflow**. It takes about a minute. A green tick means the Worker is
+   live. If you get a red cross, open the run → `deploy` → the **Deploy** step:
+   - "Add the CLOUDFLARE_API_TOKEN…": a secret is missing or misnamed.
+   - "Authentication error [code: 10000]": the token is wrong or wasn't created from
+     the Workers template.
+   - An error naming the account: the Account ID is wrong.
+
+   Deploy Worker only shows up once step 0's file is on `main`. Adding that file
+   doesn't start a deploy, so run it by hand this first time. After that, every push
+   to `worker/` deploys on its own.
 
 If the secrets are missing, the run fails and its error names them.
 
