@@ -1,0 +1,181 @@
+{
+  "key": "2026-09-24-upper-b",
+  "date": "2026-09-24",
+  "session": "Upper B",
+  "session_id": "upper_b",
+  "model": "claude-sonnet-5",
+  "created": "2026-09-24T06:19:22.872Z",
+  "logged": {
+    "date": "2026-09-24",
+    "session": "Upper B",
+    "session_id": "upper_b",
+    "exercises": [
+      {
+        "name": "Deadlift (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 60,
+            "reps": 6
+          },
+          {
+            "weight": 60,
+            "reps": 6
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 10
+          },
+          {
+            "weight": 0,
+            "reps": 10
+          },
+          {
+            "weight": 0,
+            "reps": 7
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Iso Lateral Row - Right",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 50,
+            "reps": 10
+          },
+          {
+            "weight": 55,
+            "reps": 8
+          },
+          {
+            "weight": 55,
+            "reps": 8
+          }
+        ],
+        "weight": 40,
+        "supersetGroup": 1
+      },
+      {
+        "name": "Iso Lateral Row - Left",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 50,
+            "reps": 10
+          },
+          {
+            "weight": 55,
+            "reps": 8
+          },
+          {
+            "weight": 55,
+            "reps": 8
+          }
+        ],
+        "weight": 40,
+        "supersetGroup": 1
+      },
+      {
+        "name": "Straight Arm Pulldown",
+        "sets": [
+          {
+            "weight": 12.5,
+            "reps": 10
+          },
+          {
+            "weight": 15,
+            "reps": 12
+          },
+          {
+            "weight": 15,
+            "reps": 12
+          }
+        ],
+        "weight": 12.5
+      },
+      {
+        "name": "Triceps Dip",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 10
+          },
+          {
+            "weight": 0,
+            "reps": 10
+          },
+          {
+            "weight": 0,
+            "reps": 12
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Decline Chest Press",
+        "sets": [
+          {
+            "weight": 60,
+            "reps": 10
+          },
+          {
+            "weight": 70,
+            "reps": 10
+          },
+          {
+            "weight": 70,
+            "reps": 8
+          }
+        ],
+        "weight": 60
+      },
+      {
+        "name": "Bicep Curl (Cable)",
+        "sets": [
+          {
+            "weight": 10,
+            "reps": 10
+          },
+          {
+            "weight": 10,
+            "reps": 10
+          },
+          {
+            "weight": 10,
+            "reps": 10
+          }
+        ],
+        "weight": 10
+      }
+    ],
+    "pain": {
+      "right_lat": null
+    },
+    "notes": "Imported from Strong",
+    "extra": ""
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Upper B opened with an unprogrammed Deadlift (40kg×10, 60kg×6,6) ahead of Pull Up, bumping pull-ups to slot 2 rather than the prescribed slot 1 — still close to the good end of the order effect. Pull-ups hit 10,10,7 (27 total), in line with the two-in-reserve instruction. Both Iso Lateral Rows read 40,50,55,55 — the right jumped past its 50kg protocol ceiling while the left dropped from last week's 60kg peak to match it exactly. Straight Arm Pulldown and Decline Chest Press stood in for the prescribed Lat Pulldown and Cable Crossover, and Bicep Curl was logged as a cable variant rather than the barbell 30kg anchor. Triceps Dip went 10,10,12, still short of 12,12,12.\n\nTrend: Pull-up totals have sat at or above 27 for four sessions running — 09-17 (29), 09-20 (27), 09-21 (33), today (27). The three-session threshold for re-adding 5kg to weighted pull-ups was actually cleared back on 09-21; today just confirms it's overdue.\n\nRight lat: No pain rating logged, yet the right row moved to 55kg — above the 50kg ceiling and with zero greens banked since the 4/10 on 09-17. That load isn't earned under the three-green rule regardless of how it felt.\n\nNext session: Upper C, Sat 26. Set working loads for Flat Dumbbell Press and Cable Row across 10-12 reps on all three sets. Keep Lateral Raise at 8kg chasing 20 on all three for the 9kg step, and raise the pull-up weight re-add with your coach given four sessions clearing 27.\n\nQuestion: Did the right lat actually feel fine through those 55kg sets — and why did the left also land at 55kg instead of holding 60kg?",
+      "at": "2026-09-24T06:19:22.873Z"
+    }
+  ]
+}
