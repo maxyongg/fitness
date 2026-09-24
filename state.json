@@ -78,8 +78,8 @@
         "type": "anchor",
         "sets": 3,
         "reps": "AMRAP",
-        "load": 0,
-        "unit": "BW"
+        "load": 5,
+        "unit": "kg"
       },
       {
         "name": "Chest Fly",
@@ -142,7 +142,7 @@
         "load": 0,
         "unit": "kg",
         "loadL": 60,
-        "loadR": 50
+        "loadR": 55
       },
       {
         "name": "Lat Pulldown",
@@ -328,12 +328,12 @@
   },
   "rx_asof": "2026-09-24",
   "row_protocol": {
-    "load_right": 50,
     "load_left": 60,
-    "green_count": 0,
-    "status": "zero greens since 09-17 reset"
+    "load_right": 55,
+    "status": "see plan.md, The row protocol"
   },
   "flags": [
     "Pull-up: top set 10, total 27"
-  ]
+  ],
+  "rx_after": "2026-09-24 Upper B"
 }
