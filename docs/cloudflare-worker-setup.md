@@ -100,7 +100,32 @@ and rebases before pushing.
 
 ## Redeploying
 
-When the Worker code in `worker/index.js` changes, redeploy from a terminal:
+**The Worker runs whatever was last deployed, not what is in the repo.** A change to
+`worker/index.js` does nothing until it is deployed. On 2026-09-24 the page showed
+"Debrief unavailable — Empty reply from the Worker". The Worker was still the
+pre-Sep-23 build. It read `content[0].text`, and Sonnet 5 puts a thinking block
+first, so the Worker returned `{}`. The fix was already in the repo but had never
+been deployed.
+
+### From the phone (GitHub Action)
+
+`.github/workflows/deploy-worker.yml` deploys on every push to `worker/` on `main`, and
+on demand: **GitHub → Actions → Deploy Worker → Run workflow**. One-time setup, all
+doable in a mobile browser:
+
+0. **The workflow file:** Claude can't push workflow files, so you add it once. Paste
+   the YAML from `docs/github-actions-setup.md` into a new file via the web UI.
+1. **Cloudflare API token:** dash.cloudflare.com → My Profile → API Tokens → Create
+   Token → use the **Edit Cloudflare Workers** template → your account → Create.
+   Copy the token.
+2. **Account ID:** Workers & Pages overview → **Account ID** in the right-hand column.
+3. **GitHub:** repo Settings → Secrets and variables → Actions → New repository secret.
+   Add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+4. Run **Deploy Worker** once from the Actions tab.
+
+If the secrets are missing, the run fails and its error names them.
+
+### From a terminal
 
 ```bash
 cd fitness/worker
@@ -108,8 +133,14 @@ npm install
 npx wrangler deploy
 ```
 
-Secrets persist across deploys — you only set them once. `npm install` pulls the
-Anthropic SDK the Worker is built on; wrangler bundles it into the deploy.
+Either way, secrets persist across deploys — you only set them once. `npm install` pulls
+the Anthropic SDK the Worker is built on; wrangler bundles it into the deploy.
+
+### After a failed debrief
+
+A session saved while the Worker was down is still logged. Don't re-save it, or it goes
+into `log.md` twice. Open **History → Sessions**, expand the session and tap **Get the
+debrief →**. It asks the Worker again and does not touch `inbox/`.
 
 ## Costs
 

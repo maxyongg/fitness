@@ -443,6 +443,11 @@ input[type=number] { -moz-appearance: textfield; }
     </div>
     <div id="hist-sessions">
       <p class="page-sub">Sessions saved from this phone.</p>
+      <div class="debrief" id="debrief-hist" hidden>
+        <div class="debrief-h"><span>Debrief</span>
+          <button class="icon-btn" onclick="dismissDebrief('debrief-hist')" aria-label="Dismiss">&times;</button></div>
+        <div class="debrief-b"></div>
+      </div>
       <div id="history-list"></div>
       <div style="margin-top:14px"><button class="btn btn-ghost" onclick="checkInbox()" id="inbox-btn" hidden>Check inbox on GitHub</button></div>
     </div>
@@ -1224,7 +1229,9 @@ async function requestDebrief(data, cardId) {
     });
     var result = await res.json().catch(function() { return {}; });
     if (!res.ok) throw new Error(result.error || "Worker error " + res.status);
-    if (!result.debrief) throw new Error("Empty reply from the Worker");
+    /* Only the current Worker sends `model`; the pre-Sep-23 build answers a thinking model with {}. */
+    if (!result.debrief) throw new Error(result.model ? "Empty reply from the Worker"
+      : "the Worker is running old code. Redeploy it: GitHub → Actions → Deploy Worker → Run workflow");
     var rec = {
       key: debriefKey(data), date: data.date, session: data.session, session_id: data.session_id,
       model: result.model || "", created: new Date().toISOString(), logged: data,
@@ -1233,6 +1240,7 @@ async function requestDebrief(data, cardId) {
     body.dataset.dkey = rec.key;
     cacheDebrief(rec);
     renderThreads(rec.key);
+    renderHistory();
     storeDebrief(rec);
   } catch (e) {
     body.innerHTML = '<span class="debrief-error">Debrief unavailable — ' + esc(e.message) + '</span>';
@@ -1482,6 +1490,7 @@ function renderHistory() {
   }
 
   var debriefsCache = getDebriefs();
+  var canDebrief = !!(getWorkerUrl() && getPin());
   el.innerHTML = hist.map(function(item, i) {
     var p = (item.date || "").split("-");
     var d = p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null;
@@ -1506,6 +1515,8 @@ function renderHistory() {
     if (item.extra) h += '<div class="hist-note">Extra: ' + esc(item.extra) + '</div>';
     if (item.date && item.session_id && debriefsCache[debriefKey(item)]) {
       h += '<button class="hist-link" onclick="openDebrief(\'' + debriefKey(item) + '\')">Read the debrief →</button>';
+    } else if (item.date && canDebrief) {
+      h += '<button class="hist-link" onclick="debriefFromHistory(' + i + ')">Get the debrief →</button>';
     }
     return h + '</div></div>';
   }).join("");
@@ -1513,6 +1524,12 @@ function renderHistory() {
 
 function toggleHist(i) {
   document.getElementById("hist-" + i).classList.toggle("open");
+}
+
+/* A session whose debrief failed at save time. Re-saving would log it twice; this only asks the Worker. */
+function debriefFromHistory(i) {
+  var item = getHistory()[i];
+  if (item) requestDebrief(item, "debrief-hist");
 }
 
 var histMode = "sessions";

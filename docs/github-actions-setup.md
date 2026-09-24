@@ -116,3 +116,64 @@ jobs:
    commits `log.md` + `state.json` + `index.html`, deletes inbox file
 3. The Cloudflare Worker handles the instant debrief separately —
    see `docs/cloudflare-worker-setup.md`
+
+## Deploy Worker (not yet on `main` — add it by hand)
+
+Deploys the debrief Worker (`worker/`) on every push to `worker/` on `main`, and on
+demand from Actions → Deploy Worker → Run workflow. Needs the `CLOUDFLARE_API_TOKEN`
+and `CLOUDFLARE_ACCOUNT_ID` secrets — setup in `docs/cloudflare-worker-setup.md`.
+
+Add it through the web UI: repo → Add file → Create new file → name it
+`.github/workflows/deploy-worker.yml` → paste the YAML below → commit to `main`.
+Once it is on `main`, change this heading to say so.
+
+```yaml
+name: Deploy Worker
+
+# The debrief Worker only changes when it is redeployed. Before this, that needed a
+# laptop, and the Worker ran stale code for days after worker/index.js changed.
+# Runs on any push to worker/ on main, or by hand: Actions → Deploy Worker → Run workflow.
+# Needs two repo secrets: CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID
+# (docs/cloudflare-worker-setup.md). ANTHROPIC_API_KEY and DEBRIEF_PIN live in
+# Cloudflare and survive every deploy.
+
+on:
+  push:
+    branches: [main]
+    paths: ['worker/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: worker
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install
+        run: npm ci
+
+      - name: Deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::error::Add the CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repo secrets — see docs/cloudflare-worker-setup.md"
+            exit 1
+          fi
+          npx --yes wrangler@4 deploy
+```
