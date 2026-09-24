@@ -36,7 +36,8 @@ hand, the same way. The routine would otherwise pick it up at its next run.
 
 ### The routine
 
-Routine "Re-prescribe after logged sessions", cron `0 6,14 * * *` (UTC), a fresh session
+Routine "Re-prescribe after logged sessions" (`trig_01FRxLVvPLuBk3PWCWvc3hvp`), cron `0 6,14 * * *`
+(UTC), a fresh session
 each run, created 2026-09-24 at his request. It replaced a Re-prescribe GitHub Action
 that billed about $1 a session in API credits; that Action is still documented in
 `docs/github-actions-setup.md` if instant re-prescription is ever worth paying for. The
@@ -46,8 +47,11 @@ routine's instructions, verbatim:
 > to `main`: that is his standing instruction in the repo's CLAUDE.md, so don't create
 > a branch or a pull request.
 >
-> 1. Get the latest `main`. Clone https://github.com/maxyongg/fitness if it isn't
->    checked out; otherwise `git checkout main && git pull origin main`.
+> 1. Get the latest `main`. If the repo isn't checked out, first attach it with push
+>    access (use your add_repo tool for maxyongg/fitness, access "push", if you have
+>    one), then clone it (the command add_repo gives you, or
+>    `git clone https://github.com/maxyongg/fitness`). If it is checked out:
+>    `git checkout main && git pull origin main`.
 > 2. Run `python3 represcribe.py pending`. If it prints `pending=false`, stop there:
 >    reply "Nothing to re-prescribe." and end. Read nothing else.
 > 3. If it prints `pending=true`, run `python3 represcribe.py prompt` and do what it
@@ -56,7 +60,8 @@ routine's instructions, verbatim:
 >    it again. Never work around it.
 > 5. `git add index.html plan.md log.md state.json`, commit with the subject `finish`
 >    printed, and `git push origin main`. If the push is rejected,
->    `git pull --rebase origin main` and push again.
+>    `git pull --rebase origin main` and push again. If you can't push at all, say
+>    exactly which step failed in your reply.
 > 6. Reply with the two-sentence summary the brief asks for.
 
 To change what it does, change `docs/represcribe-prompt.md` or `represcribe.py`; the
