@@ -1,67 +1,67 @@
 {
-  "_generated": "2026-09-21T00:00:00",
-  "_by": "bootstrap",
+  "_generated": "2026-09-24T04:27:39",
+  "_by": "drain.py",
   "last_session": {
-    "date": "2026-09-21",
-    "type": "upper_a",
-    "name": "Upper A",
+    "date": "2026-09-24",
+    "type": "upper_b",
+    "name": "Upper B",
     "exercise_count": 8,
     "pain_right_lat": null,
     "top_sets": [
       {
-        "name": "Incline Bench Press (Barbell)",
-        "weight": 65,
+        "name": "Deadlift (Barbell)",
+        "weight": 40,
         "best_reps": 10,
-        "set_count": 5
+        "set_count": 3
       },
       {
         "name": "Pull Up",
         "weight": "BW",
-        "best_reps": 12,
-        "set_count": 4
-      },
-      {
-        "name": "Chest Fly",
-        "weight": 65,
         "best_reps": 10,
         "set_count": 3
       },
       {
-        "name": "Reverse Fly (Machine)",
-        "weight": 42.5,
-        "best_reps": 8,
-        "set_count": 3
+        "name": "Iso Lateral Row - Right",
+        "weight": 40,
+        "best_reps": 10,
+        "set_count": 4
       },
       {
-        "name": "Lateral Raise (Dumbbell)",
-        "weight": 8,
-        "best_reps": 15,
-        "set_count": 3
+        "name": "Iso Lateral Row - Left",
+        "weight": 40,
+        "best_reps": 10,
+        "set_count": 4
       },
       {
-        "name": "Pike Push Up",
-        "weight": "BW",
+        "name": "Straight Arm Pulldown",
+        "weight": 12.5,
         "best_reps": 12,
         "set_count": 3
       },
       {
         "name": "Triceps Dip",
         "weight": "BW",
+        "best_reps": 12,
+        "set_count": 3
+      },
+      {
+        "name": "Decline Chest Press",
+        "weight": 60,
         "best_reps": 10,
         "set_count": 3
       },
       {
-        "name": "Hollow Body Hold",
-        "weight": "BW",
-        "best_reps": 0,
+        "name": "Bicep Curl (Cable)",
+        "weight": 10,
+        "best_reps": 10,
         "set_count": 3
       }
     ]
   },
   "next_session": {
-    "type": "upper_b",
-    "name": "Upper B",
-    "expected_date": "2026-09-24"
+    "type": "upper_c",
+    "name": "Upper C",
+    "expected_date": "2026-09-26"
   },
   "slots": {
     "upper_a": [
@@ -331,7 +331,6 @@
     "status": "zero greens since 09-17 reset"
   },
   "flags": [
-    "Pull-up: top set 12 (new record), total 33",
-    "Chest Fly 65kg x 10 — broke stall, first rep in 10-12 band"
+    "Pull-up: top set 10, total 27"
   ]
 }

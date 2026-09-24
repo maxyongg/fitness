@@ -465,6 +465,16 @@ pain(R): 4/10
 
      No pain(R) recorded despite pulling at slot 2. Not chased. -->
 
+## 2026-09-24 · Thu · Upper B
+- Deadlift (Barbell) — 40kg × 10, 60kg × 6, 6
+- Pull Up — bodyweight × 10, 10, 7
+- Iso Lateral Row - Right — 40kg × 10, 50kg × 10, 55kg × 8, 8
+- Iso Lateral Row - Left — 40kg × 10, 50kg × 10, 55kg × 8, 8
+- Straight Arm Pulldown — 12.5kg × 10, 15kg × 12, 12
+- Triceps Dip — bodyweight × 10, 10, 12
+- Decline Chest Press — 60kg × 10, 70kg × 10, 8
+- Bicep Curl (Cable) — 10kg × 10, 10, 10
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
