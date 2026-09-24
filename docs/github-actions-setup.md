@@ -117,15 +117,14 @@ jobs:
 3. The Cloudflare Worker handles the instant debrief separately —
    see `docs/cloudflare-worker-setup.md`
 
-## Deploy Worker (not yet on `main` — add it by hand)
+## Deploy Worker
 
 Deploys the debrief Worker (`worker/`) on every push to `worker/` on `main`, and on
 demand from Actions → Deploy Worker → Run workflow. Needs the `CLOUDFLARE_API_TOKEN`
 and `CLOUDFLARE_ACCOUNT_ID` secrets — setup in `docs/cloudflare-worker-setup.md`.
 
-Add it through the web UI: repo → Add file → Create new file → name it
-`.github/workflows/deploy-worker.yml` → paste the YAML below → commit to `main`.
-Once it is on `main`, change this heading to say so.
+On `main` since 2026-09-24 (added by hand, commit b89f21f). To change it, edit
+`.github/workflows/deploy-worker.yml` in the web UI, as with `drain.yml`.
 
 ```yaml
 name: Deploy Worker

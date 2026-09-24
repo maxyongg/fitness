@@ -113,8 +113,8 @@ been deployed.
 on demand: **GitHub → Actions → Deploy Worker → Run workflow**. One-time setup, all
 doable in a mobile browser:
 
-0. **The workflow file:** Claude can't push workflow files, so you add it once. Paste
-   the YAML from `docs/github-actions-setup.md` into a new file via the web UI.
+0. **The workflow file:** on `main` since 2026-09-24. Claude can't push workflow files,
+   so it was added by hand; the YAML is also in `docs/github-actions-setup.md`.
 1. **Cloudflare API token.** Open `dash.cloudflare.com/profile/api-tokens` (or tap
    the profile icon → My Profile → API Tokens) → **Create Token** → on the
    **Edit Cloudflare Workers** row tap **Use template**. Leave the permissions alone.
