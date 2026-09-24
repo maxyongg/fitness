@@ -2,19 +2,22 @@
 """
 Re-prescribe after a session saved from the phone page, with nobody in the loop.
 
-.github/workflows/represcribe.yml runs after the Drain inbox Action and calls:
-
-  python3 represcribe.py pending   pending=true|false, for $GITHUB_OUTPUT
-  python3 represcribe.py run       Claude Code, headless: edits RX, plan.md, log.md
-  python3 represcribe.py finish    checks those edits, rebuilds state.json,
+  python3 represcribe.py pending   pending=true|false
+  python3 represcribe.py prompt    the brief (docs/represcribe-prompt.md), filled in
+  python3 represcribe.py finish    checks the edits, rebuilds state.json,
                                    prints the commit subject
+  python3 represcribe.py run       Claude Code headless on the brief (API key needed)
 
-The workflow only calls these three, so the prompt (docs/represcribe-prompt.md),
-model and budget can change here without re-pasting the workflow; Claude can't push
-workflow files.
+In use: a Claude Code routine on his Claude plan, at 14:00 and 22:00 SGT. It runs
+`pending`, and if a session is waiting, works through `prompt` itself, then runs
+`finish`, then commits and pushes. The routine's own instructions are in
+docs/workflows.md.
+
+Not in use: the Re-prescribe Action in docs/github-actions-setup.md. It runs
+`pending`, `run`, `finish` after every drain and bills API credits (~$1 a session).
 
 "Pending" means the newest session in log.md is not the one RX.after names. A failed
-run leaves RX.after behind, so the next drain, or Run workflow, tries again.
+run leaves RX.after behind, so the next run tries again.
 """
 
 import json
@@ -35,7 +38,7 @@ PROMPT = os.path.join(ROOT, "docs", "represcribe-prompt.md")
 MODEL = "claude-opus-5"
 EFFORT = "high"
 BUDGET_USD = "3"          # hard stop per run; a normal run costs well under this
-TOOLS = ["Read", "Edit", "Glob", "Grep"]  # no shell: the workflow commits, not Claude
+TOOLS = ["Read", "Edit", "Glob", "Grep"]  # `run` only: no shell, the workflow commits
 EDITABLE = {"index.html", "plan.md", "log.md"}
 
 HEADER = re.compile(r"^## (\d{4}-\d{2}-\d{2}) · \w+ · (.+?)\s*$", re.M)
@@ -80,10 +83,6 @@ def anchors(rx):
 
 
 def cmd_pending():
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        print("::error::Add the ANTHROPIC_API_KEY repo secret — see docs/github-actions-setup.md",
-              file=sys.stderr)
-        sys.exit(1)
     latest = latest_session()
     after = (parse_rx(read(INDEX)) or {}).get("after")
     pending = bool(latest) and latest != after
@@ -91,7 +90,7 @@ def cmd_pending():
     print(f"pending={'true' if pending else 'false'}")
 
 
-def cmd_run():
+def filled_prompt():
     latest = latest_session()
     after = (parse_rx(read(INDEX)) or {}).get("after") or "not set — start from the newest entry"
     sid, when = drain.next_session_id(latest[:10])
@@ -103,8 +102,19 @@ def cmd_run():
         "today": date.today().isoformat(),
     }.items():
         prompt = prompt.replace("{{" + key + "}}", value)
+    return prompt
 
-    cmd = ["claude", "-p", prompt,
+
+def cmd_prompt():
+    print(filled_prompt())
+
+
+def cmd_run():
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        print("::error::Add the ANTHROPIC_API_KEY repo secret — see docs/github-actions-setup.md",
+              file=sys.stderr)
+        sys.exit(1)
+    cmd = ["claude", "-p", filled_prompt(),
            "--model", MODEL, "--effort", EFFORT,
            "--max-budget-usd", BUDGET_USD,
            "--permission-mode", "dontAsk",
@@ -155,7 +165,7 @@ def cmd_finish():
 
 
 if __name__ == "__main__":
-    commands = {"pending": cmd_pending, "run": cmd_run, "finish": cmd_finish}
+    commands = {"pending": cmd_pending, "prompt": cmd_prompt, "finish": cmd_finish, "run": cmd_run}
     if len(sys.argv) != 2 or sys.argv[1] not in commands:
-        sys.exit("usage: represcribe.py pending|run|finish")
+        sys.exit("usage: represcribe.py pending|prompt|finish|run")
     commands[sys.argv[1]]()

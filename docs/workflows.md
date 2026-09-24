@@ -25,13 +25,42 @@ When a session is saved from the phone page, two things happen automatically:
    to the repo. Setup: `docs/cloudflare-worker-setup.md`.
 2. **Drain inbox Action** (within ~1 minute) — runs `drain.py` (transcribes to
    `log.md`, updates `state.json`), commits, deletes the inbox file.
-3. **Re-prescribe Action** (a few minutes later) — `represcribe.py` runs Claude Code
-   headless with `docs/represcribe-prompt.md`. The steps are the ones below, unattended.
-   Claude can only read and edit files. The script checks its edits and commits them.
-   Setup for both Actions: `docs/github-actions-setup.md`.
+3. **Re-prescribe routine** (14:00 and 22:00 SGT). A scheduled Claude Code session on
+   his Claude plan, so there's no API bill. If `log.md` is ahead of `RX.after`, it
+   re-prescribes from `docs/represcribe-prompt.md` (the steps below, unattended).
+   `represcribe.py finish` checks the edits, then it pushes to `main`. His next session
+   is never the same day, so twice a day is always in time.
 
 A Claude session that finds the log ahead of `RX.after` re-prescribes from there by
-hand, the same way. The Action would otherwise pick it up at the next drain.
+hand, the same way. The routine would otherwise pick it up at its next run.
+
+### The routine
+
+Routine "Re-prescribe after logged sessions", cron `0 6,14 * * *` (UTC), a fresh session
+each run, created 2026-09-24 at his request. It replaced a Re-prescribe GitHub Action
+that billed about $1 a session in API credits; that Action is still documented in
+`docs/github-actions-setup.md` if instant re-prescription is ever worth paying for. The
+routine's instructions, verbatim:
+
+> Scheduled check for Max's training repo, maxyongg/fitness. Work on `main` and push
+> to `main`: that is his standing instruction in the repo's CLAUDE.md, so don't create
+> a branch or a pull request.
+>
+> 1. Get the latest `main`. Clone https://github.com/maxyongg/fitness if it isn't
+>    checked out; otherwise `git checkout main && git pull origin main`.
+> 2. Run `python3 represcribe.py pending`. If it prints `pending=false`, stop there:
+>    reply "Nothing to re-prescribe." and end. Read nothing else.
+> 3. If it prints `pending=true`, run `python3 represcribe.py prompt` and do what it
+>    says. It is the full brief.
+> 4. Run `python3 represcribe.py finish`. If it reports errors, fix your edits and run
+>    it again. Never work around it.
+> 5. `git add index.html plan.md log.md state.json`, commit with the subject `finish`
+>    printed, and `git push origin main`. If the push is rejected,
+>    `git pull --rebase origin main` and push again.
+> 6. Reply with the two-sentence summary the brief asks for.
+
+To change what it does, change `docs/represcribe-prompt.md` or `represcribe.py`; the
+routine reads both fresh each run.
 
 ### Manual draining procedure
 

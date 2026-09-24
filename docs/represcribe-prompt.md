@@ -1,7 +1,7 @@
-You are running unattended in GitHub Actions, straight after the Drain inbox Action wrote
-a session from the phone page into `log.md`. Nobody is watching and nobody can answer
-you. Your job is step 3 of "The standing job" in `CLAUDE.md`: re-prescribe. This is
-programming mode, run without him.
+You are running unattended, after the Drain inbox Action wrote a session from the phone
+page into `log.md`. Nobody is watching and nobody can answer you. Your job is step 3 of
+"The standing job" in `CLAUDE.md`: re-prescribe. This is programming mode, run without
+him.
 
 - Last re-prescription (`RX.after`): {{after}}
 - Newest session in `log.md`: {{latest}}
@@ -58,9 +58,9 @@ You can't ask him anything. So anything that needs his decision becomes the ques
 
 ## Mechanics
 
-- You can only read and edit files. You have no shell and no git. After you finish, the
-  workflow checks your edits, rebuilds `state.json` and commits. It rejects the whole
-  run if any of these happen:
+- Edit only `index.html` (inside `RX`), `plan.md` and `log.md`. Then
+  `python3 represcribe.py finish` checks your edits and rebuilds `state.json`. Whatever
+  started you runs it, then commits. It rejects the whole run if any of these happen:
   - `RX` stops parsing, or `RX.after` isn't "{{latest}}".
   - A file other than `index.html`, `plan.md` or `log.md` changes.
   - Anything in `index.html` outside `RX` changes.
@@ -68,6 +68,6 @@ You can't ask him anything. So anything that needs his decision becomes the ques
   - An anchor's exercise changes.
 - `RX` format: bare keys and double-quoted strings, with no double quotes inside a
   string. Match the surrounding style.
-- Skip the `CLAUDE.md` steps that tell you to commit, push, drain the inbox or reply
-  to him. The workflow and the page cover them.
-- End with two sentences on what you changed. They go to the Action log.
+- Skip the `CLAUDE.md` steps that tell you to drain the inbox or reply to him. The
+  Drain Action and the page cover them.
+- End with two sentences on what you changed. They go to the run's log.
