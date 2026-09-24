@@ -25,11 +25,13 @@ When a session is saved from the phone page, two things happen automatically:
    to the repo. Setup: `docs/cloudflare-worker-setup.md`.
 2. **Drain inbox Action** (within ~1 minute) — runs `drain.py` (transcribes to
    `log.md`, updates `state.json`), commits, deletes the inbox file.
-3. **Re-prescribe routine** (daily, 22:00 SGT). A scheduled Claude Code session on
-   his Claude plan, so there's no API bill. If `log.md` is ahead of `RX.after`, it
-   re-prescribes from `docs/represcribe-prompt.md` (the steps below, unattended).
-   `represcribe.py finish` checks the edits, then it pushes to `main`. His next session
-   is never the same day, so a 10pm run is in time for the next morning.
+3. **Re-prescribe routine** (22:00 SGT, Mon/Thu/Sat/Sun). A scheduled Claude Code
+   session on his Claude plan, so there's no API bill. If `log.md` is ahead of
+   `RX.after`, it re-prescribes from `docs/represcribe-prompt.md` (the steps below,
+   unattended). `represcribe.py finish` checks the edits, then it pushes to `main`. His
+   next session is never the same day, so a 10pm run on each training day is in time
+   for the next one. A session logged on an off day waits for the next training-day
+   run.
 
 A Claude session that finds the log ahead of `RX.after` re-prescribes from there by
 hand, the same way. The routine would otherwise pick it up at its next run.
@@ -37,10 +39,12 @@ hand, the same way. The routine would otherwise pick it up at its next run.
 ### The routine
 
 Routine "Re-prescribe after logged sessions" (`trig_01FRxLVvPLuBk3PWCWvc3hvp`), cron
-`0 14 * * *` (UTC), a fresh session each run, created 2026-09-24 at his request. It
-runs on the routine default model (Sonnet 5 at setup) and counts toward his Claude
-plan's usage. An empty check used ~$0.30 of API-equivalent allowance in the setup
-test, so it runs once a day, not twice. It replaced a Re-prescribe GitHub Action that
+`0 14 * * 0,1,4,6` (UTC = 22:00 SGT, same day), a fresh session each run, created
+2026-09-24 at his request. It runs on the routine default model (Sonnet 5 at setup)
+and counts toward his Claude plan's usage. An empty check used ~$0.30 of
+API-equivalent allowance in the setup test, so it runs only on his training days (his
+call). The page's `nextRunLabel()` hard-codes the same days; change both together. It
+replaced a Re-prescribe GitHub Action that
 billed about $1 a session in API credits. That Action is still documented in
 `docs/github-actions-setup.md` if instant re-prescription is ever worth paying for. The
 routine's instructions, verbatim:

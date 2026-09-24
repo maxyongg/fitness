@@ -585,7 +585,7 @@ input[type=number] { -moz-appearance: textfield; }
    log.md header). `note` is the coach's line on the next session: what changed and at
    most one question.
    Re-prescribing means updating these too — see docs/workflows.md. After a phone save a
-   routine does it at 22:00 SGT daily (represcribe.py checks the result before commit).
+   routine does it at 22:00 SGT on training days (represcribe.py checks it before commit).
    Strings use double quotes (drain.py and represcribe.py parse this object).            */
 var RX = {
   asof: "2026-09-24",
@@ -789,7 +789,7 @@ function isoDate(d) {
   return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
 }
 /* Which session the prescriptions were last set after, and whether a newer one saved from
-   this phone is still waiting for the re-prescribe routine (22:00 SGT daily). */
+   this phone is still waiting for the re-prescribe routine. */
 function rxStatus() {
   var after = RX.after || "";
   if (!after) return "Prescribed " + fmtDate(RX.asof);
@@ -797,9 +797,22 @@ function rxStatus() {
   var s = "Prescribed after " + aName + ", " + fmtDate(aDate);
   var h = getHistory()[0];
   if (h && h.date && (h.date > aDate || (h.date === aDate && h.session !== aName))) {
-    s += " · " + h.session + " next, at 10pm";
+    s += " · " + h.session + " next, " + nextRunLabel();
   }
   return s;
+}
+
+/* When the routine next runs: 22:00 on Mon, Thu, Sat and Sun, his training days. Keep in
+   step with its cron (0 14 * * 0,1,4,6 UTC = 22:00 SGT); see docs/workflows.md. */
+function nextRunLabel() {
+  var now = new Date();
+  for (var i = 0; i < 8; i++) {
+    var run = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i, 22, 0);
+    if ([0, 1, 4, 6].indexOf(run.getDay()) !== -1 && run > now) {
+      return i === 0 ? "tonight 10pm" : SHORT_DAY[run.getDay()] + " 10pm";
+    }
+  }
+  return "10pm";
 }
 
 function renderRxStatus() {

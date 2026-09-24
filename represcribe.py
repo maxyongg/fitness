@@ -8,7 +8,7 @@ Re-prescribe after a session saved from the phone page, with nobody in the loop.
                                    prints the commit subject
   python3 represcribe.py run       Claude Code headless on the brief (API key needed)
 
-In use: a Claude Code routine on his Claude plan, daily at 22:00 SGT. It runs
+In use: a Claude Code routine on his Claude plan, 22:00 SGT on Mon/Thu/Sat/Sun. It runs
 `pending`, and if a session is waiting, works through `prompt` itself, then runs
 `finish`, then commits and pushes. The routine's own instructions are in
 docs/workflows.md.

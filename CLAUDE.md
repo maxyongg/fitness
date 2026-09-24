@@ -92,7 +92,8 @@ handle now, an inbox file you drain when you next see it.
 (1) the browser calls a Cloudflare Worker that returns an AI debrief on screen — he can
 reply to it, and the debrief plus the conversation are saved to `debriefs/`,
 (2) the Drain inbox Action runs `drain.py` to commit `log.md` and `state.json`,
-(3) a Claude Code routine on his Claude plan runs daily at 22:00 SGT and does step
+(3) a Claude Code routine on his Claude plan runs at 22:00 SGT on Mon, Thu, Sat and
+Sun, his training days, and does step
 3 below whenever `log.md` is ahead of `RX.after`. The brief is
 `docs/represcribe-prompt.md`, and `represcribe.py finish` checks the edits before the
 push. A failed run pushes nothing and leaves `RX.after` behind, so the next run retries.
@@ -173,7 +174,7 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `docs/incidents.md` | Past mistakes and the rules that came out of them. |
 | `docs/calisthenics.md` | The beginner skill route. On demand. |
 | `drain.py` | Transcribes inbox JSON → `log.md`, updates `state.json`. Run it, don't hand-parse. |
-| `represcribe.py` | Unattended re-prescription after a phone save: `pending` / `prompt` / `finish`. Used by the nightly routine (`docs/workflows.md`). The brief is `docs/represcribe-prompt.md`. |
+| `represcribe.py` | Unattended re-prescription after a phone save: `pending` / `prompt` / `finish`. Used by the training-night routine (`docs/workflows.md`). The brief is `docs/represcribe-prompt.md`. |
 | `prescribe.py` | Retired no-op. It bumped `RX.asof` without re-prescribing. `drain.yml` still calls it. |
 | `state.json` | Compact briefing: last session, next session, all slot prescriptions, row protocol. Read this instead of `plan.md` + `index.html` in logging mode. |
 | `analyse.py` | Full analysis of a Strong export. Monthly, not per session. |
