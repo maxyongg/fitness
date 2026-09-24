@@ -585,7 +585,7 @@ input[type=number] { -moz-appearance: textfield; }
    log.md header). `note` is the coach's line on the next session: what changed and at
    most one question.
    Re-prescribing means updating these too — see docs/workflows.md. After a phone save a
-   routine does it at 14:00 / 22:00 SGT (represcribe.py checks the result before commit).
+   routine does it at 22:00 SGT daily (represcribe.py checks the result before commit).
    Strings use double quotes (drain.py and represcribe.py parse this object).            */
 var RX = {
   asof: "2026-09-24",
@@ -789,7 +789,7 @@ function isoDate(d) {
   return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
 }
 /* Which session the prescriptions were last set after, and whether a newer one saved from
-   this phone is still waiting for the re-prescribe routine (14:00 and 22:00 SGT). */
+   this phone is still waiting for the re-prescribe routine (22:00 SGT daily). */
 function rxStatus() {
   var after = RX.after || "";
   if (!after) return "Prescribed " + fmtDate(RX.asof);
@@ -797,7 +797,7 @@ function rxStatus() {
   var s = "Prescribed after " + aName + ", " + fmtDate(aDate);
   var h = getHistory()[0];
   if (h && h.date && (h.date > aDate || (h.date === aDate && h.session !== aName))) {
-    s += " · " + h.session + " next, at 2pm / 10pm";
+    s += " · " + h.session + " next, at 10pm";
   }
   return s;
 }

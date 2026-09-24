@@ -2,7 +2,7 @@
 
 A GitHub Action runs whenever a session JSON lands in `inbox/`. Within a minute
 it runs `drain.py` (transcribes to `log.md`, updates `state.json`), commits, and
-deletes the inbox file. The prescriptions are then updated by a twice-daily routine
+deletes the inbox file. The prescriptions are then updated by a nightly routine
 on his Claude plan (`docs/workflows.md`). No manual intervention needed. (`drain.yml` still calls `prescribe.py`,
 which is now a no-op; drop that line the next time you edit it.)
 
@@ -180,9 +180,9 @@ jobs:
 
 ## Re-prescribe Action — not in use
 
-**Not set up.** On 2026-09-24 he chose the twice-daily routine on his Claude plan
+**Not set up.** On 2026-09-24 he chose the nightly routine on his Claude plan
 (`docs/workflows.md`), which has no API bill. This Action re-prescribes minutes after
-a save rather than by 2pm / 10pm, but bills API credits. Kept here in case instant is
+a save rather than by 10pm, but bills API credits. Kept here in case instant is
 ever worth paying for.
 
 Runs after every Drain inbox run. If `log.md` has a session newer than `RX.after`,
