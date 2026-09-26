@@ -1,0 +1,131 @@
+{
+  "key": "2026-09-26-upper-c",
+  "date": "2026-09-26",
+  "session": "Upper C",
+  "session_id": "upper_c",
+  "model": "claude-sonnet-5",
+  "created": "2026-09-26T10:32:34.145Z",
+  "logged": {
+    "date": "2026-09-26",
+    "session": "Upper C",
+    "session_id": "upper_c",
+    "exercises": [
+      {
+        "name": "Bench Press (Dumbbell)",
+        "sets": [
+          {
+            "weight": 24,
+            "reps": 12
+          },
+          {
+            "weight": 26,
+            "reps": 12
+          },
+          {
+            "weight": 26,
+            "reps": 10
+          }
+        ],
+        "weight": 24
+      },
+      {
+        "name": "Chest Supported Row",
+        "sets": [
+          {
+            "weight": 14,
+            "reps": 12
+          },
+          {
+            "weight": 18,
+            "reps": 10
+          },
+          {
+            "weight": 18,
+            "reps": 10
+          }
+        ],
+        "weight": 14
+      },
+      {
+        "name": "Lateral Raise (Dumbbell)",
+        "sets": [
+          {
+            "weight": 8,
+            "reps": 15
+          },
+          {
+            "weight": 8,
+            "reps": 15
+          },
+          {
+            "weight": 8,
+            "reps": 15
+          }
+        ],
+        "weight": 8
+      },
+      {
+        "name": "Face Pull (Cable)",
+        "sets": [
+          {
+            "weight": 15,
+            "reps": 12
+          },
+          {
+            "weight": 15,
+            "reps": 12
+          },
+          {
+            "weight": 17.5,
+            "reps": 12
+          }
+        ],
+        "weight": 15
+      },
+      {
+        "name": "Hammer Curl (Dumbbell)",
+        "sets": [
+          {
+            "weight": 14,
+            "reps": 12
+          },
+          {
+            "weight": 14,
+            "reps": 12
+          },
+          {
+            "weight": 14,
+            "reps": 12
+          }
+        ],
+        "weight": 14
+      },
+      {
+        "name": "Toes To Bar",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 8
+          },
+          {
+            "weight": 0,
+            "reps": 6
+          }
+        ],
+        "bodyweight": true
+      }
+    ],
+    "pain": {
+      "right_lat": 0
+    },
+    "notes": "Imported from Strong",
+    "extra": ""
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Upper C had two loads to set. DB Bench Press worked up from 24kg (12 reps) to 26kg (12, 10) — all three sets landed in the 10-12 target, so 26kg is the number to carry forward. Chest Supported Row went 14kg×12 then 18kg×10, 10 — same story, 18kg is the working load. Lateral Raise held at 8kg×15, 15, 15, unchanged. Face Pull came in mixed: 15kg×12, 12, then 17.5kg×12 — only the last set was at the prescribed 17.5kg, so it doesn't cleanly test the progression rule. Hammer Curl hit 14kg×12, 12, 12, top of the 10-12 range on its first logged session at this load. Toes to Bar (bodyweight×8, 6) stood in for Hanging Leg Raise — a swap, not a regression; it's a harder movement, so lower reps track.\n\nTrend: Lateral Raise has sat at 8kg×15, 15, 15 across 09-11, 09-14, 09-21 and now 09-26 — four sessions with no movement toward the 20-hold target that unlocks 9kg. Face Pull has also stalled at 12s since 09-17, still short of the 15-rep bar needed on two sessions running.\n\nRight lat: 0/10 today, a clean green light. Upper C carries no iso-lateral row though, so it doesn't feed the row gate — that's Thursday's lift only. Thursday (09-24) logged 3/10 at 55kg on the right, also green; worth watching whether that load holds next Thursday.\n\nNext session: Lower, Sun 27 Sep. Deadlift 60kg×5, 5, 5 — clean across all three earns 62.5kg. Squat holds at 70kg×8-10; knees complained at 80kg back on 09-12, so keep an eye on that rather than push through it.\n\nQuestion: Face Pull moved between 15kg and 17.5kg within the same session where 17.5kg was prescribed throughout — plate mix-up, or did something ask for the lighter load partway through?",
+      "at": "2026-09-26T10:32:34.145Z"
+    }
+  ]
+}
