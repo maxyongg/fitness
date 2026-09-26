@@ -1,0 +1,116 @@
+{
+  "date": "2026-09-26",
+  "session": "Upper C",
+  "session_id": "upper_c",
+  "exercises": [
+    {
+      "name": "Bench Press (Dumbbell)",
+      "sets": [
+        {
+          "weight": 24,
+          "reps": 12
+        },
+        {
+          "weight": 26,
+          "reps": 12
+        },
+        {
+          "weight": 26,
+          "reps": 10
+        }
+      ],
+      "weight": 24
+    },
+    {
+      "name": "Chest Supported Row",
+      "sets": [
+        {
+          "weight": 14,
+          "reps": 12
+        },
+        {
+          "weight": 18,
+          "reps": 10
+        },
+        {
+          "weight": 18,
+          "reps": 10
+        }
+      ],
+      "weight": 14
+    },
+    {
+      "name": "Lateral Raise (Dumbbell)",
+      "sets": [
+        {
+          "weight": 8,
+          "reps": 15
+        },
+        {
+          "weight": 8,
+          "reps": 15
+        },
+        {
+          "weight": 8,
+          "reps": 15
+        }
+      ],
+      "weight": 8
+    },
+    {
+      "name": "Face Pull (Cable)",
+      "sets": [
+        {
+          "weight": 15,
+          "reps": 12
+        },
+        {
+          "weight": 15,
+          "reps": 12
+        },
+        {
+          "weight": 17.5,
+          "reps": 12
+        }
+      ],
+      "weight": 15
+    },
+    {
+      "name": "Hammer Curl (Dumbbell)",
+      "sets": [
+        {
+          "weight": 14,
+          "reps": 12
+        },
+        {
+          "weight": 14,
+          "reps": 12
+        },
+        {
+          "weight": 14,
+          "reps": 12
+        }
+      ],
+      "weight": 14
+    },
+    {
+      "name": "Toes To Bar",
+      "sets": [
+        {
+          "weight": 0,
+          "reps": 8
+        },
+        {
+          "weight": 0,
+          "reps": 6
+        }
+      ],
+      "bodyweight": true
+    }
+  ],
+  "pain": {
+    "right_lat": 0
+  },
+  "notes": "Imported from Strong",
+  "extra": ""
+}
