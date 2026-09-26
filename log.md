@@ -498,6 +498,15 @@ pain(R): 3/10 | note: given after the import; Strong has no pain field
      Cable Crossover. The Bicep Curl (Cable) replaces the barbell curl that read 8, 8, 7
      twice. Triceps Dip 10, 10, 12, two short of 12, 12, 12. -->
 
+## 2026-09-26 · Sat · Upper C
+pain(R): 0/10
+- Bench Press (Dumbbell) — 24kg × 12, 26kg × 12, 10
+- Chest Supported Row — 14kg × 12, 18kg × 10, 10
+- Lateral Raise (Dumbbell) — 8kg × 15, 15, 15
+- Face Pull (Cable) — 15kg × 12, 12, 17.5kg × 12
+- Hammer Curl (Dumbbell) — 14kg × 12, 12, 12
+- Toes To Bar — bodyweight × 8, 6
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
