@@ -507,6 +507,26 @@ pain(R): 0/10
 - Hammer Curl (Dumbbell) — 14kg × 12, 12, 12
 - Toes To Bar — bodyweight × 8, 6
 
+<!-- From inbox/2026-09-26-upper_c.json (Strong import), drained by the Action. The 22:00
+     routine did the work but could not push: it had no repo attached, so a plain clone
+     could read and never write. Re-prescribed by hand the same night.
+
+     First Upper C of the new programme. Pain(R) 0/10.
+
+     Loads set: **DB press 26kg** (24 × 12, then 26 × 12, 10). **Hammer curl 14kg**
+     (12, 12, 12, the top of the band on the first run; a second earns 16kg). The press
+     slot now carries its Strong name, Bench Press (Dumbbell).
+
+     **Chest Supported Row in place of the cable row**, 14 × 12, then 18 × 10, 10. It was
+     the standing candidate for this slot, and he picked it himself, so it is slot 2's
+     call as a four-run trial (1 of 4). No gate. It is not the iso-lateral row.
+
+     **Lateral raise 8kg × 15, 15, 15, the fourth session running** at exactly those
+     numbers. That looks like stopping at the floor of the 15–20 band, not failing, but
+     the log can't tell. Asked him in RX.note. Face pull opened at 15kg, then 17.5 × 12.
+     The debrief already asked why, so it isn't read as a drop and holds at 17.5kg.
+     Toes To Bar (8, 6) ran in the core slot: the harder rung, now an alternative. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

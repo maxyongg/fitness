@@ -57,7 +57,7 @@ The anchors:
 | Incline Bench Press | Upper A, slot 1 | All-time high at 65kg. The primary press. |
 | Pull Up | Upper A slot 2, Upper B slot 1 | Position effect is proven (`docs/findings.md`). First or second, never later. |
 | Iso Lat Row | Upper B, slot 2 | The right lat's lift. Row protocol needs the same movement week to week. |
-| Lateral Raise | Upper A slot 5, Upper C slot 3 | Progressing steadily on the 15–20 band. |
+| Lateral Raise | Upper A slot 5, Upper C slot 3 | Side delts. 8kg since 09-11; four sessions at 15, 15, 15 since (see Progression). |
 
 Everything else rotates. The bolded exercise in each rotate slot is the current call;
 the alternatives are there for a taken machine or a deliberate rotation. Exercises
@@ -133,26 +133,26 @@ The rounding day. Picks up everything the other two sessions don't hit twice a w
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | Rotate — press | **Flat Dumbbell Press** | 3 × 10–12 | TBD |
-| 2 | Rotate — horizontal pull | **Cable Row** · Seated Row · ★ Chest-Supported Row | 3 × 10–12 | TBD |
+| 1 | Rotate — press | **Bench Press (Dumbbell)** | 3 × 10–12 | **26kg** |
+| 2 | Rotate — horizontal pull | **Chest Supported Row** (trial, 1 of 4) · Cable Row · Seated Row | 3 × 10–12 | **18kg** |
 | 3 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
 | 4 | Rotate — rear delt | **Face Pull** · ★ Reverse Flye · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |
-| 5 | Rotate — arms | **Hammer Curl** · Bicep Curl (Barbell) · Preacher Curl | 3 × 10–12 | TBD |
-| 6 | Rotate — core | **Hanging Leg Raise** · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
+| 5 | Rotate — arms | **Hammer Curl** · Bicep Curl (Barbell) · Preacher Curl | 3 × 10–12 | **14kg** |
+| 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
 **Flat DB press is the mid-chest movement** the old programme didn't have. Incline bench
 is the anchor on Monday; this covers the flat pressing pattern without reintroducing
 barbell flat bench (dropped deliberately to prioritise incline). Dumbbell means each
 side works independently, which suits the right-lat asymmetry.
 
-**Cable row spreads back work across all three upper days.** Without it, all back sets
+**The horizontal pull spreads back work across all three upper days.** Without it, all back sets
 land on Monday and Thursday while chest gets work on all three days. This fixes the
 push:pull balance (16 chest : 15 back).
 
-**This is not the right lat's row.** The cable row is a bilateral movement in a rotate
-slot — it carries no pain protocol and no gate. The iso-lateral row on Thursday is the
-measured lift. If the right side talks during a cable row, note it and lighten it, but
-it does not affect the Thursday gate count.
+**This is not the right lat's row.** Whatever runs in slot 2 is a bilateral movement in a
+rotate slot — it carries no pain protocol and no gate. The iso-lateral row on Thursday is the
+measured lift. If the right side talks during it, note it and lighten it, but it does
+not affect the Thursday gate count.
 
 **Hammer curl took the arms slot on 2026-09-24.** The barbell curl at 30kg gave
 8, 8, 7 twice, below this slot's 10–12. That is a rep band the load doesn't fit.
@@ -162,6 +162,19 @@ The neutral grip adds brachialis and grip work. Grip is the one quality
 **Core is programmed, not ad hoc.** Six sets a week across Saturday and Sunday. The old
 programme logged zero core since March — partly a logging gap, partly a programming gap.
 This fixes the programming side.
+
+**First run, 2026-09-26.** Pain(R) 0/10. Three loads set: **DB press 26kg** (24kg × 12,
+then 26kg × 12, 10), **hammer curl 14kg** (12, 12, 12 — a second session at 12s earns
+16kg) and the row below. Slot 1 now carries its Strong name, Bench Press (Dumbbell),
+so the log and the page match. It is the same movement as before.
+**Chest Supported Row is slot 2's call, as a trial.** He ran it in place of the cable
+row (14kg × 12, then 18kg × 10, 10). It was already the standing candidate for this
+slot, and the right side read 0/10. Under the "Trying new exercises" rule it gets four
+runs, then keep or drop; 09-26 was run 1. It is not the iso-lateral row and not on its
+scale. **Face pull** started at 15kg (15 × 12, 12, then 17.5 × 12). It isn't read as a
+drop, and the debrief already asked why, so it holds at 17.5kg. **Toes To Bar**
+(8, 6) ran in the core slot. It is the harder rung of the hanging leg raise and is now
+an alternative in both core slots. The call stays the hanging leg raise.
 
 ## Lower — Sunday (~45 min)
 
@@ -176,7 +189,7 @@ fortnight; this doubles the frequency.
 | 3 | Rotate — quad volume | **Leg Press (Machine)** · Leg Extension | 3 × 10–12 | **80kg** |
 | 4 | Rotate — hamstring | **Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 10–12 | **10kg** |
 | 5 | Rotate — calves | Seated Calf Raise (Plate Loaded) | 3 × 15–20 | **40kg** |
-| 6 | Rotate — core | **Hanging Leg Raise** · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
+| 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
 **Sunday into Tuesday football is 48h.** Peak DOMS for the first few weeks; the
 adaptation catches within a month of consistent training. If the first few Tuesdays are
@@ -244,7 +257,11 @@ adaptation and the physio should sign off on it.
 
 - **Incline bench** — +2.5kg once all four sets hit 8. Currently 65kg.
 - **Lateral raises** — +1kg once 20 holds across all three sets. Currently 8kg, earned
-  on 09-11 (7kg × 20, 20, 20 → 8kg × 15, 15, 15).
+  on 09-11 (7kg × 20, 20, 20 → 8kg × 15, 15, 15). **Four sessions at exactly 15, 15, 15**
+  (09-11, 09-14, 09-21, 09-26). Identical 15s look like stopping at the floor of the
+  band, not failing. The log can't say which, so asked him on 2026-09-26. Until he
+  answers, the cue is to take each set as far as clean reps go, up to 20. The anchor
+  and the load don't change.
 - **Pull-ups** — at 27 reps total fresh. Re-add 5kg once that holds three sessions.
   **Fired by 2026-09-24:** 27, 29, 27, 28, 27 across 09-13 → 09-24. It was held until
   the right lat read green, because goals.md puts injury first. It read 3/10 on the 09-24
@@ -262,8 +279,8 @@ adaptation and the physio should sign off on it.
 
 | Group | Sets/wk | Sources |
 |---|---|---|
-| Chest | 16 | Incline Bench 4 · Chest Fly 3 · Flat DB Press 3 · Dips 3 · Cable Crossover 3 |
-| Back | 15 | Pull Up 3+3 · Iso Lat Row 3 · Lat Pulldown 3 · Cable Row 3 |
+| Chest | 16 | Incline Bench 4 · Chest Fly 3 · DB Bench Press 3 · Dips 3 · Cable Crossover 3 |
+| Back | 15 | Pull Up 3+3 · Iso Lat Row 3 · Lat Pulldown 3 · Chest Supported Row 3 |
 | Side delts | 6 | Lateral Raise 3+3 |
 | Rear delts | 6 | Face Pull 3+3 |
 | Triceps | 6 | Triceps Extension 3 · Dips 3 (+ indirect from 13 pressing sets) |
@@ -298,7 +315,8 @@ Open questions and full working live in `docs/findings.md`. Short version:
   The 50kg iso-lateral ceiling — pain-limited or detraining-limited — is unanswered.
 - **Deadlift on Thursday** (09-24): a one-off, or does it move out of Sunday? **Parked
   by him** for a later conversation; not to be raised until he does.
-- **Flat DB press, cable crossover, cable row loads**: to be established.
+- **Cable crossover load**: to be established. DB press (26kg), chest-supported row
+  (18kg) and hammer curl (14kg) were set on 2026-09-26.
 - **DOMS adaptation**: whether Sunday lower → Tuesday football causes issues in the first
   few weeks.
 - **Whether the old OHP decline was rotation, injury or the trip**: resolvable from the
@@ -340,7 +358,7 @@ added on top.
 
 | Exercise | Slot | What it is for |
 |---|---|---|
-| Chest-Supported Row | Upper B slot 3 or Upper C slot 2 | Removes torso English from the row — may load the right lat with less pain. |
+| Chest-Supported Row | **In trial, Upper C slot 2** — he started it 09-26, run 1 of 4 | Removes torso English from the row — may load the right lat with less pain. |
 | Nordic Curl (eccentric) | Lower slot 4, displacing Leg Curl | Best-evidence hamstring protection for football. Start at 2×4. |
 | Weighted Dips | Upper B slot 4 | Once bodyweight dips hit 12, 12, 12 for three sessions. |
 | Ab Wheel | Upper C slot 6 or Lower slot 6 | Harder core option once hanging leg raises are easy. |

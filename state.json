@@ -186,23 +186,23 @@
     ],
     "upper_c": [
       {
-        "name": "Flat Dumbbell Press",
+        "name": "Bench Press (Dumbbell)",
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 0,
+        "load": 26,
         "unit": "kg"
       },
       {
-        "name": "Cable Row",
+        "name": "Chest Supported Row",
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 0,
+        "load": 18,
         "unit": "kg",
         "alts": [
-          "Seated Row",
-          "Chest-Supported Row"
+          "Cable Row",
+          "Seated Row"
         ]
       },
       {
@@ -230,7 +230,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 0,
+        "load": 14,
         "unit": "kg",
         "alts": [
           "Bicep Curl (Barbell)",
@@ -245,6 +245,7 @@
         "load": 0,
         "unit": "BW",
         "alts": [
+          "Toes To Bar",
           "Plank",
           "Ab Wheel"
         ]
@@ -308,14 +309,15 @@
         "load": 0,
         "unit": "BW",
         "alts": [
+          "Toes To Bar",
           "Plank",
           "Ab Wheel"
         ]
       }
     ]
   },
-  "rx_asof": "2026-09-24",
-  "rx_after": "2026-09-24 Upper B",
+  "rx_asof": "2026-09-26",
+  "rx_after": "2026-09-26 Upper C",
   "row_protocol": {
     "load_left": 60,
     "load_right": 55,
