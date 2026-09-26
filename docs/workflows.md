@@ -53,22 +53,41 @@ routine's instructions, verbatim:
 > to `main`: that is his standing instruction in the repo's CLAUDE.md, so don't create
 > a branch or a pull request.
 >
-> 1. Get the latest `main`. If the repo isn't checked out, first attach it with push
->    access (use your add_repo tool for maxyongg/fitness, access "push", if you have
->    one), then clone it (the command add_repo gives you, or
->    `git clone https://github.com/maxyongg/fitness`). If it is checked out:
->    `git checkout main && git pull origin main`.
+> 1. Get the latest `main` with push access. If the repo is already checked out (look
+>    for `fitness/` under /home/user), `cd` into it and
+>    `git checkout main && git pull origin main`. If it isn't, attach it first with the
+>    add_repo tool (Claude_Code_Remote; try ToolSearch if it isn't listed) for owner
+>    maxyongg, repo fitness, access "push", then clone with the command it gives you
+>    and `git checkout main`. A plain `git clone` without add_repo reads the repo but
+>    can never push to it, so if the repo isn't checked out and add_repo is missing or
+>    refuses, stop and reply "Re-prescription not done: the routine has no push access
+>    to maxyongg/fitness — add the repo to the routine in its settings."
 > 2. Run `python3 represcribe.py pending`. If it prints `pending=false`, stop there:
 >    reply "Nothing to re-prescribe." and end. Read nothing else.
-> 3. If it prints `pending=true`, run `python3 represcribe.py prompt` and do what it
->    says. It is the full brief.
-> 4. Run `python3 represcribe.py finish`. If it reports errors, fix your edits and run
+> 3. Prove you can push before doing any work: `git push --dry-run origin main`. If it
+>    fails, stop, change nothing, and reply "Re-prescription not done:" followed by the
+>    exact error.
+> 4. Run `python3 represcribe.py prompt` and do what it says. It is the full brief.
+> 5. Run `python3 represcribe.py finish`. If it reports errors, fix your edits and run
 >    it again. Never work around it.
-> 5. `git add index.html plan.md log.md state.json`, commit with the subject `finish`
+> 6. `git add index.html plan.md log.md state.json`, commit with the subject `finish`
 >    printed, and `git push origin main`. If the push is rejected,
 >    `git pull --rebase origin main` and push again. If you can't push at all, say
 >    exactly which step failed in your reply.
-> 6. Reply with the two-sentence summary the brief asks for.
+> 7. Reply with the two-sentence summary the brief asks for.
+
+**It must have push access, and at first it didn't (2026-09-26).** The first real run,
+after the 09-26 Upper C, did the whole re-prescription and then couldn't push. The
+routine was created from a Claude session through the remote-session tools, and a
+routine made that way stores no repository and no connectors. So its session had no
+repo checked out and no `add_repo` tool. The repo is public, so a plain `git clone`
+worked, but a clone like that can't push. The re-prescription was done by hand that
+night. **The fix has to be made in the routine's own settings** (claude.ai/code →
+Routines → this routine): add `maxyongg/fitness` as its repository. A Claude session
+can't attach one to a routine. Until that's done, the routine stops at step 1 or 3 and
+says why, in about a minute, instead of doing 12 minutes of work and losing it. The
+same night also turned up a bug in `represcribe.py finish`: running it a second time
+rejected the `state.json` its first run had written. That is fixed.
 
 To change what it does, change `docs/represcribe-prompt.md` or `represcribe.py`; the
 routine reads both fresh each run.
