@@ -40,6 +40,7 @@ EFFORT = "high"
 BUDGET_USD = "3"          # hard stop per run; a normal run costs well under this
 TOOLS = ["Read", "Edit", "Glob", "Grep"]  # `run` only: no shell, the workflow commits
 EDITABLE = {"index.html", "plan.md", "log.md"}
+REBUILT = {"state.json"}  # finish writes it, so a second finish must not reject it
 
 HEADER = re.compile(r"^## (\d{4}-\d{2}-\d{2}) · \w+ · (.+?)\s*$", re.M)
 
@@ -140,7 +141,8 @@ def cmd_finish():
         elif anchors(new_rx) != anchors(old_rx):
             errors.append("an anchor's exercise changed")
 
-    stray = [f for f in git("diff", "--name-only", "HEAD").split() if f not in EDITABLE]
+    stray = [f for f in git("diff", "--name-only", "HEAD").split()
+             if f not in EDITABLE | REBUILT]
     if stray:
         errors.append("changed files it may not touch: " + ", ".join(stray))
 
