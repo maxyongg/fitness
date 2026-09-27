@@ -1,55 +1,49 @@
 {
-  "_generated": "2026-09-26T10:31:36",
+  "_generated": "2026-09-27T04:49:34",
   "_by": "drain.py",
   "last_session": {
-    "date": "2026-09-26",
-    "type": "upper_c",
-    "name": "Upper C",
-    "exercise_count": 6,
+    "date": "2026-09-27",
+    "type": "lower",
+    "name": "Lower",
+    "exercise_count": 5,
     "pain_right_lat": 0,
     "top_sets": [
       {
-        "name": "Bench Press (Dumbbell)",
-        "weight": 24,
-        "best_reps": 12,
-        "set_count": 3
-      },
-      {
-        "name": "Chest Supported Row",
-        "weight": 14,
-        "best_reps": 12,
-        "set_count": 3
-      },
-      {
-        "name": "Lateral Raise (Dumbbell)",
-        "weight": 8,
-        "best_reps": 15,
-        "set_count": 3
-      },
-      {
-        "name": "Face Pull (Cable)",
-        "weight": 15,
-        "best_reps": 12,
-        "set_count": 3
-      },
-      {
-        "name": "Hammer Curl (Dumbbell)",
-        "weight": 14,
-        "best_reps": 12,
-        "set_count": 3
-      },
-      {
-        "name": "Toes To Bar",
-        "weight": "BW",
+        "name": "Squat (Barbell)",
+        "weight": 40,
         "best_reps": 8,
-        "set_count": 2
+        "set_count": 4
+      },
+      {
+        "name": "W1: 50 kg × 8 [Warm-up]",
+        "weight": 70,
+        "best_reps": 8,
+        "set_count": 3
+      },
+      {
+        "name": "Leg Extension (Machine)",
+        "weight": 10,
+        "best_reps": 10,
+        "set_count": 3
+      },
+      {
+        "name": "Kneeling Leg Curl",
+        "weight": 10,
+        "best_reps": 10,
+        "set_count": 3
+      },
+      {
+        "name": "Hollow Body Hold",
+        "weight": "BW",
+        "best_reps": 0,
+        "set_count": 3
       }
     ]
   },
   "next_session": {
-    "type": "lower",
-    "name": "Lower",
-    "expected_date": "2026-09-27"
+    "type": "upper_a",
+    "name": "Upper A",
+    "expected_date": "2026-09-28"
   },
   "slots": {
     "upper_a": [

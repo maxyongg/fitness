@@ -527,6 +527,14 @@ pain(R): 0/10
      The debrief already asked why, so it isn't read as a drop and holds at 17.5kg.
      Toes To Bar (8, 6) ran in the core slot: the harder rung, now an alternative. -->
 
+## 2026-09-27 · Sun · Lower
+pain(R): 0/10
+- Squat (Barbell) — 40kg × 8, 80kg × 5, 5, 5
+- W1: 50 kg × 8 [Warm-up] — 70kg × 8, 8, 80kg × 5
+- Leg Extension (Machine) — 10kg × 10, 10, 10
+- Kneeling Leg Curl — 10kg × 8, 7.5kg × 10, 10
+- Hollow Body Hold — 1:00, 1:00, 0:30
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
