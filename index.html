@@ -1677,20 +1677,34 @@ function parseStrong() {
   var exercises = [];
   var current = null;
 
+  /* A set line opens "Set 2:" or, for a warm-up, "W1:" and may end in a tag like
+     "[Warm-up]". On a bodyweight lift Strong signs the load: "+5 kg × 8" is 5kg added,
+     "-10 kg × 8" is assisted. Unsigned, the "+5" line read as an exercise name, which
+     ended the pull-ups after set 1 (09-28); the "W1:" line did the same to 09-27. */
+  var SET_PFX = "^(?:(?:Set\\s*\\d+\\s*[:.]?|[A-Z]\\d+\\s*:)\\s*)?";
+  var RE_WT = new RegExp(SET_PFX + "([+\\-−]?)\\s*(\\d+(?:\\.\\d+)?)\\s*(?:kg|lbs?)?\\s*[*xX×]\\s*(\\d+)");
+  var RE_BW = new RegExp(SET_PFX + "(\\d+)\\s*(?:reps?)?$", "i");
+  var RE_TIMED = new RegExp(SET_PFX + "(\\d+):(\\d{2})$");
+
   for (var i = 0; i < lines.length; i++) {
     var line = lines[i].trim();
     if (!line) continue;
 
     var isSet = false;
+    var tag = line.match(/\s*\[([^\]]*)\]$/);
+    var setLine = tag ? line.slice(0, tag.index) : line;
+    var warmup = !!tag && /warm/i.test(tag[1]);
 
-    var wtReps = line.match(/^(?:Set\s*\d+\s*[:.]?\s*)?(\d+(?:\.\d+)?)\s*(?:kg|lbs?)?\s*[*xX×]\s*(\d+)/);
+    var wtReps = setLine.match(RE_WT);
     if (wtReps && current) {
-      current.sets.push({ weight: parseFloat(wtReps[1]), reps: parseInt(wtReps[2]) });
+      var w = parseFloat(wtReps[2]);
+      if (wtReps[1]) { current.bw = true; if (wtReps[1] !== "+") w = -w; }
+      current.sets.push({ weight: w, reps: parseInt(wtReps[3]) });
       isSet = true;
     }
 
     if (!isSet) {
-      var bw = line.match(/^(?:Set\s*\d+\s*[:.]?\s*)?(\d+)\s*(?:reps?)?$/i);
+      var bw = setLine.match(RE_BW);
       if (bw && current) {
         current.sets.push({ weight: 0, reps: parseInt(bw[1]) });
         isSet = true;
@@ -1698,13 +1712,15 @@ function parseStrong() {
     }
 
     if (!isSet) {
-      var timed = line.match(/^(?:Set\s*\d+\s*[:.]?\s*)?(\d+):(\d{2})\s*$/);
+      var timed = setLine.match(RE_TIMED);
       if (timed && current) {
         var secs = parseInt(timed[1]) * 60 + parseInt(timed[2]);
         current.sets.push({ weight: 0, reps: 0, duration: secs });
         isSet = true;
       }
     }
+
+    if (isSet && warmup) current.sets[current.sets.length - 1].warmup = true;
 
     if (!isSet) {
       var csv = line.match(/^(\d+\s*,\s*)+\d+$/);
@@ -1778,7 +1794,8 @@ function renderParseResult(exercises, detected) {
   exercises.forEach(function(ex, i) {
     var setsStr = ex.sets.map(function(s) {
       if (s.duration) return fmtDuration(s.duration);
-      return s.weight ? s.weight + "×" + s.reps : s.reps;
+      var str = s.weight ? (ex.bw && s.weight > 0 ? "+" : "") + s.weight + "×" + s.reps : s.reps;
+      return s.warmup ? str + " (w)" : str;
     }).join(" · ");
     h += '<div class="parsed-ex' + ssCardClass(i, exercises) + '"><div class="pe-name">' + esc(ex.name) + '</div>'
       + '<div class="pe-sets">' + setsStr + '</div>'
@@ -1847,8 +1864,8 @@ async function saveImport(sessionId) {
       if (!inGroup && ex.supersetNext) { ssGroup++; inGroup = true; }
       var entry = { name: ex.name, sets: ex.sets };
       var hasWeight = ex.sets.some(function(s) { return s.weight > 0; });
-      if (hasWeight) entry.weight = ex.sets[0].weight;
-      else entry.bodyweight = true;
+      if (ex.bw || !hasWeight) entry.bodyweight = true;
+      else entry.weight = ex.sets[0].weight;
       if (ex.notes) entry.notes = ex.notes;
       if (inGroup) entry.supersetGroup = ssGroup;
       if (!ex.supersetNext) inGroup = false;

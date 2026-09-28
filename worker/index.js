@@ -208,14 +208,17 @@ function formatSets(ex) {
     const reps = sets.map((st) => st.reps).join(", ");
     return "L " + ex.weightL + "kg × " + reps + ", R " + ex.weightR + "kg × " + reps;
   }
-  if (sets.some((st) => st.weight > 0)) {
+  /* On a bodyweight lift the per-set weight is added load (+5kg) or assistance (-10kg). */
+  const bw = !!ex.bodyweight;
+  if (sets.some((st) => (bw ? st.weight : st.weight > 0) || st.warmup)) {
     const groups = [];
     for (const st of sets) {
       const g = groups[groups.length - 1];
-      if (g && g.w === st.weight) g.reps.push(st.reps);
-      else groups.push({ w: st.weight, reps: [st.reps] });
+      if (g && g.w === st.weight && g.warm === !!st.warmup) g.reps.push(st.reps);
+      else groups.push({ w: st.weight, warm: !!st.warmup, reps: [st.reps] });
     }
-    return groups.map((g) => (g.w > 0 ? g.w + "kg" : "bodyweight") + " × " + g.reps.join(", ")).join(", ");
+    const load = (w) => (!w ? "bodyweight" : bw ? (w > 0 ? "+" : "-") + Math.abs(w) + "kg" : w + "kg");
+    return groups.map((g) => load(g.w) + " × " + g.reps.join(", ") + (g.warm ? " (warm-up)" : "")).join(", ");
   }
   const reps = sets.map((st) => st.reps).join(", ");
   if (ex.bodyweight || !(ex.weight > 0)) return "bodyweight × " + reps;

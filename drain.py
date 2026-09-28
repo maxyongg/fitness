@@ -123,6 +123,9 @@ def format_exercise(ex):
         return f"{name} — {', '.join(parts)}"
 
     if is_bw:
+        # Added load (+5kg) or assistance (-10kg) on a bodyweight lift, per set.
+        if any(s.get("weight", 0) for s in sets) or any(s.get("warmup") for s in sets):
+            return format_weighted(name, sets, bw=True)
         reps = group_reps_bw(sets)
         return f"{name} — bodyweight × {reps}"
 
@@ -155,20 +158,31 @@ def group_reps_bw(sets):
     return ", ".join(str(r) for r in reps)
 
 
-def format_weighted(name, sets):
+def format_load(w, bw=False):
+    if not bw:
+        return f"{format_weight(w)}kg"
+    if w == 0:
+        return "bodyweight"
+    return f"{'+' if w > 0 else '-'}{format_weight(abs(w))}kg"
+
+
+def format_weighted(name, sets, bw=False):
     groups = []
     i = 0
     while i < len(sets):
         s = sets[i]
         w = s.get("weight", 0)
+        warm = bool(s.get("warmup"))
         reps_at_weight = []
-        while i < len(sets) and sets[i].get("weight", 0) == w:
+        while (i < len(sets) and sets[i].get("weight", 0) == w
+               and bool(sets[i].get("warmup")) == warm):
             r = sets[i].get("reps", 0)
             if r > 0:
                 reps_at_weight.append(str(r))
             i += 1
         if reps_at_weight:
-            groups.append(f"{format_weight(w)}kg × {', '.join(reps_at_weight)}")
+            group = f"{format_load(w, bw)} × {', '.join(reps_at_weight)}"
+            groups.append(group + (" (warm-up)" if warm else ""))
 
     return f"{name} — {', '.join(groups)}"
 
@@ -322,7 +336,11 @@ def build_state(data, rx):
         best_rep = max((s.get("reps", 0) for s in sets), default=0)
         w = ex.get("weight", 0)
         if ex.get("bodyweight"):
+            loads = [s.get("weight", 0) for s in sets if s.get("weight", 0)]
             w = "BW"
+            if loads:
+                top = max(loads, key=abs)
+                w += f"{'+' if top > 0 else '-'}{format_weight(abs(top))}"
         elif "weightL" in ex:
             w = f"L{ex['weightL']}/R{ex['weightR']}"
         top_sets.append({
