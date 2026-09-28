@@ -1,0 +1,167 @@
+{
+  "key": "2026-09-28-upper-a",
+  "date": "2026-09-28",
+  "session": "Upper A",
+  "session_id": "upper_a",
+  "model": "claude-sonnet-5",
+  "created": "2026-09-28T11:57:56.416Z",
+  "logged": {
+    "date": "2026-09-28",
+    "session": "Upper A",
+    "session_id": "upper_a",
+    "exercises": [
+      {
+        "name": "Incline Bench Press (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 65,
+            "reps": 8
+          },
+          {
+            "weight": 65,
+            "reps": 8
+          },
+          {
+            "weight": 70,
+            "reps": 8
+          },
+          {
+            "weight": 50,
+            "reps": 12
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 10
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Chest Fly",
+        "sets": [
+          {
+            "weight": 65,
+            "reps": 12
+          },
+          {
+            "weight": 65,
+            "reps": 12
+          },
+          {
+            "weight": 65,
+            "reps": 8
+          }
+        ],
+        "weight": 65
+      },
+      {
+        "name": "Reverse Fly (Machine)",
+        "sets": [
+          {
+            "weight": 42.5,
+            "reps": 8
+          },
+          {
+            "weight": 42.5,
+            "reps": 8
+          },
+          {
+            "weight": 42.5,
+            "reps": 10
+          }
+        ],
+        "weight": 42.5
+      },
+      {
+        "name": "Lateral Raise (Dumbbell)",
+        "sets": [
+          {
+            "weight": 8,
+            "reps": 16
+          },
+          {
+            "weight": 8,
+            "reps": 16
+          },
+          {
+            "weight": 8,
+            "reps": 16
+          }
+        ],
+        "weight": 8
+      },
+      {
+        "name": "One Handed Triceps Pull",
+        "sets": [
+          {
+            "weight": 7.5,
+            "reps": 10
+          },
+          {
+            "weight": 7.5,
+            "reps": 10
+          },
+          {
+            "weight": 10,
+            "reps": 10
+          }
+        ],
+        "weight": 7.5
+      },
+      {
+        "name": "Hollow Body Hold",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 0,
+            "duration": 60
+          },
+          {
+            "weight": 0,
+            "reps": 0,
+            "duration": 60
+          }
+        ],
+        "bodyweight": true,
+        "supersetGroup": 1
+      },
+      {
+        "name": "Push Up",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 15
+          },
+          {
+            "weight": 0,
+            "reps": 15
+          }
+        ],
+        "bodyweight": true,
+        "supersetGroup": 1
+      }
+    ],
+    "pain": {
+      "right_lat": 1
+    },
+    "notes": "Imported from Strong",
+    "extra": ""
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Incline Bench got two sets at the prescribed 65kg (8, 8) before jumping to 70kg × 8, then dropping to 50kg × 12 — the 4×5-8 @ 65kg wasn't completed as written, so the 67.5kg trigger doesn't apply even though both 65kg sets hit 8. Pull-Up shows a single set, bodyweight × 10, well short of the 3×AMRAP @ 5kg the prescription called for. Chest Fly reached 65kg × 12, 12 before the third set fell to 8 — the 10-12 band wasn't held across all three. Lateral Raise hit 8kg × 16, 16, 16. Reverse Fly stood in for Face Pull again, as on 09-21 — a rotate swap, not a comparable number. Right lat read 1/10, clean green.\n\nTrend: Pull-up totals were strong across the last two logged sessions — 33 reps on 09-21, 27 on 09-24 — both clearing the bar that just earned the 5kg reload. Today's 10, all in one set, breaks that run sharply. Incline Bench's 70kg × 8 is a number that hasn't appeared before, ahead of where the anchor currently sits. Lateral Raise's 16, 16, 16 breaks a four-session stall at 15, 15, 15 running from 09-11 to 09-26 — closer to the 20-hold target. Chest Fly has now missed the clean 10-12 band on the third set twice running, 09-21 and today, so the load holds at 65kg.\n\nRight lat: 1/10, a clean green, but Upper A carries no row work, so it doesn't add to the right iso-lateral row's count. Thursday's session is the next chance to get a reading during the actual set.\n\nNext session: Upper B, Thu 1 Oct. Pull-up leads at slot 1, three sets stopping two short of failure. Iso Lateral Row: left holds 60kg, right stays at 55kg — rate the pain during the set itself, since three greens there earns the right side its next +2.5kg.\n\nQuestion: What happened with pull-ups today — cut to one set for a reason, or is that everything that was done? It changes whether Thursday's slot-1 pull-up should be treated as normal or dialled back.",
+      "at": "2026-09-28T11:57:56.416Z"
+    }
+  ]
+}
