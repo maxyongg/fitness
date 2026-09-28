@@ -1,34 +1,46 @@
 {
-  "_generated": "2026-09-27T04:49:34",
+  "_generated": "2026-09-28T11:56:54",
   "_by": "drain.py",
   "last_session": {
-    "date": "2026-09-27",
-    "type": "lower",
-    "name": "Lower",
-    "exercise_count": 5,
-    "pain_right_lat": 0,
+    "date": "2026-09-28",
+    "type": "upper_a",
+    "name": "Upper A",
+    "exercise_count": 8,
+    "pain_right_lat": 1,
     "top_sets": [
       {
-        "name": "Squat (Barbell)",
+        "name": "Incline Bench Press (Barbell)",
         "weight": 40,
-        "best_reps": 8,
-        "set_count": 4
+        "best_reps": 12,
+        "set_count": 5
       },
       {
-        "name": "W1: 50 kg × 8 [Warm-up]",
-        "weight": 70,
-        "best_reps": 8,
+        "name": "Pull Up",
+        "weight": "BW",
+        "best_reps": 10,
+        "set_count": 1
+      },
+      {
+        "name": "Chest Fly",
+        "weight": 65,
+        "best_reps": 12,
         "set_count": 3
       },
       {
-        "name": "Leg Extension (Machine)",
-        "weight": 10,
+        "name": "Reverse Fly (Machine)",
+        "weight": 42.5,
         "best_reps": 10,
         "set_count": 3
       },
       {
-        "name": "Kneeling Leg Curl",
-        "weight": 10,
+        "name": "Lateral Raise (Dumbbell)",
+        "weight": 8,
+        "best_reps": 16,
+        "set_count": 3
+      },
+      {
+        "name": "One Handed Triceps Pull",
+        "weight": 7.5,
         "best_reps": 10,
         "set_count": 3
       },
@@ -36,14 +48,20 @@
         "name": "Hollow Body Hold",
         "weight": "BW",
         "best_reps": 0,
-        "set_count": 3
+        "set_count": 2
+      },
+      {
+        "name": "Push Up",
+        "weight": "BW",
+        "best_reps": 15,
+        "set_count": 2
       }
     ]
   },
   "next_session": {
-    "type": "upper_a",
-    "name": "Upper A",
-    "expected_date": "2026-09-28"
+    "type": "upper_b",
+    "name": "Upper B",
+    "expected_date": "2026-10-01"
   },
   "slots": {
     "upper_a": [
@@ -317,5 +335,8 @@
     "load_right": 55,
     "status": "see plan.md, The row protocol"
   },
-  "flags": []
+  "flags": [
+    "pain(R) 1/10 — green light",
+    "Pull-up: top set 10, total 10"
+  ]
 }
