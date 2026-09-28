@@ -756,6 +756,7 @@ var painVal = null;
 var parsedData = null;
 var importPain = null;
 var importNotes = "";
+var importDate = null;
 
 /* ---- init ---- */
 (function init() {
@@ -1505,23 +1506,41 @@ function getHistory() {
   } catch (e) { return []; }
 }
 
+/* Saving the same date and session again is a correction: it replaces the entry. */
+function isSaved(date, sid) {
+  return getHistory().some(function(h) { return h.date === date && h.session_id === sid; });
+}
+
 function addToHistory(data) {
   var hist = getHistory();
-  hist.unshift(data);
+  var at = -1;
+  hist.forEach(function(h, i) { if (h.date === data.date && h.session_id === data.session_id) at = i; });
+  if (at !== -1) hist[at] = data;
+  else hist.unshift(data);
   if (hist.length > 50) hist = hist.slice(0, 50);
   try { localStorage.setItem("matchday_history", JSON.stringify(hist)); } catch (e) {}
   renderRxStatus();
 }
 
+/* Loads grouped the way log.md writes them: "40kg × 10, 65kg × 8, 8". A set carries its
+   own weight when it came from Strong; a set logged on Train takes the exercise's. On a
+   bodyweight lift the weight is added load (+5kg) or assistance (-10kg). */
 function fmtSets(ex) {
-  var reps = ex.sets.map(function(s) { return s.duration ? fmtDuration(s.duration) : s.reps; })
-    .filter(function(r) { return r !== 0 && r !== "0"; }).join(", ");
-  var hasDuration = ex.sets.some(function(s) { return s.duration; });
-  var wt = "";
-  if (ex.weightL !== undefined) wt = "L " + ex.weightL + " R " + ex.weightR + "kg";
-  else if (ex.bodyweight) wt = hasDuration ? "" : "BW";
-  else if (ex.weight) wt = ex.weight + "kg";
-  return (wt ? wt + " × " : "") + reps;
+  var sets = ex.sets.filter(function(s) { return s.reps || s.duration; });
+  var val = function(s) { return s.duration ? fmtDuration(s.duration) : s.reps; };
+  if (ex.weightL !== undefined) return "L " + ex.weightL + " R " + ex.weightR + "kg × " + sets.map(val).join(", ");
+  var timed = sets.some(function(s) { return s.duration; });
+  var groups = [];
+  sets.forEach(function(s) {
+    var w = s.weight !== undefined ? s.weight : ex.weight || 0;
+    var g = groups[groups.length - 1];
+    if (g && g.w === w && g.warm === !!s.warmup) g.v.push(val(s));
+    else groups.push({ w: w, warm: !!s.warmup, v: [val(s)] });
+  });
+  return groups.map(function(g) {
+    var load = !g.w ? (ex.bodyweight && !timed ? "BW" : "") : (ex.bodyweight && g.w > 0 ? "+" : "") + g.w + "kg";
+    return (load ? load + " × " : "") + g.v.join(", ") + (g.warm ? " (w)" : "");
+  }).join(", ");
 }
 
 function renderHistory() {
@@ -1676,6 +1695,7 @@ function parseStrong() {
   var lines = text.split(/\n/);
   var exercises = [];
   var current = null;
+  importDate = null;
 
   /* A set line opens "Set 2:" or, for a warm-up, "W1:" and may end in a tag like
      "[Warm-up]". On a bodyweight lift Strong signs the load: "+5 kg × 8" is 5kg added,
@@ -1739,8 +1759,11 @@ function parseStrong() {
         continue;
       }
 
-      if (line.match(/^\d{1,2}\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/i)) continue;
-      if (line.match(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b/i)) continue;
+      if (line.match(/^\d{1,2}\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/i)
+          || line.match(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b/i)) {
+        importDate = importDate || strongDate(line);
+        continue;
+      }
       if (line.match(/^(Morning|Afternoon|Evening|Night|Workout)/i)) continue;
       if (line.match(/^\d{4}-\d{2}-\d{2}/)) continue;
       if (line.match(/^Duration:/i)) continue;
@@ -1762,7 +1785,30 @@ function parseStrong() {
   }
 
   parsedData = exercises;
-  renderParseResult(exercises, detectSession(exercises));
+  var detected = detectSession(exercises);
+  /* A correction keeps the pain reading and notes given the first time. */
+  var date = importDate || isoDate(new Date());
+  getHistory().forEach(function(h) {
+    if (h.date !== date || h.session_id !== (detected || "import")) return;
+    importPain = h.pain ? h.pain.right_lat : null;
+    importNotes = h.notes && h.notes !== "Imported from Strong" ? h.notes : "";
+  });
+  renderParseResult(exercises, detected);
+}
+
+/* "Monday, 28 September 2026 at 6:30 PM" (or "September 28, 2026") → "2026-09-28".
+   Without it an import saved after midnight would log to the wrong day. */
+function strongDate(line) {
+  var m = line.match(/\b(\d{1,2})\s+([A-Za-z]{3})[a-z]*\.?,?\s+(\d{4})\b/);
+  var d = m && m[1], mon = m && m[2], y = m && m[3];
+  if (!m) {
+    m = line.match(/\b([A-Za-z]{3})[a-z]*\.?\s+(\d{1,2}),?\s+(\d{4})\b/);
+    if (!m) return null;
+    mon = m[1]; d = m[2]; y = m[3];
+  }
+  var mi = SHORT_MON.map(function(x) { return x.toLowerCase(); }).indexOf(mon.toLowerCase());
+  if (mi === -1) return null;
+  return y + "-" + (mi < 9 ? "0" : "") + (mi + 1) + "-" + (+d < 10 ? "0" : "") + (+d);
 }
 
 function detectSession(exercises) {
@@ -1788,8 +1834,12 @@ function fmtDuration(secs) {
 }
 
 function renderParseResult(exercises, detected) {
+  var date = importDate || isoDate(new Date());
+  var p = date.split("-");
   var h = '<div class="parsed-detect">' + exercises.length + ' exercises'
-    + (detected ? ' · <span class="pill">' + RX.sessions[detected].name + '</span>' : ' · session not recognised') + '</div>';
+    + (detected ? ' · <span class="pill">' + RX.sessions[detected].name + '</span>' : ' · session not recognised')
+    + ' · ' + (+p[2]) + ' ' + SHORT_MON[+p[1] - 1] + '</div>';
+  var correcting = isSaved(date, detected || "import");
 
   exercises.forEach(function(ex, i) {
     var setsStr = ex.sets.map(function(s) {
@@ -1820,9 +1870,12 @@ function renderParseResult(exercises, detected) {
     + '<textarea class="field" id="import-notes" oninput="importNotes = this.value" style="margin-top:10px"'
     + ' placeholder="Notes — how the right side felt, why a set stopped, a swap…">' + esc(importNotes) + '</textarea></div>';
 
+  if (correcting) h += '<p class="page-sub" style="margin-top:14px">Already saved. Saving again corrects it —'
+    + ' it replaces the entry in the log and History, and redoes the debrief.</p>';
   h += '<div style="margin-top:14px">'
     + '<button class="btn btn-pri" onclick="saveImport(\'' + (detected || "") + '\')"'
-    + (!getToken() ? ' disabled title="Add a GitHub token first"' : '') + '>Save to inbox</button>'
+    + (!getToken() ? ' disabled title="Add a GitHub token first"' : '') + '>'
+    + (correcting ? "Save correction" : "Save to inbox") + '</button>'
     + '<button class="btn btn-ghost" onclick="clearImport()">Clear</button></div>';
 
   document.getElementById("parse-result").innerHTML = h;
@@ -1851,13 +1904,12 @@ function toggleSS(i) {
 async function saveImport(sessionId) {
   if (!parsedData || !getToken()) return;
 
-  var today = isoDate(new Date());
   var sessionName = sessionId ? RX.sessions[sessionId].name : "Imported";
 
   var ssGroup = 0;
   var inGroup = false;
   var data = {
-    date: today,
+    date: importDate || isoDate(new Date()),
     session: sessionName,
     session_id: sessionId || "import",
     exercises: parsedData.map(function(ex) {
@@ -1894,6 +1946,7 @@ function clearImport() {
   parsedData = null;
   importPain = null;
   importNotes = "";
+  importDate = null;
 }
 
 /* ---- toast ---- */

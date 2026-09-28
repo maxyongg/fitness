@@ -188,8 +188,23 @@ def format_weighted(name, sets, bw=False):
 
 
 def append_to_log(entry_text):
+    """Append the session's block, or replace the block already logged for the same date
+    and session: the phone page re-saves a session to correct it, and a correction must
+    not log it twice. Only the header and the lines under it up to the first blank line
+    are replaced, so a programming comment below the block survives."""
     with open(LOG, "r") as f:
         content = f.read()
+
+    header = entry_text.split("\n", 1)[0]
+    lines = content.split("\n")
+    if header in lines:
+        start = end = lines.index(header)
+        while end < len(lines) and lines[end].strip():
+            end += 1
+        lines[start:end] = entry_text.split("\n")
+        with open(LOG, "w") as f:
+            f.write("\n".join(lines))
+        return "replaced"
 
     baseline_marker = "<!-- Baseline at handover"
     if baseline_marker in content:
@@ -202,6 +217,7 @@ def append_to_log(entry_text):
 
     with open(LOG, "w") as f:
         f.write(new_content)
+    return "appended"
 
 
 def _js_object_to_json(src):
@@ -448,6 +464,14 @@ def build_editorial(data, state):
     return "\n".join(lines)
 
 
+def last_logged_date():
+    try:
+        with open(STATE) as f:
+            return json.load(f)["last_session"]["date"]
+    except (OSError, ValueError, KeyError):
+        return ""
+
+
 def main():
     files = find_inbox_files()
     if not files:
@@ -462,13 +486,15 @@ def main():
 
         data = parse_inbox(path)
         entry = to_log_entry(data)
-        append_to_log(entry)
-        print(f"  → appended to log.md")
+        print(f"  → {append_to_log(entry)} in log.md")
 
         state = build_state(data, rx)
-        with open(STATE, "w") as f:
-            json.dump(state, f, indent=2, ensure_ascii=False)
-        print(f"  → state.json updated")
+        if data["date"] >= last_logged_date():
+            with open(STATE, "w") as f:
+                json.dump(state, f, indent=2, ensure_ascii=False)
+            print(f"  → state.json updated")
+        else:
+            print(f"  → state.json kept: a correction to an older session")
 
         editorial = build_editorial(data, state)
         print()
