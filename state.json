@@ -1,5 +1,5 @@
 {
-  "_generated": "2026-09-28T11:56:54",
+  "_generated": "2026-09-28T12:08:55",
   "_by": "drain.py",
   "last_session": {
     "date": "2026-09-28",
@@ -16,9 +16,9 @@
       },
       {
         "name": "Pull Up",
-        "weight": "BW",
+        "weight": "BW+5",
         "best_reps": 10,
-        "set_count": 1
+        "set_count": 3
       },
       {
         "name": "Chest Fly",
@@ -337,6 +337,6 @@
   },
   "flags": [
     "pain(R) 1/10 — green light",
-    "Pull-up: top set 10, total 10"
+    "Pull-up: top set 10, total 26"
   ]
 }

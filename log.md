@@ -530,7 +530,7 @@ pain(R): 0/10
 ## 2026-09-27 · Sun · Lower
 pain(R): 0/10
 - Squat (Barbell) — 40kg × 8, 80kg × 5, 5, 5
-- W1: 50 kg × 8 [Warm-up] — 70kg × 8, 8, 80kg × 5
+- ? — 50kg × 8 (warm-up), 70kg × 8, 8, 80kg × 5 | note: exercise name lost on import
 - Leg Extension (Machine) — 10kg × 10, 10, 10
 - Kneeling Leg Curl — 10kg × 8, 7.5kg × 10, 10
 - Hollow Body Hold — 1:00, 1:00, 0:30
@@ -538,7 +538,7 @@ pain(R): 0/10
 ## 2026-09-28 · Mon · Upper A
 pain(R): 1/10
 - Incline Bench Press (Barbell) — 40kg × 10, 65kg × 8, 8, 70kg × 8, 50kg × 12
-- Pull Up — bodyweight × 10
+- Pull Up — bodyweight × 10, +5kg × 8, 8
 - Chest Fly — 65kg × 12, 12, 8
 - Reverse Fly (Machine) — 42.5kg × 8, 8, 10
 - Lateral Raise (Dumbbell) — 8kg × 16, 16, 16
