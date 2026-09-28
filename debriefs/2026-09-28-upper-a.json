@@ -4,7 +4,7 @@
   "session": "Upper A",
   "session_id": "upper_a",
   "model": "claude-sonnet-5",
-  "created": "2026-09-28T11:57:56.416Z",
+  "created": "2026-09-28T12:34:58.439Z",
   "logged": {
     "date": "2026-09-28",
     "session": "Upper A",
@@ -42,6 +42,14 @@
           {
             "weight": 0,
             "reps": 10
+          },
+          {
+            "weight": 5,
+            "reps": 8
+          },
+          {
+            "weight": 5,
+            "reps": 8
           }
         ],
         "bodyweight": true
@@ -132,8 +140,7 @@
             "duration": 60
           }
         ],
-        "bodyweight": true,
-        "supersetGroup": 1
+        "bodyweight": true
       },
       {
         "name": "Push Up",
@@ -147,8 +154,7 @@
             "reps": 15
           }
         ],
-        "bodyweight": true,
-        "supersetGroup": 1
+        "bodyweight": true
       }
     ],
     "pain": {
@@ -160,8 +166,8 @@
   "thread": [
     {
       "role": "coach",
-      "text": "Today: Incline Bench got two sets at the prescribed 65kg (8, 8) before jumping to 70kg × 8, then dropping to 50kg × 12 — the 4×5-8 @ 65kg wasn't completed as written, so the 67.5kg trigger doesn't apply even though both 65kg sets hit 8. Pull-Up shows a single set, bodyweight × 10, well short of the 3×AMRAP @ 5kg the prescription called for. Chest Fly reached 65kg × 12, 12 before the third set fell to 8 — the 10-12 band wasn't held across all three. Lateral Raise hit 8kg × 16, 16, 16. Reverse Fly stood in for Face Pull again, as on 09-21 — a rotate swap, not a comparable number. Right lat read 1/10, clean green.\n\nTrend: Pull-up totals were strong across the last two logged sessions — 33 reps on 09-21, 27 on 09-24 — both clearing the bar that just earned the 5kg reload. Today's 10, all in one set, breaks that run sharply. Incline Bench's 70kg × 8 is a number that hasn't appeared before, ahead of where the anchor currently sits. Lateral Raise's 16, 16, 16 breaks a four-session stall at 15, 15, 15 running from 09-11 to 09-26 — closer to the 20-hold target. Chest Fly has now missed the clean 10-12 band on the third set twice running, 09-21 and today, so the load holds at 65kg.\n\nRight lat: 1/10, a clean green, but Upper A carries no row work, so it doesn't add to the right iso-lateral row's count. Thursday's session is the next chance to get a reading during the actual set.\n\nNext session: Upper B, Thu 1 Oct. Pull-up leads at slot 1, three sets stopping two short of failure. Iso Lateral Row: left holds 60kg, right stays at 55kg — rate the pain during the set itself, since three greens there earns the right side its next +2.5kg.\n\nQuestion: What happened with pull-ups today — cut to one set for a reason, or is that everything that was done? It changes whether Thursday's slot-1 pull-up should be treated as normal or dialled back.",
-      "at": "2026-09-28T11:57:56.416Z"
+      "text": "Today: Incline Bench opened to plan — 65kg × 8, 8 — then jumped to 70kg × 8 before dropping to 50kg × 12 for the last set. That's three sets at or above the prescribed 65kg × 8, but not the uniform 4×65kg the progression rule needs, so the +2.5kg hasn't technically been earned even though you've already handled more than that for a full set. Pull-ups held slot 2 as prescribed: bodyweight × 10, then +5kg × 8, 8 — first session logged with the added weight. Chest Fly at 65kg went 12, 12, 8 — two sets beat the top of range, third fell short. Slot 4 was Reverse Fly (42.5kg × 8, 8, 10) rather than the prescribed Face Pull, so no read on that progression today. Lateral Raise moved to 8kg × 16, 16, 16.\n\nTrend: Lateral Raise breaks a four-session stall at 15, 15, 15 (09-11 through 09-26) — still short of the 20-hold target for 9kg, but moving. Chest Fly's third set (8) is the one thing holding back the 65kg-for-all-three progression that's been close since 09-21. One Handed Triceps Pull crept up mid-session (7.5kg × 10, 10 → 10kg × 10) without the required two full sessions at range on 7.5kg first — worth confirming that was deliberate.\n\nRight lat: 1/10, green. No rows today since this is Upper A, but it's a good signal heading into Thursday, where the right needs its second green at 55kg after 09-24's 3/10.\n\nNext session: Upper B, Thu 1 Oct. Pull-ups lead, stop two short of failure. Left row 60kg, right holds 55kg — rate pain during the set itself, not just session-level, since that number decides whether the right earns +2.5kg. Lat Pulldown: chase 12 on all three at 67kg.\n\nQuestion: the incline jump to 70kg then drop to 50kg for the last set — was that a deliberate ramp/test, or a plate mix-up? It changes whether 67.5kg should already be loaded next Monday.",
+      "at": "2026-09-28T12:34:58.439Z"
     }
   ]
 }
