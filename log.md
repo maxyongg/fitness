@@ -546,6 +546,31 @@ pain(R): 1/10
 - Hollow Body Hold — 1:00, 1:00
 - Push Up — bodyweight × 15, 15
 
+<!-- Re-prescribed by hand on 2026-10-01, covering 09-27 Lower and 09-28 Upper A. The
+     22:00 routine ran on both nights and stopped at step 1 each time: it still has no
+     repo attached, so it can't push. The page read "Prescribed after Upper C" for
+     three days.
+
+     **Incline 65 × 8, 8, 70 × 8, then 50 × 12.** He told the debrief the last set is
+     always a back-off, and every incline entry ends that way. Every working set hit 8,
+     so the rule fired: **67.5kg from 10-05.** Pull-ups +5kg × 8, 8 at 1/10; the weight
+     stays. Chest fly 12, 12, 8: hold 65. **Lateral raise 16, 16, 16**, the first move
+     off 15 in five sessions.
+
+     **Rotate calls follow his picks on Upper A.** The reverse fly machine ran both
+     Mondays (42.5 × 8, 8, 7, then 8, 8, 10), and the one-handed triceps pull ran
+     09-14 and 09-28 (7.5 × 10, 10, then 10 × 10). Both are now the calls, at 42.5kg
+     and 10kg.
+
+     **Lower 09-27:** squat 80 × 5, 5, 5 against a 70kg prescription. The knees aren't
+     recorded, so it holds at 70 and the page asks. The second lift's name was lost on
+     import; asked in RX.note, not guessed. **Kneeling leg curl to 7.5kg**: 10kg gave
+     8s twice, and he dropped it himself. Hollow body hold reached 1:00 on both days, up
+     from 0:30.
+
+     **Upper B today:** right row holds 55kg (1 of 3; off-row greens don't count), left
+     60. Cable crossover set at 12.5kg from 09-07. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

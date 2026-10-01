@@ -57,7 +57,7 @@ The anchors:
 | Incline Bench Press | Upper A, slot 1 | All-time high at 65kg. The primary press. |
 | Pull Up | Upper A slot 2, Upper B slot 1 | Position effect is proven (`docs/findings.md`). First or second, never later. |
 | Iso Lat Row | Upper B, slot 2 | The right lat's lift. Row protocol needs the same movement week to week. |
-| Lateral Raise | Upper A slot 5, Upper C slot 3 | Side delts. 8kg since 09-11; four sessions at 15, 15, 15 since (see Progression). |
+| Lateral Raise | Upper A slot 5, Upper C slot 3 | Side delts. 8kg since 09-11; four sessions at 15, 15, 15, then 16s on 09-28 (see Progression). |
 
 Everything else rotates. The bolded exercise in each rotate slot is the current call;
 the alternatives are there for a taken machine or a deliberate rotation. Exercises
@@ -69,12 +69,12 @@ The push-heavy upper day. Incline bench leads.
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | **Anchor** | Incline Bench Press (Barbell) | 4 × 5–8 | **65kg** |
+| 1 | **Anchor** | Incline Bench Press (Barbell) | 4 × 5–8 (last set a back-off) | **67.5kg** from 10-05 |
 | 2 | **Anchor** | Pull Up | 3 × AMRAP | **+5kg** from 09-28 |
 | 3 | Rotate — chest isolation | **Chest Fly** · Cable Crossover · Incline Chest Press | 3 × 10–12 | **65kg**, reps first |
-| 4 | Rotate — rear delt | **Face Pull** · ★ Reverse Flye · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |
+| 4 | Rotate — rear delt | **Reverse Fly (Machine)** · Face Pull · ★ Bent-Over Rear-Delt Raise | 3 × 8–12 | **42.5kg** |
 | 5 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
-| 6 | Rotate — triceps | **Triceps Extension** · ★ Skullcrusher | 3 × 10–12 | **17.5kg** |
+| 6 | Rotate — triceps | **One Handed Triceps Pull** · Triceps Extension · ★ Skullcrusher | 3 × 10–12 | **10kg** |
 
 Pull-ups at slot 2: behind only the anchor press, they stay fresh. The position effect
 (`docs/findings.md`) says they need to be early — position 2 for five months gave 24–32
@@ -90,6 +90,25 @@ delts instead, covering the 0.8 sets/week gap from the old programme.
 **Triceps Extension has stalled at 17.5kg for seven sessions.** Keeping it prescribed
 rather than rotating away is the fix — the stall happened because the slot kept going
 elsewhere. If 17.5kg does not move in four more sessions, drop to 15kg and rebuild.
+*Superseded 2026-10-01, below.*
+
+**Second run, 2026-09-28.** Pain(R) 1/10. **Incline 65kg × 8, 8, 70kg × 8, then 50kg
+× 12.** He told the debrief his last incline set is always a lighter back-off for reps,
+and every session in the log ends that way (45 × 10 on 09-14 and 09-21). So the
+working sets are the ones at 65kg and up, all three hit 8, and one was at 70kg. The
++2.5kg rule fired: **67.5kg from Monday 10-05**, back-off set as he likes it.
+**Pull-ups +5kg × 8, 8** after a bodyweight 10, at 1/10. The weight stays.
+**Chest fly 65kg × 12, 12, 8**: the third set is the gap; hold. **Lateral raise
+16, 16, 16**, the first move off 15s in five sessions.
+**Two rotate calls follow what he has been choosing.** The rear-delt slot ran the
+reverse fly machine on both Upper A days (42.5kg × 8, 8, 7, then 8, 8, 10), so it is
+Monday's call at 42.5kg, band 8–12 to fit the machine. Saturday keeps the face pull, so
+rear delts get two movements a week. The triceps slot ran the One Handed Triceps Pull
+on 09-14 and 09-28 (7.5kg × 10, 10, 10, then 7.5kg × 10, 10, 10kg × 10), and the
+triceps extension hasn't been run since the August export. The "keep it prescribed"
+fix above assumed he'd run it, and he hasn't, so the slot follows the movement he picks.
+It is set at 10kg, where his last set landed. Hollow body hold 1:00, 1:00 and push-ups
+15, 15 ran as finishers. Both were logged, which is what the logging section asks for.
 
 ## Upper B — Thursday (~50 min)
 
@@ -101,7 +120,7 @@ The pull-heavy upper day. Pull-ups lead.
 | 2 | **Anchor** | Single-Arm Iso-Lateral Row, left then right | 3 × 8–10 each | see protocol |
 | 3 | Rotate — vertical pull | **Lat Pulldown** · Straight Arm Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 10–12 | **67kg** |
 | 4 | Rotate — push compound | **Dips** · ★ Weighted Dips | 3 × 8–12 | bodyweight |
-| 5 | Rotate — chest isolation | **Cable Crossover** · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | TBD |
+| 5 | Rotate — chest isolation | **Cable Crossover** · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | **12.5kg** |
 | 6 | Rotate — biceps | **Bicep Curl (Cable)** · Bicep Curl (Barbell) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **10kg** |
 
 **AMRAP−2 on pull-ups**, not AMRAP. This is the second pull-up session of the week —
@@ -136,9 +155,9 @@ The rounding day. Picks up everything the other two sessions don't hit twice a w
 | 1 | Rotate — press | **Bench Press (Dumbbell)** | 3 × 10–12 | **26kg** |
 | 2 | Rotate — horizontal pull | **Chest Supported Row** (trial, 1 of 4) · Cable Row · Seated Row | 3 × 10–12 | **18kg** |
 | 3 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
-| 4 | Rotate — rear delt | **Face Pull** · ★ Reverse Flye · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |
+| 4 | Rotate — rear delt | **Face Pull** · Reverse Fly (Machine) · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |
 | 5 | Rotate — arms | **Hammer Curl** · Bicep Curl (Barbell) · Preacher Curl | 3 × 10–12 | **14kg** |
-| 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
+| 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Hollow Body Hold · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
 **Flat DB press is the mid-chest movement** the old programme didn't have. Incline bench
 is the anchor on Monday; this covers the flat pressing pattern without reintroducing
@@ -187,9 +206,9 @@ fortnight; this doubles the frequency.
 | 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **60kg** |
 | 2 | Rotate — quad compound | **Squat (Barbell)** · ★ Bulgarian Split Squat | 3 × 8–10 | **70kg** |
 | 3 | Rotate — quad volume | **Leg Press (Machine)** · Leg Extension | 3 × 10–12 | **80kg** |
-| 4 | Rotate — hamstring | **Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 10–12 | **10kg** |
+| 4 | Rotate — hamstring | **Kneeling Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 10–12 | **7.5kg** |
 | 5 | Rotate — calves | Seated Calf Raise (Plate Loaded) | 3 × 15–20 | **40kg** |
-| 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
+| 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Hollow Body Hold · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
 **Sunday into Tuesday football is 48h.** Peak DOMS for the first few weeks; the
 adaptation catches within a month of consistent training. If the first few Tuesdays are
@@ -209,7 +228,21 @@ there longer before a load increase is earned.
 **Nordic curls are on the candidate list**, not in the programme. Best-evidence hamstring
 injury prevention for football players (van der Horst et al., 2015), starting at an
 eccentric-only 2×4. Introduce under the "Trying new exercises" rule after leg curl has
-run for four sessions in this new block.
+run for four sessions in this new block. 09-27 was run 1.
+
+**First run, 2026-09-27.** Pain(R) 0/10. **Squat 80kg × 5, 5, 5** against a
+prescription of 70kg for 8–10. The log doesn't say how the knees felt, so the call
+stays at 70kg and the page asks him. If they were quiet, the slot gets re-set to fit
+what he's doing. **The second lift lost its name on import** (50kg × 8 warm-up, 70kg
+× 8, 8, then 80kg × 5). It could be the deadlift or the leg press, and the log doesn't
+guess. Asked in RX.note. Until he answers, there is no deadlift reading in the block
+and the deadlift holds at 60kg. **Leg extension 10kg × 10, 10, 10** ran in the quad
+volume slot. It's a listed alternative and a different machine from the leg press.
+**Kneeling leg curl down to 7.5kg.** 10kg gave 8s on 09-12 and on 09-27, under the
+10–12 band, and he came down to 7.5kg × 10, 10 himself. That is a rep band the load
+doesn't fit. Slot 4 now carries its Strong name. **Hollow body hold** (1:00, 1:00,
+0:30) ran in the core slot, up from 0:30 × 3 on 09-20. It is the Phase 1 hold from
+`docs/calisthenics.md` and is now an alternative in both core slots.
 
 ## Yoga (15–20 min)
 
@@ -244,6 +277,11 @@ green, so **55kg is now the right's load: greens at 55, 1 of 3.** Three held ove
 weeks earns 57.5kg. An amber sends it back to 50kg, the last green before this. The left
 is prescribed at 60kg (60 × 8, 8 on 09-17). Don't hold it at 55 to match the right.
 
+**2026-10-01: still 1 of 3 at 55kg.** No iso-lateral row since 09-24. The right side
+read 0/10 on 09-26 (chest-supported row), 0/10 on 09-27 (no pulling) and 1/10 on 09-28
+(pull-ups, +5kg). All green, but none on this row, so none counts toward the gate.
+Thursday 10-01 is the next reading.
+
 | Green light | Means |
 |---|---|
 | Pain ≤ 3/10 during the set | Present, not sharp, doesn't change how you move |
@@ -255,13 +293,16 @@ adaptation and the physio should sign off on it.
 
 ## Progression
 
-- **Incline bench** — +2.5kg once all four sets hit 8. Currently 65kg.
+- **Incline bench** — +2.5kg once every working set hits 8. His last set is always a
+  lighter back-off for reps (his words, 2026-09-28), so it doesn't count. **Fired
+  2026-09-28** (65 × 8, 8, 70 × 8, then 50 × 12): **67.5kg** from 10-05.
 - **Lateral raises** — +1kg once 20 holds across all three sets. Currently 8kg, earned
   on 09-11 (7kg × 20, 20, 20 → 8kg × 15, 15, 15). **Four sessions at exactly 15, 15, 15**
   (09-11, 09-14, 09-21, 09-26). Identical 15s look like stopping at the floor of the
   band, not failing. The log can't say which, so asked him on 2026-09-26. Until he
   answers, the cue is to take each set as far as clean reps go, up to 20. The anchor
-  and the load don't change.
+  and the load don't change. **09-28: 16, 16, 16**, the first move off 15. He never
+  answered the question, but it isn't needed now, so it's dropped.
 - **Pull-ups** — at 27 reps total fresh. Re-add 5kg once that holds three sessions.
   **Fired by 2026-09-24:** 27, 29, 27, 28, 27 across 09-13 → 09-24. It was held until
   the right lat read green, because goals.md puts injury first. It read 3/10 on the 09-24
@@ -282,11 +323,11 @@ adaptation and the physio should sign off on it.
 | Chest | 16 | Incline Bench 4 · Chest Fly 3 · DB Bench Press 3 · Dips 3 · Cable Crossover 3 |
 | Back | 15 | Pull Up 3+3 · Iso Lat Row 3 · Lat Pulldown 3 · Chest Supported Row 3 |
 | Side delts | 6 | Lateral Raise 3+3 |
-| Rear delts | 6 | Face Pull 3+3 |
-| Triceps | 6 | Triceps Extension 3 · Dips 3 (+ indirect from 13 pressing sets) |
+| Rear delts | 6 | Reverse Fly 3 · Face Pull 3 |
+| Triceps | 6 | One Handed Triceps Pull 3 · Dips 3 (+ indirect from 13 pressing sets) |
 | Biceps | 6 | Cable Curl 3 · Hammer Curl 3 (+ indirect from 15 pulling sets) |
 | Quads | 6 | Squat 3 · Leg Press 3 (+ football ×2) |
-| Posterior | 6 | Deadlift 3 · Leg Curl 3 (+ football ×2) |
+| Posterior | 6 | Deadlift 3 · Kneeling Leg Curl 3 (+ football ×2) |
 | Core | 6 | Upper C 3 · Lower 3 |
 | Calves | 3 | Calf Raise 3 |
 
@@ -315,8 +356,11 @@ Open questions and full working live in `docs/findings.md`. Short version:
   The 50kg iso-lateral ceiling — pain-limited or detraining-limited — is unanswered.
 - **Deadlift on Thursday** (09-24): a one-off, or does it move out of Sunday? **Parked
   by him** for a later conversation; not to be raised until he does.
-- **Cable crossover load**: to be established. DB press (26kg), chest-supported row
-  (18kg) and hammer curl (14kg) were set on 2026-09-26.
+- **Cable crossover load**: set at 12.5kg on 2026-10-01, from 12.5kg × 12 on 09-07, if
+  it's the same station. DB press (26kg), chest-supported row (18kg) and hammer curl
+  (14kg) were set on 2026-09-26.
+- **Sunday 09-27's second lift**: the name was lost on import (70kg × 8, 8, then 80kg
+  × 5). Asked him 2026-10-01.
 - **DOMS adaptation**: whether Sunday lower → Tuesday football causes issues in the first
   few weeks.
 - **Whether the old OHP decline was rotation, injury or the trip**: resolvable from the

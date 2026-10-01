@@ -70,7 +70,7 @@
         "type": "anchor",
         "sets": 4,
         "reps": "5-8",
-        "load": 65,
+        "load": 67.5,
         "unit": "kg"
       },
       {
@@ -94,14 +94,14 @@
         ]
       },
       {
-        "name": "Face Pull",
+        "name": "Reverse Fly (Machine)",
         "type": "rotate",
         "sets": 3,
-        "reps": "12-15",
-        "load": 17.5,
+        "reps": "8-12",
+        "load": 42.5,
         "unit": "kg",
         "alts": [
-          "Reverse Flye",
+          "Face Pull",
           "Bent-Over Rear-Delt Raise"
         ]
       },
@@ -114,13 +114,14 @@
         "unit": "kg"
       },
       {
-        "name": "Triceps Extension",
+        "name": "One Handed Triceps Pull",
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 17.5,
+        "load": 10,
         "unit": "kg",
         "alts": [
+          "Triceps Extension",
           "Skullcrusher"
         ]
       }
@@ -173,7 +174,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 0,
+        "load": 12.5,
         "unit": "kg",
         "alts": [
           "Decline Chest Press",
@@ -233,7 +234,7 @@
         "load": 17.5,
         "unit": "kg",
         "alts": [
-          "Reverse Flye",
+          "Reverse Fly (Machine)",
           "Bent-Over Rear-Delt Raise"
         ]
       },
@@ -258,6 +259,7 @@
         "unit": "BW",
         "alts": [
           "Toes To Bar",
+          "Hollow Body Hold",
           "Plank",
           "Ab Wheel"
         ]
@@ -295,11 +297,11 @@
         ]
       },
       {
-        "name": "Leg Curl",
+        "name": "Kneeling Leg Curl",
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 10,
+        "load": 7.5,
         "unit": "kg",
         "alts": [
           "Nordic Curl"
@@ -322,14 +324,15 @@
         "unit": "BW",
         "alts": [
           "Toes To Bar",
+          "Hollow Body Hold",
           "Plank",
           "Ab Wheel"
         ]
       }
     ]
   },
-  "rx_asof": "2026-09-26",
-  "rx_after": "2026-09-26 Upper C",
+  "rx_asof": "2026-10-01",
+  "rx_after": "2026-09-28 Upper A",
   "row_protocol": {
     "load_left": 60,
     "load_right": 55,
