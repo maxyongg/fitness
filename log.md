@@ -571,7 +571,7 @@ pain(R): 1/10
      **Upper B today:** right row holds 55kg (1 of 3; off-row greens don't count), left
      60. Cable crossover set at 12.5kg from 09-07. -->
 
-## 2026-10-01 · Thu · Upper A
+## 2026-10-01 · Thu · Upper B
 pain(R): 6/10
 - Deadlift (Barbell) — 40kg × 8, 60kg × 8, 70kg × 5, 6
 - Pull Up — +8kg × 8, 8, 8

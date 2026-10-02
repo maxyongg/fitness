@@ -757,11 +757,14 @@ var parsedData = null;
 var importPain = null;
 var importNotes = "";
 var importDate = null;
+var importTitle = null;
+var importSid = null;
 
 /* ---- init ---- */
 (function init() {
   var d = new Date();
   document.getElementById("hdr-date").textContent = SHORT_DAY[d.getDay()] + " " + d.getDate() + " " + SHORT_MON[d.getMonth()];
+  relabelHistory();
   renderRxStatus();
   loadSwaps();
   nextId = pickNext(d);
@@ -1522,6 +1525,31 @@ function addToHistory(data) {
   renderRxStatus();
 }
 
+/* Sessions saved under the wrong name and since corrected in log.md. This phone's copy is
+   relabelled to match, so History, the "Prescribed after" line and the debrief agree with
+   the log. The debrief written under the old name is dropped; History offers a fresh one.
+   10-01 was "B - Pull" in Strong, and the import's name-matching called it Upper A.
+   Init calls this before the script below it has run, so the list lives inside. */
+function relabelHistory() {
+  var relabelled = [{ date: "2026-10-01", from: "upper_a", to: "upper_b" }];
+  var hist = getHistory(), debriefs = getDebriefs(), changed = false;
+  relabelled.forEach(function(r) {
+    hist.forEach(function(h) {
+      if (h.date !== r.date || h.session_id !== r.from) return;
+      h.session_id = r.to;
+      h.session = RX.sessions[r.to].name;
+      changed = true;
+    });
+    var oldKey = debriefKey({ date: r.date, session_id: r.from });
+    if (debriefs[oldKey]) { delete debriefs[oldKey]; changed = true; }
+  });
+  if (!changed) return;
+  try {
+    localStorage.setItem("matchday_history", JSON.stringify(hist));
+    localStorage.setItem("matchday_debriefs", JSON.stringify(debriefs));
+  } catch (e) {}
+}
+
 /* Loads grouped the way log.md writes them: "40kg × 10, 65kg × 8, 8". A set carries its
    own weight when it came from Strong; a set logged on Train takes the exercise's. On a
    bodyweight lift the weight is added load (+5kg) or assistance (-10kg). */
@@ -1599,7 +1627,7 @@ function debriefFromHistory(i) {
 var histMode = "sessions";
 function histTab(mode) {
   histMode = mode;
-  document.querySelectorAll(".segb").forEach(function(b) { b.classList.toggle("active", b.dataset.h === mode); });
+  document.querySelectorAll(".segb[data-h]").forEach(function(b) { b.classList.toggle("active", b.dataset.h === mode); });
   document.getElementById("hist-sessions").hidden = mode !== "sessions";
   document.getElementById("hist-debriefs").hidden = mode !== "debriefs";
   if (mode === "debriefs") { renderDebriefList(); syncDebriefs(); }
@@ -1696,6 +1724,7 @@ function parseStrong() {
   var exercises = [];
   var current = null;
   importDate = null;
+  importTitle = null;
 
   /* A set line opens "Set 2:" or, for a warm-up, "W1:" and may end in a tag like
      "[Warm-up]". On a bodyweight lift Strong signs the load: "+5 kg × 8" is 5kg added,
@@ -1772,6 +1801,8 @@ function parseStrong() {
       if (line.match(/^https?:\/\//i)) continue;
 
       if (current && current.sets.length) exercises.push(current);
+      /* Strong's share text opens with the workout's name ("B - Pull") above the date. */
+      else if (current && !exercises.length && importTitle === null) importTitle = current.name;
       current = { name: line, sets: [] };
     }
   }
@@ -1785,15 +1816,25 @@ function parseStrong() {
   }
 
   parsedData = exercises;
-  var detected = detectSession(exercises);
-  /* A correction keeps the pain reading and notes given the first time. */
+  importSid = detectSession(exercises);
+  carryOver();
+  renderParseResult();
+}
+
+/* A correction keeps the pain reading and notes given the first time. */
+function carryOver() {
   var date = importDate || isoDate(new Date());
   getHistory().forEach(function(h) {
-    if (h.date !== date || h.session_id !== (detected || "import")) return;
-    importPain = h.pain ? h.pain.right_lat : null;
-    importNotes = h.notes && h.notes !== "Imported from Strong" ? h.notes : "";
+    if (h.date !== date || h.session_id !== (importSid || "import")) return;
+    if (importPain === null) importPain = h.pain ? h.pain.right_lat : null;
+    if (!importNotes) importNotes = h.notes && h.notes !== "Imported from Strong" ? h.notes : "";
   });
-  renderParseResult(exercises, detected);
+}
+
+function pickImportSession(sid) {
+  importSid = sid;
+  carryOver();
+  renderParseResult();
 }
 
 /* "Monday, 28 September 2026 at 6:30 PM" (or "September 28, 2026") → "2026-09-28".
@@ -1811,21 +1852,36 @@ function strongDate(line) {
   return y + "-" + (mi < 9 ? "0" : "") + (mi + 1) + "-" + (+d < 10 ? "0" : "") + (+d);
 }
 
+/* Which programme session an import is: the workout's name in Strong ("B - Pull",
+   "Upper C"), else the template's session for its date, else its exercise names against
+   each session's slots, alternatives included. Exercise names alone logged Thursday 10-01
+   as Upper A: his swaps were all alternatives, so Monday's chest fly outscored Thursday's
+   prescribed names. The pick shows before saving and he can change it. */
 function detectSession(exercises) {
+  var t = (importTitle || "").toLowerCase();
+  if (/\b(lower|legs?)\b/.test(t)) return "lower";
+  var m = t.match(/(?:^|\bupper\s*)([abc])\b/);
+  if (m) return "upper_" + m[1];
+
+  var p = (importDate || isoDate(new Date())).split("-");
+  var sched = RX.schedule[new Date(+p[0], +p[1] - 1, +p[2]).getDay()];
+  if (RX.sessions[sched]) return sched;
+
   var names = exercises.map(function(e) { return e.name.toLowerCase(); });
   var best = null;
   var bestScore = 0;
   Object.keys(RX.sessions).forEach(function(sid) {
-    var rxNames = RX.sessions[sid].exercises.map(function(e) { return e.name.toLowerCase(); });
-    var score = 0;
-    names.forEach(function(n) {
-      rxNames.forEach(function(r) {
-        if (n === r || n.indexOf(r) !== -1 || r.indexOf(n) !== -1) score++;
-      });
+    var rxNames = [];
+    RX.sessions[sid].exercises.forEach(function(e) {
+      rxNames.push(e.name.toLowerCase());
+      (e.alts || []).forEach(function(a) { rxNames.push(a.toLowerCase()); });
     });
+    var score = names.filter(function(n) {
+      return rxNames.some(function(r) { return n === r || n.indexOf(r) !== -1 || r.indexOf(n) !== -1; });
+    }).length;
     if (score > bestScore) { bestScore = score; best = sid; }
   });
-  return bestScore > 0 ? best : null;
+  return best;
 }
 
 function fmtDuration(secs) {
@@ -1833,13 +1889,19 @@ function fmtDuration(secs) {
   return m + ":" + (s < 10 ? "0" : "") + s;
 }
 
-function renderParseResult(exercises, detected) {
+function renderParseResult() {
+  var exercises = parsedData;
   var date = importDate || isoDate(new Date());
   var p = date.split("-");
   var h = '<div class="parsed-detect">' + exercises.length + ' exercises'
-    + (detected ? ' · <span class="pill">' + RX.sessions[detected].name + '</span>' : ' · session not recognised')
-    + ' · ' + (+p[2]) + ' ' + SHORT_MON[+p[1] - 1] + '</div>';
-  var correcting = isSaved(date, detected || "import");
+    + ' · ' + SHORT_DAY[new Date(+p[0], +p[1] - 1, +p[2]).getDay()] + ' ' + (+p[2]) + ' ' + SHORT_MON[+p[1] - 1]
+    + (importSid ? '' : ' · pick the session') + '</div>'
+    + '<div class="seg" role="radiogroup" aria-label="Session">'
+    + ORDER.map(function(sid) {
+      return '<button class="segb' + (sid === importSid ? ' active' : '') + '" role="radio" aria-checked="'
+        + (sid === importSid) + '" onclick="pickImportSession(\'' + sid + '\')">' + RX.sessions[sid].name + '</button>';
+    }).join("") + '</div>';
+  var correcting = isSaved(date, importSid || "import");
 
   exercises.forEach(function(ex, i) {
     var setsStr = ex.sets.map(function(s) {
@@ -1873,7 +1935,7 @@ function renderParseResult(exercises, detected) {
   if (correcting) h += '<p class="page-sub" style="margin-top:14px">Already saved. Saving again corrects it —'
     + ' it replaces the entry in the log and History, and redoes the debrief.</p>';
   h += '<div style="margin-top:14px">'
-    + '<button class="btn btn-pri" onclick="saveImport(\'' + (detected || "") + '\')"'
+    + '<button class="btn btn-pri" onclick="saveImport()"'
     + (!getToken() ? ' disabled title="Add a GitHub token first"' : '') + '>'
     + (correcting ? "Save correction" : "Save to inbox") + '</button>'
     + '<button class="btn btn-ghost" onclick="clearImport()">Clear</button></div>';
@@ -1883,7 +1945,7 @@ function renderParseResult(exercises, detected) {
 
 function setImportPain(v) {
   importPain = (v === importPain) ? null : v;
-  if (parsedData) renderParseResult(parsedData, detectSession(parsedData));
+  if (parsedData) renderParseResult();
 }
 
 function ssCardClass(i, exs) {
@@ -1898,11 +1960,12 @@ function ssCardClass(i, exs) {
 function toggleSS(i) {
   if (!parsedData || i >= parsedData.length - 1) return;
   parsedData[i].supersetNext = !parsedData[i].supersetNext;
-  renderParseResult(parsedData, detectSession(parsedData));
+  renderParseResult();
 }
 
-async function saveImport(sessionId) {
+async function saveImport() {
   if (!parsedData || !getToken()) return;
+  var sessionId = importSid;
 
   var sessionName = sessionId ? RX.sessions[sessionId].name : "Imported";
 
@@ -1947,6 +2010,8 @@ function clearImport() {
   importPain = null;
   importNotes = "";
   importDate = null;
+  importTitle = null;
+  importSid = null;
 }
 
 /* ---- toast ---- */
