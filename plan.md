@@ -118,9 +118,9 @@ The pull-heavy upper day. Pull-ups lead.
 |---|---|---|---|---|
 | 1 | **Anchor** | Pull Up | 3 × AMRAP−2 | bodyweight |
 | 2 | **Anchor** | Single-Arm Iso-Lateral Row, left then right | 3 × 8–10 each | see protocol |
-| 3 | Rotate — vertical pull | **Lat Pulldown** · Straight Arm Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 10–12 | **67kg** |
-| 4 | Rotate — push compound | **Dips** · ★ Weighted Dips | 3 × 8–12 | bodyweight |
-| 5 | Rotate — chest isolation | **Cable Crossover** · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | **12.5kg** |
+| 3 | Rotate — vertical pull | **Straight Arm Pulldown** · Lat Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 10–12 | **17.5kg** |
+| 4 | Rotate — push compound | **Triceps Dip** · ★ Weighted Dips | 3 × 8–12 | bodyweight |
+| 5 | Rotate — chest isolation | **Cable Crossover** · Single Arm Cable Chest Fly · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | **12.5kg** |
 | 6 | Rotate — biceps | **Bicep Curl (Cable)** · Bicep Curl (Barbell) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **10kg** |
 
 **AMRAP−2 on pull-ups**, not AMRAP. This is the second pull-up session of the week —
@@ -145,6 +145,25 @@ raise it until he does. Until then it stays in Lower. The case against Thursday,
 it comes up: it sits 24h before Friday football, where the template gives legs 48h. It
 also takes the pull-up anchor off slot 1. And it loads the lats before the row the
 right-side protocol reads.
+
+**Second run, 2026-10-01. Pain(R) 6/10, the highest reading in the log.** He saved it
+from Strong as "B - Pull". The import matched exercise names only, so it logged and
+debriefed it as Upper A. Relabelled on 10-02, and the import now reads the Strong title
+and the date first, and shows the pick before saving. The session: deadlift 40 × 8, 60 × 8,
+70 × 5, 6, then pull-ups +8kg × 8, 8, 8 at slot 2, then **seated cable row 57kg × 10,
+10, 10 in place of the iso-lateral row**. So there is no reading on the gated row. The
+log doesn't say which lift the 6/10 came on; asked in RX.note. **Right row back to
+50kg** (row protocol, below). **Pull-ups stay bodyweight here**: added weight is
+Monday's, and +8kg came on the 6/10 day. **Slot 3's call is now the Straight Arm
+Pulldown at 17.5kg.** He ran it both Thursdays of the block (12.5 × 10, 15 × 12, 12,
+then 15 × 12, 17.5 × 10, 10), the same way Monday's rotate calls followed his picks on
+2026-10-01. The lat pulldown (67kg × 8, 10, 7 on 09-17) stays in the swaps and isn't a
+reading on this one. **Slot 4 now carries its Strong name, Triceps Dip.** 12, 12, 12 is
+the block's first, 1 of 3 toward weighted dips. **Slot 5 ran the Single Arm Cable Chest
+Fly** (3.75 × 10, 6.25 × 10, 10), now listed as a swap. The crossover stays the call; it
+hasn't run in the block, and two Thursdays gave two different picks. **Biceps went back
+to the barbell**, 30kg × 8, 8, 8, the first clean 8s at that load, inside this slot's
+8–10. The cable stays the call; the page gives the barbell load too.
 
 ## Upper C — Saturday (~45 min)
 
@@ -177,6 +196,12 @@ not affect the Thursday gate count.
 8, 8, 7 twice, below this slot's 10–12. That is a rep band the load doesn't fit.
 The neutral grip adds brachialis and grip work. Grip is the one quality
 `docs/goals.md` says has never been trained. Load to be set on the first run.
+
+**2026-10-03, after Thursday's 6/10.** Nothing on Saturday loads the right lat hard.
+The chest-supported row (run 2 of 4) opens at 14kg as a check set: 3/10 or under goes to
+18kg, 4 or more stays at 14kg or drops the slot for the day. The hanging leg raise has
+the right lat on stretch, so the hollow body hold is the swap if it talks. Other loads
+are as set on 09-26.
 
 **Core is programmed, not ad hoc.** Six sets a week across Saturday and Sunday. The old
 programme logged zero core since March — partly a logging gap, partly a programming gap.
@@ -282,6 +307,15 @@ read 0/10 on 09-26 (chest-supported row), 0/10 on 09-27 (no pulling) and 1/10 on
 (pull-ups, +5kg). All green, but none on this row, so none counts toward the gate.
 Thursday 10-01 is the next reading.
 
+**2026-10-02: reset, right back to 50kg, 0 of 3.** Thursday 10-01 read 6/10, the
+highest reading in the log. He ran the seated cable row (57kg × 10, 10, 10), not the
+iso-lateral row. Off-row greens don't count toward the gate, but an amber this size on
+the right side isn't something to read past, so it resets. The same was done in
+September, when ambers on three different movements reset the count. This is the
+conservative reading, and his physio can overrule it. Three greens held over two weeks
+at 50kg earns 52.5kg. The left holds 60kg. Pull-ups on Monday go back to bodyweight
+unless Saturday and Sunday read 3/10 or under.
+
 | Green light | Means |
 |---|---|
 | Pain ≤ 3/10 during the set | Present, not sharp, doesn't change how you move |
@@ -309,6 +343,9 @@ adaptation and the physio should sign off on it.
   row, so **+5kg goes on at Upper A** (all-out day) from 2026-09-28. Upper B stays
   bodyweight at AMRAP−2. If the right side reads 4+ during weighted sets, the weight
   comes off for the rest of the session.
+  **2026-10-01:** he put +8kg on Thursday's pull-ups (8, 8, 8) and the session read
+  6/10. Monday's +5kg goes on only if Saturday and Sunday read 3 or under; Thursday stays
+  bodyweight.
 - **Deadlift** — +2.5kg once all three sets hit 5 comfortably. Starting load 60kg.
 - **Squat** — hold 70kg. +2.5kg once 10 holds across all three sets AND no joint
   complaints.
@@ -320,11 +357,11 @@ adaptation and the physio should sign off on it.
 
 | Group | Sets/wk | Sources |
 |---|---|---|
-| Chest | 16 | Incline Bench 4 · Chest Fly 3 · DB Bench Press 3 · Dips 3 · Cable Crossover 3 |
-| Back | 15 | Pull Up 3+3 · Iso Lat Row 3 · Lat Pulldown 3 · Chest Supported Row 3 |
+| Chest | 16 | Incline Bench 4 · Chest Fly 3 · DB Bench Press 3 · Triceps Dip 3 · Cable Crossover 3 |
+| Back | 15 | Pull Up 3+3 · Iso Lat Row 3 · Straight Arm Pulldown 3 · Chest Supported Row 3 |
 | Side delts | 6 | Lateral Raise 3+3 |
 | Rear delts | 6 | Reverse Fly 3 · Face Pull 3 |
-| Triceps | 6 | One Handed Triceps Pull 3 · Dips 3 (+ indirect from 13 pressing sets) |
+| Triceps | 6 | One Handed Triceps Pull 3 · Triceps Dip 3 (+ indirect from 13 pressing sets) |
 | Biceps | 6 | Cable Curl 3 · Hammer Curl 3 (+ indirect from 15 pulling sets) |
 | Quads | 6 | Squat 3 · Leg Press 3 (+ football ×2) |
 | Posterior | 6 | Deadlift 3 · Kneeling Leg Curl 3 (+ football ×2) |
@@ -352,7 +389,9 @@ rotation to lose track of — improves the rate.
 
 Open questions and full working live in `docs/findings.md`. Short version:
 
-- **Right lat**: three ambers in eight days across three movements. The physio's call.
+- **Right lat**: 6/10 on 2026-10-01, the highest reading in the log, after three ambers
+  in eight days across three movements in September. The physio's call. **Which lift the
+  6/10 came on** (deadlift 70kg, pull-ups +8kg or seated row 57kg): asked 2026-10-02.
   The 50kg iso-lateral ceiling — pain-limited or detraining-limited — is unanswered.
 - **Deadlift on Thursday** (09-24): a one-off, or does it move out of Sunday? **Parked
   by him** for a later conversation; not to be raised until he does.
@@ -404,7 +443,7 @@ added on top.
 |---|---|---|
 | Chest-Supported Row | **In trial, Upper C slot 2** — he started it 09-26, run 1 of 4 | Removes torso English from the row — may load the right lat with less pain. |
 | Nordic Curl (eccentric) | Lower slot 4, displacing Leg Curl | Best-evidence hamstring protection for football. Start at 2×4. |
-| Weighted Dips | Upper B slot 4 | Once bodyweight dips hit 12, 12, 12 for three sessions. |
+| Weighted Dips | Upper B slot 4 | Once bodyweight dips hit 12, 12, 12 for three sessions. 1 of 3 on 2026-10-01. |
 | Ab Wheel | Upper C slot 6 or Lower slot 6 | Harder core option once hanging leg raises are easy. |
 
 **Bias towards the bodyweight option.** Where two candidates do the same job, the

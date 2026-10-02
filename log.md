@@ -581,6 +581,29 @@ pain(R): 6/10
 - Single Arm Cable Chest Fly — 3.75kg × 10, 6.25kg × 10, 10
 - Bicep Curl (Barbell) — 30kg × 8, 8, 8
 
+<!-- Re-prescribed by hand on 2026-10-02. Saved from Strong as "B - Pull", but the import
+     matched exercise names alone and called it Upper A, so the log, the debrief and the
+     page all read it as Monday's session. The header above was relabelled on 10-02 and
+     the Upper A debrief removed; the import now reads the Strong title and the date
+     first, and shows the pick before saving.
+
+     **Pain(R) 6/10, the highest reading in the log.** No iso-lateral row: the seated
+     cable row ran instead (57kg × 10, 10, 10), a different machine. The log can't say
+     which lift the 6/10 came on, so RX.note asks. **The right row resets to 50kg, 0 of
+     3**: an amber that size on the right isn't read past, whichever lift it was.
+     Pull-ups +8kg × 8, 8, 8 at slot 2: Thursday stays bodyweight, and Monday's +5kg
+     goes on only if Saturday and Sunday read 3 or under. Deadlift 70kg × 5, 6 after
+     60 × 8; Sunday holds 60kg until the 6/10 is placed.
+
+     **Rotate calls on Upper B follow his picks.** Straight-arm pulldown both Thursdays
+     (15 × 12, 12, then 17.5 × 10, 10): now slot 3's call at 17.5kg. **Triceps dip
+     12, 12, 12**, the block's first, and slot 4 takes the Strong name. Single-arm cable
+     chest fly (6.25kg × 10, 10) added to slot 5's swaps. Barbell curl 30kg × 8, 8, 8,
+     the first clean 8s at that load.
+
+     **Upper C Saturday:** the chest-supported row opens with a 14kg check set, and the
+     hollow body hold covers the hanging leg raise if the hang bothers the right side. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
