@@ -774,13 +774,26 @@ var importSid = null;
   renderHistory();
 })();
 
-/* Today's lift if it's a lift day and not already saved; otherwise the next one. */
+/* Today's lift if it's a lift day and not already saved this week; otherwise the next one
+   in the order that isn't. A week moved around (Lower on a free Friday, 2026-10-02) then
+   opens on the session still owed, and the coach note shows on it. Weeks start Monday. */
 function pickNext(d) {
   var id = RX.schedule[d.getDay()];
   if (id === "football" || id === "rest") return nextLift(d.getDay());
   var today = isoDate(d);
-  var done = getHistory().some(function(h) { return h.date === today && h.session_id === id; });
-  return done ? ORDER[(ORDER.indexOf(id) + 1) % ORDER.length] : id;
+  var monday = new Date(d.getFullYear(), d.getMonth(), d.getDate() - (d.getDay() + 6) % 7);
+  var from = isoDate(monday);
+  var hist = getHistory();
+  function done(sid) {
+    return hist.some(function(h) { return h.session_id === sid && h.date >= from && h.date <= today; });
+  }
+  if (!done(id)) return id;
+  var i = ORDER.indexOf(id);
+  for (var k = 1; k < ORDER.length; k++) {
+    var sid = ORDER[(i + k) % ORDER.length];
+    if (!done(sid)) return sid;
+  }
+  return ORDER[(i + 1) % ORDER.length];
 }
 
 function nextLift(dow) {
