@@ -1,0 +1,161 @@
+{
+  "key": "2026-10-01-upper-a",
+  "date": "2026-10-01",
+  "session": "Upper A",
+  "session_id": "upper_a",
+  "model": "claude-sonnet-5",
+  "created": "2026-10-02T02:22:29.077Z",
+  "logged": {
+    "date": "2026-10-01",
+    "session": "Upper A",
+    "session_id": "upper_a",
+    "exercises": [
+      {
+        "name": "Deadlift (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 8
+          },
+          {
+            "weight": 60,
+            "reps": 8
+          },
+          {
+            "weight": 70,
+            "reps": 5
+          },
+          {
+            "weight": 70,
+            "reps": 6
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 8,
+            "reps": 8
+          },
+          {
+            "weight": 8,
+            "reps": 8
+          },
+          {
+            "weight": 8,
+            "reps": 8
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Seated Row (Cable)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 57,
+            "reps": 10
+          },
+          {
+            "weight": 57,
+            "reps": 10
+          },
+          {
+            "weight": 57,
+            "reps": 10
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Straight Arm Pulldown",
+        "sets": [
+          {
+            "weight": 15,
+            "reps": 12
+          },
+          {
+            "weight": 17.5,
+            "reps": 10
+          },
+          {
+            "weight": 17.5,
+            "reps": 10
+          }
+        ],
+        "weight": 15
+      },
+      {
+        "name": "Triceps Dip",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 12
+          },
+          {
+            "weight": 0,
+            "reps": 12
+          },
+          {
+            "weight": 0,
+            "reps": 12
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Single Arm Cable Chest Fly",
+        "sets": [
+          {
+            "weight": 3.75,
+            "reps": 10
+          },
+          {
+            "weight": 6.25,
+            "reps": 10
+          },
+          {
+            "weight": 6.25,
+            "reps": 10
+          }
+        ],
+        "weight": 3.75
+      },
+      {
+        "name": "Bicep Curl (Barbell)",
+        "sets": [
+          {
+            "weight": 30,
+            "reps": 8
+          },
+          {
+            "weight": 30,
+            "reps": 8
+          },
+          {
+            "weight": 30,
+            "reps": 8
+          }
+        ],
+        "weight": 30
+      }
+    ],
+    "pain": {
+      "right_lat": 6
+    },
+    "notes": "Imported from Strong",
+    "extra": ""
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Logged as Upper A, pain(R) 6/10, but none of the prescribed slots appear — no incline bench, chest fly, reverse fly, lateral raise, or one-handed triceps pull. Instead the session ran Deadlift, Pull Up, Seated Row (Cable), Straight Arm Pulldown, Triceps Dip, Single Arm Cable Chest Fly, Bicep Curl (Barbell) — closer to the Upper B template from 09-24. Pull-ups held slot 2 as prescribed: +8kg × 8, 8, 8. Triceps Dip matched its usual bodyweight × 12, 12, 12.\n\nTrend: Deadlift added a new top set, 70kg × 5, 6, after 40 × 8, 60 × 8 — heavier than the 60kg × 6, 6 ceiling on 09-24. Pull-ups at +8kg (24 total) trade a touch of volume for load against +5kg × 10, 8, 8 (26 total) on 09-28 — reasonable given the jump. Bicep Curl (Barbell) hit 8, 8, 8 today; 09-17 was 8, 8, 7, so this is the first clean top-range session, one more like it earns the next increment. Seated Row (Cable) and Single Arm Cable Chest Fly are new names with no history to compare against.\n\nRight lat: 6/10 is the highest reading in the whole log — squarely amber. Today's pulling used Seated Row (Cable) rather than the iso-lateral right/left rows, so the explicit row protocol has nothing to apply to. Treat the 6/10 itself as the flag regardless of which row variant triggered it, and let the physio weigh in before the next iso-lateral row session.\n\nNext session: Upper C, Sat 3 Oct. Carry 26kg DB press, 18kg chest-supported row (trial 3 of 4, no gate — lighten if the right side talks), 14kg hammer curl, all needing 12 across the board to progress.\n\nQuestion: Was today a deliberate swap to Upper B content, or did Thursday and Monday get crossed this week?",
+      "at": "2026-10-02T02:22:29.078Z"
+    }
+  ]
+}
