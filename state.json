@@ -1,67 +1,61 @@
 {
-  "_generated": "2026-09-28T12:33:58",
+  "_generated": "2026-10-02T02:21:46",
   "_by": "drain.py",
   "last_session": {
-    "date": "2026-09-28",
+    "date": "2026-10-01",
     "type": "upper_a",
     "name": "Upper A",
-    "exercise_count": 8,
-    "pain_right_lat": 1,
+    "exercise_count": 7,
+    "pain_right_lat": 6,
     "top_sets": [
       {
-        "name": "Incline Bench Press (Barbell)",
+        "name": "Deadlift (Barbell)",
         "weight": 40,
-        "best_reps": 12,
-        "set_count": 5
+        "best_reps": 8,
+        "set_count": 4
       },
       {
         "name": "Pull Up",
-        "weight": "BW+5",
-        "best_reps": 10,
+        "weight": "BW+8",
+        "best_reps": 8,
         "set_count": 3
       },
       {
-        "name": "Chest Fly",
-        "weight": 65,
+        "name": "Seated Row (Cable)",
+        "weight": 40,
+        "best_reps": 10,
+        "set_count": 4
+      },
+      {
+        "name": "Straight Arm Pulldown",
+        "weight": 15,
         "best_reps": 12,
         "set_count": 3
       },
       {
-        "name": "Reverse Fly (Machine)",
-        "weight": 42.5,
+        "name": "Triceps Dip",
+        "weight": "BW",
+        "best_reps": 12,
+        "set_count": 3
+      },
+      {
+        "name": "Single Arm Cable Chest Fly",
+        "weight": 3.75,
         "best_reps": 10,
         "set_count": 3
       },
       {
-        "name": "Lateral Raise (Dumbbell)",
-        "weight": 8,
-        "best_reps": 16,
+        "name": "Bicep Curl (Barbell)",
+        "weight": 30,
+        "best_reps": 8,
         "set_count": 3
-      },
-      {
-        "name": "One Handed Triceps Pull",
-        "weight": 7.5,
-        "best_reps": 10,
-        "set_count": 3
-      },
-      {
-        "name": "Hollow Body Hold",
-        "weight": "BW",
-        "best_reps": 0,
-        "set_count": 2
-      },
-      {
-        "name": "Push Up",
-        "weight": "BW",
-        "best_reps": 15,
-        "set_count": 2
       }
     ]
   },
   "next_session": {
-    "type": "upper_b",
-    "name": "Upper B",
-    "expected_date": "2026-10-01"
+    "type": "upper_c",
+    "name": "Upper C",
+    "expected_date": "2026-10-03"
   },
   "slots": {
     "upper_a": [
@@ -339,7 +333,7 @@
     "status": "see plan.md, The row protocol"
   },
   "flags": [
-    "pain(R) 1/10 — green light",
-    "Pull-up: top set 10, total 26"
+    "pain(R) 6/10 — amber, row protocol resets",
+    "Pull-up: top set 8, total 24"
   ]
 }

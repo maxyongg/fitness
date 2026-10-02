@@ -571,6 +571,16 @@ pain(R): 1/10
      **Upper B today:** right row holds 55kg (1 of 3; off-row greens don't count), left
      60. Cable crossover set at 12.5kg from 09-07. -->
 
+## 2026-10-01 · Thu · Upper A
+pain(R): 6/10
+- Deadlift (Barbell) — 40kg × 8, 60kg × 8, 70kg × 5, 6
+- Pull Up — +8kg × 8, 8, 8
+- Seated Row (Cable) — 40kg × 10, 57kg × 10, 10, 10
+- Straight Arm Pulldown — 15kg × 12, 17.5kg × 10, 10
+- Triceps Dip — bodyweight × 12, 12, 12
+- Single Arm Cable Chest Fly — 3.75kg × 10, 6.25kg × 10, 10
+- Bicep Curl (Barbell) — 30kg × 8, 8, 8
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
