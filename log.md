@@ -604,6 +604,12 @@ pain(R): 6/10
      **Upper C Saturday:** the chest-supported row opens with a 14kg check set, and the
      hollow body hold covers the hanging leg raise if the hang bothers the right side. -->
 
+<!-- 2026-10-02, his answer: **the 6/10 came on the seated cable row.** The row reset
+     stands (right 50kg, 0 of 3), and the cable and seated rows are off Upper C's swaps.
+     The deadlift and pull-ups are cleared. **Deadlift to 70kg from Sunday**, where he
+     took it himself (70 × 5, 6), and Monday keeps +5kg on pull-ups. The 09-13 Uni
+     Lateral Seated Row 4/10 was a different machine, logged as tightness: not a pattern. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

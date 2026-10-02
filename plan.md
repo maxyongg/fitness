@@ -151,10 +151,10 @@ from Strong as "B - Pull". The import matched exercise names only, so it logged 
 debriefed it as Upper A. Relabelled on 10-02, and the import now reads the Strong title
 and the date first, and shows the pick before saving. The session: deadlift 40 × 8, 60 × 8,
 70 × 5, 6, then pull-ups +8kg × 8, 8, 8 at slot 2, then **seated cable row 57kg × 10,
-10, 10 in place of the iso-lateral row**. So there is no reading on the gated row. The
-log doesn't say which lift the 6/10 came on; asked in RX.note. **Right row back to
-50kg** (row protocol, below). **Pull-ups stay bodyweight here**: added weight is
-Monday's, and +8kg came on the 6/10 day. **Slot 3's call is now the Straight Arm
+10, 10 in place of the iso-lateral row**. So there is no reading on the gated row.
+**The 6/10 came on the seated cable row** (his answer, 2026-10-02), not the deadlift or
+the pull-ups. **Right row back to 50kg** (row protocol, below). **Pull-ups stay
+bodyweight here**: added weight is Monday's. **Slot 3's call is now the Straight Arm
 Pulldown at 17.5kg.** He ran it both Thursdays of the block (12.5 × 10, 15 × 12, 12,
 then 15 × 12, 17.5 × 10, 10), the same way Monday's rotate calls followed his picks on
 2026-10-01. The lat pulldown (67kg × 8, 10, 7 on 09-17) stays in the swaps and isn't a
@@ -172,7 +172,7 @@ The rounding day. Picks up everything the other two sessions don't hit twice a w
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
 | 1 | Rotate — press | **Bench Press (Dumbbell)** | 3 × 10–12 | **26kg** |
-| 2 | Rotate — horizontal pull | **Chest Supported Row** (trial, 1 of 4) · Cable Row · Seated Row | 3 × 10–12 | **18kg** |
+| 2 | Rotate — horizontal pull | **Chest Supported Row** (trial, run 2 of 4 on 10-03) | 3 × 10–12 | **18kg** |
 | 3 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
 | 4 | Rotate — rear delt | **Face Pull** · Reverse Fly (Machine) · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |
 | 5 | Rotate — arms | **Hammer Curl** · Bicep Curl (Barbell) · Preacher Curl | 3 × 10–12 | **14kg** |
@@ -197,7 +197,11 @@ not affect the Thursday gate count.
 The neutral grip adds brachialis and grip work. Grip is the one quality
 `docs/goals.md` says has never been trained. Load to be set on the first run.
 
-**2026-10-03, after Thursday's 6/10.** Nothing on Saturday loads the right lat hard.
+**2026-10-03, after Thursday's 6/10.** It came on the seated cable row (his answer,
+10-02), so **the cable row and seated row are off slot 2's swaps** until the right side
+settles. That is the "a movement the injury dislikes" case. The 09-13 Uni Lateral Seated
+Row also read 4/10 ("tightness", his word), but that is a different machine and one
+reading, so it isn't counted as a pattern. Nothing on Saturday loads the right lat hard.
 The chest-supported row (run 2 of 4) opens at 14kg as a check set: 3/10 or under goes to
 18kg, 4 or more stays at 14kg or drops the slot for the day. The hanging leg raise has
 the right lat on stretch, so the hollow body hold is the swap if it talks. Other loads
@@ -228,7 +232,7 @@ fortnight; this doubles the frequency.
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **60kg** |
+| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **70kg** from 10-04 |
 | 2 | Rotate — quad compound | **Squat (Barbell)** · ★ Bulgarian Split Squat | 3 × 8–10 | **70kg** |
 | 3 | Rotate — quad volume | **Leg Press (Machine)** · Leg Extension | 3 × 10–12 | **80kg** |
 | 4 | Rotate — hamstring | **Kneeling Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 10–12 | **7.5kg** |
@@ -314,7 +318,9 @@ the right side isn't something to read past, so it resets. The same was done in
 September, when ambers on three different movements reset the count. This is the
 conservative reading, and his physio can overrule it. Three greens held over two weeks
 at 50kg earns 52.5kg. The left holds 60kg. Pull-ups on Monday go back to bodyweight
-unless Saturday and Sunday read 3/10 or under.
+unless Saturday and Sunday read 3/10 or under. *Superseded the same day: he said the 6/10
+came on the seated cable row. That makes the reset a straight row reading, and it stands.
+The pull-ups are cleared, so Monday keeps +5kg under the usual in-set rule.*
 
 | Green light | Means |
 |---|---|
@@ -344,9 +350,12 @@ adaptation and the physio should sign off on it.
   bodyweight at AMRAP−2. If the right side reads 4+ during weighted sets, the weight
   comes off for the rest of the session.
   **2026-10-01:** he put +8kg on Thursday's pull-ups (8, 8, 8) and the session read
-  6/10. Monday's +5kg goes on only if Saturday and Sunday read 3 or under; Thursday stays
-  bodyweight.
+  6/10, but on the seated cable row, not the pull-ups (his answer, 10-02). Monday keeps
+  +5kg; Thursday stays bodyweight.
 - **Deadlift** — +2.5kg once all three sets hit 5 comfortably. Starting load 60kg.
+  **70kg from 2026-10-04.** He pulled 70kg × 5, 6 on Upper B 10-01 (after 60 × 8), and
+  the 6/10 that day came on the row. A load he moved to himself, with no pain on it,
+  becomes the load. The right row's 55kg was handled the same way on 09-24.
 - **Squat** — hold 70kg. +2.5kg once 10 holds across all three sets AND no joint
   complaints.
 - **Iso-lateral row (right)** — governed by the row protocol, not by rep targets.
@@ -391,7 +400,7 @@ Open questions and full working live in `docs/findings.md`. Short version:
 
 - **Right lat**: 6/10 on 2026-10-01, the highest reading in the log, after three ambers
   in eight days across three movements in September. The physio's call. **Which lift the
-  6/10 came on** (deadlift 70kg, pull-ups +8kg or seated row 57kg): asked 2026-10-02.
+  6/10 came on:** the seated cable row, 57kg (his answer, 2026-10-02).
   The 50kg iso-lateral ceiling — pain-limited or detraining-limited — is unanswered.
 - **Deadlift on Thursday** (09-24): a one-off, or does it move out of Sunday? **Parked
   by him** for a later conversation; not to be raised until he does.

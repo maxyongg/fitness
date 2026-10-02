@@ -172,6 +172,15 @@ inferring from it; he is right about his own body more often than the log is.
   sessions. Readings run: 3/10 (09-03), 2/10 (09-10), 4/10 (09-13 seated row), 4/10
   (09-17 iso-lateral row), 4/10 (09-20 calisthenics). That is a physio question, not one
   for this file. The row holds at 50kg; nothing is added.
+
+  **Updated 2026-10-02.** The right side read **6/10 on the Seated Row (Cable), 57kg ×
+  10, 10, 10**, on 2026-10-01. His answer places it on that row, not the deadlift or the
+  +8kg pull-ups in the same session. It is the highest reading in the log. The
+  chest-supported row read 0/10 on 09-26, and the iso-lateral row 3/10 at 55kg on 09-24.
+  Tempting to call seated cable rowing the provoker, since the 09-13 4/10 was also a
+  seated row at 57kg. But that was the Uni Lateral Seated Row, a different machine, and he
+  called it tightness. One reading per machine is not a pattern. Name it to the physio,
+  and watch whether the chest-supported row stays clean.
 - **Did the overhead press decline because its slot rotates?** Asserted in `plan.md`
   for a fortnight as though settled; it is not. OHP e1RM ran 49.6 → 60.2 → **61.7**
   (2026Q1) → 57.0 → 50.7. The rotation story says it fell because push slot 2 picks it

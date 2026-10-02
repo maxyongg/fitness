@@ -207,11 +207,7 @@
         "sets": 3,
         "reps": "10-12",
         "load": 18,
-        "unit": "kg",
-        "alts": [
-          "Cable Row",
-          "Seated Row"
-        ]
+        "unit": "kg"
       },
       {
         "name": "Lateral Raise",
@@ -266,7 +262,7 @@
         "type": "anchor",
         "sets": 3,
         "reps": "5",
-        "load": 60,
+        "load": 70,
         "unit": "kg"
       },
       {
