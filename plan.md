@@ -57,6 +57,7 @@ The anchors:
 | Incline Bench Press | Upper A, slot 1 | All-time high at 65kg. The primary press. |
 | Pull Up | Upper A slot 2, Upper B slot 2 | Position effect is proven (`docs/findings.md`). First or second, never later. |
 | Deadlift | Upper B, slot 1 | The heavy hinge. Moved from Lower at his call, 2026-10-02. |
+| Romanian Deadlift | Lower, slot 2 | The hamstring hinge. Made Lower's anchor at his call, 2026-10-02. |
 | Iso Lat Row | Upper B, slot 3 | The right lat's lift. Row protocol needs the same movement week to week. |
 | Lateral Raise | Upper A slot 5, Upper C slot 3 | Side delts. 8kg since 09-11; four sessions at 15, 15, 15, then 16s on 09-28 (see Progression). |
 
@@ -239,23 +240,28 @@ fortnight; this doubles the frequency.
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
 | 1 | Rotate — quad compound | **Squat (Barbell)** · ★ Bulgarian Split Squat | 3 × 8–10 | **70kg** |
-| 2 | Rotate — quad volume | **Leg Press (Machine)** · Leg Extension | 3 × 10–12 | **80kg** |
-| 3 | Rotate — hamstring | **Kneeling Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 10–12 | **7.5kg** |
-| 4 | Rotate — calves | Seated Calf Raise (Plate Loaded) | 3 × 15–20 | **40kg** |
-| 5 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Hollow Body Hold · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
+| 2 | **Anchor** | Romanian Deadlift (Barbell) | 3 × 6–8 | **80kg** |
+| 3 | Rotate — quad volume | **Leg Extension (Machine)** · Leg Press | 3 × 10–12 | **10kg** |
+| 4 | Rotate — hamstring | **Kneeling Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 8–10 | **10kg** |
+| 5 | Rotate — calves | Seated Calf Raise (Plate Loaded) | 3 × 15–20 | **40kg** |
+| 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Hollow Body Hold · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
-**Squat-led since 2026-10-02**, when the deadlift moved to Upper B at his call. Five
-slots, about 35 minutes.
+**Two hinges a week since 2026-10-02, both his calls.** The conventional deadlift moved
+to Upper B, and the RDL became Lower's anchor the same day. He'd run the RDL after the
+squat on every Lower that has a name on it (09-12, 10-02), so it sits at slot 2, in his
+order. The deadlift is the heavy pull; the RDL is the hamstring hinge, the eccentric
+loading football asks for. Thursday to Sunday is 72h between them. Not on each other's
+scale: an RDL load is never a deadlift reading.
 
 **Sunday into Tuesday football is 48h.** Peak DOMS for the first few weeks; the
 adaptation catches within a month of consistent training. If the first few Tuesdays are
-rough, the lever is making squat lighter (2 sets or cut depth).
+rough, the lever is the RDL to 2 sets if it's the hamstrings, the squat (2 sets or cut
+depth) if it's the quads. Hamstrings are what sprint, so they're the one to ask about.
 
 **The deadlift was slot 1 here until 2026-10-02** (now Upper B, slot 1). Starting load **60kg**, set by the first
 conventional pull in the log. That was 40kg × 10, 60kg × 6, 6, done on Upper B on
 2026-09-24. The old programme ran RDL at 72.5kg on legs day; conventional deadlift is a
-different movement and the load does not transfer. If the conventional pull bothers the
-right lat, RDL remains the fallback.
+different movement and the load does not transfer.
 
 **Squat is moderate, not heavy.** 3×8–10, and it now leads the session. His knees hurt at
 80kg × 5 on 09-12; the drop to 70kg was already proposed. The wider rep range keeps it
@@ -279,6 +285,18 @@ volume slot. It's a listed alternative and a different machine from the leg pres
 doesn't fit. Slot 4 now carries its Strong name. **Hollow body hold** (1:00, 1:00,
 0:30) ran in the core slot, up from 0:30 × 3 on 09-20. It is the Phase 1 hold from
 `docs/calisthenics.md` and is now an alternative in both core slots.
+
+**Second run, Friday 2026-10-02**, moved off Sunday because he skipped football; Upper C
+went to Sunday. Pain(R) 0/10, hanging leg raises included, a day after the 6/10.
+**RDL 80kg × 5, 7, 5** (50kg warm-up), 24h after Thursday's 70kg deadlift, so a tired
+reading. **It became the anchor** at his call, 80kg, where he took it. **Squat 80kg ×
+5, 5, 5 again**; the knees are still unrecorded, so it holds at 70kg and he's asked.
+**Leg extension is the call** at 10kg: 10, 10, 10 both Lowers, his pick both times.
+**Leg curl 10kg × 8, 8, 8**, the third time 10kg gave 8s; he keeps choosing 10kg, so the
+band moved to 8–10 to fit it. Calves 40kg × 10, 10, 10, under the band twice running; the
+load comes down if it happens again. 09-27's nameless lift (50kg × 8, 70kg × 8, 8, then
+80kg × 5) has the same warm-up and loads as the RDL on 09-12 and 10-02. Likely the RDL,
+not logged as one until he says so.
 
 ## Yoga (15–20 min)
 
@@ -363,6 +381,8 @@ adaptation and the physio should sign off on it.
   **70kg, on Upper B from 2026-10-08** (moved from Sunday, his call 10-02). He pulled 70kg × 5, 6 on Upper B 10-01 (after 60 × 8), and
   the 6/10 that day came on the row. A load he moved to himself, with no pain on it,
   becomes the load. The right row's 55kg was handled the same way on 09-24.
+- **RDL** — +2.5kg once all three sets hit 8. 80kg from 2026-10-02, where he took it.
+  If the right lat talks, back to 70kg (8, 8, 8 on 09-12).
 - **Squat** — hold 70kg. +2.5kg once 10 holds across all three sets AND no joint
   complaints.
 - **Iso-lateral row (right)** — governed by the row protocol, not by rep targets.
@@ -379,8 +399,8 @@ adaptation and the physio should sign off on it.
 | Rear delts | 6 | Reverse Fly 3 · Face Pull 3 |
 | Triceps | 6 | One Handed Triceps Pull 3 · Triceps Dip 3 (+ indirect from 13 pressing sets) |
 | Biceps | 6 | Cable Curl 3 · Hammer Curl 3 (+ indirect from 15 pulling sets) |
-| Quads | 6 | Squat 3 · Leg Press 3 (+ football ×2) |
-| Posterior | 6 | Deadlift 3 · Kneeling Leg Curl 3 (+ football ×2) |
+| Quads | 6 | Squat 3 · Leg Extension 3 (+ football ×2) |
+| Posterior | 9 | Deadlift 3 · RDL 3 · Kneeling Leg Curl 3 (+ football ×2) |
 | Core | 6 | Upper C 3 · Lower 3 |
 | Calves | 3 | Calf Raise 3 |
 
@@ -415,7 +435,8 @@ Open questions and full working live in `docs/findings.md`. Short version:
   it's the same station. DB press (26kg), chest-supported row (18kg) and hammer curl
   (14kg) were set on 2026-09-26.
 - **Sunday 09-27's second lift**: the name was lost on import (70kg × 8, 8, then 80kg
-  × 5). Asked him 2026-10-01.
+  × 5). Asked him 2026-10-01. Same warm-up and loads as the RDL on 09-12 and 10-02, so
+  likely the RDL; not logged as one until he says so.
 - **DOMS adaptation**: whether Sunday lower → Tuesday football causes issues in the first
   few weeks.
 - **Whether the old OHP decline was rotation, injury or the trip**: resolvable from the
@@ -458,9 +479,9 @@ added on top.
 | Exercise | Slot | What it is for |
 |---|---|---|
 | Chest-Supported Row | **In trial, Upper C slot 2** — he started it 09-26, run 1 of 4 | Removes torso English from the row — may load the right lat with less pain. |
-| Nordic Curl (eccentric) | Lower slot 3, displacing Leg Curl | Best-evidence hamstring protection for football. Start at 2×4. |
+| Nordic Curl (eccentric) | Lower slot 4, displacing Leg Curl | Best-evidence hamstring protection for football. Start at 2×4. |
 | Weighted Dips | Upper B slot 4 | Once bodyweight dips hit 12, 12, 12 for three sessions. 1 of 3 on 2026-10-01. |
-| Ab Wheel | Upper C slot 6 or Lower slot 5 | Harder core option once hanging leg raises are easy. |
+| Ab Wheel | Upper C slot 6 or Lower slot 6 | Harder core option once hanging leg raises are easy. |
 
 **Bias towards the bodyweight option.** Where two candidates do the same job, the
 calisthenic one wins — that is the stated direction of travel.

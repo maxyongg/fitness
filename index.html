@@ -477,6 +477,7 @@ input[type=number] { -moz-appearance: textfield; }
       <div class="rule"><b>Lateral Raise</b>+1kg once 20 holds across all 3 sets. Currently 8kg.</div>
       <div class="rule"><b>Pull-ups</b>At 27 total fresh. Re-add 5kg once that holds 3 sessions.</div>
       <div class="rule"><b>Deadlift</b>Upper B, slot 1. +2.5kg once all 3 sets hit 5. Currently 70kg.</div>
+      <div class="rule"><b>RDL</b>Lower, slot 2. +2.5kg once all 3 sets hit 8. Currently 80kg.</div>
       <div class="rule"><b>Squat</b>Hold 70kg. +2.5kg once 10 holds all sets AND no joint pain.</div>
       <div class="rule"><b>Iso Lat Row (R)</b>Governed by the row protocol, not rep targets.</div>
       <div class="rule"><b>Everything else</b>Top of range on all sets for 2 consecutive sessions &rarr; smallest increment.</div>
@@ -501,7 +502,7 @@ input[type=number] { -moz-appearance: textfield; }
         <tr><td>Triceps</td><td class="n">6</td><td class="src">Extension 3, Dips 3</td></tr>
         <tr><td>Biceps</td><td class="n">6</td><td class="src">Curl 3+3</td></tr>
         <tr><td>Quads</td><td class="n">6</td><td class="src">Squat 3, Leg Press 3</td></tr>
-        <tr><td>Posterior</td><td class="n">6</td><td class="src">Deadlift 3, Leg Curl 3</td></tr>
+        <tr><td>Posterior</td><td class="n">9</td><td class="src">Deadlift 3, RDL 3, Leg Curl 3</td></tr>
         <tr><td>Core</td><td class="n">6</td><td class="src">HLR 3+3</td></tr>
         <tr><td>Calves</td><td class="n">3</td><td class="src">Calf Raise 3</td></tr>
       </table>
@@ -589,8 +590,8 @@ input[type=number] { -moz-appearance: textfield; }
    Strings use double quotes (drain.py and represcribe.py parse this object).            */
 var RX = {
   asof: "2026-10-02",
-  after: "2026-10-01 Upper B",
-  note: "Thursday's 6/10 came on the seated cable row. It's off the swap list, the right iso row goes back to 50kg, and Saturday's row opens with a 14kg check set. The deadlift and pull-ups are in the clear: Monday keeps +5kg. The deadlift now lives on Thursday at 70kg (your call), so Sunday is squat-led.",
+  after: "2026-10-02 Lower",
+  note: "Upper C runs Sunday this week, after Friday's Lower. The right side read 0/10 on Friday, hanging leg raises included, so the hang is back on; the row still opens with the 14kg check set, because one quiet day after a 6 isn't three greens. Lower's anchor is now the RDL at 80kg, your call.",
   repo: "maxyongg/fitness",
   workerUrl: "https://matchday-debrief.maxyongg.workers.dev",
   schedule: { 1:"upper_a", 2:"football", 3:"rest", 4:"upper_b", 5:"football", 6:"upper_c", 0:"lower" },
@@ -669,7 +670,7 @@ var RX = {
     },
     upper_c: {
       name: "Upper C", day: "Saturday", mins: "~45 min",
-      brief: "The rounding day, the day after football. Thursday's seated cable row read 6/10 on the right, the highest in the log, so nothing today loads the lat hard: the row opens with a check set and the hang is optional. Loads otherwise as 09-26.",
+      brief: "The rounding day. Sunday this week, after Friday's Lower, with Upper A the next day. Thursday's seated cable row read 6/10 on the right; Friday read 0/10, hanging leg raises included. The row still opens with a check set; the hang is back on. Loads as 09-26.",
       exercises: [
         { name:"Bench Press (Dumbbell)", type:"rotate", sets:3, reps:"10-12", load:26, unit:"kg",
           slot:"Press",
@@ -697,40 +698,44 @@ var RX = {
           why:"The barbell curl at 30kg gave 8, 8, 7 twice, under this slot's 10–12. The neutral grip trains the brachialis and your grip, the one quality the log says has never been trained." },
         { name:"Hanging Leg Raise", type:"rotate", sets:3, reps:"10-12", load:0, unit:"BW",
           slot:"Core", alts:["Toes To Bar","Hollow Body Hold","Plank","Ab Wheel"],
-          last:"09-20 · 10, 10, 10",
-          do:"Bodyweight, 10–12. Hanging stretches the right lat, so if it talks on the bar, take the hollow body hold instead (1:00 holds on 09-27 and 09-28).",
-          why:"Core is programmed, not ad hoc — six sets a week across Saturday and Sunday." }
+          last:"10-02 · 10, 10, 10 on Lower — pain 0/10",
+          do:"Bodyweight, 10–12. Friday's 10, 10, 10 read 0/10 on the right, so the hang is back on. If it talks on the bar, take the hollow body hold instead.",
+          why:"Core is programmed, not ad hoc — six sets a week across Upper C and Lower. Hanging stretches the right lat, which is why it was optional after Thursday's 6/10." }
       ]
     },
     lower: {
-      name: "Lower", day: "Sunday", mins: "~35 min",
-      brief: "Squat-led, 48h before Tuesday football. The deadlift moved to Thursday (your call, 10-02), so this is quads, hamstrings, calves and core. Squat still 70kg for reps; leg curl 7.5kg where the reps fit. If Tuesdays come out rough, the squat is the lever.",
+      name: "Lower", day: "Sunday", mins: "~45 min",
+      brief: "Squat, then the RDL anchor: the conventional deadlift is Thursday's, the RDL is this day's hinge (your call, 10-02). 48h before Tuesday football. If Tuesdays come out rough in the hamstrings, the RDL goes to 2 sets first; if it's the quads, the squat.",
       exercises: [
         { name:"Squat (Barbell)", type:"rotate", sets:3, reps:"8-10", load:70, unit:"kg",
           slot:"Quad compound", alts:["Bulgarian Split Squat"],
-          last:"09-27 · 40kg × 8, then 80kg × 5, 5, 5",
-          do:"70kg for 8–10 is still the call. You ran 80 × 5, 5, 5 on 09-27. If the knees were quiet at 80, say so and the slot gets re-set to fit.",
-          why:"Leads the session now the deadlift is on Thursday, and still moderate on purpose. Your knees talked at 80kg × 5 on 09-12, so the answer was reps, not plates. The log can't say how they felt on 09-27." },
-        { name:"Leg Press", type:"rotate", sets:3, reps:"10-12", load:80, unit:"kg",
-          slot:"Quad volume", alts:["Leg Extension"],
-          last:"09-12 · 80kg × 8, 8 (seated leg press)",
-          do:"80kg. 12 on all three sets, two sessions running, earns the next plate.",
-          why:"Quad volume. The 130kg in older notes is a different machine — that number is not on this scale. 09-27 ran the leg extension (10kg × 10, 10, 10), a different machine." },
-        { name:"Kneeling Leg Curl", type:"rotate", sets:3, reps:"10-12", load:7.5, unit:"kg",
+          last:"10-02 · 40kg × 8, then 80kg × 5, 5, 5 · 09-27 · the same",
+          do:"70kg for 8–10 is still the call. You've run 80 × 5, 5, 5 twice now. If the knees were quiet at 80, say so and the slot gets re-set to fit.",
+          why:"Moderate on purpose. Your knees talked at 80kg × 5 on 09-12, so the answer was reps, not plates. The log can't say how they felt on 09-27 or 10-02." },
+        { name:"Romanian Deadlift (Barbell)", type:"anchor", sets:3, reps:"6-8", load:80, unit:"kg",
+          last:"10-02 · 50kg × 8 warm-up, 80kg × 5, 7, 5 — 24h after Thursday's 70kg deadlift · 09-12 · 70kg × 8, 8, 8",
+          do:"80kg, after the squat as you run it. 8 on all three sets earns 82.5kg. Slow on the way down, bar close to the legs. If the right lat talks, back to 70kg.",
+          why:"Lower's anchor from 10-02, your call: Thursday's deadlift is the heavy pull, this is the hamstring hinge football asks for. 80kg is where you took it. 10-02 came a day after a 70kg deadlift, so 5, 7, 5 is a tired reading; 72h out on Sundays is the fair one. Not on the deadlift's scale." },
+        { name:"Leg Extension (Machine)", type:"rotate", sets:3, reps:"10-12", load:10, unit:"kg",
+          slot:"Quad volume", alts:["Leg Press"],
+          last:"10-02 · 10kg × 10, 10, 10 · 09-27 · 10kg × 10, 10, 10",
+          do:"10kg. 12 on all three sets, two sessions running, earns the next pin.",
+          why:"You've run it in this slot both Lowers of the block, so it's the call, the way Thursday's rotate slots follow your picks. Two sessions at 10s: the top of the band is the next step. The leg press (80kg × 8, 8 on 09-12) is a different machine and stays in the swaps." },
+        { name:"Kneeling Leg Curl", type:"rotate", sets:3, reps:"8-10", load:10, unit:"kg",
           slot:"Hamstring", alts:["Nordic Curl"],
-          last:"09-27 · 10kg × 8, then 7.5kg × 10, 10",
-          do:"7.5kg. 12 on all three sets, two sessions running, earns 10kg back.",
-          why:"Hamstrings for football. 10kg gave 8s twice (09-12, 09-27), under the 10–12 band, and you came down to 7.5kg yourself. The 35kg in older notes is a different station. Nordic curls are the candidate once this has run four sessions in the block (1 of 4)." },
+          last:"10-02 · 10kg × 8, 8, 8 · 09-27 · 10kg × 8, then 7.5kg × 10, 10",
+          do:"10kg for 8–10. 10 on all three sets, two sessions running, earns the next pin.",
+          why:"You keep taking 10kg and it keeps giving 8s (09-12, 09-27, 10-02), so the band moves to fit the load you choose rather than the other way round. After the RDL, it's the second hamstring movement. Nordic curls are the candidate once this has run four sessions in the block (2 of 4)." },
         { name:"Seated Calf Raise", type:"rotate", sets:3, reps:"15-20", load:40, unit:"kg",
           slot:"Calves",
-          last:"09-12 · 40kg × 12, 12, 12",
-          do:"40kg. 20 on all three sets, two sessions running, earns the next plate.",
-          why:"The one group trained once a week. Football covers the rest." },
+          last:"10-02 · 40kg × 10, 10, 10 · 09-12 · 40kg × 12, 12, 12",
+          do:"40kg, each set as far as clean reps go. If it lands under 15 again, the load comes down to fit the band.",
+          why:"The one group trained once a week. Football covers the rest. Two readings under the band (12s, then 10s) on the same load." },
         { name:"Hanging Leg Raise", type:"rotate", sets:3, reps:"10-12", load:0, unit:"BW",
           slot:"Core", alts:["Toes To Bar","Hollow Body Hold","Plank","Ab Wheel"],
-          last:"09-20 · 10, 10, 10",
-          do:"Bodyweight, 10–12. Toes to bar (8, 6 on 09-26) is the harder rung if these feel easy. On 09-27 you ran the hollow body hold here (1:00, 1:00, 0:30).",
-          why:"Core is programmed, not ad hoc — six sets a week across Saturday and Sunday." }
+          last:"10-02 · 10, 10, 10 — pain 0/10",
+          do:"Bodyweight, 10–12. Toes to bar (8, 6 on 09-26) is the harder rung once these reach 12.",
+          why:"Core is programmed, not ad hoc — six sets a week across Upper C and Lower." }
       ]
     }
   }
@@ -788,12 +793,16 @@ function pickNext(d) {
     return hist.some(function(h) { return h.session_id === sid && h.date >= from && h.date <= today; });
   }
   if (!done(id)) return id;
-  var i = ORDER.indexOf(id);
-  for (var k = 1; k < ORDER.length; k++) {
-    var sid = ORDER[(i + k) % ORDER.length];
-    if (!done(sid)) return sid;
+  var savedToday = hist.some(function(h) { return h.session_id === id && h.date === today; });
+  if (savedToday) return ORDER[(ORDER.indexOf(id) + 1) % ORDER.length];
+  // Today's was done early: the session it swapped with is the latest earlier day's that
+  // isn't saved. Walking back from yesterday keeps a day missed earlier in the week from
+  // coming back to be caught up ("When life interferes", plan.md).
+  for (var back = 1; back <= (d.getDay() + 6) % 7; back++) {
+    var sid = RX.schedule[(d.getDay() - back + 7) % 7];
+    if (RX.sessions[sid] && !done(sid)) return sid;
   }
-  return ORDER[(i + 1) % ORDER.length];
+  return ORDER[(ORDER.indexOf(id) + 1) % ORDER.length];
 }
 
 function nextLift(dow) {

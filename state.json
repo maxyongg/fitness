@@ -49,7 +49,7 @@
   "next_session": {
     "type": "upper_c",
     "name": "Upper C",
-    "expected_date": "2026-10-03"
+    "expected_date": "2026-10-04"
   },
   "slots": {
     "upper_a": [
@@ -271,22 +271,30 @@
         ]
       },
       {
-        "name": "Leg Press",
+        "name": "Romanian Deadlift (Barbell)",
+        "type": "anchor",
+        "sets": 3,
+        "reps": "6-8",
+        "load": 80,
+        "unit": "kg"
+      },
+      {
+        "name": "Leg Extension (Machine)",
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 80,
+        "load": 10,
         "unit": "kg",
         "alts": [
-          "Leg Extension"
+          "Leg Press"
         ]
       },
       {
         "name": "Kneeling Leg Curl",
         "type": "rotate",
         "sets": 3,
-        "reps": "10-12",
-        "load": 7.5,
+        "reps": "8-10",
+        "load": 10,
         "unit": "kg",
         "alts": [
           "Nordic Curl"
@@ -317,7 +325,7 @@
     ]
   },
   "rx_asof": "2026-10-02",
-  "rx_after": "2026-10-01 Upper B",
+  "rx_after": "2026-10-02 Lower",
   "row_protocol": {
     "load_left": 60,
     "load_right": 50,

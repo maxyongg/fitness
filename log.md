@@ -619,6 +619,18 @@ pain(R): 0/10
 - Seated Calf Raise (Plate Loaded) — 40kg × 10, 10, 10
 - Hanging Leg Raise — bodyweight × 10, 10, 10
 
+<!-- Re-prescribed by hand on 2026-10-02. Run on Friday: he skipped football, and Upper C
+     moved to Sunday. Pain(R) 0/10, a day after the 6/10, hanging leg raises included.
+
+     **RDL 80kg × 5, 7, 5**, 24h after Thursday's 70kg deadlift. **He made it Lower's
+     anchor** (his call, 10-02): slot 2 behind the squat, 80kg, 3 × 6–8. Squat 80kg ×
+     5, 5, 5 again, knees unrecorded: holds at 70kg, asked. Leg extension is now slot 3's
+     call (his pick both Lowers). Leg curl 10kg × 8, 8, 8, the third time: band moves to
+     8–10 at the load he keeps choosing. Calves 40kg × 10, 10, 10, under the band twice.
+
+     **Upper C, Sunday:** the hang is back on after Friday's 0/10; the chest-supported
+     row keeps its 14kg check set. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
