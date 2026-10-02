@@ -118,6 +118,32 @@ To answer it properly: alternate a morning and an evening version of the *same s
 type*, deciding which **before** the day starts, for eight weeks. Same design as the
 session-length test, and the only version that would mean anything.
 
+## Holds: his rep zones, and the programme's bands were above them
+
+Checked 2026-10-02, when he asked whether "+2.5kg at 10–12" was his rule. It wasn't, and
+it isn't his data either. The bands came in with the 09-01 plan and the redesign of
+09-21; "top of the band on all sets for two consecutive sessions → smallest increment"
+was written by a Claude session on 09-21. Neither was derived from the export.
+
+`analyse.py` now prints REP ZONES: per exercise, the reps at the session's top weight,
+and what the session right before a load increase looked like. From the 31 Aug export:
+
+- **Heavy barbell lifts live at 5s.** Squat sets of 5, and every 12-month increase came
+  after 5s. Flat bench the same.
+- **Incline bench, RDL, OHP, rows and pulldowns live at 8.** He moves up after 8s.
+- **Most accessories live at 8–10**, not 10–12: chest fly (8s on 65kg for months), DB
+  bench, cable crossover, triceps pull, leg extension, curls.
+- **High-rep work is a short list:** lateral raise (15–18), face pull (10–12), triceps
+  extension (10–12), calves (15), core.
+- **He moves up after one session at the top of his zone**, not two (median held at a
+  load: 1 session for most lifts, 2 for squat, flat bench and rows).
+- **Lower-body barbell jumps are 5kg** (squat, RDL); upper barbell 2.5–5; dumbbells and
+  pins the next step.
+
+**What it means:** a band set two reps above where he works reads as a stall that isn't
+one. Several debrief "stalls" in September (fly, triceps pull, leg extension, leg curl)
+were bands, not plateaus. Set bands from REP ZONES, not from a template.
+
 ## The general lesson
 
 Three confident findings in this project turned out to be scheduling artefacts read as

@@ -194,6 +194,52 @@ calendar. Mornings are also mostly weekends.""")
     pu = per[per['Exercise Name'] == 'Pull Up'].sort_values('day').tail(20)
     print(pu[['day', 'pos', 'n_ex', 'reps']].to_string(index=False))
 
+    rep_zones(w)
+
+
+def rep_zones(w):
+    """Where each lift actually lives, and what he did right before adding weight.
+
+    Added 2026-10-02 when he asked whether the programme's bands (mostly 10-12, two
+    sessions at the top, then +2.5kg) were his or invented. They were invented. A band set
+    above the reps he works in reads as a stall that is not one, so set bands from here.
+    'top' = the session's heaviest working weight. 'before up' = the fewest reps at the top
+    weight in the session right before the top weight rose (>2%, within 21 days). 'held' =
+    sessions at a load before it rose. Same Strong name only: machine identity is part of
+    the measurement, so nothing is pooled across stations.
+    """
+    section('REP ZONES — where each lift lives, and what preceded a load increase')
+    w = w[w.Reps > 0]
+    rows = []
+    for name, e in w.groupby('Exercise Name'):
+        sess = e.groupby('day').apply(lambda s: pd.Series({
+            'top': s.Weight.max(),
+            'min_r': s[s.Weight >= s.Weight.max() - 0.01].Reps.min(),
+            'max_r': s[s.Weight >= s.Weight.max() - 0.01].Reps.max()})).reset_index()
+        if len(sess) < 8 or (e.Weight <= 0).all():
+            continue
+        before, held, jumps, run = [], [], [], 1
+        for a, b in zip(sess.itertuples(), sess.iloc[1:].itertuples()):
+            if abs(b.top - a.top) <= a.top * 0.02:
+                run += 1
+                continue
+            if b.top > a.top * 1.02 and (b.day - a.day).days <= 21:
+                before.append(a.min_r); held.append(run); jumps.append(b.top - a.top)
+            run = 1
+        iqr = lambda x: f'{np.percentile(x, 25):.0f}-{np.percentile(x, 75):.0f}'
+        rows.append({'exercise': name, 'sessions': len(sess),
+                     'top-set reps': f'{np.median(sess.max_r):.0f} ({iqr(sess.max_r)})',
+                     'last 12 months': (lambda r: f'{np.median(r):.0f} ({iqr(r)})' if len(r) else '-')(
+                         sess[sess.day > w.day.max() - pd.Timedelta(days=365)].max_r),
+                     'ups': len(before),
+                     'reps before up': f'{np.median(before):.0f}' if before else '-',
+                     'held': f'{np.median(held):.0f}' if held else '-',
+                     'jump kg': f'{np.median(jumps):.1f}' if jumps else '-'})
+    out = pd.DataFrame(rows).sort_values('sessions', ascending=False)
+    print(out.to_string(index=False))
+    print('Most lifts rise after ONE session at the top of their zone, and most accessories'
+          ' live at 8-10, not 10-12.')
+
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
