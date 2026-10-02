@@ -1,53 +1,47 @@
 {
-  "_generated": "2026-10-02T02:21:46",
+  "_generated": "2026-10-02T06:32:42",
   "_by": "drain.py",
   "last_session": {
-    "date": "2026-10-01",
-    "type": "upper_b",
-    "name": "Upper B",
-    "exercise_count": 7,
-    "pain_right_lat": 6,
+    "date": "2026-10-02",
+    "type": "lower",
+    "name": "Lower",
+    "exercise_count": 6,
+    "pain_right_lat": 0,
     "top_sets": [
       {
-        "name": "Deadlift (Barbell)",
+        "name": "Squat (Barbell)",
         "weight": 40,
         "best_reps": 8,
         "set_count": 4
       },
       {
-        "name": "Pull Up",
-        "weight": "BW+8",
+        "name": "Romanian Deadlift (Barbell)",
+        "weight": 50,
+        "best_reps": 8,
+        "set_count": 4
+      },
+      {
+        "name": "Leg Extension (Machine)",
+        "weight": 10,
+        "best_reps": 10,
+        "set_count": 3
+      },
+      {
+        "name": "Kneeling Leg Curl",
+        "weight": 10,
         "best_reps": 8,
         "set_count": 3
       },
       {
-        "name": "Seated Row (Cable)",
+        "name": "Seated Calf Raise (Plate Loaded)",
         "weight": 40,
         "best_reps": 10,
-        "set_count": 4
-      },
-      {
-        "name": "Straight Arm Pulldown",
-        "weight": 15,
-        "best_reps": 12,
         "set_count": 3
       },
       {
-        "name": "Triceps Dip",
+        "name": "Hanging Leg Raise",
         "weight": "BW",
-        "best_reps": 12,
-        "set_count": 3
-      },
-      {
-        "name": "Single Arm Cable Chest Fly",
-        "weight": 3.75,
         "best_reps": 10,
-        "set_count": 3
-      },
-      {
-        "name": "Bicep Curl (Barbell)",
-        "weight": 30,
-        "best_reps": 8,
         "set_count": 3
       }
     ]
@@ -329,8 +323,5 @@
     "load_right": 50,
     "status": "see plan.md, The row protocol"
   },
-  "flags": [
-    "pain(R) 6/10 — amber, row protocol resets",
-    "Pull-up: top set 8, total 24"
-  ]
+  "flags": []
 }
