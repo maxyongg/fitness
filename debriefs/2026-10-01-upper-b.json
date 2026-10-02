@@ -1,0 +1,161 @@
+{
+  "key": "2026-10-01-upper-b",
+  "date": "2026-10-01",
+  "session": "Upper B",
+  "session_id": "upper_b",
+  "model": "claude-sonnet-5",
+  "created": "2026-10-02T02:41:47.924Z",
+  "logged": {
+    "date": "2026-10-01",
+    "session": "Upper B",
+    "session_id": "upper_b",
+    "exercises": [
+      {
+        "name": "Deadlift (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 8
+          },
+          {
+            "weight": 60,
+            "reps": 8
+          },
+          {
+            "weight": 70,
+            "reps": 5
+          },
+          {
+            "weight": 70,
+            "reps": 6
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 8,
+            "reps": 8
+          },
+          {
+            "weight": 8,
+            "reps": 8
+          },
+          {
+            "weight": 8,
+            "reps": 8
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Seated Row (Cable)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 57,
+            "reps": 10
+          },
+          {
+            "weight": 57,
+            "reps": 10
+          },
+          {
+            "weight": 57,
+            "reps": 10
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Straight Arm Pulldown",
+        "sets": [
+          {
+            "weight": 15,
+            "reps": 12
+          },
+          {
+            "weight": 17.5,
+            "reps": 10
+          },
+          {
+            "weight": 17.5,
+            "reps": 10
+          }
+        ],
+        "weight": 15
+      },
+      {
+        "name": "Triceps Dip",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 12
+          },
+          {
+            "weight": 0,
+            "reps": 12
+          },
+          {
+            "weight": 0,
+            "reps": 12
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Single Arm Cable Chest Fly",
+        "sets": [
+          {
+            "weight": 3.75,
+            "reps": 10
+          },
+          {
+            "weight": 6.25,
+            "reps": 10
+          },
+          {
+            "weight": 6.25,
+            "reps": 10
+          }
+        ],
+        "weight": 3.75
+      },
+      {
+        "name": "Bicep Curl (Barbell)",
+        "sets": [
+          {
+            "weight": 30,
+            "reps": 8
+          },
+          {
+            "weight": 30,
+            "reps": 8
+          },
+          {
+            "weight": 30,
+            "reps": 8
+          }
+        ],
+        "weight": 30
+      }
+    ],
+    "pain": {
+      "right_lat": 6
+    },
+    "notes": "Imported from Strong",
+    "extra": ""
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Upper B landed differently from the current prescription. Pull-ups came in at +8kg for 8, 8, 8, slotted second after the deadlift, not bodyweight AMRAP-2 leading the session — loaded pull-ups are a Monday thing, and this is the second time they've shown up here loaded on a high-pain day. The iso-lateral row didn't appear at all; Seated Row (Cable) ran in its place at 40kg×10 then 57kg×10, 10, 10. Straight arm pulldown moved up to 17.5kg but only held 10, 10 after a 15kg opener — not yet the 12 across three needed for the next pin. Triceps dip hit 12, 12, 12, the first clean session toward weighted dips. Chest work swapped again, this time to single-arm cable fly. Bicep curl went back to barbell at 30kg for a full 8, 8, 8.\n\nTrend: Deadlift jumped from 60kg (09-24) to 70kg today, but reps dropped to 5, 6 under the heavier load — worth watching, not yet a pattern with only two data points. Triceps dip has gone 10, 10, 12 then 12, 12, 12 — one of three toward weighted dips. Straight arm pulldown has stalled at 17.5kg without hitting the full 12 twice running.\n\nRight lat: 6/10 logged, the highest reading on file, and it resets the right row to 50kg with the count restarting. But the iso-lateral row wasn't run today — the seated cable row stood in for it. No reading exists against the actual row protocol this session.\n\nNext session: Upper C, Saturday. Bench press dumbbell at 26kg, looking for 12 across all three to earn 28kg. Chest supported row trial 2 of 4: open at 14kg, rate the right side, go to 18kg only if 3 or under. Hanging leg raise is optional — hollow body hold if the lat talks on the bar.\n\nQuestion: The 6/10 — was that from the deadlift, the pull-ups, or the seated row itself?",
+      "at": "2026-10-02T02:41:47.924Z"
+    }
+  ]
+}
