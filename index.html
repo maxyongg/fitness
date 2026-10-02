@@ -476,7 +476,7 @@ input[type=number] { -moz-appearance: textfield; }
       <div class="rule"><b>Incline Bench</b>+2.5kg once all 4 sets hit 8. Currently 65kg.</div>
       <div class="rule"><b>Lateral Raise</b>+1kg once 20 holds across all 3 sets. Currently 8kg.</div>
       <div class="rule"><b>Pull-ups</b>At 27 total fresh. Re-add 5kg once that holds 3 sessions.</div>
-      <div class="rule"><b>Deadlift</b>+2.5kg once all 3 sets hit 5. Starting load TBD.</div>
+      <div class="rule"><b>Deadlift</b>Upper B, slot 1. +2.5kg once all 3 sets hit 5. Currently 70kg.</div>
       <div class="rule"><b>Squat</b>Hold 70kg. +2.5kg once 10 holds all sets AND no joint pain.</div>
       <div class="rule"><b>Iso Lat Row (R)</b>Governed by the row protocol, not rep targets.</div>
       <div class="rule"><b>Everything else</b>Top of range on all sets for 2 consecutive sessions &rarr; smallest increment.</div>
@@ -590,7 +590,7 @@ input[type=number] { -moz-appearance: textfield; }
 var RX = {
   asof: "2026-10-02",
   after: "2026-10-01 Upper B",
-  note: "Thursday's 6/10 came on the seated cable row. It's off the swap list, the right iso row goes back to 50kg, and Saturday's row opens with a 14kg check set. The deadlift and pull-ups are in the clear: Sunday's deadlift goes to 70kg, where you took it on Thursday, and Monday keeps +5kg.",
+  note: "Thursday's 6/10 came on the seated cable row. It's off the swap list, the right iso row goes back to 50kg, and Saturday's row opens with a 14kg check set. The deadlift and pull-ups are in the clear: Monday keeps +5kg. The deadlift now lives on Thursday at 70kg (your call), so Sunday is squat-led.",
   repo: "maxyongg/fitness",
   workerUrl: "https://matchday-debrief.maxyongg.workers.dev",
   schedule: { 1:"upper_a", 2:"football", 3:"rest", 4:"upper_b", 5:"football", 6:"upper_c", 0:"lower" },
@@ -629,17 +629,21 @@ var RX = {
       ]
     },
     upper_b: {
-      name: "Upper B", day: "Thursday", mins: "~50 min",
-      brief: "Pull-heavy. Pull-ups lead at bodyweight, two in reserve. 10-01's seated cable row read 6/10 on the right, so the right row is back at 50kg and its count starts again. Slots 4–5 balance the pulls with push work. Rate right-lat pain during the row.",
+      name: "Upper B", day: "Thursday", mins: "~60 min",
+      brief: "Pull-heavy, and the week's deadlift. Deadlift first, then pull-ups at bodyweight, two in reserve. 10-01's seated cable row read 6/10 on the right, so the right row is back at 50kg and its count starts again. Slots 5–6 balance the pulls with push work. Rate right-lat pain during the row.",
       exercises: [
+        { name:"Deadlift (Barbell)", type:"anchor", sets:3, reps:"5", load:70, unit:"kg",
+          last:"10-01 · 40kg × 8, 60kg × 8, 70kg × 5, 6 · 09-24 · 40kg × 10, 60kg × 6, 6",
+          do:"70kg, three sets of 5 after your warm-ups. Three clean, comfortable fives earn 72.5kg. If the pull bothers the right lat, back to 60kg, or RDL.",
+          why:"Moved here from Sunday at your call (10-02); you'd opened both Thursdays of the block with it. It sits 24h before Friday football: if your legs are flat on Fridays, the lever is 2 sets, not moving it back. Thursday's 6/10 came on the row, not this." },
         { name:"Pull Up", type:"anchor", sets:3, reps:"AMRAP-2", load:0, unit:"BW",
           last:"10-01 · +8kg × 8, 8, 8 at slot 2, after the deadlift — session pain 6/10 · 09-24 · 10, 10, 7",
-          do:"Slot 1, bodyweight. Stop every set two reps short of failure. Added weight belongs to Monday's all-out sets.",
-          why:"Second pull-up day, 72h after Monday. Two full AMRAPs that close is more joint stress than the frequency is worth — two in reserve keeps the volume without the grind." },
+          do:"Slot 2, straight after the deadlift, bodyweight. Stop every set two reps short of failure. Added weight belongs to Monday's all-out sets.",
+          why:"Second pull-up day, 72h after Monday. Slot 2 behind the deadlift gave 27 on 09-24, so the position holds. Two in reserve keeps the volume without the grind." },
         { name:"Iso Lateral Row", type:"anchor", sets:3, reps:"8-10", load:0, unit:"kg",
           bilateral:true, loadL:60, loadR:50,
           last:"09-24 · L 55kg × 8, 8 · R 55kg × 8, 8 — pain 3/10. 10-01 ran the seated cable row instead (6/10), a different machine",
-          do:"Left 60kg (60 × 8, 8 on 09-17). Right back to 50kg: the seated cable row read 6/10 on 10-01, and an amber on a row resets the count. Rate the pain during the set.",
+          do:"Slot 3, after the deadlift and pull-ups, same order every week so the readings compare. Left 60kg (60 × 8, 8 on 09-17). Right back to 50kg: the seated cable row read 6/10 on 10-01, and an amber on a row resets the count. Rate the pain during the set.",
           why:"The right lat's measured lift. 55kg had 1 green of 3 when the seated cable row read 6/10, the highest in the log. Greens at 50kg: 0 of 3. Three held over two weeks earns 52.5kg. Your physio's guidance overrides all of this." },
         { name:"Straight Arm Pulldown", type:"rotate", sets:3, reps:"10-12", load:17.5, unit:"kg",
           slot:"Vertical pull", alts:["Lat Pulldown","Single-Arm Lat Pulldown","Underhand Pulldown"],
@@ -650,7 +654,7 @@ var RX = {
           slot:"Push compound", alts:["Weighted Dips"],
           last:"10-01 · 12, 12, 12 · 09-24 · 10, 10, 12",
           do:"Bodyweight, 12, 12, 12 again. Three sessions running at 12s puts weighted dips on the table.",
-          why:"At slot 4 they land on a fresh chest and triceps, after the pulls. Named the way Strong logs it. 10-01 was the block's first 12, 12, 12: 1 of 3 toward weighted dips, the next rung." },
+          why:"Here they land on a fresh chest and triceps, after the pulls. Named the way Strong logs it. 10-01 was the block's first 12, 12, 12: 1 of 3 toward weighted dips, the next rung." },
         { name:"Cable Crossover", type:"rotate", sets:3, reps:"10-12", load:12.5, unit:"kg",
           slot:"Chest isolation", alts:["Single Arm Cable Chest Fly","Decline Chest Press","Chest Fly","Incline Chest Press"],
           last:"09-07 · 15kg × 8, 8, then 12.5kg × 12",
@@ -699,18 +703,14 @@ var RX = {
       ]
     },
     lower: {
-      name: "Lower", day: "Sunday", mins: "~45 min",
-      brief: "Second Lower of the block, 48h before Tuesday football. Deadlift to 70kg, where you took it on Thursday; squat still 70kg for reps; leg curl 7.5kg where the reps fit. If Tuesdays come out rough, the squat is the lever, not the deadlift.",
+      name: "Lower", day: "Sunday", mins: "~35 min",
+      brief: "Squat-led, 48h before Tuesday football. The deadlift moved to Thursday (your call, 10-02), so this is quads, hamstrings, calves and core. Squat still 70kg for reps; leg curl 7.5kg where the reps fit. If Tuesdays come out rough, the squat is the lever.",
       exercises: [
-        { name:"Deadlift (Barbell)", type:"anchor", sets:3, reps:"5", load:70, unit:"kg",
-          last:"10-01 · 40kg × 8, 60kg × 8, 70kg × 5, 6 — on Upper B, before pull-ups",
-          do:"70kg, three sets of 5. Three clean, comfortable fives earn 72.5kg. If the pull bothers the right lat, back to 60kg, or RDL.",
-          why:"The heavy compound, first while fresh. It started at 60kg from 09-24's 60kg × 6, 6. You took it to 70kg × 5, 6 on 10-01, and Thursday's 6/10 came on the row, not this. So 70kg is the load, the way the right row took the 55kg you moved it to. RDL numbers are a different lift." },
         { name:"Squat (Barbell)", type:"rotate", sets:3, reps:"8-10", load:70, unit:"kg",
           slot:"Quad compound", alts:["Bulgarian Split Squat"],
           last:"09-27 · 40kg × 8, then 80kg × 5, 5, 5",
           do:"70kg for 8–10 is still the call. You ran 80 × 5, 5, 5 on 09-27. If the knees were quiet at 80, say so and the slot gets re-set to fit.",
-          why:"Moderate on purpose, behind a heavy deadlift. Your knees talked at 80kg × 5 on 09-12, so the answer was reps, not plates. The log can't say how they felt on 09-27." },
+          why:"Leads the session now the deadlift is on Thursday, and still moderate on purpose. Your knees talked at 80kg × 5 on 09-12, so the answer was reps, not plates. The log can't say how they felt on 09-27." },
         { name:"Leg Press", type:"rotate", sets:3, reps:"10-12", load:80, unit:"kg",
           slot:"Quad volume", alts:["Leg Extension"],
           last:"09-12 · 80kg × 8, 8 (seated leg press)",
@@ -883,8 +883,11 @@ function saveSwap(sid, idx, name) {
   try { localStorage.setItem("matchday_swaps", JSON.stringify(swaps)); } catch (e) {}
 }
 
+/* A stored swap only counts while it is still one of that slot's alternatives, so a slot
+   moving position (deadlift to Upper B, 2026-10-02) can't carry an old swap with it. */
 function getActiveName(sid, idx) {
-  return swaps[swapKey(sid, idx)] || RX.sessions[sid].exercises[idx].name;
+  var ex = RX.sessions[sid].exercises[idx], sw = swaps[swapKey(sid, idx)];
+  return sw && (ex.alts || []).indexOf(sw) !== -1 ? sw : ex.name;
 }
 
 /* ---- render session ---- */

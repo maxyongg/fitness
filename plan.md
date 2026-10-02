@@ -55,8 +55,9 @@ The anchors:
 | Anchor | Session | Why |
 |---|---|---|
 | Incline Bench Press | Upper A, slot 1 | All-time high at 65kg. The primary press. |
-| Pull Up | Upper A slot 2, Upper B slot 1 | Position effect is proven (`docs/findings.md`). First or second, never later. |
-| Iso Lat Row | Upper B, slot 2 | The right lat's lift. Row protocol needs the same movement week to week. |
+| Pull Up | Upper A slot 2, Upper B slot 2 | Position effect is proven (`docs/findings.md`). First or second, never later. |
+| Deadlift | Upper B, slot 1 | The heavy hinge. Moved from Lower at his call, 2026-10-02. |
+| Iso Lat Row | Upper B, slot 3 | The right lat's lift. Row protocol needs the same movement week to week. |
 | Lateral Raise | Upper A slot 5, Upper C slot 3 | Side delts. 8kg since 09-11; four sessions at 15, 15, 15, then 16s on 09-28 (see Progression). |
 
 Everything else rotates. The bolded exercise in each rotate slot is the current call;
@@ -110,28 +111,29 @@ fix above assumed he'd run it, and he hasn't, so the slot follows the movement h
 It is set at 10kg, where his last set landed. Hollow body hold 1:00, 1:00 and push-ups
 15, 15 ran as finishers. Both were logged, which is what the logging section asks for.
 
-## Upper B — Thursday (~50 min)
+## Upper B — Thursday (~60 min)
 
-The pull-heavy upper day. Pull-ups lead.
+The pull-heavy upper day, and the week's deadlift. Deadlift first, pull-ups second.
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | **Anchor** | Pull Up | 3 × AMRAP−2 | bodyweight |
-| 2 | **Anchor** | Single-Arm Iso-Lateral Row, left then right | 3 × 8–10 each | see protocol |
-| 3 | Rotate — vertical pull | **Straight Arm Pulldown** · Lat Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 10–12 | **17.5kg** |
-| 4 | Rotate — push compound | **Triceps Dip** · ★ Weighted Dips | 3 × 8–12 | bodyweight |
-| 5 | Rotate — chest isolation | **Cable Crossover** · Single Arm Cable Chest Fly · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | **12.5kg** |
-| 6 | Rotate — biceps | **Bicep Curl (Cable)** · Bicep Curl (Barbell) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **10kg** |
+| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **70kg** |
+| 2 | **Anchor** | Pull Up | 3 × AMRAP−2 | bodyweight |
+| 3 | **Anchor** | Single-Arm Iso-Lateral Row, left then right | 3 × 8–10 each | see protocol |
+| 4 | Rotate — vertical pull | **Straight Arm Pulldown** · Lat Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 10–12 | **17.5kg** |
+| 5 | Rotate — push compound | **Triceps Dip** · ★ Weighted Dips | 3 × 8–12 | bodyweight |
+| 6 | Rotate — chest isolation | **Cable Crossover** · Single Arm Cable Chest Fly · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | **12.5kg** |
+| 7 | Rotate — biceps | **Bicep Curl (Cable)** · Bicep Curl (Barbell) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **10kg** |
 
 **AMRAP−2 on pull-ups**, not AMRAP. This is the second pull-up session of the week —
 two full AMRAP sessions 72h apart is more joint stress than the frequency warrants. Two
 reps in reserve keeps the volume without the grind.
 
-**Dips at slot 4** follow three pulling movements, so they arrive on a fresh chest and
+**Dips at slot 5** follow three pulling movements, so they arrive on a fresh chest and
 triceps. Last comparable runs: 12, 12, 12 on 09-06 and 10, 10, 10 on 09-20. Hold
 bodyweight, target 12, 12, 12 before adding weight.
 
-**Slot 5 gives this day push work** to balance Thursday's three pulls. Cable crossover
+**Slot 6 gives this day push work** to balance Thursday's three pulls. Cable crossover
 covers a different angle from the incline and flat pressing on other days.
 
 **First run, 2026-09-24.** He opened with a deadlift that is not in this session:
@@ -140,11 +142,15 @@ covers a different angle from the incline and flat pressing on other days.
 calls stay and the alternatives are listed. **Biceps moved to the cable curl.** The
 barbell curl read 30kg × 8, 8, 7 twice running (09-13, 09-17), and he rotated off it
 himself. The cable is now the call at 10kg (10, 10, 10 on its first run).
-**Deadlift on Thursday: parked by him on 2026-09-24 for a later conversation.** Don't
-raise it until he does. Until then it stays in Lower. The case against Thursday, for when
-it comes up: it sits 24h before Friday football, where the template gives legs 48h. It
-also takes the pull-up anchor off slot 1. And it loads the lats before the row the
-right-side protocol reads.
+**Deadlift moved here from Lower, his call on 2026-10-02**, after he'd opened both
+Thursdays of the block with it. The case against was put to him: it sits 24h before
+Friday football, where the template gave legs 48h; it takes the pull-up anchor off
+slot 1; and it loads the lats before the row the right-side protocol reads. The data
+answers the second: pull-ups at slot 2 behind the deadlift gave 27 (09-24) and
++8kg × 8, 8, 8 (10-01). The third is handled by order: the row is always slot 3, after
+the same two lifts, so its readings compare week to week. The first is the one to watch.
+**If Friday football comes out flat in the legs, the lever is 2 working sets, not moving
+it back.** Lower gets shorter, and he dislikes leg day anyway.
 
 **Second run, 2026-10-01. Pain(R) 6/10, the highest reading in the log.** He saved it
 from Strong as "B - Pull". The import matched exercise names only, so it logged and
@@ -232,25 +238,26 @@ fortnight; this doubles the frequency.
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **70kg** from 10-04 |
-| 2 | Rotate — quad compound | **Squat (Barbell)** · ★ Bulgarian Split Squat | 3 × 8–10 | **70kg** |
-| 3 | Rotate — quad volume | **Leg Press (Machine)** · Leg Extension | 3 × 10–12 | **80kg** |
-| 4 | Rotate — hamstring | **Kneeling Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 10–12 | **7.5kg** |
-| 5 | Rotate — calves | Seated Calf Raise (Plate Loaded) | 3 × 15–20 | **40kg** |
-| 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Hollow Body Hold · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
+| 1 | Rotate — quad compound | **Squat (Barbell)** · ★ Bulgarian Split Squat | 3 × 8–10 | **70kg** |
+| 2 | Rotate — quad volume | **Leg Press (Machine)** · Leg Extension | 3 × 10–12 | **80kg** |
+| 3 | Rotate — hamstring | **Kneeling Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 10–12 | **7.5kg** |
+| 4 | Rotate — calves | Seated Calf Raise (Plate Loaded) | 3 × 15–20 | **40kg** |
+| 5 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Hollow Body Hold · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
+
+**Squat-led since 2026-10-02**, when the deadlift moved to Upper B at his call. Five
+slots, about 35 minutes.
 
 **Sunday into Tuesday football is 48h.** Peak DOMS for the first few weeks; the
 adaptation catches within a month of consistent training. If the first few Tuesdays are
-rough, the lever is making squat lighter (2 sets or cut depth) without touching the
-deadlift.
+rough, the lever is making squat lighter (2 sets or cut depth).
 
-**Deadlift at slot 1 is the heavy compound.** Starting load **60kg**, set by the first
+**The deadlift was slot 1 here until 2026-10-02** (now Upper B, slot 1). Starting load **60kg**, set by the first
 conventional pull in the log. That was 40kg × 10, 60kg × 6, 6, done on Upper B on
 2026-09-24. The old programme ran RDL at 72.5kg on legs day; conventional deadlift is a
 different movement and the load does not transfer. If the conventional pull bothers the
 right lat, RDL remains the fallback.
 
-**Squat is moderate, not heavy.** 3×8–10 behind a heavy deadlift. His knees hurt at
+**Squat is moderate, not heavy.** 3×8–10, and it now leads the session. His knees hurt at
 80kg × 5 on 09-12; the drop to 70kg was already proposed. The wider rep range keeps it
 there longer before a load increase is earned.
 
@@ -353,7 +360,7 @@ adaptation and the physio should sign off on it.
   6/10, but on the seated cable row, not the pull-ups (his answer, 10-02). Monday keeps
   +5kg; Thursday stays bodyweight.
 - **Deadlift** — +2.5kg once all three sets hit 5 comfortably. Starting load 60kg.
-  **70kg from 2026-10-04.** He pulled 70kg × 5, 6 on Upper B 10-01 (after 60 × 8), and
+  **70kg, on Upper B from 2026-10-08** (moved from Sunday, his call 10-02). He pulled 70kg × 5, 6 on Upper B 10-01 (after 60 × 8), and
   the 6/10 that day came on the row. A load he moved to himself, with no pain on it,
   becomes the load. The right row's 55kg was handled the same way on 09-24.
 - **Squat** — hold 70kg. +2.5kg once 10 holds across all three sets AND no joint
@@ -402,8 +409,8 @@ Open questions and full working live in `docs/findings.md`. Short version:
   in eight days across three movements in September. The physio's call. **Which lift the
   6/10 came on:** the seated cable row, 57kg (his answer, 2026-10-02).
   The 50kg iso-lateral ceiling — pain-limited or detraining-limited — is unanswered.
-- **Deadlift on Thursday** (09-24): a one-off, or does it move out of Sunday? **Parked
-  by him** for a later conversation; not to be raised until he does.
+- **Deadlift 24h before Friday football**: moved to Upper B on 2026-10-02 (his call).
+  Whether Fridays feel it is his to report; the log can't see football.
 - **Cable crossover load**: set at 12.5kg on 2026-10-01, from 12.5kg × 12 on 09-07, if
   it's the same station. DB press (26kg), chest-supported row (18kg) and hammer curl
   (14kg) were set on 2026-09-26.
@@ -451,9 +458,9 @@ added on top.
 | Exercise | Slot | What it is for |
 |---|---|---|
 | Chest-Supported Row | **In trial, Upper C slot 2** — he started it 09-26, run 1 of 4 | Removes torso English from the row — may load the right lat with less pain. |
-| Nordic Curl (eccentric) | Lower slot 4, displacing Leg Curl | Best-evidence hamstring protection for football. Start at 2×4. |
+| Nordic Curl (eccentric) | Lower slot 3, displacing Leg Curl | Best-evidence hamstring protection for football. Start at 2×4. |
 | Weighted Dips | Upper B slot 4 | Once bodyweight dips hit 12, 12, 12 for three sessions. 1 of 3 on 2026-10-01. |
-| Ab Wheel | Upper C slot 6 or Lower slot 6 | Harder core option once hanging leg raises are easy. |
+| Ab Wheel | Upper C slot 6 or Lower slot 5 | Harder core option once hanging leg raises are easy. |
 
 **Bias towards the bodyweight option.** Where two candidates do the same job, the
 calisthenic one wins — that is the stated direction of travel.

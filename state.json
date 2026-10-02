@@ -122,6 +122,14 @@
     ],
     "upper_b": [
       {
+        "name": "Deadlift (Barbell)",
+        "type": "anchor",
+        "sets": 3,
+        "reps": "5",
+        "load": 70,
+        "unit": "kg"
+      },
+      {
         "name": "Pull Up",
         "type": "anchor",
         "sets": 3,
@@ -257,14 +265,6 @@
       }
     ],
     "lower": [
-      {
-        "name": "Deadlift (Barbell)",
-        "type": "anchor",
-        "sets": 3,
-        "reps": "5",
-        "load": 70,
-        "unit": "kg"
-      },
       {
         "name": "Squat (Barbell)",
         "type": "rotate",
