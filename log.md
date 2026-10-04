@@ -640,6 +640,16 @@ pain(R): 3/10
 - Hammer Curl (Dumbbell) — 16kg × 10, 10, 10
 - Hanging Leg Raise — bodyweight × 10, 10, 10
 
+<!-- Re-prescribed by hand on 2026-10-04. Run Sunday, after Friday's Lower. Pain(R) 3/10:
+     green, on the chest-supported row's trial run 2 (18kg × 10, 10, 10). Monday's
+     pull-ups keep +5kg. **DB press 28kg × 8, 8, 8 and hammer curl 16kg × 10, 10, 10**:
+     both loads he took himself, so both become the loads. Face pull 17.5kg × 12, 12, 12.
+     **Lateral raise ran on the cable** (5kg × 10, 10, 10): a different machine, not a
+     reading on the dumbbell anchor, which stays 8kg from 09-28.
+
+     Same day he asked for evidence-based rep ranges per exercise; the proposal is in
+     docs/findings.md and waits on his decision. Bands here are unchanged until then. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

@@ -200,7 +200,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 26,
+        "load": 28,
         "unit": "kg"
       },
       {
@@ -236,7 +236,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 14,
+        "load": 16,
         "unit": "kg",
         "alts": [
           "Bicep Curl (Barbell)",
@@ -325,7 +325,7 @@
     ]
   },
   "rx_asof": "2026-10-02",
-  "rx_after": "2026-10-02 Lower",
+  "rx_after": "2026-10-04 Upper C",
   "row_protocol": {
     "load_left": 60,
     "load_right": 50,

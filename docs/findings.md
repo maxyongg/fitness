@@ -144,6 +144,62 @@ and what the session right before a load increase looked like. From the 31 Aug e
 one. Several debrief "stalls" in September (fly, triceps pull, leg extension, leg curl)
 were bands, not plateaus. Set bands from REP ZONES, not from a template.
 
+## Proposed: rep ranges from the research (2026-10-04, awaiting his decision)
+
+He asked for bands set by the evidence, not only by his history. Nothing in `plan.md` or
+the page has changed until he says go.
+
+**What the research supports**
+- Muscle grows across a wide range, roughly 6–30 reps, when sets end close to failure;
+  very light loads (~20% 1RM) fall short. Schoenfeld et al. 2021 (Sports 9:32);
+  Currier et al. 2023 (BJSM, 178 studies); Lasevicius et al. 2018.
+- Maximal strength favours heavy loads (>80% 1RM, about 8 reps or fewer). Currier 2023.
+- Proximity to failure drives growth, load drives strength. Robinson et al. 2024
+  (Sports Med). Training to failure adds 24–48h to recovery: Morán-Navarro et al. 2017.
+  That matters for legs within 48h of football.
+- Adding reps works as well as adding weight. Plotkin et al. 2022 (PeerJ). So a band can
+  be wide where the weight steps are coarse.
+- In footballers, heavy low-rep squats improve sprint and jump: Helgerud et al. 2011
+  (4×4 half squat), Rønnestad et al. 2008, Wisløff et al. 2004.
+- **No trial sets the best reps for a given exercise.** Per-lift bands come from what the
+  lift is for, the size of one weight step (each rep ≈ 3% of 1RM, the Epley estimate
+  `analyse.py` uses), and joint-load practice, which is coaching consensus, not RCT.
+
+**Band width:** one weight step costs about (step % ÷ 3) reps, so the band must be at least
+that wide, or the next weight starts under it. That is what 10–12 bands did: DB press
+26kg × 12 went to 28kg × 8; lateral raise +1kg on 8kg is 12%, about 4 reps.
+
+**Proposed bands** (RIR = reps in reserve at the end of each set)
+
+| Lift | Now | Proposed | Effort | Why |
+|---|---|---|---|---|
+| Squat | 3×8–10 | **3×5** | RIR 2 | Strength for football; his history too. Knees permitting. |
+| Deadlift | 3×5 | 3×5 | RIR 2 | Unchanged |
+| RDL | 3×6–8 | 3×6–8 | RIR 2 | Unchanged; hamstrings 48h before football |
+| Incline bench | 4×5–8 | 4×5–8 | RIR 1–2 | Unchanged |
+| Pull-ups | AMRAP +5 / AMRAP−2 | unchanged | | |
+| Iso row | 8–10 | 8–10 | | Row protocol and physio govern it |
+| DB bench | 10–12 | **8–12** | RIR 1–2 | 2kg step ≈ 2–3 reps |
+| Chest-supported row | 10–12 | **8–12** | RIR 1–2 | Compound accessory |
+| Triceps dip | 8–12 BW | 8–12, then weighted | RIR 1–2 | Unchanged |
+| Chest fly, cable crossover | 10–12 | **10–15** | RIR 0–2 | Shoulder at stretch; stack steps ~10% |
+| Straight-arm pulldown | 10–12 | **10–15** | RIR 2 | Single-joint, on the injured lat |
+| Reverse fly | 8–12 | **10–15** | RIR 0–2 | Small muscle |
+| Triceps pull | 10–12 | **10–15** | RIR 0–2 | Elbow load |
+| Curls (cable, barbell, hammer) | 8–10 / 10–12 | **8–12** | RIR 0–2 | One band for the slot |
+| Leg curl | 8–10 | **8–12** | RIR 1–2 | |
+| Lateral raise | 15–20 | 15–20 | RIR 0–1 | Unchanged; 1kg step ≈ 4 reps |
+| Face pull | 12–15 | **12–20** | RIR 0–1 | 2.5kg step ≈ 14% |
+| Leg extension | 10–12 | **12–20** | RIR 0–2 | Light, for the knees |
+| Calves | 15–20 | **12–20** | RIR 0–1 | |
+| Hanging leg raise | 10–12 | **8–15**, then toes to bar | | Calisthenics progression |
+
+**Rule:** the top of the band on every set, at the target effort, once → the next step.
+Not two sessions. Right iso row excepted.
+
+**Where his history and this disagree:** chest fly (he works at 8), triceps pull and leg
+extension. The reason to go lighter is joint load, not growth, so it is his call.
+
 ## The general lesson
 
 Three confident findings in this project turned out to be scheduling artefacts read as
