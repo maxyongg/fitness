@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-04",
+  "session": "Upper C",
+  "session_id": "upper_c",
+  "exercises": [
+    {
+      "name": "Bench Press (Dumbbell)",
+      "sets": [
+        {
+          "weight": 28,
+          "reps": 8
+        },
+        {
+          "weight": 28,
+          "reps": 8
+        },
+        {
+          "weight": 28,
+          "reps": 8
+        }
+      ],
+      "weight": 28
+    },
+    {
+      "name": "Chest Supported Row",
+      "sets": [
+        {
+          "weight": 18,
+          "reps": 10
+        },
+        {
+          "weight": 18,
+          "reps": 10
+        },
+        {
+          "weight": 18,
+          "reps": 10
+        }
+      ],
+      "weight": 18
+    },
+    {
+      "name": "Lateral Raise (Cable)",
+      "sets": [
+        {
+          "weight": 5,
+          "reps": 10
+        },
+        {
+          "weight": 5,
+          "reps": 10
+        },
+        {
+          "weight": 5,
+          "reps": 10
+        }
+      ],
+      "weight": 5
+    },
+    {
+      "name": "Face Pull (Cable)",
+      "sets": [
+        {
+          "weight": 17.5,
+          "reps": 12
+        },
+        {
+          "weight": 17.5,
+          "reps": 12
+        },
+        {
+          "weight": 17.5,
+          "reps": 12
+        }
+      ],
+      "weight": 17.5
+    },
+    {
+      "name": "Hammer Curl (Dumbbell)",
+      "sets": [
+        {
+          "weight": 16,
+          "reps": 10
+        },
+        {
+          "weight": 16,
+          "reps": 10
+        },
+        {
+          "weight": 16,
+          "reps": 10
+        }
+      ],
+      "weight": 16
+    },
+    {
+      "name": "Hanging Leg Raise",
+      "sets": [
+        {
+          "weight": 0,
+          "reps": 10
+        },
+        {
+          "weight": 0,
+          "reps": 10
+        },
+        {
+          "weight": 0,
+          "reps": 10
+        }
+      ],
+      "bodyweight": true
+    }
+  ],
+  "pain": {
+    "right_lat": 3
+  },
+  "notes": "Imported from Strong",
+  "extra": ""
+}
