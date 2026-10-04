@@ -1,0 +1,135 @@
+{
+  "key": "2026-10-04-upper-c",
+  "date": "2026-10-04",
+  "session": "Upper C",
+  "session_id": "upper_c",
+  "model": "claude-sonnet-5",
+  "created": "2026-10-04T05:55:26.003Z",
+  "logged": {
+    "date": "2026-10-04",
+    "session": "Upper C",
+    "session_id": "upper_c",
+    "exercises": [
+      {
+        "name": "Bench Press (Dumbbell)",
+        "sets": [
+          {
+            "weight": 28,
+            "reps": 8
+          },
+          {
+            "weight": 28,
+            "reps": 8
+          },
+          {
+            "weight": 28,
+            "reps": 8
+          }
+        ],
+        "weight": 28
+      },
+      {
+        "name": "Chest Supported Row",
+        "sets": [
+          {
+            "weight": 18,
+            "reps": 10
+          },
+          {
+            "weight": 18,
+            "reps": 10
+          },
+          {
+            "weight": 18,
+            "reps": 10
+          }
+        ],
+        "weight": 18
+      },
+      {
+        "name": "Lateral Raise (Cable)",
+        "sets": [
+          {
+            "weight": 5,
+            "reps": 10
+          },
+          {
+            "weight": 5,
+            "reps": 10
+          },
+          {
+            "weight": 5,
+            "reps": 10
+          }
+        ],
+        "weight": 5
+      },
+      {
+        "name": "Face Pull (Cable)",
+        "sets": [
+          {
+            "weight": 17.5,
+            "reps": 12
+          },
+          {
+            "weight": 17.5,
+            "reps": 12
+          },
+          {
+            "weight": 17.5,
+            "reps": 12
+          }
+        ],
+        "weight": 17.5
+      },
+      {
+        "name": "Hammer Curl (Dumbbell)",
+        "sets": [
+          {
+            "weight": 16,
+            "reps": 10
+          },
+          {
+            "weight": 16,
+            "reps": 10
+          },
+          {
+            "weight": 16,
+            "reps": 10
+          }
+        ],
+        "weight": 16
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 10
+          },
+          {
+            "weight": 0,
+            "reps": 10
+          },
+          {
+            "weight": 0,
+            "reps": 10
+          }
+        ],
+        "bodyweight": true
+      }
+    ],
+    "pain": {
+      "right_lat": 3
+    },
+    "notes": "Imported from Strong",
+    "extra": ""
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Upper C mostly matched the prescription. Chest Supported Row trial 2 of 4 came in at 18kg × 10, 10, 10 — the cleanest set of three yet. Face Pull held 17.5kg × 12, 12, 12. Hanging Leg Raise was back at bodyweight × 10, 10, 10, no complaints. Two things ran ahead of the prescribed numbers: Bench Press (Dumbbell) was logged at 28kg × 8, 8, 8 against a prescribed 26kg for 10-12s, and Hammer Curl at 16kg × 10, 10, 10 against a prescribed 14kg. Lateral Raise also appeared as \"Lateral Raise (Cable)\" at 5kg × 10, 10, 10 rather than the usual dumbbell version.\n\nTrend: Chest Supported Row is building well — 09-26 was 14kg × 12, then 18kg × 10, 10; today's full 18kg × 10, 10, 10 is the best of the three runs so far. Face Pull has sat at 17.5kg for two sessions now but reps are stuck at 12 across all sets, three short of the 15 needed for the next plate. The Lateral Raise anchor (dumbbell, chasing 20 reps at 8kg, last at 8kg × 16, 16, 16 on 09-28) has no continuity today since the cable version isn't on the same scale.\n\nRight lat: 3/10 for the session, green. That supports Chest Supported Row staying at 18kg rather than dropping back, and clears the hang to stay in rotation.\n\nNext session: Upper A, Monday. Incline Bench Press leads at 67.5kg — all four sets at 8 earns 70kg. Pull-ups go second, straight off the press, while fresh. Put Lateral Raise back on dumbbell at 8kg to keep the anchor's rep count honest.\n\nQuestion: Bench Press jumped to 28kg for 8s and Hammer Curl to 16kg for 10s, both ahead of what the progression rules had earned. Deliberate test, or did the loads get mixed up on the day?",
+      "at": "2026-10-04T05:55:26.003Z"
+    }
+  ]
+}
