@@ -1,40 +1,40 @@
 {
-  "_generated": "2026-10-02T06:32:42",
+  "_generated": "2026-10-04T05:54:20",
   "_by": "drain.py",
   "last_session": {
-    "date": "2026-10-02",
-    "type": "lower",
-    "name": "Lower",
+    "date": "2026-10-04",
+    "type": "upper_c",
+    "name": "Upper C",
     "exercise_count": 6,
-    "pain_right_lat": 0,
+    "pain_right_lat": 3,
     "top_sets": [
       {
-        "name": "Squat (Barbell)",
-        "weight": 40,
+        "name": "Bench Press (Dumbbell)",
+        "weight": 28,
         "best_reps": 8,
-        "set_count": 4
+        "set_count": 3
       },
       {
-        "name": "Romanian Deadlift (Barbell)",
-        "weight": 50,
-        "best_reps": 8,
-        "set_count": 4
-      },
-      {
-        "name": "Leg Extension (Machine)",
-        "weight": 10,
+        "name": "Chest Supported Row",
+        "weight": 18,
         "best_reps": 10,
         "set_count": 3
       },
       {
-        "name": "Kneeling Leg Curl",
-        "weight": 10,
-        "best_reps": 8,
+        "name": "Lateral Raise (Cable)",
+        "weight": 5,
+        "best_reps": 10,
         "set_count": 3
       },
       {
-        "name": "Seated Calf Raise (Plate Loaded)",
-        "weight": 40,
+        "name": "Face Pull (Cable)",
+        "weight": 17.5,
+        "best_reps": 12,
+        "set_count": 3
+      },
+      {
+        "name": "Hammer Curl (Dumbbell)",
+        "weight": 16,
         "best_reps": 10,
         "set_count": 3
       },
@@ -47,9 +47,9 @@
     ]
   },
   "next_session": {
-    "type": "upper_c",
-    "name": "Upper C",
-    "expected_date": "2026-10-04"
+    "type": "upper_a",
+    "name": "Upper A",
+    "expected_date": "2026-10-05"
   },
   "slots": {
     "upper_a": [
@@ -331,5 +331,7 @@
     "load_right": 50,
     "status": "see plan.md, The row protocol"
   },
-  "flags": []
+  "flags": [
+    "pain(R) 3/10 — green light"
+  ]
 }
