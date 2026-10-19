@@ -46,7 +46,10 @@ export default {
       const text = await askClaude(session, rx, history, thread, env);
       return Response.json(thread ? { reply: text, model: MODEL } : { debrief: text, model: MODEL }, { headers: cors });
     } catch (e) {
-      return Response.json({ error: describeError(e) }, { status: 502, headers: cors });
+      // The colo is where the call to Anthropic left from; a 403 "Request not allowed"
+      // from an unsupported region (e.g. HKG) looks identical to a key problem without it.
+      const colo = request.cf && request.cf.colo ? " [Cloudflare " + request.cf.colo + "]" : "";
+      return Response.json({ error: describeError(e) + colo }, { status: 502, headers: cors });
     }
   },
 };
