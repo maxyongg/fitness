@@ -38,10 +38,51 @@ Upper B; it is the natural recovery slot.
 | → 13 Sep 2026 | Re-entry | 10% off top sets. No legs. |
 | 14 Sep → 20 Sep | Old block | Two-week Push/Pull/Legs/Calisthenics rotation. |
 | 21 Sep → | **New block** | 3U/1L split. This file. |
+| 19 Oct → 25 Oct | **Re-entry** | One week back after two weeks in London. Below. |
+| 26 Oct → | New block | Back to the loads in the session tables. |
 
 The new block starts at the loads the old programme left behind. No deload — the
 transition itself provides enough stimulus novelty. If anything feels too heavy in the
 first week, drop 10% and rebuild.
+
+### Re-entry, 19–25 Oct 2026
+
+Last session 10-04 Upper C. Then two weeks in London with no gym, and he came back
+jet-lagged and tired from the trip (his words, 10-19). That's past the 10-day line in
+"When life interferes", so the 10% applies. It runs one week, not one session, because
+of the jet lag and because football comes back on Tuesday as well. He asked for the plan
+to be changed for it; this is the change. It's recovery, not a phase built towards
+anything.
+
+- **Loads about 10% off**, rounded down to the next step the kit has. On light
+  isolation that sometimes comes to more than 10%, which costs nothing for a week.
+- **Rotate slots at 2 sets. Anchors keep their sets.** The cut is to keep DOMS low
+  before Tuesday and Friday football, and to hold onto the anchors.
+- **Every set ends with 2 reps in reserve.** No AMRAP, no grinding.
+- **Pull-ups at bodyweight, AMRAP−2, on both days.** +5kg comes back on Monday 10-26
+  if the right side reads ≤ 3/10 on 10-19 and 10-22.
+- **The right row stays at 50kg.** The protocol sets it by pain, not strength, and it's
+  already the reset load. A green at 50kg counts toward the gate as usual (0 of 3).
+  The left takes the 10%: 52.5kg.
+- **If he's flat on the day, the anchors alone are the session.** Don't move a session
+  to another day to make it up. "Miss a day" below still applies.
+- **No progression rule fires off a re-entry session.** 60kg × 8, 8, 8 on the incline
+  doesn't earn 62.5kg. It means 67.5kg comes back.
+
+| Session | Re-entry load (the table's load in brackets) |
+|---|---|
+| Upper A | Incline 60 (67.5) · pull-ups BW (+5) · chest fly 57.5 (65) · reverse fly 37.5 (42.5) · lateral raise 7 (8) · triceps pull 7.5 (10) |
+| Upper B | Deadlift 62.5 (70) · pull-ups BW · row L 52.5 (60), R 50 (50) · straight-arm pulldown 15 (17.5) · dips BW, 2 × 8–10 · crossover 10 (12.5) · cable curl 7.5 (10) |
+| Upper C | DB press 24 (28) · chest-supported row 16 (18), trial run 3 of 4 · lateral raise 7 (8) · face pull 15 (17.5) · hammer curl 14 (16) · hanging leg raise 2 × 8–10 |
+| Lower | Squat 62.5 (70) · RDL 70 (80) · leg extension 7.5 (10) · leg curl 7.5 (10) · calves 35 (40) · hanging leg raise 2 × 8–10 |
+
+**From 26 Oct:** each lift goes back to its load in the session tables, full sets, if
+every re-entry set landed with 2 in reserve. A lift that ground, or that missed the
+bottom of its band, gets one more week at its re-entry load. A pain reading of 4 or more
+follows the usual rules. The rep-range proposal in `docs/findings.md` is still waiting
+on his decision; re-entry doesn't touch it. The session tables below keep the pre-break
+loads on purpose, because that's what week two returns to. Only `RX` carries the
+re-entry week.
 
 ## Anchors and rotations
 

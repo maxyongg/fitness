@@ -58,23 +58,23 @@
         "type": "anchor",
         "sets": 4,
         "reps": "5-8",
-        "load": 67.5,
+        "load": 60,
         "unit": "kg"
       },
       {
         "name": "Pull Up",
         "type": "anchor",
         "sets": 3,
-        "reps": "AMRAP",
-        "load": 5,
-        "unit": "kg"
+        "reps": "AMRAP-2",
+        "load": 0,
+        "unit": "BW"
       },
       {
         "name": "Chest Fly",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "10-12",
-        "load": 65,
+        "load": 57.5,
         "unit": "kg",
         "alts": [
           "Cable Crossover",
@@ -84,9 +84,9 @@
       {
         "name": "Reverse Fly (Machine)",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "8-12",
-        "load": 42.5,
+        "load": 37.5,
         "unit": "kg",
         "alts": [
           "Face Pull",
@@ -98,15 +98,15 @@
         "type": "anchor",
         "sets": 3,
         "reps": "15-20",
-        "load": 8,
+        "load": 7,
         "unit": "kg"
       },
       {
         "name": "One Handed Triceps Pull",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "10-12",
-        "load": 10,
+        "load": 7.5,
         "unit": "kg",
         "alts": [
           "Triceps Extension",
@@ -120,7 +120,7 @@
         "type": "anchor",
         "sets": 3,
         "reps": "5",
-        "load": 70,
+        "load": 62.5,
         "unit": "kg"
       },
       {
@@ -138,15 +138,15 @@
         "reps": "8-10",
         "load": 0,
         "unit": "kg",
-        "loadL": 60,
+        "loadL": 52.5,
         "loadR": 50
       },
       {
         "name": "Straight Arm Pulldown",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "10-12",
-        "load": 17.5,
+        "load": 15,
         "unit": "kg",
         "alts": [
           "Lat Pulldown",
@@ -157,7 +157,7 @@
       {
         "name": "Triceps Dip",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "8-12",
         "load": 0,
         "unit": "BW",
@@ -168,9 +168,9 @@
       {
         "name": "Cable Crossover",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "10-12",
-        "load": 12.5,
+        "load": 10,
         "unit": "kg",
         "alts": [
           "Single Arm Cable Chest Fly",
@@ -182,9 +182,9 @@
       {
         "name": "Bicep Curl (Cable)",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "8-10",
-        "load": 10,
+        "load": 7.5,
         "unit": "kg",
         "alts": [
           "Bicep Curl (Barbell)",
@@ -198,17 +198,17 @@
       {
         "name": "Bench Press (Dumbbell)",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "10-12",
-        "load": 28,
+        "load": 24,
         "unit": "kg"
       },
       {
         "name": "Chest Supported Row",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "10-12",
-        "load": 18,
+        "load": 16,
         "unit": "kg"
       },
       {
@@ -216,15 +216,15 @@
         "type": "anchor",
         "sets": 3,
         "reps": "15-20",
-        "load": 8,
+        "load": 7,
         "unit": "kg"
       },
       {
         "name": "Face Pull",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "12-15",
-        "load": 17.5,
+        "load": 15,
         "unit": "kg",
         "alts": [
           "Reverse Fly (Machine)",
@@ -234,9 +234,9 @@
       {
         "name": "Hammer Curl",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "10-12",
-        "load": 16,
+        "load": 14,
         "unit": "kg",
         "alts": [
           "Bicep Curl (Barbell)",
@@ -246,7 +246,7 @@
       {
         "name": "Hanging Leg Raise",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "10-12",
         "load": 0,
         "unit": "BW",
@@ -262,9 +262,9 @@
       {
         "name": "Squat (Barbell)",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "8-10",
-        "load": 70,
+        "load": 62.5,
         "unit": "kg",
         "alts": [
           "Bulgarian Split Squat"
@@ -275,15 +275,15 @@
         "type": "anchor",
         "sets": 3,
         "reps": "6-8",
-        "load": 80,
+        "load": 70,
         "unit": "kg"
       },
       {
         "name": "Leg Extension (Machine)",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "10-12",
-        "load": 10,
+        "load": 7.5,
         "unit": "kg",
         "alts": [
           "Leg Press"
@@ -292,9 +292,9 @@
       {
         "name": "Kneeling Leg Curl",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "8-10",
-        "load": 10,
+        "load": 7.5,
         "unit": "kg",
         "alts": [
           "Nordic Curl"
@@ -303,15 +303,15 @@
       {
         "name": "Seated Calf Raise",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "15-20",
-        "load": 40,
+        "load": 35,
         "unit": "kg"
       },
       {
         "name": "Hanging Leg Raise",
         "type": "rotate",
-        "sets": 3,
+        "sets": 2,
         "reps": "10-12",
         "load": 0,
         "unit": "BW",
@@ -324,10 +324,10 @@
       }
     ]
   },
-  "rx_asof": "2026-10-02",
+  "rx_asof": "2026-10-19",
   "rx_after": "2026-10-04 Upper C",
   "row_protocol": {
-    "load_left": 60,
+    "load_left": 52.5,
     "load_right": 50,
     "status": "see plan.md, The row protocol"
   },
