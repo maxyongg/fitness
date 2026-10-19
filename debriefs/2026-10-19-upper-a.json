@@ -1,0 +1,135 @@
+{
+  "key": "2026-10-19-upper-a",
+  "date": "2026-10-19",
+  "session": "Upper A",
+  "session_id": "upper_a",
+  "model": "claude-sonnet-5",
+  "created": "2026-10-19T10:44:53.282Z",
+  "logged": {
+    "date": "2026-10-19",
+    "session": "Upper A",
+    "session_id": "upper_a",
+    "exercises": [
+      {
+        "name": "Incline Bench Press (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 60,
+            "reps": 8
+          },
+          {
+            "weight": 60,
+            "reps": 8
+          },
+          {
+            "weight": 60,
+            "reps": 8
+          },
+          {
+            "weight": 40,
+            "reps": 8
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 8
+          },
+          {
+            "weight": 0,
+            "reps": 8
+          },
+          {
+            "weight": 0,
+            "reps": 8
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Chest Fly",
+        "sets": [
+          {
+            "weight": 57.5,
+            "reps": 10
+          },
+          {
+            "weight": 57.5,
+            "reps": 12
+          }
+        ],
+        "weight": 57.5
+      },
+      {
+        "name": "Reverse Fly (Machine)",
+        "sets": [
+          {
+            "weight": 42.5,
+            "reps": 10
+          },
+          {
+            "weight": 42.5,
+            "reps": 10
+          }
+        ],
+        "weight": 42.5
+      },
+      {
+        "name": "Lateral Raise (Dumbbell)",
+        "sets": [
+          {
+            "weight": 7,
+            "reps": 15
+          },
+          {
+            "weight": 7,
+            "reps": 15
+          },
+          {
+            "weight": 7,
+            "reps": 15
+          }
+        ],
+        "weight": 7
+      },
+      {
+        "name": "One Handed Triceps Pull",
+        "sets": [
+          {
+            "weight": 7.5,
+            "reps": 12
+          },
+          {
+            "weight": 7.5,
+            "reps": 12
+          },
+          {
+            "weight": 7.5,
+            "reps": 12
+          }
+        ],
+        "weight": 7.5
+      }
+    ],
+    "pain": {
+      "right_lat": null
+    },
+    "notes": "Imported from Strong",
+    "extra": ""
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Incline hit 60kg for three straight sets of 8, beating the \"2 reps in the tank\" re-entry instruction outright - strength held through the two weeks away. Only three working sets went in rather than the prescribed four, and the back-off came in at 40kg×8, lighter and shorter than the usual 45-50kg for 10-12; reads as fatigue management, not a regression. Pull-ups ran slot 2 as planned, bodyweight×8,8,8 for 24 total, in line with re-entry. Chest fly and reverse fly both landed above their stated re-entry loads (57.5kg and 42.5kg rather than the sheet's lighter numbers) and still sat inside the rep bands. Lateral raise and one-handed triceps pull matched the sheet, with the triceps pull running three sets instead of two.\n\nTrend: One-handed triceps pull posted 12, 12, 12 at 7.5kg - the first time all three sets have cleared the top of the band together. 09-14 and 09-28 both topped out at 10s on most sets, so one more session like today and the smallest increment is earned. Reverse fly has sat at 42.5kg for three sessions now (09-21: 8,8,7; 09-28: 8,8,10; today: 10,10) without clearing 12 on all sets - not yet a stall call, but worth watching.\n\nRight lat: no pain reading logged today despite the pull-up work. The right pull-up +5kg re-add needs two readings at 3/10 or under, today and Thursday - today's gap leaves that gate unresolved no matter what Thursday shows.\n\nNext session: Upper B, Thursday. Deadlift opens at 62.5kg for 3×5, pull-ups straight after at bodyweight. Iso lateral row: left re-enters at 52.5kg, right holds at the reset 50kg - log the pain during that set, since it's the one number that decides whether the right side's progression restarts.\n\nQuestion: Was today's lack of a pain reading because the lat genuinely wasn't a factor, or did it just not get logged?",
+      "at": "2026-10-19T10:44:53.282Z"
+    }
+  ]
+}
