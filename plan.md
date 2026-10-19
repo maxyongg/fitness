@@ -84,6 +84,11 @@ on his decision; re-entry doesn't touch it. The session tables below keep the pr
 loads on purpose, because that's what week two returns to. Only `RX` carries the
 re-entry week.
 
+**10-19 Upper A, done.** Incline 60 × 8, 8, 8, chest fly 57.5 × 10, 12, reverse fly 42.5 × 10, 10
+(his own load, above the 37.5 re-entry, so it stays), lateral raise 7 × 15 ×3, triceps pull
+7.5 × 12 ×3 (first full-band session). No right-lat reading logged: the pull-up +5kg on 10-26
+still needs Monday's reading (he is asked for it) and Thursday's, both 3/10 or under.
+
 ## Anchors and rotations
 
 Same principle as the old programme. **Anchor slots** stay the same session after session

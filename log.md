@@ -658,6 +658,12 @@ pain(R): 3/10
 - Lateral Raise (Dumbbell) — 7kg × 15, 15, 15
 - One Handed Triceps Pull — 7.5kg × 12, 12, 12
 
+<!-- Re-prescribed 2026-10-19 after Upper A (re-entry). Incline 60kg × 8, 8, 8 held through
+     the break; no increase off a re-entry session, so Upper A returns to 67.5kg on 10-26.
+     Reverse fly stays 42.5kg (he took it himself, 10, 10). Triceps pull 12, 12, 12 at
+     7.5kg is the first full-band set, 10kg planned anyway. No pain reading logged, so the
+     pull-up +5kg gate still needs a Monday number from him plus Thursday. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
