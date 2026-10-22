@@ -1,0 +1,145 @@
+{
+  "key": "2026-10-22-upper-b",
+  "date": "2026-10-22",
+  "session": "Upper B",
+  "session_id": "upper_b",
+  "model": "claude-sonnet-5",
+  "created": "2026-10-22T11:32:04.518Z",
+  "logged": {
+    "date": "2026-10-22",
+    "session": "Upper B",
+    "session_id": "upper_b",
+    "exercises": [
+      {
+        "name": "Deadlift (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 8
+          },
+          {
+            "weight": 70,
+            "reps": 8
+          },
+          {
+            "weight": 70,
+            "reps": 8
+          },
+          {
+            "weight": 70,
+            "reps": 8
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 10
+          },
+          {
+            "weight": 0,
+            "reps": 8
+          },
+          {
+            "weight": 0,
+            "reps": 8
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Iso-Lateral Row (Machine)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 8
+          },
+          {
+            "weight": 40,
+            "reps": 8
+          },
+          {
+            "weight": 40,
+            "reps": 8
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Straight Arm Pulldown",
+        "sets": [
+          {
+            "weight": 17.5,
+            "reps": 10
+          },
+          {
+            "weight": 17.5,
+            "reps": 10
+          },
+          {
+            "weight": 17.5,
+            "reps": 10
+          }
+        ],
+        "weight": 17.5
+      },
+      {
+        "name": "Triceps Dip",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 12
+          },
+          {
+            "weight": 0,
+            "reps": 10
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Push Up",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 20
+          },
+          {
+            "weight": 0,
+            "reps": 15
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Bicep Curl (Barbell)",
+        "sets": [
+          {
+            "weight": 30,
+            "reps": 8
+          },
+          {
+            "weight": 26,
+            "reps": 8
+          }
+        ],
+        "weight": 30
+      }
+    ],
+    "pain": {
+      "right_lat": 1
+    },
+    "notes": "iso lateral row weight dropped because i swapped from unilateral to bilateral rowing and adjusted my form",
+    "extra": ""
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Upper B went well above the re-entry prescription in places. Deadlift was written as 62.5kg for 3x5, but you logged 40kg x8 then 70kg x8, 8, 8 — heavier and longer than planned. Pull-ups hit slot 2 as prescribed: bodyweight x10, 8, 8 (26 total). The iso-lateral row was swapped to a bilateral machine at 40kg x8, 8, 8 instead of the usual left/right split — your note covers the form change. Straight arm pulldown beat the re-entry call too: 17.5kg x10, 10, 10 against a prescribed 15kg x2 sets. Triceps dip came in under the recent run at bodyweight x12, 10. Bicep curl swapped from the prescribed cable back to barbell, 30kg x8 then 26kg x8.\n\nTrend: Today's deadlift is the best top-set output logged for this lift — 70kg x8, 8, 8 beats 70kg x5, 6 (10-01) and 60kg x6, 6 (09-24). Straight arm pulldown has now held 17.5kg across two sessions (10-01: x10, 10; today: x10, 10, 10), but reps are still at the bottom of the 10-12 range, not the top, so no increment yet. Triceps dip had logged 12, 12, 12 twice running (09-24, 10-01), 1 of 3 toward the weighted dip gate; today's 12, 10 doesn't continue that streak.\n\nRight lat: 1/10, the lowest reading logged. But since the row was done bilaterally rather than as the separate left/right iso-lateral lifts, it doesn't count toward the right row's gate — that's still sitting at 0 of 3 greens at 50kg.\n\nNext session: Upper C, Sat 24 Oct. Chest-supported row trial run 3 of 4 at 16kg — rate the right side specifically during the set. Bench press (dumbbell) at 24kg, two sets of 10-12. Lateral raise anchor at 7kg for three sets of 15-20.\n\nQuestion: the row swap is explained, but the deadlift jump to 70kg x8, 8, 8 against a prescribed 62.5kg x3x5 isn't — was that planned, or did it just feel strong enough to push through?",
+      "at": "2026-10-22T11:32:04.518Z"
+    }
+  ]
+}
