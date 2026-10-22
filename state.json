@@ -1,55 +1,61 @@
 {
-  "_generated": "2026-10-19T10:41:23",
+  "_generated": "2026-10-22T11:29:56",
   "_by": "drain.py",
   "last_session": {
-    "date": "2026-10-19",
-    "type": "upper_a",
-    "name": "Upper A",
-    "exercise_count": 6,
-    "pain_right_lat": null,
+    "date": "2026-10-22",
+    "type": "upper_b",
+    "name": "Upper B",
+    "exercise_count": 7,
+    "pain_right_lat": 1,
     "top_sets": [
       {
-        "name": "Incline Bench Press (Barbell)",
+        "name": "Deadlift (Barbell)",
         "weight": 40,
-        "best_reps": 10,
-        "set_count": 5
+        "best_reps": 8,
+        "set_count": 4
       },
       {
         "name": "Pull Up",
         "weight": "BW",
+        "best_reps": 10,
+        "set_count": 3
+      },
+      {
+        "name": "Iso-Lateral Row (Machine)",
+        "weight": 40,
         "best_reps": 8,
         "set_count": 3
       },
       {
-        "name": "Chest Fly",
-        "weight": 57.5,
-        "best_reps": 12,
-        "set_count": 2
-      },
-      {
-        "name": "Reverse Fly (Machine)",
-        "weight": 42.5,
+        "name": "Straight Arm Pulldown",
+        "weight": 17.5,
         "best_reps": 10,
+        "set_count": 3
+      },
+      {
+        "name": "Triceps Dip",
+        "weight": "BW",
+        "best_reps": 12,
         "set_count": 2
       },
       {
-        "name": "Lateral Raise (Dumbbell)",
-        "weight": 7,
-        "best_reps": 15,
-        "set_count": 3
+        "name": "Push Up",
+        "weight": "BW",
+        "best_reps": 20,
+        "set_count": 2
       },
       {
-        "name": "One Handed Triceps Pull",
-        "weight": 7.5,
-        "best_reps": 12,
-        "set_count": 3
+        "name": "Bicep Curl (Barbell)",
+        "weight": 30,
+        "best_reps": 8,
+        "set_count": 2
       }
     ]
   },
   "next_session": {
-    "type": "upper_b",
-    "name": "Upper B",
-    "expected_date": "2026-10-22"
+    "type": "upper_c",
+    "name": "Upper C",
+    "expected_date": "2026-10-24"
   },
   "slots": {
     "upper_a": [
@@ -332,6 +338,7 @@
     "status": "see plan.md, The row protocol"
   },
   "flags": [
-    "Pull-up: top set 8, total 24"
+    "pain(R) 1/10 — green light",
+    "Pull-up: top set 10, total 26"
   ]
 }

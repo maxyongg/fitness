@@ -664,6 +664,16 @@ pain(R): 3/10
      7.5kg is the first full-band set, 10kg planned anyway. No pain reading logged, so the
      pull-up +5kg gate still needs a Monday number from him plus Thursday. -->
 
+## 2026-10-22 · Thu · Upper B
+pain(R): 1/10 | note: iso lateral row weight dropped because i swapped from unilateral to bilateral rowing and adjusted my form
+- Deadlift (Barbell) — 40kg × 8, 70kg × 8, 8, 8
+- Pull Up — bodyweight × 10, 8, 8
+- Iso-Lateral Row (Machine) — 40kg × 8, 8, 8
+- Straight Arm Pulldown — 17.5kg × 10, 10, 10
+- Triceps Dip — bodyweight × 12, 10
+- Push Up — bodyweight × 20, 15
+- Bicep Curl (Barbell) — 30kg × 8, 26kg × 8
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
