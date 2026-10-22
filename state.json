@@ -126,7 +126,7 @@
         "type": "anchor",
         "sets": 3,
         "reps": "5",
-        "load": 62.5,
+        "load": 70,
         "unit": "kg"
       },
       {
@@ -152,7 +152,7 @@
         "type": "rotate",
         "sets": 2,
         "reps": "10-12",
-        "load": 15,
+        "load": 17.5,
         "unit": "kg",
         "alts": [
           "Lat Pulldown",
@@ -190,7 +190,7 @@
         "type": "rotate",
         "sets": 2,
         "reps": "8-10",
-        "load": 7.5,
+        "load": 10,
         "unit": "kg",
         "alts": [
           "Bicep Curl (Barbell)",
@@ -330,8 +330,8 @@
       }
     ]
   },
-  "rx_asof": "2026-10-19",
-  "rx_after": "2026-10-19 Upper A",
+  "rx_asof": "2026-10-22",
+  "rx_after": "2026-10-22 Upper B",
   "row_protocol": {
     "load_left": 52.5,
     "load_right": 50,

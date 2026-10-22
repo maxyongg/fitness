@@ -674,6 +674,11 @@ pain(R): 1/10 | note: iso lateral row weight dropped because i swapped from unil
 - Push Up — bodyweight × 20, 15
 - Bicep Curl (Barbell) — 30kg × 8, 26kg × 8
 
+<!-- Re-prescribed 2026-10-22 after Upper B. Deadlift 70 × 8 ×3 beat the 62.5 re-entry ask, so 70kg
+     holds (no increase off re-entry). Straight-arm pulldown 17.5 × 10 ×3 is back at table load. Row went
+     bilateral at 40kg after a form change: not a decline, not a reading on the gated row, which holds
+     L 52.5 / R 50. Crossover did not run, curl swapped to barbell. Pain 1/10; Monday still unreported. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

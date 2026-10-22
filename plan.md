@@ -73,6 +73,8 @@ anything.
 |---|---|
 | Upper A | Incline 60 (67.5) · pull-ups BW (+5) · chest fly 57.5 (65) · reverse fly 37.5 (42.5) · lateral raise 7 (8) · triceps pull 7.5 (10) |
 | Upper B | Deadlift 62.5 (70) · pull-ups BW · row L 52.5 (60), R 50 (50) · straight-arm pulldown 15 (17.5) · dips BW, 2 × 8–10 · crossover 10 (12.5) · cable curl 7.5 (10) |
+
+**10-22 Upper B, done.** Deadlift 70 × 8, 8, 8 (above the 62.5 asked; no increase off a re-entry session, so 70 holds, 72.5 next if easy), pull-ups BW × 10, 8, 8, straight-arm pulldown 17.5 × 10 ×3 (back to the table load), dips 12, 10, push-ups 20, 15 instead of crossover, barbell curl 30 × 8, 26 × 8. Row ran bilateral on Iso-Lateral Row (Machine) at 40 × 8 ×3 after he changed form: a reset after a form change, not a decline, and no reading on the gated single-arm row (gate stays 0 of 3, L 52.5 and R 50 hold one more week). Pain 1/10 on Thursday; Monday still has no number, so the pull-up +5kg gate on 10-26 is half answered. Cable curl returns to 10kg, crossover stays 10kg since it did not run.
 | Upper C | DB press 24 (28) · chest-supported row 16 (18), trial run 3 of 4 · lateral raise 7 (8) · face pull 15 (17.5) · hammer curl 14 (16) · hanging leg raise 2 × 8–10 |
 | Lower | Squat 62.5 (70) · RDL 70 (80) · leg extension 7.5 (10) · leg curl 7.5 (10) · calves 35 (40) · hanging leg raise 2 × 8–10 |
 
