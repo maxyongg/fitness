@@ -691,6 +691,11 @@ pain(R): 1/10
 - Plank — 0:30, 0:30, 0:30
 - Push Up — bodyweight × 15, 15, 15
 
+<!-- Re-prescribed 2026-10-26 after Upper A. Pain 1/10 here and 1/10 on 10-22 clears the pull-up +5kg gate
+     for the next Upper A. Incline 65 x 8, 8 on a tired day, 67.5kg still untested and stays the ask.
+     Chest fly and lateral raise dropped late (tired, eccentric focus): loads hold, not a decline.
+     Triceps pull 10kg x 10 x3 and reverse fly 42.5 x 10 x3 hold. Upper B 10-29 stays at table loads. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

@@ -78,6 +78,8 @@ anything.
 | Upper C | DB press 24 (28) · chest-supported row 16 (18), trial run 3 of 4 · lateral raise 7 (8) · face pull 15 (17.5) · hammer curl 14 (16) · hanging leg raise 2 × 8–10 |
 | Lower | Squat 62.5 (70) · RDL 70 (80) · leg extension 7.5 (10) · leg curl 7.5 (10) · calves 35 (40) · hanging leg raise 2 × 8–10 |
 
+**10-26 Upper A, done.** Pain 1/10, and Thursday 10-22 was 1/10, so the pull-up +5kg gate is cleared: +5kg from the next Upper A (11-02). Incline 60 × 8, 65 × 8, 8, then 45 × 10 (tired, 67.5kg not tried; stays the ask, 65kg fallback). Chest fly 65 × 10, 10, 4 then 57.5 × 4 and lateral raise 8 × 15, 15 then 7 × 15: he was tired and working the eccentric, so loads hold, not a decline. Reverse fly 42.5 × 10 ×3 holds (45 after 12s). Triceps pull 10 × 10 ×3 holds (12s earn the next step). Hollow hold and plank 30s ×3, push-ups 15 ×3. Upper B 10-29 unchanged at the table loads.
+
 **From 26 Oct:** each lift goes back to its load in the session tables, full sets, if
 every re-entry set landed with 2 in reserve. A lift that ground, or that missed the
 bottom of its band, gets one more week at its re-entry load. A pain reading of 4 or more

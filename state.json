@@ -76,7 +76,7 @@
         "type": "anchor",
         "sets": 4,
         "reps": "5-8",
-        "load": 60,
+        "load": 67.5,
         "unit": "kg"
       },
       {
@@ -342,8 +342,8 @@
       }
     ]
   },
-  "rx_asof": "2026-10-22",
-  "rx_after": "2026-10-22 Upper B",
+  "rx_asof": "2026-10-26",
+  "rx_after": "2026-10-26 Upper A",
   "row_protocol": {
     "load_left": 52.5,
     "load_right": 50,
