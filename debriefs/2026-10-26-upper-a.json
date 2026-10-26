@@ -1,0 +1,207 @@
+{
+  "key": "2026-10-26-upper-a",
+  "date": "2026-10-26",
+  "session": "Upper A",
+  "session_id": "upper_a",
+  "model": "claude-sonnet-5",
+  "created": "2026-10-26T12:36:04.243Z",
+  "logged": {
+    "date": "2026-10-26",
+    "session": "Upper A",
+    "session_id": "upper_a",
+    "exercises": [
+      {
+        "name": "Incline Bench Press (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 60,
+            "reps": 8
+          },
+          {
+            "weight": 65,
+            "reps": 8
+          },
+          {
+            "weight": 65,
+            "reps": 8
+          },
+          {
+            "weight": 45,
+            "reps": 10
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Wide Pull Up",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 8
+          },
+          {
+            "weight": 0,
+            "reps": 8
+          },
+          {
+            "weight": 0,
+            "reps": 8
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Chest Fly",
+        "sets": [
+          {
+            "weight": 65,
+            "reps": 10
+          },
+          {
+            "weight": 65,
+            "reps": 10
+          },
+          {
+            "weight": 65,
+            "reps": 4
+          },
+          {
+            "weight": 57.5,
+            "reps": 4
+          }
+        ],
+        "weight": 65
+      },
+      {
+        "name": "Reverse Fly (Machine)",
+        "sets": [
+          {
+            "weight": 42.5,
+            "reps": 10
+          },
+          {
+            "weight": 42.5,
+            "reps": 10
+          },
+          {
+            "weight": 42.5,
+            "reps": 10
+          }
+        ],
+        "weight": 42.5
+      },
+      {
+        "name": "Lateral Raise (Dumbbell)",
+        "sets": [
+          {
+            "weight": 8,
+            "reps": 15
+          },
+          {
+            "weight": 8,
+            "reps": 15
+          },
+          {
+            "weight": 7,
+            "reps": 15
+          }
+        ],
+        "weight": 8
+      },
+      {
+        "name": "One Handed Triceps Pull",
+        "sets": [
+          {
+            "weight": 10,
+            "reps": 10
+          },
+          {
+            "weight": 10,
+            "reps": 10
+          },
+          {
+            "weight": 10,
+            "reps": 10
+          }
+        ],
+        "weight": 10
+      },
+      {
+        "name": "Hollow Body Hold",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 0,
+            "duration": 30
+          },
+          {
+            "weight": 0,
+            "reps": 0,
+            "duration": 30
+          },
+          {
+            "weight": 0,
+            "reps": 0,
+            "duration": 30
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Plank",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 0,
+            "duration": 30
+          },
+          {
+            "weight": 0,
+            "reps": 0,
+            "duration": 30
+          },
+          {
+            "weight": 0,
+            "reps": 0,
+            "duration": 30
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Push Up",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 15
+          },
+          {
+            "weight": 0,
+            "reps": 15
+          },
+          {
+            "weight": 0,
+            "reps": 15
+          }
+        ],
+        "bodyweight": true
+      }
+    ],
+    "pain": {
+      "right_lat": 1
+    },
+    "notes": "Imported from Strong",
+    "extra": ""
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Incline Bench Press didn't get the prescribed 67.5kg working sets — you ran 60kg×8, 65kg×8, 8, then backed off to 45kg×10. That's three working sets in the 5-8 band, not the four called for, and you never tested 67.5kg. Pull-ups hit second as planned, bodyweight×8, 8, 8, matching 10-19 exactly. Chest Fly started on target at 65kg×10, 10, then dropped to 4 reps on set three and 57.5kg×4 after that — short of the 2×10-12 ask. Reverse Fly and One Handed Triceps Pull both landed clean: reverse fly 42.5kg×10, 10, 10 (an extra set over the two prescribed), triceps pull at the new 10kg×10, 10, 10 as earned. Lateral Raise opened at 8kg×15, 15 but dropped to 7kg×15 on set three, missing the three-at-8kg target.\n\nTrend: Incline's 60/65/65 ramp mirrors 09-21 almost exactly and sits below 09-28's peak of 65/65/70 — three sessions now without a real attempt at 67.5kg, so the anchor's progression rule (four sets to 8) still hasn't been tested. Lateral raise reps have sat at 15 across 09-21, 10-19 and today; 09-28's 16, 16, 16 looks like an outlier rather than the trend.\n\nRight lat: 1/10 during the session — a clean green light. This is the Monday reading for the pull-up gate, which needs 3/10 or under on both Monday and Thursday. Thursday's reading from Upper B's row will decide whether the +5kg comes back.\n\nNext session: Upper B, Thu 29 Oct. Deadlift first at 70kg for 3×5, pull-ups second at bodyweight, then the Iso Lateral Row at L52.5kg/R50kg (or bilateral again if that's your call) — rate pain during the row either way.\n\nQuestion: incline stalled short of 67.5kg and both chest fly and lateral raise fell off hard on their last working sets — was today a gassed or short-on-time session, or is something else going on?",
+      "at": "2026-10-26T12:36:04.243Z"
+    }
+  ]
+}
