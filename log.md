@@ -679,6 +679,18 @@ pain(R): 1/10 | note: iso lateral row weight dropped because i swapped from unil
      bilateral at 40kg after a form change: not a decline, not a reading on the gated row, which holds
      L 52.5 / R 50. Crossover did not run, curl swapped to barbell. Pain 1/10; Monday still unreported. -->
 
+## 2026-10-26 · Mon · Upper A
+pain(R): 1/10
+- Incline Bench Press (Barbell) — 40kg × 10, 60kg × 8, 65kg × 8, 8, 45kg × 10
+- Wide Pull Up — bodyweight × 8, 8, 8
+- Chest Fly — 65kg × 10, 10, 4, 57.5kg × 4
+- Reverse Fly (Machine) — 42.5kg × 10, 10, 10
+- Lateral Raise (Dumbbell) — 8kg × 15, 15, 7kg × 15
+- One Handed Triceps Pull — 10kg × 10, 10, 10
+- Hollow Body Hold — 0:30, 0:30, 0:30
+- Plank — 0:30, 0:30, 0:30
+- Push Up — bodyweight × 15, 15, 15
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
