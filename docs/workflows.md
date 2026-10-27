@@ -175,6 +175,16 @@ python3 analyse.py data/<latest export>.csv
 
 Verified on pandas 3.0.5 / numpy 2.x as of 2026-09-01.
 
+Then rebuild the phone page's full history, so the Progress tab's records and muscle map
+reach back past `log.md`:
+
+```
+python3 history.py            # latest data/strong_*.csv → data/history.json
+```
+
+It keeps only sessions dated before the first `log.md` entry; from there on `log.md` is
+the record. Commit `data/history.json` with the reconcile.
+
 Then reconcile `log.md` against the export — loads, reps, and above all the order
 exercises were performed in. Fix errors silently and leave an HTML comment saying what
 was corrected, as with the 2026-08-31 entry. Update the baseline comment at the foot of

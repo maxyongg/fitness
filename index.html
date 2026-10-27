@@ -388,6 +388,17 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .search { width: 100%; height: 44px; padding: 0 12px; border: 1px solid var(--rule-2); border-radius: 9px;
   background: var(--surface); color: var(--ink); font: 16px var(--font-b); }
 .search::placeholder { color: var(--ink-3); }
+.rec-n .pill.old { color: var(--amber); background: var(--amber-soft); }
+.rec-n .rec-now { display: block; font-family: var(--font-m); font-size: 11px; color: var(--ink-2); margin-top: 2px; }
+.rec-n .rec-now b { display: inline; font: 600 11px var(--font-m); color: var(--ink); }
+.caveat { padding: 8px 0 8px 12px; border-left: 3px solid var(--amber); font-size: 13px; line-height: 1.5;
+  color: var(--ink-2); margin-bottom: 12px; }
+.caveat b { display: block; font-family: var(--font-m); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 2px; }
+.old-recs summary { cursor: pointer; list-style: none; }
+.old-recs summary::-webkit-details-marker { display: none; }
+.old-recs summary::before { content: "+"; font-size: 13px; color: var(--ink-2); }
+.old-recs[open] summary::before { content: "\2212"; }
 .foot { font-size: 12px; line-height: 1.5; color: var(--ink-3); margin-top: 10px; }
 
 /* ---- sheet / modal / toast ---- */
@@ -518,6 +529,7 @@ input[type=number] { -moz-appearance: textfield; }
       <div class="seg sm" role="tablist">
         <button class="segb active" data-r="week" onclick="progRangeSet('week')">Week</button>
         <button class="segb" data-r="4wk" onclick="progRangeSet('4wk')">4 weeks</button>
+        <button class="segb" data-r="6mo" onclick="progRangeSet('6mo')">6 months</button>
         <button class="segb" data-r="all" onclick="progRangeSet('all')">All</button>
       </div>
       <div class="wk-nav">
@@ -536,6 +548,7 @@ input[type=number] { -moz-appearance: textfield; }
       <p class="foot" id="muscle-foot"></p>
     </div>
     <div id="prog-records" hidden>
+      <div class="caveat" id="rec-caveat"></div>
       <input class="search" id="rec-search" type="search" placeholder="Search exercises" oninput="renderRecords()" autocomplete="off">
       <div id="rec-list"></div>
       <p class="foot" id="rec-foot"></p>
@@ -1896,16 +1909,20 @@ var MUSCLE_RULES = [
   [/calf/i, "calves", ""],
   [/nordic|leg curl|hamstring/i, "hams", "glutes"],
   [/romanian|rdl|good morning/i, "hams", "glutes lower"],
-  [/hip thrust|glute|bridge/i, "glutes", "hams"],
+  [/hip thrust|glute|bridge|abductor|kettlebell swing/i, "glutes", "hams"],
+  [/back extension|hyperextension/i, "lower", "glutes hams"],
+  [/adductor/i, "quads", ""],
+  [/tyre|tire|sled|cart/i, "quads glutes", "hams"],
   [/squat|lunge|leg press|split|step.?up|leg extension|pistol/i, "quads", "glutes"],
   [/deadlift/i, "glutes hams", "lower upper fore"],
-  [/plank|hollow|leg raise|knee raise|toes.?to.?bar|l-sit|crunch|sit.?up|dead bug|ab wheel|rollout|pallof|dragon/i, "abs", ""],
-  [/rear delt|reverse fly|face pull/i, "rdelt", "upper"],
+  [/plank|hollow|leg raise|knee raise|toes.?to.?bar|l-sit|crunch|sit.?up|dead bug|ab wheel|rollout|pallof|dragon|twist|v up|woodchop|shoulder tap/i, "abs", ""],
+  [/rear delt|delt rear|reverse.*fly|face pull/i, "rdelt", "upper"],
+  [/front raise/i, "fdelt", ""],
   [/lateral raise|upright row/i, "sdelt", ""],
   [/pull.?up|chin.?up|pulldown|pullover|lever|muscle.?up/i, "lats", "biceps upper"],
   [/row/i, "upper", "lats biceps"],
   [/shrug/i, "upper", ""],
-  [/curl/i, "biceps", "fore"],
+  [/curl|bicep/i, "biceps", "fore"],
   [/tricep|skull|pushdown|kickback/i, "triceps", ""],
   [/dip/i, "triceps", "chest fdelt"],
   [/handstand|pike|shoulder press|overhead|arnold|military/i, "fdelt", "sdelt triceps"],
@@ -1982,31 +1999,65 @@ function addDays(iso, n) { var d = parseIso(iso); d.setDate(d.getDate() + n); re
 function weekStart(iso) { var d = parseIso(iso); return addDays(iso, -((d.getDay() + 6) % 7)); }
 
 var progSessions = null, progErr = "", progMode = "muscles", progRange = "week", progWeek = 0;
+var progLogFrom = "", progHistOk = false;
 
+/* log.md from its first entry; before that, data/history.json, which history.py builds
+   from the Strong export. Each is cached so the tab opens offline on the last copy. */
 async function loadProgress() {
   if (!progSessions) {
-    var cached = null;
-    try { cached = localStorage.getItem("matchday_log"); } catch (e) {}
-    if (cached) progSessions = parseLog(cached);
+    var log = null, hist = null;
+    try { log = localStorage.getItem("matchday_log"); hist = localStorage.getItem("matchday_hist"); } catch (e) {}
+    if (log) setProgData(log, hist);
   }
   renderProgress();
   try {
-    var text = await fetchLogAny();
-    try { localStorage.setItem("matchday_log", text); } catch (e) {}
-    progSessions = parseLog(text);
+    var got = await Promise.all([fetchRepoFile("log.md"),
+      fetchRepoFile("data/history.json").catch(function() { return null; })]);
+    if (!/^# Session log/.test(got[0])) throw new Error("not the log");
+    try { localStorage.setItem("matchday_log", got[0]); if (got[1]) localStorage.setItem("matchday_hist", got[1]); } catch (e) {}
+    var hist = got[1];
+    if (!hist) try { hist = localStorage.getItem("matchday_hist"); } catch (e) {}
+    setProgData(got[0], hist);
     progErr = "";
   } catch (e) {
-    progErr = getToken() ? "Couldn't load log.md (" + e.message + ")." : "Add your GitHub token in Settings to load the log.";
+    progErr = getToken() ? "Couldn't load the log (" + e.message + ")." : "Add your GitHub token in Settings to load the log.";
   }
   renderProgress();
 }
+
 /* The token reads the repo; without one, try the copy GitHub Pages serves next to the page. */
-async function fetchLogAny() {
-  if (getToken()) return fetchLog();
-  var res = await fetch("log.md", { cache: "no-store" });
-  var text = res.ok ? await res.text() : "";
-  if (!/^# Session log/.test(text)) throw new Error("no token");
-  return text;
+async function fetchRepoFile(path) {
+  var res = getToken()
+    ? await fetch("https://api.github.com/repos/" + RX.repo + "/contents/" + path, {
+        headers: { Authorization: "token " + getToken(), Accept: "application/vnd.github.raw+json" }, cache: "no-store" })
+    : await fetch(path, { cache: "no-store" });
+  if (!res.ok) throw new Error(getToken() ? path + " " + res.status : "no token");
+  return res.text();
+}
+
+function setProgData(logText, histText) {
+  var log = parseLog(logText);
+  progLogFrom = log.length ? log[0].date : "";
+  var hist = [];
+  progHistOk = false;
+  if (histText) {
+    try { hist = parseHistory(JSON.parse(histText), progLogFrom); progHistOk = true; } catch (e) {}
+  }
+  progSessions = hist.concat(log);
+}
+
+function parseHistory(h, before) {
+  return h.sessions.filter(function(s) { return !before || s[0] < before; }).map(function(s) {
+    return { date: s[0], name: s[1], exs: s[2].map(function(e) {
+      return { name: e[0], sets: e[2].map(function(t) {
+        return { kg: t[0], bw: !!e[1], reps: t[1], secs: t[2], warm: !!t[3] };
+      }) };
+    }) };
+  });
+}
+
+function fmtDateY(iso) {
+  return fmtDate(iso) + (iso.slice(0, 4) === String(new Date().getFullYear()) ? "" : " " + iso.slice(0, 4));
 }
 
 function progTab(mode) {
@@ -2039,13 +2090,15 @@ function progWindow() {
   var first = progSessions[0].date;
   if (progRange === "week") {
     var from = addDays(weekStart(today), -7 * progWeek);
-    var label = progWeek === 0 ? "This week" : progWeek === 1 ? "Last week" : "Week of " + fmtDate(from);
-    return { from: from, to: addDays(from, 6), weeks: 1, label: label, sub: fmtDate(from) + " – " + fmtDate(addDays(from, 6)),
+    var label = progWeek === 0 ? "This week" : progWeek === 1 ? "Last week" : "Week of " + fmtDateY(from);
+    return { from: from, to: addDays(from, 6), weeks: 1, label: label, sub: fmtDate(from) + " – " + fmtDateY(addDays(from, 6)),
       prev: weekStart(first) < from, next: progWeek > 0 };
   }
-  var start = progRange === "4wk" ? addDays(today, -27) : first;
+  var start = progRange === "4wk" ? addDays(today, -27) : progRange === "6mo" ? addDays(today, -181) : first;
+  if (start < first) start = first;
   var weeks = Math.max(1, Math.round((parseIso(today) - parseIso(start)) / 864e5 + 1) / 7);
-  return { from: start, to: today, weeks: weeks, label: progRange === "4wk" ? "Last 4 weeks" : "Since " + fmtDate(first),
+  var label = progRange === "4wk" ? "Last 4 weeks" : progRange === "6mo" ? "Last 6 months" : "Since " + fmtDateY(first);
+  return { from: start, to: today, weeks: weeks, label: label,
     sub: "average per week", prev: false, next: false };
 }
 
@@ -2089,15 +2142,19 @@ function renderMuscles() {
 
   document.getElementById("muscle-table").innerHTML = '<tr><th>Muscle</th><th style="text-align:right">Sets</th><th>From</th></tr>'
     + Object.keys(MUSCLE_NAMES).map(function(k) {
-      var from = Object.keys(r.src[k]).sort(function(a, b) { return r.src[k][b] - r.src[k][a]; }).slice(0, 3)
+      var from = Object.keys(r.src[k]).filter(function(x) { return r.src[k][x] / w.weeks >= .25; })
+        .sort(function(a, b) { return r.src[k][b] - r.src[k][a]; }).slice(0, 3)
         .map(function(x) { return esc(x) + " " + fmtSetsN(r.src[k][x] / w.weeks); }).join(", ");
       return '<tr><td' + (per[k] ? '' : ' class="zero"') + '>' + MUSCLE_NAMES[k] + '</td>'
         + '<td class="n' + (per[k] ? '' : ' zero') + '">' + fmtSetsN(per[k]) + '</td><td class="src">' + (from || "—") + '</td></tr>';
     }).join("");
 
-  document.getElementById("muscle-foot").innerHTML = "Working sets from log.md. A set counts 1 to the main muscle and ½ to the helpers; "
+  document.getElementById("muscle-foot").innerHTML = "Working sets from log.md" + (progHistOk ? " and, before " + fmtDate(progLogFrom) + ", the Strong export" : "") + ". A set counts 1 to the main muscle and ½ to the helpers; "
     + "lead-in sets at two-thirds of the top load or less count as warm-ups. Football isn&rsquo;t logged, so legs read light, "
     + "and neither do finishers that never reached the log."
+    + (progHistOk && w.from < progLogFrom ? " The export missed most of the core and finisher work, so weeks before "
+      + fmtDate(progLogFrom) + " read lighter there." : "")
+    + (progHistOk ? "" : " The full history didn&rsquo;t load, so this is log.md only.")
     + (r.unmapped.length ? "<br>Not mapped yet: " + esc(r.unmapped.join(", ")) + "." : "");
 }
 
@@ -2152,15 +2209,18 @@ function bodySvg(view, per) {
 
    Per exercise name: the heaviest set for loaded lifts; the most reps in a set and in a
    session for bodyweight work (plus the heaviest added load); the longest hold for timed
-   work. Information, not targets: nothing here asks him to beat it. Most recently done
-   first below the anchors, so dropped movements sink.                                   */
+   work. Each is shown all-time, with the best since log.md began beside it, because the
+   old bests were set before the right-lat injury and before form resets. Information,
+   not targets: nothing here asks him to beat it.                                        */
 var REC_ANCHORS = ["Incline Bench Press (Barbell)", "Pull Up", "Deadlift (Barbell)", "Romanian Deadlift (Barbell)",
   "Squat (Barbell)", "Iso Lateral Row - Left", "Iso Lateral Row - Right"];
 var REC_NOTES = { "Iso Lateral Row - Right": "Set by the pain protocol, not a target." };
+var INJURY_FROM = "2026-06-01";   // right lat, June 2026 (CLAUDE.md)
 
-function buildRecords() {
+function buildRecords(from) {
   var recs = {};
   progSessions.forEach(function(s) {
+    if (from && s.date < from) return;
     s.exs.forEach(function(ex) {
       var e = recs[ex.name] || (recs[ex.name] = { name: ex.name, n: 0, heavy: null, reps: null, total: null, hold: null, bw: false, timed: false });
       e.n++;
@@ -2174,10 +2234,10 @@ function buildRecords() {
         }
         if (st.bw) {
           e.bw = true;
-          total += st.reps;
+          if (!(st.kg < 0)) total += st.reps;   // assisted reps aren't bodyweight reps
           if (!st.kg && (!e.reps || st.reps > e.reps.v)) e.reps = { v: st.reps, date: s.date };
         }
-        if (st.kg > 0 && (!e.heavy || st.kg > e.heavy.kg || (st.kg === e.heavy.kg && st.reps > e.heavy.reps)))
+        if (st.kg > 0 && st.reps && (!e.heavy || st.kg > e.heavy.kg || (st.kg === e.heavy.kg && st.reps > e.heavy.reps)))
           e.heavy = { kg: st.kg, reps: st.reps, date: s.date };
       });
       if (total && (!e.total || total > e.total.v)) e.total = { v: total, date: s.date };
@@ -2186,49 +2246,72 @@ function buildRecords() {
   return recs;
 }
 
-function recRow(e, recent) {
-  var main, small = [], date;
-  if (e.timed && e.hold) {
-    main = fmtDuration(e.hold.v); small.push("longest hold"); date = e.hold.date;
-  } else if (e.bw && e.reps) {
-    main = e.reps.v + " reps"; date = e.reps.date;
-    small.push("best set");
+/* The headline number for a record set, its label, and when it was set. */
+function recValue(e) {
+  if (e.timed && e.hold) return { v: fmtDuration(e.hold.v), small: ["longest hold"], date: e.hold.date };
+  if (e.bw && e.reps) {
+    var small = ["best set"];
     if (e.total && e.total.v > e.reps.v) small.push(e.total.v + " in a session");
     if (e.heavy) small.push("+" + e.heavy.kg + "kg × " + e.heavy.reps);
-  } else if (e.heavy) {
-    main = (e.bw ? "+" : "") + e.heavy.kg + "kg × " + e.heavy.reps; small.push("heaviest"); date = e.heavy.date;
-  } else return "";
-  var latest = [e.hold, e.reps, e.total, e.heavy].reduce(function(d, r) { return r && r.date > d ? r.date : d; }, "");
+    return { v: e.reps.v + " reps", small: small, date: e.reps.date };
+  }
+  if (e.heavy) return { v: (e.bw ? "+" : "") + e.heavy.kg + "kg × " + e.heavy.reps, small: ["heaviest"], date: e.heavy.date };
+  return null;
+}
+
+function recRow(e, now, recent) {
+  var a = recValue(e);
+  if (!a) return "";
+  var n = now && recValue(now);
+  var latest = [e.hold, e.reps, e.total, e.heavy].reduce(function(d, x) { return x && x.date > d ? x.date : d; }, "");
+  var mm = musclesFor(e.name);
+  var pulls = mm && mm.main.some(function(k) { return k === "lats" || k === "upper"; });
+  var tags = (latest >= recent ? '<span class="pill">New</span>' : '')
+    + (pulls && a.date < INJURY_FROM && progLogFrom ? '<span class="pill old">Pre-injury</span>' : '');
+  var since = !progHistOk || !progLogFrom ? ""
+    : n ? (n.v === a.v ? "" : "Since " + fmtDate(progLogFrom) + ": <b>" + n.v + "</b>")
+    : "Not done since " + fmtDate(progLogFrom) + " · last " + fmtDateY(e.last);
   return '<div class="rec"><div class="rec-n"><b>' + esc(e.name) + '</b>'
-    + '<span>' + fmtDate(date) + ' · ' + e.n + (e.n === 1 ? ' session' : ' sessions') + '</span>'
-    + (latest >= recent ? '<span class="pill">New</span>' : '')
+    + '<span>' + fmtDateY(a.date) + ' · ' + e.n + (e.n === 1 ? ' session' : ' sessions') + '</span>' + tags
+    + (since ? '<span class="rec-now">' + since + '</span>' : '')
     + (REC_NOTES[e.name] ? '<span class="rec-note">' + REC_NOTES[e.name] + '</span>' : '')
-    + '</div><div class="rec-v">' + main + '<small>' + small.join(" · ") + '</small></div></div>';
+    + '</div><div class="rec-v">' + a.v + '<small>' + a.small.join(" · ") + '</small></div></div>';
 }
 
 function renderRecords() {
   if (!progSessions || !progSessions.length) return;
-  var recs = buildRecords();
+  var all = buildRecords(""), now = buildRecords(progLogFrom);
   var q = document.getElementById("rec-search").value.trim().toLowerCase();
   var recent = addDays(isoDate(new Date()), -7);
-  var match = function(e) { return !q || e.name.toLowerCase().indexOf(q) !== -1; };
-  var all = Object.keys(recs).map(function(k) { return recs[k]; }).filter(match);
-  var anchors = REC_ANCHORS.map(function(n) { return recs[n]; }).filter(function(e) { return e && match(e); });
-  var rest = all.filter(function(e) { return REC_ANCHORS.indexOf(e.name) === -1; })
-    .sort(function(a, b) { return a.last < b.last ? 1 : a.last > b.last ? -1 : b.n - a.n; });
+  var list = Object.keys(all).map(function(k) { return all[k]; })
+    .filter(function(e) { return !q || e.name.toLowerCase().indexOf(q) !== -1; });
+  var byLast = function(a, b) { return a.last < b.last ? 1 : a.last > b.last ? -1 : b.n - a.n; };
+  var anchors = REC_ANCHORS.map(function(n) { return all[n]; }).filter(function(e) { return e && list.indexOf(e) !== -1; });
+  var rest = list.filter(function(e) { return REC_ANCHORS.indexOf(e.name) === -1; }).sort(byLast);
+  var current = rest.filter(function(e) { return now[e.name]; });
   var groups = [
     ["Anchors", anchors],
-    ["Bodyweight and skills", rest.filter(function(e) { return e.bw || e.timed; })],
-    ["Everything else", rest.filter(function(e) { return !e.bw && !e.timed; })]
+    ["Bodyweight and skills", current.filter(function(e) { return e.bw || e.timed; })],
+    ["Everything else", current.filter(function(e) { return !e.bw && !e.timed; })]
   ];
+  var rows = function(g) { return g.map(function(e) { return recRow(e, now[e.name], recent); }).join(""); };
   var html = groups.filter(function(g) { return g[1].length; }).map(function(g) {
-    return '<div class="sec">' + g[0] + '</div><div class="block info-block">'
-      + g[1].map(function(e) { return recRow(e, recent); }).join("") + '</div>';
+    return '<div class="sec">' + g[0] + '</div><div class="block info-block">' + rows(g[1]) + '</div>';
   }).join("");
+  var old = rest.filter(function(e) { return !now[e.name]; });
+  if (old.length) {
+    html += '<details class="old-recs"' + (q ? ' open' : '') + '><summary class="sec">Not done since '
+      + fmtDate(progLogFrom) + ' · ' + old.length + '</summary><div class="block info-block">' + rows(old) + '</div></details>';
+  }
   document.getElementById("rec-list").innerHTML = html || '<div class="empty">Nothing matches.</div>';
-  document.getElementById("rec-foot").innerHTML = "Best logged since " + fmtDate(progSessions[0].date)
-    + ", one line per exercise name. Each name is its own machine, so a substitute never counts on the usual one. "
-    + "A load reset after a form change stays below its record; that is the reset, not a decline.";
+  var first = progSessions[0].date;
+  document.getElementById("rec-caveat").innerHTML = progHistOk
+    ? "<b>Bests go back to " + fmtDateY(first) + "</b>Older ones were set before the right-lat injury (June 2026) and before "
+      + "form resets like the Sep 2025 row, so read them as history, not targets. The line under each is the best since "
+      + fmtDate(progLogFrom) + ", when this log began."
+    : "<b>Log only</b>The full history (data/history.json) didn&rsquo;t load, so these are the bests since " + fmtDate(first) + ".";
+  document.getElementById("rec-foot").innerHTML = "One line per exercise name. Each name is its own machine, so a substitute "
+    + "never counts on the usual one. A load reset after a form change stays below its record; that is the reset, not a decline.";
 }
 
 /* ---- strong import ---- */
