@@ -181,7 +181,7 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `data/` | Strong CSV exports. Never read directly. |
 | `inbox/` | Sessions saved from the phone page (JSON). Drain with `python3 drain.py`, then delete. Empty at rest. |
 | `debriefs/` | One JSON per debrief: the session, the Worker's debrief, and any follow-up conversation. Written by the phone page. Read in programming mode; never edit. |
-| `index.html` | The phone page, served by GitHub Pages. Prescriptions live in the `RX` object. |
+| `index.html` | The phone page, served by GitHub Pages. Prescriptions live in the `RX` object. The Progress tab (muscle map, records) is computed in the browser from `log.md`; when a movement is introduced, add it to `MUSCLES` or it shows as unmapped. |
 | `worker/` | Cloudflare Worker for instant debriefs. Setup: `docs/cloudflare-worker-setup.md`. |
 | `ui/matchday.html` | Old artifact-hosted page. Superseded by `index.html`. |
 | `README.md` | Orientation for a human landing on the repo. Not for you. |

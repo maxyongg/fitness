@@ -347,6 +347,49 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .vol td.n { font-family: var(--font-m); color: var(--ink); text-align: right; }
 .vol td.src { font-size: 12px; }
 
+/* ---- progress ---- */
+.seg.sm { margin-bottom: 10px; }
+.seg.sm .segb { padding: 7px 4px; font-size: 10px; }
+.wk-nav { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.wk-nav div { flex: 1; text-align: center; }
+.wk-nav b { display: block; font-family: var(--font-d); font-size: 20px; font-weight: 600; line-height: 1.1; }
+.wk-nav span { font-family: var(--font-m); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.wk-nav .icon-btn:disabled { opacity: .25; cursor: default; }
+.bodies { display: flex; justify-content: center; gap: 12px; padding: 6px 0 2px; }
+.bodies figure { flex: 1; max-width: 140px; text-align: center; }
+.bodies svg { display: block; width: 100%; height: auto; }
+.bodies figcaption { font-family: var(--font-m); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-3); margin-top: 4px; }
+.sil { fill: var(--surface-2); }
+.sil-s { fill: none; stroke: var(--surface-2); stroke-linecap: round; stroke-linejoin: round; }
+.mu { fill: var(--rule-2); }
+.mu.b1 { fill: var(--accent); fill-opacity: .38; }
+.mu.b2 { fill: var(--accent); fill-opacity: .68; }
+.mu.b3 { fill: var(--accent); fill-opacity: 1; }
+.abs-l { stroke: var(--surface); stroke-width: .9; }
+.legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 14px; margin-top: 10px;
+  font-family: var(--font-m); font-size: 10.5px; color: var(--ink-3); }
+.legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px;
+  vertical-align: -1px; background: var(--accent); }
+.legend i.b0 { background: var(--rule-2); }
+.legend i.b1 { opacity: .38; }
+.legend i.b2 { opacity: .68; }
+.vol td.zero { color: var(--ink-3); }
+.rec { display: flex; align-items: baseline; gap: 12px; padding: 10px 12px; }
+.rec + .rec { border-top: 1px solid var(--rule); }
+.rec-n { flex: 1; min-width: 0; }
+.rec-n b { display: block; font-family: var(--font-d); font-size: 18px; font-weight: 600; line-height: 1.15; }
+.rec-n span { font-family: var(--font-m); font-size: 10.5px; color: var(--ink-3); }
+.rec-n .pill { margin-left: 6px; vertical-align: 1px; font-size: 10px; color: var(--accent); }
+.rec-n .rec-note { display: block; font-family: var(--font-b); font-size: 12px; color: var(--amber); margin-top: 2px; }
+.rec-v { flex: none; max-width: 48%; text-align: right; font-family: var(--font-m); font-size: 15px; font-weight: 600;
+  font-variant-numeric: tabular-nums; }
+.rec-v small { display: block; font-size: 10.5px; font-weight: 400; color: var(--ink-3); margin-top: 1px; }
+.search { width: 100%; height: 44px; padding: 0 12px; border: 1px solid var(--rule-2); border-radius: 9px;
+  background: var(--surface); color: var(--ink); font: 16px var(--font-b); }
+.search::placeholder { color: var(--ink-3); }
+.foot { font-size: 12px; line-height: 1.5; color: var(--ink-3); margin-top: 10px; }
+
 /* ---- sheet / modal / toast ---- */
 .scrim { display: none; position: fixed; inset: 0; background: var(--scrim); z-index: 55; }
 .scrim.show { display: block; }
@@ -462,6 +505,44 @@ input[type=number] { -moz-appearance: textfield; }
   </div>
 </div>
 
+<!-- PROGRESS VIEW -->
+<div class="view" id="view-progress">
+  <div class="wrap">
+    <h1 class="page-title">Progress</h1>
+    <div class="seg" role="tablist">
+      <button class="segb active" data-p="muscles" onclick="progTab('muscles')">Muscles</button>
+      <button class="segb" data-p="records" onclick="progTab('records')">Records</button>
+    </div>
+    <div id="prog-msg" class="empty" hidden></div>
+    <div id="prog-muscles">
+      <div class="seg sm" role="tablist">
+        <button class="segb active" data-r="week" onclick="progRangeSet('week')">Week</button>
+        <button class="segb" data-r="4wk" onclick="progRangeSet('4wk')">4 weeks</button>
+        <button class="segb" data-r="all" onclick="progRangeSet('all')">All</button>
+      </div>
+      <div class="wk-nav">
+        <button class="icon-btn" id="wk-prev" onclick="progStep(1)" aria-label="Previous week">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <div><b id="wk-label"></b><span id="wk-sub"></span></div>
+        <button class="icon-btn" id="wk-next" onclick="progStep(-1)" aria-label="Next week">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+      <div class="block">
+        <div class="bodies" id="bodies"></div>
+        <div class="legend"><span><i class="b0"></i>None</span><span><i class="b1"></i>1&ndash;4 sets</span><span><i class="b2"></i>5&ndash;9</span><span><i class="b3"></i>10+</span></div>
+      </div>
+      <div class="sec">Sets by muscle</div>
+      <div class="block info-block"><table class="vol" id="muscle-table"></table></div>
+      <p class="foot" id="muscle-foot"></p>
+    </div>
+    <div id="prog-records" hidden>
+      <input class="search" id="rec-search" type="search" placeholder="Search exercises" oninput="renderRecords()" autocomplete="off">
+      <div id="rec-list"></div>
+      <p class="foot" id="rec-foot"></p>
+    </div>
+  </div>
+</div>
+
 <!-- INFO VIEW -->
 <div class="view" id="view-info">
   <div class="wrap">
@@ -538,6 +619,9 @@ input[type=number] { -moz-appearance: textfield; }
   </button>
   <button class="nav-item" data-view="history" onclick="switchView('history')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>History
+  </button>
+  <button class="nav-item" data-view="progress" onclick="switchView('progress')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Progress
   </button>
   <button class="nav-item" data-view="info" onclick="switchView('info')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>Info
@@ -868,6 +952,7 @@ function switchView(v) {
   document.getElementById("view-" + v).classList.add("active");
   document.querySelectorAll(".nav-item").forEach(function(el) { el.classList.toggle("active", el.dataset.view === v); });
   if (v === "history") { renderHistory(); if (histMode === "debriefs") { renderDebriefList(); syncDebriefs(); } }
+  if (v === "progress") loadProgress();
   window.scrollTo(0, 0);
 }
 
@@ -1738,6 +1823,412 @@ async function checkInbox() {
   }
   btn.textContent = "Check inbox on GitHub";
   btn.disabled = false;
+}
+
+/* ---- progress ----
+
+   Muscle map and records, worked out here from log.md, so they cover every logged session
+   and not just those saved from this phone. The exercise name is the machine: records
+   never cross names, so a substitute is never a reading on the usual machine. A movement
+   new to the log needs a line in MUSCLES (or a MUSCLE_RULES match), or it is listed as
+   unmapped under the map.                                                               */
+var MUSCLE_NAMES = { chest: "Chest", fdelt: "Front delts", sdelt: "Side delts", rdelt: "Rear delts",
+  lats: "Lats", upper: "Upper back", lower: "Lower back", biceps: "Biceps", triceps: "Triceps",
+  fore: "Forearms", abs: "Core", quads: "Quads", hams: "Hamstrings", glutes: "Glutes", calves: "Calves" };
+
+/* [main, helpers]: a working set counts 1 to each main muscle and ½ to each helper. */
+var MUSCLES = {
+  "Incline Bench Press (Barbell)": ["chest", "fdelt triceps"],
+  "Bench Press (Dumbbell)": ["chest", "fdelt triceps"],
+  "Decline Chest Press": ["chest", "triceps"],
+  "Chest Fly": ["chest", "fdelt"],
+  "Cable Crossover": ["chest", "fdelt"],
+  "Single Arm Cable Chest Fly": ["chest", "fdelt"],
+  "Push Up": ["chest", "fdelt triceps"],
+  "Diamond Push Up": ["triceps", "chest fdelt"],
+  "Triceps Dip": ["triceps", "chest fdelt"],
+  "Dumbbell Pullover": ["lats", "chest"],
+  "Pike Push Up": ["fdelt", "sdelt triceps"],
+  "Elevated Pike Push Up (feet elevated, hands on floor)": ["fdelt", "sdelt triceps"],
+  "Chest-to-wall Handstand": ["fdelt", "triceps abs"],
+  "Arnold Press (Dumbbell)": ["fdelt", "sdelt triceps"],
+  "Overhead Press (Barbell)": ["fdelt", "sdelt triceps"],
+  "Shoulder Press (Plate Loaded)": ["fdelt", "sdelt triceps"],
+  "Lateral Raise (Dumbbell)": ["sdelt", ""],
+  "Lateral Raise (Cable)": ["sdelt", ""],
+  "Reverse Fly (Machine)": ["rdelt", "upper"],
+  "Bent Over Rear Delt Raise": ["rdelt", "upper"],
+  "Face Pull (Cable)": ["rdelt", "upper"],
+  "Pull Up": ["lats", "biceps upper"],
+  "Wide Pull Up": ["lats", "biceps upper"],
+  "Lat Pulldown (Cable)": ["lats", "biceps upper"],
+  "Straight Arm Pulldown": ["lats", ""],
+  "Iso Lateral Row": ["upper", "lats biceps"],
+  "Iso-Lateral Row (Machine)": ["upper", "lats biceps"],
+  "Uni Lateral Seated Row": ["upper", "lats biceps"],
+  "Seated Row (Cable)": ["upper", "lats biceps"],
+  "Chest Supported Row": ["upper", "lats biceps"],
+  "Ring Row": ["upper", "lats biceps"],
+  "Bicep Curl (Barbell)": ["biceps", ""],
+  "Bicep Curl (Cable)": ["biceps", ""],
+  "Preacher Curl (Barbell)": ["biceps", ""],
+  "Rings: Bicep Curl": ["biceps", ""],
+  "Hammer Curl (Dumbbell)": ["biceps", "fore"],
+  "One Handed Triceps Pull": ["triceps", ""],
+  "Single Arm Upward Triceps Extension": ["triceps", ""],
+  "Deadlift (Barbell)": ["glutes hams", "lower upper fore"],
+  "Romanian Deadlift (Barbell)": ["hams", "glutes lower"],
+  "Squat (Barbell)": ["quads glutes", "lower"],
+  "Seated Leg Press (Machine)": ["quads", "glutes"],
+  "Leg Extension (Machine)": ["quads", ""],
+  "Kneeling Leg Curl": ["hams", ""],
+  "Seated Calf Raise (Plate Loaded)": ["calves", ""],
+  "Hollow Body Hold": ["abs", ""],
+  "Plank": ["abs", ""],
+  "Hanging Leg Raise": ["abs", "fore"],
+  "Toes To Bar": ["abs", "fore"],
+  "Handlebar L-Sit": ["abs", "triceps"],
+  "Dead Hang": ["fore", "lats"],
+  "Farmer Walks": ["fore", "upper abs"]
+};
+/* Fallback for names not listed above, first match wins. */
+var MUSCLE_RULES = [
+  [/calf/i, "calves", ""],
+  [/nordic|leg curl|hamstring/i, "hams", "glutes"],
+  [/romanian|rdl|good morning/i, "hams", "glutes lower"],
+  [/hip thrust|glute|bridge/i, "glutes", "hams"],
+  [/squat|lunge|leg press|split|step.?up|leg extension|pistol/i, "quads", "glutes"],
+  [/deadlift/i, "glutes hams", "lower upper fore"],
+  [/plank|hollow|leg raise|knee raise|toes.?to.?bar|l-sit|crunch|sit.?up|dead bug|ab wheel|rollout|pallof|dragon/i, "abs", ""],
+  [/rear delt|reverse fly|face pull/i, "rdelt", "upper"],
+  [/lateral raise|upright row/i, "sdelt", ""],
+  [/pull.?up|chin.?up|pulldown|pullover|lever|muscle.?up/i, "lats", "biceps upper"],
+  [/row/i, "upper", "lats biceps"],
+  [/shrug/i, "upper", ""],
+  [/curl/i, "biceps", "fore"],
+  [/tricep|skull|pushdown|kickback/i, "triceps", ""],
+  [/dip/i, "triceps", "chest fdelt"],
+  [/handstand|pike|shoulder press|overhead|arnold|military/i, "fdelt", "sdelt triceps"],
+  [/push.?up|bench|chest|fly|crossover|press/i, "chest", "fdelt triceps"],
+  [/hang|farmer|carry|grip/i, "fore", "upper"]
+];
+
+function sideOf(name) { var m = name.match(/ - (Left|Right)$/); return m ? m[1] : ""; }
+function musclesFor(name) {
+  var base = name.replace(/ - (Left|Right)$/, "");
+  var m = MUSCLES[base];
+  for (var i = 0; !m && i < MUSCLE_RULES.length; i++) {
+    if (MUSCLE_RULES[i][0].test(base)) m = MUSCLE_RULES[i].slice(1);
+  }
+  if (!m) return null;
+  var split = function(s) { return s.split(" ").filter(Boolean); };
+  return { main: split(m[0]), help: split(m[1]) };
+}
+
+/* log.md → [{date, name, exs: [{name, sets: [{kg, bw, reps, secs, warm}]}]}], oldest first.
+   A load carries to the sets after it ("60kg × 8, 8, 8"); "bodyweight" and "+5kg" are
+   bodyweight lifts, the second with added load. */
+var SET_RE = /^(?:(bodyweight|BW|[+-]?\d+(?:\.\d+)?\s*kg)\s*[×x]\s*)?(\d+:\d{2}|\d+|\?)\s*(\((?:warm-up|w)\))?$/i;
+function parseLog(text) {
+  return text.replace(/<!--[\s\S]*?-->/g, "")
+    .split(/\n(?=## \d{4}-\d{2}-\d{2} )/)
+    .filter(function(b) { return /^## \d{4}-\d{2}-\d{2} /.test(b); })
+    .map(function(b) {
+      var lines = b.split("\n");
+      return {
+        date: lines[0].slice(3, 13),
+        name: lines[0].split(" · ").pop().trim(),
+        exs: lines.filter(function(l) { return /^- .+ — /.test(l); }).map(parseExLine).filter(Boolean)
+      };
+    })
+    .sort(function(a, b) { return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+}
+function parseExLine(line) {
+  var i = line.indexOf(" — ");
+  var name = line.slice(2, i).trim();
+  if (!name || name === "?") return null;
+  var kg = null, bw = true, sets = [];
+  line.slice(i + 3).split(" | note:")[0].split(",").forEach(function(tok) {
+    var m = tok.trim().match(SET_RE);
+    if (!m) return;
+    if (m[1]) {
+      var l = m[1].replace(/\s/g, "");
+      if (/^(bodyweight|bw)$/i.test(l)) { kg = 0; bw = true; }
+      else { kg = parseFloat(l); bw = /^[+-]/.test(l); }
+    }
+    if (m[2] === "?") return;
+    var t = m[2].split(":");
+    sets.push({ kg: kg, bw: bw, reps: t.length > 1 ? 0 : +t[0], secs: t.length > 1 ? +t[0] * 60 + +t[1] : 0, warm: !!m[3] });
+  });
+  return sets.length ? { name: name, sets: sets } : null;
+}
+
+/* Sets that count as work. Lead-in sets at two-thirds of the day's top load or less are
+   warm-ups even when unmarked (the 40kg × 10 before a 65kg incline). */
+function workingSets(ex) {
+  var top = 0;
+  ex.sets.forEach(function(s) { if (!s.bw && s.kg > top) top = s.kg; });
+  var lead = true;
+  return ex.sets.filter(function(s) {
+    if (s.warm) return false;
+    if (lead && top && !s.bw && s.kg <= top * 2 / 3) return false;
+    lead = false;
+    return true;
+  }).length;
+}
+
+function parseIso(iso) { var p = iso.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+function addDays(iso, n) { var d = parseIso(iso); d.setDate(d.getDate() + n); return isoDate(d); }
+function weekStart(iso) { var d = parseIso(iso); return addDays(iso, -((d.getDay() + 6) % 7)); }
+
+var progSessions = null, progErr = "", progMode = "muscles", progRange = "week", progWeek = 0;
+
+async function loadProgress() {
+  if (!progSessions) {
+    var cached = null;
+    try { cached = localStorage.getItem("matchday_log"); } catch (e) {}
+    if (cached) progSessions = parseLog(cached);
+  }
+  renderProgress();
+  try {
+    var text = await fetchLogAny();
+    try { localStorage.setItem("matchday_log", text); } catch (e) {}
+    progSessions = parseLog(text);
+    progErr = "";
+  } catch (e) {
+    progErr = getToken() ? "Couldn't load log.md (" + e.message + ")." : "Add your GitHub token in Settings to load the log.";
+  }
+  renderProgress();
+}
+/* The token reads the repo; without one, try the copy GitHub Pages serves next to the page. */
+async function fetchLogAny() {
+  if (getToken()) return fetchLog();
+  var res = await fetch("log.md", { cache: "no-store" });
+  var text = res.ok ? await res.text() : "";
+  if (!/^# Session log/.test(text)) throw new Error("no token");
+  return text;
+}
+
+function progTab(mode) {
+  progMode = mode;
+  document.querySelectorAll(".segb[data-p]").forEach(function(b) { b.classList.toggle("active", b.dataset.p === mode); });
+  renderProgress();
+}
+function progRangeSet(r) {
+  progRange = r;
+  progWeek = 0;
+  document.querySelectorAll(".segb[data-r]").forEach(function(b) { b.classList.toggle("active", b.dataset.r === r); });
+  renderMuscles();
+}
+function progStep(n) { progWeek = Math.max(0, progWeek + n); renderMuscles(); }
+
+function renderProgress() {
+  var msg = document.getElementById("prog-msg");
+  var ready = progSessions && progSessions.length;
+  msg.hidden = !!ready;
+  msg.textContent = progErr || "Loading the log…";
+  document.getElementById("prog-muscles").hidden = !ready || progMode !== "muscles";
+  document.getElementById("prog-records").hidden = !ready || progMode !== "records";
+  if (!ready) return;
+  if (progMode === "muscles") renderMuscles(); else renderRecords();
+}
+
+/* ---- progress: muscle map ---- */
+function progWindow() {
+  var today = isoDate(new Date());
+  var first = progSessions[0].date;
+  if (progRange === "week") {
+    var from = addDays(weekStart(today), -7 * progWeek);
+    var label = progWeek === 0 ? "This week" : progWeek === 1 ? "Last week" : "Week of " + fmtDate(from);
+    return { from: from, to: addDays(from, 6), weeks: 1, label: label, sub: fmtDate(from) + " – " + fmtDate(addDays(from, 6)),
+      prev: weekStart(first) < from, next: progWeek > 0 };
+  }
+  var start = progRange === "4wk" ? addDays(today, -27) : first;
+  var weeks = Math.max(1, Math.round((parseIso(today) - parseIso(start)) / 864e5 + 1) / 7);
+  return { from: start, to: today, weeks: weeks, label: progRange === "4wk" ? "Last 4 weeks" : "Since " + fmtDate(first),
+    sub: "average per week", prev: false, next: false };
+}
+
+function muscleSets(from, to) {
+  var tot = {}, src = {}, unmapped = {}, n = 0;
+  Object.keys(MUSCLE_NAMES).forEach(function(k) { tot[k] = 0; src[k] = {}; });
+  progSessions.forEach(function(s) {
+    if (s.date < from || s.date > to) return;
+    n++;
+    s.exs.forEach(function(ex) {
+      var mm = musclesFor(ex.name);
+      if (!mm) { unmapped[ex.name] = true; return; }
+      // Left and right are logged as two exercises: each side's set is half a set.
+      var sets = workingSets(ex) * (sideOf(ex.name) ? .5 : 1);
+      var label = ex.name.replace(/ - (Left|Right)$/, "").replace(/ \((Barbell|Dumbbell|Machine|Cable|Plate Loaded)\)$/, "");
+      var add = function(k, v) { tot[k] += v; src[k][label] = (src[k][label] || 0) + v; };
+      mm.main.forEach(function(k) { add(k, sets); });
+      mm.help.forEach(function(k) { add(k, sets / 2); });
+    });
+  });
+  return { tot: tot, src: src, unmapped: Object.keys(unmapped), sessions: n };
+}
+
+function setsBucket(v) { return v <= 0 ? 0 : v < 5 ? 1 : v < 10 ? 2 : 3; }
+function fmtSetsN(v) { v = Math.round(v * 2) / 2; return v % 1 ? v.toFixed(1) : String(v); }
+
+function renderMuscles() {
+  var w = progWindow();
+  var r = muscleSets(w.from, w.to);
+  var per = {};
+  Object.keys(r.tot).forEach(function(k) { per[k] = r.tot[k] / w.weeks; });
+
+  document.getElementById("wk-label").textContent = w.label;
+  document.getElementById("wk-sub").textContent = w.sub + " · " + r.sessions + (r.sessions === 1 ? " session" : " sessions");
+  document.getElementById("wk-prev").disabled = !w.prev;
+  document.getElementById("wk-next").disabled = !w.next;
+  document.getElementById("wk-prev").style.visibility = progRange === "week" ? "" : "hidden";
+  document.getElementById("wk-next").style.visibility = progRange === "week" ? "" : "hidden";
+
+  document.getElementById("bodies").innerHTML = bodySvg("front", per) + bodySvg("back", per);
+
+  document.getElementById("muscle-table").innerHTML = '<tr><th>Muscle</th><th style="text-align:right">Sets</th><th>From</th></tr>'
+    + Object.keys(MUSCLE_NAMES).map(function(k) {
+      var from = Object.keys(r.src[k]).sort(function(a, b) { return r.src[k][b] - r.src[k][a]; }).slice(0, 3)
+        .map(function(x) { return esc(x) + " " + fmtSetsN(r.src[k][x] / w.weeks); }).join(", ");
+      return '<tr><td' + (per[k] ? '' : ' class="zero"') + '>' + MUSCLE_NAMES[k] + '</td>'
+        + '<td class="n' + (per[k] ? '' : ' zero') + '">' + fmtSetsN(per[k]) + '</td><td class="src">' + (from || "—") + '</td></tr>';
+    }).join("");
+
+  document.getElementById("muscle-foot").innerHTML = "Working sets from log.md. A set counts 1 to the main muscle and ½ to the helpers; "
+    + "lead-in sets at two-thirds of the top load or less count as warm-ups. Football isn&rsquo;t logged, so legs read light, "
+    + "and neither do finishers that never reached the log."
+    + (r.unmapped.length ? "<br>Not mapped yet: " + esc(r.unmapped.join(", ")) + "." : "");
+}
+
+/* Two figures, 100 × 210. The silhouette is drawn first, the muscles on top, coloured by
+   sets per week: none, 1–4, 5–9, 10+. */
+function bodySvg(view, per) {
+  var mu = function(k, shapes) {
+    var b = setsBucket(per[k]);
+    return shapes.map(function(s) {
+      return s.replace("/>", ' class="mu b' + b + '"><title>' + MUSCLE_NAMES[k] + ": " + fmtSetsN(per[k]) + ' sets</title></' + s.match(/^<(\w+)/)[1] + '>');
+    }).join("");
+  };
+  var sil = '<circle class="sil" cx="50" cy="13" r="9"/><rect class="sil" x="45" y="19" width="10" height="11" rx="3"/>'
+    + '<path class="sil" d="M33 30 Q50 26 67 30 Q73 33 72 42 L66 72 Q64 90 64 104 L36 104 Q36 90 34 72 L28 42 Q27 33 33 30Z"/>'
+    + '<path class="sil-s" stroke-width="11" d="M29 38 Q22 60 21 80 Q19 96 17 112"/><path class="sil-s" stroke-width="11" d="M71 38 Q78 60 79 80 Q81 96 83 112"/>'
+    + '<path class="sil-s" stroke-width="15" d="M43 100 Q41 130 41 150 Q40 175 40 198"/><path class="sil-s" stroke-width="15" d="M57 100 Q59 130 59 150 Q60 175 60 198"/>'
+    + '<circle class="sil" cx="16.5" cy="117" r="4"/><circle class="sil" cx="83.5" cy="117" r="4"/>';
+  var arms = function(cy, ry) {
+    return ['<ellipse cx="25" cy="' + cy + '" rx="4.6" ry="' + ry + '" transform="rotate(8 25 ' + cy + ')"/>',
+            '<ellipse cx="75" cy="' + cy + '" rx="4.6" ry="' + ry + '" transform="rotate(-8 75 ' + cy + ')"/>'];
+  };
+  var fore = ['<ellipse cx="20.5" cy="91" rx="4" ry="12" transform="rotate(8 20.5 91)"/>',
+              '<ellipse cx="79.5" cy="91" rx="4" ry="12" transform="rotate(-8 79.5 91)"/>'];
+  var body;
+  if (view === "front") {
+    body = mu("sdelt", ['<ellipse cx="26.5" cy="41" rx="4.5" ry="7"/>', '<ellipse cx="73.5" cy="41" rx="4.5" ry="7"/>'])
+      + mu("chest", ['<path d="M49 37 L39 36 Q34 38 35 46 Q37 54 49 54Z"/>', '<path d="M51 37 L61 36 Q66 38 65 46 Q63 54 51 54Z"/>'])
+      + mu("fdelt", ['<ellipse cx="32.5" cy="38" rx="4.8" ry="6"/>', '<ellipse cx="67.5" cy="38" rx="4.8" ry="6"/>'])
+      + mu("biceps", arms(60, 9))
+      + mu("fore", fore)
+      + mu("abs", ['<rect x="42.5" y="57" width="15" height="38" rx="4"/>'])
+      + '<path class="abs-l" d="M50 58 V94 M43 67 H57 M43 76 H57 M43 85 H57"/>'
+      + mu("quads", ['<path d="M37 106 Q35 125 38 145 Q42 150 46 145 Q49 125 48 106Z"/>', '<path d="M63 106 Q65 125 62 145 Q58 150 54 145 Q51 125 52 106Z"/>'])
+      + mu("calves", ['<ellipse cx="40.8" cy="171" rx="4.3" ry="13"/>', '<ellipse cx="59.2" cy="171" rx="4.3" ry="13"/>']);
+  } else {
+    body = mu("sdelt", ['<ellipse cx="26.5" cy="41" rx="4.5" ry="7"/>', '<ellipse cx="73.5" cy="41" rx="4.5" ry="7"/>'])
+      + mu("upper", ['<path d="M50 27 L40 33 Q36 38 40 44 L50 62 L60 44 Q64 38 60 33Z"/>'])
+      + mu("rdelt", ['<ellipse cx="32.5" cy="39" rx="5" ry="6"/>', '<ellipse cx="67.5" cy="39" rx="5" ry="6"/>'])
+      + mu("lats", ['<path d="M39 46 Q34 56 37 72 Q41 80 46 78 L49 64Z"/>', '<path d="M61 46 Q66 56 63 72 Q59 80 54 78 L51 64Z"/>'])
+      + mu("lower", ['<rect x="44" y="77" width="12" height="22" rx="4"/>'])
+      + mu("triceps", arms(60, 9))
+      + mu("fore", fore)
+      + mu("glutes", ['<ellipse cx="43" cy="111" rx="7.5" ry="8.5"/>', '<ellipse cx="57" cy="111" rx="7.5" ry="8.5"/>'])
+      + mu("hams", ['<path d="M37 121 Q36 136 39 151 Q43 154 47 151 Q49 136 48 121Z"/>', '<path d="M63 121 Q64 136 61 151 Q57 154 53 151 Q51 136 52 121Z"/>'])
+      + mu("calves", ['<ellipse cx="41" cy="169" rx="5.5" ry="13"/>', '<ellipse cx="59" cy="169" rx="5.5" ry="13"/>']);
+  }
+  return '<figure><svg viewBox="0 0 100 210" role="img" aria-label="' + view + ' of body">' + sil + body + '</svg>'
+    + '<figcaption>' + (view === "front" ? "Front" : "Back") + '</figcaption></figure>';
+}
+
+/* ---- progress: records ----
+
+   Per exercise name: the heaviest set for loaded lifts; the most reps in a set and in a
+   session for bodyweight work (plus the heaviest added load); the longest hold for timed
+   work. Information, not targets: nothing here asks him to beat it. Most recently done
+   first below the anchors, so dropped movements sink.                                   */
+var REC_ANCHORS = ["Incline Bench Press (Barbell)", "Pull Up", "Deadlift (Barbell)", "Romanian Deadlift (Barbell)",
+  "Squat (Barbell)", "Iso Lateral Row - Left", "Iso Lateral Row - Right"];
+var REC_NOTES = { "Iso Lateral Row - Right": "Set by the pain protocol, not a target." };
+
+function buildRecords() {
+  var recs = {};
+  progSessions.forEach(function(s) {
+    s.exs.forEach(function(ex) {
+      var e = recs[ex.name] || (recs[ex.name] = { name: ex.name, n: 0, heavy: null, reps: null, total: null, hold: null, bw: false, timed: false });
+      e.n++;
+      e.last = s.date;
+      var total = 0;
+      ex.sets.forEach(function(st) {
+        if (st.secs) {
+          e.timed = true;
+          if (!e.hold || st.secs > e.hold.v) e.hold = { v: st.secs, date: s.date };
+          return;
+        }
+        if (st.bw) {
+          e.bw = true;
+          total += st.reps;
+          if (!st.kg && (!e.reps || st.reps > e.reps.v)) e.reps = { v: st.reps, date: s.date };
+        }
+        if (st.kg > 0 && (!e.heavy || st.kg > e.heavy.kg || (st.kg === e.heavy.kg && st.reps > e.heavy.reps)))
+          e.heavy = { kg: st.kg, reps: st.reps, date: s.date };
+      });
+      if (total && (!e.total || total > e.total.v)) e.total = { v: total, date: s.date };
+    });
+  });
+  return recs;
+}
+
+function recRow(e, recent) {
+  var main, small = [], date;
+  if (e.timed && e.hold) {
+    main = fmtDuration(e.hold.v); small.push("longest hold"); date = e.hold.date;
+  } else if (e.bw && e.reps) {
+    main = e.reps.v + " reps"; date = e.reps.date;
+    small.push("best set");
+    if (e.total && e.total.v > e.reps.v) small.push(e.total.v + " in a session");
+    if (e.heavy) small.push("+" + e.heavy.kg + "kg × " + e.heavy.reps);
+  } else if (e.heavy) {
+    main = (e.bw ? "+" : "") + e.heavy.kg + "kg × " + e.heavy.reps; small.push("heaviest"); date = e.heavy.date;
+  } else return "";
+  var latest = [e.hold, e.reps, e.total, e.heavy].reduce(function(d, r) { return r && r.date > d ? r.date : d; }, "");
+  return '<div class="rec"><div class="rec-n"><b>' + esc(e.name) + '</b>'
+    + '<span>' + fmtDate(date) + ' · ' + e.n + (e.n === 1 ? ' session' : ' sessions') + '</span>'
+    + (latest >= recent ? '<span class="pill">New</span>' : '')
+    + (REC_NOTES[e.name] ? '<span class="rec-note">' + REC_NOTES[e.name] + '</span>' : '')
+    + '</div><div class="rec-v">' + main + '<small>' + small.join(" · ") + '</small></div></div>';
+}
+
+function renderRecords() {
+  if (!progSessions || !progSessions.length) return;
+  var recs = buildRecords();
+  var q = document.getElementById("rec-search").value.trim().toLowerCase();
+  var recent = addDays(isoDate(new Date()), -7);
+  var match = function(e) { return !q || e.name.toLowerCase().indexOf(q) !== -1; };
+  var all = Object.keys(recs).map(function(k) { return recs[k]; }).filter(match);
+  var anchors = REC_ANCHORS.map(function(n) { return recs[n]; }).filter(function(e) { return e && match(e); });
+  var rest = all.filter(function(e) { return REC_ANCHORS.indexOf(e.name) === -1; })
+    .sort(function(a, b) { return a.last < b.last ? 1 : a.last > b.last ? -1 : b.n - a.n; });
+  var groups = [
+    ["Anchors", anchors],
+    ["Bodyweight and skills", rest.filter(function(e) { return e.bw || e.timed; })],
+    ["Everything else", rest.filter(function(e) { return !e.bw && !e.timed; })]
+  ];
+  var html = groups.filter(function(g) { return g[1].length; }).map(function(g) {
+    return '<div class="sec">' + g[0] + '</div><div class="block info-block">'
+      + g[1].map(function(e) { return recRow(e, recent); }).join("") + '</div>';
+  }).join("");
+  document.getElementById("rec-list").innerHTML = html || '<div class="empty">Nothing matches.</div>';
+  document.getElementById("rec-foot").innerHTML = "Best logged since " + fmtDate(progSessions[0].date)
+    + ", one line per exercise name. Each name is its own machine, so a substitute never counts on the usual one. "
+    + "A load reset after a form change stays below its record; that is the reset, not a decline.";
 }
 
 /* ---- strong import ---- */
