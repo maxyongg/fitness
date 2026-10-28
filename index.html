@@ -329,6 +329,7 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .wk .d { flex: 0 0 34px; font-family: var(--font-m); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
 .wk .s { flex: 1; font-family: var(--font-d); font-size: 19px; font-weight: 600; }
 .wk .t { font-family: var(--font-m); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.wk .s .v { display: block; font-family: var(--font-b); font-size: 12px; font-weight: 400; color: var(--ink-3); }
 .wk.rest .s { color: var(--ink-3); }
 .wk.today { background: var(--accent-soft); }
 .wk.today .d { color: var(--accent); }
@@ -691,6 +692,10 @@ var RX = {
   repo: "maxyongg/fitness",
   workerUrl: "https://matchday-debrief.maxyongg.workers.dev",
   schedule: { 1:"upper_a", 2:"football", 3:"rest", 4:"upper_b", 5:"football", 6:"upper_c", 0:"lower" },
+  football: {
+    2: { start:"20:00", end:"22:00", format:"7-a-side", venue:"Shelton College, Telok Blangah" },
+    5: { start:"20:00", end:"22:00", format:"9-a-side", venue:"ICS@Clementi" }
+  },
   sessions: {
     upper_a: {
       name: "Upper A", day: "Monday", mins: "~50 min",
@@ -1610,17 +1615,26 @@ function saveSettings() {
 /* ---- info: the week ---- */
 function renderWeek() {
   var names = { upper_a: "Upper A", upper_b: "Upper B", upper_c: "Upper C", lower: "Lower", football: "Football", rest: "Rest" };
-  var tags = { football: "2h · 7-a-side", rest: "Protected" };
+  var tags = { rest: "Protected" };
   var today = new Date().getDay();
   var h = "";
   [1, 2, 3, 4, 5, 6, 0].forEach(function(dow) {
     var id = RX.schedule[dow];
-    var t = tags[id] || (RX.sessions[id] ? RX.sessions[id].mins : "");
+    var fb = id === "football" && RX.football && RX.football[dow];
+    var t = fb ? timeRange(fb) + " · " + fb.format : tags[id] || (RX.sessions[id] ? RX.sessions[id].mins : "");
     h += '<div class="wk' + (id === "rest" ? " rest" : "") + (dow === today ? " today" : "") + '">'
-      + '<span class="d">' + SHORT_DAY[dow] + '</span><span class="s">' + names[id] + '</span>'
-      + '<span class="t">' + (dow === today ? "Today" : t) + '</span></div>';
+      + '<span class="d">' + SHORT_DAY[dow] + '</span><span class="s">' + names[id]
+      + (fb ? '<span class="v">' + esc(fb.venue) + '</span>' : "") + '</span>'
+      + '<span class="t">' + (dow === today ? "Today · " + t : t) + '</span></div>';
   });
   document.getElementById("week").innerHTML = h;
+}
+
+/* "20:00"–"22:00" → "8–10pm". */
+function timeRange(fb) {
+  function h(t) { var n = +t.split(":")[0], m = t.split(":")[1]; return (n % 12 || 12) + (m === "00" ? "" : ":" + m); }
+  var pm = function(t) { return +t.split(":")[0] >= 12 ? "pm" : "am"; };
+  return h(fb.start) + (pm(fb.start) === pm(fb.end) ? "" : pm(fb.start)) + "–" + h(fb.end) + pm(fb.end);
 }
 
 /* ---- history ---- */

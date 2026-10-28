@@ -120,7 +120,8 @@ live in `docs/workflows.md` — read it when one comes up, not before.
   from his *training*, check whether it's merely absent from the *log*, then ask.
 - **He dislikes leg training.** Once a week on Sunday, historically about monthly.
   Never push for more, never guilt him.
-- **Football is fixed** — Tuesday and Friday, 2h of 7-a-side. Schedule under it, never
+- **Football is fixed** — Tuesday 8–10pm 7-a-side, Friday 8–10pm 9-a-side (venues in
+  `RX.football`). Schedule under it, never
   around it. Wednesday rest sits between football and Upper B.
 - **No shoulder press in the programme** — personal trainer recommendation (shoulder
   burnout after heavy incline bench). The slot goes to rear delts. Don't reintroduce it.

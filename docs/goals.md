@@ -34,7 +34,7 @@ He asked Claude to decide this. In order:
    one.
 4. **Keeping the working lifts working.** Incline bench is progressing and should keep
    progressing — but as an output, not a goal to chase.
-5. **Football availability.** Fixed Tuesday and Friday, 2h 7-a-side. Mostly a
+5. **Football availability.** Fixed Tuesday (7-a-side) and Friday (9-a-side), 8–10pm. Mostly a
    scheduling constraint, but it is also significant lower-body and conditioning work.
 
 Explicitly **not** goals: size, leg strength, more sessions per week, or a return to any

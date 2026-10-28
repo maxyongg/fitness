@@ -17,16 +17,18 @@ isolating it on a standalone calisthenics day.
 | | Session |
 |---|---|
 | **Mon** | Upper A |
-| **Tue** | Football — 2h, 7-a-side |
+| **Tue** | Football — 8–10pm, 7-a-side, Shelton College (Telok Blangah) |
 | **Wed** | Rest |
 | **Thu** | Upper B |
-| **Fri** | Football — 2h, 7-a-side |
+| **Fri** | Football — 8–10pm, 9-a-side, ICS@Clementi |
 | **Sat** | Upper C |
 | **Sun** | Lower |
 
 Four lifting sessions, two football sessions, one rest day. Football is fixed —
 Tuesday always, Friday always. Wednesday rest sits between Tuesday football and Thursday
-Upper B; it is the natural recovery slot.
+Upper B; it is the natural recovery slot. Both matches end at 22:00, so Saturday's Upper C
+comes the morning after Friday's 9-a-side, the bigger-pitch of the two. Times, format and
+venue live in `RX.football`; the page's week list and the widget read them from there.
 
 **Time of day is free.** The log cannot detect a time-of-day effect (working in
 `docs/findings.md`). Train when it suits the week.

@@ -2,6 +2,8 @@
 // file from main on every refresh, so changes here reach the phone without re-pasting.
 // It reads RX from index.html and last_session from state.json — no copy of the
 // prescriptions lives here, so re-prescribing needs no extra step.
+// Football comes from RX.football. On a match day it leads the small and lock-screen
+// widgets until the final whistle; medium and large show the next match as a footer.
 // Sizes: small, medium, large home-screen; rectangular and inline lock-screen.
 
 const RAW = "https://raw.githubusercontent.com/maxyongg/fitness/main/";
@@ -77,6 +79,37 @@ function pickNext(rx, state, now) {
   return { sid: ORDER[0], when: "" };
 }
 
+// The next match still to play: tonight's until it ends, then the next football day.
+function nextFootball(rx, now) {
+  const fb = rx.football || {};
+  for (let i = 0; i < 8; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+    const m = fb[d.getDay()];
+    if (!m) continue;
+    const [eh, em] = m.end.split(":").map(Number);
+    if (i === 0 && now >= new Date(d.getFullYear(), d.getMonth(), d.getDate(), eh, em)) continue;
+    return Object.assign({ when: i === 0 ? "Tonight" : i === 1 ? "Tomorrow" : DAY[d.getDay()], today: i === 0 }, m);
+  }
+  return null;
+}
+
+// "20:00"–"22:00" → "8–10pm", as on the page.
+function timeRange(m) {
+  const h = t => { const [n, mm] = t.split(":"); return (+n % 12 || 12) + (mm === "00" ? "" : ":" + mm); };
+  const ap = t => +t.split(":")[0] >= 12 ? "pm" : "am";
+  return h(m.start) + (ap(m.start) === ap(m.end) ? "" : ap(m.start)) + "–" + h(m.end) + ap(m.end);
+}
+
+function footballLine(stack, fb, size) {
+  const row = stack.addStack();
+  row.centerAlignContent();
+  const icon = row.addImage(SFSymbol.named("soccerball").image);
+  icon.imageSize = new Size(size, size);
+  icon.tintColor = C.amber;
+  row.addSpacer(5);
+  text(row, fb.when + " " + timeRange(fb) + " · " + fb.format + " · " + fb.venue, Font.mediumSystemFont(size - 1), C.ink2);
+}
+
 // Same rendering as the page's load column.
 function loadStr(ex) {
   if (ex.bilateral) return "L" + ex.loadL + " R" + ex.loadR;
@@ -121,7 +154,19 @@ function build(data, family) {
   w.url = PAGE;
   w.refreshAfterDate = new Date(Date.now() + 30 * 60 * 1000);
   const behind = pending(rx, state);
+  const fb = nextFootball(rx, new Date());
+  const matchDay = fb && fb.today;
 
+  if (matchDay && family === "accessoryInline") {
+    w.addText("Football " + timeRange(fb) + " · " + fb.venue);
+    return w;
+  }
+  if (matchDay && family === "accessoryRectangular") {
+    text(w, "FOOTBALL · TONIGHT", Font.boldSystemFont(13), Color.white());
+    text(w, timeRange(fb) + " · " + fb.format, Font.systemFont(12), Color.white());
+    text(w, fb.venue, Font.systemFont(12), Color.white());
+    return w;
+  }
   if (family === "accessoryInline") {
     w.addText(s.name + " " + next.when + " · " + short(s.exercises[0].name) + " " + loadStr(s.exercises[0]));
     return w;
@@ -137,6 +182,21 @@ function build(data, family) {
   w.backgroundColor = C.ground;
   const pad = family === "small" ? 14 : 16;
   w.setPadding(pad, pad, pad, pad);
+
+  if (matchDay && family === "small") {
+    const head = w.addStack();
+    text(head, "TONIGHT", Font.semiboldMonospacedSystemFont(10), C.amber);
+    head.addSpacer();
+    text(head, timeRange(fb).toUpperCase(), Font.semiboldMonospacedSystemFont(10), C.ink3);
+    w.addSpacer(2);
+    text(w, "FOOTBALL", Font.heavySystemFont(24), C.ink);
+    w.addSpacer(4);
+    text(w, fb.format, Font.semiboldMonospacedSystemFont(12), C.amber);
+    text(w, fb.venue, Font.mediumSystemFont(12), C.ink2, 2);
+    w.addSpacer();
+    text(w, "Next: " + s.name + " " + next.when, Font.systemFont(11), C.ink3);
+    return w;
+  }
 
   const head = w.addStack();
   head.centerAlignContent();
@@ -160,8 +220,9 @@ function build(data, family) {
       exRow(w, ex, 13);
       w.addSpacer(family === "medium" ? 3 : 5);
     }
-    if (family === "medium" && s.exercises.length > n) {
-      text(w, "+" + (s.exercises.length - n) + " more", Font.systemFont(11), C.ink3);
+    if (fb) {
+      w.addSpacer(family === "medium" ? 1 : 4);
+      footballLine(w, fb, 12);
     }
     if (family === "large" && rx.note) {
       w.addSpacer(6);
