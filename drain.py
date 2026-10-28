@@ -65,7 +65,26 @@ def format_duration(secs):
     return f"0:{s:02d}"
 
 
+def football_entry(data):
+    """A football match: effort (session RPE, 1-10) times minutes on the pitch is its load.
+    No exercise lines, so the Progress tab and the lift records never read it as a lift."""
+    date = data["date"]
+    day_name = datetime.strptime(date, "%Y-%m-%d").strftime("%a")
+    fb = data.get("football", {})
+    if fb.get("played", True):
+        fields = [f"effort: {fb.get('effort')}/10", f"{fb.get('minutes')} min",
+                  f"load: {fb.get('load')}"]
+    else:
+        fields = ["did not play"]
+    fields.append(", ".join(x for x in (fb.get("format"), fb.get("venue")) if x))
+    if data.get("notes"):
+        fields.append(f"note: {data['notes']}")
+    return f"## {date} · {day_name} · Football\n" + " | ".join(fields)
+
+
 def to_log_entry(data):
+    if data.get("session_id") == "football":
+        return football_entry(data)
     date = data["date"]
     session = data.get("session", "")
     day_name = ""
@@ -487,6 +506,22 @@ def main():
         data = parse_inbox(path)
         entry = to_log_entry(data)
         print(f"  → {append_to_log(entry)} in log.md")
+
+        # Football sits beside the lifts in state.json, never in last_session: that is
+        # the lift re-prescription works from.
+        if data.get("session_id") == "football":
+            with open(STATE) as f:
+                state = json.load(f)
+            state["last_football"] = dict(data.get("football", {}), date=data["date"],
+                                          notes=data.get("notes", ""))
+            with open(STATE, "w") as f:
+                json.dump(state, f, indent=2, ensure_ascii=False)
+            print(f"  → state.json last_football updated")
+            print(f"\n{entry}\n")
+            print(f"Files to commit: log.md, state.json")
+            print(f"Files to delete: {fname}")
+            print(f"Commit subject: log: {data['date']} Football")
+            continue
 
         state = build_state(data, rx)
         if data["date"] >= last_logged_date():

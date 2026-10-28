@@ -15,6 +15,17 @@ table in `plan.md` (≤3 is a green light). Omit the field entirely on days
 where nothing pulled. Use `?` for anything unreadable in a screenshot rather than
 guessing — the monthly CSV export corrects it.
 
+Football has its own entry, saved from the page's Football tab:
+
+```
+## YYYY-MM-DD · Day · Football
+effort: n/10 | 80 min | load: n | format, venue | note: free text
+```
+
+`effort` is how hard the whole session felt, 1–10, rated about 30 minutes after. He
+plays 8 of 12 ten-minute games (three teams rotate), so minutes are always 80, and
+`load` is effort × minutes. A missed match reads `did not play` instead of the numbers.
+
 Exercises are listed in the order they were performed. That ordering is data in this
 project, not formatting — do not sort or regroup it.
 

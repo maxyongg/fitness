@@ -199,6 +199,10 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .pv::after { content: ""; position: absolute; left: 30%; right: 30%; bottom: 6px; height: 2px; border-radius: 2px; }
 .pv.g::after { background: var(--accent); opacity: .5; }
 .pv.a::after { background: var(--amber); opacity: .5; }
+.effort-scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.played { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.played .pv { font-family: var(--font-b); font-size: 14px; font-weight: 600; }
+.effort-scale .pv.on, .played .pv.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .pv.clr { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
 .pv.on.g { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .pv.on.a { background: var(--amber); border-color: var(--amber); color: var(--amber-ink); }
@@ -693,8 +697,8 @@ var RX = {
   workerUrl: "https://matchday-debrief.maxyongg.workers.dev",
   schedule: { 1:"upper_a", 2:"football", 3:"rest", 4:"upper_b", 5:"football", 6:"upper_c", 0:"lower" },
   football: {
-    2: { start:"20:00", end:"22:00", format:"7-a-side", venue:"Shelton College, Telok Blangah" },
-    5: { start:"20:00", end:"22:00", format:"9-a-side", venue:"ICS@Clementi" }
+    2: { start:"20:00", end:"22:00", format:"7-a-side", venue:"Shelton College, Telok Blangah", games:8, minutes:80 },
+    5: { start:"20:00", end:"22:00", format:"9-a-side", venue:"ICS@Clementi", games:8, minutes:80 }
   },
   sessions: {
     upper_a: {
@@ -848,6 +852,7 @@ var DOW = { upper_a: 1, upper_b: 4, upper_c: 6, lower: 0 };
 var SHORT_DAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 var SHORT_MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var DRAFT_TTL = 16 * 3600 * 1000;
+var EFFORT_WORDS = ["", "very easy", "easy", "moderate", "somewhat hard", "hard", "hard", "very hard", "very hard", "near max", "max"];
 
 var ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>';
 var ICON_SWAP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4L3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>';
@@ -857,6 +862,9 @@ var ICON_CHEV = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" str
 /* ---- state ---- */
 var cur = null;
 var nextId = null;
+var nextLiftId = null;
+var fbPlayed = true;
+var fbEffort = null;
 var swaps = {};
 var painVal = null;
 var parsedData = null;
@@ -873,7 +881,8 @@ var importSid = null;
   relabelHistory();
   renderRxStatus();
   loadSwaps();
-  nextId = pickNext(d);
+  nextLiftId = pickNext(d);
+  nextId = RX.football[d.getDay()] && !isSaved(isoDate(d), "football") ? "football" : nextLiftId;
   renderTabs();
   pick(nextId);
   renderWeek();
@@ -922,7 +931,7 @@ function rxStatus() {
   if (!after) return "Prescribed " + fmtDate(RX.asof);
   var aDate = after.slice(0, 10), aName = after.slice(11);
   var s = "Prescribed after " + aName + ", " + fmtDate(aDate);
-  var h = getHistory()[0];
+  var h = getHistory().filter(function(x) { return x.session_id !== "football"; })[0];
   if (h && h.date && (h.date > aDate || (h.date === aDate && h.session !== aName))) {
     s += " · " + h.session + " next, " + nextRunLabel();
   }
@@ -975,17 +984,19 @@ function switchView(v) {
 
 /* ---- tabs ---- */
 function renderTabs() {
-  document.getElementById("tabs").innerHTML = ORDER.map(function(id) {
-    var s = RX.sessions[id];
+  var fbDays = Object.keys(RX.football).map(function(dow) { return SHORT_DAY[dow]; }).join("·");
+  document.getElementById("tabs").innerHTML = ORDER.concat(["football"]).map(function(id) {
+    var s = RX.sessions[id] || { name: "Football" };
     return '<button class="tab" data-id="' + id + '" onclick="pick(\'' + id + '\')">'
-      + '<b>' + s.name + '</b><small>' + s.day.slice(0, 3) + (id === nextId ? '<i class="nx"></i>' : '') + '</small></button>';
+      + '<b>' + s.name + '</b><small>' + (id === "football" ? fbDays : s.day.slice(0, 3)) + (id === nextId ? '<i class="nx"></i>' : '') + '</small></button>';
   }).join("");
 }
 
 function pick(id) {
   cur = id;
   document.querySelectorAll(".tab").forEach(function(t) { t.classList.toggle("active", t.dataset.id === id); });
-  renderSession(id);
+  if (id === "football") renderFootball();
+  else renderSession(id);
   updateSaveBtn();
   window.scrollTo(0, 0);
 }
@@ -1022,10 +1033,10 @@ function renderSession(id) {
 
   var h = '<section class="brief">'
     + '<div class="brief-meta mono">' + (when.diff === 0 ? "Today" : when.label)
-    + (id === nextId ? ' <span class="pill">Next up</span>' : '') + '</div>'
+    + (id === nextLiftId ? ' <span class="pill">Next up</span>' : '') + '</div>'
     + '<h1 class="brief-title">' + s.name + '</h1>'
     + (s.brief ? '<p class="brief-text">' + esc(s.brief) + '</p>' : '')
-    + (RX.note && id === nextId ? '<p class="coach-note"><b>Coach</b>' + esc(RX.note) + '</p>' : '')
+    + (RX.note && id === nextLiftId ? '<p class="coach-note"><b>Coach</b>' + esc(RX.note) + '</p>' : '')
     + '<div class="stats"><span><b>' + s.exercises.length + '</b> slots</span>'
     + '<span><b>' + totalSets + '</b> sets</span>'
     + '<span><b>' + s.mins.replace(/\s*min/, "") + '</b> min</span>'
@@ -1169,6 +1180,83 @@ document.addEventListener("input", function(e) {
 });
 
 /* ---- pain ---- */
+/* ---- football ----
+
+   Logged as session effort (1-10, rated about 30 minutes after) times minutes on the
+   pitch. Minutes are fixed: three teams rotate 10-minute games over the 2h booking, so
+   he plays 8 of 12 (RX.football). The match logged is the latest football day up to
+   today, so Friday's can still be logged on Saturday morning.                        */
+function footballDate() {
+  var d = new Date();
+  for (var i = 0; i < 7; i++) {
+    var x = new Date(d.getFullYear(), d.getMonth(), d.getDate() - i);
+    if (RX.football[x.getDay()]) return x;
+  }
+  return d;
+}
+
+function renderFootball() {
+  var d = footballDate(), fb = RX.football[d.getDay()];
+  var today = isoDate(d) === isoDate(new Date());
+  var h = '<section class="brief">'
+    + '<div class="brief-meta mono">' + (today ? "Today" : SHORT_DAY[d.getDay()] + " " + d.getDate() + " " + SHORT_MON[d.getMonth()])
+    + " · " + timeRange(fb) + (isSaved(isoDate(d), "football") ? ' <span class="pill">Logged</span>' : '') + '</div>'
+    + '<h1 class="brief-title">Football</h1>'
+    + '<p class="brief-text">' + esc(fb.format) + ' at ' + esc(fb.venue) + '. Three teams rotate 10-minute games: '
+    + fb.games + ' played, ' + fb.minutes + ' minutes on the pitch.</p>'
+    + '<div class="stats"><span><b>' + fb.games + '</b> games</span><span><b>' + fb.minutes + '</b> min</span>'
+    + '<span class="live">load <b id="fb-load">—</b></span></div></section>';
+
+  h += '<div class="block"><div class="block-h"><b>Played</b></div><div class="played" id="fb-played">'
+    + '<button class="pv" data-p="1" onclick="setPlayed(true)">Played</button>'
+    + '<button class="pv" data-p="0" onclick="setPlayed(false)">Didn&rsquo;t play</button></div></div>';
+
+  h += '<div class="block" id="fb-effort-block"><div class="block-h"><b>Effort</b><span>The whole session, ~30 min after</span></div>'
+    + '<div class="effort-scale" id="effort-scale">';
+  for (var e = 1; e <= 10; e++) h += '<button class="pv" data-v="' + e + '" onclick="setEffort(' + e + ')">' + e + '</button>';
+  h += '</div><div class="pain-read" id="effort-read"></div></div>';
+
+  h += '<div class="block"><div class="block-h"><b>Notes</b><span>Saved with the match</span></div>'
+    + '<textarea class="field" id="notes" data-k="notes" placeholder="Knocks, legs, why you missed it…"></textarea></div>';
+
+  document.getElementById("main").innerHTML = h;
+  fbPlayed = true;
+  fbEffort = null;
+  restoreDraft("football");
+  renderFootballState();
+}
+
+function setPlayed(p) { fbPlayed = p; renderFootballState(); saveDraft(); }
+function setEffort(v) { fbEffort = v === fbEffort ? null : v; renderFootballState(); saveDraft(); }
+
+function renderFootballState() {
+  var fb = RX.football[footballDate().getDay()];
+  document.querySelectorAll("#fb-played .pv").forEach(function(b) { b.classList.toggle("on", (b.dataset.p === "1") === fbPlayed); });
+  document.getElementById("fb-effort-block").hidden = !fbPlayed;
+  document.querySelectorAll("#effort-scale .pv").forEach(function(b) { b.classList.toggle("on", +b.dataset.v === fbEffort); });
+  var read = document.getElementById("effort-read");
+  read.textContent = fbEffort ? fbEffort + " / 10 — " + EFFORT_WORDS[fbEffort] : "Not recorded";
+  read.className = "pain-read" + (fbEffort ? " g" : "");
+  document.getElementById("fb-load").textContent = fbPlayed ? (fbEffort ? fbEffort * fb.minutes : "—") : "0";
+}
+
+function collectFootball() {
+  var d = footballDate(), fb = RX.football[d.getDay()];
+  return {
+    date: isoDate(d),
+    session: "Football",
+    session_id: "football",
+    exercises: [],
+    football: {
+      played: fbPlayed, format: fb.format, venue: fb.venue,
+      minutes: fbPlayed ? fb.minutes : 0,
+      effort: fbPlayed ? fbEffort : null,
+      load: fbPlayed ? fbEffort * fb.minutes : 0
+    },
+    notes: (document.getElementById("notes").value || "").trim()
+  };
+}
+
 function setPain(v) {
   painVal = (v === painVal) ? null : v;
   renderPain();
@@ -1196,6 +1284,10 @@ function saveDraft() {
     if (el.value !== el.defaultValue) v[el.dataset.k] = el.value;
   });
   if (painVal !== null) v.pain = painVal;
+  if (cur === "football") {
+    if (fbEffort !== null) v.effort = fbEffort;
+    if (!fbPlayed) v.played = false;
+  }
   try {
     if (Object.keys(v).length) localStorage.setItem(draftKey(cur), JSON.stringify({ t: Date.now(), v: v }));
     else localStorage.removeItem(draftKey(cur));
@@ -1208,6 +1300,8 @@ function restoreDraft(sid) {
   if (!d || !d.v || Date.now() - d.t > DRAFT_TTL) return;
   Object.keys(d.v).forEach(function(k) {
     if (k === "pain") { painVal = d.v.pain; return; }
+    if (k === "effort") { fbEffort = d.v.effort; return; }
+    if (k === "played") { fbPlayed = d.v.played; return; }
     var el = document.querySelector('#main [data-k="' + k + '"]');
     if (el) el.value = d.v[k];
   });
@@ -1306,7 +1400,7 @@ function collectData() {
 function updateSaveBtn() {
   var btn = document.getElementById("save-btn");
   if (btn.disabled) return;
-  btn.textContent = getToken() ? "Save session" : "Add a GitHub token to save";
+  btn.textContent = getToken() ? (cur === "football" ? "Save match" : "Save session") : "Add a GitHub token to save";
 }
 
 async function save() {
@@ -1318,16 +1412,19 @@ async function save() {
   btn.disabled = true;
 
   try {
-    var data = collectData();
-    if (data.exercises.length === 0) throw new Error("No reps entered");
+    var fbSave = cur === "football";
+    var data = fbSave ? collectFootball() : collectData();
+    if (fbSave && data.football.played && !data.football.effort) throw new Error("Pick an effort, 1-10");
+    if (!fbSave && data.exercises.length === 0) throw new Error("No reps entered");
     var path = "inbox/" + data.date + "-" + cur.replace(/_/g, "-") + ".json";
     await ghPut(path, JSON.stringify(data, null, 2), "session: " + data.date + " " + data.session);
     addToHistory(data);
     clearDraft(cur);
     btn.textContent = "Saved ✓";
     btn.className = "btn btn-pri";
-    toast("Session saved to inbox/", "ok");
-    requestDebrief(data, "debrief-train");
+    toast((fbSave ? "Football" : "Session") + " saved to inbox/", "ok");
+    if (fbSave) pick("football");
+    else requestDebrief(data, "debrief-train");
   } catch (e) {
     btn.textContent = "Failed — tap to retry";
     btn.className = "btn btn-pri error";
@@ -1723,11 +1820,13 @@ function renderHistory() {
     var p = (item.date || "").split("-");
     var d = p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null;
     var exs = item.exercises || [];
+    var fb = item.football;
+    var sub = fb ? (fb.played ? fb.minutes + " min · effort " + fb.effort + "/10 · load " + fb.load : "Didn&rsquo;t play")
+      : exs.length + ' exercises' + (item.pain && item.pain.right_lat != null ? ' · pain ' + item.pain.right_lat + '/10' : '');
     var h = '<div class="hist" id="hist-' + i + '">'
       + '<div class="hist-h" onclick="toggleHist(' + i + ')">'
       + '<div class="hist-date">' + (d ? '<b>' + d.getDate() + '</b>' + SHORT_MON[d.getMonth()] : esc(item.date)) + '</div>'
-      + '<div class="hist-t"><b>' + esc(item.session) + '</b><span>' + exs.length + ' exercises'
-      + (item.pain && item.pain.right_lat != null ? ' · pain ' + item.pain.right_lat + '/10' : '') + '</span></div>'
+      + '<div class="hist-t"><b>' + esc(item.session) + '</b><span>' + sub + '</span></div>'
       + '<span class="hist-chev">' + ICON_CHEV + '</span></div>'
       + '<div class="hist-d">';
     var lastSS = 0;
@@ -1741,9 +1840,10 @@ function renderHistory() {
     if (item.pain && item.pain.right_lat != null) h += '<div class="hist-note pain">Right lat ' + item.pain.right_lat + '/10</div>';
     if (item.notes) h += '<div class="hist-note">' + esc(item.notes) + '</div>';
     if (item.extra) h += '<div class="hist-note">Extra: ' + esc(item.extra) + '</div>';
-    if (item.date && item.session_id && debriefsCache[debriefKey(item)]) {
+    if (fb) h += '<div class="hist-note">' + esc(fb.format + " · " + fb.venue) + '</div>';
+    if (!fb && item.date && item.session_id && debriefsCache[debriefKey(item)]) {
       h += '<button class="hist-link" onclick="openDebrief(\'' + debriefKey(item) + '\')">Read the debrief →</button>';
-    } else if (item.date && canDebrief) {
+    } else if (!fb && item.date && canDebrief) {
       h += '<button class="hist-link" onclick="debriefFromHistory(' + i + ')">Get the debrief →</button>';
     }
     return h + '</div></div>';
@@ -2163,8 +2263,8 @@ function renderMuscles() {
     }).join("");
 
   document.getElementById("muscle-foot").innerHTML = "Working sets from log.md" + (progHistOk ? " and, before " + fmtDate(progLogFrom) + ", the Strong export" : "") + ". A set counts 1 to the main muscle and ½ to the helpers; "
-    + "lead-in sets at two-thirds of the top load or less count as warm-ups. Football isn&rsquo;t logged, so legs read light, "
-    + "and neither do finishers that never reached the log."
+    + "lead-in sets at two-thirds of the top load or less count as warm-ups. Football is logged as effort, not sets, so legs read light here, "
+    + "and so do finishers that never reached the log."
     + (progHistOk && w.from < progLogFrom ? " The export missed most of the core and finisher work, so weeks before "
       + fmtDate(progLogFrom) + " read lighter there." : "")
     + (progHistOk ? "" : " The full history didn&rsquo;t load, so this is log.md only.")

@@ -74,7 +74,9 @@ def parse_rx(html):
 
 
 def latest_session():
-    found = HEADER.findall(read(LOG))
+    """The newest lifting session. Football is logged too, but RX.after names a lift:
+    a match is context for the session after it, not one to re-prescribe from."""
+    found = [h for h in HEADER.findall(read(LOG)) if h[1] != "Football"]
     return f"{found[-1][0]} {found[-1][1]}" if found else None
 
 

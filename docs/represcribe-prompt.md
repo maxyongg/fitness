@@ -19,6 +19,9 @@ him.
 - The newest files in `debriefs/`, his replies included. What he tells the debrief
   about his body is evidence the log can't hold.
 - Never read `data/*.csv`.
+- Football entries (`## … · Football`, effort 1–10 × 80 min = load) sit between the
+  lifts. Read them as context for the session after, like a debrief reply. They are not
+  sessions to re-prescribe, and `RX.after` never names one.
 
 ## Do
 

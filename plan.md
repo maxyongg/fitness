@@ -30,6 +30,12 @@ Upper B; it is the natural recovery slot. Both matches end at 22:00, so Saturday
 comes the morning after Friday's 9-a-side, the bigger-pitch of the two. Times, format and
 venue live in `RX.football`; the page's week list and the widget read them from there.
 
+Football is logged from the page's Football tab (from 2026-10-28): effort 1–10 for the
+whole session, rated about 30 minutes after, times 80 minutes on the pitch (8 of 12
+ten-minute games, three teams rotating) gives the load. No right-lat rating there, his
+call. It exists to answer the open questions below that the log couldn't see: whether
+Thursday's deadlift leaves Friday flat, and whether Sunday legs cost Tuesday.
+
 **Time of day is free.** The log cannot detect a time-of-day effect (working in
 `docs/findings.md`). Train when it suits the week.
 
