@@ -712,6 +712,15 @@ pain(R): 1/10
      Where he is now is the baseline. Pain rating, L/R row and row protocol removed. The
      row is Iso-Lateral Row (Machine), bilateral, from 40kg × 8, 8, 8 (10-22). -->
 
+## 2026-10-29 · Thu · Upper B
+- Deadlift (Barbell) — 40kg × 8, 70kg × 8, 80kg × 6, 6
+- Pull Up — +8kg × 7, 6, bodyweight × 6
+- Iso-Lateral Row (Machine) — 40kg × 8, 8, 8
+- Straight Arm Pulldown — 17.5kg × 10, 10, 10
+- Triceps Dip — +10kg × 8, 8, 8
+- Cable Crossover — 11.25kg × 12, 12, 12
+- Bicep Curl (Barbell) — 30kg × 8, 8, 7
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
