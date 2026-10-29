@@ -164,6 +164,12 @@ A session saved while the Worker was down is still logged. Don't re-save it, or 
 into `log.md` twice. Open **History → Sessions**, expand the session and tap **Get the
 debrief →**. It asks the Worker again and does not touch `inbox/`.
 
+An API error ends with the Cloudflare colo the call left from, e.g. `[Cloudflare HKG]`.
+A 403 "Request not allowed" means Anthropic refused that region, not the key. Hong Kong
+is refused, and that is why `wrangler.toml` pins `[placement]` to `api.anthropic.com`
+(2026-10-29). Once the pin is in, the colo shown is where your phone connected. The call
+itself leaves from near Anthropic.
+
 ## Costs
 
 - **Cloudflare Workers:** free tier covers 100k requests/day. One debrief = one request.

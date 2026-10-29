@@ -4,3 +4,10 @@ compatibility_date = "2024-09-23"
 
 [vars]
 ALLOWED_ORIGIN = "https://maxyongg.github.io"
+
+# Run next to Anthropic's API, not next to the phone. From Singapore the default colo
+# is sometimes HKG, and Anthropic refuses calls from Hong Kong with a 403
+# "Request not allowed" (2026-10-19). Targeted placement moves the call out of there.
+[placement]
+mode = "targeted"
+hostname = "api.anthropic.com"
