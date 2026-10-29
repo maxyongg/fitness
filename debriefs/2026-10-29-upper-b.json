@@ -1,0 +1,154 @@
+{
+  "key": "2026-10-29-upper-b",
+  "date": "2026-10-29",
+  "session": "Upper B",
+  "session_id": "upper_b",
+  "model": "claude-sonnet-5",
+  "created": "2026-10-29T04:26:55.008Z",
+  "logged": {
+    "date": "2026-10-29",
+    "session": "Upper B",
+    "session_id": "upper_b",
+    "exercises": [
+      {
+        "name": "Deadlift (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 8
+          },
+          {
+            "weight": 70,
+            "reps": 8
+          },
+          {
+            "weight": 80,
+            "reps": 6
+          },
+          {
+            "weight": 80,
+            "reps": 6
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 8,
+            "reps": 7
+          },
+          {
+            "weight": 8,
+            "reps": 6
+          },
+          {
+            "weight": 0,
+            "reps": 6
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Iso-Lateral Row (Machine)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 8
+          },
+          {
+            "weight": 40,
+            "reps": 8
+          },
+          {
+            "weight": 40,
+            "reps": 8
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Straight Arm Pulldown",
+        "sets": [
+          {
+            "weight": 17.5,
+            "reps": 10
+          },
+          {
+            "weight": 17.5,
+            "reps": 10
+          },
+          {
+            "weight": 17.5,
+            "reps": 10
+          }
+        ],
+        "weight": 17.5
+      },
+      {
+        "name": "Triceps Dip",
+        "sets": [
+          {
+            "weight": 10,
+            "reps": 8
+          },
+          {
+            "weight": 10,
+            "reps": 8
+          },
+          {
+            "weight": 10,
+            "reps": 8
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Cable Crossover",
+        "sets": [
+          {
+            "weight": 11.25,
+            "reps": 12
+          },
+          {
+            "weight": 11.25,
+            "reps": 12
+          },
+          {
+            "weight": 11.25,
+            "reps": 12
+          }
+        ],
+        "weight": 11.25
+      },
+      {
+        "name": "Bicep Curl (Barbell)",
+        "sets": [
+          {
+            "weight": 30,
+            "reps": 8
+          },
+          {
+            "weight": 30,
+            "reps": 8
+          },
+          {
+            "weight": 30,
+            "reps": 7
+          }
+        ],
+        "weight": 30
+      }
+    ],
+    "notes": "Imported from Strong",
+    "extra": ""
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Deadlift beat the prescription outright — 70kg × 8 matched Thursday's top-set pattern, then you pushed into 80kg × 6, 6, well past the 72.5kg step the plan allowed. Pull-ups ran +8kg × 7, 6 then bodyweight × 6 (19 total), a different load profile than the bodyweight-only slot 2 call, and down from 26 on 10-22. The row held flat at 40kg × 8, 8, 8, identical to 10-22. Straight arm pulldown repeated 17.5kg × 10, 10, 10, same as last time. Dips jumped straight to +10kg × 8, 8, 8, ahead of the bodyweight progression the plan still had you on. Crossover ran three sets at 11.25kg × 12, 12, 12, a different number from the prescribed 10kg re-entry. Curl sat at 30kg × 8, 8, 7.\n\nTrend: The row is now flat across two sessions (10-22, 10-29) at 8, 8, 8 — needs 10s across the board for the 42.5kg bump. Straight arm pulldown is likewise parked at 10, 10, 10 for two sessions, bottom of the 10-12 range, so no increment yet. Barbell curl has read 8, 8, 7 three times now (09-13, 09-17, 10-29), still stalled at 30kg.\n\nNext session: Upper C, Sat 31. Bench press dumbbell at 24kg × 10-12, 2 in reserve, back to 28kg next Saturday. Chest supported row trial 3 of 4 at 16kg. Lateral raise anchor 7kg × 15-20 across three sets, back to 8kg next week. Deadlift strength is clearly ahead of the table right now — worth carrying that confidence into bench and row if the first sets feel easy.\n\nQuestion: the pull-up slot ran weighted first, then dropped to bodyweight for a lower total than usual — was that a deliberate test of load on the Thursday slot, or did the first two sets cost you reps you'd normally bank bodyweight?",
+      "at": "2026-10-29T04:26:55.008Z"
+    }
+  ]
+}
