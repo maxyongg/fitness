@@ -40,19 +40,12 @@ Practical consequence: **pull-ups go first on pull day**, and session order gene
 programming, not formatting. `log.md` records exercises in performed order for this
 reason. Never sort or regroup it.
 
-## Holds: left and right lat are separate lifts
+## Retired: left and right lat as separate lifts
 
-Left progresses normally; holding it back to match the right detrains a healthy lat for
-nothing, and cross-education means training the good side produces measurable strength
-gains in the injured one.
-
-The **70kg** figure often quoted for the left predates the September 2025 form change
-and is not established by any 2026 data — the only 2026 row session (20 Aug) put both
-sides in at 50kg. Treat the size of the gap as unmeasured until the two sides are
-logged separately.
-
-Right starts at the heaviest genuinely pain-free load and moves on the green-light rules
-in `plan.md` — reps before weight, always.
+Retired 2026-10-29, his call: the right lat is no longer programmed around. The row is
+one bilateral lift, 40kg × 8, 8, 8 on 10-22 after a form change, and that is the
+baseline. The L/R loads and pain readings from September and October stay in `log.md`
+as history.
 
 ## Does not hold: session length
 
@@ -178,12 +171,12 @@ that wide, or the next weight starts under it. That is what 10–12 bands did: D
 | RDL | 3×6–8 | 3×6–8 | RIR 2 | Unchanged; hamstrings 48h before football |
 | Incline bench | 4×5–8 | 4×5–8 | RIR 1–2 | Unchanged |
 | Pull-ups | AMRAP +5 / AMRAP−2 | unchanged | | |
-| Iso row | 8–10 | 8–10 | | Row protocol and physio govern it |
+| Iso-lateral row | 8–10 | 8–10 | RIR 1–2 | Unchanged; bilateral from 2026-10-29 |
 | DB bench | 10–12 | **8–12** | RIR 1–2 | 2kg step ≈ 2–3 reps |
 | Chest-supported row | 10–12 | **8–12** | RIR 1–2 | Compound accessory |
 | Triceps dip | 8–12 BW | 8–12, then weighted | RIR 1–2 | Unchanged |
 | Chest fly, cable crossover | 10–12 | **10–15** | RIR 0–2 | Shoulder at stretch; stack steps ~10% |
-| Straight-arm pulldown | 10–12 | **10–15** | RIR 2 | Single-joint, on the injured lat |
+| Straight-arm pulldown | 10–12 | **10–15** | RIR 2 | Single-joint |
 | Reverse fly | 8–12 | **10–15** | RIR 0–2 | Small muscle |
 | Triceps pull | 10–12 | **10–15** | RIR 0–2 | Elbow load |
 | Curls (cable, barbell, hammer) | 8–10 / 10–12 | **8–12** | RIR 0–2 | One band for the slot |
@@ -195,7 +188,7 @@ that wide, or the next weight starts under it. That is what 10–12 bands did: D
 | Hanging leg raise | 10–12 | **8–15**, then toes to bar | | Calisthenics progression |
 
 **Rule:** the top of the band on every set, at the target effort, once → the next step.
-Not two sessions. Right iso row excepted.
+Not two sessions.
 
 **Where his history and this disagree:** chest fly (he works at 8), triceps pull and leg
 extension. The reason to go lighter is joint load, not growth, so it is his call.
@@ -222,47 +215,10 @@ inferring from it; he is right about his own body more often than the log is.
 
 ## Open questions
 
-- **Is the 50kg right-side ceiling pain-limited or caution-limited?** First real data
-  point, 2026-09-03 — the first `pain(R)` ever recorded. **3/10, which is a green light**
-  under the `plan.md` protocol, with the left working up to 60kg × 8 while the right held
-  50kg × 8, 8, 8.
-
-  Two things follow. The gap is **10kg, not the 20kg** that older notes assumed — so
-  treat 70/50 as retired, and 60/50 as the first measurement. And his note said the right
-  side was *"half weakness half pain — I've certainly lost a lot of strength there"*,
-  which the 0–10 scale cannot carry: a green light on pain says nothing about strength
-  deficit. If that reading repeats, the limiter is detraining rather than tissue, and
-  the answer is loading the right side more, not less.
-
-  **Still open, and a worked example of how not to close it.** On 2026-09-13 he rowed
-  57kg for two sets of 8, both sides equal, and this file briefly recorded that as the
-  50kg ceiling being broken. It was the **Uni Lateral Seated Row**, a different exercise
-  from the Iso Lateral Row — his correction, 09-14. Different machine, different
-  leverage, loads not on the same scale. The comparison was never valid and the
-  conclusion is withdrawn.
-
-  This is the fourth time in this project a number has been read against a number it
-  does not belong with, and the first three are the whole reason the "Read this before
-  trusting any number below" section exists. **Machine identity is part of the
-  measurement.**
-
-  **Updated 2026-09-20.** On 09-17 he performed the right-side iso-lateral row at 50kg
-  and reported **4/10** with "extreme tightness" — an amber under the protocol. The two
-  greens from 09-03 and 09-10 are struck and the count resets to zero. On 09-20 a
-  calisthenics session also read 4/10 with no iso-lateral row in it, so the gate count is
-  untouched but the pattern is now three consecutive 4/10 readings across three different
-  sessions. Readings run: 3/10 (09-03), 2/10 (09-10), 4/10 (09-13 seated row), 4/10
-  (09-17 iso-lateral row), 4/10 (09-20 calisthenics). That is a physio question, not one
-  for this file. The row holds at 50kg; nothing is added.
-
-  **Updated 2026-10-02.** The right side read **6/10 on the Seated Row (Cable), 57kg ×
-  10, 10, 10**, on 2026-10-01. His answer places it on that row, not the deadlift or the
-  +8kg pull-ups in the same session. It is the highest reading in the log. The
-  chest-supported row read 0/10 on 09-26, and the iso-lateral row 3/10 at 55kg on 09-24.
-  Tempting to call seated cable rowing the provoker, since the 09-13 4/10 was also a
-  seated row at 57kg. But that was the Uni Lateral Seated Row, a different machine, and he
-  called it tightness. One reading per machine is not a pattern. Name it to the physio,
-  and watch whether the chest-supported row stays clean.
+- **Closed 2026-10-29: the right-side row ceiling.** Never answered, and now moot: he
+  retired the right lat as a constraint and the row went bilateral. What it taught
+  stands: the 09-13 Uni Lateral Seated Row was briefly read as breaking the 50kg
+  iso-lateral ceiling. **Machine identity is part of the measurement** (`docs/incidents.md`).
 - **Did the overhead press decline because its slot rotates?** Asserted in `plan.md`
   for a fortnight as though settled; it is not. OHP e1RM ran 49.6 → 60.2 → **61.7**
   (2026Q1) → 57.0 → 50.7. The rotation story says it fell because push slot 2 picks it
@@ -278,13 +234,6 @@ inferring from it; he is right about his own body more often than the log is.
   implemented on 2026-09-12 and undone the same day, because the cost is concrete (it
   would make a movement that has provoked right-lat pain on both recent push days
   compulsory rather than occasional) and the benefit rests on an untested because.
-- **Is overhead pressing what the right lat is reacting to on push day?** Two sessions,
-  both 2/10: barbell OHP on 2026-09-07 (his note names it), Arnold press on 2026-09-11.
-  Two is a pattern worth naming to the physio, not a conclusion, and the confound is
-  obvious — those are simply the two push days since the restart. Watch whether a push
-  day *without* an overhead press comes in clean. If the pattern holds, the question is
-  whether the movement belongs on push day at all, which is his physio's call and not
-  the log's.
 - **Why was Feb–Apr 2026 his best block in two years?** Nine straight Saturday leg days.
   Never established. CPAP started May/June, which is where the decline begins, but he
   considers this closed — note it, don't reopen it.

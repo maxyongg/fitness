@@ -14,7 +14,7 @@ If you are Claude, read `CLAUDE.md` first and stop there. This file is for human
 | File | What it is |
 |---|---|
 | `CLAUDE.md` | How to work in this repo. |
-| `plan.md` | The programme — weekly 3U/1L split, row protocol, progression rules. |
+| `plan.md` | The programme — weekly 3U/1L split, progression rules. |
 | `log.md` | Session log. Append-only, newest at the bottom. |
 | `docs/workflows.md` | The occasional jobs: inbox drain, offline logging, monthly reconcile. |
 | `docs/findings.md` | What the data supports, what it doesn't, what's still open. |

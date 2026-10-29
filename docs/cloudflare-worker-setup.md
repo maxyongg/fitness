@@ -65,15 +65,15 @@ dismissed. The GH Action handles all the repo bookkeeping.
 
 ## What the debrief sees
 
-- **The session just logged** — every set, weights, holds, supersets, pain, notes, extra.
+- **The session just logged** — every set, weights, holds, supersets, notes, extra.
 - **Its prescription** — each slot's load and rep target plus the `do`, `last` and `why`
   lines from `RX`, so the coach's context travels with it.
 - **The next session's prescription**, worked out from `RX.schedule`.
 - **The last 8 weeks of `log.md`**, with the HTML commentary stripped.
 
-The standing brief (programme rules, row protocol, how to read the log) is the `SYSTEM`
+The standing brief (programme rules, how to read the log) is the `SYSTEM`
 prompt in `worker/index.js`. The reply is 3-5 labelled paragraphs — Today, Trend,
-Right lat, Next session, Rounding — about 180-300 words. If the page can't read
+Next session, Rounding, Question — about 180-300 words. If the page can't read
 `log.md`, the debrief still runs and says the history was missing.
 
 ## Replies and follow-ups

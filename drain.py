@@ -98,10 +98,7 @@ def to_log_entry(data):
     header = f"## {date} · {day_name} · {session}"
     lines.append(header)
 
-    pain = data.get("pain", {}).get("right_lat")
     notes_parts = []
-    if pain is not None:
-        notes_parts.append(f"pain(R): {pain}/10")
     extra_notes = data.get("notes", "")
     if extra_notes and extra_notes != "Imported from Strong":
         notes_parts.append(f"note: {extra_notes}")
@@ -123,11 +120,7 @@ def format_exercise(ex):
     name = ex["name"]
     sets = ex.get("sets", [])
     is_bw = ex.get("bodyweight", False)
-    bilateral = "weightL" in ex or "weightR" in ex
     ex_weight = ex.get("weight", 0)
-
-    if bilateral:
-        return format_bilateral(name, ex, sets)
 
     has_duration = any(s.get("duration", 0) > 0 for s in sets)
 
@@ -159,17 +152,6 @@ def format_exercise(ex):
 
     reps = group_reps_bw(sets)
     return f"{name} — bodyweight × {reps}"
-
-
-def format_bilateral(name, ex, sets):
-    wl = ex.get("weightL", 0)
-    wr = ex.get("weightR", 0)
-    reps_strs = [str(s.get("reps", 0)) for s in sets if s.get("reps", 0) > 0]
-    reps = ", ".join(reps_strs)
-    return (
-        f"{name} — L {format_weight(wl)}kg × {reps}, "
-        f"R {format_weight(wr)}kg × {reps}"
-    )
 
 
 def group_reps_bw(sets):
@@ -362,7 +344,6 @@ def build_state(data, rx):
         "type": data.get("session_id", ""),
         "name": data.get("session", ""),
         "exercise_count": len(data.get("exercises", [])),
-        "pain_right_lat": data.get("pain", {}).get("right_lat"),
     }
 
     top_sets = []
@@ -376,8 +357,6 @@ def build_state(data, rx):
             if loads:
                 top = max(loads, key=abs)
                 w += f"{'+' if top > 0 else '-'}{format_weight(abs(top))}"
-        elif "weightL" in ex:
-            w = f"L{ex['weightL']}/R{ex['weightR']}"
         top_sets.append({
             "name": ex["name"],
             "weight": w,
@@ -405,7 +384,6 @@ def apply_rx(state, rx):
     """Copy the prescriptions from RX into state.json. Also run after an unattended
     re-prescription (represcribe.py), so state.json never lags the page."""
     slots = {}
-    row = None
     for sid, sdata in rx["sessions"].items():
         slot_list = []
         for ex in sdata.get("exercises", []):
@@ -417,10 +395,6 @@ def apply_rx(state, rx):
                 "load": ex.get("load", 0),
                 "unit": ex.get("unit", "kg"),
             }
-            if ex.get("bilateral"):
-                entry["loadL"] = ex.get("loadL", 0)
-                entry["loadR"] = ex.get("loadR", 0)
-                row = row or entry
             if ex.get("alts"):
                 entry["alts"] = ex["alts"]
             slot_list.append(entry)
@@ -428,25 +402,11 @@ def apply_rx(state, rx):
     state["slots"] = slots
     state["rx_asof"] = rx.get("asof", "")
     state["rx_after"] = rx.get("after", "")
-
-    # The loads come from RX. The green count and the reasoning live in plan.md
-    # ("The row protocol"); a count hard-coded here went stale after every drain.
-    if row:
-        state["row_protocol"] = {
-            "load_left": row["loadL"],
-            "load_right": row["loadR"],
-            "status": "see plan.md, The row protocol",
-        }
+    state.pop("row_protocol", None)
 
 
 def build_flags(data):
     flags = []
-    pain = data.get("pain", {}).get("right_lat")
-    if pain is not None and pain > 3:
-        flags.append(f"pain(R) {pain}/10 — amber, row protocol resets")
-    elif pain is not None and pain <= 3 and pain > 0:
-        flags.append(f"pain(R) {pain}/10 — green light")
-
     for ex in data.get("exercises", []):
         name = ex["name"]
         sets = ex.get("sets", [])
@@ -462,15 +422,6 @@ def build_editorial(data, state):
     lines = []
     lines.append(f"Session: {data['date']} {data.get('session', '')}")
     lines.append(f"Exercises: {len(data.get('exercises', []))}")
-
-    pain = data.get("pain", {}).get("right_lat")
-    if pain is not None:
-        if pain <= 3:
-            lines.append(f"Pain(R): {pain}/10 — green")
-        else:
-            lines.append(f"Pain(R): {pain}/10 — AMBER")
-    else:
-        lines.append("Pain(R): not recorded")
 
     nxt = state.get("next_session", {})
     lines.append(f"Next: {nxt.get('name', '?')} ({nxt.get('expected_date', '?')})")

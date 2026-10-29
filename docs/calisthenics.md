@@ -25,12 +25,12 @@ So: beginner at skills, intermediate at strength. The route below reflects that.
 
 Two things decide what comes first, and neither is "what looks impressive":
 
-1. **Load on the right lat.** It is under physiotherapy care. Front levers, muscle-ups
-   and one-arm work are the most lat-intensive things in calisthenics, so they are last,
+1. **Load on the lats.** Front levers, muscle-ups and one-arm work are the most
+   lat-intensive things in calisthenics and need a base under them, so they are last,
    not first. An older version of `plan.md` opened the session with tuck front levers.
    That was invented, and it was also the single worst choice available.
 2. **Which gap it fills.** Core and grip are the two qualities missing from his training.
-   The early skills are chosen to cover both while asking nothing of the injured side.
+   The early skills are chosen to cover both.
 
 **Skill work goes first in the session, while fresh, and never to failure.** Skills are
 practice, not conditioning — you stop while the shape is still clean. Ten minutes.
@@ -48,8 +48,7 @@ lifted. Start tucked, extend as it gets easier.
 ### Dead hang
 Grip is the thing that limits every calisthenics progression later, and he has never
 trained it — 12 sets of farmer walks in February 2025 and nothing since. It also
-decompresses the shoulder, which physios generally like.
-**Clear this with the physio first**, given the right lat. 3 × 20–30s, building to 60s.
+decompresses the shoulder. 3 × 20–30s, building to 60s.
 
 ### Chest-to-wall handstand
 The vertical-push skill, and the one that pays a debt: his overhead press has regressed
@@ -66,8 +65,8 @@ are strength, not skill, so they run to near-failure and they belong after the s
 block.
 
 ### Ring Row / Inverted Row — the horizontal pull
-The pattern the Sunday session was missing entirely, and the **safest loaded pull he
-has** for the right lat: the load is set by body angle, so it regresses mid-set by
+The pattern the Sunday session was missing entirely, and the **easiest loaded pull to
+scale**: the load is set by body angle, so it regresses mid-set by
 walking the feet in. Nothing else in the programme adjusts that fast.
 
 *Progression:* feet well forward, torso ~45° → feet further out, torso nearer horizontal
@@ -113,13 +112,12 @@ Not dated. "Comfortable" means the Phase 1 holds are steady and unremarkable.
   both. Core and hip flexors; the natural successor to the hollow hold.
 - **Ring or bar support hold** — 3 × 20s at the top of a dip, locked out. Shoulder
   stability, and the gateway to ring work. He already dips, so this is cheap.
-- **Explosive / high pull-ups** — chest-to-bar, then sternum. Only if the right side is
-  quiet.
+- **Explosive / high pull-ups** — chest-to-bar, then sternum.
 
-## Phase 3 — only once the physio clears the right lat
+## Phase 3 — once Phase 2 is solid
 
-These are the ones people start with and should not. Every one loads the injured tissue
-hard, and none of them are worth a setback.
+These are the ones people start with and should not. Every one loads the lats and
+shoulders hard, and none of them are worth a setback.
 
 - **Tuck front lever** — the classic lat-dominant hold.
 - **Muscle-up** — needs the high pull-up from Phase 2 first.

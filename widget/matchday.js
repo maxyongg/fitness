@@ -112,7 +112,6 @@ function footballLine(stack, fb, size) {
 
 // Same rendering as the page's load column.
 function loadStr(ex) {
-  if (ex.bilateral) return "L" + ex.loadL + " R" + ex.loadR;
   if (ex.unit === "BW") return "BW";
   return ex.load + ex.unit;
 }

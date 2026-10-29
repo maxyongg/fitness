@@ -27,8 +27,9 @@ That is the brief. Read it before proposing anything.
 
 He asked Claude to decide this. In order:
 
-1. **Staying injury-free.** The right lat is under physiotherapy care and their guidance
-   outranks this repo. "Own pace" and "push through it" are incompatible; pace wins.
+1. **Staying injury-free.** "Own pace" and "push through it" are incompatible; pace wins.
+   (The right lat stopped being a programming constraint on 2026-10-29, his call. This
+   is about not getting hurt in general, not about that injury.)
 2. **Rounding the gaps.** Adding a missing quality beats adding load to a strong one.
 3. **The calisthenics shift.** When two options are otherwise equal, take the bodyweight
    one.
@@ -88,7 +89,7 @@ sixth exercise on pull day and it simply is not getting done. One slot fixes it.
 
 12 sets of farmer walks in February 2025 and nothing since, logged or otherwise. Worth
 naming because grip usually limits calisthenics progressions, and dead hangs are also
-the sort of lat decompression a physio tends to like. Clear it with them first.
+good decompression for the lats and shoulders.
 
 ### Not gaps
 
@@ -106,13 +107,13 @@ better bodyweight strength. The full route is in `docs/calisthenics.md`. In summ
 a best of 27 pull-up reps. What he has never done is skill work — the held positions
 that make calisthenics its own discipline rather than bodyweight bodybuilding.
 
-**Phase 1 is three holds**, chosen because they load core and shoulder while asking
-nothing of the injured lat: hollow body hold, dead hang, chest-to-wall handstand. They
+**Phase 1 is three holds**, chosen because they load core and shoulder and need
+nothing he hasn't got: hollow body hold, dead hang, chest-to-wall handstand. They
 also happen to cover both training gaps — core and grip — and the handstand loads the
 vertical-push pattern his overhead press has been losing.
 
 **The lat-heavy skills come last, not first.** Front lever, muscle-up and planche are
-Phase 3, behind physio clearance. An older `plan.md` opened the session with tuck front
+Phase 3, once Phase 2 is solid. An older `plan.md` opened the session with tuck front
 levers, which was both invented and the single worst choice available.
 
 Skill work goes first in the session, ten minutes, never to failure. It is practice, not
@@ -127,7 +128,7 @@ which slot it happens in, and `plan.md` now splits every session on exactly that
 - **Rotate slots** — accessories, isolation work, finishers. Variety is free here and
   probably positive: it covers more angles, spares the joints, and he trains more when
   he is enjoying it. Adherence beats optimality.
-- **Anchor slots** — the primary press, pull-ups, the injured-side row. These never
+- **Anchor slots** — the primary press, pull-ups, the heavy row. These never
   change, because **you cannot progressively overload what you do not repeat.**
 
 The evidence is in his own log: incline bench is at an all-time high because slot 1 never
@@ -151,8 +152,7 @@ combined with "no target" that settles the shape of the programme:
 - **The phases are recovery-driven, not goal-driven.** Re-entry runs to 13 Sep because he
   came back from a trip, not because anything is being built towards. Once the full block
   starts it simply continues; there is no phase after it.
-- **Progression is open-ended and conditional.** Add weight when the reps say so and the
-  right lat allows it. There is no schedule and nothing is behind.
+- **Progression is open-ended and conditional.** Add weight when the reps say so. There is no schedule and nothing is behind.
 - **A quiet month is not a failure.** With no date, there is no such thing as being off
   track — only training that is happening or not happening. Never frame it otherwise.
 

@@ -6,7 +6,6 @@
     "type": "upper_a",
     "name": "Upper A",
     "exercise_count": 9,
-    "pain_right_lat": 1,
     "top_sets": [
       {
         "name": "Incline Bench Press (Barbell)",
@@ -150,14 +149,12 @@
         "unit": "BW"
       },
       {
-        "name": "Iso Lateral Row",
+        "name": "Iso-Lateral Row (Machine)",
         "type": "anchor",
         "sets": 3,
         "reps": "8-10",
-        "load": 0,
-        "unit": "kg",
-        "loadL": 52.5,
-        "loadR": 50
+        "load": 40,
+        "unit": "kg"
       },
       {
         "name": "Straight Arm Pulldown",
@@ -227,7 +224,10 @@
         "sets": 2,
         "reps": "10-12",
         "load": 16,
-        "unit": "kg"
+        "unit": "kg",
+        "alts": [
+          "Seated Row (Cable)"
+        ]
       },
       {
         "name": "Lateral Raise",
@@ -342,15 +342,9 @@
       }
     ]
   },
-  "rx_asof": "2026-10-26",
+  "rx_asof": "2026-10-29",
   "rx_after": "2026-10-26 Upper A",
-  "row_protocol": {
-    "load_left": 52.5,
-    "load_right": 50,
-    "status": "see plan.md, The row protocol"
-  },
   "flags": [
-    "pain(R) 1/10 — green light",
     "Pull-up: top set 8, total 24"
   ]
 }

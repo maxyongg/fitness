@@ -10,7 +10,7 @@ The failures described below are summarised with the rest of this project's mist
 The phone page at `https://maxyongg.github.io/fitness/` (source: `index.html`) saves
 sessions as JSON files to `inbox/` via the GitHub API. Each file is named
 `{date}-{session-id}.json` and contains the full session data: exercises, weights, reps,
-pain rating, notes, and extras.
+notes, and extras.
 
 The page also stores sessions locally in `localStorage` under `matchday_history` and can
 pull from `inbox/` via its History tab, so saved sessions are visible to him even before
@@ -100,7 +100,7 @@ that finds unprocessed files in `inbox/`).
 1. **Run `python3 drain.py`.** It reads every JSON in `inbox/`, appends formatted entries
    to `log.md`, updates `state.json`, and prints an editorial summary. If the inbox is
    empty it says so and exits.
-2. **Read the stdout summary.** It tells you the session, pain reading, next session, and
+2. **Read the stdout summary.** It tells you the session, next session, and
    any flags worth attention.
 3. **Commit `log.md` + `state.json`, delete the inbox files, push to `main`.** One commit,
    subject `log: YYYY-MM-DD <session name>`.
@@ -117,8 +117,8 @@ The page is static HTML on GitHub Pages. Prescriptions only move when you move t
 
 **Pass 2 — the session he does next.** Work out which it is from the weekly template
 (Mon Upper A / Thu Upper B / Sat Upper C / Sun Lower), then make that whole session
-current. **This is the one he opens at the gym.** An Upper B that ends with a bad pain
-reading should change the Upper C that follows; carrying a finding across sessions is
+current. **This is the one he opens at the gym.** An Upper B that ends badly
+should change the Upper C that follows; carrying a finding across sessions is
 the job.
 
 For every slot you touch, update both `plan.md` and the `RX` object in `index.html`:
@@ -126,7 +126,7 @@ For every slot you touch, update both `plan.md` and the `RX` object in `index.ht
 - **Load** — moves only when a progression rule fires or something says come down.
   Write the reason into `plan.md`.
 - **The exercise itself** — rotate slots are yours to change when the data says so
-  (a stall of three, a rep band that does not fit, a movement the injury dislikes).
+  (a stall of three, a rep band that does not fit, a movement he says doesn't sit right).
   Write the reason into `plan.md`; a silent swap is the thing the prescription model
   replaced.
 - **`last`, `do`, `why`** — the three lines the page prints on every slot. `last` is

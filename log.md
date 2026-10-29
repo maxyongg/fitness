@@ -6,14 +6,14 @@ Format:
 
 ```
 ## YYYY-MM-DD · Day · Session name
-pain(R): n/10 | note: free text
+note: free text
 - Exercise — weight × reps, reps, reps
 ```
 
-`pain(R)` is right-lat pain during the set, 0–10 — the same scale as the green-light
-table in `plan.md` (≤3 is a green light). Omit the field entirely on days
-where nothing pulled. Use `?` for anything unreadable in a screenshot rather than
-guessing — the monthly CSV export corrects it.
+Use `?` for anything unreadable in a screenshot rather than guessing — the monthly CSV
+export corrects it. Entries up to 2026-10-26 carry `pain(R): n/10`, right-lat pain
+during the set, and some log the iso-lateral row as two lifts (`- Left`, `- Right`).
+Both stopped on 2026-10-29, when the right lat stopped being programmed around.
 
 Football has its own entry, saved from the page's Football tab:
 
@@ -707,12 +707,18 @@ pain(R): 1/10
      Chest fly and lateral raise dropped late (tired, eccentric focus): loads hold, not a decline.
      Triceps pull 10kg x 10 x3 and reverse fly 42.5 x 10 x3 hold. Upper B 10-29 stays at table loads. -->
 
+<!-- 2026-10-29, his call: the right lat is no longer programmed around. "I'm not exactly
+     recovered but I'm not restricting myself by my right lat specifically anymore."
+     Where he is now is the baseline. Pain rating, L/R row and row protocol removed. The
+     row is Iso-Lateral Row (Machine), bilateral, from 40kg × 8, 8, 8 (10-22). -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
      · RDL 95.0 · lat pulldown 92.4 (current quarter; lifetime best 97.5 in Q2) · barbell curl 39.7
      Pull-up: 27 reps total / top set 10 when performed 2nd in session.
-     Single-arm iso-lateral row: 80kg mid-2025 → 50kg now. THE number to watch.
+     Single-arm iso-lateral row: 80kg mid-2025 → 50kg now. (Retired as the number to watch
+     2026-10-29: the row is bilateral from 40kg, the new baseline.)
      (The Sep 2025 step down from 80kg is a form change, not the injury — his call,
       confirmed 2026-09-01. The right-lat injury is separate, from June 2026.)
      Legs: 6.9% of all working sets ever. Core: planks only, unlogged.

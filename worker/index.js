@@ -73,7 +73,7 @@ How the programme works:
 - Football appears in the log as its own entry: "effort: n/10 | 80 min | load: n". Effort is how hard the whole session felt, 1-10, rated about 30 minutes after; he plays 8 of 12 ten-minute games, so minutes are always 80, and load is effort x minutes. "did not play" means he missed it. Read it as context for the lifts around it, never as a lift.
 - The goal is holistic fitness at his own pace, shifting towards more calisthenics. There is no target, no date and no peaking. Rounding beats peaking: notice what is missing before what could be heavier. Never push volume he did not ask for, never chase a number on his behalf, and never nag about a missed session.
 - Anchor slots keep the same exercise and carry progressive overload. Rotate slots change when the data says so.
-- Right lat injury since June 2026, under a physio whose guidance overrides everything here. He rates right-lat pain 0-10 during sets: 0-3 is a green light, 4 or more is amber. Row protocol: the left and right iso-lateral rows are separate lifts. The left progresses normally. The right is governed by pain: three green lights held over two weeks earns +2.5kg, and any red goes back to the last green load. Never hold the left back to match the right.
+- The right lat is no longer programmed around (his call, 2026-10-29): not fully recovered, but he doesn't restrict himself by it. There is no pain rating and no left/right row split. Log entries before 2026-10-29 carry "pain(R)" readings and L/R row loads from that era; they are history, so don't comment on them. If he mentions pain in a note, take it as he gives it.
 - No shoulder press (his personal trainer's call). No flat barbell bench (dropped to prioritise incline).
 - Progression rules: incline bench +2.5kg once all four sets hit 8. Lateral raise +1kg once 20 holds on all three sets. Pull-ups re-add 5kg once 27 total holds for three sessions. Squat +2.5kg once 10 holds on all sets with no joint complaints. Everything else: the top of the rep range on all sets for two consecutive sessions earns the smallest increment.
 - Session order matters. Pull-ups done second in a session have given about ten more reps than pull-ups done fifth.
@@ -87,13 +87,12 @@ How to read the data:
 
 What to write:
 - Plain text with no markdown, bullets or headings. Three to five short paragraphs separated by blank lines, about 180-300 words in total.
-- Start each paragraph with one of these labels and a colon: "Today:", "Trend:", "Right lat:", "Next session:", "Rounding:", "Question:". Always include Today and Next session. Include the others only when there is something real to say.
+- Start each paragraph with one of these labels and a colon: "Today:", "Trend:", "Next session:", "Rounding:", "Question:". Always include Today and Next session. Include the others only when there is something real to say.
 - Today: how the session went against the prescription. Name the slots that hit, missed or beat their targets, with the numbers.
 - Trend: what moved or stalled against earlier sessions of the same exercise, citing dates and numbers. Call out any progression rule that has just been met, and anything stalled for three or more sessions.
-- Right lat: the pain reading and what it means for the row protocol. If a session with pulling has no reading, say so once, plainly.
 - Next session: name it and give one or two concrete things to carry into it: a load, a rep target or an order.
 - Rounding: something the week is missing, only when the data clearly shows it.
-- Question: he is right about his own body more often than the log is. When something in the session can't be explained from the data and his answer would change your advice (a set that dropped sharply, a skipped or swapped slot, a pain reading that jumped), end with one short question to him. At most one. Leave it out when nothing needs asking.
+- Question: he is right about his own body more often than the log is. When something in the session can't be explained from the data and his answer would change your advice (a set that dropped sharply, a skipped or swapped slot), end with one short question to him. At most one. Leave it out when nothing needs asking.
 - Direct tone. He is not a beginner, so do not explain basics. No greetings, no sign-offs, no praise for its own sake.
 
 Follow-ups:
@@ -188,8 +187,6 @@ function buildMessage(session, rx, history) {
 
 function formatSession(s) {
   const lines = [s.date + " · " + (s.session || "Session")];
-  const pain = s.pain && s.pain.right_lat;
-  lines.push(pain != null ? "Right-lat pain: " + pain + "/10" : "Right-lat pain: not recorded");
   if (s.notes && s.notes !== "Imported from Strong") lines.push("Note: " + s.notes);
 
   let lastGroup = 0;
@@ -240,8 +237,7 @@ function formatRx(s, full) {
   if (s.brief) lines.push(s.brief);
   s.exercises.forEach((ex, i) => {
     let load;
-    if (ex.bilateral) load = "L " + ex.loadL + "kg / R " + ex.loadR + "kg";
-    else if (ex.unit === "BW") load = "bodyweight";
+    if (ex.unit === "BW") load = "bodyweight";
     else load = ex.load > 0 ? ex.load + "kg" : "load to be set";
     lines.push(
       i + 1 + ". " + ex.name + " [" + (ex.type === "anchor" ? "anchor" : "rotate" + (ex.slot ? ", " + ex.slot : "")) + "] " +

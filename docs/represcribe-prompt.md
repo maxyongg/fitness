@@ -46,10 +46,10 @@ You can't ask him anything. So anything that needs his decision becomes the ques
 `RX.note`, not a change.
 
 - Anchors never change exercise. Only their numbers move.
-- Never ramp volume. The row protocol governs the right side. His physio overrides
-  everything in the repo.
+- Never ramp volume. The right lat is not programmed around (his call, 2026-10-29):
+  no pain gates, no left/right row. Pain readings in older log entries are history.
 - A rotate slot may change exercise when the data says so: a stall of three sessions,
-  a rep band the load doesn't fit, a movement the injury dislikes. Write the reason
+  a rep band the load doesn't fit, a movement he says doesn't sit right. Write the reason
   in `plan.md`. A movement he has never logged needs the four-run trial and his
   agreement, so propose it in `RX.note` instead.
 - A swap he made in a rotate slot is his choice, not a mistake. A lower load after a

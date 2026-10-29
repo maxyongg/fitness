@@ -32,9 +32,18 @@ venue live in `RX.football`; the page's week list and the widget read them from 
 
 Football is logged from the page's Football tab (from 2026-10-28): effort 1–10 for the
 whole session, rated about 30 minutes after, times 80 minutes on the pitch (8 of 12
-ten-minute games, three teams rotating) gives the load. No right-lat rating there, his
-call. It exists to answer the open questions below that the log couldn't see: whether
-Thursday's deadlift leaves Friday flat, and whether Sunday legs cost Tuesday.
+ten-minute games, three teams rotating) gives the load. It exists to answer the open
+questions below that the log couldn't see: whether Thursday's deadlift leaves Friday
+flat, and whether Sunday legs cost Tuesday.
+
+**The right lat is no longer programmed around — his call, 2026-10-29.** "I'm not
+exactly recovered but I'm not restricting myself by my right lat specifically anymore."
+Where he is now is the baseline. So: no pain rating on the page, no left/right row, no
+row protocol, no green-light gates on any lift, and no swap is off-limits because of it.
+The iso-lateral row is one bilateral lift from 40kg × 8, 8, 8 (10-22, after his form
+change), progressing like everything else. The dated notes below keep the pain readings
+and the L/R loads of that era as history; none of it is a live rule. If he mentions
+pain, take it as he gives it.
 
 **Time of day is free.** The log cannot detect a time-of-day effect (working in
 `docs/findings.md`). Train when it suits the week.
@@ -116,7 +125,7 @@ The anchors:
 | Pull Up | Upper A slot 2, Upper B slot 2 | Position effect is proven (`docs/findings.md`). First or second, never later. |
 | Deadlift | Upper B, slot 1 | The heavy hinge. Moved from Lower at his call, 2026-10-02. |
 | Romanian Deadlift | Lower, slot 2 | The hamstring hinge. Made Lower's anchor at his call, 2026-10-02. |
-| Iso Lat Row | Upper B, slot 3 | The right lat's lift. Row protocol needs the same movement week to week. |
+| Iso-Lateral Row (Machine) | Upper B, slot 3 | The heavy horizontal pull, bilateral. 40kg from 10-22, the baseline set 10-29. |
 | Lateral Raise | Upper A slot 5, Upper C slot 3 | Side delts. 8kg since 09-11; four sessions at 15, 15, 15, then 16s on 09-28 (see Progression). |
 
 Everything else rotates. The bolded exercise in each rotate slot is the current call;
@@ -178,7 +187,7 @@ The pull-heavy upper day, and the week's deadlift. Deadlift first, pull-ups seco
 |---|---|---|---|---|
 | 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **70kg** |
 | 2 | **Anchor** | Pull Up | 3 × AMRAP−2 | bodyweight |
-| 3 | **Anchor** | Single-Arm Iso-Lateral Row, left then right | 3 × 8–10 each | see protocol |
+| 3 | **Anchor** | Iso-Lateral Row (Machine), both arms | 3 × 8–10 | **40kg** |
 | 4 | Rotate — vertical pull | **Straight Arm Pulldown** · Lat Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 10–12 | **17.5kg** |
 | 5 | Rotate — push compound | **Triceps Dip** · ★ Weighted Dips | 3 × 8–12 | bodyweight |
 | 6 | Rotate — chest isolation | **Cable Crossover** · Single Arm Cable Chest Fly · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | **12.5kg** |
@@ -210,6 +219,9 @@ answers the second: pull-ups at slot 2 behind the deadlift gave 27 (09-24) and
 the same two lifts, so its readings compare week to week. The first is the one to watch.
 **If Friday football comes out flat in the legs, the lever is 2 working sets, not moving
 it back.** Lower gets shorter, and he dislikes leg day anyway.
+**The row became one bilateral lift on 2026-10-29**, his call (see the top of this
+file). 10-22's 40kg × 8, 8, 8 is its baseline; the single-arm L/R numbers before it are
+a different lift.
 
 **Second run, 2026-10-01. Pain(R) 6/10, the highest reading in the log.** He saved it
 from Strong as "B - Pull". The import matched exercise names only, so it logged and
@@ -218,7 +230,7 @@ and the date first, and shows the pick before saving. The session: deadlift 40 �
 70 × 5, 6, then pull-ups +8kg × 8, 8, 8 at slot 2, then **seated cable row 57kg × 10,
 10, 10 in place of the iso-lateral row**. So there is no reading on the gated row.
 **The 6/10 came on the seated cable row** (his answer, 2026-10-02), not the deadlift or
-the pull-ups. **Right row back to 50kg** (row protocol, below). **Pull-ups stay
+the pull-ups. **Right row back to 50kg** (row protocol, retired 2026-10-29). **Pull-ups stay
 bodyweight here**: added weight is Monday's. **Slot 3's call is now the Straight Arm
 Pulldown at 17.5kg.** He ran it both Thursdays of the block (12.5 × 10, 15 × 12, 12,
 then 15 × 12, 17.5 × 10, 10), the same way Monday's rotate calls followed his picks on
@@ -245,17 +257,11 @@ The rounding day. Picks up everything the other two sessions don't hit twice a w
 
 **Flat DB press is the mid-chest movement** the old programme didn't have. Incline bench
 is the anchor on Monday; this covers the flat pressing pattern without reintroducing
-barbell flat bench (dropped deliberately to prioritise incline). Dumbbell means each
-side works independently, which suits the right-lat asymmetry.
+barbell flat bench (dropped deliberately to prioritise incline).
 
 **The horizontal pull spreads back work across all three upper days.** Without it, all back sets
 land on Monday and Thursday while chest gets work on all three days. This fixes the
 push:pull balance (16 chest : 15 back).
-
-**This is not the right lat's row.** Whatever runs in slot 2 is a bilateral movement in a
-rotate slot — it carries no pain protocol and no gate. The iso-lateral row on Thursday is the
-measured lift. If the right side talks during it, note it and lighten it, but it does
-not affect the Thursday gate count.
 
 **Hammer curl took the arms slot on 2026-09-24.** The barbell curl at 30kg gave
 8, 8, 7 twice, below this slot's 10–12. That is a rep band the load doesn't fit.
@@ -270,7 +276,8 @@ reading, so it isn't counted as a pattern. Nothing on Saturday loads the right l
 The chest-supported row (run 2 of 4) opens at 14kg as a check set: 3/10 or under goes to
 18kg, 4 or more stays at 14kg or drops the slot for the day. The hanging leg raise has
 the right lat on stretch, so the hollow body hold is the swap if it talks. Other loads
-are as set on 09-26.
+are as set on 09-26. *Superseded 2026-10-29: the right lat is no longer programmed
+around, so the seated cable row is back in slot 2's swaps and there is no check set.*
 
 **Core is programmed, not ad hoc.** Six sets a week across Saturday and Sunday. The old
 programme logged zero core since March — partly a logging gap, partly a programming gap.
@@ -362,58 +369,6 @@ No longer tied to a specific day. Do it after any session, or standalone. 90/90 
 switch · half-pigeon · supine hamstring with a strap · thoracic open-book · couch
 stretch · ankle dorsiflexion. Not tracked, not worth tracking.
 
-## The row protocol
-
-Left and right are separate exercises that share a machine. Log them separately.
-
-**Left** — progress normally. The "70kg" figure carried in older notes predates the
-September 2025 form change; the only 2026 row session (20 Aug) put both sides in at
-50kg. Re-establish where the left actually is before assuming a gap.
-
-**Right** — start at the heaviest genuinely pain-free load. Three green lights held for
-two consecutive weeks → +2.5kg. Any red → back to the last green load and stay there.
-
-**Where it stands, 2026-09-20.** The count has reset after the 4/10 on 09-17. Readings
-run: 3/10 (09-03), 2/10 (09-10), 4/10 (09-13, seated row — different machine), 4/10
-(09-17, iso-lateral), 4/10 (09-20, calisthenics session, no row). Three ambers in eight
-days across three different movements, same side, same number. **50kg, zero greens since
-the reset.** Nothing changes until it reads green twice running.
-
-Raise the pattern with his physio. This file does not get an opinion about the tissue,
-and their guidance overrides everything here.
-
-**2026-09-24: both sides at 55kg × 8, 8, right side 3/10 — the first green since
-09-10.** He gave the reading after the import. Strong has no pain field, and the Import
-tab didn't have one until that day. He moved the right from 50 to 55kg himself. It read
-green, so **55kg is now the right's load: greens at 55, 1 of 3.** Three held over two
-weeks earns 57.5kg. An amber sends it back to 50kg, the last green before this. The left
-is prescribed at 60kg (60 × 8, 8 on 09-17). Don't hold it at 55 to match the right.
-
-**2026-10-01: still 1 of 3 at 55kg.** No iso-lateral row since 09-24. The right side
-read 0/10 on 09-26 (chest-supported row), 0/10 on 09-27 (no pulling) and 1/10 on 09-28
-(pull-ups, +5kg). All green, but none on this row, so none counts toward the gate.
-Thursday 10-01 is the next reading.
-
-**2026-10-02: reset, right back to 50kg, 0 of 3.** Thursday 10-01 read 6/10, the
-highest reading in the log. He ran the seated cable row (57kg × 10, 10, 10), not the
-iso-lateral row. Off-row greens don't count toward the gate, but an amber this size on
-the right side isn't something to read past, so it resets. The same was done in
-September, when ambers on three different movements reset the count. This is the
-conservative reading, and his physio can overrule it. Three greens held over two weeks
-at 50kg earns 52.5kg. The left holds 60kg. Pull-ups on Monday go back to bodyweight
-unless Saturday and Sunday read 3/10 or under. *Superseded the same day: he said the 6/10
-came on the seated cable row. That makes the reset a straight row reading, and it stands.
-The pull-ups are cleared, so Monday keeps +5kg under the usual in-set rule.*
-
-| Green light | Means |
-|---|---|
-| Pain ≤ 3/10 during the set | Present, not sharp, doesn't change how you move |
-| Baseline within 24h | Next morning feels like any other |
-| Not creeping week to week | Compare to a fortnight ago, not yesterday |
-
-This framework comes from Achilles tendinopathy research, not muscle strain. It is an
-adaptation and the physio should sign off on it.
-
 ## Progression
 
 - **Incline bench** — +2.5kg once every working set hits 8. His last set is always a
@@ -430,8 +385,7 @@ adaptation and the physio should sign off on it.
   **Fired by 2026-09-24:** 27, 29, 27, 28, 27 across 09-13 → 09-24. It was held until
   the right lat read green, because goals.md puts injury first. It read 3/10 on the 09-24
   row, so **+5kg goes on at Upper A** (all-out day) from 2026-09-28. Upper B stays
-  bodyweight at AMRAP−2. If the right side reads 4+ during weighted sets, the weight
-  comes off for the rest of the session.
+  bodyweight at AMRAP−2.
   **2026-10-01:** he put +8kg on Thursday's pull-ups (8, 8, 8) and the session read
   6/10, but on the seated cable row, not the pull-ups (his answer, 10-02). Monday keeps
   +5kg; Thursday stays bodyweight.
@@ -440,10 +394,10 @@ adaptation and the physio should sign off on it.
   the 6/10 that day came on the row. A load he moved to himself, with no pain on it,
   becomes the load. The right row's 55kg was handled the same way on 09-24.
 - **RDL** — +2.5kg once all three sets hit 8. 80kg from 2026-10-02, where he took it.
-  If the right lat talks, back to 70kg (8, 8, 8 on 09-12).
 - **Squat** — hold 70kg. +2.5kg once 10 holds across all three sets AND no joint
   complaints.
-- **Iso-lateral row (right)** — governed by the row protocol, not by rep targets.
+- **Iso-Lateral Row (Machine)** — +2.5kg once all three sets hit 10. 40kg from the
+  10-22 baseline.
 - **Everything else** — at the top of the rep range on all sets for two consecutive
   sessions → add the smallest increment available.
 
@@ -483,10 +437,6 @@ rotation to lose track of — improves the rate.
 
 Open questions and full working live in `docs/findings.md`. Short version:
 
-- **Right lat**: 6/10 on 2026-10-01, the highest reading in the log, after three ambers
-  in eight days across three movements in September. The physio's call. **Which lift the
-  6/10 came on:** the seated cable row, 57kg (his answer, 2026-10-02).
-  The 50kg iso-lateral ceiling — pain-limited or detraining-limited — is unanswered.
 - **Deadlift 24h before Friday football**: moved to Upper B on 2026-10-02 (his call).
   Whether Fridays feel it is his to report; the log can't see football.
 - **Cable crossover load**: set at 12.5kg on 2026-10-01, from 12.5kg × 12 on 09-07, if
@@ -514,7 +464,6 @@ was decided and why, so the next session inherits the reasoning.
 - **Every new export** into `data/` — reconcile the log, re-run `analyse.py`, and come
   back with what moved, what stalled, and one proposal. See `docs/workflows.md`.
 - **Any lift stalled three sessions or more** — propose something, don't note it.
-- **Any green-light streak on the right row** — three held over two weeks earns +2.5kg.
 - **A session repeatedly skipped** — ask why before cutting it.
 
 **Everything goes to `main`** — his instruction, 2026-09-10. Branch only if he asks.
@@ -536,7 +485,7 @@ added on top.
 
 | Exercise | Slot | What it is for |
 |---|---|---|
-| Chest-Supported Row | **In trial, Upper C slot 2** — he started it 09-26, run 1 of 4 | Removes torso English from the row — may load the right lat with less pain. |
+| Chest-Supported Row | **In trial, Upper C slot 2** — he started it 09-26, run 2 of 4 on 10-04 | Removes torso English from the row. |
 | Nordic Curl (eccentric) | Lower slot 4, displacing Leg Curl | Best-evidence hamstring protection for football. Start at 2×4. |
 | Weighted Dips | Upper B slot 4 | Once bodyweight dips hit 12, 12, 12 for three sessions. 1 of 3 on 2026-10-01. |
 | Ab Wheel | Upper C slot 6 or Lower slot 6 | Harder core option once hanging leg raises are easy. |

@@ -77,15 +77,15 @@ handle now, an inbox file you drain when you next see it.
    something changed. Two passes: update the slots this session touched, then **work out
    what the template says he trains next — Upper A, Upper B, Upper C or Lower — and make
    that whole session current**, because it is the one he opens at the gym (his
-   instruction, 2026-09-17). An Upper B that ends with a bad pain reading should change
-   the Upper C that follows it; that is the whole point. Update the `RX` object in
+   instruction, 2026-09-17). An Upper B that ends badly — a missed band, a note about how
+   something felt — should change the Upper C that follows it; that is the whole point. Update the `RX` object in
    `index.html`, bump `RX.asof`, commit to `main` and push.
    **The page is static HTML on GitHub Pages — the prescriptions only move when you
    move them.** Set `RX.after` to the session ("YYYY-MM-DD Name") and write `RX.note`.
    The page shows both, and the Re-prescribe Action uses `RX.after` to tell what is
    still pending. Procedure in `docs/workflows.md`.
-4. **Reply in two sentences**, flagging only what earns it: right-side row load and
-   whether he noted pain, whether pull-ups were first on pull day, a lift that moved up
+4. **Reply in two sentences**, flagging only what earns it: whether pull-ups were first
+   on pull day, a lift that moved up
    or has stalled 3+ sessions. Nothing notable → say nothing.
 
 **Automated post-session processing.** When a session is saved from the phone page:
@@ -128,10 +128,11 @@ live in `docs/workflows.md` — read it when one comes up, not before.
   burnout after heavy incline bench). The slot goes to rear delts. Don't reintroduce it.
 - **Flat barbell bench was dropped** deliberately to prioritise incline; flat DB press
   covers the mid-chest pattern instead.
-- **Right lat injury since June 2026**, under physiotherapy care. He declined imaging.
-  **Their guidance overrides anything in this repo.** The old "left 70kg / right 50kg"
-  split is not established by any 2026 data — treat the gap as unmeasured until he logs
-  both sides on the same machine.
+- **The right lat is not programmed around** (his call, 2026-10-29): "not exactly
+  recovered" but he no longer restricts himself by it, and where he is now is the
+  baseline. No pain rating, no left/right row, no row protocol, no gates. Don't
+  reintroduce any of it. Pain readings and L/R loads in older log entries are history;
+  if he mentions pain, take it as he gives it.
 - **A load reset after a form change is not a decline.** The Sep 2025 row (80→70→60kg),
   the straight-arm pulldown (09-10) and the reverse fly (09-13) are all him changing how
   he moves and resetting the weight to match. Ask before calling any drop a regression.
@@ -140,8 +141,6 @@ live in `docs/workflows.md` — read it when one comes up, not before.
 
 - **Order beats content.** Pull-ups at position 2 → 27 reps; same month at position 5 →
   15. Session order is programming, not a detail.
-- **Left and right lat are separate lifts.** The left progresses; the right is governed
-  by pain. Never hold the left back to match the right.
 - **Never compare loads across machines — machine identity is part of the measurement.**
   A substitute row is not a reading on the iso-lateral row, and leg press numbers don't
   transfer between stations. This error has been made twice; see `docs/incidents.md`.
@@ -178,7 +177,7 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `drain.py` | Transcribes inbox JSON → `log.md`, updates `state.json`. Run it, don't hand-parse. |
 | `represcribe.py` | Unattended re-prescription after a phone save: `pending` / `prompt` / `finish`. Used by the training-night routine (`docs/workflows.md`). The brief is `docs/represcribe-prompt.md`. |
 | `prescribe.py` | Retired no-op. It bumped `RX.asof` without re-prescribing. `drain.yml` still calls it. |
-| `state.json` | Compact briefing: last session, next session, all slot prescriptions, row protocol. Read this instead of `plan.md` + `index.html` in logging mode. |
+| `state.json` | Compact briefing: last session, next session, all slot prescriptions. Read this instead of `plan.md` + `index.html` in logging mode. |
 | `analyse.py` | Full analysis of a Strong export. Monthly, not per session. |
 | `history.py` | Strong export → `data/history.json` (everything before `log.md` begins), the full history the Progress tab reads. Rerun when a new export lands. |
 | `data/` | Strong CSV exports, and `history.json` built from them. Never read either directly. |
