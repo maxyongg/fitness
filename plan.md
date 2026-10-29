@@ -97,6 +97,8 @@ anything.
 
 **10-26 Upper A, done.** Pain 1/10, and Thursday 10-22 was 1/10, so the pull-up +5kg gate is cleared: +5kg from the next Upper A (11-02). Incline 60 × 8, 65 × 8, 8, then 45 × 10 (tired, 67.5kg not tried; stays the ask, 65kg fallback). Chest fly 65 × 10, 10, 4 then 57.5 × 4 and lateral raise 8 × 15, 15 then 7 × 15: he was tired and working the eccentric, so loads hold, not a decline. Reverse fly 42.5 × 10 ×3 holds (45 after 12s). Triceps pull 10 × 10 ×3 holds (12s earn the next step). Hollow hold and plank 30s ×3, push-ups 15 ×3. Upper B 10-29 unchanged at the table loads.
 
+**10-29 Upper B, done.** Deadlift 40 × 8, 70 × 8, then 80 × 6, 6: past the 70kg ask and the 72.5kg step, so 80kg is now the load (75kg if it grinds). Row 40 × 8 ×3 and straight-arm pulldown 17.5 × 10 ×3 both hold for a second week. Pull-ups +8 × 7, 6, BW × 6, his pick; the prescription stays bodyweight. Weighted dips +10 × 8 ×3 (his pick, prescription stays BW). Crossover 11.25 × 12 ×3 topped the band, so 12.5kg returns. Barbell curl 30 × 8, 8, 7 for the second Thursday running, so it takes the biceps slot (cable stays in the swaps). Upper C 10-31 comes off re-entry: press 28, row 18 (trial run 3 of 4), raises 8, face pull 17.5, hammer curl 16, leg raise 2 × 10–12.
+
 **From 26 Oct:** each lift goes back to its load in the session tables, full sets, if
 every re-entry set landed with 2 in reserve. A lift that ground, or that missed the
 bottom of its band, gets one more week at its re-entry load. A pain reading of 4 or more
@@ -185,13 +187,13 @@ The pull-heavy upper day, and the week's deadlift. Deadlift first, pull-ups seco
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **70kg** |
+| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **80kg** |
 | 2 | **Anchor** | Pull Up | 3 × AMRAP−2 | bodyweight |
 | 3 | **Anchor** | Iso-Lateral Row (Machine), both arms | 3 × 8–10 | **40kg** |
 | 4 | Rotate — vertical pull | **Straight Arm Pulldown** · Lat Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 10–12 | **17.5kg** |
 | 5 | Rotate — push compound | **Triceps Dip** · ★ Weighted Dips | 3 × 8–12 | bodyweight |
 | 6 | Rotate — chest isolation | **Cable Crossover** · Single Arm Cable Chest Fly · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | **12.5kg** |
-| 7 | Rotate — biceps | **Bicep Curl (Cable)** · Bicep Curl (Barbell) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **10kg** |
+| 7 | Rotate — biceps | **Bicep Curl (Barbell)** · Bicep Curl (Cable) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **30kg** |
 
 **AMRAP−2 on pull-ups**, not AMRAP. This is the second pull-up session of the week —
 two full AMRAP sessions 72h apart is more joint stress than the frequency warrants. Two
@@ -248,7 +250,7 @@ The rounding day. Picks up everything the other two sessions don't hit twice a w
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | Rotate — press | **Bench Press (Dumbbell)** | 3 × 10–12 | **26kg** |
+| 1 | Rotate — press | **Bench Press (Dumbbell)** | 3 × 10–12 | **28kg** |
 | 2 | Rotate — horizontal pull | **Chest Supported Row** (trial, run 2 of 4 on 10-03) | 3 × 10–12 | **18kg** |
 | 3 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
 | 4 | Rotate — rear delt | **Face Pull** · Reverse Fly (Machine) · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |

@@ -183,14 +183,14 @@
         ]
       },
       {
-        "name": "Bicep Curl (Cable)",
+        "name": "Bicep Curl (Barbell)",
         "type": "rotate",
         "sets": 2,
         "reps": "8-10",
-        "load": 10,
+        "load": 30,
         "unit": "kg",
         "alts": [
-          "Bicep Curl (Barbell)",
+          "Bicep Curl (Cable)",
           "Preacher Curl",
           "Hammer Curl",
           "Incline Curl"
@@ -331,7 +331,7 @@
     ]
   },
   "rx_asof": "2026-10-29",
-  "rx_after": "2026-10-26 Upper A",
+  "rx_after": "2026-10-29 Upper B",
   "flags": [
     "Pull-up: top set 7, total 19"
   ]
