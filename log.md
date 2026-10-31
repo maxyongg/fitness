@@ -734,6 +734,11 @@ pain(R): 1/10
 - Hammer Curl (Dumbbell) — 16kg × 8, 8, 8
 - Hanging Leg Raise — bodyweight × 10, 10
 
+<!-- Re-prescribed 2026-10-31 after Upper C. Press 28 x 8, 10, 10 holds (12s earn 30kg). Row 18 x 10 x3 holds,
+     last trial run next. Face pull 17.5 x 15 x3 is the first top of the band, one more earns 20kg. Hammer curl
+     16 x 8 x3 after 10s: one reading, holds. Cable raise 5 x 8 is its own scale (dumbbell is Monday). Lower 11-01
+     stays on re-entry loads, first legs in four weeks. -->
+
 ## 2026-10-30 · Fri · Football
 effort: 7/10 | 80 min | load: 560 | 9-a-side, ICS@Clementi
 

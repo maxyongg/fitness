@@ -92,12 +92,14 @@ anything.
 | Upper B | Deadlift 62.5 (70) · pull-ups BW · row L 52.5 (60), R 50 (50) · straight-arm pulldown 15 (17.5) · dips BW, 2 × 8–10 · crossover 10 (12.5) · cable curl 7.5 (10) |
 
 **10-22 Upper B, done.** Deadlift 70 × 8, 8, 8 (above the 62.5 asked; no increase off a re-entry session, so 70 holds, 72.5 next if easy), pull-ups BW × 10, 8, 8, straight-arm pulldown 17.5 × 10 ×3 (back to the table load), dips 12, 10, push-ups 20, 15 instead of crossover, barbell curl 30 × 8, 26 × 8. Row ran bilateral on Iso-Lateral Row (Machine) at 40 × 8 ×3 after he changed form: a reset after a form change, not a decline, and no reading on the gated single-arm row (gate stays 0 of 3, L 52.5 and R 50 hold one more week). Pain 1/10 on Thursday; Monday still has no number, so the pull-up +5kg gate on 10-26 is half answered. Cable curl returns to 10kg, crossover stays 10kg since it did not run.
-| Upper C | DB press 24 (28) · chest-supported row 16 (18), trial run 3 of 4 · lateral raise 7 (8) · face pull 15 (17.5) · hammer curl 14 (16) · hanging leg raise 2 × 8–10 |
+| Upper C | DB press 28 · chest-supported row 18, last trial run (4 of 4) · lateral raise (cable 5 / dumbbell 8) · face pull 17.5 · hammer curl 16 · hanging leg raise 2 × 10–12 (off re-entry 10-31) |
 | Lower | Squat 62.5 (70) · RDL 70 (80) · leg extension 7.5 (10) · leg curl 7.5 (10) · calves 35 (40) · hanging leg raise 2 × 8–10 |
 
 **10-26 Upper A, done.** Pain 1/10, and Thursday 10-22 was 1/10, so the pull-up +5kg gate is cleared: +5kg from the next Upper A (11-02). Incline 60 × 8, 65 × 8, 8, then 45 × 10 (tired, 67.5kg not tried; stays the ask, 65kg fallback). Chest fly 65 × 10, 10, 4 then 57.5 × 4 and lateral raise 8 × 15, 15 then 7 × 15: he was tired and working the eccentric, so loads hold, not a decline. Reverse fly 42.5 × 10 ×3 holds (45 after 12s). Triceps pull 10 × 10 ×3 holds (12s earn the next step). Hollow hold and plank 30s ×3, push-ups 15 ×3. Upper B 10-29 unchanged at the table loads.
 
 **10-29 Upper B, done.** Deadlift 40 × 8, 70 × 8, then 80 × 6, 6: past the 70kg ask and the 72.5kg step, so 80kg is now the load (75kg if it grinds). Row 40 × 8 ×3 and straight-arm pulldown 17.5 × 10 ×3 both hold for a second week. Pull-ups +8 × 7, 6, BW × 6, his pick; the prescription stays bodyweight. Weighted dips +10 × 8 ×3 (his pick, prescription stays BW). Crossover 11.25 × 12 ×3 topped the band, so 12.5kg returns. Barbell curl 30 × 8, 8, 7 for the second Thursday running, so it takes the biceps slot (cable stays in the swaps). Upper C 10-31 comes off re-entry: press 28, row 18 (trial run 3 of 4), raises 8, face pull 17.5, hammer curl 16, leg raise 2 × 10–12.
+
+**10-31 Upper C, done.** DB press 24 warm-up, then 28 × 8, 10, 10 (up from 8, 8, 8): holds, 12s earn 30kg. Chest-supported row 18 × 10 ×3 for the second run at this load; run 4 of 4 is 11-07, then keep or drop. Face pull 17.5 × 15 ×3, the first top of the band: the two-session rule means one more before 20kg. Hammer curl 16 × 8 ×3 after 10, 10, 10 on 10-04: one reading, holds (14kg if the first set is under 8). Lateral raise ran as the cable, 5 × 8 ×3 after 10s on 10-04; he does the dumbbell on Mondays (his words), so Saturday and Monday are two scales, not a swap. Lower 11-01 stays on the re-entry loads, his first legs in four weeks.
 
 **From 26 Oct:** each lift goes back to its load in the session tables, full sets, if
 every re-entry set landed with 2 in reserve. A lift that ground, or that missed the
@@ -251,7 +253,7 @@ The rounding day. Picks up everything the other two sessions don't hit twice a w
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
 | 1 | Rotate — press | **Bench Press (Dumbbell)** | 3 × 10–12 | **28kg** |
-| 2 | Rotate — horizontal pull | **Chest Supported Row** (trial, run 2 of 4 on 10-03) | 3 × 10–12 | **18kg** |
+| 2 | Rotate — horizontal pull | **Chest Supported Row** (trial, run 3 of 4 on 10-31; run 4 next) | 3 × 10–12 | **18kg** |
 | 3 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
 | 4 | Rotate — rear delt | **Face Pull** · Reverse Fly (Machine) · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |
 | 5 | Rotate — arms | **Hammer Curl** · Bicep Curl (Barbell) · Preacher Curl | 3 × 10–12 | **14kg** |
