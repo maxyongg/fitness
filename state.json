@@ -326,5 +326,15 @@
   },
   "rx_asof": "2026-10-29",
   "rx_after": "2026-10-29 Upper B",
-  "flags": []
+  "flags": [],
+  "last_football": {
+    "played": true,
+    "format": "9-a-side",
+    "venue": "ICS@Clementi",
+    "minutes": 80,
+    "effort": 7,
+    "load": 560,
+    "date": "2026-10-30",
+    "notes": ""
+  }
 }
