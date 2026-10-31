@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-30",
+  "session": "Football",
+  "session_id": "football",
+  "exercises": [],
+  "football": {
+    "played": true,
+    "format": "9-a-side",
+    "venue": "ICS@Clementi",
+    "minutes": 80,
+    "effort": 7,
+    "load": 560
+  },
+  "notes": ""
+}
