@@ -726,6 +726,14 @@ pain(R): 1/10
      goes back to 12.5kg. Barbell curl twice in a row takes the biceps slot. Weighted dips and +8kg
      pull-ups were his picks, prescriptions unchanged. Upper C 10-31 back to table loads. -->
 
+## 2026-10-31 · Sat · Upper C
+- Bench Press (Dumbbell) — 24kg × 8 (warm-up), 28kg × 8, 10, 10
+- Chest Supported Row — 18kg × 10, 10, 10
+- Lateral Raise (Cable) — 5kg × 8, 8, 8
+- Face Pull (Cable) — 17.5kg × 15, 15, 15
+- Hammer Curl (Dumbbell) — 16kg × 8, 8, 8
+- Hanging Leg Raise — bodyweight × 10, 10
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

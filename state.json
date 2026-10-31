@@ -1,60 +1,54 @@
 {
-  "_generated": "2026-10-29T04:07:34",
+  "_generated": "2026-10-31T04:44:17",
   "_by": "drain.py",
   "last_session": {
-    "date": "2026-10-29",
-    "type": "upper_b",
-    "name": "Upper B",
-    "exercise_count": 7,
+    "date": "2026-10-31",
+    "type": "upper_c",
+    "name": "Upper C",
+    "exercise_count": 6,
     "top_sets": [
       {
-        "name": "Deadlift (Barbell)",
-        "weight": 40,
-        "best_reps": 8,
+        "name": "Bench Press (Dumbbell)",
+        "weight": 24,
+        "best_reps": 10,
         "set_count": 4
       },
       {
-        "name": "Pull Up",
-        "weight": "BW+8",
-        "best_reps": 7,
-        "set_count": 3
-      },
-      {
-        "name": "Iso-Lateral Row (Machine)",
-        "weight": 40,
-        "best_reps": 8,
-        "set_count": 3
-      },
-      {
-        "name": "Straight Arm Pulldown",
-        "weight": 17.5,
+        "name": "Chest Supported Row",
+        "weight": 18,
         "best_reps": 10,
         "set_count": 3
       },
       {
-        "name": "Triceps Dip",
-        "weight": "BW+10",
+        "name": "Lateral Raise (Cable)",
+        "weight": 5,
         "best_reps": 8,
         "set_count": 3
       },
       {
-        "name": "Cable Crossover",
-        "weight": 11.25,
-        "best_reps": 12,
+        "name": "Face Pull (Cable)",
+        "weight": 17.5,
+        "best_reps": 15,
         "set_count": 3
       },
       {
-        "name": "Bicep Curl (Barbell)",
-        "weight": 30,
+        "name": "Hammer Curl (Dumbbell)",
+        "weight": 16,
         "best_reps": 8,
         "set_count": 3
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "weight": "BW",
+        "best_reps": 10,
+        "set_count": 2
       }
     ]
   },
   "next_session": {
-    "type": "upper_c",
-    "name": "Upper C",
-    "expected_date": "2026-10-31"
+    "type": "lower",
+    "name": "Lower",
+    "expected_date": "2026-11-01"
   },
   "slots": {
     "upper_a": [
@@ -332,7 +326,5 @@
   },
   "rx_asof": "2026-10-29",
   "rx_after": "2026-10-29 Upper B",
-  "flags": [
-    "Pull-up: top set 7, total 19"
-  ]
+  "flags": []
 }
