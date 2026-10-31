@@ -164,6 +164,35 @@ stall, and not something he can fix from a phone. Instead:
 The next session that can reach the repo appends it to `log.md`, deletes the inbox
 file in the same commit, and pushes.
 
+## Apple Health: `data/health.json`
+
+He wears an Apple Watch for football and some lifting (from 2026-10-30). The phone page
+imports it with no Claude session involved: Health app → profile picture → Export All
+Health Data → Save to Files, then the page's Import tab → Apple Health → pick the zip.
+The page reads the export **on the phone** and commits only workout summaries to
+`data/health.json`: date, times, type, app, minutes, kcal, km, and the watch's heart
+rate (Apple's average/min/max plus minutes per 10-bpm band). The raw export never
+reaches the repo, which is public. Don't ask for it, and don't add daily data (resting
+HR, HRV, sleep, weight) to the file without asking him first.
+
+Each export is the phone's full history, so re-importing is safe: entries merge on
+date + start + type + app. Workouts that Strong wrote to Health come along without heart
+rate; History → Watch and `health.py` hide them unless asked (`--all`).
+
+- **Reading it:** `python3 health.py` (last 12 weeks; `--since`, `--all`). Football
+  rows carry the log's effort and load, lifting rows the log's session name.
+- **Football** is the Soccer type, or any workout that fills 45+ minutes of a
+  `RX.football` slot.
+- **`min` is workout time, which excludes pauses**; start-end is elapsed. The 10-30
+  match was 102 min of workout time across 116 min elapsed. The log's 80 min is minutes
+  on the pitch by format, a different number. Don't reconcile them.
+- **The bands assume no max HR or zones.** If zones ever matter, ask him. Don't
+  estimate a max from age.
+- A Fitness-app screenshot carries the same numbers as the export, minus the bands.
+  Read it if he sends one; the next import brings in the record itself.
+
+Heart rate is context for the lifts around football, not a target.
+
 ## Monthly: a new export lands in `data/`
 
 When he drops a fresh Strong CSV export in `data/`:

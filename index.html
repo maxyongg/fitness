@@ -295,6 +295,15 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .hist-note { font-size: 13px; color: var(--ink-2); font-style: italic; padding-top: 6px; }
 .hist-ex .exn { color: var(--amber); font-style: italic; font-size: 12px; }
 .empty { text-align: center; color: var(--ink-3); font-size: 14px; line-height: 1.6; padding: 40px 0; }
+.hrh { font-family: var(--font-m); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-3); padding: 10px 0 4px; }
+.hrb { display: flex; align-items: center; gap: 8px; padding: 2px 0; font-family: var(--font-m); font-size: 11px;
+  color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.hrb span { flex: 0 0 28px; text-align: right; }
+.hrb div { flex: 1; }
+.hrb i { display: block; height: 8px; min-width: 2px; border-radius: 4px; background: var(--accent); }
+.hrb em { flex: 0 0 52px; font-style: normal; color: var(--ink-2); }
+#health-result { margin-top: 10px; }
 
 /* ---- import ---- */
 .import-area { min-height: 170px; font-family: var(--font-m); font-size: 14px; }
@@ -480,6 +489,14 @@ input[type=number] { -moz-appearance: textfield; }
         <button class="icon-btn" onclick="dismissDebrief('debrief-import')" aria-label="Dismiss">&times;</button></div>
       <div class="debrief-b"></div>
     </div>
+
+    <div class="sec">Apple Health</div>
+    <p class="page-sub">Health app &rarr; your picture &rarr; Export All Health Data &rarr; Save to Files. Pick the zip here.
+      It is read on this phone. Only workout summaries are saved, to <span class="mono">data/health.json</span>: time,
+      type, calories, distance and the watch&rsquo;s heart rate. No routes, sleep, resting heart rate or anything else.</p>
+    <input type="file" id="health-file" accept=".zip,.xml,application/zip,text/xml" hidden onchange="importHealth(this.files[0]); this.value = ''">
+    <button class="btn btn-ghost" id="health-btn" onclick="document.getElementById('health-file').click()">Choose the export</button>
+    <div id="health-result"></div>
   </div>
 </div>
 
@@ -490,6 +507,7 @@ input[type=number] { -moz-appearance: textfield; }
     <div class="seg" role="tablist">
       <button class="segb active" data-h="sessions" onclick="histTab('sessions')">Sessions</button>
       <button class="segb" data-h="debriefs" onclick="histTab('debriefs')">Debriefs</button>
+      <button class="segb" data-h="watch" onclick="histTab('watch')">Watch</button>
     </div>
     <div id="hist-sessions">
       <p class="page-sub">Sessions saved from this phone.</p>
@@ -504,6 +522,11 @@ input[type=number] { -moz-appearance: textfield; }
     <div id="hist-debriefs" hidden>
       <p class="page-sub">Every debrief and what you said back. Saved to the repo in <span class="mono">debriefs/</span>.</p>
       <div id="debrief-list"></div>
+    </div>
+    <div id="hist-watch" hidden>
+      <p class="page-sub">Workouts the watch recorded, from the last Apple Health import (Import tab).</p>
+      <div id="watch-list"></div>
+      <p class="foot" id="watch-foot"></p>
     </div>
   </div>
 </div>
@@ -953,7 +976,11 @@ function switchView(v) {
   document.querySelectorAll(".view").forEach(function(el) { el.classList.remove("active"); });
   document.getElementById("view-" + v).classList.add("active");
   document.querySelectorAll(".nav-item").forEach(function(el) { el.classList.toggle("active", el.dataset.view === v); });
-  if (v === "history") { renderHistory(); if (histMode === "debriefs") { renderDebriefList(); syncDebriefs(); } }
+  if (v === "history") {
+    renderHistory();
+    if (histMode === "debriefs") { renderDebriefList(); syncDebriefs(); }
+    if (histMode === "watch") loadWatch();
+  }
   if (v === "progress") loadProgress();
   window.scrollTo(0, 0);
 }
@@ -1791,7 +1818,9 @@ function histTab(mode) {
   document.querySelectorAll(".segb[data-h]").forEach(function(b) { b.classList.toggle("active", b.dataset.h === mode); });
   document.getElementById("hist-sessions").hidden = mode !== "sessions";
   document.getElementById("hist-debriefs").hidden = mode !== "debriefs";
+  document.getElementById("hist-watch").hidden = mode !== "watch";
   if (mode === "debriefs") { renderDebriefList(); syncDebriefs(); }
+  if (mode === "watch") loadWatch();
 }
 
 function renderDebriefList(openKey) {
@@ -2674,6 +2703,401 @@ function clearImport() {
   importDate = null;
   importTitle = null;
   importSid = null;
+}
+
+/* ---- apple health ----
+
+   The Health app's "Export All Health Data" is one zip holding everything the phone has
+   recorded: years of steps, sleep, resting heart rate, routes. It is read here, on the
+   phone, and only workout summaries leave it, as data/health.json in a public repo. Each
+   workout gives when, what, how long, calories, distance and the watch's heart rate:
+   Apple's average/min/max plus minutes in 10-bpm bands. The bands let zones be drawn later
+   without guessing a max HR. No routes, no daily data, no metadata. History → Watch and
+   health.py read the file.
+
+   The export is a full dump every time, often a few hundred MB unzipped, so it is
+   streamed: the zip's central directory locates export.xml, DecompressionStream inflates
+   it, and the XML is scanned tag by tag without ever being held whole. Heart-rate records
+   come before workouts in the file, so the watch's readings are kept as a compact array
+   and matched to each workout at the end.                                                  */
+var healthOut = null;
+var HK_HR = 'Record type="HKQuantityTypeIdentifierHeartRate"';
+var HK_ATTR = /([A-Za-z]+)="([^"]*)"/g;
+var STRENGTH_TYPES = /^(Traditional|Functional) Strength Training$/;
+
+/* "2026-10-30 20:05:12 +0800" → epoch ms. Hot path: a few hundred thousand of these. */
+function hkTime(s) {
+  var t = Date.UTC(+s.substr(0, 4), +s.substr(5, 2) - 1, +s.substr(8, 2), +s.substr(11, 2), +s.substr(14, 2), +s.substr(17, 2));
+  var off = (+s.substr(21, 2) * 60 + +s.substr(23, 2)) * 60000;
+  return s.charAt(20) === "-" ? t + off : t - off;
+}
+
+function hkAttrs(tag) {
+  var a = {}, m;
+  HK_ATTR.lastIndex = 0;
+  while ((m = HK_ATTR.exec(tag))) a[m[1]] = m[2].replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, "&");
+  return a;
+}
+
+/* Finds one entry in a zip by its central directory, zip64 included, without reading the rest. */
+async function zipEntry(file, want) {
+  var read = async function(a, b) { return new DataView(await file.slice(a, b).arrayBuffer()); };
+  var tailFrom = Math.max(0, file.size - 65557 - 20);
+  var tail = await read(tailFrom, file.size), e = -1;
+  for (var i = tail.byteLength - 22; i >= 0; i--) if (tail.getUint32(i, true) === 0x06054b50) { e = i; break; }
+  if (e < 0) throw new Error("That isn't a zip file");
+  var cdSize = tail.getUint32(e + 12, true), cdOff = tail.getUint32(e + 16, true);
+  if ((cdSize === 0xffffffff || cdOff === 0xffffffff || tail.getUint16(e + 10, true) === 0xffff)
+      && e >= 20 && tail.getUint32(e - 20, true) === 0x07064b50) {
+    var at = Number(tail.getBigUint64(e - 12, true)), z = await read(at, at + 56);
+    if (z.getUint32(0, true) !== 0x06064b50) throw new Error("Damaged zip");
+    cdSize = Number(z.getBigUint64(40, true));
+    cdOff = Number(z.getBigUint64(48, true));
+  }
+  var cd = await read(cdOff, cdOff + cdSize), p = 0, dec = new TextDecoder();
+  while (p + 46 <= cd.byteLength && cd.getUint32(p, true) === 0x02014b50) {
+    var method = cd.getUint16(p + 10, true), csize = cd.getUint32(p + 20, true), usize = cd.getUint32(p + 24, true);
+    var nlen = cd.getUint16(p + 28, true), xlen = cd.getUint16(p + 30, true), clen = cd.getUint16(p + 32, true);
+    var off = cd.getUint32(p + 42, true);
+    var name = dec.decode(new Uint8Array(cd.buffer, p + 46, nlen));
+    /* zip64 extra field: 64-bit values, present only for the 32-bit fields set to 0xffffffff */
+    for (var x = p + 46 + nlen, xEnd = x + xlen; x + 4 <= xEnd; x += 4 + cd.getUint16(x + 2, true)) {
+      if (cd.getUint16(x, true) !== 1) continue;
+      var q = x + 4;
+      if (usize === 0xffffffff) { usize = Number(cd.getBigUint64(q, true)); q += 8; }
+      if (csize === 0xffffffff) { csize = Number(cd.getBigUint64(q, true)); q += 8; }
+      if (off === 0xffffffff) off = Number(cd.getBigUint64(q, true));
+    }
+    if (want(name)) {
+      var lh = await read(off, off + 30);
+      if (lh.getUint32(0, true) !== 0x04034b50) throw new Error("Damaged zip");
+      return { method: method, start: off + 30 + lh.getUint16(26, true) + lh.getUint16(28, true), size: csize };
+    }
+    p += 46 + nlen + xlen + clen;
+  }
+  return null;
+}
+
+async function importHealth(file) {
+  if (!file) return;
+  var el = document.getElementById("health-result"), btn = document.getElementById("health-btn");
+  healthOut = null;
+  btn.disabled = true;
+  el.innerHTML = '<p class="foot" id="health-prog">Opening the export&hellip;</p>';
+  try {
+    if (typeof TextDecoderStream === "undefined") throw new Error("This browser can't stream files. Update iOS and try again.");
+    var head = new Uint8Array(await file.slice(0, 4).arrayBuffer());
+    var isZip = (head[0] === 0x50 && head[1] === 0x4b) || /\.zip$/i.test(file.name), src, size;
+    if (isZip) {
+      var ent = await zipEntry(file, function(n) { return /(^|\/)export\.xml$/.test(n); });
+      if (!ent) throw new Error("No export.xml in that zip. Is it the Apple Health export?");
+      if (ent.method === 8 && typeof DecompressionStream === "undefined")
+        throw new Error("This browser can't unzip. Tap the zip in Files to unzip it, then pick export.xml from the folder.");
+      if (ent.method !== 0 && ent.method !== 8) throw new Error("Unsupported zip compression (" + ent.method + ")");
+      src = file.slice(ent.start, ent.start + ent.size).stream();
+      size = ent.size;
+    } else {
+      src = file.stream();
+      size = file.size;
+    }
+    var done = 0, prog = document.getElementById("health-prog");
+    src = src.pipeThrough(new TransformStream({ transform: function(c, ctl) { done += c.byteLength; ctl.enqueue(c); } }));
+    if (isZip && ent.method === 8) src = src.pipeThrough(new DecompressionStream("deflate-raw"));
+    var res = await scanHealth(src.pipeThrough(new TextDecoderStream()), function() {
+      prog.textContent = "Reading " + Math.min(99, Math.floor(done / size * 100)) + "%… keep this page open.";
+    });
+    healthOut = { exported: res.exported, workouts: res.workouts };
+    renderHealthFound();
+  } catch (e) {
+    el.innerHTML = '<p class="foot debrief-error">' + esc(e.message || String(e)) + '</p>';
+  }
+  btn.disabled = false;
+}
+
+async function scanHealth(stream, onProgress) {
+  var reader = stream.getReader(), carry = "", exported = "", raw = [], w = null, inAct = false, tick = Date.now();
+  var hrT = new Float64Array(1 << 16), hrV = new Uint8Array(1 << 16), hrN = 0, sorted = true;
+
+  function tag(t) {
+    if (t.charCodeAt(0) === 82) {                                     /* R */
+      if (!t.startsWith(HK_HR) || t.indexOf("Watch") < 0) return;     /* the watch's readings only */
+      var i = t.indexOf(' startDate="'), j = t.indexOf(' value="');
+      if (i < 0 || j < 0) return;
+      var ts = hkTime(t.substr(i + 12, 25)), v = parseFloat(t.substr(j + 8, 8));
+      if (!(ts > 0) || !(v > 0)) return;
+      if (hrN === hrT.length) {
+        var nt = new Float64Array(hrN * 2), nv = new Uint8Array(hrN * 2);
+        nt.set(hrT); nv.set(hrV); hrT = nt; hrV = nv;
+      }
+      if (hrN && ts < hrT[hrN - 1]) sorted = false;
+      hrT[hrN] = ts; hrV[hrN] = Math.min(255, Math.round(v)); hrN++;
+      return;
+    }
+    if (t.startsWith("Workout ")) {
+      w = { a: hkAttrs(t), stats: {}, act: {} };
+      inAct = false;
+      if (/\/>\s*$/.test(t)) { raw.push(w); w = null; }
+      return;
+    }
+    if (!w) {
+      if (t.startsWith("ExportDate ")) exported = (hkAttrs(t).value || "").slice(0, 10);
+      return;
+    }
+    if (t.startsWith("WorkoutStatistics ")) {
+      var a = hkAttrs(t), into = inAct ? w.act : w.stats;
+      if (a.type && !into[a.type]) into[a.type] = a;
+    } else if (t.startsWith("WorkoutActivity ")) inAct = !/\/>\s*$/.test(t);
+    else if (t.startsWith("/WorkoutActivity")) inAct = false;
+    else if (t.startsWith("/Workout>")) { raw.push(w); w = null; }
+  }
+
+  for (;;) {
+    var r = await reader.read();
+    if (r.done) break;
+    carry += r.value;
+    var cut = carry.lastIndexOf("<");
+    if (cut < 0) continue;
+    var parts = carry.slice(0, cut).split("<");
+    carry = carry.slice(cut);
+    for (var k = 0; k < parts.length; k++) if (parts[k]) tag(parts[k]);
+    if (Date.now() - tick > 250) {                                   /* let the progress line paint */
+      onProgress();
+      await new Promise(function(res) { setTimeout(res, 0); });
+      tick = Date.now();
+    }
+  }
+  carry.split("<").forEach(function(t) { if (t) tag(t); });
+
+  var T = hrT.subarray(0, hrN), V = hrV.subarray(0, hrN);
+  if (!sorted) {
+    var idx = Array.from({ length: hrN }, function(_, i) { return i; }).sort(function(a, b) { return T[a] - T[b]; });
+    T = Float64Array.from(idx, function(i) { return T[i]; });
+    V = Uint8Array.from(idx, function(i) { return V[i]; });
+  }
+  var workouts = raw.map(function(x) { return healthWorkout(x, T, V); }).filter(Boolean);
+  workouts.sort(function(a, b) { return (a.date + a.start) < (b.date + b.start) ? -1 : 1; });
+  return { exported: exported, workouts: workouts };
+}
+
+/* One raw <Workout> → its summary. Heart-rate bands weight each reading by the gap to the
+   next one, capped at a minute, so a gap in the readings doesn't count as time at that rate. */
+function healthWorkout(x, T, V) {
+  var a = x.a;
+  if (!a.startDate || !a.endDate || !a.workoutActivityType) return null;
+  var stat = function(type) { return x.stats[type] || x.act[type]; };
+  var type = a.workoutActivityType.replace(/^HKWorkoutActivityType/, "").replace(/([a-z])([A-Z])/g, "$1 $2");
+  var t0 = hkTime(a.startDate), t1 = hkTime(a.endDate);
+  var mins = parseFloat(a.duration);
+  mins = a.durationUnit === "s" ? mins / 60 : a.durationUnit === "hr" ? mins * 60 : mins;
+  if (!(mins > 0)) mins = (t1 - t0) / 60000;
+
+  var out = { date: a.startDate.slice(0, 10), start: a.startDate.slice(11, 16), end: a.endDate.slice(11, 16),
+    kind: "", type: type, source: "", min: Math.round(mins) };
+  var src = a.sourceName || "";
+  out.source = /watch/i.test(src) || /model:Watch/.test(a.device || "") ? "Apple Watch"
+    : /iphone/i.test(src) ? "iPhone" : src.slice(0, 40);
+
+  var en = stat("HKQuantityTypeIdentifierActiveEnergyBurned"), kcal = null;
+  if (en && en.sum) kcal = +en.sum / (en.unit === "kJ" ? 4.184 : 1);
+  else if (a.totalEnergyBurned) kcal = +a.totalEnergyBurned / (a.totalEnergyBurnedUnit === "kJ" ? 4.184 : 1);
+  if (kcal > 0) out.kcal = Math.round(kcal);
+
+  var dist = null, du = "";
+  ["DistanceWalkingRunning", "DistanceCycling", "DistanceSwimming"].some(function(k) {
+    var s = stat("HKQuantityTypeIdentifier" + k);
+    if (s && s.sum) { dist = +s.sum; du = s.unit; }
+    return dist !== null;
+  });
+  if (dist === null && a.totalDistance) { dist = +a.totalDistance; du = a.totalDistanceUnit; }
+  if (dist !== null) dist = du === "mi" ? dist * 1.609344 : du === "m" ? dist / 1000 : du === "yd" ? dist * 0.0009144 : dist;
+  if (dist > 0.05) out.km = Math.round(dist * 10) / 10;
+
+  /* heart rate: the watch's readings inside the workout window */
+  var lo = 0, hi = T.length;
+  while (lo < hi) { var mid = (lo + hi) >> 1; if (T[mid] < t0) lo = mid + 1; else hi = mid; }
+  var bins = {}, n = 0, wsum = 0, vsum = 0, vmin = 999, vmax = 0;
+  for (var i = lo; i < T.length && T[i] <= t1; i++) {
+    var wt = Math.min((i + 1 < T.length && T[i + 1] <= t1 ? T[i + 1] : t1) - T[i], 60000);
+    var b = Math.floor(V[i] / 10) * 10;
+    bins[b] = (bins[b] || 0) + wt;
+    n++; wsum += wt; vsum += V[i] * wt;
+    if (V[i] < vmin) vmin = V[i];
+    if (V[i] > vmax) vmax = V[i];
+  }
+  var hs = stat("HKQuantityTypeIdentifierHeartRate");
+  var have = n >= 2 && wsum > 0;
+  if (hs && hs.average) {
+    out.hr = { avg: Math.round(+hs.average) };
+    if (hs.minimum || have) out.hr.min = Math.round(hs.minimum ? +hs.minimum : vmin);
+    if (hs.maximum || have) out.hr.max = Math.round(hs.maximum ? +hs.maximum : vmax);
+  } else if (have) {
+    out.hr = { avg: Math.round(vsum / wsum), min: vmin, max: vmax };
+  }
+  if (out.hr && have) {
+    out.hr.n = n;
+    out.hr.bins = {};
+    Object.keys(bins).sort(function(p, q) { return p - q; }).forEach(function(k) {
+      var m = Math.round(bins[k] / 6000) / 10;
+      if (m >= 0.1) out.hr.bins[k] = m;
+    });
+  }
+  out.kind = healthKind(out);
+  return out;
+}
+
+/* Football is the Soccer type, or anything that fills most of a football slot (a match
+   recorded as Other still counts). Lifting is the strength types. */
+function healthKind(w) {
+  if (w.type === "Soccer") return "football";
+  if (STRENGTH_TYPES.test(w.type)) return "lifting";
+  var fb = RX.football[parseIso(w.date).getDay()];
+  var hm = function(s) { return +s.slice(0, 2) * 60 + +s.slice(3, 5); };
+  if (fb) {
+    var overlap = Math.min(hm(w.end), hm(fb.end)) - Math.max(hm(w.start), hm(fb.start));
+    if (overlap >= 45) return "football";
+  }
+  return "other";
+}
+
+function healthKey(w) { return w.date + " " + w.start + " " + w.type + " " + w.source; }
+
+function renderHealthFound() {
+  var el = document.getElementById("health-result"), ws = healthOut.workouts;
+  if (!ws.length) { el.innerHTML = '<p class="foot">No workouts in that export.</p>'; return; }
+  var count = function(f) { return ws.filter(f).length; };
+  var watch = ws.filter(function(w) { return w.source === "Apple Watch"; });
+  var shown = (watch.length ? watch : ws).slice(-8).reverse();
+  var logIdx = {};
+  try { logIdx = logByDate(localStorage.getItem("matchday_log")); } catch (e) {}
+  var h = '<div class="block info-block"><div class="info-p"><b>' + ws.length + ' workouts</b>, '
+    + esc(fmtDate(ws[0].date)) + ' to ' + esc(fmtDate(ws[ws.length - 1].date)) + '. '
+    + count(function(w) { return w.kind === "football"; }) + ' football, '
+    + count(function(w) { return w.kind === "lifting"; }) + ' lifting, '
+    + count(function(w) { return w.kind === "other"; }) + ' other. '
+    + watch.length + ' from the watch, ' + count(function(w) { return w.hr; }) + ' with heart rate.</div>'
+    + '<table class="vol"><tr><th>Date</th><th>What</th><th>Min</th><th>HR</th></tr>'
+    + shown.map(function(w) {
+        return '<tr><td>' + esc(fmtDate(w.date)) + '</td><td class="src">' + esc(healthTitle(w, logIdx)) + '</td>'
+          + '<td class="n">' + w.min + '</td><td class="n">' + (w.hr ? w.hr.avg + (w.hr.max ? '/' + w.hr.max : '') : '—') + '</td></tr>';
+      }).join("")
+    + '</table></div>'
+    + '<button class="btn btn-pri" id="health-save" onclick="saveHealth()"' + (getToken() ? '' : ' disabled') + '>'
+    + (getToken() ? 'Save to the repo' : 'Add a GitHub token to save') + '</button>'
+    + '<p class="foot">Merges into <span class="mono">data/health.json</span>. The repo is public. Per workout, what goes in '
+    + 'is the date, times, type, app, minutes, calories, distance and heart rate. Nothing else from the export.</p>';
+  el.innerHTML = h;
+}
+
+async function saveHealth() {
+  if (!healthOut) return;
+  var btn = document.getElementById("health-save");
+  btn.disabled = true;
+  btn.textContent = "Saving…";
+  try {
+    var old = [];
+    try { old = JSON.parse(await fetchRepoFile("data/health.json")).workouts || []; } catch (e) {}
+    var all = {};
+    old.concat(healthOut.workouts).forEach(function(w) { all[healthKey(w)] = w; });
+    var list = Object.keys(all).map(function(k) { return all[k]; })
+      .sort(function(a, b) { return (a.date + a.start) < (b.date + b.start) ? -1 : 1; });
+    var text = '{\n  "_generated": ' + JSON.stringify(new Date().toISOString().slice(0, 19))
+      + ',\n  "_by": "index.html (Apple Health import)",'
+      + '\n  "_note": "Workout summaries only, extracted on the phone from the Apple Health export. hr.bins: minutes per 10-bpm band, keyed by its lower bound. Read via health.py.",'
+      + '\n  "exported": ' + JSON.stringify(healthOut.exported || "")
+      + ',\n  "workouts": [\n' + list.map(function(w) { return "    " + JSON.stringify(w); }).join(",\n") + '\n  ]\n}\n';
+    await ghPut("data/health.json", text, "health: Apple Health import" + (healthOut.exported ? " " + healthOut.exported : "")
+      + " (" + list.length + " workouts)");
+    try { localStorage.setItem("matchday_health", text); } catch (e) {}
+    btn.textContent = "Saved";
+    toast("Saved " + list.length + " workouts", "ok");
+  } catch (e) {
+    btn.disabled = false;
+    btn.textContent = "Save to the repo";
+    toast(e.message || "Save failed", "err");
+  }
+}
+
+/* ---- history → watch ---- */
+
+/* log.md headers by date, with football effort, so a watch workout can carry its session's name */
+function logByDate(text) {
+  var idx = {};
+  (text || "").replace(/<!--[\s\S]*?-->/g, "").replace(
+    /^## (\d{4}-\d{2}-\d{2}) · \w+ · (.+)\n(?:effort: (\d+)\/10 \| \d+ min \| load: (\d+))?/gm,
+    function(m, d, name, eff, load) {
+      (idx[d] = idx[d] || []).push({ name: name.trim(), effort: eff ? +eff : null, load: load ? +load : null });
+    });
+  return idx;
+}
+
+function healthTitle(w, logIdx) {
+  if (w.kind === "football") return "Football";
+  if (w.kind === "lifting") {
+    var lift = (logIdx[w.date] || []).filter(function(s) { return s.name !== "Football"; })[0];
+    return lift ? lift.name : "Lifting";
+  }
+  return w.type;
+}
+
+function watchRender(healthText, logText) {
+  var el = document.getElementById("watch-list"), foot = document.getElementById("watch-foot");
+  var data = null;
+  try { data = JSON.parse(healthText); } catch (e) {}
+  if (!data || !data.workouts) {
+    el.innerHTML = '<div class="empty">No Apple Health import yet.<br>Import tab &rarr; Apple Health.</div>';
+    foot.textContent = "";
+    return;
+  }
+  var logIdx = logByDate(logText);
+  var ws = data.workouts.filter(function(w) { return w.source === "Apple Watch" || w.kind === "football"; }).reverse();
+  var rest = data.workouts.length - ws.length;
+  foot.textContent = (data.exported ? "Export of " + fmtDate(data.exported) + ". " : "")
+    + (rest ? rest + " workouts from other apps (Strong, the phone) are in the file but not listed." : "");
+  if (!ws.length) { el.innerHTML = '<div class="empty">No watch workouts in the import yet.</div>'; return; }
+  el.innerHTML = ws.slice(0, 40).map(function(w, i) {
+    var d = parseIso(w.date);
+    var sub = [w.min + " min"];
+    if (w.hr) sub.push(w.hr.avg + " avg" + (w.hr.max ? " · " + w.hr.max + " max" : ""));
+    var h = '<div class="hist" id="watch-' + i + '"><div class="hist-h" onclick="this.parentNode.classList.toggle(\'open\')">'
+      + '<div class="hist-date"><b>' + d.getDate() + '</b>' + SHORT_MON[d.getMonth()] + '</div>'
+      + '<div class="hist-t"><b>' + esc(healthTitle(w, logIdx)) + '</b><span>' + sub.join(" · ") + '</span></div>'
+      + '<span class="hist-chev">' + ICON_CHEV + '</span></div><div class="hist-d">';
+    var row = function(k, v) { return '<div class="hist-ex"><b>' + k + '</b><span>' + esc(v) + '</span></div>'; };
+    h += row("Time", w.start + "–" + w.end);
+    if (w.kind === "football") {
+      var fb = (logIdx[w.date] || []).filter(function(s) { return s.name === "Football"; })[0];
+      h += row("Effort", fb && fb.effort ? fb.effort + "/10 · load " + fb.load : "not logged");
+    }
+    if (w.hr) h += row("Heart rate", w.hr.avg + " avg" + (w.hr.max ? " · " + w.hr.min + "–" + w.hr.max : "") + " bpm");
+    if (w.km) h += row("Distance", w.km + " km");
+    if (w.kcal) h += row("Active energy", w.kcal + " kcal");
+    h += row("Recorded as", w.type + " · " + w.source);
+    var bins = w.hr && w.hr.bins ? w.hr.bins : null;
+    if (bins) {
+      var keys = Object.keys(bins).sort(function(p, q) { return q - p; });
+      var top = Math.max.apply(null, keys.map(function(k) { return bins[k]; }));
+      h += '<div class="hrh">Minutes per 10 bpm</div>' + keys.map(function(k) {
+        return '<div class="hrb"><span>' + k + '</span><div><i style="width:' + Math.round(bins[k] / top * 100)
+          + '%"></i></div><em>' + bins[k] + '</em></div>';
+      }).join("");
+    }
+    return h + '</div></div>';
+  }).join("");
+}
+
+async function loadWatch() {
+  var cached = {};
+  try { cached.h = localStorage.getItem("matchday_health"); cached.l = localStorage.getItem("matchday_log"); } catch (e) {}
+  watchRender(cached.h, cached.l);
+  var got = await Promise.all([
+    fetchRepoFile("data/health.json").catch(function() { return null; }),
+    fetchRepoFile("log.md").catch(function() { return null; })]);
+  try {
+    if (got[0]) localStorage.setItem("matchday_health", got[0]);
+    if (got[1] && /^# Session log/.test(got[1])) localStorage.setItem("matchday_log", got[1]);
+  } catch (e) {}
+  if (got[0] || got[1]) watchRender(got[0] || cached.h, got[1] || cached.l);
 }
 
 /* ---- toast ---- */

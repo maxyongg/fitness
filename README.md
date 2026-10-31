@@ -22,7 +22,7 @@ If you are Claude, read `CLAUDE.md` first and stop there. This file is for human
 | `docs/goals.md` | What the training is for. |
 | `docs/calisthenics.md` | The beginner calisthenics skill route. |
 | `analyse.py` | Re-runs the full analysis on a Strong CSV export. |
-| `data/` | Strong exports. Read them through `analyse.py`, not directly. |
+| `data/` | Strong exports, and `health.json`: Apple Health workout summaries from the phone page's Import tab. Read them through `analyse.py` and `health.py`, not directly. |
 | `index.html` | The phone page, served by GitHub Pages. Prescriptions live in the `RX` object. |
 | `inbox/` | Sessions saved from the phone page (JSON). Drained into `log.md`, then deleted. Empty at rest. |
 | `screenshots/` | Optional. |

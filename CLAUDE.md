@@ -51,6 +51,8 @@ question. He is open to movements he has never done, provided they earn a slot �
 - **Programming mode: also `plan.md`, `docs/goals.md`, tail of `log.md`, and the
   recent files in `debriefs/`** — he may have answered the debrief's question or asked
   for a change there. What he tells it about his body is evidence the log can't hold.
+  If `data/health.json` exists, run `python3 health.py`: the watch's football and
+  lifting workouts, with heart rate, next to the log's effort and session names.
 - **Never read `data/*.csv`** — ~7,500 rows. Reach it only through `analyse.py`, monthly,
   when a new export lands.
 - Baseline numbers are in the comment at the foot of `log.md`. Don't re-derive them.
@@ -180,7 +182,8 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `state.json` | Compact briefing: last session, next session, all slot prescriptions. Read this instead of `plan.md` + `index.html` in logging mode. |
 | `analyse.py` | Full analysis of a Strong export. Monthly, not per session. |
 | `history.py` | Strong export → `data/history.json` (everything before `log.md` begins), the full history the Progress tab reads. Rerun when a new export lands. |
-| `data/` | Strong CSV exports, and `history.json` built from them. Never read either directly. |
+| `health.py` | `data/health.json` joined to `log.md`: watch workouts with heart rate. Programming mode only. |
+| `data/` | Strong CSV exports, `history.json` built from them, and `health.json` (Apple Health workout summaries, written by the phone page's Import tab). Never read any of them directly. |
 | `inbox/` | Sessions saved from the phone page (JSON). Drain with `python3 drain.py`, then delete. Empty at rest. |
 | `debriefs/` | One JSON per debrief: the session, the Worker's debrief, and any follow-up conversation. Written by the phone page. Read in programming mode; never edit. |
 | `index.html` | The phone page, served by GitHub Pages. Prescriptions live in the `RX` object. The Progress tab (muscle map, records) is computed in the browser from `log.md` plus `data/history.json`; when a movement is introduced, add it to `MUSCLES` or it shows as unmapped. |
