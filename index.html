@@ -524,7 +524,7 @@ input[type=number] { -moz-appearance: textfield; }
       <div id="debrief-list"></div>
     </div>
     <div id="hist-watch" hidden>
-      <p class="page-sub">Workouts the watch recorded, from the last Apple Health import (Import tab).</p>
+      <p class="page-sub">Workouts the watch recorded: sent by the shortcut after each one, or from an Apple Health import (Import tab).</p>
       <div id="watch-list"></div>
       <p class="foot" id="watch-foot"></p>
     </div>
@@ -2997,13 +2997,25 @@ async function saveHealth() {
   try {
     var old = [];
     try { old = JSON.parse(await fetchRepoFile("data/health.json")).workouts || []; } catch (e) {}
+    /* A shortcut upload (via: "shortcut", watch.py) is a stand-in until the export brings
+       the workout itself: drop any that overlaps a workout from this import. */
+    var span = function(w) {
+      var s = Date.parse(w.date + "T" + w.start + ":00"), e = Date.parse(w.date + "T" + w.end + ":00");
+      return [s, e < s ? e + 864e5 : e];
+    };
+    var spans = healthOut.workouts.map(span);
+    old = old.filter(function(w) {
+      if (!w.via) return true;
+      var a = span(w);
+      return !spans.some(function(b) { return a[0] < b[1] && b[0] < a[1]; });
+    });
     var all = {};
     old.concat(healthOut.workouts).forEach(function(w) { all[healthKey(w)] = w; });
     var list = Object.keys(all).map(function(k) { return all[k]; })
       .sort(function(a, b) { return (a.date + a.start) < (b.date + b.start) ? -1 : 1; });
     var text = '{\n  "_generated": ' + JSON.stringify(new Date().toISOString().slice(0, 19))
-      + ',\n  "_by": "index.html (Apple Health import)",'
-      + '\n  "_note": "Workout summaries only, extracted on the phone from the Apple Health export. hr.bins: minutes per 10-bpm band, keyed by its lower bound. Read via health.py.",'
+      + ',\n  "_by": "index.html (Apple Health import) + watch.py (shortcut uploads)",'
+      + '\n  "_note": "Workout summaries only. hr.bins: minutes per 10-bpm band, keyed by its lower bound. via: shortcut = from a Shortcut upload, where min is elapsed time. Read via health.py.",'
       + '\n  "exported": ' + JSON.stringify(healthOut.exported || "")
       + ',\n  "workouts": [\n' + list.map(function(w) { return "    " + JSON.stringify(w); }).join(",\n") + '\n  ]\n}\n';
     await ghPut("data/health.json", text, "health: Apple Health import" + (healthOut.exported ? " " + healthOut.exported : "")
@@ -3072,7 +3084,7 @@ function watchRender(healthText, logText) {
     if (w.hr) h += row("Heart rate", w.hr.avg + " avg" + (w.hr.max ? " · " + w.hr.min + "–" + w.hr.max : "") + " bpm");
     if (w.km) h += row("Distance", w.km + " km");
     if (w.kcal) h += row("Active energy", w.kcal + " kcal");
-    h += row("Recorded as", w.type + " · " + w.source);
+    h += row("Recorded as", w.via ? "Apple Watch, by the shortcut" : w.type + " · " + w.source);
     var bins = w.hr && w.hr.bins ? w.hr.bins : null;
     if (bins) {
       var keys = Object.keys(bins).sort(function(p, q) { return q - p; });

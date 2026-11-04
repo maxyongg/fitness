@@ -166,32 +166,89 @@ file in the same commit, and pushes.
 
 ## Apple Health: `data/health.json`
 
-He wears an Apple Watch for football and some lifting (from 2026-10-30). The phone page
-imports it with no Claude session involved: Health app → profile picture → Export All
-Health Data → Save to Files, then the page's Import tab → Apple Health → pick the zip.
-The page reads the export **on the phone** and commits only workout summaries to
-`data/health.json`: date, times, type, app, minutes, kcal, km, and the watch's heart
-rate (Apple's average/min/max plus minutes per 10-bpm band). The raw export never
-reaches the repo, which is public. Don't ask for it, and don't add daily data (resting
-HR, HRV, sleep, weight) to the file without asking him first.
+He wears an Apple Watch for football and some lifting (from 2026-10-30). Two routes put
+it in `data/health.json`, and neither needs a Claude session:
 
-Each export is the phone's full history, so re-importing is safe: entries merge on
-date + start + type + app. Workouts that Strong wrote to Health come along without heart
-rate; History → Watch and `health.py` hide them unless asked (`--all`).
+- **After each workout: the shortcut.** An iPhone automation fires when a watch workout
+  ends and runs the shortcut "Matchday watch". It uploads the watch's heart-rate
+  readings (and active energy) for the last 6 hours to `inbox/watch-<time>.txt`. The
+  Watch upload Action (`.github/workflows/watch.yml`) runs `watch.py`, which finds the
+  workout as a block of dense readings, adds a summary marked `"via": "shortcut"`, and
+  deletes the upload. If the phone was locked when the workout ended, iOS blocks Health
+  and nothing goes up; he taps the shortcut on his Home Screen within 6 hours instead.
+  Re-sending is harmless: a newer upload replaces the older record for the same stretch.
+- **Now and then: the Health export** (Import tab → Apple Health), for backfill or after
+  a gap. Health app → profile picture → Export All Health Data → Save to Files, then
+  pick the zip on the page. It is read **on the phone**. Its records are Apple's own
+  (exact start/end, workout type, workout time), and they replace any shortcut record
+  they overlap. Each export is the phone's full history, so re-importing is safe.
+
+Shortcuts can't read a workout record out of Health (there is no Workouts type in Find
+Health Samples, checked on his phone 2026-11-04). It reads samples only, which is why
+`watch.py` has to find the workout itself.
+
+**Privacy.** The repo is public. Only workout summaries are kept: date, times, type,
+minutes, kcal, km, and heart rate as average/min/max plus minutes per 10-bpm band. A
+shortcut upload holds up to 6 hours of raw readings. It sits in `inbox/` for about a
+minute and stays in git history. He was told this when it was set up (2026-11-04). The full Health export
+never reaches the repo. Don't ask for it, and don't add daily data (resting HR, HRV,
+sleep, weight) without asking him first.
 
 - **Reading it:** `python3 health.py` (last 12 weeks; `--since`, `--all`). Football
-  rows carry the log's effort and load, lifting rows the log's session name.
+  rows carry the log's effort and load, lifting rows the log's session name. Workouts
+  Strong wrote to Health have no heart rate and are hidden unless `--all`.
 - **Football** is the Soccer type, or any workout that fills 45+ minutes of a
-  `RX.football` slot.
-- **`min` is workout time, which excludes pauses**; start-end is elapsed. The 10-30
-  match was 102 min of workout time across 116 min elapsed. The log's 80 min is minutes
-  on the pitch by format, a different number. Don't reconcile them.
+  `RX.football` slot. A shortcut workout outside a slot is `lifting` on a lift day and
+  `other` otherwise; it can't tell a walk from a session.
+- **`min` differs by route.** From the export it's workout time, which leaves out
+  pauses; from the shortcut it's elapsed time. The 10-30 match was 102 min of workout
+  time in 116 elapsed. The log's 80 min is minutes on the pitch by format, a third
+  number. Don't reconcile them.
 - **The bands assume no max HR or zones.** If zones ever matter, ask him. Don't
   estimate a max from age.
-- A Fitness-app screenshot carries the same numbers as the export, minus the bands.
-  Read it if he sends one; the next import brings in the record itself.
+- **A watch upload stuck in `inbox/`** means `watch.py` couldn't read it (the Action run
+  failed). Run `python3 watch.py inbox/<file>` to see why. The likely cause is a date
+  format `parse_when()` doesn't know yet: add it, then run `python3 watch.py`, commit
+  `data/health.json` and the deletion, and push.
 
 Heart rate is context for the lifts around football, not a target.
+
+### Setting up the shortcut (on his phone, once)
+
+New shortcut "Matchday watch":
+
+1. **Find Health Samples**: Type Heart Rate. Filters: Start Date *is in the last* 6
+   hours; Source *is* his Apple Watch. Sort by Start Date, Oldest First. No limit.
+2. **Get Details of Health Sample**: Value.
+3. **Get Details of Health Sample**: Start Date, with its input set to step 1's Health
+   Samples.
+4. **Find Health Samples**: Type Active Energy, same filters and sort. Steps 4–6 are
+   optional; without them there's no kcal.
+5. **Get Details of Health Sample**: Value, input step 4.
+6. **Get Details of Health Sample**: Start Date, input step 4.
+7. **Text**, exactly these lines, with each `[...]` a variable:
+   ```
+   matchday-watch 1
+   sent: [Current Date]
+   hr:
+   [step 2]
+   times:
+   [step 3]
+   kcal:
+   [step 5]
+   kcal times:
+   [step 6]
+   ```
+8. **Base64 Encode**: input the Text; Line Breaks None.
+9. **Format Date**: Current Date, Custom format `yyyyMMdd-HHmmss`.
+10. **Get Contents of URL**:
+    `https://api.github.com/repos/maxyongg/fitness/contents/inbox/watch-[step 9].txt`,
+    Method PUT, Header `Authorization` = `token ` + the page's GitHub token, Request
+    Body JSON: `message` (Text) `watch upload`, `content` (Text) = step 8.
+
+Then Automation → + → **Apple Watch Workout** → *Is Ended*, any workout → Run
+Immediately → Run Shortcut "Matchday watch". Add the shortcut to the Home Screen as the
+catch-up button. The token lives in the shortcut, so the shortcut is never shared.
 
 ## Monthly: a new export lands in `data/`
 

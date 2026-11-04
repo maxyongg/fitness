@@ -59,6 +59,8 @@ question. He is open to movements he has never done, provided they earn a slot �
 - If `inbox/` holds anything, run `python3 drain.py` — it transcribes to `log.md` and
   updates `state.json`. Read the stdout summary, then commit `log.md` + `state.json`,
   delete the inbox file(s), and push. Re-prescribing is still your job (step 3 below).
+  An `inbox/watch-*.txt` is a watch upload, not a session: the Watch upload Action
+  normally clears it within a minute, so one still there failed (`docs/workflows.md`).
 
 He starts a fresh task per workout so no thread has to re-read itself. Keep it cheap.
 
@@ -183,7 +185,8 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `analyse.py` | Full analysis of a Strong export. Monthly, not per session. |
 | `history.py` | Strong export → `data/history.json` (everything before `log.md` begins), the full history the Progress tab reads. Rerun when a new export lands. |
 | `health.py` | `data/health.json` joined to `log.md`: watch workouts with heart rate. Programming mode only. |
-| `data/` | Strong CSV exports, `history.json` built from them, and `health.json` (Apple Health workout summaries, written by the phone page's Import tab). Never read any of them directly. |
+| `watch.py` | Watch uploads from his iPhone shortcut (`inbox/watch-*.txt`) → workout summaries in `data/health.json`. Run by the Watch upload Action; by hand only when one is stuck. |
+| `data/` | Strong CSV exports, `history.json` built from them, and `health.json` (Apple Watch workout summaries, from the shortcut via `watch.py` and the Import tab's Health export). Never read any of them directly. |
 | `inbox/` | Sessions saved from the phone page (JSON). Drain with `python3 drain.py`, then delete. Empty at rest. |
 | `debriefs/` | One JSON per debrief: the session, the Worker's debrief, and any follow-up conversation. Written by the phone page. Read in programming mode; never edit. |
 | `index.html` | The phone page, served by GitHub Pages. Prescriptions live in the `RX` object. The Progress tab (muscle map, records) is computed in the browser from `log.md` plus `data/history.json`; when a movement is introduced, add it to `MUSCLES` or it shows as unmapped. |

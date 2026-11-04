@@ -5,10 +5,12 @@
     python3 health.py --since 2026-09-01
     python3 health.py --all               # every app's workouts (Strong, the phone), all dates
 
-The phone page builds data/health.json from the Health app's "Export All Health Data"
-(Import tab → Apple Health). The export is read on the phone and only workout summaries
-reach the repo: no routes, no daily data. This script is how a session reads it: don't
-read the JSON by hand.
+Two things write data/health.json. After each watch workout, an iPhone shortcut uploads
+the watch's heart rate and watch.py turns it into a summary (marked [shortcut]; its
+minutes are elapsed time). Now and then, the phone page's Import tab reads the Health
+app's full export on the phone, and that record replaces the shortcut's. Only workout
+summaries reach the repo: no routes, no daily data. This script is how a session reads
+the file: don't read the JSON by hand.
 
 Per workout: minutes, active kcal, km, and heart rate from the watch: Apple's
 average/min/max, plus minutes in 10-bpm bands (hr.bins, keyed by the band's lower bound).
@@ -75,7 +77,8 @@ def main():
 
     ws = [w for w in data.get("workouts", []) if w["date"] >= since
           and (show_all or w.get("source") == "Apple Watch" or w.get("kind") == "football")]
-    print(f"Apple Health export of {data.get('exported') or '?'} · {len(ws)} workouts since {since}"
+    src = f"Health import of {data['exported']}" if data.get("exported") else "Shortcut uploads only, no Health import yet"
+    print(f"{src} · {len(ws)} workouts since {since}"
           + ("" if show_all else " (watch only; --all for every app)"))
 
     for kind, title in (("football", "FOOTBALL"), ("lifting", "LIFTING"), ("other", "OTHER")):
@@ -103,7 +106,8 @@ def main():
                 extra.append(f"{w['kcal']} kcal")
             print(f"  {w['date']} {day} {w['start']}-{w['end']}  {what:<24} {w['min']:>3} min  "
                   f"HR {hr_txt(w.get('hr')):<8} {' · '.join(extra)}"
-                  + ("" if w.get("source") == "Apple Watch" else f"  [{w.get('source')}]"))
+                  + ("" if w.get("source") == "Apple Watch" else f"  [{w.get('source')}]")
+                  + ("  [shortcut: elapsed min]" if w.get("via") == "shortcut" else ""))
             if bands(w.get("hr")):
                 print(f"      bands {bands(w.get('hr'))}")
 
