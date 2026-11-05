@@ -1,5 +1,5 @@
 {
-  "_generated": "2026-11-05T03:05:52",
+  "_generated": "2026-11-05T14:13:22",
   "_by": "index.html (Apple Health import) + watch.py (shortcut uploads)",
   "_note": "Workout summaries only. hr.bins: minutes per 10-bpm band, keyed by its lower bound. via: shortcut = from a Shortcut upload, where min is elapsed time. Read via health.py.",
   "exported": "2026-11-05",
@@ -740,6 +740,7 @@
     {"date":"2026-10-22","start":"18:40","end":"19:28","kind":"lifting","type":"Traditional Strength Training","source":"Strong","min":48,"kcal":160},
     {"date":"2026-10-30","start":"20:03","end":"21:59","kind":"football","type":"Soccer","source":"Apple Watch","min":102,"kcal":936,"km":6,"hr":{"avg":148,"min":93,"max":186,"n":1390,"bins":{"80":1,"90":11.5,"100":10.3,"110":5.3,"120":8.5,"130":14.9,"140":9.6,"150":12.1,"160":21.2,"170":18.1,"180":3.4}}},
     {"date":"2026-10-31","start":"11:22","end":"12:20","kind":"lifting","type":"Traditional Strength Training","source":"Apple Watch","min":57,"kcal":229,"hr":{"avg":96,"min":75,"max":134,"n":657,"bins":{"70":4.4,"80":17.9,"90":13.2,"100":11.8,"110":6.5,"120":2.4,"130":1}}},
-    {"date":"2026-11-03","start":"20:02","end":"22:04","kind":"football","type":"Soccer","source":"Apple Watch","min":122,"kcal":993,"km":6.2,"hr":{"avg":140,"min":88,"max":181,"n":1462,"bins":{"80":0.2,"90":8.7,"100":14.2,"110":12.8,"120":5.6,"130":11.4,"140":15.8,"150":18.9,"160":21.6,"170":12.1,"180":0.7}}}
+    {"date":"2026-11-03","start":"20:02","end":"22:04","kind":"football","type":"Soccer","source":"Apple Watch","min":122,"kcal":993,"km":6.2,"hr":{"avg":140,"min":88,"max":181,"n":1462,"bins":{"80":0.2,"90":8.7,"100":14.2,"110":12.8,"120":5.6,"130":11.4,"140":15.8,"150":18.9,"160":21.6,"170":12.1,"180":0.7}}},
+    {"date":"2026-11-05","start":"12:51","end":"14:09","kind":"lifting","type":"Workout","source":"Apple Watch","via":"shortcut","min":78,"kcal":325,"hr":{"avg":102,"min":74,"max":148,"n":935,"bins":{"70":2.8,"80":11.1,"90":25.9,"100":18.1,"110":10.4,"120":6.6,"130":2.5,"140":1.6}}}
   ]
 }
