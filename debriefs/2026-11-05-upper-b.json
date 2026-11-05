@@ -1,0 +1,213 @@
+{
+  "key": "2026-11-05-upper-b",
+  "date": "2026-11-05",
+  "session": "Upper B",
+  "session_id": "upper_b",
+  "model": "claude-sonnet-5",
+  "created": "2026-11-05T06:15:44.548Z",
+  "logged": {
+    "date": "2026-11-05",
+    "session": "Upper B",
+    "session_id": "upper_b",
+    "exercises": [
+      {
+        "name": "Deadlift (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 80,
+            "reps": 5
+          },
+          {
+            "weight": 80,
+            "reps": 5
+          },
+          {
+            "weight": 80,
+            "reps": 5
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 8
+          },
+          {
+            "weight": 0,
+            "reps": 8
+          },
+          {
+            "weight": 0,
+            "reps": 7
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Iso-Lateral Row (Machine)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 8
+          },
+          {
+            "weight": 40,
+            "reps": 8
+          },
+          {
+            "weight": 40,
+            "reps": 8
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Straight Arm Pulldown",
+        "sets": [
+          {
+            "weight": 17.5,
+            "reps": 12
+          },
+          {
+            "weight": 17.5,
+            "reps": 12
+          },
+          {
+            "weight": 17.5,
+            "reps": 9
+          }
+        ],
+        "weight": 17.5
+      },
+      {
+        "name": "Triceps Dip",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 12
+          },
+          {
+            "weight": 0,
+            "reps": 12
+          },
+          {
+            "weight": 0,
+            "reps": 12
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Cable Crossover",
+        "sets": [
+          {
+            "weight": 13.75,
+            "reps": 8
+          },
+          {
+            "weight": 13.75,
+            "reps": 8
+          },
+          {
+            "weight": 13.75,
+            "reps": 8
+          }
+        ],
+        "weight": 13.75
+      },
+      {
+        "name": "Bicep Curl (Barbell)",
+        "sets": [
+          {
+            "weight": 30,
+            "reps": 8
+          },
+          {
+            "weight": 26,
+            "reps": 8
+          },
+          {
+            "weight": 26,
+            "reps": 8
+          }
+        ],
+        "weight": 30
+      }
+    ],
+    "notes": "haven’t eaten today",
+    "extra": "",
+    "watch": {
+      "date": "2026-11-05",
+      "start": "12:51",
+      "end": "14:09",
+      "kind": "lifting",
+      "type": "Workout",
+      "source": "Apple Watch",
+      "via": "shortcut",
+      "min": 78,
+      "kcal": 325,
+      "hr": {
+        "avg": 102,
+        "min": 74,
+        "max": 148,
+        "n": 935,
+        "bins": {
+          "70": 2.8,
+          "80": 11.1,
+          "90": 25.9,
+          "100": 18.1,
+          "110": 10.4,
+          "120": 6.6,
+          "130": 2.5,
+          "140": 1.6
+        }
+      }
+    },
+    "watch_recent": [
+      {
+        "date": "2026-10-30",
+        "kind": "football",
+        "min": 102,
+        "hr": {
+          "avg": 148,
+          "max": 186
+        },
+        "kcal": 936
+      },
+      {
+        "date": "2026-10-31",
+        "kind": "lifting",
+        "min": 57,
+        "hr": {
+          "avg": 96,
+          "max": 134
+        },
+        "kcal": 229
+      },
+      {
+        "date": "2026-11-03",
+        "kind": "football",
+        "min": 122,
+        "hr": {
+          "avg": 140,
+          "max": 181
+        },
+        "kcal": 993
+      }
+    ]
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Deadlift hit the prescribed 80kg for 5, 5, 5 — right on the rep target this time, rather than running past it like 10-29's 6, 6. You skipped the 70kg warm-up step and went straight from 40kg to 80kg. Pull-ups at slot 2 went 8, 8, 7 (23 total), the row held at 40kg for 8, 8, 8 again, and straight arm pulldown pushed to 12, 12, 9 — up from flat 10, 10, 10 the last two sessions. Triceps dip dropped back to bodyweight for 12, 12, 12 after last week's +10kg pick. Cable crossover went heavier than called for, 13.75kg instead of the 12.5kg table load, for 8, 8, 8 — bottom of the band. The barbell curl fell from 30kg to 26kg after set one, same pattern as 10-22. The no-food note is a reasonable explanation for the late-session fade.\n\nTrend: Iso-lateral row has now sat at 40kg x8, 8, 8 for three sessions running — 10-22, 10-29, today. The rule needs all three sets at 10 for 42.5kg, so the back two sets are the thing to push, not just holding the number. The barbell curl has now dropped from 30kg to 26kg after the first set twice (10-22, today), reading as a real ceiling at this slot. Straight arm pulldown's two 12s are a step toward the 20kg jump, but the 9 on set three breaks the clean pair the rule wants.\n\nNext session: Upper C, Sat 7 Nov. Press at 28kg, aiming for 11s and 12s. Chest-supported row is trial 4 of 4 at 18kg — 11s or 12s locks it in, otherwise it's a call with your coach. Face pull at 17.5kg needs one more 15, 15, 15 to earn 20kg.\n\nQuestion: Was skipping the 70kg warm-up set on the deadlift a deliberate call, or did the fasted state shape how you approached it today?",
+      "at": "2026-11-05T06:15:44.548Z"
+    }
+  ]
+}
