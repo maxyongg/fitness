@@ -755,6 +755,11 @@ note: haven’t eaten today
 - Cable Crossover — 13.75kg × 8, 8, 8
 - Bicep Curl (Barbell) — 30kg × 8, 26kg × 8, 8
 
+<!-- Re-prescribed 2026-11-05 after Upper B. Deadlift 80 x 5, 5, 5 holds, 82.5 after one more clean
+     session. Pulldown 12, 12 earns 20kg. Crossover 13.75 x 8s goes back to 12.5kg. Dips BW 12 x3 again
+     (2 of 3 toward weighted). Row and curl flat, hold. Upper C 11-07 unchanged. No 11-01 Lower or
+     11-02 Upper A in the log; asked. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

@@ -101,6 +101,8 @@ anything.
 
 **10-31 Upper C, done.** DB press 24 warm-up, then 28 × 8, 10, 10 (up from 8, 8, 8): holds, 12s earn 30kg. Chest-supported row 18 × 10 ×3 for the second run at this load; run 4 of 4 is 11-07, then keep or drop. Face pull 17.5 × 15 ×3, the first top of the band: the two-session rule means one more before 20kg. Hammer curl 16 × 8 ×3 after 10, 10, 10 on 10-04: one reading, holds (14kg if the first set is under 8). Lateral raise ran as the cable, 5 × 8 ×3 after 10s on 10-04; he does the dumbbell on Mondays (his words), so Saturday and Monday are two scales, not a swap. Lower 11-01 stays on the re-entry loads, his first legs in four weeks.
 
+**11-05 Upper B, done.** Deadlift 40 × 10, then 80 × 5, 5, 5: on target, holds at 80 (82.5 after one more clean session). Pull-ups BW × 8, 8, 7 hold. Row 40 × 8 ×3, third week flat, so aim for 9s and 10s. Straight-arm pulldown 17.5 × 12, 12, 9: 12s earn 20kg. Dips BW 12 ×3, 2 of 3 toward weighted dips. Crossover 13.75 × 8 ×3 was under the band, so 12.5 returns. Barbell curl 30 × 8, 26 × 8, 8: three Thursdays at 8s, holds (cable or hammer curl is the swap if it stalls again). He hadn't eaten that day. Upper C 11-07 holds, with chest-supported row run 4 of 4. No Lower 11-01 or Upper A 11-02 in the log: asked in RX.note.
+
 **From 26 Oct:** each lift goes back to its load in the session tables, full sets, if
 every re-entry set landed with 2 in reserve. A lift that ground, or that missed the
 bottom of its band, gets one more week at its re-entry load. A pain reading of 4 or more

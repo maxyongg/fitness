@@ -149,7 +149,7 @@
         "type": "rotate",
         "sets": 2,
         "reps": "10-12",
-        "load": 17.5,
+        "load": 20,
         "unit": "kg",
         "alts": [
           "Lat Pulldown",
@@ -330,8 +330,8 @@
       }
     ]
   },
-  "rx_asof": "2026-10-31",
-  "rx_after": "2026-10-31 Upper C",
+  "rx_asof": "2026-11-05",
+  "rx_after": "2026-11-05 Upper B",
   "flags": [
     "Pull-up: top set 8, total 23"
   ]
