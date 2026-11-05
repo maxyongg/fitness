@@ -6,8 +6,9 @@
 
 The iPhone shortcut ("Matchday watch", set up in docs/workflows.md) runs when a watch
 workout ends, or by hand. Shortcuts can't read a workout record out of Health, only
-samples, so it sends the watch's heart-rate readings for the last few hours, each with
-its time, and optionally the active-energy readings. The file looks like:
+samples, so it sends the watch's heart-rate readings, each with
+its time, and optionally the active-energy readings, for the last day (Shortcuts' date
+filters can't go shorter). The file looks like:
 
     matchday-watch 1
     sent: <date>

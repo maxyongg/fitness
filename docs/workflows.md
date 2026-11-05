@@ -171,11 +171,11 @@ it in `data/health.json`, and neither needs a Claude session:
 
 - **After each workout: the shortcut.** An iPhone automation fires when a watch workout
   ends and runs the shortcut "Matchday watch". It uploads the watch's heart-rate
-  readings (and active energy) for the last 6 hours to `inbox/watch-<time>.txt`. The
+  readings (and active energy) for the last day to `inbox/watch-<time>.txt`. The
   Watch upload Action (`.github/workflows/watch.yml`) runs `watch.py`, which finds the
   workout as a block of dense readings, adds a summary marked `"via": "shortcut"`, and
   deletes the upload. If the phone was locked when the workout ended, iOS blocks Health
-  and nothing goes up; he taps the shortcut on his Home Screen within 6 hours instead.
+  and nothing goes up; he taps the shortcut on his Home Screen later that day instead.
   Re-sending is harmless: a newer upload replaces the older record for the same stretch.
 - **Now and then: the Health export** (Import tab → Apple Health), for backfill or after
   a gap. Health app → profile picture → Export All Health Data → Save to Files, then
@@ -189,9 +189,13 @@ Health Samples, checked on his phone 2026-11-04). It reads samples only, which i
 
 **Privacy.** The repo is public. Only workout summaries are kept: date, times, type,
 minutes, kcal, km, and heart rate as average/min/max plus minutes per 10-bpm band. A
-shortcut upload holds up to 6 hours of raw readings. It sits in `inbox/` for about a
-minute and stays in git history. He was told this when it was set up (2026-11-04). The full Health export
-never reaches the repo. Don't ask for it, and don't add daily data (resting HR, HRV,
+shortcut upload holds up to a day of raw readings, overnight included. It sits in
+`inbox/` for about a minute and stays in git history. **His choice, 2026-11-05**, over
+sending uploads to the Cloudflare Worker, which would find the workout there and commit
+only the summary, keeping raw readings out of the repo entirely. That route is still
+open if he changes his mind: Worker endpoint plus a GitHub token secret on the Worker,
+and step 8 pointed at the Worker with the PIN. The full Health export never reaches
+the repo. Don't ask for it, and don't add daily data (resting HR, HRV,
 sleep, weight) without asking him first.
 
 - **Reading it:** `python3 health.py` (last 12 weeks; `--since`, `--all`). Football
@@ -220,16 +224,18 @@ Heart rate is context for the lifts around football, not a target.
 
 New shortcut "Matchday watch":
 
-0. **Adjust Date**: Subtract 6 hours from Current Date. (Find Health Samples' date
-   filters are only *is on*, *is today*, *is between* and *is in the last*, the last
-   in days and up: checked on his phone 2026-11-05.)
-1. **Find Health Samples**: Type Heart Rate. Filters: Start Date *is between* the
-   Adjusted Date and Current Date; Source *is* his Apple Watch. Sort by Start Date,
-   Oldest First. No limit.
+1. **Find Health Samples**: Type Heart Rate. Filters: Start Date *is in the last* 1
+   day; Source *is* his Apple Watch. Sort by Start Date, Oldest First. No limit. A
+   window shorter than a day can't be set: the date filters are *is on*, *is today*,
+   *is between* and *is in the last* (days and up), and *is between* compares dates
+   only, so "between 6 hours ago and now" finds nothing. Checked on his phone
+   2026-11-05.
 2. **Get Details of Health Sample**: Value.
 3. **Get Details of Health Sample**: Start Date, with its input set to step 1's Health
    Samples.
-4. **Find Health Samples**: Type Active Energy, same filters (the same Adjusted Date) and sort. Steps 4–6 are
+4. **Find Health Samples**: Type Active Energy, same filters and sort. The Source
+   filter matters here: the iPhone records active energy too, and without it a
+   session with the phone in a pocket counts twice. Steps 4–6 are
    optional; without them there's no kcal.
 5. **Get Details of Health Sample**: Value, input step 4.
 6. **Get Details of Health Sample**: Start Date, input step 4.
@@ -252,6 +258,12 @@ New shortcut "Matchday watch":
     `https://api.github.com/repos/maxyongg/fitness/contents/inbox/watch-[step 9].txt`,
     Method PUT, Header `Authorization` = `token ` + the page's GitHub token, Request
     Body JSON: `message` (Text) `watch upload`, `content` (Text) = step 8.
+
+Two iPhone settings, both found missing while setting it up (2026-11-05): Settings →
+Privacy & Security → Health → Shortcuts must allow reading Heart Rate and Active
+Energy (refused, iOS returns nothing rather than an error), and Settings → Apps →
+Shortcuts → Advanced → **Allow Sharing Large Amounts of Data** must be on (off, the
+upload stops with "trying to share N Health items").
 
 Then Automation → + → **Apple Watch Workout** → *Is Ended*, any workout → Run
 Immediately → Run Shortcut "Matchday watch". Add the shortcut to the Home Screen as the
