@@ -218,6 +218,19 @@ sleep, weight) without asking him first.
   four uploads (2026-11-05). Fixing the Action file needs him, because Claude sessions
   can't push workflow files; keeping the file in place avoids the problem.
 
+**On the page** (2026-11-05, at his request): History is one list. Each session saved
+from the phone shows the watch workout recorded alongside it (same date, football with
+football, a lift with anything else), and watch workouts no session claims get cards
+of their own. Only the Apple Watch's workouts are shown; the import also holds Strong's
+and a WHOOP's (Jul 2025 to Jul 2026, no heart rate), which only `health.py --all` lists.
+
+**The debrief reads it.** While he's wearing the watch (an Apple Watch workout in the
+last 14 days), saving a lift doesn't start the debrief. The card waits with a button,
+and he taps it once the shortcut's upload is in (his plan: the debrief should see the
+watch data). The page sends the session to the Worker with `watch` (this session's
+workout) and `watch_recent` (the week before) attached, and the Worker adds a WATCH
+section to the prompt. If he taps before the upload arrives, the page asks first.
+
 Heart rate is context for the lifts around football, not a target.
 
 ### Setting up the shortcut (on his phone, once)

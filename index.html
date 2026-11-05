@@ -507,10 +507,9 @@ input[type=number] { -moz-appearance: textfield; }
     <div class="seg" role="tablist">
       <button class="segb active" data-h="sessions" onclick="histTab('sessions')">Sessions</button>
       <button class="segb" data-h="debriefs" onclick="histTab('debriefs')">Debriefs</button>
-      <button class="segb" data-h="watch" onclick="histTab('watch')">Watch</button>
     </div>
     <div id="hist-sessions">
-      <p class="page-sub">Sessions saved from this phone.</p>
+      <p class="page-sub">Sessions saved from this phone, with the watch&rsquo;s heart rate when you wore it, and anything else the watch recorded.</p>
       <div class="debrief" id="debrief-hist" hidden>
         <div class="debrief-h"><span>Debrief</span>
           <button class="icon-btn" onclick="dismissDebrief('debrief-hist')" aria-label="Dismiss">&times;</button></div>
@@ -523,11 +522,7 @@ input[type=number] { -moz-appearance: textfield; }
       <p class="page-sub">Every debrief and what you said back. Saved to the repo in <span class="mono">debriefs/</span>.</p>
       <div id="debrief-list"></div>
     </div>
-    <div id="hist-watch" hidden>
-      <p class="page-sub">Workouts the watch recorded: sent by the shortcut after each one, or from an Apple Health import (Import tab).</p>
-      <div id="watch-list"></div>
-      <p class="foot" id="watch-foot"></p>
-    </div>
+
   </div>
 </div>
 
@@ -978,8 +973,8 @@ function switchView(v) {
   document.querySelectorAll(".nav-item").forEach(function(el) { el.classList.toggle("active", el.dataset.view === v); });
   if (v === "history") {
     renderHistory();
+    refreshHealth();
     if (histMode === "debriefs") { renderDebriefList(); syncDebriefs(); }
-    if (histMode === "watch") loadWatch();
   }
   if (v === "progress") loadProgress();
   window.scrollTo(0, 0);
@@ -1377,7 +1372,7 @@ async function save() {
     btn.className = "btn btn-pri";
     toast((fbSave ? "Football" : "Session") + " saved to inbox/", "ok");
     if (fbSave) pick("football");
-    else requestDebrief(data, "debrief-train");
+    else debriefAfterSave(data);
   } catch (e) {
     btn.textContent = "Failed — tap to retry";
     btn.className = "btn btn-pri error";
@@ -1431,7 +1426,60 @@ function renderDebrief(text) {
   }).join("");
 }
 
-async function requestDebrief(data, cardId) {
+/* ---- debrief and the watch ----
+
+   Once he wears the watch, a lift's debrief waits for it: the shortcut uploads the
+   workout about a minute after he ends it on the watch, and he taps for the debrief
+   then. The session goes to the Worker with `watch` (this session's watch workout from
+   data/health.json) and `watch_recent` (the week before, without the bands) attached,
+   and is stored that way as the debrief's `logged`, so follow-ups carry it too.     */
+var pendingDebrief = null;
+
+function watchInUse() {
+  var cutoff = isoDate(new Date(Date.now() - 14 * 864e5));
+  return watchWorkouts().some(function(w) { return w.date >= cutoff; });
+}
+
+async function watchContext(session) {
+  try { await refreshHealth(); } catch (e) {}
+  var ws = watchWorkouts();
+  var p = session.date.split("-");
+  var from = isoDate(new Date(+p[0], +p[1] - 1, +p[2] - 7));
+  var recent = ws.filter(function(w) { return w.date >= from && w.date < session.date; })
+    .sort(function(x, y) { return (x.date + x.start) < (y.date + y.start) ? -1 : 1; })
+    .slice(-6).map(function(w) {
+      var r = { date: w.date, kind: w.kind, min: w.min };
+      if (w.hr) r.hr = { avg: w.hr.avg, max: w.hr.max };
+      if (w.kcal) r.kcal = w.kcal;
+      return r;
+    });
+  return { match: matchWatch(session, ws), recent: recent };
+}
+
+function debriefAfterSave(data) {
+  if (!getWorkerUrl() || !getPin()) return;
+  if (!watchInUse()) { requestDebrief(data, "debrief-train"); return; }
+  pendingDebrief = data;
+  var card = document.getElementById("debrief-train"), body = card.querySelector(".debrief-b");
+  delete body.dataset.dkey;
+  card.hidden = false;
+  body.innerHTML = '<p>Waiting for the watch. End the workout on the watch and give the shortcut about a minute '
+    + 'to upload it, then get the debrief: it reads your heart rate too. It&rsquo;s also in History.</p>'
+    + '<button class="hist-link" onclick="debriefPending()">Get the debrief →</button>';
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function debriefPending() { if (pendingDebrief) debriefManual(pendingDebrief, "debrief-train"); }
+
+/* Tapped by hand: if the watch is in use but this session's workout hasn't arrived, ask first. */
+async function debriefManual(data, cardId) {
+  var ctx = await watchContext(data);
+  if (!ctx.match && watchInUse() && !confirm("The watch data for this session isn't in yet. It arrives about a "
+      + "minute after you end the workout on the watch. Debrief without it?")) return;
+  requestDebrief(data, cardId, ctx);
+}
+
+async function requestDebrief(data, cardId, ctx) {
   var url = getWorkerUrl();
   var pin = getPin();
   if (!url || !pin) return;
@@ -1443,6 +1491,12 @@ async function requestDebrief(data, cardId) {
   body.innerHTML = '<span class="debrief-loading">Reading the session against your recent history…</span>';
   card.scrollIntoView({ behavior: "smooth", block: "center" });
 
+  if (!ctx) try { ctx = await watchContext(data); } catch (e) { ctx = { match: null, recent: [] }; }
+  var sent = Object.assign({}, data);
+  delete sent.watch; delete sent.watch_recent;
+  if (ctx.match) sent.watch = ctx.match;
+  if (ctx.recent.length) sent.watch_recent = ctx.recent;
+
   var history = "";
   try { history = recentHistory(await fetchLog(), data); } catch (e) {}
 
@@ -1450,7 +1504,7 @@ async function requestDebrief(data, cardId) {
     var res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ session: data, rx: RX, history: history, pin: pin })
+      body: JSON.stringify({ session: sent, rx: RX, history: history, pin: pin })
     });
     var result = await res.json().catch(function() { return {}; });
     if (!res.ok) throw new Error(result.error || "Worker error " + res.status);
@@ -1459,7 +1513,7 @@ async function requestDebrief(data, cardId) {
       : "the Worker is running old code. Redeploy it: GitHub → Actions → Deploy Worker → Run workflow");
     var rec = {
       key: debriefKey(data), date: data.date, session: data.session, session_id: data.session_id,
-      model: result.model || "", created: new Date().toISOString(), logged: data,
+      model: result.model || "", created: new Date().toISOString(), logged: sent,
       thread: [{ role: "coach", text: result.debrief, at: new Date().toISOString() }]
     };
     body.dataset.dkey = rec.key;
@@ -1757,49 +1811,68 @@ function fmtSets(ex) {
   }).join(", ");
 }
 
+/* One list: the sessions saved from this phone, each with the watch workout recorded
+   alongside it (same date, football with football, a lift with anything else), then
+   any watch workout no session claimed. Watch data comes from data/health.json
+   (refreshHealth caches it); only the Apple Watch's own workouts are listed. */
 function renderHistory() {
   var hist = getHistory();
   var el = document.getElementById("history-list");
   document.getElementById("inbox-btn").hidden = !getToken();
+  var open = [].map.call(el.querySelectorAll(".hist.open"), function(x) { return x.id; });
 
-  if (hist.length === 0) {
+  var watch = watchWorkouts(), logIdx = cachedLogIdx(), used = {};
+  var debriefsCache = getDebriefs();
+  var canDebrief = !!(getWorkerUrl() && getPin());
+  var rows = hist.map(function(item, i) {
+    var w = matchWatch(item, watch, used);
+    return { at: (item.date || "") + (w ? w.start : ""), html: sessionCard(item, i, w, debriefsCache, canDebrief) };
+  });
+  watch.forEach(function(w, j) {
+    if (!used[healthKey(w)]) rows.push({ at: w.date + w.start, html: watchCard(w, j, logIdx) });
+  });
+  if (!rows.length) {
     el.innerHTML = '<div class="empty">Nothing saved from this phone yet.<br>Log a session from Train.</div>';
     return;
   }
+  rows.sort(function(x, y) { return x.at < y.at ? 1 : x.at > y.at ? -1 : 0; });
+  el.innerHTML = rows.slice(0, 60).map(function(r) { return r.html; }).join("");
+  open.forEach(function(id) { var x = document.getElementById(id); if (x) x.classList.add("open"); });
+}
 
-  var debriefsCache = getDebriefs();
-  var canDebrief = !!(getWorkerUrl() && getPin());
-  el.innerHTML = hist.map(function(item, i) {
-    var p = (item.date || "").split("-");
-    var d = p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null;
-    var exs = item.exercises || [];
-    var fb = item.football;
-    var sub = fb ? (fb.played ? fb.minutes + " min · effort " + fb.effort + "/10 · load " + fb.load : "Didn&rsquo;t play")
-      : exs.length + ' exercises';
-    var h = '<div class="hist" id="hist-' + i + '">'
-      + '<div class="hist-h" onclick="toggleHist(' + i + ')">'
-      + '<div class="hist-date">' + (d ? '<b>' + d.getDate() + '</b>' + SHORT_MON[d.getMonth()] : esc(item.date)) + '</div>'
-      + '<div class="hist-t"><b>' + esc(item.session) + '</b><span>' + sub + '</span></div>'
-      + '<span class="hist-chev">' + ICON_CHEV + '</span></div>'
-      + '<div class="hist-d">';
-    var lastSS = 0;
-    exs.forEach(function(ex) {
-      var ss = ex.supersetGroup && ex.supersetGroup !== lastSS ? '<span class="ss">SS</span>' : '';
-      lastSS = ex.supersetGroup || 0;
-      h += '<div class="hist-ex"><b>' + esc(ex.name) + ss
-        + (ex.notes ? ' <span class="exn">' + esc(ex.notes) + '</span>' : '')
-        + '</b><span>' + esc(fmtSets(ex)) + '</span></div>';
-    });
-    if (item.notes) h += '<div class="hist-note">' + esc(item.notes) + '</div>';
-    if (item.extra) h += '<div class="hist-note">Extra: ' + esc(item.extra) + '</div>';
-    if (fb) h += '<div class="hist-note">' + esc(fb.format + " · " + fb.venue) + '</div>';
-    if (!fb && item.date && item.session_id && debriefsCache[debriefKey(item)]) {
-      h += '<button class="hist-link" onclick="openDebrief(\'' + debriefKey(item) + '\')">Read the debrief →</button>';
-    } else if (!fb && item.date && canDebrief) {
-      h += '<button class="hist-link" onclick="debriefFromHistory(' + i + ')">Get the debrief →</button>';
-    }
-    return h + '</div></div>';
-  }).join("");
+function sessionCard(item, i, w, debriefsCache, canDebrief) {
+  var p = (item.date || "").split("-");
+  var d = p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null;
+  var exs = item.exercises || [];
+  var fb = item.football;
+  var sub = fb ? (fb.played ? fb.minutes + " min · effort " + fb.effort + "/10 · load " + fb.load : "Didn&rsquo;t play")
+    : exs.length + ' exercises';
+  if (w && w.hr) sub += " · " + w.hr.avg + " bpm avg";
+  else if (w) sub += " · " + w.min + " min";
+  var h = '<div class="hist" id="hist-' + i + '">'
+    + '<div class="hist-h" onclick="toggleHist(' + i + ')">'
+    + '<div class="hist-date">' + (d ? '<b>' + d.getDate() + '</b>' + SHORT_MON[d.getMonth()] : esc(item.date)) + '</div>'
+    + '<div class="hist-t"><b>' + esc(item.session) + '</b><span>' + sub + '</span></div>'
+    + '<span class="hist-chev">' + ICON_CHEV + '</span></div>'
+    + '<div class="hist-d">';
+  var lastSS = 0;
+  exs.forEach(function(ex) {
+    var ss = ex.supersetGroup && ex.supersetGroup !== lastSS ? '<span class="ss">SS</span>' : '';
+    lastSS = ex.supersetGroup || 0;
+    h += '<div class="hist-ex"><b>' + esc(ex.name) + ss
+      + (ex.notes ? ' <span class="exn">' + esc(ex.notes) + '</span>' : '')
+      + '</b><span>' + esc(fmtSets(ex)) + '</span></div>';
+  });
+  if (item.notes) h += '<div class="hist-note">' + esc(item.notes) + '</div>';
+  if (item.extra) h += '<div class="hist-note">Extra: ' + esc(item.extra) + '</div>';
+  if (fb) h += '<div class="hist-note">' + esc(fb.format + " · " + fb.venue) + '</div>';
+  if (w) h += '<div class="hrh">Watch</div>' + watchRows(w, null);
+  if (!fb && item.date && item.session_id && debriefsCache[debriefKey(item)]) {
+    h += '<button class="hist-link" onclick="openDebrief(\'' + debriefKey(item) + '\')">Read the debrief →</button>';
+  } else if (!fb && item.date && canDebrief) {
+    h += '<button class="hist-link" onclick="debriefFromHistory(' + i + ')">Get the debrief →</button>';
+  }
+  return h + '</div></div>';
 }
 
 function toggleHist(i) {
@@ -1809,7 +1882,7 @@ function toggleHist(i) {
 /* A session whose debrief failed at save time. Re-saving would log it twice; this only asks the Worker. */
 function debriefFromHistory(i) {
   var item = getHistory()[i];
-  if (item) requestDebrief(item, "debrief-hist");
+  if (item) debriefManual(item, "debrief-hist");
 }
 
 var histMode = "sessions";
@@ -1818,9 +1891,7 @@ function histTab(mode) {
   document.querySelectorAll(".segb[data-h]").forEach(function(b) { b.classList.toggle("active", b.dataset.h === mode); });
   document.getElementById("hist-sessions").hidden = mode !== "sessions";
   document.getElementById("hist-debriefs").hidden = mode !== "debriefs";
-  document.getElementById("hist-watch").hidden = mode !== "watch";
   if (mode === "debriefs") { renderDebriefList(); syncDebriefs(); }
-  if (mode === "watch") loadWatch();
 }
 
 function renderDebriefList(openKey) {
@@ -3052,56 +3123,65 @@ function healthTitle(w, logIdx) {
   return w.type;
 }
 
-function watchRender(healthText, logText) {
-  var el = document.getElementById("watch-list"), foot = document.getElementById("watch-foot");
-  var data = null;
-  try { data = JSON.parse(healthText); } catch (e) {}
-  if (!data || !data.workouts) {
-    el.innerHTML = '<div class="empty">No Apple Health import yet.<br>Import tab &rarr; Apple Health.</div>';
-    foot.textContent = "";
-    return;
-  }
-  var logIdx = logByDate(logText);
-  var ws = data.workouts.filter(function(w) { return w.source === "Apple Watch" || w.kind === "football"; }).reverse();
-  var rest = data.workouts.length - ws.length;
-  foot.textContent = (data.exported ? "Export of " + fmtDate(data.exported) + ". " : "")
-    + (rest ? rest + " workouts from other apps (Strong, the phone) are in the file but not listed." : "");
-  if (!ws.length) { el.innerHTML = '<div class="empty">No watch workouts in the import yet.</div>'; return; }
-  el.innerHTML = ws.slice(0, 40).map(function(w, i) {
-    var d = parseIso(w.date);
-    var sub = [w.min + " min"];
-    if (w.hr) sub.push(w.hr.avg + " avg" + (w.hr.max ? " · " + w.hr.max + " max" : ""));
-    var h = '<div class="hist" id="watch-' + i + '"><div class="hist-h" onclick="this.parentNode.classList.toggle(\'open\')">'
-      + '<div class="hist-date"><b>' + d.getDate() + '</b>' + SHORT_MON[d.getMonth()] + '</div>'
-      + '<div class="hist-t"><b>' + esc(healthTitle(w, logIdx)) + '</b><span>' + sub.join(" · ") + '</span></div>'
-      + '<span class="hist-chev">' + ICON_CHEV + '</span></div><div class="hist-d">';
-    var row = function(k, v) { return '<div class="hist-ex"><b>' + k + '</b><span>' + esc(v) + '</span></div>'; };
-    h += row("Time", w.start + "–" + w.end);
-    if (w.kind === "football") {
-      var fb = (logIdx[w.date] || []).filter(function(s) { return s.name === "Football"; })[0];
-      h += row("Effort", fb && fb.effort ? fb.effort + "/10 · load " + fb.load : "not logged");
-    }
-    if (w.hr) h += row("Heart rate", w.hr.avg + " avg" + (w.hr.max ? " · " + w.hr.min + "–" + w.hr.max : "") + " bpm");
-    if (w.km) h += row("Distance", w.km + " km");
-    if (w.kcal) h += row("Active energy", w.kcal + " kcal");
-    h += row("Recorded as", w.via ? "Apple Watch, by the shortcut" : w.type + " · " + w.source);
-    var bins = w.hr && w.hr.bins ? w.hr.bins : null;
-    if (bins) {
-      var keys = Object.keys(bins).sort(function(p, q) { return q - p; });
-      var top = Math.max.apply(null, keys.map(function(k) { return bins[k]; }));
-      h += '<div class="hrh">Minutes per 10 bpm</div>' + keys.map(function(k) {
-        return '<div class="hrb"><span>' + k + '</span><div><i style="width:' + Math.round(bins[k] / top * 100)
-          + '%"></i></div><em>' + bins[k] + '</em></div>';
-      }).join("");
-    }
-    return h + '</div></div>';
-  }).join("");
+function watchWorkouts() {
+  try {
+    var data = JSON.parse(localStorage.getItem("matchday_health") || "null");
+    return (data && data.workouts || []).filter(function(w) { return w.source === "Apple Watch"; });
+  } catch (e) { return []; }
 }
 
-async function loadWatch() {
-  var cached = {};
-  try { cached.h = localStorage.getItem("matchday_health"); cached.l = localStorage.getItem("matchday_log"); } catch (e) {}
-  watchRender(cached.h, cached.l);
+function cachedLogIdx() {
+  try { return logByDate(localStorage.getItem("matchday_log")); } catch (e) { return {}; }
+}
+
+/* The watch workout that goes with a session: same date, football with football and a lift
+   with anything that isn't. The longest wins; `used` stops one workout serving two sessions. */
+function matchWatch(s, ws, used) {
+  var fb = s.session_id === "football" || !!s.football, best = null;
+  ws.forEach(function(w) {
+    if (w.date !== s.date || (w.kind === "football") !== fb || (used && used[healthKey(w)])) return;
+    if (!best || w.min > best.min) best = w;
+  });
+  if (best && used) used[healthKey(best)] = true;
+  return best;
+}
+
+/* Detail rows for one watch workout; logIdx (football effort from log.md) only for a card of its own. */
+function watchRows(w, logIdx) {
+  var row = function(k, v) { return '<div class="hist-ex"><b>' + k + '</b><span>' + esc(v) + '</span></div>'; };
+  var h = row("Time", w.start + "–" + w.end + " · " + w.min + " min" + (w.via ? " elapsed" : ""));
+  if (logIdx && w.kind === "football") {
+    var fb = (logIdx[w.date] || []).filter(function(x) { return x.name === "Football"; })[0];
+    h += row("Effort", fb && fb.effort ? fb.effort + "/10 · load " + fb.load : "not logged");
+  }
+  if (w.hr) h += row("Heart rate", w.hr.avg + " avg" + (w.hr.max ? " · " + w.hr.min + "–" + w.hr.max : "") + " bpm");
+  if (w.km) h += row("Distance", w.km + " km");
+  if (w.kcal) h += row("Active energy", w.kcal + " kcal");
+  if (logIdx) h += row("Recorded as", w.via ? "Apple Watch, by the shortcut" : w.type);
+  var bins = w.hr && w.hr.bins;
+  if (bins) {
+    var keys = Object.keys(bins).sort(function(p, q) { return q - p; });
+    var top = Math.max.apply(null, keys.map(function(k) { return bins[k]; }));
+    h += '<div class="hrh">Minutes per 10 bpm</div>' + keys.map(function(k) {
+      return '<div class="hrb"><span>' + k + '</span><div><i style="width:' + Math.round(bins[k] / top * 100)
+        + '%"></i></div><em>' + bins[k] + '</em></div>';
+    }).join("");
+  }
+  return h;
+}
+
+function watchCard(w, j, logIdx) {
+  var d = parseIso(w.date);
+  var sub = [w.min + " min"];
+  if (w.hr) sub.push(w.hr.avg + " bpm avg");
+  return '<div class="hist" id="watch-' + j + '"><div class="hist-h" onclick="this.parentNode.classList.toggle(\'open\')">'
+    + '<div class="hist-date"><b>' + d.getDate() + '</b>' + SHORT_MON[d.getMonth()] + '</div>'
+    + '<div class="hist-t"><b>' + esc(healthTitle(w, logIdx)) + '</b><span>Watch · ' + sub.join(" · ") + '</span></div>'
+    + '<span class="hist-chev">' + ICON_CHEV + '</span></div><div class="hist-d">' + watchRows(w, logIdx) + '</div></div>';
+}
+
+/* Fresh data/health.json and log.md into the cache, then redraw History if it's showing. */
+async function refreshHealth() {
   var got = await Promise.all([
     fetchRepoFile("data/health.json").catch(function() { return null; }),
     fetchRepoFile("log.md").catch(function() { return null; })]);
@@ -3109,7 +3189,8 @@ async function loadWatch() {
     if (got[0]) localStorage.setItem("matchday_health", got[0]);
     if (got[1] && /^# Session log/.test(got[1])) localStorage.setItem("matchday_log", got[1]);
   } catch (e) {}
-  if (got[0] || got[1]) watchRender(got[0] || cached.h, got[1] || cached.l);
+  if ((got[0] || got[1]) && document.getElementById("view-history").classList.contains("active")) renderHistory();
+  return got[0];
 }
 
 /* ---- toast ---- */

@@ -84,6 +84,7 @@ How to read the data:
 - The log records what he lifted, never why he stopped. He also does finishers and core work he does not always log, so something missing from the log is not necessarily missing from his training.
 - The prescription's "last time" and "why" lines were written by his coach and are reliable context.
 - If the history does not cover something, say you cannot tell rather than guessing.
+- A WATCH section, when present, is his Apple Watch heart rate for this session: average, range, and minutes per 10-bpm band, plus his other watch workouts from the week before. No max heart rate or zones are known, so don't estimate them from age or name zones. Read it as how hard the session was on his system, next to the lifts, never as a target. In lifting, rest periods dominate the average, so a modest average doesn't mean an easy session. One session's heart rate is not a trend. With no WATCH section he didn't wear the watch: don't mention it.
 
 What to write:
 - Plain text with no markdown, bullets or headings. Three to five short paragraphs separated by blank lines, about 180-300 words in total.
@@ -162,6 +163,8 @@ function describeError(e) {
 function buildMessage(session, rx, history) {
   const parts = [];
   parts.push("SESSION JUST LOGGED\n" + formatSession(session));
+  const watch = formatWatch(session.watch, session.watch_recent);
+  if (watch) parts.push(watch);
 
   const cur = rx && rx.sessions && rx.sessions[session.session_id];
   if (cur) {
@@ -183,6 +186,41 @@ function buildMessage(session, rx, history) {
   );
 
   return parts.join("\n\n");
+}
+
+/* The page attaches this session's watch workout (data/health.json) as `watch`, and the
+   week before as `watch_recent`. Both optional: absent when he didn't wear the watch. */
+function formatWatch(w, recent) {
+  const n = (v) => (Number.isFinite(Number(v)) ? String(Math.round(Number(v) * 10) / 10) : "?");
+  const t = (v) => String(v || "").slice(0, 10);
+  const lines = [];
+  if (w && typeof w === "object") {
+    lines.push("WATCH (his Apple Watch, this session)");
+    lines.push(t(w.start) + "–" + t(w.end) + ", " + n(w.min) +
+      (w.via === "shortcut" ? " min elapsed, start to end" : " min of workout time"));
+    if (w.hr && typeof w.hr === "object") {
+      lines.push("Heart rate: " + n(w.hr.avg) + " avg, " + n(w.hr.min) + "–" + n(w.hr.max) + " bpm" +
+        (w.kcal ? ". Active energy " + n(w.kcal) + " kcal" : ""));
+      const bins = w.hr.bins && typeof w.hr.bins === "object" ? Object.keys(w.hr.bins).slice(0, 30) : [];
+      if (bins.length) {
+        lines.push("Minutes per 10-bpm band: " +
+          bins.sort((a, b) => a - b).map((k) => n(k) + "s " + n(w.hr.bins[k])).join(", "));
+      }
+    } else if (w.kcal) {
+      lines.push("Active energy " + n(w.kcal) + " kcal; no heart rate recorded");
+    }
+  }
+  const prev = Array.isArray(recent) ? recent.slice(-8) : [];
+  if (prev.length) {
+    lines.push((lines.length ? "\n" : "") + "OTHER WATCH WORKOUTS, THE WEEK BEFORE");
+    for (const r of prev) {
+      if (!r || typeof r !== "object") continue;
+      lines.push(t(r.date) + " " + t(r.kind) + ": " + n(r.min) + " min" +
+        (r.hr ? ", HR " + n(r.hr.avg) + " avg / " + n(r.hr.max) + " max" : "") +
+        (r.kcal ? ", " + n(r.kcal) + " kcal" : ""));
+    }
+  }
+  return lines.join("\n");
 }
 
 function formatSession(s) {

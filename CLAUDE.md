@@ -94,7 +94,9 @@ handle now, an inbox file you drain when you next see it.
 
 **Automated post-session processing.** When a session is saved from the phone page:
 (1) the browser calls a Cloudflare Worker that returns an AI debrief on screen — he can
-reply to it, and the debrief plus the conversation are saved to `debriefs/`,
+reply to it, and the debrief plus the conversation are saved to `debriefs/`. Once he
+wears the watch, a lift's debrief waits until he taps for it after the watch upload,
+and reads his heart rate too (`logged.watch` in the debrief file),
 (2) the Drain inbox Action runs `drain.py` to commit `log.md` and `state.json`,
 (3) a Claude Code routine on his Claude plan runs at 22:00 SGT on Mon, Thu, Sat and
 Sun, his training days, and does step
@@ -188,7 +190,7 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `watch.py` | Watch uploads from his iPhone shortcut (`inbox/watch-*.txt`) → workout summaries in `data/health.json`. Run by the Watch upload Action; by hand only when one is stuck. |
 | `data/` | Strong CSV exports, `history.json` built from them, and `health.json` (Apple Watch workout summaries, from the shortcut via `watch.py` and the Import tab's Health export). Never read any of them directly. |
 | `inbox/` | Sessions saved from the phone page (JSON). Drain with `python3 drain.py`, then delete. Empty at rest. |
-| `debriefs/` | One JSON per debrief: the session, the Worker's debrief, and any follow-up conversation. Written by the phone page. Read in programming mode; never edit. |
+| `debriefs/` | One JSON per debrief: the session (with its watch workout as `logged.watch` when he wore it), the Worker's debrief, and any follow-up conversation. Written by the phone page. Read in programming mode; never edit. |
 | `index.html` | The phone page, served by GitHub Pages. Prescriptions live in the `RX` object. The Progress tab (muscle map, records) is computed in the browser from `log.md` plus `data/history.json`; when a movement is introduced, add it to `MUSCLES` or it shows as unmapped. |
 | `widget/` | iPhone home/lock-screen widget via the Scriptable app. `loader.js` is pasted on the phone once; it fetches `matchday.js` from `main` and reads `RX` + `state.json`, so re-prescribing needs no extra step. Keep `RX` strings double-quoted — it brace-matches them. |
 | `worker/` | Cloudflare Worker for instant debriefs. Setup: `docs/cloudflare-worker-setup.md`. |
