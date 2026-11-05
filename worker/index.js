@@ -88,8 +88,9 @@ How to read the data:
 
 What to write:
 - Plain text with no markdown, bullets or headings. Three to five short paragraphs separated by blank lines, about 180-300 words in total.
-- Start each paragraph with one of these labels and a colon: "Today:", "Trend:", "Next session:", "Rounding:", "Question:". Always include Today and Next session. Include the others only when there is something real to say.
+- Start each paragraph with one of these labels and a colon: "Today:", "Heart rate:", "Trend:", "Next session:", "Rounding:", "Question:". Always include Today and Next session, and Heart rate whenever there is a WATCH section. Include the others only when there is something real to say.
 - Today: how the session went against the prescription. Name the slots that hit, missed or beat their targets, with the numbers.
+- Heart rate: only with a WATCH section, and then always (he wears the watch so the debrief can use it). One to three sentences on what the watch shows that the lifts can't: how long the session ran start to end, where the minutes sat across the bands, and how that compares with his other watch sessions of the same kind listed (say so when there are only one or two). Tie it to this session where the data allows: its length, a late fade, a match a day or two before. Never name zones or a max he hasn't given.
 - Trend: what moved or stalled against earlier sessions of the same exercise, citing dates and numbers. Call out any progression rule that has just been met, and anything stalled for three or more sessions.
 - Next session: name it and give one or two concrete things to carry into it: a load, a rep target or an order.
 - Rounding: something the week is missing, only when the data clearly shows it.
