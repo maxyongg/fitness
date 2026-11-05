@@ -217,11 +217,12 @@ Heart rate is context for the lifts around football, not a target.
 
 New shortcut "Matchday watch":
 
-0. **Adjust Date**: Subtract 6 hours from Current Date. (Find Health Samples' *is in
-   the last* only goes down to days, checked on his phone 2026-11-05.)
-1. **Find Health Samples**: Type Heart Rate. Filters: Start Date *is after* the
-   Adjusted Date; Source *is* his Apple Watch. Sort by Start Date, Oldest First. No
-   limit.
+0. **Adjust Date**: Subtract 6 hours from Current Date. (Find Health Samples' date
+   filters are only *is on*, *is today*, *is between* and *is in the last*, the last
+   in days and up: checked on his phone 2026-11-05.)
+1. **Find Health Samples**: Type Heart Rate. Filters: Start Date *is between* the
+   Adjusted Date and Current Date; Source *is* his Apple Watch. Sort by Start Date,
+   Oldest First. No limit.
 2. **Get Details of Health Sample**: Value.
 3. **Get Details of Health Sample**: Start Date, with its input set to step 1's Health
    Samples.
