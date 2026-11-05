@@ -1,0 +1,9 @@
+{
+  "_generated": "2026-11-05T10:37:35",
+  "_by": "index.html (Apple Health import) + watch.py (shortcut uploads)",
+  "_note": "Workout summaries only. hr.bins: minutes per 10-bpm band, keyed by its lower bound. via: shortcut = from a Shortcut upload, where min is elapsed time. Read via health.py.",
+  "exported": "",
+  "workouts": [
+
+  ]
+}

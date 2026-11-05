@@ -209,7 +209,10 @@ sleep, weight) without asking him first.
 - **A watch upload stuck in `inbox/`** means `watch.py` couldn't read it (the Action run
   failed). Run `python3 watch.py inbox/<file>` to see why. The likely cause is a date
   format `parse_when()` doesn't know yet: add it, then run `python3 watch.py`, commit
-  `data/health.json` and the deletion, and push.
+  `data/health.json` and the deletion, and push. **`data/health.json` must exist**, even with
+  no workouts in it: the Action's `git add` fails without it. That failed the first
+  four uploads (2026-11-05). Fixing the Action file needs him, because Claude sessions
+  can't push workflow files; keeping the file in place avoids the problem.
 
 Heart rate is context for the lifts around football, not a target.
 
