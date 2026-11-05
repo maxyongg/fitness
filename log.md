@@ -745,6 +745,16 @@ effort: 7/10 | 80 min | load: 560 | 9-a-side, ICS@Clementi
 ## 2026-11-03 · Tue · Football
 effort: 5/10 | 80 min | load: 400 | 7-a-side, Shelton College, Telok Blangah
 
+## 2026-11-05 · Thu · Upper B
+note: haven’t eaten today
+- Deadlift (Barbell) — 40kg × 10, 80kg × 5, 5, 5
+- Pull Up — bodyweight × 8, 8, 7
+- Iso-Lateral Row (Machine) — 40kg × 8, 8, 8
+- Straight Arm Pulldown — 17.5kg × 12, 12, 9
+- Triceps Dip — bodyweight × 12, 12, 12
+- Cable Crossover — 13.75kg × 8, 8, 8
+- Bicep Curl (Barbell) — 30kg × 8, 26kg × 8, 8
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

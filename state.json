@@ -1,54 +1,60 @@
 {
-  "_generated": "2026-10-31T04:44:17",
+  "_generated": "2026-11-05T06:15:16",
   "_by": "drain.py",
   "last_session": {
-    "date": "2026-10-31",
-    "type": "upper_c",
-    "name": "Upper C",
-    "exercise_count": 6,
+    "date": "2026-11-05",
+    "type": "upper_b",
+    "name": "Upper B",
+    "exercise_count": 7,
     "top_sets": [
       {
-        "name": "Bench Press (Dumbbell)",
-        "weight": 24,
+        "name": "Deadlift (Barbell)",
+        "weight": 40,
         "best_reps": 10,
         "set_count": 4
       },
       {
-        "name": "Chest Supported Row",
-        "weight": 18,
-        "best_reps": 10,
-        "set_count": 3
-      },
-      {
-        "name": "Lateral Raise (Cable)",
-        "weight": 5,
-        "best_reps": 8,
-        "set_count": 3
-      },
-      {
-        "name": "Face Pull (Cable)",
-        "weight": 17.5,
-        "best_reps": 15,
-        "set_count": 3
-      },
-      {
-        "name": "Hammer Curl (Dumbbell)",
-        "weight": 16,
-        "best_reps": 8,
-        "set_count": 3
-      },
-      {
-        "name": "Hanging Leg Raise",
+        "name": "Pull Up",
         "weight": "BW",
-        "best_reps": 10,
-        "set_count": 2
+        "best_reps": 8,
+        "set_count": 3
+      },
+      {
+        "name": "Iso-Lateral Row (Machine)",
+        "weight": 40,
+        "best_reps": 8,
+        "set_count": 3
+      },
+      {
+        "name": "Straight Arm Pulldown",
+        "weight": 17.5,
+        "best_reps": 12,
+        "set_count": 3
+      },
+      {
+        "name": "Triceps Dip",
+        "weight": "BW",
+        "best_reps": 12,
+        "set_count": 3
+      },
+      {
+        "name": "Cable Crossover",
+        "weight": 13.75,
+        "best_reps": 8,
+        "set_count": 3
+      },
+      {
+        "name": "Bicep Curl (Barbell)",
+        "weight": 30,
+        "best_reps": 8,
+        "set_count": 3
       }
     ]
   },
   "next_session": {
-    "type": "lower",
-    "name": "Lower",
-    "expected_date": "2026-11-01"
+    "type": "upper_c",
+    "name": "Upper C",
+    "expected_date": "2026-11-07"
   },
   "slots": {
     "upper_a": [
@@ -326,15 +332,7 @@
   },
   "rx_asof": "2026-10-31",
   "rx_after": "2026-10-31 Upper C",
-  "flags": [],
-  "last_football": {
-    "played": true,
-    "format": "7-a-side",
-    "venue": "Shelton College, Telok Blangah",
-    "minutes": 80,
-    "effort": 5,
-    "load": 400,
-    "date": "2026-11-03",
-    "notes": ""
-  }
+  "flags": [
+    "Pull-up: top set 8, total 23"
+  ]
 }
