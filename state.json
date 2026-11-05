@@ -329,12 +329,12 @@
   "flags": [],
   "last_football": {
     "played": true,
-    "format": "9-a-side",
-    "venue": "ICS@Clementi",
+    "format": "7-a-side",
+    "venue": "Shelton College, Telok Blangah",
     "minutes": 80,
-    "effort": 7,
-    "load": 560,
-    "date": "2026-10-30",
+    "effort": 5,
+    "load": 400,
+    "date": "2026-11-03",
     "notes": ""
   }
 }
