@@ -1,0 +1,45 @@
+name: Watch upload
+
+# The iPhone shortcut uploads the watch's heart rate as inbox/watch-*.txt after a workout.
+# watch.py turns it into a workout summary in data/health.json and deletes the upload.
+# An upload it can't read stays in inbox/ and fails this run, so it shows.
+on:
+  push:
+    branches: [main]
+    paths: ['inbox/watch-*.txt']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Shares drain.yml's group: both commit to main, one at a time.
+concurrency:
+  group: drain
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Run watch.py
+        id: watch
+        run: python3 watch.py
+
+      - name: Commit and push
+        if: success() || failure()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/health.json inbox/
+          git diff --cached --quiet && exit 0
+          git commit -m "${{ steps.watch.outputs.subject || 'health: watch upload' }}"
+          for i in 1 2 3 4; do
+            git push && exit 0
+            sleep $((i * 3))
+            git pull --rebase origin main
+          done
+          exit 1
