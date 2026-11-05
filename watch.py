@@ -20,7 +20,9 @@ its time, and optionally the active-energy readings. The file looks like:
     kcal times:
     <one date per line>
 
-The dates are however Shortcuts prints them on his phone (ISO, "30 Oct 2026 at 8:03 PM",
+A variable may sit on its label's line ("hr: <first bpm>", then one per line), which is
+how his Text action is laid out (2026-11-05). The dates are however Shortcuts prints
+them on his phone (ISO, "30 Oct 2026 at 8:03 PM",
 "Today at 20:03", with or without seconds), so parse_when() takes any of those.
 
 A workout shows up as a block of dense readings: about one every 5s while a workout is
@@ -53,6 +55,7 @@ HEALTH_NOTE = ("Workout summaries only. hr.bins: minutes per 10-bpm band, keyed 
 DENSE_PER_MIN, MAX_GAP_MIN, MIN_DENSE_MIN, MIN_FOOTBALL_OVERLAP = 3, 10, 10, 45
 
 TIME_RE = re.compile(r"(\d{1,2}):(\d{2})(?::(\d{2}))?\s*([ap])?\.?\s*m?\.?(?![a-z])", re.I)
+LABEL_RE = re.compile(r"^(kcal\s+times|times|kcal|hr|sent)\s*:\s*(.*)$", re.I)
 ISO_RE = re.compile(r"(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})(?::(\d{2}))?(?:\.\d+)?\s*(Z|[+-]\d{2}:?\d{2})?")
 
 
@@ -119,13 +122,17 @@ def read_upload(path, ref):
     sections, cur = {}, None
     for raw in open(path, encoding="utf-8-sig"):
         line = raw.strip()
-        key = line.lower().rstrip(":")
-        if key in ("hr", "times", "kcal", "kcal times"):
+        label = LABEL_RE.match(line)
+        if label:
+            key, rest = re.sub(r"\s+", " ", label.group(1).lower()), label.group(2).strip()
+            if key == "sent":
+                ref = parse_when(rest, ref) or ref
+                cur = None
+                continue
             cur = sections.setdefault(key, [])
-        elif key.startswith("sent"):
-            when = parse_when(line[5:], ref)
-            ref = when or ref
-        elif line and cur is not None and not line.startswith("matchday-watch"):
+            if rest:                     # "hr: 152": the list's first item shares the label's line
+                cur.append(rest)
+        elif line and cur is not None:
             cur.append(line)
 
     def pairs(values, times):
