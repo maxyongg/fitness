@@ -290,7 +290,12 @@ Shortcuts → Advanced → **Allow Sharing Large Amounts of Data** must be on (o
 upload stops with "trying to share N Health items").
 
 Then Automation → + → **Apple Watch Workout** → *Is Ended*, any workout → Run
-Immediately → Run Shortcut "Matchday watch". Add the shortcut to the Home Screen as the
+Immediately → Run Shortcut "Matchday watch". **On his phone** the shortcut is named
+**HR Upload Automation**, and Shortcuts uses the newer layout: the automation is a
+shortcut whose first block is the trigger, and the › beside "Ended" opens Automation
+(on), Notify (on) and Confirm Before Run (off, the old "Run Immediately"). First real
+run 2026-11-05, Upper B: the automation fired with the phone locked and nothing went
+up; tapping the shortcut afterwards worked (12:51–14:09, 935 readings). Add the shortcut to the Home Screen as the
 catch-up button. The token lives in the shortcut, so the shortcut is never shared.
 
 ## Monthly: a new export lands in `data/`
