@@ -222,7 +222,18 @@ sleep, weight) without asking him first.
 from the phone shows the watch workout recorded alongside it (same date, football with
 football, a lift with anything else), and watch workouts no session claims get cards
 of their own. Only the Apple Watch's workouts are shown; the import also holds Strong's
-and a WHOOP's (Jul 2025 to Jul 2026, no heart rate), which only `health.py --all` lists.
+and his WHOOP's (Jul 2025 to Jul 2026), which only `health.py --all` lists.
+
+**Other devices' heart rate** (2026-11-05, his ask: a year of WHOOP football to compare
+against). The import's first pass keeps the watch's readings and counts other apps'
+heart-rate readings. If an app that recorded workouts (the WHOOP) also saved heart rate,
+a second pass reads the file again for that app's readings inside its own workouts
+only, since all of them could be tens of millions. Each workout takes heart rate from
+its own device; Strong's workouts don't borrow the WHOOP's. If the WHOOP's readings are
+sparser than one a minute, its band minutes undercount (each reading counts for at most
+a minute), though average and max still hold. `python3 health.py --all --since
+2025-07-01` shows them, marked [WHOOP]. Until a re-import after this change, the WHOOP
+workouts have no heart rate.
 
 **The debrief reads it.** While he's wearing the watch (an Apple Watch workout in the
 last 14 days), saving a lift doesn't start the debrief. The card waits with a button,

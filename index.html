@@ -2803,11 +2803,14 @@ function hkTime(s) {
   return s.charAt(20) === "-" ? t + off : t - off;
 }
 
+function hkUnesc(v) {
+  return v.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, "&");
+}
+
 function hkAttrs(tag) {
   var a = {}, m;
   HK_ATTR.lastIndex = 0;
-  while ((m = HK_ATTR.exec(tag))) a[m[1]] = m[2].replace(/&lt;/g, "<").replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, "&");
+  while ((m = HK_ATTR.exec(tag))) a[m[1]] = hkUnesc(m[2]);
   return a;
 }
 
@@ -2859,24 +2862,25 @@ async function importHealth(file) {
   try {
     if (typeof TextDecoderStream === "undefined") throw new Error("This browser can't stream files. Update iOS and try again.");
     var head = new Uint8Array(await file.slice(0, 4).arrayBuffer());
-    var isZip = (head[0] === 0x50 && head[1] === 0x4b) || /\.zip$/i.test(file.name), src, size;
+    var isZip = (head[0] === 0x50 && head[1] === 0x4b) || /\.zip$/i.test(file.name), ent = null;
     if (isZip) {
-      var ent = await zipEntry(file, function(n) { return /(^|\/)export\.xml$/.test(n); });
+      ent = await zipEntry(file, function(n) { return /(^|\/)export\.xml$/.test(n); });
       if (!ent) throw new Error("No export.xml in that zip. Is it the Apple Health export?");
       if (ent.method === 8 && typeof DecompressionStream === "undefined")
         throw new Error("This browser can't unzip. Tap the zip in Files to unzip it, then pick export.xml from the folder.");
       if (ent.method !== 0 && ent.method !== 8) throw new Error("Unsupported zip compression (" + ent.method + ")");
-      src = file.slice(ent.start, ent.start + ent.size).stream();
-      size = ent.size;
-    } else {
-      src = file.stream();
-      size = file.size;
     }
-    var done = 0, prog = document.getElementById("health-prog");
-    src = src.pipeThrough(new TransformStream({ transform: function(c, ctl) { done += c.byteLength; ctl.enqueue(c); } }));
-    if (isZip && ent.method === 8) src = src.pipeThrough(new DecompressionStream("deflate-raw"));
-    var res = await scanHealth(src.pipeThrough(new TextDecoderStream()), function() {
-      prog.textContent = "Reading " + Math.min(99, Math.floor(done / size * 100)) + "%… keep this page open.";
+    var size = ent ? ent.size : file.size, done = 0, prog = document.getElementById("health-prog");
+    /* A fresh text stream over export.xml on every call: a second pass reads it again. */
+    var open = function() {
+      done = 0;
+      var src = (ent ? file.slice(ent.start, ent.start + ent.size) : file).stream()
+        .pipeThrough(new TransformStream({ transform: function(c, ctl) { done += c.byteLength; ctl.enqueue(c); } }));
+      if (ent && ent.method === 8) src = src.pipeThrough(new DecompressionStream("deflate-raw"));
+      return src.pipeThrough(new TextDecoderStream());
+    };
+    var res = await scanHealth(open, function(what) {
+      prog.textContent = what + " " + Math.min(99, Math.floor(done / size * 100)) + "%… keep this page open.";
     });
     healthOut = { exported: res.exported, workouts: res.workouts };
     renderHealthFound();
@@ -2886,23 +2890,72 @@ async function importHealth(file) {
   btn.disabled = false;
 }
 
-async function scanHealth(stream, onProgress) {
-  var reader = stream.getReader(), carry = "", exported = "", raw = [], w = null, inAct = false, tick = Date.now();
-  var hrT = new Float64Array(1 << 16), hrV = new Uint8Array(1 << 16), hrN = 0, sorted = true;
+/* Streams export.xml tag by tag: fn gets each tag's text after its "<". */
+async function eachTag(stream, fn, onProgress) {
+  var reader = stream.getReader(), carry = "", tick = Date.now();
+  for (;;) {
+    var r = await reader.read();
+    if (r.done) break;
+    carry += r.value;
+    var cut = carry.lastIndexOf("<");
+    if (cut < 0) continue;
+    var parts = carry.slice(0, cut).split("<");
+    carry = carry.slice(cut);
+    for (var k = 0; k < parts.length; k++) if (parts[k]) fn(parts[k]);
+    if (Date.now() - tick > 250) {                                   /* let the progress line paint */
+      onProgress();
+      await new Promise(function(res) { setTimeout(res, 0); });
+      tick = Date.now();
+    }
+  }
+  carry.split("<").forEach(function(t) { if (t) fn(t); });
+}
 
-  function tag(t) {
-    if (t.charCodeAt(0) === 82) {                                     /* R */
-      if (!t.startsWith(HK_HR) || t.indexOf("Watch") < 0) return;     /* the watch's readings only */
-      var i = t.indexOf(' startDate="'), j = t.indexOf(' value="');
-      if (i < 0 || j < 0) return;
-      var ts = hkTime(t.substr(i + 12, 25)), v = parseFloat(t.substr(j + 8, 8));
-      if (!(ts > 0) || !(v > 0)) return;
-      if (hrN === hrT.length) {
-        var nt = new Float64Array(hrN * 2), nv = new Uint8Array(hrN * 2);
-        nt.set(hrT); nv.set(hrV); hrT = nt; hrV = nv;
+/* Heart-rate readings as two growing typed arrays, sorted by time when done. */
+function hrSeries() {
+  var T = new Float64Array(1 << 12), V = new Uint8Array(1 << 12), n = 0, sorted = true;
+  return {
+    add: function(ts, v) {
+      if (n === T.length) {
+        var nt = new Float64Array(n * 2), nv = new Uint8Array(n * 2);
+        nt.set(T); nv.set(V); T = nt; V = nv;
       }
-      if (hrN && ts < hrT[hrN - 1]) sorted = false;
-      hrT[hrN] = ts; hrV[hrN] = Math.min(255, Math.round(v)); hrN++;
+      if (n && ts < T[n - 1]) sorted = false;
+      T[n] = ts; V[n] = Math.min(255, Math.round(v)); n++;
+    },
+    done: function() {
+      var t = T.subarray(0, n), v = V.subarray(0, n);
+      if (sorted) return { T: t, V: v };
+      var idx = Array.from({ length: n }, function(_, i) { return i; }).sort(function(a, b) { return t[a] - t[b]; });
+      return { T: Float64Array.from(idx, function(i) { return t[i]; }), V: Uint8Array.from(idx, function(i) { return v[i]; }) };
+    }
+  };
+}
+
+/* Hot path: a heart-rate <Record> → [epoch ms, bpm], and the app that wrote it. */
+function hrReading(t) {
+  var i = t.indexOf(' startDate="'), j = t.indexOf(' value="');
+  if (i < 0 || j < 0) return null;
+  var ts = hkTime(t.substr(i + 12, 25)), v = parseFloat(t.substr(j + 8, 8));
+  return ts > 0 && v > 0 ? [ts, v] : null;
+}
+function hrSource(t) {
+  var i = t.indexOf(' sourceName="');
+  return i < 0 ? "" : hkUnesc(t.slice(i + 13, t.indexOf('"', i + 13)));
+}
+function isWatchSource(a) { return /watch/i.test(a.sourceName || "") || /model:Watch/.test(a.device || ""); }
+
+/* Pass 1 keeps the watch's readings and every workout, and counts other apps' readings.
+   If another device (his WHOOP, Jul 2025 to Jul 2026) saved heart rate as well as
+   workouts, pass 2 reads the file again for its readings inside its own workouts only:
+   all of them could run to tens of millions, more than a phone should hold. */
+async function scanHealth(open, onProgress) {
+  var exported = "", raw = [], w = null, inAct = false, watch = hrSeries(), others = {};
+  await eachTag(open(), function(t) {
+    if (t.charCodeAt(0) === 82) {                                     /* R */
+      if (!t.startsWith(HK_HR)) return;
+      if (t.indexOf("Watch") >= 0) { var r = hrReading(t); if (r) watch.add(r[0], r[1]); }
+      else { var src = hrSource(t); others[src] = (others[src] || 0) + 1; }
       return;
     }
     if (t.startsWith("Workout ")) {
@@ -2921,34 +2974,56 @@ async function scanHealth(stream, onProgress) {
     } else if (t.startsWith("WorkoutActivity ")) inAct = !/\/>\s*$/.test(t);
     else if (t.startsWith("/WorkoutActivity")) inAct = false;
     else if (t.startsWith("/Workout>")) { raw.push(w); w = null; }
-  }
+  }, function() { onProgress("Reading"); });
 
-  for (;;) {
-    var r = await reader.read();
-    if (r.done) break;
-    carry += r.value;
-    var cut = carry.lastIndexOf("<");
-    if (cut < 0) continue;
-    var parts = carry.slice(0, cut).split("<");
-    carry = carry.slice(cut);
-    for (var k = 0; k < parts.length; k++) if (parts[k]) tag(parts[k]);
-    if (Date.now() - tick > 250) {                                   /* let the progress line paint */
-      onProgress();
-      await new Promise(function(res) { setTimeout(res, 0); });
-      tick = Date.now();
-    }
+  var wins = {};
+  raw.forEach(function(x) {
+    var src = x.a.sourceName || "";
+    if (others[src] && !isWatchSource(x.a) && x.a.startDate && x.a.endDate)
+      (wins[src] = wins[src] || []).push([hkTime(x.a.startDate), hkTime(x.a.endDate)]);
+  });
+  var sources = Object.keys(wins), series = {};
+  if (sources.length) {
+    sources.forEach(function(src) { wins[src] = mergeWindows(wins[src]); series[src] = hrSeries(); });
+    await eachTag(open(), function(t) {
+      if (t.charCodeAt(0) !== 82 || !t.startsWith(HK_HR) || t.indexOf("Watch") >= 0) return;
+      var src = hrSource(t), ws = wins[src];
+      if (!ws) return;
+      var r = hrReading(t);
+      if (r && inWindows(ws, r[0])) series[src].add(r[0], r[1]);
+    }, function() { onProgress("Reading " + sources.join(", ") + " heart rate"); });
   }
-  carry.split("<").forEach(function(t) { if (t) tag(t); });
-
-  var T = hrT.subarray(0, hrN), V = hrV.subarray(0, hrN);
-  if (!sorted) {
-    var idx = Array.from({ length: hrN }, function(_, i) { return i; }).sort(function(a, b) { return T[a] - T[b]; });
-    T = Float64Array.from(idx, function(i) { return T[i]; });
-    V = Uint8Array.from(idx, function(i) { return V[i]; });
-  }
-  var workouts = raw.map(function(x) { return healthWorkout(x, T, V); }).filter(Boolean);
+  var W = watch.done();
+  sources.forEach(function(src) { series[src] = series[src].done(); });
+  var workouts = raw.map(function(x) {
+    var own = !isWatchSource(x.a) && series[x.a.sourceName || ""];
+    var hr = own || W;
+    return healthWorkout(x, hr.T, hr.V);
+  }).filter(Boolean);
   workouts.sort(function(a, b) { return (a.date + a.start) < (b.date + b.start) ? -1 : 1; });
   return { exported: exported, workouts: workouts };
+}
+
+function mergeWindows(ws) {
+  ws.sort(function(a, b) { return a[0] - b[0]; });
+  var out = [];
+  ws.forEach(function(x) {
+    var last = out[out.length - 1];
+    if (last && x[0] <= last[1]) last[1] = Math.max(last[1], x[1]);
+    else out.push([x[0], x[1]]);
+  });
+  return out;
+}
+
+function inWindows(ws, ts) {
+  var lo = 0, hi = ws.length - 1;
+  while (lo <= hi) {
+    var mid = (lo + hi) >> 1;
+    if (ts < ws[mid][0]) hi = mid - 1;
+    else if (ts > ws[mid][1]) lo = mid + 1;
+    else return true;
+  }
+  return false;
 }
 
 /* One raw <Workout> → its summary. Heart-rate bands weight each reading by the gap to the
@@ -2966,7 +3041,7 @@ function healthWorkout(x, T, V) {
   var out = { date: a.startDate.slice(0, 10), start: a.startDate.slice(11, 16), end: a.endDate.slice(11, 16),
     kind: "", type: type, source: "", min: Math.round(mins) };
   var src = a.sourceName || "";
-  out.source = /watch/i.test(src) || /model:Watch/.test(a.device || "") ? "Apple Watch"
+  out.source = isWatchSource(a) ? "Apple Watch"
     : /iphone/i.test(src) ? "iPhone" : src.slice(0, 40);
 
   var en = stat("HKQuantityTypeIdentifierActiveEnergyBurned"), kcal = null;
