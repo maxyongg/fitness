@@ -1,0 +1,190 @@
+{
+  "key": "2026-11-07-upper-c",
+  "date": "2026-11-07",
+  "session": "Upper C",
+  "session_id": "upper_c",
+  "model": "claude-sonnet-5",
+  "created": "2026-11-07T10:26:49.392Z",
+  "logged": {
+    "date": "2026-11-07",
+    "session": "Upper C",
+    "session_id": "upper_c",
+    "exercises": [
+      {
+        "name": "Bench Press (Dumbbell)",
+        "sets": [
+          {
+            "weight": 30,
+            "reps": 8
+          },
+          {
+            "weight": 30,
+            "reps": 8
+          },
+          {
+            "weight": 30,
+            "reps": 8
+          }
+        ],
+        "weight": 30
+      },
+      {
+        "name": "Chest Supported Row",
+        "sets": [
+          {
+            "weight": 18,
+            "reps": 12
+          },
+          {
+            "weight": 18,
+            "reps": 12
+          },
+          {
+            "weight": 18,
+            "reps": 12
+          }
+        ],
+        "weight": 18
+      },
+      {
+        "name": "Lateral Raise (Cable)",
+        "sets": [
+          {
+            "weight": 5,
+            "reps": 10
+          },
+          {
+            "weight": 5,
+            "reps": 10
+          },
+          {
+            "weight": 5,
+            "reps": 10
+          }
+        ],
+        "weight": 5
+      },
+      {
+        "name": "Face Pull (Cable)",
+        "sets": [
+          {
+            "weight": 21,
+            "reps": 10
+          },
+          {
+            "weight": 21,
+            "reps": 10
+          },
+          {
+            "weight": 21,
+            "reps": 10
+          }
+        ],
+        "weight": 21
+      },
+      {
+        "name": "Hammer Curl (Dumbbell)",
+        "sets": [
+          {
+            "weight": 16,
+            "reps": 10
+          },
+          {
+            "weight": 16,
+            "reps": 10
+          },
+          {
+            "weight": 16,
+            "reps": 10
+          }
+        ],
+        "weight": 16
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 10
+          },
+          {
+            "weight": 0,
+            "reps": 10
+          },
+          {
+            "weight": 0,
+            "reps": 10
+          }
+        ],
+        "bodyweight": true
+      }
+    ],
+    "notes": "Imported from Strong",
+    "extra": "",
+    "watch": {
+      "date": "2026-11-07",
+      "start": "15:03",
+      "end": "15:45",
+      "kind": "lifting",
+      "type": "Workout",
+      "source": "Apple Watch",
+      "via": "shortcut",
+      "min": 42,
+      "kcal": 175,
+      "hr": {
+        "avg": 104,
+        "min": 77,
+        "max": 136,
+        "n": 508,
+        "bins": {
+          "70": 0.2,
+          "80": 5.1,
+          "90": 11.5,
+          "100": 13.5,
+          "110": 6.8,
+          "120": 4.6,
+          "130": 1.3
+        }
+      }
+    },
+    "watch_recent": [
+      {
+        "date": "2026-10-31",
+        "kind": "lifting",
+        "min": 57,
+        "hr": {
+          "avg": 96,
+          "max": 134
+        },
+        "kcal": 229
+      },
+      {
+        "date": "2026-11-03",
+        "kind": "football",
+        "min": 122,
+        "hr": {
+          "avg": 140,
+          "max": 181
+        },
+        "kcal": 993
+      },
+      {
+        "date": "2026-11-05",
+        "kind": "lifting",
+        "min": 78,
+        "hr": {
+          "avg": 102,
+          "max": 148
+        },
+        "kcal": 325
+      }
+    ]
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Chest Supported Row completes its trial run clean — 18kg × 12, 12, 12, the first 12s at this load after two sessions of 10,10,10. Hammer Curl held 16kg × 10, 10, 10, back from the 8s on 10-31. Hanging Leg Raise stayed at bodyweight × 10, 10, 10, consistent with recent sessions. Lateral Raise (Cable) sat at 5kg × 10, 10, 10, still well under the 15-20 target. Bench Press and Face Pull both jumped above what was prescribed: 30kg instead of 28kg on the press, and 21kg instead of 17.5kg on face pull, and both landed at the bottom of their rep ranges — 8, 8, 8 and 10, 10, 10 — rather than building on the 10-31 numbers.\n\nHeart rate: 42 minutes start to end, the shortest of the three recent lifting sessions on watch (10-31 was 57 min, 11-05 was 78 min), but the highest average of the three at 104 bpm against 96 and 102. Most of the time sat in the 90s and 100s bands — 25 of the 42 minutes — with only 6 minutes above 120. Shorter session, less rest sitting in the average, reads as tightly paced rather than an easy one.\n\nTrend: Chest Supported Row's progression is earned — 20kg next time, and worth keeping the slot given four clean trial runs. Lateral Raise (Cable) has been 8s or 10s for three sessions running (10-04, 10-31, now) with no clear move toward 15-20; that's worth watching, not changing yet.\n\nNext session: Lower, Sun. Squat 62.5kg × 8, 8 with 2 in reserve, RDL anchor 70kg × 8, 8, 8 slow on the eccentric, everything else 2 reps short of its usual top — first legs day in four weeks, 48 hours out from Tuesday's football.\n\nQuestion: Bench went to 30kg and face pull to 21kg today, both above what was planned, and both came in at the floor of the rep range rather than building on last time's numbers — was that a deliberate jump, or did the session feel harder than usual by that point?",
+      "at": "2026-11-07T10:26:49.392Z"
+    }
+  ]
+}
