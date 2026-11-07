@@ -760,6 +760,14 @@ note: haven’t eaten today
      (2 of 3 toward weighted). Row and curl flat, hold. Upper C 11-07 unchanged. No 11-01 Lower or
      11-02 Upper A in the log; asked. -->
 
+## 2026-11-07 · Sat · Upper C
+- Bench Press (Dumbbell) — 30kg × 8, 8, 8
+- Chest Supported Row — 18kg × 12, 12, 12
+- Lateral Raise (Cable) — 5kg × 10, 10, 10
+- Face Pull (Cable) — 21kg × 10, 10, 10
+- Hammer Curl (Dumbbell) — 16kg × 10, 10, 10
+- Hanging Leg Raise — bodyweight × 10, 10, 10
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

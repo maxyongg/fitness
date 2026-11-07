@@ -1,60 +1,54 @@
 {
-  "_generated": "2026-11-05T06:15:16",
+  "_generated": "2026-11-07T10:26:09",
   "_by": "drain.py",
   "last_session": {
-    "date": "2026-11-05",
-    "type": "upper_b",
-    "name": "Upper B",
-    "exercise_count": 7,
+    "date": "2026-11-07",
+    "type": "upper_c",
+    "name": "Upper C",
+    "exercise_count": 6,
     "top_sets": [
       {
-        "name": "Deadlift (Barbell)",
-        "weight": 40,
-        "best_reps": 10,
-        "set_count": 4
-      },
-      {
-        "name": "Pull Up",
-        "weight": "BW",
-        "best_reps": 8,
-        "set_count": 3
-      },
-      {
-        "name": "Iso-Lateral Row (Machine)",
-        "weight": 40,
-        "best_reps": 8,
-        "set_count": 3
-      },
-      {
-        "name": "Straight Arm Pulldown",
-        "weight": 17.5,
-        "best_reps": 12,
-        "set_count": 3
-      },
-      {
-        "name": "Triceps Dip",
-        "weight": "BW",
-        "best_reps": 12,
-        "set_count": 3
-      },
-      {
-        "name": "Cable Crossover",
-        "weight": 13.75,
-        "best_reps": 8,
-        "set_count": 3
-      },
-      {
-        "name": "Bicep Curl (Barbell)",
+        "name": "Bench Press (Dumbbell)",
         "weight": 30,
         "best_reps": 8,
+        "set_count": 3
+      },
+      {
+        "name": "Chest Supported Row",
+        "weight": 18,
+        "best_reps": 12,
+        "set_count": 3
+      },
+      {
+        "name": "Lateral Raise (Cable)",
+        "weight": 5,
+        "best_reps": 10,
+        "set_count": 3
+      },
+      {
+        "name": "Face Pull (Cable)",
+        "weight": 21,
+        "best_reps": 10,
+        "set_count": 3
+      },
+      {
+        "name": "Hammer Curl (Dumbbell)",
+        "weight": 16,
+        "best_reps": 10,
+        "set_count": 3
+      },
+      {
+        "name": "Hanging Leg Raise",
+        "weight": "BW",
+        "best_reps": 10,
         "set_count": 3
       }
     ]
   },
   "next_session": {
-    "type": "upper_c",
-    "name": "Upper C",
-    "expected_date": "2026-11-07"
+    "type": "lower",
+    "name": "Lower",
+    "expected_date": "2026-11-08"
   },
   "slots": {
     "upper_a": [
@@ -332,7 +326,5 @@
   },
   "rx_asof": "2026-11-05",
   "rx_after": "2026-11-05 Upper B",
-  "flags": [
-    "Pull-up: top set 8, total 23"
-  ]
+  "flags": []
 }
