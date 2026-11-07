@@ -304,6 +304,8 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .hrb i { display: block; height: 8px; min-width: 2px; border-radius: 4px; background: var(--accent); }
 .hrb em { flex: 0 0 52px; font-style: normal; color: var(--ink-2); }
 #health-result { margin-top: 10px; }
+.watch-st { font-family: var(--font-m); font-size: 12px; color: var(--ink-3); margin: 10px 0 8px; }
+.watch-st.ok, #fb-watch-status.ok { color: var(--accent); }
 
 /* ---- import ---- */
 .import-area { min-height: 170px; font-family: var(--font-m); font-size: 14px; }
@@ -516,7 +518,8 @@ input[type=number] { -moz-appearance: textfield; }
         <div class="debrief-b"></div>
       </div>
       <div id="history-list"></div>
-      <div style="margin-top:14px"><button class="btn btn-ghost" onclick="checkInbox()" id="inbox-btn" hidden>Check inbox on GitHub</button></div>
+      <div style="margin-top:14px"><button class="btn btn-ghost" onclick="sendWatch()">Send watch data</button>
+        <button class="btn btn-ghost" onclick="checkInbox()" id="inbox-btn" hidden>Check inbox on GitHub</button></div>
     </div>
     <div id="hist-debriefs" hidden>
       <p class="page-sub">Every debrief and what you said back. Saved to the repo in <span class="mono">debriefs/</span>.</p>
@@ -1196,11 +1199,15 @@ function renderFootball() {
   h += '<div class="block"><div class="block-h"><b>Notes</b><span>Saved with the match</span></div>'
     + '<textarea class="field" id="notes" data-k="notes" placeholder="Knocks, legs, why you missed it…"></textarea></div>';
 
+  h += '<div class="block"><div class="block-h"><b>Watch</b><span id="fb-watch-status"></span></div>'
+    + '<button class="btn btn-ghost" onclick="sendWatch()">Send watch data</button></div>';
+
   document.getElementById("main").innerHTML = h;
   fbPlayed = true;
   fbEffort = null;
   restoreDraft("football");
   renderFootballState();
+  watchStatus();
 }
 
 function setPlayed(p) { fbPlayed = p; renderFootballState(); saveDraft(); }
@@ -1463,10 +1470,73 @@ function debriefAfterSave(data) {
   var card = document.getElementById("debrief-train"), body = card.querySelector(".debrief-b");
   delete body.dataset.dkey;
   card.hidden = false;
-  body.innerHTML = '<p>Waiting for the watch. End the workout on the watch and give the shortcut about a minute '
-    + 'to upload it, then get the debrief: it reads your heart rate too. It&rsquo;s also in History.</p>'
+  body.innerHTML = '<p>Waiting for the watch. End the workout on the watch, send its data from here, then get '
+    + 'the debrief: it reads your heart rate too. It&rsquo;s also in History.</p>'
+    + '<p class="watch-st" id="watch-status"></p>'
+    + '<button class="btn btn-ghost" onclick="sendWatch()">Send watch data</button>'
     + '<button class="hist-link" onclick="debriefPending()">Get the debrief →</button>';
+  watchStatus();
   card.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+/* ---- send watch data ----
+
+   The "workout ended" automation usually finds the phone locked, and iOS won't let a
+   shortcut read Health then. This runs the same shortcut from the page while he's using
+   the phone. iOS stays in Shortcuts afterwards; the ◀ at the top left comes back here.
+   x-success would return automatically but opens Safari, which doesn't share storage
+   with the Home Screen page. Then the page checks data/health.json every WATCH_POLL_MS
+   for a few minutes, so the status line says when the workout is in.
+   WATCH_SHORTCUT must match the shortcut's name on his phone.                        */
+var WATCH_SHORTCUT = "HR Upload Automation";
+var WATCH_POLL_MS = 15000, WATCH_POLL_FOR = 3 * 60000;
+var watchPollUntil = 0, watchPollTimer = null;
+
+function openUrl(u) { window.location.href = u; }
+
+function sendWatch() {
+  openUrl("shortcuts://run-shortcut?name=" + encodeURIComponent(WATCH_SHORTCUT));
+  watchPollUntil = Date.now() + WATCH_POLL_FOR;
+  if (!watchPollTimer) watchPollTimer = setTimeout(pollWatch, WATCH_POLL_MS);
+  watchStatus("Sent to Shortcuts. Come back with ◀ at the top left; this checks for the upload.");
+}
+
+async function pollWatch() {
+  watchPollTimer = null;
+  try {
+    var text = await fetchRepoFile("data/health.json");
+    try { localStorage.setItem("matchday_health", text); } catch (e) {}
+    if (document.getElementById("view-history").classList.contains("active")) renderHistory();
+  } catch (e) {}
+  var found = watchStatus();
+  if (found || Date.now() >= watchPollUntil) { watchPollUntil = 0; watchStatus(); }
+  else watchPollTimer = setTimeout(pollWatch, WATCH_POLL_MS);
+}
+
+/* Coming back from Shortcuts: check now rather than at the next tick. */
+document.addEventListener("visibilitychange", function() {
+  if (document.visibilityState === "visible" && Date.now() < watchPollUntil) {
+    clearTimeout(watchPollTimer);
+    pollWatch();
+  }
+});
+
+/* The status lines for whatever is waiting: the debrief card's session, and the match on
+   the Football tab. Returns true once that workout's watch data is in. */
+function watchStatus(note) {
+  var ws = watchWorkouts(), found = false;
+  var put = function(id, session) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var w = session && matchWatch(session, ws);
+    if (w) found = true;
+    el.textContent = w ? "In: " + w.start + "–" + w.end + (w.hr ? " · " + w.hr.avg + " bpm avg" : "") + " ✓"
+      : note || (Date.now() < watchPollUntil ? "Checking for the upload…" : "Not in yet");
+    el.className = (id === "watch-status" ? "watch-st" : "") + (w ? " ok" : "");
+  };
+  put("watch-status", pendingDebrief);
+  if (cur === "football") put("fb-watch-status", { date: isoDate(footballDate()), session_id: "football" });
+  return found;
 }
 
 function debriefPending() { if (pendingDebrief) debriefManual(pendingDebrief, "debrief-train"); }

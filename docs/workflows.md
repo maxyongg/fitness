@@ -175,7 +175,12 @@ it in `data/health.json`, and neither needs a Claude session:
   Watch upload Action (`.github/workflows/watch.yml`) runs `watch.py`, which finds the
   workout as a block of dense readings, adds a summary marked `"via": "shortcut"`, and
   deletes the upload. If the phone was locked when the workout ended, iOS blocks Health
-  and nothing goes up; he taps the shortcut on his Home Screen later that day instead.
+  and nothing goes up, which is most days. So the page has a **Send watch data**
+  button (debrief card, Football tab, History, added 2026-11-07) that runs the shortcut
+  through `shortcuts://run-shortcut`, then checks `data/health.json` every 15s for three
+  minutes and says when the workout is in. `WATCH_SHORTCUT` in `index.html` must match
+  the shortcut's name on his phone ("HR Upload Automation"). Tapping the shortcut in
+  Shortcuts does the same.
   Re-sending is harmless: a newer upload replaces the older record for the same stretch.
 - **Now and then: the Health export** (Import tab → Apple Health), for backfill or after
   a gap. Health app → profile picture → Export All Health Data → Save to Files, then
