@@ -103,6 +103,8 @@ anything.
 
 **11-05 Upper B, done.** Deadlift 40 × 10, then 80 × 5, 5, 5: on target, holds at 80 (82.5 after one more clean session). Pull-ups BW × 8, 8, 7 hold. Row 40 × 8 ×3, third week flat, so aim for 9s and 10s. Straight-arm pulldown 17.5 × 12, 12, 9: 12s earn 20kg. Dips BW 12 ×3, 2 of 3 toward weighted dips. Crossover 13.75 × 8 ×3 was under the band, so 12.5 returns. Barbell curl 30 × 8, 26 × 8, 8: three Thursdays at 8s, holds (cable or hammer curl is the swap if it stalls again). He hadn't eaten that day. Upper C 11-07 holds, with chest-supported row run 4 of 4. No Lower 11-01 or Upper A 11-02 in the log: asked in RX.note.
 
+**11-07 Upper C, done.** Chest-supported row 18 × 12, 12, 12 ends the four-run trial: keep the slot, 20kg next. DB press 30 × 8, 8, 8 and face pull 21 × 10, 10, 10 were his own jumps above the ask and read under their bands, so the press goes back to 28 (12s earn 30) and the face pull to 17.5 (15s earn 20), as a reset on a gut call, not a decline. Hammer curl 16 × 10 ×3 holds (11–12s earn 18). Cable lateral raise 5 × 10 ×3 holds. Leg raise 10 ×3 holds. Lower 11-08 stays on the re-entry loads: no Lower since 10-02 in the log, and the 11-01 question is still open in RX.note.
+
 **From 26 Oct:** each lift goes back to its load in the session tables, full sets, if
 every re-entry set landed with 2 in reserve. A lift that ground, or that missed the
 bottom of its band, gets one more week at its re-entry load. A pain reading of 4 or more
