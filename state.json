@@ -73,7 +73,7 @@
         "type": "rotate",
         "sets": 2,
         "reps": "10-12",
-        "load": 57.5,
+        "load": 65,
         "unit": "kg",
         "alts": [
           "Cable Crossover",
@@ -85,7 +85,7 @@
         "type": "rotate",
         "sets": 2,
         "reps": "8-12",
-        "load": 37.5,
+        "load": 42.5,
         "unit": "kg",
         "alts": [
           "Face Pull",
@@ -97,7 +97,7 @@
         "type": "anchor",
         "sets": 3,
         "reps": "15-20",
-        "load": 7,
+        "load": 8,
         "unit": "kg"
       },
       {
@@ -105,7 +105,7 @@
         "type": "rotate",
         "sets": 2,
         "reps": "10-12",
-        "load": 7.5,
+        "load": 10,
         "unit": "kg",
         "alts": [
           "Triceps Extension",
@@ -119,7 +119,7 @@
         "type": "anchor",
         "sets": 3,
         "reps": "5",
-        "load": 70,
+        "load": 80,
         "unit": "kg"
       },
       {
@@ -167,7 +167,7 @@
         "type": "rotate",
         "sets": 2,
         "reps": "10-12",
-        "load": 10,
+        "load": 12.5,
         "unit": "kg",
         "alts": [
           "Single Arm Cable Chest Fly",
@@ -197,7 +197,7 @@
         "type": "rotate",
         "sets": 2,
         "reps": "10-12",
-        "load": 24,
+        "load": 28,
         "unit": "kg"
       },
       {
@@ -205,7 +205,7 @@
         "type": "rotate",
         "sets": 2,
         "reps": "10-12",
-        "load": 18,
+        "load": 20,
         "unit": "kg",
         "alts": [
           "Seated Row (Cable)"
@@ -224,7 +224,7 @@
         "type": "rotate",
         "sets": 2,
         "reps": "12-15",
-        "load": 15,
+        "load": 17.5,
         "unit": "kg",
         "alts": [
           "Reverse Fly (Machine)",
@@ -273,7 +273,7 @@
       {
         "name": "Romanian Deadlift (Barbell)",
         "type": "anchor",
-        "sets": 3,
+        "sets": 2,
         "reps": "6-8",
         "load": 70,
         "unit": "kg"
@@ -324,7 +324,7 @@
       }
     ]
   },
-  "rx_asof": "2026-11-07",
+  "rx_asof": "2026-11-11",
   "rx_after": "2026-11-07 Upper C",
   "flags": []
 }
