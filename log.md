@@ -772,6 +772,15 @@ note: haven’t eaten today
      Press (30 x 8s) and face pull (21 x 10s) were his picks above the ask and under band: back to 28 and
      17.5. Hammer curl, cable raise and leg raise hold. Lower 11-08 unchanged (re-entry loads); 11-01 asked. -->
 
+## 2026-11-12 · Thu · Upper A
+note: so tired today. i also worked out without eating
+- Incline Bench Press (Barbell) — 40kg × 10, 67.5kg × 7, 7, 7, 50kg × 8
+- Pull Up — +5kg × 8, 8, 8
+- Chest Fly — 65kg × 10, 10, 6
+- Reverse Fly (Machine) — 42.5kg × 10, 8
+- Lateral Raise (Dumbbell) — 7kg × 15, 15, 15
+- One Handed Triceps Pull — 10kg × 10, 10, 10
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

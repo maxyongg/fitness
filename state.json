@@ -1,54 +1,54 @@
 {
-  "_generated": "2026-11-07T10:26:09",
+  "_generated": "2026-11-12T06:09:53",
   "_by": "drain.py",
   "last_session": {
-    "date": "2026-11-07",
-    "type": "upper_c",
-    "name": "Upper C",
+    "date": "2026-11-12",
+    "type": "upper_a",
+    "name": "Upper A",
     "exercise_count": 6,
     "top_sets": [
       {
-        "name": "Bench Press (Dumbbell)",
-        "weight": 30,
+        "name": "Incline Bench Press (Barbell)",
+        "weight": 40,
+        "best_reps": 10,
+        "set_count": 5
+      },
+      {
+        "name": "Pull Up",
+        "weight": "BW+5",
         "best_reps": 8,
         "set_count": 3
       },
       {
-        "name": "Chest Supported Row",
-        "weight": 18,
-        "best_reps": 12,
-        "set_count": 3
-      },
-      {
-        "name": "Lateral Raise (Cable)",
-        "weight": 5,
+        "name": "Chest Fly",
+        "weight": 65,
         "best_reps": 10,
         "set_count": 3
       },
       {
-        "name": "Face Pull (Cable)",
-        "weight": 21,
+        "name": "Reverse Fly (Machine)",
+        "weight": 42.5,
         "best_reps": 10,
+        "set_count": 2
+      },
+      {
+        "name": "Lateral Raise (Dumbbell)",
+        "weight": 7,
+        "best_reps": 15,
         "set_count": 3
       },
       {
-        "name": "Hammer Curl (Dumbbell)",
-        "weight": 16,
-        "best_reps": 10,
-        "set_count": 3
-      },
-      {
-        "name": "Hanging Leg Raise",
-        "weight": "BW",
+        "name": "One Handed Triceps Pull",
+        "weight": 10,
         "best_reps": 10,
         "set_count": 3
       }
     ]
   },
   "next_session": {
-    "type": "lower",
-    "name": "Lower",
-    "expected_date": "2026-11-08"
+    "type": "upper_c",
+    "name": "Upper C",
+    "expected_date": "2026-11-14"
   },
   "slots": {
     "upper_a": [
@@ -326,5 +326,7 @@
   },
   "rx_asof": "2026-11-11",
   "rx_after": "2026-11-07 Upper C",
-  "flags": []
+  "flags": [
+    "Pull-up: top set 8, total 24"
+  ]
 }
