@@ -1,0 +1,183 @@
+{
+  "key": "2026-11-12-upper-a",
+  "date": "2026-11-12",
+  "session": "Upper A",
+  "session_id": "upper_a",
+  "model": "claude-sonnet-5",
+  "created": "2026-11-12T06:10:29.646Z",
+  "logged": {
+    "date": "2026-11-12",
+    "session": "Upper A",
+    "session_id": "upper_a",
+    "exercises": [
+      {
+        "name": "Incline Bench Press (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 67.5,
+            "reps": 7
+          },
+          {
+            "weight": 67.5,
+            "reps": 7
+          },
+          {
+            "weight": 67.5,
+            "reps": 7
+          },
+          {
+            "weight": 50,
+            "reps": 8
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 5,
+            "reps": 8
+          },
+          {
+            "weight": 5,
+            "reps": 8
+          },
+          {
+            "weight": 5,
+            "reps": 8
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Chest Fly",
+        "sets": [
+          {
+            "weight": 65,
+            "reps": 10
+          },
+          {
+            "weight": 65,
+            "reps": 10
+          },
+          {
+            "weight": 65,
+            "reps": 6
+          }
+        ],
+        "weight": 65
+      },
+      {
+        "name": "Reverse Fly (Machine)",
+        "sets": [
+          {
+            "weight": 42.5,
+            "reps": 10
+          },
+          {
+            "weight": 42.5,
+            "reps": 8
+          }
+        ],
+        "weight": 42.5
+      },
+      {
+        "name": "Lateral Raise (Dumbbell)",
+        "sets": [
+          {
+            "weight": 7,
+            "reps": 15
+          },
+          {
+            "weight": 7,
+            "reps": 15
+          },
+          {
+            "weight": 7,
+            "reps": 15
+          }
+        ],
+        "weight": 7
+      },
+      {
+        "name": "One Handed Triceps Pull",
+        "sets": [
+          {
+            "weight": 10,
+            "reps": 10
+          },
+          {
+            "weight": 10,
+            "reps": 10
+          },
+          {
+            "weight": 10,
+            "reps": 10
+          }
+        ],
+        "weight": 10
+      }
+    ],
+    "notes": "so tired today. i also worked out without eating",
+    "extra": "",
+    "watch": {
+      "date": "2026-11-12",
+      "start": "13:06",
+      "end": "14:03",
+      "kind": "lifting",
+      "type": "Workout",
+      "source": "Apple Watch",
+      "via": "shortcut",
+      "min": 57,
+      "kcal": 247,
+      "hr": {
+        "avg": 106,
+        "min": 82,
+        "max": 139,
+        "n": 669,
+        "bins": {
+          "80": 3.7,
+          "90": 16.8,
+          "100": 14.9,
+          "110": 13.1,
+          "120": 7.1,
+          "130": 2.3
+        }
+      }
+    },
+    "watch_recent": [
+      {
+        "date": "2026-11-05",
+        "kind": "lifting",
+        "min": 78,
+        "hr": {
+          "avg": 102,
+          "max": 148
+        },
+        "kcal": 325
+      },
+      {
+        "date": "2026-11-07",
+        "kind": "lifting",
+        "min": 42,
+        "hr": {
+          "avg": 104,
+          "max": 136
+        },
+        "kcal": 175
+      }
+    ]
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Incline tested fresh at 67.5kg and gave 7, 7, 7 — one set short of the four-to-8 the table asked for — then a 50kg back-off for 8. On a day you logged as tired and unfed, that's a fair test, not a miss worth chasing. Pull-ups ran 8, 8, 8 (24 total) in slot 2, the first outing with the +5kg back on since 10-26, right in line with what that slot usually gives. Chest fly held 65kg for 10, 10 before the third set dropped to 6, the same pattern as 10-26. Reverse fly (42.5kg × 10, 8) and the triceps pull (10kg × 10, 10, 10) both repeat their last readings.\n\nHeart rate: 57 minutes start to end, shorter than 11-05's 78 but longer than 11-07's 42, with the average (106) sitting a touch above both. Most of the session sat in the 90s and 100s (16.8 and 14.9 min), with only 2.3 minutes above 130 — a steady, rest-dominated lifting session rather than anything that spiked, consistent with the fatigue in your note.\n\nTrend: Lateral raise read 7kg × 15, 15, 15, not the 8kg the table called for — that's the same reading as 10-19, so it's now three sessions without progress toward the 8kg × 20 target set on 09-28's 16s.\n\nNext session: Upper C is Sat 21 Nov. Dumbbell bench at 28kg needs 11s and 12s to earn 30kg; chest supported row steps to 20kg after 11-07's 12, 12, 12.\n\nQuestion: was the 7kg on lateral raise a deliberate call given how today felt, or did 8kg just not get picked up?",
+      "at": "2026-11-12T06:10:29.646Z"
+    }
+  ]
+}
