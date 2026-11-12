@@ -71,7 +71,7 @@
       {
         "name": "Chest Fly",
         "type": "rotate",
-        "sets": 2,
+        "sets": 3,
         "reps": "10-12",
         "load": 65,
         "unit": "kg",
@@ -83,7 +83,7 @@
       {
         "name": "Reverse Fly (Machine)",
         "type": "rotate",
-        "sets": 2,
+        "sets": 3,
         "reps": "8-12",
         "load": 42.5,
         "unit": "kg",
@@ -103,7 +103,7 @@
       {
         "name": "One Handed Triceps Pull",
         "type": "rotate",
-        "sets": 2,
+        "sets": 3,
         "reps": "10-12",
         "load": 10,
         "unit": "kg",
@@ -141,7 +141,7 @@
       {
         "name": "Straight Arm Pulldown",
         "type": "rotate",
-        "sets": 2,
+        "sets": 3,
         "reps": "10-12",
         "load": 20,
         "unit": "kg",
@@ -154,7 +154,7 @@
       {
         "name": "Triceps Dip",
         "type": "rotate",
-        "sets": 2,
+        "sets": 3,
         "reps": "8-12",
         "load": 0,
         "unit": "BW",
@@ -165,7 +165,7 @@
       {
         "name": "Cable Crossover",
         "type": "rotate",
-        "sets": 2,
+        "sets": 3,
         "reps": "10-12",
         "load": 12.5,
         "unit": "kg",
@@ -179,7 +179,7 @@
       {
         "name": "Bicep Curl (Barbell)",
         "type": "rotate",
-        "sets": 2,
+        "sets": 3,
         "reps": "8-10",
         "load": 30,
         "unit": "kg",
@@ -195,7 +195,7 @@
       {
         "name": "Bench Press (Dumbbell)",
         "type": "rotate",
-        "sets": 2,
+        "sets": 3,
         "reps": "10-12",
         "load": 28,
         "unit": "kg"
@@ -203,7 +203,7 @@
       {
         "name": "Chest Supported Row",
         "type": "rotate",
-        "sets": 2,
+        "sets": 3,
         "reps": "10-12",
         "load": 20,
         "unit": "kg",
@@ -222,7 +222,7 @@
       {
         "name": "Face Pull",
         "type": "rotate",
-        "sets": 2,
+        "sets": 3,
         "reps": "12-15",
         "load": 17.5,
         "unit": "kg",
@@ -234,7 +234,7 @@
       {
         "name": "Hammer Curl",
         "type": "rotate",
-        "sets": 2,
+        "sets": 3,
         "reps": "10-12",
         "load": 16,
         "unit": "kg",
@@ -246,7 +246,7 @@
       {
         "name": "Hanging Leg Raise",
         "type": "rotate",
-        "sets": 2,
+        "sets": 3,
         "reps": "10-12",
         "load": 0,
         "unit": "BW",
@@ -324,8 +324,8 @@
       }
     ]
   },
-  "rx_asof": "2026-11-11",
-  "rx_after": "2026-11-07 Upper C",
+  "rx_asof": "2026-11-12",
+  "rx_after": "2026-11-12 Upper A",
   "flags": [
     "Pull-up: top set 8, total 24"
   ]

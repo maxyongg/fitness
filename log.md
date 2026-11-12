@@ -781,6 +781,11 @@ note: so tired today. i also worked out without eating
 - Lateral Raise (Dumbbell) — 7kg × 15, 15, 15
 - One Handed Triceps Pull — 10kg × 10, 10, 10
 
+<!-- Re-prescribed 2026-11-12 after Upper A (Thursday, his swapped week). Incline 67.5 x 7, 7, 7 first test,
+     holds; 3 working + back-off is the design, the page had said four plus a back-off. Pull-ups +5 x 8 x3,
+     fly, reverse fly, raise, triceps hold. Rotate slots on A/B/C back to 3 sets (re-entry 2s never reverted).
+     Upper B Sat 11-14 next as planned. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
