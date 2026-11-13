@@ -328,5 +328,15 @@
   "rx_after": "2026-11-12 Upper A",
   "flags": [
     "Pull-up: top set 8, total 24"
-  ]
+  ],
+  "last_football": {
+    "played": true,
+    "format": "9-a-side",
+    "venue": "ICS@Clementi",
+    "minutes": 80,
+    "effort": 5,
+    "load": 400,
+    "date": "2026-11-13",
+    "notes": ""
+  }
 }
