@@ -3,8 +3,8 @@
 
     python3 watch.py            # every inbox/watch-*.txt; the Watch upload Action runs this
     python3 watch.py FILE ...   # just these, left in place (for testing)
-    python3 watch.py --from-git # curves for data/health.json's workouts, rebuilt from the
-                                # uploads in git history; health.json itself is untouched
+    python3 watch.py --from-git # curves for data/health.json's workouts, and the nights,
+                                # rebuilt from the uploads in git history
 
 The iPhone shortcut ("Matchday watch", set up in docs/workflows.md) runs when a watch
 workout ends, or by hand. Shortcuts can't read a workout record out of Health, only
@@ -22,6 +22,24 @@ filters can't go shorter). The file looks like:
     <one kcal per line>
     kcal times:
     <one date per line>
+    sleep:           (optional, from 2026-11-14: the night, for the morning upload)
+    <one Sleep Analysis value per line: Core, Deep, REM, Awake, In Bed… or 0-5>
+    sleep start:
+    <one date per line>
+    sleep end:
+    <one date per line>
+    rhr:             (optional: Apple's resting heart rate, one per day)
+    <bpm>
+    rhr times:
+    <date>
+    hrv:             (optional: the watch's HRV readings, SDNN in ms)
+    <ms>
+    hrv times:
+    <date>
+
+The night becomes one record in data/health.json's "nights" (night() says what's in it).
+Nothing in those sections can fail an upload: a night that can't be read is named in the
+log and skipped, and the upload stays in git history for --from-git once it's fixed.
 
 A variable may sit on its label's line ("hr: <first bpm>", then one per line), which is
 how his Text action is laid out (2026-11-05). The dates are however Shortcuts prints
@@ -65,13 +83,21 @@ SGT = dt.timezone(dt.timedelta(hours=8))
 MONTHS = {m: i + 1 for i, m in enumerate(
     ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"])}
 HEALTH_BY = "index.html (Apple Health import) + watch.py (shortcut uploads)"
-HEALTH_NOTE = ("Workout summaries only. hr.bins: minutes per 10-bpm band, keyed by its lower bound. "
-               "via: shortcut = from a Shortcut upload, where min is elapsed time. Read via health.py. "
-               "Each workout's heart-rate curve is in data/hr/YYYY-MM.json.")
+HEALTH_NOTE = ("Workout summaries, and one summary per night. hr.bins: minutes per 10-bpm band, keyed by "
+               "its lower bound. via: shortcut = from a Shortcut upload, where min is elapsed time. Nights: "
+               "minutes asleep and awake, HRV (ms) and heart rate inside the sleep, Apple's resting heart "
+               "rate. Read via health.py. Each workout's heart-rate curve is in data/hr/YYYY-MM.json.")
 DENSE_PER_MIN, MAX_GAP_MIN, MIN_DENSE_MIN, MIN_FOOTBALL_OVERLAP = 3, 10, 10, 45
 
 TIME_RE = re.compile(r"(\d{1,2}):(\d{2})(?::(\d{2}))?\s*([ap])?\.?\s*m?\.?(?![a-z])", re.I)
-LABEL_RE = re.compile(r"^(kcal\s+times|times|kcal|hr|sent)\s*:\s*(.*)$", re.I)
+LABEL_RE = re.compile(r"^(sleep\s+start|sleep\s+end|sleep|rhr\s+times|rhr|hrv\s+times|hrv|kcal\s+times|times|kcal|hr|sent)\s*:\s*(.*)$", re.I)
+# Sleep Analysis values as Shortcuts may print them (a word, or HealthKit's number).
+SLEEP_WORDS = [("in bed", "inbed"), ("inbed", "inbed"), ("awake", "awake"), ("deep", "deep"),
+               ("rem", "rem"), ("core", "core"), ("unspecified", "asleep"), ("asleep", "asleep")]
+SLEEP_CODES = {0: "inbed", 1: "asleep", 2: "awake", 3: "core", 4: "deep", 5: "rem"}
+ASLEEP = {"asleep", "core", "deep", "rem"}
+NIGHT_GAP_H = 2          # sleep samples further apart than this are separate sleeps
+MIN_NIGHT_MIN = 60       # a sleep shorter than this isn't a night (a nap, a stray sample)
 ISO_RE = re.compile(r"(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})(?::(\d{2}))?(?:\.\d+)?\s*(Z|[+-]\d{2}:?\d{2})?")
 
 
@@ -135,6 +161,13 @@ def parse_when(text, ref):
 
 def read_upload(path, ref):
     """inbox file → (heart-rate [(datetime, bpm)], energy [(datetime, kcal)])."""
+    hr, kcal, _, _ = read_all(path, ref)
+    return hr, kcal
+
+
+def read_all(path, ref):
+    """inbox file → (heart rate, energy, the night's sections as raw text lists, ref).
+    The night's sections (sleep, rhr, hrv) never fail the upload: night() reads them."""
     sections, cur = {}, None
     for raw in open(path, encoding="utf-8-sig"):
         line = raw.strip()
@@ -169,7 +202,110 @@ def read_upload(path, ref):
         raise ValueError("no hr:/times: sections, so not a shortcut upload")
     hr = pairs(sections["hr"], sections["times"])
     kcal = pairs(sections.get("kcal", []), sections.get("kcal times", [])) if "kcal" in sections else []
-    return hr, kcal
+    rest = {k: v for k, v in sections.items() if k.startswith(("sleep", "rhr", "hrv"))}
+    return hr, kcal, rest, ref
+
+
+def stage(text):
+    t = text.strip().lower()
+    if re.fullmatch(r"\d+", t):
+        return SLEEP_CODES.get(int(t))
+    return next((v for k, v in SLEEP_WORDS if k in t), None)
+
+
+def union_min(spans):
+    """Minutes covered by [(start, end)], overlaps counted once."""
+    total, cur_s, cur_e = 0.0, None, None
+    for a, b in sorted(spans):
+        if cur_e is None or a > cur_e:
+            if cur_e is not None:
+                total += (cur_e - cur_s).total_seconds()
+            cur_s, cur_e = a, b
+        else:
+            cur_e = max(cur_e, b)
+    if cur_e is not None:
+        total += (cur_e - cur_s).total_seconds()
+    return round(total / 60)
+
+
+def night(sec, ref, hr):
+    """The night in an upload's sleep/rhr/hrv sections → (record or None, note).
+    The record is the latest sleep of an hour or more: when it ran (first to last sleep
+    sample), minutes asleep (core, deep, REM and unspecified, overlaps counted once),
+    minutes awake inside it, each stage's minutes, HRV as the mean of the watch's
+    readings inside it, the heart rate the upload holds for it (average and the median
+    of its five lowest readings), and Apple's resting heart rate with the day it's for.
+    Dated by the morning it ended. Lenient on purpose: a section it can't read is left
+    out and named in the note, never fails the upload."""
+    notes, rec = [], None
+    vals, starts, ends = sec.get("sleep", []), sec.get("sleep start", []), sec.get("sleep end", [])
+    if not vals:
+        return None, "no sleep: section"
+    if not (len(vals) == len(starts) == len(ends)):
+        return None, f"sleep has {len(vals)} values, {len(starts)} starts, {len(ends)} ends"
+    samples = []
+    for v, a, b in zip(vals, starts, ends):
+        st, s0, s1 = stage(v), parse_when(a, ref), parse_when(b, ref)
+        if not st or not s0 or not s1:
+            return None, f"can't read sleep sample {v!r} {a!r}–{b!r}"
+        if s1 < s0:
+            s1 += dt.timedelta(days=1)
+        samples.append((s0, s1, st))
+    sleeps, cur = [], []
+    for smp in sorted(x for x in samples if x[2] != "inbed"):
+        if cur and (smp[0] - max(c[1] for c in cur)).total_seconds() > NIGHT_GAP_H * 3600:
+            sleeps.append(cur)
+            cur = []
+        cur.append(smp)
+    if cur:
+        sleeps.append(cur)
+    sleeps = [c for c in sleeps if union_min([(a, b) for a, b, t in c if t in ASLEEP]) >= MIN_NIGHT_MIN]
+    if not sleeps:
+        return None, f"{len(samples)} sleep samples but no sleep of {MIN_NIGHT_MIN}+ minutes"
+    c = sleeps[-1]
+    start, end = min(a for a, _, _ in c), max(b for _, b, _ in c)
+    rec = {"date": end.date().isoformat(), "start": start.strftime("%H:%M"), "end": end.strftime("%H:%M"),
+           "asleep": union_min([(a, b) for a, b, t in c if t in ASLEEP]),
+           "awake": union_min([(a, b) for a, b, t in c if t == "awake"]),
+           "stages": {t: union_min([(a, b) for a, b, u in c if u == t])
+                      for t in ("core", "deep", "rem") if any(u == t for _, _, u in c)},
+           "via": "shortcut"}
+    inside = sorted(v for w, v in hr if start <= w <= end)
+    if len(inside) >= 5:
+        rec["hr"] = {"avg": round(sum(inside) / len(inside)), "low": round(inside[:5][2]), "n": len(inside)}
+
+    def read(label):
+        out = []
+        for v, t in zip(sec.get(label, []), sec.get(label + " times", [])):
+            num, when = re.search(r"\d+(?:[.,]\d+)?", v), parse_when(t, ref)
+            if num and when:
+                out.append((when, float(num.group(0).replace(",", "."))))
+        if len(sec.get(label, [])) != len(sec.get(label + " times", [])):
+            notes.append(f"{label}: values and times differ in number")
+        return sorted(out, key=lambda p: p[0])
+
+    hrv = [v for w, v in read("hrv") if start <= w <= end]
+    if hrv:
+        rec["hrv"] = round(sum(hrv) / len(hrv))
+        rec["hrv_n"] = len(hrv)
+    else:
+        notes.append("no HRV reading inside the sleep")
+    rhr = read("rhr")
+    if rhr:
+        rec["rhr"], rec["rhr_date"] = round(rhr[-1][1]), rhr[-1][0].date().isoformat()
+    else:
+        notes.append("no resting heart rate")
+    return rec, "; ".join(notes)
+
+
+def merge_night(nights, rec):
+    """A newer upload's reading of the same night replaces the older one."""
+    for i, n in enumerate(nights):
+        if n["date"] == rec["date"]:
+            nights[i] = rec
+            return "updated"
+    nights.append(rec)
+    return "added"
 
 
 def blocks(hr):
@@ -322,6 +458,7 @@ def load_health():
 
 def save_health(data):
     data["workouts"].sort(key=lambda w: w["date"] + w["start"])
+    nights = sorted(data.get("nights", []), key=lambda n: n["date"])
     head = {
         "_generated": dt.datetime.now(SGT).strftime("%Y-%m-%dT%H:%M:%S"),
         "_by": HEALTH_BY,
@@ -332,7 +469,10 @@ def save_health(data):
     body = ",\n".join("    " + json.dumps(w, separators=(",", ":"), ensure_ascii=False) for w in data["workouts"])
     os.makedirs(os.path.dirname(HEALTH), exist_ok=True)
     with open(HEALTH, "w", encoding="utf-8") as f:
-        f.write("{\n" + "\n".join(lines) + '\n  "workouts": [\n' + body + "\n  ]\n}\n")
+        f.write("{\n" + "\n".join(lines) + '\n  "workouts": [\n' + body + "\n  ]"
+                + (',\n  "nights": [\n' + ",\n".join("    " + json.dumps(n, separators=(",", ":"), ensure_ascii=False)
+                                                   for n in nights) + "\n  ]" if nights else "")
+                + "\n}\n")
 
 
 def from_git():
@@ -348,7 +488,7 @@ def from_git():
             uploads.append((sha[1], sha[0], line))
         elif line.strip():
             sha = line.split()
-    data, found = load_health(), {}
+    data, found, nights_found = load_health(), {}, []
     watch_ws = [w for w in data["workouts"] if w.get("source") == "Apple Watch"]
     with tempfile.TemporaryDirectory() as tmp:
         for when, commit, path in sorted(uploads):
@@ -356,10 +496,17 @@ def from_git():
             with open(f, "w", encoding="utf-8") as out:
                 out.write(git("show", f"{commit}:{path}"))
             try:
-                hr, _ = read_upload(f, dt.datetime.fromisoformat(when).astimezone(SGT))
+                hr, _, sec, sref = read_all(f, dt.datetime.fromisoformat(when).astimezone(SGT))
             except ValueError as e:
                 print(f"{path}: can't read it ({e})")
                 continue
+            if sec:
+                rec, note = night(sec, sref, hr)
+                if rec:
+                    merge_night(data.setdefault("nights", []), rec)
+                    nights_found.append(rec["date"])
+                elif note:
+                    print(f"{path}: night not read ({note})")
             for start, end in blocks(hr):
                 ns, ne = span({"date": start.date().isoformat(), "start": start.strftime("%H:%M"),
                                "end": end.strftime("%H:%M")})
@@ -368,7 +515,10 @@ def from_git():
                     found[curve_key(match[0])] = make_curve(start, end, hr)
     if found:
         store_curves(found, data["workouts"])
+    if nights_found:
+        save_health(data)
     print(f"Curves from git history: {len(found)} ({', '.join(sorted(found)) or 'none'})")
+    print(f"Nights from git history: {len(set(nights_found))} ({', '.join(sorted(set(nights_found))) or 'none'})")
     return 0
 
 
@@ -393,11 +543,20 @@ def main():
         name = os.path.basename(path)
         ref = dt.datetime.fromtimestamp(os.path.getmtime(path), SGT)
         try:
-            hr, kcal = read_upload(path, ref)
+            hr, kcal, sec, sref = read_all(path, ref)
         except (OSError, ValueError) as e:
             print(f"{name}: can't read it ({e}). Left in inbox/.")
             bad += 1
             continue
+        if sec:
+            rec, note = night(sec, sref, hr)
+            if rec:
+                what = merge_night(data.setdefault("nights", []), rec)
+                print(f"{name}: night of {rec['date']}, {rec['start']}–{rec['end']}, {rec['asleep']} min asleep, "
+                      f"HRV {rec.get('hrv', '—')}, resting HR {rec.get('rhr', '—')}: {what}" + (f" ({note})" if note else ""))
+                subjects.append(f"{rec['date']} sleep")
+            else:
+                print(f"{name}: night not read ({note}). The upload stays in git history; fix and run --from-git.")
         found = blocks(hr)
         if not hr:
             print(f"{name}: no heart-rate readings in it (phone locked when it ran?).")

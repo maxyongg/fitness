@@ -6,6 +6,8 @@
     python3 health.py --all               # every app's workouts (Strong, the phone), all dates
     python3 health.py --curve             # plus each workout's heart rate, 5-minute means
 
+Nights (sleep, HRV, resting heart rate, from the morning shortcut upload) print last.
+
 Two things write data/health.json. After each watch workout, an iPhone shortcut uploads
 the watch's heart rate and watch.py turns it into a summary (marked [shortcut]; its
 minutes are elapsed time). Now and then, the phone page's Import tab reads the Health
@@ -133,6 +135,17 @@ def main():
                 print(f"      bands {bands(w.get('hr'))}")
             if "--curve" in args and curve_line(w):
                 print(f"      curve {curve_line(w)}")
+
+    nights = [n for n in data.get("nights", []) if n["date"] >= since]
+    if nights:
+        print("\nSLEEP (the night ending that morning)")
+        for n in nights:
+            day = dt.date.fromisoformat(n["date"]).strftime("%a")
+            hr = n.get("hr") or {}
+            print(f"  {n['date']} {day} {n['start']}-{n['end']}  {n['asleep'] // 60}h{n['asleep'] % 60:02d} asleep, "
+                  f"{n.get('awake', 0)} min awake  HRV {n.get('hrv', '—')}  resting HR {n.get('rhr', '—')}"
+                  + (f" ({n['rhr_date']})" if n.get("rhr_date") and n["rhr_date"] != n["date"] else "")
+                  + (f"  sleeping HR {hr['avg']} avg, {hr['low']} low" if hr else ""))
 
 
 if __name__ == "__main__":

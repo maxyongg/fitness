@@ -211,8 +211,10 @@ sending uploads to the Cloudflare Worker, which would find the workout there and
 only the summary, keeping raw readings out of the repo entirely. That route is still
 open if he changes his mind: Worker endpoint plus a GitHub token secret on the Worker,
 and step 8 pointed at the Worker with the PIN. The full Health export never reaches
-the repo. Don't ask for it, and don't add daily data (resting HR, HRV,
-sleep, weight) without asking him first.
+the repo. Don't ask for it. **Nightly data went in on 2026-11-14, his call:** sleep,
+resting heart rate and HRV, from the same shortcut, kept in the repo (public) as one
+summary per night in `data/health.json`'s `nights`. Nothing daily beyond that (weight,
+steps) without asking him first.
 
 - **Reading it:** `python3 health.py` (last 12 weeks; `--since`, `--all`; `--curve`
   adds each workout's curve as 5-minute means). Football
@@ -321,6 +323,32 @@ shortcut whose first block is the trigger, and the › beside "Ended" opens Auto
 run 2026-11-05, Upper B: the automation fired with the phone locked and nothing went
 up; tapping the shortcut afterwards worked (12:51–14:09, 935 readings). Add the shortcut to the Home Screen as the
 catch-up button. The token lives in the shortcut, so the shortcut is never shared.
+
+**Sleep, resting heart rate and HRV (added 2026-11-14).** Inserted between step 6 and
+the Text, each read in the same pattern as steps 1–6:
+
+- **Sleep Analysis**, in the last 1 day, source his Apple Watch, oldest first, no
+  limit; then Get Details three times, each with its input set to that Find step's
+  Health Samples: Value, Start Date, End Date.
+- **Resting Heart Rate**, in the last 1 day, no source filter (if it comes back empty,
+  that's why to check first); Get Details: Value, Start Date.
+- **Heart Rate Variability**, in the last 1 day, source his Apple Watch; Get Details:
+  Value, Start Date.
+
+They go at the end of the Text, after `kcal times:`, each label on its own line with
+its variable under it: `sleep:`, `sleep start:`, `sleep end:`, `rhr:`, `rhr times:`,
+`hrv:`, `hrv times:`. Settings → Privacy & Security → Health → Shortcuts must allow
+Sleep, Resting Heart Rate and Heart Rate Variability, or iOS returns nothing. `watch.py`
+reads them leniently (any spelling of the stages, or HealthKit's numbers) and a night it
+can't read never fails the upload; `--from-git` re-reads every upload once the reader
+is fixed.
+
+**The automations ask first (2026-11-14).** The workout automation fired on 11-05 with
+the phone locked and sent nothing: iOS keeps Health shut while locked. So it has
+**Confirm Before Run on**: a notification when the workout ends, one tap, Face ID, and
+it runs unlocked. A second automation, **Sleep → Waking Up**, runs the same shortcut
+the same way, so the night goes up when he first picks up the phone. Both untested on
+his phone at the time of writing.
 
 ## Monthly: a new export lands in `data/`
 

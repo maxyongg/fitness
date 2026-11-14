@@ -3477,8 +3477,12 @@ async function saveHealth() {
   btn.disabled = true;
   btn.textContent = "Saving…";
   try {
-    var old = [];
-    try { old = JSON.parse(await fetchRepoFile("data/health.json")).workouts || []; } catch (e) {}
+    var old = [], nights = [];
+    try {
+      var prev = JSON.parse(await fetchRepoFile("data/health.json"));
+      old = prev.workouts || [];
+      nights = prev.nights || [];         /* watch.py's sleep summaries: kept as they are */
+    } catch (e) {}
     /* A shortcut upload (via: "shortcut", watch.py) is a stand-in until the export brings
        the workout itself: drop any that overlaps a workout from this import. */
     var span = function(w) {
@@ -3497,11 +3501,13 @@ async function saveHealth() {
       .sort(function(a, b) { return (a.date + a.start) < (b.date + b.start) ? -1 : 1; });
     var text = '{\n  "_generated": ' + JSON.stringify(new Date().toISOString().slice(0, 19))
       + ',\n  "_by": "index.html (Apple Health import) + watch.py (shortcut uploads)",'
-      + '\n  "_note": "Workout summaries only. hr.bins: minutes per 10-bpm band, keyed by its lower bound. via: shortcut = from a Shortcut upload, where min is elapsed time. Read via health.py.",'
+      + '\n  "_note": "Workout summaries, and one summary per night. hr.bins: minutes per 10-bpm band, keyed by its lower bound. via: shortcut = from a Shortcut upload, where min is elapsed time. Nights: minutes asleep and awake, HRV (ms) and heart rate inside the sleep, Apple\'s resting heart rate. Read via health.py. Each workout\'s heart-rate curve is in data/hr/YYYY-MM.json.",'
       + '\n  "exported": ' + JSON.stringify(healthOut.exported || "")
       + ',\n  "workouts": [\n' + list.map(function(w) {
           return "    " + JSON.stringify(w, function(k, v) { return k === "_curve" ? undefined : v; });
-        }).join(",\n") + '\n  ]\n}\n';
+        }).join(",\n") + '\n  ]'
+      + (nights.length ? ',\n  "nights": [\n' + nights.map(function(n) { return "    " + JSON.stringify(n); }).join(",\n") + '\n  ]' : '')
+      + '\n}\n';
     await ghPut("data/health.json", text, "health: Apple Health import" + (healthOut.exported ? " " + healthOut.exported : "")
       + " (" + list.length + " workouts)");
     try { localStorage.setItem("matchday_health", text); } catch (e) {}
