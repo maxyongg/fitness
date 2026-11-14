@@ -25,9 +25,10 @@ import os
 import re
 import subprocess
 import sys
-from datetime import date
+from datetime import date, timedelta
 
 import drain
+import health
 import review
 
 ROOT = drain.ROOT
@@ -124,6 +125,9 @@ def filled_prompt():
         "next": f"{drain.SESSION_NAMES.get(sid, sid)} (RX.sessions.{sid}), {when}",
         "today": date.today().isoformat(),
         "review": review.review_text(review.review(log, rx), rx),
+        "sleep": "\n".join(health.sleep_lines(health.load_nights(),
+                                              (date.fromisoformat(latest[:10]) - timedelta(days=6)).isoformat()))
+                 or "No nights recorded yet.",
     }.items():
         prompt = prompt.replace("{{" + key + "}}", value)
     return prompt

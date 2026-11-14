@@ -84,13 +84,15 @@ How to read the data:
 - The log records what he lifted, never why he stopped. He also does finishers and core work he does not always log, so something missing from the log is not necessarily missing from his training.
 - The prescription's "last time" and "why" lines were written by his coach and are reliable context.
 - If the history does not cover something, say you cannot tell rather than guessing.
-- A WATCH section, when present, is his Apple Watch heart rate for this session: average, range, and minutes per 10-bpm band, plus his other watch workouts from the week before. No max heart rate or zones are known, so don't estimate them from age or name zones. Read it as how hard the session was on his system, next to the lifts, never as a target. In lifting, rest periods dominate the average, so a modest average doesn't mean an easy session. One session's heart rate is not a trend. With no WATCH section he didn't wear the watch: don't mention it.
+- A WATCH section, when present, is his Apple Watch heart rate for this session: average, range, and minutes per 10-bpm band, plus his other watch workouts from the week before. It may also give his heart rate every 5 minutes from the start: use that for the session's shape (where it climbed, a fade late on, the on-and-off of the football rotation), never for zones. No max heart rate or zones are known, so don't estimate them from age or name zones. Read it as how hard the session was on his system, next to the lifts, never as a target. In lifting, rest periods dominate the average, so a modest average doesn't mean an easy session. One session's heart rate is not a trend. With no WATCH section he didn't wear the watch: don't mention it.
+- A SLEEP section, when present, is his watch's sleep: the night before this session (time asleep, HRV, heart rate while asleep), the average of the week to it, and his normal, which is his own median of the 28 nights before, once there are 14. Before that there is no normal: don't call a night short or long. Sleep is context, not a verdict: one night rarely explains one session, so tie it to the session only when the numbers line up (a flat session after a night well under his normal). Never tell him to sleep more, never set a sleep target, never lecture. With no SLEEP section, don't mention sleep.
 
 What to write:
 - Plain text with no markdown, bullets or headings. Three to five short paragraphs separated by blank lines, about 180-300 words in total.
-- Start each paragraph with one of these labels and a colon: "Today:", "Heart rate:", "Trend:", "Next session:", "Rounding:", "Question:". Always include Today and Next session, and Heart rate whenever there is a WATCH section. Include the others only when there is something real to say.
+- Start each paragraph with one of these labels and a colon: "Today:", "Heart rate:", "Sleep:", "Trend:", "Next session:", "Rounding:", "Question:". Always include Today and Next session, Heart rate whenever there is a WATCH section, and Sleep whenever there is a SLEEP section. Include the others only when there is something real to say.
 - Today: how the session went against the prescription. Name the slots that hit, missed or beat their targets, with the numbers.
 - Heart rate: only with a WATCH section, and then always (he wears the watch so the debrief can use it). One to three sentences on what the watch shows that the lifts can't: how long the session ran start to end, where the minutes sat across the bands, and how that compares with his other watch sessions of the same kind listed (say so when there are only one or two). Tie it to this session where the data allows: its length, a late fade, a match a day or two before. Never name zones or a max he hasn't given.
+- Sleep: only with a SLEEP section, and then always. One or two sentences: the night before and the week's average, each against his normal when there is one, and whether it plausibly bears on today. Plain numbers, no advice.
 - Trend: what moved or stalled against earlier sessions of the same exercise, citing dates and numbers. Call out any progression rule that has just been met, and anything stalled for three or more sessions.
 - Next session: name it and give one or two concrete things to carry into it: a load, a rep target or an order.
 - Rounding: something the week is missing, only when the data clearly shows it.
@@ -166,6 +168,8 @@ function buildMessage(session, rx, history) {
   parts.push("SESSION JUST LOGGED\n" + formatSession(session));
   const watch = formatWatch(session.watch, session.watch_recent);
   if (watch) parts.push(watch);
+  const sleep = formatSleep(session.sleep);
+  if (sleep) parts.push(sleep);
 
   const cur = rx && rx.sessions && rx.sessions[session.session_id];
   if (cur) {
@@ -210,6 +214,11 @@ function formatWatch(w, recent) {
     } else if (w.kcal) {
       lines.push("Active energy " + n(w.kcal) + " kcal; no heart rate recorded");
     }
+    const c = w.curve5;
+    if (c && Array.isArray(c.bpm) && c.bpm.length > 1) {
+      lines.push("Heart rate every 5 minutes from " + String(c.t0 || "").slice(0, 5) + ": " +
+        c.bpm.slice(0, 60).map((v) => (v == null ? "·" : n(v))).join(" "));
+    }
   }
   const prev = Array.isArray(recent) ? recent.slice(-8) : [];
   if (prev.length) {
@@ -221,6 +230,26 @@ function formatWatch(w, recent) {
         (r.kcal ? ", " + n(r.kcal) + " kcal" : ""));
     }
   }
+  return lines.join("\n");
+}
+
+/* The page attaches `sleep` from data/health.json's nights: the night before the session,
+   the week to it, and his normal (median of the 28 nights before, once there are 14). */
+function formatSleep(sl) {
+  if (!sl || typeof sl !== "object" || !sl.night) return "";
+  const n = (v) => (Number.isFinite(Number(v)) ? String(Math.round(Number(v))) : "?");
+  const hm = (m) => (Number.isFinite(Number(m)) ? Math.floor(m / 60) + "h" + String(Math.round(m % 60)).padStart(2, "0") : "?");
+  const t = sl.night, w = sl.week || {}, nm = sl.normal;
+  const lines = ["SLEEP (his Apple Watch)"];
+  lines.push("The night before (ended " + String(t.date || "").slice(0, 10) + "): " + hm(t.asleep) + " asleep, " +
+    String(t.start || "").slice(0, 5) + "–" + String(t.end || "").slice(0, 5) + ", " + n(t.awake) + " min awake" +
+    (t.hrv ? ", HRV " + n(t.hrv) + " ms" : "") + (t.hr ? ", heart rate " + n(t.hr) + " avg asleep" : ""));
+  if (w.nights > 1) {
+    lines.push("The " + n(w.nights) + " nights to it: " + hm(w.asleep) + " asleep on average" + (w.hrv ? ", HRV " + n(w.hrv) + " ms" : ""));
+  }
+  lines.push(nm ? "His normal: " + hm(nm.asleep) + " asleep" + (nm.hrv ? ", HRV " + n(nm.hrv) + " ms" : "") +
+    (nm.hr ? ", heart rate " + n(nm.hr) + " asleep" : "")
+    : "No normal yet: " + n(sl.nights_known) + " nights recorded, 14 needed.");
   return lines.join("\n");
 }
 

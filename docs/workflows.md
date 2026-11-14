@@ -343,6 +343,16 @@ reads them leniently (any spelling of the stages, or HealthKit's numbers) and a 
 can't read never fails the upload; `--from-git` re-reads every upload once the reader
 is fixed.
 
+**Where the nights show (2026-11-14).** The page's **readiness card**, on the next
+session: last night's sleep, HRV, sleeping heart rate and Apple's resting heart rate,
+each against his normal (the median of up to 28 nights before, once there are 14), with
+an Update button that runs the shortcut. Display only: it changes nothing in the session,
+and it flags only well outside normal (an hour less sleep, the 7-night HRV 10% down, a
+sleeping heart rate 3 bpm up). The **debrief** gets the night before, the week and the
+normal, and writes a "Sleep:" line, as context and never as advice; it also gets the
+workout's heart rate every 5 minutes, for the session's shape. The **nightly brief** gets
+the week's nights (`health.py`'s lines). None of them may nag about sleep.
+
 **The automations ask first (2026-11-14).** The workout automation fired on 11-05 with
 the phone locked and sent nothing: iOS keeps Health shut while locked. So it has
 **Confirm Before Run on**: a notification when the workout ends, one tap, Face ID, and

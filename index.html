@@ -167,6 +167,19 @@ button.kick svg { width: 13px; height: 13px; flex: none; }
 .call { margin-top: 6px; padding-left: 10px; border-left: 2px solid var(--amber); font-size: 13px; line-height: 1.45; color: var(--ink); }
 .call b { font-family: var(--font-m); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase;
   color: var(--amber); margin-right: 6px; }
+.ready { margin-top: 12px; padding: 10px 12px; background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 10px; }
+.rd-h { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+.rd-h b { font-family: var(--font-m); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
+.rd-h span { font-size: 11px; color: var(--ink-3); }
+.rd-up { margin-left: auto; appearance: none; border: 0; background: none; cursor: pointer; padding: 4px 0;
+  font-family: var(--font-m); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.rd-row { display: flex; align-items: baseline; gap: 10px; padding: 3px 0; font-size: 13px; }
+.rd-k { flex: 0 0 86px; color: var(--ink-2); }
+.rd-v { flex: none; font-family: var(--font-m); font-weight: 600; color: var(--ink); min-width: 56px; }
+.rd-v.off { color: var(--amber); }
+.rd-n { flex: 1; min-width: 0; font-family: var(--font-m); font-size: 11px; color: var(--ink-3); }
+.rd-f { font-size: 11.5px; color: var(--ink-3); margin-top: 4px; line-height: 1.4; }
 .short-btn { display: block; width: 100%; margin-top: 12px; height: 40px; appearance: none; cursor: pointer;
   background: none; border: 1px dashed var(--rule-2); border-radius: 9px; color: var(--ink-2);
   font-family: var(--font-m); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
@@ -924,6 +937,7 @@ var ICON_CHEV = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" str
 var nextLiftDate = null;   /* the day the picked session is for (pickNext) */
 var shortOn = false;       /* the short version is on (applyShort) */
 var REVIEW_WORDS = { moving: "Moving", holding: "Holding", flat: "Flat", "new": "New" };
+var NORMAL_NIGHTS = 14, NORMAL_SPAN = 28;  /* readiness card: nights before a normal, nights in it */
 var HR_STEP = 15, HR_IMPORT_DAYS = 180, hrMonths = {}, hrFetched = {};
 var HR_NOTE = "Heart rate per workout as 15-second means (bpm; null where the watch has no reading), from t0. "
   + "Keyed by the workout's date and start in data/health.json. Workout minutes only. Shortcut uploads time "
@@ -955,6 +969,7 @@ var importSid = null;
   renderWeek();
   renderHistory();
   loadReview();
+  refreshHealth().then(renderReady, function() {});
 })();
 
 /* Which session opens: the session he's owed, by the rule in review.py ("THE PICKER"),
@@ -1131,6 +1146,7 @@ function renderSession(id) {
     + '<h1 class="brief-title">' + s.name + '</h1>'
     + (s.brief ? '<p class="brief-text">' + esc(s.brief) + '</p>' : '')
     + (RX.note && id === nextLiftId ? '<p class="coach-note"><b>Coach</b>' + esc(RX.note) + '</p>' : '')
+    + (id === nextLiftId ? '<div id="ready"></div>' : '')
     + '<div class="stats"><span><b id="st-slots">' + s.exercises.length + '</b> slots</span>'
     + '<span><b id="st-sets">' + totalSets + '</b> sets</span>'
     + '<span><b>' + s.mins.replace(/\s*min/, "") + '</b> min</span>'
@@ -1154,6 +1170,7 @@ function renderSession(id) {
   restoreDraft(id);
   applyShort();
   renderReview();
+  renderReady();
   refreshProgress();
 }
 
@@ -1219,6 +1236,102 @@ async function loadReview() {
   } catch (e) { return; }
   if (RX.sessions[cur]) renderReview();
   if (progMode === "lifts" && document.getElementById("view-progress").classList.contains("active")) renderLifts();
+}
+
+/* ---- readiness card ----
+
+   data/health.json "nights": one summary per night, from the morning shortcut upload
+   (watch.py). Shown on the next session, display only: it changes nothing in it. Each
+   number against his own normal, the median of the 28 nights before last night, once
+   there are 14 of them; until then the numbers alone. HRV is read as the 7-night average,
+   since one night's is noisy. Flagged only well outside normal: an hour less sleep, a
+   7-night HRV 10% down, a sleeping heart rate 3 bpm up. No score, no traffic light. */
+function getNights() {
+  try {
+    var d = JSON.parse(localStorage.getItem("matchday_health") || "null");
+    return ((d && d.nights) || []).slice().sort(function(a, b) { return a.date < b.date ? -1 : 1; });
+  } catch (e) { return []; }
+}
+
+function mean(a) { return a.length ? a.reduce(function(x, y) { return x + y; }, 0) / a.length : null; }
+function median(a) {
+  if (!a.length) return null;
+  var b = a.slice().sort(function(x, y) { return x - y; }), m = b.length >> 1;
+  return b.length % 2 ? b[m] : (b[m - 1] + b[m]) / 2;
+}
+function fmtHM(mins) { mins = Math.round(mins); return Math.floor(mins / 60) + "h" + String(mins % 60).padStart(2, "0"); }
+
+/* The night that ended on or before `asOf`, with the week and his normal around it. */
+function readiness(asOf) {
+  var ns = getNights().filter(function(n) { return n.date <= asOf; });
+  if (!ns.length) return null;
+  var last = ns[ns.length - 1], before = ns.slice(0, -1).slice(-NORMAL_SPAN), week = ns.slice(-7);
+  var ready = before.length >= NORMAL_NIGHTS;
+  var pick = function(list, f) { return list.map(f).filter(function(v) { return v != null; }); };
+  var rhr = ns.slice().reverse().filter(function(n) { return n.rhr; })[0];
+  return {
+    last: last, count: before.length, ready: ready,
+    week: { n: week.length, asleep: mean(pick(week, function(n) { return n.asleep; })) },
+    hrv7: mean(pick(week, function(n) { return n.hrv; })),
+    normal: ready ? {
+      asleep: median(pick(before, function(n) { return n.asleep; })),
+      hrv: mean(pick(before, function(n) { return n.hrv; })),
+      hr: median(pick(before, function(n) { return n.hr && n.hr.avg; }))
+    } : null,
+    rhr: rhr ? { bpm: rhr.rhr, date: rhr.date } : null
+  };
+}
+
+function readyCard() {
+  var today = isoDate(new Date()), r = readiness(today);
+  if (!r) return "";
+  var last = r.last, age = Math.round((parseIso(today) - parseIso(last.date)) / 864e5);
+  if (age > 3) return "";
+  var nm = r.normal, row = function(k, v, note, off) {
+    return '<div class="rd-row"><span class="rd-k">' + k + '</span><span class="rd-v' + (off ? ' off' : '') + '">' + v
+      + '</span><span class="rd-n">' + note + '</span></div>';
+  };
+  var h = '<section class="ready"><div class="rd-h"><b>' + (age === 0 ? "Last night" : "Night of " + esc(fmtDate(last.date)))
+    + '</b><span class="mono">' + esc(last.start + "–" + last.end) + '</span>'
+    + '<button class="rd-up" onclick="sendWatch()">Update</button></div>';
+  if (age > 0) h += '<p class="rd-f">Last night isn&rsquo;t in yet. Update sends it.</p>';
+  var sOff = nm && nm.asleep != null && last.asleep <= nm.asleep - 60;
+  h += row("Sleep", fmtHM(last.asleep),
+    (nm && nm.asleep != null ? (sOff ? fmtHM(nm.asleep - last.asleep) + " under your normal " + fmtHM(nm.asleep) : "normal " + fmtHM(nm.asleep)) + " · " : "")
+    + (r.week.n > 1 ? r.week.n + "-night avg " + fmtHM(r.week.asleep) : (last.awake || 0) + " min awake"), sOff);
+  if (last.hrv) {
+    var hOff = nm && nm.hrv && r.hrv7 != null && r.hrv7 <= nm.hrv * 0.9;
+    h += row("HRV", last.hrv + " ms", (r.hrv7 != null ? "7-night " + Math.round(r.hrv7) : "")
+      + (nm && nm.hrv ? (hOff ? ", " + Math.round((1 - r.hrv7 / nm.hrv) * 100) + "% under your normal " : " · normal ") + Math.round(nm.hrv) : ""), hOff);
+  }
+  if (last.hr) {
+    var bOff = nm && nm.hr != null && last.hr.avg >= nm.hr + 3;
+    h += row("Sleeping HR", last.hr.avg + " bpm", nm && nm.hr != null
+      ? (bOff ? Math.round(last.hr.avg - nm.hr) + " over your normal " : "normal ") + Math.round(nm.hr) : "lowest " + last.hr.low, bOff);
+  }
+  if (r.rhr) h += row("Resting HR", r.rhr.bpm + " bpm", "Apple&rsquo;s, for " + esc(fmtDate(r.rhr.date)), false);
+  h += '<p class="rd-f">' + (r.ready ? "Your normal: the " + r.count + " nights before this one." : "Building your normal: "
+    + r.count + " of " + NORMAL_NIGHTS + " nights. Until then, the numbers alone.") + " Shows only; it changes nothing in the session.</p>";
+  return h + '</section>';
+}
+
+function renderReady() {
+  var el = document.getElementById("ready");
+  if (el) el.innerHTML = readyCard();
+}
+
+/* What the debrief gets: the night before the session, the week, and his normal. */
+function sleepContext(date) {
+  var r = readiness(date);
+  if (!r || Math.round((parseIso(date) - parseIso(r.last.date)) / 864e5) > 1) return null;
+  var l = r.last, out = { night: { date: l.date, start: l.start, end: l.end, asleep: l.asleep, awake: l.awake || 0 },
+    week: { nights: r.week.n, asleep: Math.round(r.week.asleep) }, nights_known: r.count + 1 };
+  if (l.hrv) out.night.hrv = l.hrv;
+  if (l.hr) out.night.hr = l.hr.avg;
+  if (r.hrv7 != null) out.week.hrv = Math.round(r.hrv7);
+  if (r.normal) out.normal = { asleep: Math.round(r.normal.asleep), hrv: r.normal.hrv && Math.round(r.normal.hrv),
+    hr: r.normal.hr && Math.round(r.normal.hr) };
+  return out;
 }
 
 /* The review row for slot i of session sid, if it is about the exercise RX names now. */
@@ -1656,7 +1769,24 @@ async function watchContext(session) {
       if (w.kcal) r.kcal = w.kcal;
       return r;
     });
-  return { match: matchWatch(session, ws), recent: recent };
+  var match = matchWatch(session, ws);
+  if (match) {
+    try {
+      var cs = await fetchCurves(match.date.slice(0, 7)), cv = cs && cs[match.date + " " + match.start];
+      if (cv) match = Object.assign({}, match, { curve5: fiveMin(cv) });
+    } catch (e) {}
+  }
+  return { match: match, recent: recent, sleep: sleepContext(session.date) };
+}
+
+/* The 15-second curve as 5-minute means: the shape, small enough for the debrief. */
+function fiveMin(c) {
+  var out = [];
+  for (var i = 0; i < c.bpm.length; i += 20) {
+    var part = c.bpm.slice(i, i + 20).filter(function(v) { return v != null; });
+    out.push(part.length ? Math.round(mean(part)) : null);
+  }
+  return { t0: c.t0.slice(0, 5), every: 5, bpm: out };
 }
 
 function debriefAfterSave(data) {
@@ -1703,6 +1833,7 @@ async function pollWatch() {
     var text = await fetchRepoFile("data/health.json");
     try { localStorage.setItem("matchday_health", text); } catch (e) {}
     hrFetched = {};
+    renderReady();
     if (document.getElementById("view-history").classList.contains("active")) renderHistory();
   } catch (e) {}
   var found = watchStatus();
@@ -1760,9 +1891,10 @@ async function requestDebrief(data, cardId, ctx) {
 
   if (!ctx) try { ctx = await watchContext(data); } catch (e) { ctx = { match: null, recent: [] }; }
   var sent = Object.assign({}, data);
-  delete sent.watch; delete sent.watch_recent;
+  delete sent.watch; delete sent.watch_recent; delete sent.sleep;
   if (ctx.match) sent.watch = ctx.match;
   if (ctx.recent.length) sent.watch_recent = ctx.recent;
+  if (ctx.sleep) sent.sleep = ctx.sleep;
 
   var history = "";
   try { history = recentHistory(await fetchLog(), data); } catch (e) {}

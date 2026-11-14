@@ -136,16 +136,37 @@ def main():
             if "--curve" in args and curve_line(w):
                 print(f"      curve {curve_line(w)}")
 
-    nights = [n for n in data.get("nights", []) if n["date"] >= since]
-    if nights:
+    lines = sleep_lines(data.get("nights", []), since)
+    if lines:
         print("\nSLEEP (the night ending that morning)")
-        for n in nights:
-            day = dt.date.fromisoformat(n["date"]).strftime("%a")
-            hr = n.get("hr") or {}
-            print(f"  {n['date']} {day} {n['start']}-{n['end']}  {n['asleep'] // 60}h{n['asleep'] % 60:02d} asleep, "
-                  f"{n.get('awake', 0)} min awake  HRV {n.get('hrv', '—')}  resting HR {n.get('rhr', '—')}"
-                  + (f" ({n['rhr_date']})" if n.get("rhr_date") and n["rhr_date"] != n["date"] else "")
-                  + (f"  sleeping HR {hr['avg']} avg, {hr['low']} low" if hr else ""))
+        print("\n".join(lines))
+
+
+def sleep_lines(nights, since):
+    """One line per night from `since`, then the average. represcribe.py puts these in the
+    nightly brief."""
+    ns = sorted((n for n in nights if n["date"] >= since), key=lambda n: n["date"])
+    out = []
+    for n in ns:
+        day = dt.date.fromisoformat(n["date"]).strftime("%a")
+        hr = n.get("hr") or {}
+        out.append(f"  {n['date']} {day} {n['start']}-{n['end']}  {n['asleep'] // 60}h{n['asleep'] % 60:02d} asleep, "
+                   f"{n.get('awake', 0)} min awake  HRV {n.get('hrv', '—')}  resting HR {n.get('rhr', '—')}"
+                   + (f"  sleeping HR {hr['avg']} avg, {hr['low']} low" if hr else ""))
+    if len(ns) > 1:
+        avg = sum(n["asleep"] for n in ns) / len(ns)
+        hrv = [n["hrv"] for n in ns if n.get("hrv")]
+        avg = int(avg + 0.5)
+        out.append(f"  average of {len(ns)}: {avg // 60}h{avg % 60:02d} asleep"
+                   + (f", HRV {round(sum(hrv) / len(hrv))}" if hrv else ""))
+    return out
+
+
+def load_nights():
+    try:
+        return json.load(open(os.path.join(HERE, "data", "health.json"), encoding="utf-8")).get("nights", [])
+    except (OSError, ValueError):
+        return []
 
 
 if __name__ == "__main__":

@@ -37,6 +37,17 @@ It reports; it never decides. Deciding is your job below.
 {{review}}
 ```
 
+## Sleep, the week to the newest session
+
+From the watch (`data/health.json` nights, via `health.py`). Context, like a note about
+food: a flat session after a night well short of his usual is a reason to hold a load
+rather than read a stall. It is never a reason to cut a session, never a target, and
+never something to tell him to fix.
+
+```
+{{sleep}}
+```
+
 ## Do
 
 1. **Pass 1, the sessions just logged.** For every slot they touched, update `last`,
