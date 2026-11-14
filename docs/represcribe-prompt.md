@@ -5,7 +5,7 @@ him.
 
 - Last re-prescription (`RX.after`): {{after}}
 - Newest session in `log.md`: {{latest}}
-- Next session on the template: {{next}}
+- Next session (the one he is owed, by the picker in `review.py`): {{next}}
 - Today: {{today}}
 
 ## Read first
@@ -22,6 +22,20 @@ him.
 - Football entries (`## … · Football`, effort 1–10 × 80 min = load) sit between the
   lifts. Read them as context for the session after, like a debrief reply. They are not
   sessions to re-prescribe, and `RX.after` never names one.
+- An entry marked `short version` was the page's flat-day session: the slots left out
+  weren't skipped, so don't read them as missing.
+
+## The load review
+
+Worked out by `review.py` from `log.md`, per slot, before you started. Trust its numbers;
+don't recount them. Each slot's own exercise only (same name, same machine). FLAT = no new
+best in 3+ sessions. TOP = the latest session topped the band on every set at its top
+load, so check the plan's progression rule. Re-entry weeks are shown but never counted.
+It reports; it never decides. Deciding is your job below.
+
+```
+{{review}}
+```
 
 ## Do
 
@@ -30,13 +44,23 @@ him.
    never quote a number from a different machine. Move the load only when a
    `plan.md` rule fires or something says come down.
 2. **Pass 2, the next session.** Make {{next}} current, `brief` included. It is the
-   page he opens at the gym.
-3. **`plan.md`.** Mirror every change and write the reason next to it.
-4. **`log.md`.** Add one short HTML comment under the newest entry, in the style of
+   page he opens at the gym. Keep its `short` (the slot indexes of the flat-day
+   version) matching the slots the brief's "Flat? …" line names.
+3. **Act on the review.** He wants input on every load, not only on what moved. For
+   every FLAT slot, in any session, write a `call`: one or two plain sentences, the
+   decision and the reason. For a rotate slot that is usually a swap to a named
+   alternative, using what that alternative last did (the review lists it). For an
+   anchor it is a change of rep scheme, sets or load, since the exercise stays. A
+   deliberate hold is a valid call only with a reason he can check, e.g. "two in
+   reserve by design: Monday's are the ones read for progress". Name the trade-off.
+   For a TOP slot, apply the plan's rule and say so in `do`. When a slot stops being
+   flat, rewrite or drop its `call`. `finish` rejects a FLAT slot without one.
+4. **`plan.md`.** Mirror every change and write the reason next to it.
+5. **`log.md`.** Add one short HTML comment under the newest entry, in the style of
    the earlier ones: what moved, what stalled, what changed and why. Never edit or
    remove a logged line.
-5. **`RX.asof`** = "{{today}}". **`RX.after`** = "{{latest}}".
-6. **`RX.note`**: one or two plain sentences shown at the top of the page. Say what
+6. **`RX.asof`** = "{{today}}". **`RX.after`** = "{{latest}}".
+7. **`RX.note`**: one or two plain sentences shown at the top of the page. Say what
    changed after this session and why, and ask at most one question. Replace the old
    note; don't append to it.
 
@@ -51,7 +75,9 @@ You can't ask him anything. So anything that needs his decision becomes the ques
 - A rotate slot may change exercise when the data says so: a stall of three sessions,
   a rep band the load doesn't fit, a movement he says doesn't sit right. Write the reason
   in `plan.md`. A movement he has never logged needs the four-run trial and his
-  agreement, so propose it in `RX.note` instead.
+  agreement, so propose it in the slot's `call` instead, and keep the current exercise.
+  A swap you make changes the slot's `name` (and its `load`, `last`, `do`, `why`); the
+  old exercise goes into `alts`.
 - A swap he made in a rotate slot is his choice, not a mistake. A lower load after a
   swap or a form change is not a decline.
 - Leave these alone: the weekly template, the "Settled" list in `CLAUDE.md`, and
@@ -69,6 +95,7 @@ You can't ask him anything. So anything that needs his decision becomes the ques
   - Anything in `index.html` outside `RX` changes.
   - A line is removed from `log.md`.
   - An anchor's exercise changes.
+  - A FLAT slot has no `call`, or a session's `short` names a slot that doesn't exist.
 - `RX` format: bare keys and double-quoted strings, with no double quotes inside a
   string. Match the surrounding style.
 - Skip the `CLAUDE.md` steps that tell you to drain the inbox or reply to him. The

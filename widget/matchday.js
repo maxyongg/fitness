@@ -63,20 +63,39 @@ function iso(d) {
   return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
 }
 
-// Today's lift if it's a lift day and nothing is logged today; otherwise the next lift day
-// on the template. The page also checks the week's saves on the phone; the widget can't
-// see those, so a week moved around shows the template, not what's owed.
+// The session he's owed, by the rule in review.py ("THE PICKER"), from state.json's
+// last_done (the newest log.md date per session). index.html runs the same rule; keep the
+// three in step. Lower on Sunday if not done that week; otherwise the upper session due by
+// that day and not done this week that has gone longest; on a lift day with nothing due,
+// the next one not done this week. A save the drain hasn't reached yet is invisible here.
 function pickNext(rx, state, now) {
+  const done = Object.assign({}, state.last_done || {});
+  const ls = state.last_session;
+  if (ls && ls.type && rx.sessions[ls.type] && (done[ls.type] || "") < ls.date) done[ls.type] = ls.date;
   const today = iso(now);
-  const last = [state.last_session && state.last_session.date, (rx.after || "").slice(0, 10)].sort().pop() || "";
+  const lifted = Object.values(done).some((d) => d === today);
   for (let i = 0; i < 8; i++) {
     const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
-    const sid = rx.schedule[d.getDay()];
-    if (!rx.sessions[sid]) continue;
-    if (i === 0 && last >= today) continue;
-    return { sid, when: i === 0 ? "Today" : i === 1 ? "Tomorrow" : DAY[d.getDay()] };
+    if (!rx.sessions[rx.schedule[d.getDay()]] || (i === 0 && lifted)) continue;
+    const sid = pickFor(rx, d, done, i === 0);
+    if (sid) return { sid, when: i === 0 ? "Today" : i === 1 ? "Tomorrow" : DAY[d.getDay()] };
   }
   return { sid: ORDER[0], when: "" };
+}
+
+function pickFor(rx, day, done, pullForward) {
+  const off = (dow) => (dow + 6) % 7;
+  const monday = iso(new Date(day.getFullYear(), day.getMonth(), day.getDate() - off(day.getDay())));
+  const thisWeek = (sid) => (done[sid] || "") >= monday;
+  const when = {};
+  for (const dow of Object.keys(rx.schedule)) if (rx.sessions[rx.schedule[dow]]) when[rx.schedule[dow]] = +dow;
+  if (rx.schedule[day.getDay()] === "lower" && !thisWeek("lower")) return "lower";
+  const by = (f) => (a, b) => (f(a) < f(b) ? -1 : f(a) > f(b) ? 1 : ORDER.indexOf(a) - ORDER.indexOf(b));
+  const due = ORDER.filter((sid) => sid !== "lower" && sid in when && off(when[sid]) <= off(day.getDay()) && !thisWeek(sid));
+  if (due.length) return due.sort(by((sid) => done[sid] || ""))[0];
+  if (!pullForward) return null;
+  const rest = ORDER.filter((sid) => sid in when && !thisWeek(sid));
+  return rest.length ? rest.sort(by((sid) => off(when[sid])))[0] : null;
 }
 
 // The next match still to play: tonight's until it ends, then the next football day.

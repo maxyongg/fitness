@@ -139,6 +139,14 @@ For every slot you touch, update both `plan.md` and the `RX` object in `index.ht
   …", and "updating" while a newer save is waiting. **`RX.note`** — one or two sentences
   at the top of the next session: what changed and why, and at most one question.
 
+- **`call`** — on every slot the load review calls flat (and on any other slot with
+  something to say): the decision and its reason in a sentence or two. `python3
+  review.py` prints the review; it is also the `review` at the end of `state.json`.
+  Each session's **`short`** lists the slot indexes of its flat-day version, the same
+  slots its brief's "Flat? …" names. `represcribe.py finish` checks both.
+- **Which session is next** is the one he's owed, not the weekday's: `python3 review.py
+  --next`, the same rule the page and the widget run (`plan.md`, "When life interferes").
+
 Keep `RX` in its current shape: bare keys, double-quoted strings. `drain.py` parses it
 and `prescribe.py` rewrites `asof:` by regex.
 
@@ -193,7 +201,10 @@ Health Samples, checked on his phone 2026-11-04). It reads samples only, which i
 `watch.py` has to find the workout itself.
 
 **Privacy.** The repo is public. Only workout summaries are kept: date, times, type,
-minutes, kcal, km, and heart rate as average/min/max plus minutes per 10-bpm band. A
+minutes, kcal, km, and heart rate as average/min/max plus minutes per 10-bpm band, and
+since 2026-11-14 (he asked for the graph) each watch workout's heart-rate curve in
+`data/hr/YYYY-MM.json`: 15-second means over the workout's own minutes, nothing outside
+them. History draws it when a watch workout is opened. A
 shortcut upload holds up to a day of raw readings, overnight included. It sits in
 `inbox/` for about a minute and stays in git history. **His choice, 2026-11-05**, over
 sending uploads to the Cloudflare Worker, which would find the workout there and commit
@@ -203,9 +214,17 @@ and step 8 pointed at the Worker with the PIN. The full Health export never reac
 the repo. Don't ask for it, and don't add daily data (resting HR, HRV,
 sleep, weight) without asking him first.
 
-- **Reading it:** `python3 health.py` (last 12 weeks; `--since`, `--all`). Football
+- **Reading it:** `python3 health.py` (last 12 weeks; `--since`, `--all`; `--curve`
+  adds each workout's curve as 5-minute means). Football
   rows carry the log's effort and load, lifting rows the log's session name. Workouts
   Strong wrote to Health have no heart rate and are hidden unless `--all`.
+- **Curves.** `watch.py` keeps one per shortcut workout, and the page's Health import
+  writes them for the watch's workouts of the last 180 days (its readings carry
+  seconds, so they replace a shortcut's). His phone prints the shortcut's times to the
+  minute only, so within a minute the readings are spread evenly, in the watch's order.
+  **The Watch upload Action must commit `data/hr/`** (`watch.yml`, `git add`); if a
+  curve is missing for a workout in `health.json`, `python3 watch.py --from-git`
+  rebuilds every curve from the uploads in git history, then commit `data/hr/`.
 - **Football** is the Soccer type, or any workout that fills 45+ minutes of a
   `RX.football` slot. A shortcut workout outside a slot is `lifting` on a lift day and
   `other` otherwise; it can't tell a walk from a session.

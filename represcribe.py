@@ -28,6 +28,7 @@ import sys
 from datetime import date
 
 import drain
+import review
 
 ROOT = drain.ROOT
 LOG = drain.LOG
@@ -85,6 +86,24 @@ def anchors(rx):
             for sid, s in rx["sessions"].items()}
 
 
+def check_calls(rx):
+    """Every slot the load review calls flat carries a `call`: the stall rule in plan.md
+    ("propose something, don't note it"), made checkable. And each session's `short`
+    (the flat-day slots) points at real slots."""
+    errors = []
+    rev = review.review(review.read_log(LOG), rx)
+    for sid, rows in rev.items():
+        exs = rx["sessions"][sid]["exercises"]
+        for r in rows:
+            if r["status"] == "flat" and not str(exs[r["slot"] - 1].get("call", "")).strip():
+                errors.append(f"{rx['sessions'][sid]['name']} slot {r['slot']} ({r['name']}) is flat "
+                              f"and has no `call`: {r['line']}")
+        short = rx["sessions"][sid].get("short", [])
+        if not isinstance(short, list) or any(not isinstance(i, int) or not 0 <= i < len(exs) for i in short):
+            errors.append(f"{rx['sessions'][sid]['name']} `short` must list slot indexes 0-{len(exs) - 1}")
+    return errors
+
+
 def cmd_pending():
     latest = latest_session()
     after = (parse_rx(read(INDEX)) or {}).get("after")
@@ -96,13 +115,15 @@ def cmd_pending():
 def filled_prompt():
     latest = latest_session()
     after = (parse_rx(read(INDEX)) or {}).get("after") or "not set — start from the newest entry"
-    sid, when = drain.next_session_id(latest[:10])
+    log, rx = review.read_log(LOG), parse_rx(read(INDEX))
+    sid, when = review.next_after(log, latest[:10], rx)
     prompt = read(PROMPT)
     for key, value in {
         "after": after,
         "latest": latest,
         "next": f"{drain.SESSION_NAMES.get(sid, sid)} (RX.sessions.{sid}), {when}",
         "today": date.today().isoformat(),
+        "review": review.review_text(review.review(log, rx), rx),
     }.items():
         prompt = prompt.replace("{{" + key + "}}", value)
     return prompt
@@ -142,6 +163,8 @@ def cmd_finish():
             errors.append("sessions were added or removed")
         elif anchors(new_rx) != anchors(old_rx):
             errors.append("an anchor's exercise changed")
+        else:
+            errors += check_calls(new_rx)
 
     stray = [f for f in git("diff", "--name-only", "HEAD").split()
              if f not in EDITABLE | REBUILT]
@@ -163,8 +186,8 @@ def cmd_finish():
 
     state = json.loads(read(STATE)) if os.path.exists(STATE) else {}
     drain.apply_rx(state, new_rx)
-    with open(STATE, "w", encoding="utf-8") as f:
-        json.dump(state, f, indent=2, ensure_ascii=False)
+    drain.refresh_review(state, new_rx)
+    drain.write_state(state)
     print(f"rx: re-prescribe after {latest}")
 
 

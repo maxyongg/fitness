@@ -15,23 +15,15 @@ import glob
 import os
 import re
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime
+
+import review
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 INBOX = os.path.join(ROOT, "inbox")
 LOG = os.path.join(ROOT, "log.md")
 STATE = os.path.join(ROOT, "state.json")
 INDEX = os.path.join(ROOT, "index.html")
-
-SCHEDULE = {
-    0: "lower",    # Sunday
-    1: "upper_a",  # Monday
-    2: "football",
-    3: "rest",
-    4: "upper_b",  # Thursday
-    5: "football",
-    6: "upper_c",  # Saturday
-}
 
 SESSION_NAMES = {
     "upper_a": "Upper A",
@@ -102,6 +94,9 @@ def to_log_entry(data):
     extra_notes = data.get("notes", "")
     if extra_notes and extra_notes != "Imported from Strong":
         notes_parts.append(f"note: {extra_notes}")
+    if data.get("short"):
+        # The page's short version (flat day): the slots left out weren't skipped.
+        notes_parts.append("short version")
     if notes_parts:
         lines.append(" | ".join(notes_parts))
 
@@ -321,19 +316,6 @@ def load_rx():
         return None
 
 
-def next_session_id(from_date_str):
-    dt = datetime.strptime(from_date_str, "%Y-%m-%d")
-    for offset in range(1, 8):
-        candidate = dt + timedelta(days=offset)
-        dow = candidate.weekday()
-        py_to_js = {0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 0}
-        js_dow = py_to_js[dow]
-        sid = SCHEDULE.get(js_dow)
-        if sid and sid not in ("football", "rest"):
-            return sid, candidate.strftime("%Y-%m-%d")
-    return None, None
-
-
 def build_state(data, rx):
     state = {}
     state["_generated"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
@@ -365,19 +347,46 @@ def build_state(data, rx):
         })
     state["last_session"]["top_sets"] = top_sets
 
-    nid, ndate = next_session_id(data["date"])
-    state["next_session"] = {
-        "type": nid,
-        "name": SESSION_NAMES.get(nid, nid or "?"),
-        "expected_date": ndate,
-    }
-
+    state["next_session"] = {}
     if rx and "sessions" in rx:
         apply_rx(state, rx)
 
     state["flags"] = build_flags(data)
+    refresh_review(state, rx)
 
     return state
+
+
+def refresh_review(state, rx):
+    """From log.md as it stands (review.py): `next_session`, the one he's owed after the
+    newest lift; `last_done` per session, which the widget's picker reads; and `review`,
+    the per-slot load review the page and the nightly brief show. Run after every drain and
+    every re-prescription, so none of them lags the log or RX."""
+    log = review.read_log(LOG)
+    done = review.last_done(log)
+    state["last_done"] = done
+    if done:
+        sid, when = review.next_after(log, max(done.values()), rx)
+        state["next_session"] = {"type": sid, "name": SESSION_NAMES.get(sid, sid), "expected_date": when}
+    if rx and "sessions" in rx:
+        state.pop("review", None)              # last, so the top of the file stays the briefing
+        state["review"] = review.review(log, rx)
+
+
+def write_state(state):
+    """state.json: indented, except `review`, one slot per line, at the end. It is for the
+    page and the nightly brief; a logging session can stop reading at it."""
+    rev = state.get("review")
+    body = {k: v for k, v in state.items() if k != "review"}
+    text = json.dumps(body, indent=2, ensure_ascii=False)
+    if rev is not None:
+        parts = []
+        for sid, rows in rev.items():
+            inner = ",\n".join("      " + json.dumps(r, ensure_ascii=False, separators=(",", ":")) for r in rows)
+            parts.append(f"    {json.dumps(sid)}: [\n{inner}\n    ]")
+        text = text[:-2] + ',\n  "review": {\n' + ",\n".join(parts) + "\n  }\n}"
+    with open(STATE, "w", encoding="utf-8") as f:
+        f.write(text + "\n")
 
 
 def apply_rx(state, rx):
@@ -465,8 +474,7 @@ def main():
                 state = json.load(f)
             state["last_football"] = dict(data.get("football", {}), date=data["date"],
                                           notes=data.get("notes", ""))
-            with open(STATE, "w") as f:
-                json.dump(state, f, indent=2, ensure_ascii=False)
+            write_state(state)
             print(f"  → state.json last_football updated")
             print(f"\n{entry}\n")
             print(f"Files to commit: log.md, state.json")
@@ -476,8 +484,7 @@ def main():
 
         state = build_state(data, rx)
         if data["date"] >= last_logged_date():
-            with open(STATE, "w") as f:
-                json.dump(state, f, indent=2, ensure_ascii=False)
+            write_state(state)
             print(f"  → state.json updated")
         else:
             print(f"  → state.json kept: a correction to an older session")

@@ -3,6 +3,8 @@
 
     python3 watch.py            # every inbox/watch-*.txt; the Watch upload Action runs this
     python3 watch.py FILE ...   # just these, left in place (for testing)
+    python3 watch.py --from-git # curves for data/health.json's workouts, rebuilt from the
+                                # uploads in git history; health.json itself is untouched
 
 The iPhone shortcut ("Matchday watch", set up in docs/workflows.md) runs when a watch
 workout ends, or by hand. Shortcuts can't read a workout record out of Health, only
@@ -35,8 +37,14 @@ end; the export's is workout time, which leaves out pauses.
 
 Merging: an export record (no "via") for the same stretch of time always wins. A newer
 shortcut record replaces an older one for the same stretch, since a later upload has had
-longer for the watch to sync. Only summaries are kept: the raw readings are dropped
-with the inbox file. A file that can't be read stays in inbox/ and the exit code is 1.
+longer for the watch to sync. A file that can't be read stays in inbox/ and the exit
+code is 1.
+
+The curve: each workout's heart rate as 15-second means, for the page's graph, kept in
+data/hr/YYYY-MM.json under the workout's "date start" (as data/health.json has it). Only
+the workout's own minutes; the rest of the upload (the night, the day) is dropped with
+the inbox file. An export record without a curve takes the shortcut's for the same
+stretch. A curve whose workout is no longer in health.json is pruned.
 """
 import datetime as dt
 import glob
@@ -47,12 +55,19 @@ import sys
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 HEALTH = os.path.join(ROOT, "data", "health.json")
+CURVES = os.path.join(ROOT, "data", "hr")
+STEP = 15                                   # seconds per curve point
+CURVE_NOTE = ("Heart rate per workout as 15-second means (bpm; null where the watch has no reading), "
+              "from t0. Keyed by the workout's date and start in data/health.json. Workout minutes "
+              "only. Shortcut uploads time readings to the minute, so within a minute their place is "
+              "spread evenly. Written by watch.py and the page's Health import; read via health.py --curve.")
 SGT = dt.timezone(dt.timedelta(hours=8))
 MONTHS = {m: i + 1 for i, m in enumerate(
     ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"])}
 HEALTH_BY = "index.html (Apple Health import) + watch.py (shortcut uploads)"
 HEALTH_NOTE = ("Workout summaries only. hr.bins: minutes per 10-bpm band, keyed by its lower bound. "
-               "via: shortcut = from a Shortcut upload, where min is elapsed time. Read via health.py.")
+               "via: shortcut = from a Shortcut upload, where min is elapsed time. Read via health.py. "
+               "Each workout's heart-rate curve is in data/hr/YYYY-MM.json.")
 DENSE_PER_MIN, MAX_GAP_MIN, MIN_DENSE_MIN, MIN_FOOTBALL_OVERLAP = 3, 10, 10, 45
 
 TIME_RE = re.compile(r"(\d{1,2}):(\d{2})(?::(\d{2}))?\s*([ap])?\.?\s*m?\.?(?![a-z])", re.I)
@@ -146,7 +161,9 @@ def read_upload(path, ref):
             if not num or not when:
                 raise ValueError(f"can't read {v!r} at {t!r}")
             out.append((when, float(num.group(0).replace(",", "."))))
-        return sorted(out)
+        # By time only: the sort is stable, so readings that share a minute (his phone
+        # prints no seconds) keep the order the watch recorded them in. make_curve needs it.
+        return sorted(out, key=lambda p: p[0])
 
     if "hr" not in sections or "times" not in sections:
         raise ValueError("no hr:/times: sections, so not a shortcut upload")
@@ -208,6 +225,60 @@ def summarise(start, end, hr, kcal, rx):
     return rec
 
 
+def make_curve(start, end, hr):
+    """15-second means of the readings from start to end: {"t0": "HH:MM:SS", "bpm": [...]}.
+    When the times carry no seconds (how his phone prints them), each minute's readings are
+    spread evenly across that minute, in the order the watch took them: the values are the
+    watch's, only their place inside the minute is estimated."""
+    inside = [(w, v) for w, v in hr if start <= w <= end]
+    if inside and not any(w.second for w, _ in inside):
+        per_min = {}
+        for w, v in inside:
+            per_min.setdefault(w, []).append(v)
+        inside = [(m + dt.timedelta(seconds=(i + 0.5) * 60 / len(vs)), v)
+                  for m, vs in per_min.items() for i, v in enumerate(vs)]
+    n = int((end - start).total_seconds() // STEP) + 4
+    sums, counts = [0.0] * n, [0] * n
+    for when, v in inside:
+        i = int((when - start).total_seconds() // STEP)
+        if 0 <= i < n:
+            sums[i] += v
+            counts[i] += 1
+    bpm = [round(t / c) if c else None for t, c in zip(sums, counts)]
+    while bpm and bpm[-1] is None:
+        bpm.pop()
+    return {"t0": start.strftime("%H:%M:%S"), "bpm": bpm}
+
+
+def curve_key(w):
+    return f"{w['date']} {w['start']}"
+
+
+def load_curves(month):
+    try:
+        return json.load(open(os.path.join(CURVES, month + ".json"), encoding="utf-8")).get("curves", {})
+    except (OSError, ValueError):
+        return {}
+
+
+def save_curves(month, curves):
+    os.makedirs(CURVES, exist_ok=True)
+    head = [f'  "_note": {json.dumps(CURVE_NOTE)},', f'  "step": {STEP},']
+    body = ",\n".join(f"    {json.dumps(k)}: {json.dumps(curves[k], separators=(',', ':'))}"
+                      for k in sorted(curves))
+    with open(os.path.join(CURVES, month + ".json"), "w", encoding="utf-8") as f:
+        f.write("{\n" + "\n".join(head) + '\n  "curves": {\n' + body + "\n  }\n}\n")
+
+
+def store_curves(new, workouts):
+    """new: {key: curve}. Writes each touched month, pruning curves with no workout."""
+    keep = {curve_key(w) for w in workouts}
+    for month in sorted({k[:7] for k in new}):
+        curves = load_curves(month)
+        curves.update({k: v for k, v in new.items() if k[:7] == month})
+        save_curves(month, {k: v for k, v in curves.items() if k in keep})
+
+
 def kind(start, end, rx):
     """Football fills 45+ minutes of an RX.football slot; otherwise a lift day's workout is lifting."""
     js_dow = str((start.weekday() + 1) % 7)
@@ -228,17 +299,18 @@ def span(w):
 
 
 def merge(workouts, new):
-    """Add one shortcut record. Returns what happened, for the summary line."""
+    """Add one shortcut record. Returns what happened, for the summary line, and the
+    record that now stands for that stretch of time (its curve goes under its key)."""
     ns, ne = span(new)
     for i, w in enumerate(workouts):
         ws, we = span(w)
         if ws < ne and ns < we:
             if not w.get("via"):
-                return "already in the Health import"
+                return "already in the Health import", w
             workouts[i] = new
-            return "updated"
+            return "updated", new
     workouts.append(new)
-    return "added"
+    return "added", new
 
 
 def load_health():
@@ -263,8 +335,47 @@ def save_health(data):
         f.write("{\n" + "\n".join(lines) + '\n  "workouts": [\n' + body + "\n  ]\n}\n")
 
 
+def from_git():
+    """Every upload the Action ever processed is still in git history (committed to inbox/,
+    then deleted). Rebuild the curve of each Apple Watch workout in health.json from the
+    newest upload that covers it. For curves the Action didn't keep, or a format fix."""
+    import subprocess
+    import tempfile
+    git = lambda *a: subprocess.run(["git", *a], cwd=ROOT, capture_output=True, text=True, check=True).stdout
+    uploads, sha = [], None
+    for line in git("log", "--diff-filter=A", "--format=%H %cI", "--name-only", "--", "inbox/watch-*.txt").splitlines():
+        if line.startswith("inbox/"):
+            uploads.append((sha[1], sha[0], line))
+        elif line.strip():
+            sha = line.split()
+    data, found = load_health(), {}
+    watch_ws = [w for w in data["workouts"] if w.get("source") == "Apple Watch"]
+    with tempfile.TemporaryDirectory() as tmp:
+        for when, commit, path in sorted(uploads):
+            f = os.path.join(tmp, "upload.txt")
+            with open(f, "w", encoding="utf-8") as out:
+                out.write(git("show", f"{commit}:{path}"))
+            try:
+                hr, _ = read_upload(f, dt.datetime.fromisoformat(when).astimezone(SGT))
+            except ValueError as e:
+                print(f"{path}: can't read it ({e})")
+                continue
+            for start, end in blocks(hr):
+                ns, ne = span({"date": start.date().isoformat(), "start": start.strftime("%H:%M"),
+                               "end": end.strftime("%H:%M")})
+                match = [w for w in watch_ws if span(w)[0] < ne and ns < span(w)[1]]
+                if match:
+                    found[curve_key(match[0])] = make_curve(start, end, hr)
+    if found:
+        store_curves(found, data["workouts"])
+    print(f"Curves from git history: {len(found)} ({', '.join(sorted(found)) or 'none'})")
+    return 0
+
+
 def main():
     args = sys.argv[1:]
+    if args == ["--from-git"]:
+        return from_git()
     files = args or sorted(glob.glob(os.path.join(ROOT, "inbox", "watch-*.txt")))
     if not files:
         print("No watch uploads in inbox/.")
@@ -277,7 +388,7 @@ def main():
         print(f"RX unreadable ({e}); kinds are guesses.")
         rx = None
 
-    data, bad, subjects = load_health(), 0, []
+    data, bad, subjects, curves = load_health(), 0, [], {}
     for path in files:
         name = os.path.basename(path)
         ref = dt.datetime.fromtimestamp(os.path.getmtime(path), SGT)
@@ -294,15 +405,19 @@ def main():
             print(f"{name}: {len(hr)} readings, {hr[0][0]:%d %b %H:%M}–{hr[-1][0]:%H:%M}, but no workout among them.")
         for start, end in found:
             rec = summarise(start, end, hr, kcal, rx)
-            what = merge(data["workouts"], rec)
+            what, kept = merge(data["workouts"], rec)
             print(f"{name}: {rec['date']} {rec['start']}–{rec['end']} {rec['kind']}, {rec['min']} min, "
                   f"HR {rec['hr']['avg']} avg / {rec['hr']['max']} max ({rec['hr']['n']} readings): {what}")
+            if kept is rec or curve_key(kept) not in load_curves(kept["date"][:7]):
+                curves[curve_key(kept)] = make_curve(start, end, hr)
             if what != "already in the Health import":
                 subjects.append(f"{rec['date']} {rec['kind']}")
         if not args:
             os.remove(path)
     if subjects:
         save_health(data)
+    if curves:
+        store_curves(curves, data["workouts"])
     subject = "health: watch " + (", ".join(dict.fromkeys(subjects)) if subjects else "upload, nothing new")
     if os.environ.get("GITHUB_OUTPUT"):
         with open(os.environ["GITHUB_OUTPUT"], "a") as f:

@@ -433,7 +433,16 @@ Football adds an estimated 4–6 equivalent sets of lower-body work per match.
 
 ## When life interferes
 
-- Miss a day, take the next one in the template. Do not shuffle sessions to catch up.
+- **Miss a day, and the next lift day takes the session you're owed: of the upper sessions
+  due that week and not done, the one gone longest.** A missed Monday makes Thursday
+  Upper A and Saturday Upper B, and Upper C drops for the week. Nothing is doubled and
+  nothing is caught up. Lower stays Sunday's: never moved to make up for a missed one,
+  never displaced by an upper session. This is the call he made by hand on 2026-11-11,
+  made the page's rule on 2026-11-14 (it replaced "take the next one in the template",
+  which dropped the missed Upper A, the incline's only day). The page opens on it, the
+  widget shows it, and `review.py --next` prints it. The page's **Short version** button
+  is the flat-day session: each session's `short` slots, as its brief's "Flat? …" names.
+  Logged as `short version`, so a slot left out that day is not read as skipped.
 - After 10+ days off, take 10% off top sets for the first session back.
 - Travelling: Upper A needs a bench and a bar. Upper C needs cables. Lower needs a bar
   and a rack.
@@ -476,6 +485,15 @@ was decided and why, so the next session inherits the reasoning.
 - **Every new export** into `data/` — reconcile the log, re-run `analyse.py`, and come
   back with what moved, what stalled, and one proposal. See `docs/workflows.md`.
 - **Any lift stalled three sessions or more** — propose something, don't note it.
+  From 2026-11-14 the **load review** (`review.py`, the `review` in `state.json`) works
+  this out per slot after every drain: each lift against its own history on the same
+  machine, as moving, holding, flat (no new best in 3+ sessions) or new, and whether it
+  topped its band. Re-entry weeks are shown but never counted. It reports; it never
+  decides. Every flat slot carries a `call` in `RX`: a swap with the alternative's last
+  numbers, a rep or load change for an anchor, or a hold with a reason he can check.
+  `represcribe.py finish` rejects a flat slot without one. He asked for this (2026-11-14):
+  input on every load he has, not only on what moved. The page shows the status and
+  the call on each slot, and all of them in Progress → Lifts.
 - **A session repeatedly skipped** — ask why before cutting it.
 
 **Everything goes to `main`** — his instruction, 2026-09-10. Branch only if he asks.

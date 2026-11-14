@@ -4,6 +4,7 @@
     python3 health.py                     # watch workouts, last 12 weeks
     python3 health.py --since 2026-09-01
     python3 health.py --all               # every app's workouts (Strong, the phone), all dates
+    python3 health.py --curve             # plus each workout's heart rate, 5-minute means
 
 Two things write data/health.json. After each watch workout, an iPhone shortcut uploads
 the watch's heart rate and watch.py turns it into a summary (marked [shortcut]; its
@@ -16,6 +17,10 @@ Per workout: minutes, active kcal, km, and heart rate from the watch: Apple's
 average/min/max, plus minutes in 10-bpm bands (hr.bins, keyed by the band's lower bound).
 The bands are raw on purpose: no max HR or zone model is assumed. Don't invent one; ask
 him if zones ever matter.
+
+With --curve, each workout that has one also prints its heart-rate curve
+(data/hr/YYYY-MM.json, 15-second means) as 5-minute means from the start, so a session
+can see a late fade or the football rotation without reading the file.
 
 Football rows carry effort and load from log.md, so the watch reading sits next to his
 own. Lifting rows carry the log's session name for that date. What the watch says is
@@ -57,6 +62,22 @@ def hr_txt(hr):
     if not hr:
         return "—"
     return f"{hr['avg']}/{hr['max']}" if hr.get("max") else str(hr["avg"])
+
+
+def curve_line(w):
+    """5-minute means of the workout's 15-second curve, or None."""
+    try:
+        c = json.load(open(os.path.join(HERE, "data", "hr", w["date"][:7] + ".json"),
+                           encoding="utf-8"))["curves"].get(f"{w['date']} {w['start']}")
+    except (OSError, ValueError, KeyError):
+        return None
+    if not c:
+        return None
+    out, bpm = [], c["bpm"]
+    for i in range(0, len(bpm), 20):
+        part = [v for v in bpm[i:i + 20] if v is not None]
+        out.append(str(round(sum(part) / len(part))) if part else "·")
+    return f"from {c['t0'][:5]}, per 5 min: " + " ".join(out)
 
 
 def main():
@@ -110,6 +131,8 @@ def main():
                   + ("  [shortcut: elapsed min]" if w.get("via") == "shortcut" else ""))
             if bands(w.get("hr")):
                 print(f"      bands {bands(w.get('hr'))}")
+            if "--curve" in args and curve_line(w):
+                print(f"      curve {curve_line(w)}")
 
 
 if __name__ == "__main__":

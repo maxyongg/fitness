@@ -156,6 +156,21 @@ button.kick svg { width: 13px; height: 13px; flex: none; }
 .why-btn[aria-expanded="true"] { color: var(--ink); }
 .why { font-size: 13px; line-height: 1.5; color: var(--ink-2); margin-top: 8px;
   padding-left: 10px; border-left: 2px solid var(--rule-2); }
+.rv { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 6px; margin-top: 6px; font-size: 12.5px;
+  line-height: 1.4; color: var(--ink-2); }
+.rv:empty { display: none; }
+.rv-t { flex: 1 1 60%; min-width: 0; }
+.st { flex: none; font-family: var(--font-m); font-size: 9.5px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; padding: 1px 6px; border-radius: 4px; background: var(--surface-2); color: var(--ink-3); }
+.st.moving, .st.top { background: var(--accent-soft); color: var(--accent); }
+.st.flat { background: var(--amber-soft); color: var(--amber); }
+.call { margin-top: 6px; padding-left: 10px; border-left: 2px solid var(--amber); font-size: 13px; line-height: 1.45; color: var(--ink); }
+.call b { font-family: var(--font-m); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--amber); margin-right: 6px; }
+.short-btn { display: block; width: 100%; margin-top: 12px; height: 40px; appearance: none; cursor: pointer;
+  background: none; border: 1px dashed var(--rule-2); border-radius: 9px; color: var(--ink-2);
+  font-family: var(--font-m); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+.short-btn.on { border-style: solid; border-color: var(--amber); color: var(--amber); background: var(--amber-soft); }
 
 /* ---- logging row ---- */
 .log { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
@@ -297,6 +312,16 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .empty { text-align: center; color: var(--ink-3); font-size: 14px; line-height: 1.6; padding: 40px 0; }
 .hrh { font-family: var(--font-m); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
   color: var(--ink-3); padding: 10px 0 4px; }
+.hrc-read { font-size: 11px; color: var(--ink-2); margin: 2px 0 4px; min-height: 15px; }
+.hrc-plot { width: 100%; overflow: hidden; }
+.hrsvg { display: block; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
+.hrsvg .hg { stroke: var(--rule); stroke-width: 1; }
+.hrsvg .ht, .hrsvg .hpl { font-family: var(--font-m); font-size: 10px; fill: var(--ink-3); }
+.hrsvg .hpl { fill: var(--ink-2); }
+.hrsvg .hl { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.hrsvg .ha { fill: var(--accent); opacity: .1; }
+.hrsvg .hp, .hrsvg .hx circle { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.hrsvg .hx line { stroke: var(--ink-3); stroke-width: 1; }
 .hrb { display: flex; align-items: center; gap: 8px; padding: 2px 0; font-family: var(--font-m); font-size: 11px;
   color: var(--ink-3); font-variant-numeric: tabular-nums; }
 .hrb span { flex: 0 0 28px; text-align: right; }
@@ -396,6 +421,22 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .rec-n .rec-now b { display: inline; font: 600 11px var(--font-m); color: var(--ink); }
 .caveat { padding: 8px 0 8px 12px; border-left: 3px solid var(--amber); font-size: 13px; line-height: 1.5;
   color: var(--ink-2); margin-bottom: 12px; }
+.lifts-sum { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-3); margin: 0 0 4px; }
+.lifts-sum b { color: var(--ink); font-size: 13px; letter-spacing: 0; margin-right: 4px; }
+.lifts-sum .fl b { color: var(--amber); }
+.lift { padding: 10px 12px; cursor: pointer; }
+.lift + .lift { border-top: 1px solid var(--rule); }
+.lift-h { display: flex; align-items: baseline; gap: 8px; }
+.lift-h b { flex: 1; min-width: 0; font-family: var(--font-d); font-size: 18px; font-weight: 600; line-height: 1.15; }
+.lift-no { flex: none; width: 14px; font-size: 11px; color: var(--ink-3); }
+.lift-h .st + .st { margin-left: -4px; }
+.lift-now { margin: 3px 0 0 22px; font-size: 12px; color: var(--ink); }
+.lift-now span { display: block; color: var(--ink-3); font-size: 11px; margin-top: 1px; }
+.lift-s { margin: 4px 0 0 22px; font-size: 12.5px; line-height: 1.4; color: var(--ink-2); }
+.lift .call { margin-left: 22px; }
+.lift-more { display: none; margin: 6px 0 0 22px; }
+.lift.open .lift-more { display: block; }
 .caveat b { display: block; font-family: var(--font-m); font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
   color: var(--amber); margin-bottom: 2px; }
 .old-recs summary { cursor: pointer; list-style: none; }
@@ -424,6 +465,7 @@ input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 
 .sheet-opt { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-top: 1px solid var(--rule); cursor: pointer; }
 .sheet-opt:active { background: var(--surface-2); }
 .so-name { flex: 1; font-family: var(--font-d); font-size: 20px; font-weight: 600; }
+.so-name small { display: block; font-family: var(--font-m); font-size: 11px; font-weight: 400; color: var(--ink-3); margin-top: 1px; }
 .so-tag { font-family: var(--font-m); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
 .so-check { width: 20px; color: var(--accent); text-align: center; font-weight: 700; }
 .sheet-body { padding: 0 20px 8px; }
@@ -495,7 +537,8 @@ input[type=number] { -moz-appearance: textfield; }
     <div class="sec">Apple Health</div>
     <p class="page-sub">Health app &rarr; your picture &rarr; Export All Health Data &rarr; Save to Files. Pick the zip here.
       It is read on this phone. Only workout summaries are saved, to <span class="mono">data/health.json</span>: time,
-      type, calories, distance and the watch&rsquo;s heart rate. No routes, sleep, resting heart rate or anything else.</p>
+      type, calories, distance and the watch&rsquo;s heart rate, as a summary and a 15-second curve of the
+      workout&rsquo;s own minutes. No routes, sleep, resting heart rate or anything else.</p>
     <input type="file" id="health-file" accept=".zip,.xml,application/zip,text/xml" hidden onchange="importHealth(this.files[0]); this.value = ''">
     <button class="btn btn-ghost" id="health-btn" onclick="document.getElementById('health-file').click()">Choose the export</button>
     <div id="health-result"></div>
@@ -536,6 +579,7 @@ input[type=number] { -moz-appearance: textfield; }
     <div class="seg" role="tablist">
       <button class="segb active" data-p="muscles" onclick="progTab('muscles')">Muscles</button>
       <button class="segb" data-p="records" onclick="progTab('records')">Records</button>
+      <button class="segb" data-p="lifts" onclick="progTab('lifts')">Lifts</button>
     </div>
     <div id="prog-msg" class="empty" hidden></div>
     <div id="prog-muscles">
@@ -559,6 +603,15 @@ input[type=number] { -moz-appearance: textfield; }
       <div class="sec">Sets by muscle</div>
       <div class="block info-block"><table class="vol" id="muscle-table"></table></div>
       <p class="foot" id="muscle-foot"></p>
+    </div>
+    <div id="prog-lifts" hidden>
+      <p class="caveat"><b>Each lift against itself</b>Every slot read against its own history on the same
+        machine, from log.md. Flat means no new best in three sessions or more: a question to look at,
+        not a decline. The call under a slot is the coach&rsquo;s answer to it. Tap a lift for its
+        last sessions and what its swaps last did.</p>
+      <div id="lifts-sum" class="lifts-sum mono"></div>
+      <div id="lifts-list"></div>
+      <p class="foot" id="lifts-foot"></p>
     </div>
     <div id="prog-records" hidden>
       <div class="caveat" id="rec-caveat"></div>
@@ -682,7 +735,12 @@ input[type=number] { -moz-appearance: textfield; }
      last — what he actually did last time on THIS machine, from log.md
      do   — the instruction for today, one or two sentences
      why  — the reason the slot is what it is (tucked behind a "Why" toggle)
-   Each session has a `brief`: what today is for, in a sentence or two.
+   and, when there is one, a fourth:
+     call — the coach's call on what the load review shows (review.py, state.json):
+            hold, step up, change the rep scheme or swap, and why. Required on every slot
+            the review calls flat (represcribe.py finish checks it).
+   Each session has a `brief`: what today is for, in a sentence or two, and `short`: the
+   slot indexes of the flat-day version, the same slots the brief's "Flat? …" names.
    `after` names the last session re-prescribed from ("YYYY-MM-DD Name", matching the
    log.md header). `note` is the coach's line on the next session: what changed and at
    most one question.
@@ -859,6 +917,16 @@ var ICON_SEND = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" str
 var ICON_CHEV = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>';
 
 /* ---- state ---- */
+/* Declared here, above init, because init uses them: an initialiser further down runs
+   after init and would reset what it set. */
+var nextLiftDate = null;   /* the day the picked session is for (pickNext) */
+var shortOn = false;       /* the short version is on (applyShort) */
+var REVIEW_WORDS = { moving: "Moving", holding: "Holding", flat: "Flat", "new": "New" };
+var HR_STEP = 15, HR_IMPORT_DAYS = 180, hrMonths = {}, hrFetched = {};
+var HR_NOTE = "Heart rate per workout as 15-second means (bpm; null where the watch has no reading), from t0. "
+  + "Keyed by the workout's date and start in data/health.json. Workout minutes only. Shortcut uploads time "
+  + "readings to the minute, so within a minute their place is spread evenly. Written by watch.py and the "
+  + "page's Health import; read via health.py --curve.";
 var cur = null;
 var nextId = null;
 var nextLiftId = null;
@@ -884,37 +952,59 @@ var importSid = null;
   pick(nextId);
   renderWeek();
   renderHistory();
+  loadReview();
 })();
 
-/* Today's lift if it's a lift day and not already saved this week; otherwise the next one
-   in the order that isn't. A week moved around (Lower on a free Friday, 2026-10-02) then
-   opens on the session still owed, and the coach note shows on it. Weeks start Monday. */
+/* Which session opens: the session he's owed, by the rule in review.py ("THE PICKER"),
+   which drain.py writes into state.json and widget/matchday.js runs too. Keep the three
+   in step. Lower on Sunday if it isn't done that week, never chased on another day.
+   Otherwise, of the upper sessions due by that day and not done this week, the one gone
+   longest: a missed Monday makes Thursday Upper A and Saturday Upper B, and Upper C drops
+   for the week (his call, 2026-11-11). On a lift day with nothing due, the next session
+   not done this week is pulled forward. Weeks start Monday. Today if it's a lift day and
+   no lift is saved today, else the next lift day with one due. */
 function pickNext(d) {
-  var id = RX.schedule[d.getDay()];
-  if (id === "football" || id === "rest") return nextLift(d.getDay());
-  var today = isoDate(d);
-  var monday = new Date(d.getFullYear(), d.getMonth(), d.getDate() - (d.getDay() + 6) % 7);
-  var from = isoDate(monday);
-  var hist = getHistory();
-  function done(sid) {
-    return hist.some(function(h) { return h.session_id === sid && h.date >= from && h.date <= today; });
+  var done = lastDone(), today = isoDate(d);
+  var lifted = getHistory().some(function(h) { return h.date === today && RX.sessions[h.session_id]; })
+    || Object.keys(done).some(function(sid) { return done[sid] === today; });
+  var known = Object.keys(done).length > 0;
+  for (var i = 0; i < 8; i++) {
+    var day = new Date(d.getFullYear(), d.getMonth(), d.getDate() + i);
+    if (!RX.sessions[RX.schedule[day.getDay()]] || (i === 0 && lifted)) continue;
+    /* Nothing saved on this phone and no log cached yet: the weekday template. */
+    var sid = known ? pickFor(day, done, i === 0) : RX.schedule[day.getDay()];
+    if (sid) { nextLiftDate = day; return sid; }
   }
-  if (!done(id)) return id;
-  var savedToday = hist.some(function(h) { return h.session_id === id && h.date === today; });
-  if (savedToday) return ORDER[(ORDER.indexOf(id) + 1) % ORDER.length];
-  // Today's was done early: the session it swapped with is the latest earlier day's that
-  // isn't saved. Walking back from yesterday keeps a day missed earlier in the week from
-  // coming back to be caught up ("When life interferes", plan.md).
-  for (var back = 1; back <= (d.getDay() + 6) % 7; back++) {
-    var sid = RX.schedule[(d.getDay() - back + 7) % 7];
-    if (RX.sessions[sid] && !done(sid)) return sid;
-  }
-  return ORDER[(ORDER.indexOf(id) + 1) % ORDER.length];
+  nextLiftDate = null;
+  return ORDER[0];
 }
 
-function nextLift(dow) {
-  var map = { 2: "upper_b", 3: "upper_b", 5: "upper_c" };
-  return map[dow] || "upper_a";
+function pickFor(day, done, pullForward) {
+  var off = function(dow) { return (dow + 6) % 7; };
+  var monday = isoDate(new Date(day.getFullYear(), day.getMonth(), day.getDate() - off(day.getDay())));
+  var thisWeek = function(sid) { return (done[sid] || "") >= monday; };
+  var when = {};
+  Object.keys(RX.schedule).forEach(function(dow) { if (RX.sessions[RX.schedule[dow]]) when[RX.schedule[dow]] = +dow; });
+  if (RX.schedule[day.getDay()] === "lower" && !thisWeek("lower")) return "lower";
+  var due = ORDER.filter(function(sid) {
+    return sid !== "lower" && sid in when && off(when[sid]) <= off(day.getDay()) && !thisWeek(sid);
+  });
+  var by = function(f) { return function(a, b) { return f(a) < f(b) ? -1 : f(a) > f(b) ? 1 : ORDER.indexOf(a) - ORDER.indexOf(b); }; };
+  if (due.length) return due.sort(by(function(sid) { return done[sid] || ""; }))[0];
+  if (!pullForward) return null;
+  var rest = ORDER.filter(function(sid) { return sid in when && !thisWeek(sid); });
+  return rest.length ? rest.sort(by(function(sid) { return off(when[sid]); }))[0] : null;
+}
+
+/* {session id: newest date it was done}, from this phone's saves and the cached log.md. */
+function lastDone() {
+  var ids = {}, out = {};
+  ORDER.forEach(function(sid) { ids[RX.sessions[sid].name] = sid; });
+  var put = function(sid, d) { if (sid && d && (!out[sid] || d > out[sid])) out[sid] = d; };
+  getHistory().forEach(function(h) { if (RX.sessions[h.session_id]) put(h.session_id, h.date); });
+  var idx = cachedLogIdx();
+  Object.keys(idx).forEach(function(d) { idx[d].forEach(function(s) { put(ids[s.name], d); }); });
+  return out;
 }
 
 /* ---- dates ---- */
@@ -1029,8 +1119,9 @@ function getActiveName(sid, idx) {
 /* ---- render session ---- */
 function renderSession(id) {
   var s = RX.sessions[id];
-  var when = nextDateFor(id);
+  var when = id === nextLiftId && nextLiftDate ? dayLabel(nextLiftDate) : nextDateFor(id);
   var totalSets = s.exercises.reduce(function(n, ex) { return n + ex.sets; }, 0);
+  shortOn = false;
 
   var h = '<section class="brief">'
     + '<div class="brief-meta mono">' + (when.diff === 0 ? "Today" : when.label)
@@ -1038,11 +1129,13 @@ function renderSession(id) {
     + '<h1 class="brief-title">' + s.name + '</h1>'
     + (s.brief ? '<p class="brief-text">' + esc(s.brief) + '</p>' : '')
     + (RX.note && id === nextLiftId ? '<p class="coach-note"><b>Coach</b>' + esc(RX.note) + '</p>' : '')
-    + '<div class="stats"><span><b>' + s.exercises.length + '</b> slots</span>'
-    + '<span><b>' + totalSets + '</b> sets</span>'
+    + '<div class="stats"><span><b id="st-slots">' + s.exercises.length + '</b> slots</span>'
+    + '<span><b id="st-sets">' + totalSets + '</b> sets</span>'
     + '<span><b>' + s.mins.replace(/\s*min/, "") + '</b> min</span>'
-    + '<span class="live"><b id="prog">0</b>/' + totalSets + ' logged</span>'
-    + '</div></section>';
+    + '<span class="live"><b id="prog">0</b>/<span id="st-of">' + totalSets + '</span> logged</span>'
+    + '</div>'
+    + (shortSlots(s).length ? '<button class="short-btn" id="short-btn" onclick="toggleShort()"></button>' : '')
+    + '</section>';
 
   h += '<div class="slots">';
   s.exercises.forEach(function(ex, i) { h += slotCard(ex, i, id); });
@@ -1057,7 +1150,97 @@ function renderSession(id) {
   document.getElementById("main").innerHTML = h;
 
   restoreDraft(id);
+  applyShort();
+  renderReview();
   refreshProgress();
+}
+
+function dayLabel(d) {
+  var t = new Date();
+  var diff = Math.round((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - new Date(t.getFullYear(), t.getMonth(), t.getDate())) / 864e5);
+  return { diff: diff, label: SHORT_DAY[d.getDay()] + " " + d.getDate() + " " + SHORT_MON[d.getMonth()] };
+}
+
+/* ---- short version ----
+
+   The flat-day session: the slots in RX.sessions[id].short (indexes), the same ones the
+   brief's "Flat? …" line names. The re-prescription keeps the two in step. Saved with
+   `short: true`, which drain.py writes into the log as "short version", so a slot left
+   out that day is never read as skipped or stalled. */
+function shortSlots(s) {
+  return (s.short || []).filter(function(i) { return i >= 0 && i < s.exercises.length; });
+}
+
+function inShort(i) {
+  var keep = shortSlots(RX.sessions[cur]);
+  return !shortOn || !keep.length || keep.indexOf(i) !== -1;
+}
+
+function applyShort() {
+  var s = RX.sessions[cur], keep = shortSlots(s), slots = 0, sets = 0;
+  s.exercises.forEach(function(ex, i) {
+    var card = document.getElementById("slot-" + i);
+    if (card) card.hidden = !inShort(i);
+    if (inShort(i)) { slots++; sets += ex.sets; }
+  });
+  document.getElementById("st-slots").textContent = slots;
+  document.getElementById("st-sets").textContent = sets;
+  document.getElementById("st-of").textContent = sets;
+  var b = document.getElementById("short-btn");
+  if (!b) return;
+  b.textContent = shortOn ? "Back to the full session" : "Short version · " + keep.length + " of " + s.exercises.length + " slots";
+  b.classList.toggle("on", shortOn);
+}
+
+function toggleShort() {
+  shortOn = !shortOn;
+  applyShort();
+  refreshProgress();
+  saveDraft();
+}
+
+/* ---- the load review ----
+
+   state.json `review`, written by review.py on every drain and re-prescription: per slot,
+   that exact exercise's readings from log.md, its best, how many sessions since, and
+   whether the last one topped the band. A status, never a verdict: what to do about it
+   is the slot's `call` in RX, which the re-prescription writes. Cached on the phone. */
+function getReview() {
+  try { return JSON.parse(localStorage.getItem("matchday_state") || "null"); } catch (e) { return null; }
+}
+
+async function loadReview() {
+  try {
+    var text = await fetchRepoFile("state.json");
+    JSON.parse(text);
+    try { localStorage.setItem("matchday_state", text); } catch (e) {}
+  } catch (e) { return; }
+  if (RX.sessions[cur]) renderReview();
+  if (progMode === "lifts" && document.getElementById("view-progress").classList.contains("active")) renderLifts();
+}
+
+/* The review row for slot i of session sid, if it is about the exercise RX names now. */
+function reviewFor(sid, i) {
+  var st = getReview(), r = st && st.review && st.review[sid] && st.review[sid][i];
+  return r && r.name === RX.sessions[sid].exercises[i].name ? r : null;
+}
+
+function statusChip(r) {
+  return '<span class="st ' + r.status + '">' + REVIEW_WORDS[r.status] + '</span>'
+    + (r.top_streak ? '<span class="st top">Top of band</span>' : '');
+}
+
+function renderReview() {
+  var s = RX.sessions[cur];
+  if (!s) return;
+  s.exercises.forEach(function(ex, i) {
+    var el = document.getElementById("rv-" + i), r = reviewFor(cur, i);
+    if (el) el.innerHTML = r && r.readings ? statusChip(r) + '<span class="rv-t">' + esc(r.line) + '</span>' : "";
+    var sw = document.getElementById("sw-" + i), name = getActiveName(cur, i);
+    var alt = r && (r.alts || []).filter(function(a) { return a.name === name && a.date; })[0];
+    if (sw && alt) sw.textContent = "Swapped from " + ex.name + ". Last time on this: "
+      + fmtDate(alt.date) + " · " + alt.text + (alt.logged_as !== alt.name ? " (" + alt.logged_as + ")" : "");
+  });
 }
 
 function slotCard(ex, idx, sid) {
@@ -1086,7 +1269,7 @@ function slotCard(ex, idx, sid) {
     + '<div class="slot-no">' + (idx + 1) + ICON_CHECK + '</div>'
     + '<div class="slot-b"><div class="slot-top">' + kick + tgt + '</div>'
     + '<h2 class="ex">' + esc(activeName) + '</h2>'
-    + (isSwapped ? '<div class="swapped">Swapped from ' + esc(ex.name) + ' — no history here, set the load</div>' : '');
+    + (isSwapped ? '<div class="swapped" id="sw-' + idx + '">Swapped from ' + esc(ex.name) + ' — no history here, set the load</div>' : '');
 
   if (!isSwapped) {
     if (ex.do) h += '<p class="do">' + esc(ex.do) + '</p>';
@@ -1096,6 +1279,8 @@ function slotCard(ex, idx, sid) {
         + '</div>';
       if (ex.why) h += '<p class="why" id="why-' + idx + '" hidden>' + esc(ex.why) + '</p>';
     }
+    h += '<div class="rv" id="rv-' + idx + '"></div>';
+    if (ex.call) h += '<p class="call"><b>Call</b>' + esc(ex.call) + '</p>';
   }
 
   h += '<div class="log">' + logRow(ex, idx, (tbd || isSwapped) ? "" : ex.load) + '</div></div></article>';
@@ -1134,6 +1319,7 @@ function refreshProgress() {
   var s = RX.sessions[cur];
   var logged = 0;
   s.exercises.forEach(function(ex, i) {
+    if (!inShort(i)) return;
     var ins = document.querySelectorAll('.set-in[data-ex="' + i + '"]');
     var n = 0, sum = 0;
     ins.forEach(function(inp) { if (inp.value !== "") { n++; sum += parseInt(inp.value) || 0; } });
@@ -1253,7 +1439,7 @@ function saveDraft() {
   if (cur === "football") {
     if (fbEffort !== null) v.effort = fbEffort;
     if (!fbPlayed) v.played = false;
-  }
+  } else if (shortOn) v.short = true;
   try {
     if (Object.keys(v).length) localStorage.setItem(draftKey(cur), JSON.stringify({ t: Date.now(), v: v }));
     else localStorage.removeItem(draftKey(cur));
@@ -1267,6 +1453,7 @@ function restoreDraft(sid) {
   Object.keys(d.v).forEach(function(k) {
     if (k === "effort") { fbEffort = d.v.effort; return; }
     if (k === "played") { fbPlayed = d.v.played; return; }
+    if (k === "short") { shortOn = !!d.v.short; return; }
     var el = document.querySelector('#main [data-k="' + k + '"]');
     if (el) el.value = d.v[k];
   });
@@ -1285,9 +1472,13 @@ function openRotateSheet(sid, idx) {
   var activeName = getActiveName(sid, idx);
   document.getElementById("rotate-title").textContent = ex.slot || "Swap exercise";
   var opts = [ex.name].concat(ex.alts || []);
+  var r = reviewFor(sid, idx), alts = {};
+  ((r && r.alts) || []).forEach(function(a) { alts[a.name] = a; });
   document.getElementById("rotate-opts").innerHTML = opts.map(function(name, i) {
+    var a = alts[name];
+    var seen = i === 0 ? (r && r.last && r.last[0]) : a && (a.date ? a.date.slice(5) + " " + a.text : "Never logged");
     return '<div class="sheet-opt" onclick="pickRotate(' + i + ')">'
-      + '<span class="so-name">' + esc(name) + '</span>'
+      + '<span class="so-name">' + esc(name) + (seen ? '<small>' + esc(seen) + '</small>' : '') + '</span>'
       + (i === 0 ? '<span class="so-tag">Prescribed</span>' : '')
       + '<span class="so-check">' + (name === activeName ? "✓" : "") + '</span></div>';
   }).join("");
@@ -1333,6 +1524,7 @@ function collectData() {
   var exercises = [];
 
   s.exercises.forEach(function(ex, i) {
+    if (!inShort(i)) return;
     var activeName = getActiveName(cur, i);
 
     var entry = { name: activeName, sets: repsOf(i, ex.sets) };
@@ -1341,7 +1533,7 @@ function collectData() {
     if (anyReps(entry.sets)) exercises.push(entry);
   });
 
-  return {
+  var data = {
     date: isoDate(new Date()),
     session: s.name,
     session_id: cur,
@@ -1349,6 +1541,8 @@ function collectData() {
     notes: (document.getElementById("notes").value || "").trim(),
     extra: (document.getElementById("extra").value || "").trim()
   };
+  if (shortOn && shortSlots(s).length) data.short = true;
+  return data;
 }
 
 /* ---- save ---- */
@@ -1506,6 +1700,7 @@ async function pollWatch() {
   try {
     var text = await fetchRepoFile("data/health.json");
     try { localStorage.setItem("matchday_health", text); } catch (e) {}
+    hrFetched = {};
     if (document.getElementById("view-history").classList.contains("active")) renderHistory();
   } catch (e) {}
   var found = watchStatus();
@@ -1907,7 +2102,7 @@ function renderHistory() {
   }
   rows.sort(function(x, y) { return x.at < y.at ? 1 : x.at > y.at ? -1 : 0; });
   el.innerHTML = rows.slice(0, 60).map(function(r) { return r.html; }).join("");
-  open.forEach(function(id) { var x = document.getElementById(id); if (x) x.classList.add("open"); });
+  open.forEach(function(id) { var x = document.getElementById(id); if (x) { x.classList.add("open"); fillCurves(x); } });
 }
 
 function sessionCard(item, i, w, debriefsCache, canDebrief) {
@@ -1945,8 +2140,10 @@ function sessionCard(item, i, w, debriefsCache, canDebrief) {
   return h + '</div></div>';
 }
 
-function toggleHist(i) {
-  document.getElementById("hist-" + i).classList.toggle("open");
+function toggleHist(i) { toggleCard(document.getElementById("hist-" + i)); }
+
+function toggleCard(el) {
+  if (el.classList.toggle("open")) fillCurves(el);
 }
 
 /* A session whose debrief failed at save time. Re-saving would log it twice; this only asks the Worker. */
@@ -2212,6 +2409,7 @@ var progLogFrom = "", progHistOk = false;
 /* log.md from its first entry; before that, data/history.json, which history.py builds
    from the Strong export. Each is cached so the tab opens offline on the last copy. */
 async function loadProgress() {
+  loadReview();
   if (!progSessions) {
     var log = null, hist = null;
     try { log = localStorage.getItem("matchday_log"); hist = localStorage.getItem("matchday_hist"); } catch (e) {}
@@ -2283,6 +2481,13 @@ function progStep(n) { progWeek = Math.max(0, progWeek + n); renderMuscles(); }
 
 function renderProgress() {
   var msg = document.getElementById("prog-msg");
+  document.getElementById("prog-lifts").hidden = progMode !== "lifts";
+  if (progMode === "lifts") {
+    msg.hidden = true;
+    document.getElementById("prog-muscles").hidden = document.getElementById("prog-records").hidden = true;
+    renderLifts();
+    return;
+  }
   var ready = progSessions && progSessions.length;
   msg.hidden = !!ready;
   msg.textContent = progErr || "Loading the log…";
@@ -2290,6 +2495,52 @@ function renderProgress() {
   document.getElementById("prog-records").hidden = !ready || progMode !== "records";
   if (!ready) return;
   if (progMode === "muscles") renderMuscles(); else renderRecords();
+}
+
+/* ---- progress: lifts (the load review, state.json) ---- */
+function renderLifts() {
+  var st = getReview(), el = document.getElementById("lifts-list");
+  var sum = document.getElementById("lifts-sum"), foot = document.getElementById("lifts-foot");
+  if (!st || !st.review) {
+    sum.textContent = foot.textContent = "";
+    el.innerHTML = '<div class="empty">Loading the review&hellip;</div>';
+    return;
+  }
+  var n = { moving: 0, holding: 0, flat: 0, "new": 0 }, top = 0, h = "";
+  ORDER.forEach(function(sid) {
+    var rows = st.review[sid] || [];
+    if (!rows.length) return;
+    h += '<div class="sec">' + esc(RX.sessions[sid].name) + '</div><div class="block lifts">';
+    rows.forEach(function(r, i) {
+      var ex = RX.sessions[sid].exercises[i];
+      if (!ex || ex.name !== r.name) ex = null;
+      n[r.status]++;
+      if (r.top_streak) top++;
+      var asked = ex ? (ex.unit === "BW" ? "BW" : ex.load ? ex.load + "kg" : "load TBD") + " · " + ex.sets + " × " + ex.reps.replace("-", "–") : "";
+      h += '<div class="lift ' + r.status + '" onclick="this.classList.toggle(\'open\')">'
+        + '<div class="lift-h"><span class="lift-no mono">' + r.slot + '</span><b>' + esc(r.logged_as) + '</b>' + statusChip(r) + '</div>'
+        + '<div class="lift-now mono">' + (r.last.length ? esc(r.last[0]) : "No reading yet")
+        + (asked ? '<span>Prescribed ' + esc(asked) + '</span>' : '') + '</div>'
+        + (r.readings ? '<div class="lift-s">' + esc(r.line) + '</div>' : '')
+        + (ex && ex.call ? '<p class="call"><b>Call</b>' + esc(ex.call) + '</p>' : '')
+        + '<div class="lift-more">'
+        + (r.last.length ? '<div class="hrh">Last sessions</div>' + r.last.map(function(l) {
+            return '<div class="hist-ex"><b>' + esc(l.slice(0, 5)) + '</b><span>' + esc(l.slice(6)) + '</span></div>';
+          }).join("") : "")
+        + (r.best ? '<div class="hist-ex"><b>Best</b><span>' + esc(r.best.date.slice(5) + " " + r.best.text) + '</span></div>' : "")
+        + ((r.alts || []).length ? '<div class="hrh">Swaps, last time</div>' + r.alts.map(function(a) {
+            return '<div class="hist-ex"><b>' + esc(a.name) + '</b><span>' + esc(a.date ? a.date.slice(5) + " " + a.text : "never logged") + '</span></div>';
+          }).join("") : "")
+        + '</div></div>';
+    });
+    h += '</div>';
+  });
+  el.innerHTML = h;
+  sum.innerHTML = '<span><b>' + n.moving + '</b> moving</span><span><b>' + n.holding + '</b> holding</span>'
+    + '<span class="fl"><b>' + n.flat + '</b> flat</span><span><b>' + top + '</b> top of band</span>'
+    + (n["new"] ? '<span><b>' + n["new"] + '</b> new</span>' : '');
+  foot.textContent = "From log.md, worked out " + (st._generated || "").slice(0, 10)
+    + ". Same exercise name only: a different machine is a different lift. Re-entry weeks are shown but never count.";
 }
 
 /* ---- progress: muscle map ---- */
@@ -3150,6 +3401,17 @@ function healthWorkout(x, T, V) {
   } else if (have) {
     out.hr = { avg: Math.round(vsum / wsum), min: vmin, max: vmax };
   }
+  if (out.hr && have && out.source === "Apple Watch" && t0 > Date.now() - HR_IMPORT_DAYS * 864e5) {
+    var nb = Math.floor((t1 - t0) / (HR_STEP * 1000)) + 1, sums = new Float64Array(nb), cnt = new Uint16Array(nb);
+    for (var j = lo; j < T.length && T[j] <= t1; j++) {
+      var bi = Math.floor((T[j] - t0) / (HR_STEP * 1000));
+      if (bi >= 0 && bi < nb) { sums[bi] += V[j]; cnt[bi]++; }
+    }
+    var bpm = [];
+    for (var q = 0; q < nb; q++) bpm.push(cnt[q] ? Math.round(sums[q] / cnt[q]) : null);
+    while (bpm.length && bpm[bpm.length - 1] === null) bpm.pop();
+    if (bpm.length > 1) out._curve = { t0: a.startDate.slice(11, 19), bpm: bpm };
+  }
   if (out.hr && have) {
     out.hr.n = n;
     out.hr.bins = {};
@@ -3201,7 +3463,9 @@ function renderHealthFound() {
     + '<button class="btn btn-pri" id="health-save" onclick="saveHealth()"' + (getToken() ? '' : ' disabled') + '>'
     + (getToken() ? 'Save to the repo' : 'Add a GitHub token to save') + '</button>'
     + '<p class="foot">Merges into <span class="mono">data/health.json</span>. The repo is public. Per workout, what goes in '
-    + 'is the date, times, type, app, minutes, calories, distance and heart rate. Nothing else from the export.</p>';
+    + 'is the date, times, type, app, minutes, calories, distance and heart rate, and for the watch&rsquo;s workouts of the '
+    + 'last ' + HR_IMPORT_DAYS + ' days a 15-second heart-rate curve of the workout&rsquo;s own minutes '
+    + '(<span class="mono">data/hr/</span>). Nothing else from the export.</p>';
   el.innerHTML = h;
 }
 
@@ -3233,17 +3497,172 @@ async function saveHealth() {
       + ',\n  "_by": "index.html (Apple Health import) + watch.py (shortcut uploads)",'
       + '\n  "_note": "Workout summaries only. hr.bins: minutes per 10-bpm band, keyed by its lower bound. via: shortcut = from a Shortcut upload, where min is elapsed time. Read via health.py.",'
       + '\n  "exported": ' + JSON.stringify(healthOut.exported || "")
-      + ',\n  "workouts": [\n' + list.map(function(w) { return "    " + JSON.stringify(w); }).join(",\n") + '\n  ]\n}\n';
+      + ',\n  "workouts": [\n' + list.map(function(w) {
+          return "    " + JSON.stringify(w, function(k, v) { return k === "_curve" ? undefined : v; });
+        }).join(",\n") + '\n  ]\n}\n';
     await ghPut("data/health.json", text, "health: Apple Health import" + (healthOut.exported ? " " + healthOut.exported : "")
       + " (" + list.length + " workouts)");
     try { localStorage.setItem("matchday_health", text); } catch (e) {}
+    var curved = await saveCurves(list, btn);
     btn.textContent = "Saved";
-    toast("Saved " + list.length + " workouts", "ok");
+    toast("Saved " + list.length + " workouts" + (curved ? ", " + curved + " heart-rate curves" : ""), "ok");
   } catch (e) {
     btn.disabled = false;
     btn.textContent = "Save to the repo";
     toast(e.message || "Save failed", "err");
   }
+}
+
+/* The export's curves into data/hr/YYYY-MM.json, one file per month, merged with what is
+   there (the export's own readings carry seconds, so they replace a shortcut's curve).
+   A curve whose workout isn't in the saved list is dropped, the same as watch.py. */
+async function saveCurves(list, btn) {
+  var curves = {}, keep = {}, months = {};
+  list.forEach(function(w) { keep[w.date + " " + w.start] = true; });
+  healthOut.workouts.forEach(function(w) {
+    if (w._curve) { curves[w.date + " " + w.start] = w._curve; months[w.date.slice(0, 7)] = true; }
+  });
+  var ms = Object.keys(months).sort(), n = 0;
+  for (var i = 0; i < ms.length; i++) {
+    var m = ms[i], all = {};
+    btn.textContent = "Saving heart rate " + (i + 1) + "/" + ms.length + "…";
+    try { all = JSON.parse(await fetchRepoFile("data/hr/" + m + ".json")).curves || {}; } catch (e) {}
+    Object.keys(curves).forEach(function(k) { if (k.slice(0, 7) === m) { all[k] = curves[k]; n++; } });
+    Object.keys(all).forEach(function(k) { if (!keep[k]) delete all[k]; });
+    await ghPut("data/hr/" + m + ".json", curvesText(all), "health: heart-rate curves " + m);
+    hrMonths[m] = all;
+    try { localStorage.setItem("matchday_hr_" + m, JSON.stringify(all)); } catch (e) {}
+  }
+  return n;
+}
+
+/* The same layout watch.py writes, so the two never rewrite each other's lines. */
+function curvesText(c) {
+  return '{\n  "_note": ' + JSON.stringify(HR_NOTE) + ',\n  "step": ' + HR_STEP + ',\n  "curves": {\n'
+    + Object.keys(c).sort().map(function(k) { return "    " + JSON.stringify(k) + ": " + JSON.stringify(c[k]); }).join(",\n")
+    + '\n  }\n}\n';
+}
+
+/* ---- heart-rate curve ----
+
+   data/hr/YYYY-MM.json: each watch workout's heart rate as 15-second means, keyed
+   "date start" like data/health.json. watch.py writes it from the shortcut, saveCurves
+   from the Health export. History draws it when a watch workout is opened: time across,
+   bpm up, one line, the peak marked, and a finger on it reads off time and bpm. 10-bpm
+   gridlines as the bands below it; no zones, since no max heart rate is known. */
+
+function curveSlot(w) {
+  return '<div class="hrc" data-hr="' + esc(w.date + " " + w.start) + '" hidden><div class="hrh">Heart rate over time</div>'
+    + '<div class="hrc-read mono"></div><div class="hrc-plot"></div></div>';
+}
+
+function cachedCurves(m) {
+  if (!hrMonths[m]) try { hrMonths[m] = JSON.parse(localStorage.getItem("matchday_hr_" + m) || "null"); } catch (e) {}
+  return hrMonths[m];
+}
+
+async function fetchCurves(m) {
+  if (!hrFetched[m]) {
+    hrFetched[m] = true;
+    try {
+      hrMonths[m] = JSON.parse(await fetchRepoFile("data/hr/" + m + ".json")).curves || {};
+      try { localStorage.setItem("matchday_hr_" + m, JSON.stringify(hrMonths[m])); } catch (e) {}
+    } catch (e) {}
+  }
+  return hrMonths[m];
+}
+
+async function fillCurves(root) {
+  var els = root.querySelectorAll(".hrc[data-hr]");
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i], k = el.dataset.hr, c = cachedCurves(k.slice(0, 7));
+    if (c && c[k]) drawCurve(el, c[k]);
+    c = await fetchCurves(k.slice(0, 7));
+    if (c && c[k]) drawCurve(el, c[k]);
+  }
+}
+
+function clock(secs) {
+  secs = Math.round(secs) % 86400;
+  return String(Math.floor(secs / 3600)).padStart(2, "0") + ":" + String(Math.floor(secs / 60) % 60).padStart(2, "0");
+}
+
+function drawCurve(el, c) {
+  var b = c.bpm, n = b.length, plot = el.querySelector(".hrc-plot"), read = el.querySelector(".hrc-read");
+  var vals = b.filter(function(v) { return v != null; });
+  if (n < 2 || !vals.length) return;
+  el.hidden = false;
+  var W = Math.max(260, Math.round(plot.clientWidth || el.clientWidth || 320)), H = 150, L = 30, R = 10, T = 14, B = 20;
+  var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+  var y0 = Math.floor((lo - 4) / 20) * 20, y1 = Math.ceil((hi + 4) / 20) * 20;
+  var p = c.t0.split(":"), s0 = +p[0] * 3600 + +p[1] * 60 + +(p[2] || 0), span = (n - 1) * HR_STEP;
+  var X = function(i) { return L + (W - L - R) * i / (n - 1); };
+  var Y = function(v) { return T + (H - T - B) * (1 - (v - y0) / (y1 - y0)); };
+  var f = function(v) { return Math.round(v * 10) / 10; };
+
+  var g = "";
+  for (var v = y0; v <= y1; v += 20) {
+    g += '<line class="hg" x1="' + L + '" x2="' + (W - R) + '" y1="' + f(Y(v)) + '" y2="' + f(Y(v)) + '"/>'
+      + '<text class="ht" x="' + (L - 6) + '" y="' + f(Y(v) + 3.5) + '" text-anchor="end">' + v + '</text>';
+  }
+  var tick = span <= 4500 ? 600 : span <= 8400 ? 900 : 1800;
+  for (var t = Math.ceil(s0 / tick) * tick; t <= s0 + span; t += tick) {
+    var x = X((t - s0) / HR_STEP);
+    if (x < L + 14 || x > W - R - 14) continue;
+    g += '<line class="hg" x1="' + f(x) + '" x2="' + f(x) + '" y1="' + (H - B) + '" y2="' + (H - B + 4) + '"/>'
+      + '<text class="ht" x="' + f(x) + '" y="' + (H - 5) + '" text-anchor="middle">' + clock(t) + '</text>';
+  }
+
+  /* the line, broken where the watch has no reading for a minute or more */
+  var line = "", area = "", run = [], gap = 0, peak = 0;
+  var flush = function() {
+    if (run.length > 1) {
+      var d = run.map(function(i, k) { return (k ? "L" : "M") + f(X(i)) + " " + f(Y(b[i])); }).join("");
+      line += d;
+      area += d + "L" + f(X(run[run.length - 1])) + " " + (H - B) + "L" + f(X(run[0])) + " " + (H - B) + "Z";
+    }
+    run = [];
+  };
+  b.forEach(function(v, i) {
+    if (v == null) { if (++gap >= 4) flush(); return; }
+    gap = 0;
+    run.push(i);
+    if (v > b[peak] || b[peak] == null) peak = i;
+  });
+  flush();
+  var px = X(peak), py = Y(b[peak]);
+  var label = "Peak " + b[peak], lx = Math.min(Math.max(px, L + 30), W - R - 30);
+
+  plot.innerHTML = '<svg class="hrsvg" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img"'
+    + ' aria-label="Heart rate ' + esc(clock(s0)) + ' to ' + esc(clock(s0 + span)) + ', ' + lo + ' to ' + hi + ' bpm">'
+    + g + '<path class="ha" d="' + area + '"/><path class="hl" d="' + line + '"/>'
+    + '<circle class="hp" cx="' + f(px) + '" cy="' + f(py) + '" r="4"/>'
+    + '<text class="hpl" x="' + f(lx) + '" y="' + f(Math.max(py - 8, 9)) + '" text-anchor="middle">' + label + '</text>'
+    + '<g class="hx" visibility="hidden"><line x1="0" x2="0" y1="' + T + '" y2="' + (H - B) + '"/><circle r="4"/></g></svg>';
+
+  var idle = "Peak " + b[peak] + " at " + clock(s0 + peak * HR_STEP) + " · 15-second averages · touch to read";
+  read.textContent = idle;
+  var svg = plot.firstChild, hx = svg.querySelector(".hx");
+  var move = function(e) {
+    var r = svg.getBoundingClientRect(), x = (e.clientX - r.left) * W / r.width;
+    var i = Math.min(n - 1, Math.max(0, Math.round((x - L) / (W - L - R) * (n - 1))));
+    for (var d = 0; d < n && b[i] == null; d++) {
+      if (i + d < n && b[i + d] != null) { i += d; break; }
+      if (i - d >= 0 && b[i - d] != null) { i -= d; break; }
+    }
+    if (b[i] == null) return;
+    hx.setAttribute("visibility", "visible");
+    hx.firstChild.setAttribute("x1", f(X(i)));
+    hx.firstChild.setAttribute("x2", f(X(i)));
+    hx.lastChild.setAttribute("cx", f(X(i)));
+    hx.lastChild.setAttribute("cy", f(Y(b[i])));
+    read.textContent = clock(s0 + i * HR_STEP) + " · " + b[i] + " bpm";
+  };
+  var leave = function() { hx.setAttribute("visibility", "hidden"); read.textContent = idle; };
+  svg.addEventListener("pointermove", move);
+  svg.addEventListener("pointerdown", move);
+  svg.addEventListener("pointerleave", leave);
+  svg.addEventListener("pointercancel", leave);
 }
 
 /* ---- history → watch ---- */
@@ -3303,6 +3722,7 @@ function watchRows(w, logIdx) {
   if (w.km) h += row("Distance", w.km + " km");
   if (w.kcal) h += row("Active energy", w.kcal + " kcal");
   if (logIdx) h += row("Recorded as", w.via ? "Apple Watch, by the shortcut" : w.type);
+  if (w.hr) h += curveSlot(w);
   var bins = w.hr && w.hr.bins;
   if (bins) {
     var keys = Object.keys(bins).sort(function(p, q) { return q - p; });
@@ -3319,7 +3739,7 @@ function watchCard(w, j, logIdx) {
   var d = parseIso(w.date);
   var sub = [w.min + " min"];
   if (w.hr) sub.push(w.hr.avg + " bpm avg");
-  return '<div class="hist" id="watch-' + j + '"><div class="hist-h" onclick="this.parentNode.classList.toggle(\'open\')">'
+  return '<div class="hist" id="watch-' + j + '"><div class="hist-h" onclick="toggleCard(this.parentNode)">'
     + '<div class="hist-date"><b>' + d.getDate() + '</b>' + SHORT_MON[d.getMonth()] + '</div>'
     + '<div class="hist-t"><b>' + esc(healthTitle(w, logIdx)) + '</b><span>Watch · ' + sub.join(" · ") + '</span></div>'
     + '<span class="hist-chev">' + ICON_CHEV + '</span></div><div class="hist-d">' + watchRows(w, logIdx) + '</div></div>';

@@ -47,12 +47,16 @@ question. He is open to movements he has never done, provided they earn a slot �
 ## Every session
 
 - **Logging mode:** read this file and `state.json`. That is the whole briefing — do not
-  read `plan.md`, `index.html` or the full `log.md` unless you need to programme.
+  read `plan.md`, `index.html` or the full `log.md` unless you need to programme. Its
+  last key, `review`, is the load review for the page; `flags` and `next_session` above
+  it are enough for logging.
 - **Programming mode: also `plan.md`, `docs/goals.md`, tail of `log.md`, and the
   recent files in `debriefs/`** — he may have answered the debrief's question or asked
   for a change there. What he tells it about his body is evidence the log can't hold.
   If `data/health.json` exists, run `python3 health.py`: the watch's football and
-  lifting workouts, with heart rate, next to the log's effort and session names.
+  lifting workouts, with heart rate, next to the log's effort and session names
+  (`--curve` for the heart rate over each workout). Run `python3 review.py`: every slot
+  against its own history, flat or moving, with what its swaps last did.
 - **Never read `data/*.csv`** — ~7,500 rows. Reach it only through `analyse.py`, monthly,
   when a new export lands.
 - Baseline numbers are in the comment at the foot of `log.md`. Don't re-derive them.
@@ -79,9 +83,11 @@ handle now, an inbox file you drain when you next see it.
    unmerged and stranded a session for days). Branch only if he asks in that message.
 3. **Re-prescribe the NEXT session, then push.** Not optional, and not only when
    something changed. Two passes: update the slots this session touched, then **work out
-   what the template says he trains next — Upper A, Upper B, Upper C or Lower — and make
-   that whole session current**, because it is the one he opens at the gym (his
-   instruction, 2026-09-17). An Upper B that ends badly — a missed band, a note about how
+   which session he's owed next — Upper A, Upper B, Upper C or Lower — and make that
+   whole session current**, because it is the one he opens at the gym (his instruction,
+   2026-09-17). `python3 review.py --next` prints it: the page's rule, not just the
+   weekday (`plan.md`, "When life interferes"). Every slot the load review calls flat
+   gets a `call` (`docs/workflows.md`). An Upper B that ends badly — a missed band, a note about how
    something felt — should change the Upper C that follows it; that is the whole point. Update the `RX` object in
    `index.html`, bump `RX.asof`, commit to `main` and push.
    **The page is static HTML on GitHub Pages — the prescriptions only move when you
@@ -183,12 +189,13 @@ findings into mush, don't over-apologise, don't explain the basics. He isn't a b
 | `drain.py` | Transcribes inbox JSON → `log.md`, updates `state.json`. Run it, don't hand-parse. |
 | `represcribe.py` | Unattended re-prescription after a phone save: `pending` / `prompt` / `finish`. Used by the training-night routine (`docs/workflows.md`). The brief is `docs/represcribe-prompt.md`. |
 | `prescribe.py` | Retired no-op. It bumped `RX.asof` without re-prescribing. `drain.yml` still calls it. |
-| `state.json` | Compact briefing: last session, next session, all slot prescriptions. Read this instead of `plan.md` + `index.html` in logging mode. |
+| `state.json` | Compact briefing: last session, next session, all slot prescriptions, and at the end the load review. Read this instead of `plan.md` + `index.html` in logging mode. |
+| `review.py` | The load review (each slot against its own history: moving, holding, flat, new; top of band) and the picker (which session he's owed next). Feeds `state.json`, the nightly brief and the page. `python3 review.py`, `--next`. |
 | `analyse.py` | Full analysis of a Strong export. Monthly, not per session. |
 | `history.py` | Strong export → `data/history.json` (everything before `log.md` begins), the full history the Progress tab reads. Rerun when a new export lands. |
-| `health.py` | `data/health.json` joined to `log.md`: watch workouts with heart rate. Programming mode only. |
-| `watch.py` | Watch uploads from his iPhone shortcut (`inbox/watch-*.txt`) → workout summaries in `data/health.json`. Run by the Watch upload Action; by hand only when one is stuck. |
-| `data/` | Strong CSV exports, `history.json` built from them, and `health.json` (Apple Watch workout summaries, from the shortcut via `watch.py` and the Import tab's Health export). Never read any of them directly. |
+| `health.py` | `data/health.json` joined to `log.md`: watch workouts with heart rate; `--curve` for each one's heart rate over time. Programming mode only. |
+| `watch.py` | Watch uploads from his iPhone shortcut (`inbox/watch-*.txt`) → workout summaries in `data/health.json` and heart-rate curves in `data/hr/`. Run by the Watch upload Action; by hand only when one is stuck; `--from-git` rebuilds the curves. |
+| `data/` | Strong CSV exports, `history.json` built from them, `health.json` (Apple Watch workout summaries, from the shortcut via `watch.py` and the Import tab's Health export) and `hr/` (each watch workout's heart-rate curve). Never read any of them directly. |
 | `inbox/` | Sessions saved from the phone page (JSON). Drain with `python3 drain.py`, then delete. Empty at rest. |
 | `debriefs/` | One JSON per debrief: the session (with its watch workout as `logged.watch` when he wore it), the Worker's debrief, and any follow-up conversation. Written by the phone page. Read in programming mode; never edit. |
 | `index.html` | The phone page, served by GitHub Pages. Prescriptions live in the `RX` object. The Progress tab (muscle map, records) is computed in the browser from `log.md` plus `data/history.json`; when a movement is introduced, add it to `MUSCLES` or it shows as unmapped. |
