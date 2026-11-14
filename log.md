@@ -789,6 +789,14 @@ note: so tired today. i also worked out without eating
 ## 2026-11-13 · Fri · Football
 effort: 5/10 | 80 min | load: 400 | 9-a-side, ICS@Clementi
 
+## 2026-11-14 · Sat · Upper B
+- Pull Up — bodyweight × 8, 8, 8
+- Iso-Lateral Row (Machine) — 40kg × 10, 10, 10
+- Straight Arm Pulldown — 21kg × 8, 8, 17.5kg × 10
+- Triceps Dip — bodyweight × 10, +10kg × 8, 10
+- Cable Crossover — 11.25kg × 12, 12.5kg × 10, 10
+- Bicep Curl (Barbell) — 30kg × 8, 8, 7
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
