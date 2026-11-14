@@ -1,5 +1,5 @@
 {
-  "_generated": "2026-11-13T22:33:29",
+  "_generated": "2026-11-14T11:48:03",
   "_by": "index.html (Apple Health import) + watch.py (shortcut uploads)",
   "_note": "Workout summaries only. hr.bins: minutes per 10-bpm band, keyed by its lower bound. via: shortcut = from a Shortcut upload, where min is elapsed time. Read via health.py.",
   "exported": "2026-11-05",
@@ -744,6 +744,7 @@
     {"date":"2026-11-05","start":"12:51","end":"14:09","kind":"lifting","type":"Workout","source":"Apple Watch","via":"shortcut","min":78,"kcal":325,"hr":{"avg":102,"min":74,"max":148,"n":935,"bins":{"70":2.8,"80":11.1,"90":25.9,"100":18.1,"110":10.4,"120":6.6,"130":2.5,"140":1.6}}},
     {"date":"2026-11-07","start":"15:03","end":"15:45","kind":"lifting","type":"Workout","source":"Apple Watch","via":"shortcut","min":42,"kcal":175,"hr":{"avg":104,"min":77,"max":136,"n":508,"bins":{"70":0.2,"80":5.1,"90":11.5,"100":13.5,"110":6.8,"120":4.6,"130":1.3}}},
     {"date":"2026-11-12","start":"13:06","end":"14:03","kind":"lifting","type":"Workout","source":"Apple Watch","via":"shortcut","min":57,"kcal":247,"hr":{"avg":106,"min":82,"max":139,"n":669,"bins":{"80":3.7,"90":16.8,"100":14.9,"110":13.1,"120":7.1,"130":2.3}}},
-    {"date":"2026-11-13","start":"20:09","end":"22:09","kind":"football","type":"Workout","source":"Apple Watch","via":"shortcut","min":120,"kcal":935,"hr":{"avg":135,"min":86,"max":179,"n":1450,"bins":{"80":2.2,"90":6.7,"100":12.6,"110":11.3,"120":15.5,"130":16.7,"140":15.2,"150":19.8,"160":14.7,"170":6.4}}}
+    {"date":"2026-11-13","start":"20:09","end":"22:09","kind":"football","type":"Workout","source":"Apple Watch","via":"shortcut","min":120,"kcal":935,"hr":{"avg":135,"min":86,"max":179,"n":1450,"bins":{"80":2.2,"90":6.7,"100":12.6,"110":11.3,"120":15.5,"130":16.7,"140":15.2,"150":19.8,"160":14.7,"170":6.4}}},
+    {"date":"2026-11-14","start":"10:43","end":"11:47","kind":"lifting","type":"Workout","source":"Apple Watch","via":"shortcut","min":64,"kcal":261,"hr":{"avg":99,"min":78,"max":140,"n":761,"bins":{"70":0.8,"80":14.9,"90":23.2,"100":13.5,"110":6.9,"120":3.4,"130":2.1}}}
   ]
 }
