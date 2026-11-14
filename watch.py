@@ -240,7 +240,7 @@ def night(sec, ref, hr):
     notes, rec = [], None
     vals, starts, ends = sec.get("sleep", []), sec.get("sleep start", []), sec.get("sleep end", [])
     if not vals:
-        return None, "no sleep: section"
+        return None, "the sleep: section is empty" if "sleep" in sec else "no sleep: section"
     if not (len(vals) == len(starts) == len(ends)):
         return None, f"sleep has {len(vals)} values, {len(starts)} starts, {len(ends)} ends"
     samples = []
