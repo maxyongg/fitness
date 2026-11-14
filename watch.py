@@ -37,7 +37,7 @@ filters can't go shorter). The file looks like:
     hrv times:
     <date>
 
-The night becomes one record in data/health.json's "nights" (night() says what's in it).
+Each night becomes one record in data/health.json's "nights" (nights() says what's in it).
 Nothing in those sections can fail an upload: a night that can't be read is named in the
 log and skipped, and the upload stays in git history for --from-git once it's fixed.
 
@@ -167,7 +167,7 @@ def read_upload(path, ref):
 
 def read_all(path, ref):
     """inbox file → (heart rate, energy, the night's sections as raw text lists, ref).
-    The night's sections (sleep, rhr, hrv) never fail the upload: night() reads them."""
+    The night's sections (sleep, rhr, hrv) never fail the upload: nights() reads them."""
     sections, cur = {}, None
     for raw in open(path, encoding="utf-8-sig"):
         line = raw.strip()
@@ -228,26 +228,28 @@ def union_min(spans):
     return round(total / 60)
 
 
-def night(sec, ref, hr):
-    """The night in an upload's sleep/rhr/hrv sections → (record or None, note).
-    The record is the latest sleep of an hour or more: when it ran (first to last sleep
+def nights(sec, ref, hr):
+    """An upload's sleep/rhr/hrv sections → ([records], note). His phone's "in the last 1
+    day" reaches back to the start of yesterday, so an upload holds up to two nights; each
+    one is kept, and a later upload's reading of the same night replaces it.
+    A record is one sleep of an hour or more: when it ran (first to last sleep
     sample), minutes asleep (core, deep, REM and unspecified, overlaps counted once),
     minutes awake inside it, each stage's minutes, HRV as the mean of the watch's
     readings inside it, the heart rate the upload holds for it (average and the median
-    of its five lowest readings), and Apple's resting heart rate with the day it's for.
-    Dated by the morning it ended. Lenient on purpose: a section it can't read is left
+    of its five lowest readings), and Apple's resting heart rate for that day, which
+    Apple often writes only later in the day. Dated by the morning it ended. Lenient on purpose: a section it can't read is left
     out and named in the note, never fails the upload."""
-    notes, rec = [], None
+    notes = []
     vals, starts, ends = sec.get("sleep", []), sec.get("sleep start", []), sec.get("sleep end", [])
     if not vals:
-        return None, "the sleep: section is empty" if "sleep" in sec else "no sleep: section"
+        return [], "the sleep: section is empty" if "sleep" in sec else "no sleep: section"
     if not (len(vals) == len(starts) == len(ends)):
-        return None, f"sleep has {len(vals)} values, {len(starts)} starts, {len(ends)} ends"
+        return [], f"sleep has {len(vals)} values, {len(starts)} starts, {len(ends)} ends"
     samples = []
     for v, a, b in zip(vals, starts, ends):
         st, s0, s1 = stage(v), parse_when(a, ref), parse_when(b, ref)
         if not st or not s0 or not s1:
-            return None, f"can't read sleep sample {v!r} {a!r}–{b!r}"
+            return [], f"can't read sleep sample {v!r} {a!r}–{b!r}"
         if s1 < s0:
             s1 += dt.timedelta(days=1)
         samples.append((s0, s1, st))
@@ -261,19 +263,7 @@ def night(sec, ref, hr):
         sleeps.append(cur)
     sleeps = [c for c in sleeps if union_min([(a, b) for a, b, t in c if t in ASLEEP]) >= MIN_NIGHT_MIN]
     if not sleeps:
-        return None, f"{len(samples)} sleep samples but no sleep of {MIN_NIGHT_MIN}+ minutes"
-    c = sleeps[-1]
-    start, end = min(a for a, _, _ in c), max(b for _, b, _ in c)
-    rec = {"date": end.date().isoformat(), "start": start.strftime("%H:%M"), "end": end.strftime("%H:%M"),
-           "asleep": union_min([(a, b) for a, b, t in c if t in ASLEEP]),
-           "awake": union_min([(a, b) for a, b, t in c if t == "awake"]),
-           "stages": {t: union_min([(a, b) for a, b, u in c if u == t])
-                      for t in ("core", "deep", "rem") if any(u == t for _, _, u in c)},
-           "via": "shortcut"}
-    inside = sorted(v for w, v in hr if start <= w <= end)
-    if len(inside) >= 5:
-        rec["hr"] = {"avg": round(sum(inside) / len(inside)), "low": round(inside[:5][2]), "n": len(inside)}
-
+        return [], f"{len(samples)} sleep samples but no sleep of {MIN_NIGHT_MIN}+ minutes"
     def read(label):
         out = []
         for v, t in zip(sec.get(label, []), sec.get(label + " times", [])):
@@ -284,18 +274,26 @@ def night(sec, ref, hr):
             notes.append(f"{label}: values and times differ in number")
         return sorted(out, key=lambda p: p[0])
 
-    hrv = [v for w, v in read("hrv") if start <= w <= end]
-    if hrv:
-        rec["hrv"] = round(sum(hrv) / len(hrv))
-        rec["hrv_n"] = len(hrv)
-    else:
-        notes.append("no HRV reading inside the sleep")
-    rhr = read("rhr")
-    if rhr:
-        rec["rhr"], rec["rhr_date"] = round(rhr[-1][1]), rhr[-1][0].date().isoformat()
-    else:
-        notes.append("no resting heart rate")
-    return rec, "; ".join(notes)
+    hrv_all, rhr_all, out = read("hrv"), read("rhr"), []
+    for c in sleeps:
+        start, end = min(a for a, _, _ in c), max(b for _, b, _ in c)
+        rec = {"date": end.date().isoformat(), "start": start.strftime("%H:%M"), "end": end.strftime("%H:%M"),
+               "asleep": union_min([(a, b) for a, b, t in c if t in ASLEEP]),
+               "awake": union_min([(a, b) for a, b, t in c if t == "awake"]),
+               "stages": {t: union_min([(a, b) for a, b, u in c if u == t])
+                          for t in ("core", "deep", "rem") if any(u == t for _, _, u in c)},
+               "via": "shortcut"}
+        inside = sorted(v for w, v in hr if start <= w <= end)
+        if len(inside) >= 5:
+            rec["hr"] = {"avg": round(sum(inside) / len(inside)), "low": round(inside[:5][2]), "n": len(inside)}
+        hrv = [v for w, v in hrv_all if start <= w <= end]
+        if hrv:
+            rec["hrv"], rec["hrv_n"] = round(sum(hrv) / len(hrv)), len(hrv)
+        rhr = [v for w, v in rhr_all if w.date() == end.date()]
+        if rhr:
+            rec["rhr"] = round(rhr[-1])
+        out.append(rec)
+    return out, "; ".join(notes)
 
 
 def merge_night(nights, rec):
@@ -501,12 +499,12 @@ def from_git():
                 print(f"{path}: can't read it ({e})")
                 continue
             if sec:
-                rec, note = night(sec, sref, hr)
-                if rec:
+                recs, note = nights(sec, sref, hr)
+                for rec in recs:
                     merge_night(data.setdefault("nights", []), rec)
                     nights_found.append(rec["date"])
-                elif note:
-                    print(f"{path}: night not read ({note})")
+                if note:
+                    print(f"{path}: {note}")
             for start, end in blocks(hr):
                 ns, ne = span({"date": start.date().isoformat(), "start": start.strftime("%H:%M"),
                                "end": end.strftime("%H:%M")})
@@ -549,14 +547,16 @@ def main():
             bad += 1
             continue
         if sec:
-            rec, note = night(sec, sref, hr)
-            if rec:
+            recs, note = nights(sec, sref, hr)
+            for rec in recs:
                 what = merge_night(data.setdefault("nights", []), rec)
                 print(f"{name}: night of {rec['date']}, {rec['start']}–{rec['end']}, {rec['asleep']} min asleep, "
-                      f"HRV {rec.get('hrv', '—')}, resting HR {rec.get('rhr', '—')}: {what}" + (f" ({note})" if note else ""))
-                subjects.append(f"{rec['date']} sleep")
-            else:
-                print(f"{name}: night not read ({note}). The upload stays in git history; fix and run --from-git.")
+                      f"HRV {rec.get('hrv', '—')}, resting HR {rec.get('rhr', '—')}: {what}")
+            if recs:
+                subjects.append(f"{recs[-1]['date']} sleep")
+            if note:
+                print(f"{name}: " + ("" if recs else "night not read: ") + note
+                      + ("" if recs else ". The upload stays in git history; fix and run --from-git."))
         found = blocks(hr)
         if not hr:
             print(f"{name}: no heart-rate readings in it (phone locked when it ran?).")
