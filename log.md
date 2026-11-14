@@ -797,6 +797,13 @@ effort: 5/10 | 80 min | load: 400 | 9-a-side, ICS@Clementi
 - Cable Crossover — 11.25kg × 12, 12.5kg × 10, 10
 - Bicep Curl (Barbell) — 30kg × 8, 8, 7
 
+<!-- Re-prescribed 2026-11-14 after Upper B (Saturday, swapped week, morning after the 9-a-side).
+     Deadlift not run (his call, football the night before): 80 holds, 82.5 after one more clean 5, 5, 5.
+     Row 40 x 10, 10, 10 fires the rule: 42.5kg. Pulldown 21 x 8, 8 (his pick over 20): 21kg for 10s.
+     Dips +10kg twice by his pick, BW 12s twice: slot moves to +10kg. Barbell curl flat since 10-01
+     (load review): biceps slot swaps to the cable curl, 10kg. Upper B pull-ups flat by design (BW, two
+     short): held, the call offers +2.5kg. Lower 11-15 stays re-entry, two sets. First run of review.py. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

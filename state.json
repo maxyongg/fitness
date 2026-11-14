@@ -135,7 +135,7 @@
         "type": "anchor",
         "sets": 3,
         "reps": "8-10",
-        "load": 40,
+        "load": 42.5,
         "unit": "kg"
       },
       {
@@ -143,7 +143,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 20,
+        "load": 21,
         "unit": "kg",
         "alts": [
           "Lat Pulldown",
@@ -177,14 +177,14 @@
         ]
       },
       {
-        "name": "Bicep Curl (Barbell)",
+        "name": "Bicep Curl (Cable)",
         "type": "rotate",
         "sets": 3,
         "reps": "8-10",
-        "load": 30,
+        "load": 10,
         "unit": "kg",
         "alts": [
-          "Bicep Curl (Cable)",
+          "Bicep Curl (Barbell)",
           "Preacher Curl",
           "Hammer Curl",
           "Incline Curl"
@@ -324,9 +324,50 @@
       }
     ]
   },
-  "rx_asof": "2026-11-12",
-  "rx_after": "2026-11-12 Upper A",
+  "rx_asof": "2026-11-14",
+  "rx_after": "2026-11-14 Upper B",
   "flags": [
     "Pull-up: top set 8, total 24"
-  ]
+  ],
+  "last_done": {
+    "upper_a": "2026-11-12",
+    "upper_b": "2026-11-14",
+    "upper_c": "2026-11-07",
+    "lower": "2026-10-02"
+  },
+  "review": {
+    "upper_a": [
+      {"slot":1,"name":"Incline Bench Press (Barbell)","logged_as":"Incline Bench Press (Barbell)","type":"anchor","status":"holding","since_best":2,"top_streak":0,"best":{"date":"2026-09-28","text":"70kg × 8"},"last":["11-12 67.5kg × 7, 7, 7","10-26 65kg × 8, 8","10-19 60kg × 8, 8, 8 (re-entry)","09-28 70kg × 8"],"readings":5,"line":"2 sessions since the best, 70kg × 8 (09-28)."},
+      {"slot":2,"name":"Pull Up","logged_as":"Pull Up","type":"anchor","status":"moving","since_best":0,"top_streak":0,"best":{"date":"2026-11-12","text":"+5kg × 8, 8, 8"},"last":["11-12 +5kg × 8, 8, 8","10-19 BW × 8, 8, 8 (re-entry)","09-28 +5kg × 8, 8","09-21 BW × 12, 10, 6, 5"],"readings":3,"line":"New best last time: +5kg × 8, 8, 8 (11-12)."},
+      {"slot":3,"name":"Chest Fly","logged_as":"Chest Fly","type":"rotate","status":"holding","since_best":2,"top_streak":0,"best":{"date":"2026-09-28","text":"65kg × 12, 12, 8"},"last":["11-12 65kg × 10, 10, 6","10-26 65kg × 10, 10, 4","10-19 57.5kg × 10, 12 (re-entry)","09-28 65kg × 12, 12, 8"],"readings":5,"alts":[{"name":"Cable Crossover","logged_as":"Cable Crossover","date":"2026-11-14","text":"12.5kg × 10, 10"},{"name":"Incline Chest Press","date":null,"text":"never logged"}],"line":"2 sessions since the best, 65kg × 12, 12, 8 (09-28)."},
+      {"slot":4,"name":"Reverse Fly (Machine)","logged_as":"Reverse Fly (Machine)","type":"rotate","status":"holding","since_best":1,"top_streak":0,"best":{"date":"2026-10-26","text":"42.5kg × 10, 10, 10"},"last":["11-12 42.5kg × 10, 8","10-26 42.5kg × 10, 10, 10","10-19 42.5kg × 10, 10 (re-entry)","09-28 42.5kg × 8, 8, 10"],"readings":4,"alts":[{"name":"Face Pull","logged_as":"Face Pull (Cable)","date":"2026-11-07","text":"21kg × 10, 10, 10"},{"name":"Bent-Over Rear-Delt Raise","logged_as":"Bent Over Rear Delt Raise","date":"2026-09-03","text":"6kg × 10, 12, 12"}],"line":"1 session since the best, 42.5kg × 10, 10, 10 (10-26)."},
+      {"slot":5,"name":"Lateral Raise","logged_as":"Lateral Raise (Dumbbell)","type":"anchor","status":"holding","since_best":2,"top_streak":0,"best":{"date":"2026-09-28","text":"8kg × 16, 16, 16"},"last":["11-12 7kg × 15, 15, 15","10-26 8kg × 15, 15","10-19 7kg × 15, 15, 15 (re-entry)","09-28 8kg × 16, 16, 16"],"readings":4,"line":"2 sessions since the best, 8kg × 16, 16, 16 (09-28)."},
+      {"slot":6,"name":"One Handed Triceps Pull","logged_as":"One Handed Triceps Pull","type":"rotate","status":"holding","since_best":1,"top_streak":0,"best":{"date":"2026-10-26","text":"10kg × 10, 10, 10"},"last":["11-12 10kg × 10, 10, 10","10-26 10kg × 10, 10, 10","10-19 7.5kg × 12, 12, 12 (re-entry)","09-28 10kg × 10"],"readings":4,"alts":[{"name":"Triceps Extension","date":null,"text":"never logged"},{"name":"Skullcrusher","date":null,"text":"never logged"}],"line":"1 session since the best, 10kg × 10, 10, 10 (10-26)."}
+    ],
+    "upper_b": [
+      {"slot":1,"name":"Deadlift (Barbell)","logged_as":"Deadlift (Barbell)","type":"anchor","status":"moving","since_best":0,"top_streak":1,"best":{"date":"2026-11-05","text":"80kg × 5, 5, 5"},"last":["11-05 80kg × 5, 5, 5","10-29 80kg × 6, 6","10-22 70kg × 8, 8, 8 (re-entry)","10-01 70kg × 5, 6"],"readings":4,"not_run":"2026-11-14","line":"New best last time: 80kg × 5, 5, 5 (11-05). Top of the band on every set, 1 session running. Not run 11-14."},
+      {"slot":2,"name":"Pull Up","logged_as":"Pull Up","type":"anchor","status":"flat","since_best":3,"top_streak":0,"best":{"date":"2026-10-01","text":"+8kg × 8, 8, 8"},"last":["11-14 BW × 8, 8, 8","11-05 BW × 8, 8, 7","10-29 +8kg × 7, 6","10-22 BW × 10, 8, 8 (re-entry)"],"readings":5,"line":"No new best in 3 sessions since 10-01 (+8kg × 8, 8, 8)."},
+      {"slot":3,"name":"Iso-Lateral Row (Machine)","logged_as":"Iso-Lateral Row (Machine)","type":"anchor","status":"moving","since_best":0,"top_streak":1,"best":{"date":"2026-11-14","text":"40kg × 10, 10, 10"},"last":["11-14 40kg × 10, 10, 10","11-05 40kg × 8, 8, 8","10-29 40kg × 8, 8, 8","10-22 40kg × 8, 8, 8 (re-entry)"],"readings":3,"line":"New best last time: 40kg × 10, 10, 10 (11-14). Top of the band on every set, 1 session running."},
+      {"slot":4,"name":"Straight Arm Pulldown","logged_as":"Straight Arm Pulldown","type":"rotate","status":"moving","since_best":0,"top_streak":0,"best":{"date":"2026-11-14","text":"21kg × 8, 8"},"last":["11-14 21kg × 8, 8","11-05 17.5kg × 12, 12, 9","10-29 17.5kg × 10, 10, 10","10-22 17.5kg × 10, 10, 10 (re-entry)"],"readings":5,"alts":[{"name":"Lat Pulldown","logged_as":"Lat Pulldown (Cable)","date":"2026-09-17","text":"67kg × 8, 10, 7"},{"name":"Single-Arm Lat Pulldown","date":null,"text":"never logged"},{"name":"Underhand Pulldown","date":null,"text":"never logged"}],"line":"New best last time: 21kg × 8, 8 (11-14)."},
+      {"slot":5,"name":"Triceps Dip","logged_as":"Triceps Dip","type":"rotate","status":"holding","since_best":2,"top_streak":0,"best":{"date":"2026-10-29","text":"+10kg × 8, 8, 8"},"last":["11-14 +10kg × 8, 10","11-05 BW × 12, 12, 12","10-29 +10kg × 8, 8, 8","10-22 BW × 12, 10 (re-entry)"],"readings":7,"alts":[{"name":"Weighted Dips","date":null,"text":"never logged"}],"line":"2 sessions since the best, +10kg × 8, 8, 8 (10-29)."},
+      {"slot":6,"name":"Cable Crossover","logged_as":"Cable Crossover","type":"rotate","status":"holding","since_best":1,"top_streak":0,"best":{"date":"2026-11-05","text":"13.75kg × 8, 8, 8"},"last":["11-14 12.5kg × 10, 10","11-05 13.75kg × 8, 8, 8","10-29 11.25kg × 12, 12, 12","09-07 15kg × 8, 8 (re-entry)"],"readings":3,"alts":[{"name":"Single Arm Cable Chest Fly","logged_as":"Single Arm Cable Chest Fly","date":"2026-10-01","text":"6.25kg × 10, 10"},{"name":"Decline Chest Press","logged_as":"Decline Chest Press","date":"2026-09-24","text":"70kg × 10, 8"},{"name":"Chest Fly","logged_as":"Chest Fly","date":"2026-11-12","text":"65kg × 10, 10, 6"},{"name":"Incline Chest Press","date":null,"text":"never logged"}],"line":"1 session since the best, 13.75kg × 8, 8, 8 (11-05)."},
+      {"slot":7,"name":"Bicep Curl (Cable)","logged_as":"Bicep Curl (Cable)","type":"rotate","status":"new","since_best":0,"top_streak":1,"best":{"date":"2026-09-24","text":"10kg × 10, 10, 10"},"last":["09-24 10kg × 10, 10, 10"],"readings":1,"alts":[{"name":"Bicep Curl (Barbell)","logged_as":"Bicep Curl (Barbell)","date":"2026-11-14","text":"30kg × 8, 8, 7"},{"name":"Preacher Curl","logged_as":"Preacher Curl (Barbell)","date":"2026-09-10","text":"30kg × 8, 7"},{"name":"Hammer Curl","logged_as":"Hammer Curl (Dumbbell)","date":"2026-11-07","text":"16kg × 10, 10, 10"},{"name":"Incline Curl","date":null,"text":"never logged"}],"line":"1 reading so far, too few to call a trend. Top of the band on every set, 1 session running."}
+    ],
+    "upper_c": [
+      {"slot":1,"name":"Bench Press (Dumbbell)","logged_as":"Bench Press (Dumbbell)","type":"rotate","status":"moving","since_best":0,"top_streak":0,"best":{"date":"2026-11-07","text":"30kg × 8, 8, 8"},"last":["11-07 30kg × 8, 8, 8","10-31 28kg × 8, 10, 10","10-04 28kg × 8, 8, 8","09-26 26kg × 12, 10"],"readings":4,"line":"New best last time: 30kg × 8, 8, 8 (11-07)."},
+      {"slot":2,"name":"Chest Supported Row","logged_as":"Chest Supported Row","type":"rotate","status":"moving","since_best":0,"top_streak":1,"best":{"date":"2026-11-07","text":"18kg × 12, 12, 12"},"last":["11-07 18kg × 12, 12, 12","10-31 18kg × 10, 10, 10","10-04 18kg × 10, 10, 10","09-26 18kg × 10, 10"],"readings":4,"alts":[{"name":"Seated Row (Cable)","logged_as":"Seated Row (Cable)","date":"2026-10-01","text":"57kg × 10, 10, 10"}],"line":"New best last time: 18kg × 12, 12, 12 (11-07). Top of the band on every set, 1 session running."},
+      {"slot":3,"name":"Lateral Raise","logged_as":"Lateral Raise (Cable)","type":"anchor","status":"holding","since_best":2,"top_streak":0,"best":{"date":"2026-10-04","text":"5kg × 10, 10, 10"},"last":["11-07 5kg × 10, 10, 10","10-31 5kg × 8, 8, 8","10-04 5kg × 10, 10, 10"],"readings":3,"line":"2 sessions since the best, 5kg × 10, 10, 10 (10-04)."},
+      {"slot":4,"name":"Face Pull","logged_as":"Face Pull (Cable)","type":"rotate","status":"moving","since_best":0,"top_streak":0,"best":{"date":"2026-11-07","text":"21kg × 10, 10, 10"},"last":["11-07 21kg × 10, 10, 10","10-31 17.5kg × 15, 15, 15","10-04 17.5kg × 12, 12, 12","09-26 17.5kg × 12"],"readings":5,"alts":[{"name":"Reverse Fly (Machine)","logged_as":"Reverse Fly (Machine)","date":"2026-11-12","text":"42.5kg × 10, 8"},{"name":"Bent-Over Rear-Delt Raise","logged_as":"Bent Over Rear Delt Raise","date":"2026-09-03","text":"6kg × 10, 12, 12"}],"line":"New best last time: 21kg × 10, 10, 10 (11-07)."},
+      {"slot":5,"name":"Hammer Curl","logged_as":"Hammer Curl (Dumbbell)","type":"rotate","status":"holding","since_best":2,"top_streak":0,"best":{"date":"2026-10-04","text":"16kg × 10, 10, 10"},"last":["11-07 16kg × 10, 10, 10","10-31 16kg × 8, 8, 8","10-04 16kg × 10, 10, 10","09-26 14kg × 12, 12, 12"],"readings":4,"alts":[{"name":"Bicep Curl (Barbell)","logged_as":"Bicep Curl (Barbell)","date":"2026-11-14","text":"30kg × 8, 8, 7"},{"name":"Preacher Curl","logged_as":"Preacher Curl (Barbell)","date":"2026-09-10","text":"30kg × 8, 7"}],"line":"2 sessions since the best, 16kg × 10, 10, 10 (10-04)."},
+      {"slot":6,"name":"Hanging Leg Raise","logged_as":"Hanging Leg Raise","type":"rotate","status":"holding","since_best":2,"top_streak":0,"best":{"date":"2026-10-04","text":"BW × 10, 10, 10"},"last":["11-07 BW × 10, 10, 10","10-31 BW × 10, 10","10-04 BW × 10, 10, 10"],"readings":3,"alts":[{"name":"Toes To Bar","logged_as":"Toes To Bar","date":"2026-09-26","text":"BW × 8, 6"},{"name":"Hollow Body Hold","logged_as":"Hollow Body Hold","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Plank","logged_as":"Plank","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Ab Wheel","date":null,"text":"never logged"}],"line":"2 sessions since the best, BW × 10, 10, 10 (10-04)."}
+    ],
+    "lower": [
+      {"slot":1,"name":"Squat (Barbell)","logged_as":"Squat (Barbell)","type":"rotate","status":"new","since_best":1,"top_streak":0,"best":{"date":"2026-09-27","text":"80kg × 5, 5, 5"},"last":["10-02 80kg × 5, 5, 5","09-27 80kg × 5, 5, 5","09-12 80kg × 5 (re-entry)"],"readings":2,"alts":[{"name":"Bulgarian Split Squat","date":null,"text":"never logged"}],"line":"2 readings so far, too few to call a trend."},
+      {"slot":2,"name":"Romanian Deadlift (Barbell)","logged_as":"Romanian Deadlift (Barbell)","type":"anchor","status":"new","since_best":0,"top_streak":0,"best":{"date":"2026-10-02","text":"80kg × 5, 7, 5"},"last":["10-02 80kg × 5, 7, 5","09-12 70kg × 8, 8, 8 (re-entry)"],"readings":1,"line":"1 reading so far, too few to call a trend."},
+      {"slot":3,"name":"Leg Extension (Machine)","logged_as":"Leg Extension (Machine)","type":"rotate","status":"new","since_best":1,"top_streak":0,"best":{"date":"2026-09-27","text":"10kg × 10, 10, 10"},"last":["10-02 10kg × 10, 10, 10","09-27 10kg × 10, 10, 10"],"readings":2,"alts":[{"name":"Leg Press","date":null,"text":"never logged"}],"line":"2 readings so far, too few to call a trend."},
+      {"slot":4,"name":"Kneeling Leg Curl","logged_as":"Kneeling Leg Curl","type":"rotate","status":"new","since_best":0,"top_streak":0,"best":{"date":"2026-10-02","text":"10kg × 8, 8, 8"},"last":["10-02 10kg × 8, 8, 8","09-27 10kg × 8","09-12 10kg × 8, 8, 8 (re-entry)"],"readings":2,"alts":[{"name":"Nordic Curl","date":null,"text":"never logged"}],"line":"2 readings so far, too few to call a trend."},
+      {"slot":5,"name":"Seated Calf Raise","logged_as":"Seated Calf Raise (Plate Loaded)","type":"rotate","status":"new","since_best":0,"top_streak":0,"best":{"date":"2026-10-02","text":"40kg × 10, 10, 10"},"last":["10-02 40kg × 10, 10, 10","09-12 40kg × 12, 12, 12 (re-entry)"],"readings":1,"line":"1 reading so far, too few to call a trend."},
+      {"slot":6,"name":"Hanging Leg Raise","logged_as":"Hanging Leg Raise","type":"rotate","status":"new","since_best":0,"top_streak":0,"best":{"date":"2026-10-02","text":"BW × 10, 10, 10"},"last":["10-02 BW × 10, 10, 10"],"readings":1,"alts":[{"name":"Toes To Bar","logged_as":"Toes To Bar","date":"2026-09-26","text":"BW × 8, 6"},{"name":"Hollow Body Hold","logged_as":"Hollow Body Hold","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Plank","logged_as":"Plank","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Ab Wheel","date":null,"text":"never logged"}],"line":"1 reading so far, too few to call a trend."}
+    ]
+  }
 }

@@ -109,6 +109,8 @@ anything.
 
 **11-12 Upper A, done** (Thursday, the swapped week). Tired and unfed, his note. Incline 67.5 × 7, 7, 7, then 50 × 8 back-off: the first test of 67.5kg since it was earned on 09-28, in band, so it holds; 8s on all three working sets earn 70kg. Pull-ups +5kg × 8, 8, 8 hold. Chest fly 65 × 10, 10, 6 holds (third set is the gap). Reverse fly 42.5 × 10, 8 and dumbbell raise 7 × 15 ×3 on a tired day: both hold at 42.5 and 8. Triceps pull 10 × 10 ×3 twice running, holds. **Two page errors, found because he asked (11-12).** The incline `do` read "four sets in the 5-8 band, then your usual back-off", five sets, against this table's four with the last a back-off; the debrief then called his 7, 7, 7 a set short. He has always done three working sets and a back-off, and that is the design. And **every rotate slot on Upper A, B and C was still at the re-entry week's two sets**: "From 26 Oct ... full sets" never reached `RX`, and the 10-26 brief restated two. He has logged three throughout. All back to three, as the session tables say; this restores the design, it adds no volume he wasn't already doing. Lower stays at two, since it is still a re-entry session. Upper B on Saturday is unchanged apart from the set counts.
 
+**11-14 Upper B, done** (Saturday, the swapped week, the morning after Friday's 9-a-side, effort 5). **No deadlift**: his call, because of the match the night before (debrief reply, 11-14). A dropped session, not a reading: 80kg holds, and 11-05's 5, 5, 5 still needs one more clean session for 82.5kg. Pull-ups BW × 8, 8, 8 at slot 1. **Row 40 × 10, 10, 10**, the first 10s after three weeks of 8s: the rule fires, **42.5kg** from Thursday 11-19. Straight-arm pulldown 21 × 8, 8, then 17.5 × 10: he took 21kg over the 20kg ask (asked in RX.note whether the stack has a 20), so **21kg** for 10s. Dips BW × 10, then +10 × 8, 10: his second Thursday at +10kg after 10-29, and bodyweight already gave 12, 12, 12 twice (10-01, 11-05), so **the slot goes to +10kg**, 12s earn +12.5kg. Crossover 12.5 × 10, 10 holds. **Barbell curl 30 × 8, 8, 7: flat since 10-01** (no new best in three sessions, and 30kg × 8 every Thursday since 09-13), so the biceps slot **swaps to the cable curl at 10kg**, as planned on 11-05; barbell back in the swaps. **Pull-ups on Upper B read flat too** (no best since +8kg × 8, 8, 8 on 10-01): held on purpose, since this day is bodyweight two short; Monday's are the ones read. The call on the slot offers +2.5kg here if he wants this day to move too, at the cost of two loaded pull-up days 72h apart. These are the first `call`s from the load review (below, "How this plan changes"). Lower on Sunday 11-15 stays a re-entry session, two sets, two in reserve: no deadlift on Saturday, so the RDL isn't tired, but it's his first legs since 10-02.
+
 **From 26 Oct:** each lift goes back to its load in the session tables, full sets, if
 every re-entry set landed with 2 in reserve. A lift that ground, or that missed the
 bottom of its band, gets one more week at its re-entry load. A pain reading of 4 or more
@@ -199,11 +201,11 @@ The pull-heavy upper day, and the week's deadlift. Deadlift first, pull-ups seco
 |---|---|---|---|---|
 | 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **80kg** |
 | 2 | **Anchor** | Pull Up | 3 × AMRAP−2 | bodyweight |
-| 3 | **Anchor** | Iso-Lateral Row (Machine), both arms | 3 × 8–10 | **40kg** |
-| 4 | Rotate — vertical pull | **Straight Arm Pulldown** · Lat Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 10–12 | **17.5kg** |
-| 5 | Rotate — push compound | **Triceps Dip** · ★ Weighted Dips | 3 × 8–12 | bodyweight |
+| 3 | **Anchor** | Iso-Lateral Row (Machine), both arms | 3 × 8–10 | **42.5kg** from 11-19 |
+| 4 | Rotate — vertical pull | **Straight Arm Pulldown** · Lat Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 10–12 | **21kg** |
+| 5 | Rotate — push compound | **Triceps Dip**, weighted · bodyweight | 3 × 8–12 | **+10kg** from 11-19 |
 | 6 | Rotate — chest isolation | **Cable Crossover** · Single Arm Cable Chest Fly · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | **12.5kg** |
-| 7 | Rotate — biceps | **Bicep Curl (Barbell)** · Bicep Curl (Cable) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **30kg** |
+| 7 | Rotate — biceps | **Bicep Curl (Cable)** · Bicep Curl (Barbell) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **10kg** from 11-19 (barbell flat at 30kg since 10-01) |
 
 **AMRAP−2 on pull-ups**, not AMRAP. This is the second pull-up session of the week —
 two full AMRAP sessions 72h apart is more joint stress than the frequency warrants. Two
@@ -409,7 +411,7 @@ stretch · ankle dorsiflexion. Not tracked, not worth tracking.
 - **Squat** — hold 70kg. +2.5kg once 10 holds across all three sets AND no joint
   complaints.
 - **Iso-Lateral Row (Machine)** — +2.5kg once all three sets hit 10. 40kg from the
-  10-22 baseline.
+  10-22 baseline. **Fired 2026-11-14** (40 × 10, 10, 10): **42.5kg** from 11-19.
 - **Everything else** — at the top of the rep range on all sets for two consecutive
   sessions → add the smallest increment available.
 
