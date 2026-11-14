@@ -1,0 +1,190 @@
+{
+  "key": "2026-11-14-upper-b",
+  "date": "2026-11-14",
+  "session": "Upper B",
+  "session_id": "upper_b",
+  "model": "claude-sonnet-5",
+  "created": "2026-11-14T03:50:28.928Z",
+  "logged": {
+    "date": "2026-11-14",
+    "session": "Upper B",
+    "session_id": "upper_b",
+    "exercises": [
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 8
+          },
+          {
+            "weight": 0,
+            "reps": 8
+          },
+          {
+            "weight": 0,
+            "reps": 8
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Iso-Lateral Row (Machine)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 40,
+            "reps": 10
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Straight Arm Pulldown",
+        "sets": [
+          {
+            "weight": 21,
+            "reps": 8
+          },
+          {
+            "weight": 21,
+            "reps": 8
+          },
+          {
+            "weight": 17.5,
+            "reps": 10
+          }
+        ],
+        "weight": 21
+      },
+      {
+        "name": "Triceps Dip",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 10
+          },
+          {
+            "weight": 10,
+            "reps": 8
+          },
+          {
+            "weight": 10,
+            "reps": 10
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Cable Crossover",
+        "sets": [
+          {
+            "weight": 11.25,
+            "reps": 12
+          },
+          {
+            "weight": 12.5,
+            "reps": 10
+          },
+          {
+            "weight": 12.5,
+            "reps": 10
+          }
+        ],
+        "weight": 11.25
+      },
+      {
+        "name": "Bicep Curl (Barbell)",
+        "sets": [
+          {
+            "weight": 30,
+            "reps": 8
+          },
+          {
+            "weight": 30,
+            "reps": 8
+          },
+          {
+            "weight": 30,
+            "reps": 7
+          }
+        ],
+        "weight": 30
+      }
+    ],
+    "notes": "Imported from Strong",
+    "extra": "",
+    "watch": {
+      "date": "2026-11-14",
+      "start": "10:43",
+      "end": "11:47",
+      "kind": "lifting",
+      "type": "Workout",
+      "source": "Apple Watch",
+      "via": "shortcut",
+      "min": 64,
+      "kcal": 261,
+      "hr": {
+        "avg": 99,
+        "min": 78,
+        "max": 140,
+        "n": 761,
+        "bins": {
+          "70": 0.8,
+          "80": 14.9,
+          "90": 23.2,
+          "100": 13.5,
+          "110": 6.9,
+          "120": 3.4,
+          "130": 2.1
+        }
+      }
+    },
+    "watch_recent": [
+      {
+        "date": "2026-11-07",
+        "kind": "lifting",
+        "min": 42,
+        "hr": {
+          "avg": 104,
+          "max": 136
+        },
+        "kcal": 175
+      },
+      {
+        "date": "2026-11-12",
+        "kind": "lifting",
+        "min": 57,
+        "hr": {
+          "avg": 106,
+          "max": 139
+        },
+        "kcal": 247
+      },
+      {
+        "date": "2026-11-13",
+        "kind": "football",
+        "min": 120,
+        "hr": {
+          "avg": 135,
+          "max": 179
+        },
+        "kcal": 935
+      }
+    ]
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Upper B landed on Saturday this week, the day after Friday's 9-a-side, and there's no Deadlift entry at all — slot 1 is missing from the log, so Pull Up effectively opened the session instead of running second: bodyweight × 8, 8, 8, in line with 11-05's 8, 8, 7. Iso-Lateral Row hit 40kg × 10, 10, 10 for the first time after three weeks stuck at 8, 8, 8 (10-22, 10-29, 11-05). Straight Arm Pulldown opened at 21kg, above the 20kg call, for 8, 8, then dropped to 17.5kg × 10 on the third set — the drop-back follows the rule, just from a heavier starting point than prescribed. Triceps Dip and Cable Crossover both sat inside their bands. Bicep Curl held at 30kg × 8, 8, 7, same as 10-29.\n\nHeart rate: 64 minutes start to end, longer than both of last week's lifting sessions (42 min on 11-07, 57 min on 11-12), but the average came in lower at 99bpm against 104 and 106. Most of the time sat in the 80s–100s (51.6 of 64 minutes), with only about 5.5 minutes above 120bpm — a flatter session than midweek, which tracks with lifting a day after Friday's 9-a-side (effort 5/10, load 400).\n\nTrend: Iso-Lateral Row has cleared the \"all three sets at 10\" mark — next session moves to 42.5kg. Bicep Curl (Barbell) has now gone three sessions (10-29, 11-05, today) without clearing 8, 8, 8 at 30kg; if Thursday repeats it, the cable curl swap is the next move.\n\nNext session: Lower, Sun 15 Nov. Squat re-entry at 62.5kg × 8, 8, two in reserve. RDL anchor at 70kg × 8, 8, slow on the eccentric, given it sits 24h after today rather than the usual 72h.\n\nQuestion: Deadlift isn't in today's log anywhere — did you skip it, or just not log it? Sunday's RDL load assumes it happened 24h before.",
+      "at": "2026-11-14T03:50:28.928Z"
+    }
+  ]
+}
