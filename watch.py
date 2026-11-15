@@ -297,10 +297,12 @@ def nights(sec, ref, hr):
 
 
 def merge_night(nights, rec):
-    """A newer upload's reading of the same night replaces the older one."""
+    """A newer upload's reading of the same night replaces the older one's fields, but
+    keeps what the newer one lacks: a morning upload's heart rate starts at midnight, so it
+    can't see the sleep before it, and Apple's resting heart rate often comes later."""
     for i, n in enumerate(nights):
         if n["date"] == rec["date"]:
-            nights[i] = rec
+            nights[i] = dict(n, **rec)
             return "updated"
     nights.append(rec)
     return "added"
