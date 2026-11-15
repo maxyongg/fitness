@@ -810,6 +810,13 @@ effort: 5/10 | 80 min | load: 400 | 9-a-side, ICS@Clementi
 - Leg Press — 130kg × 8, 8, 8
 - Kneeling Leg Curl — 10kg × 8, 8, 8
 
+<!-- Re-prescribed 2026-11-15 after Lower (the re-entry, run at full weight).
+     RDL 80 x 6, 6, 6 over three sets: first fair 80kg reading, in band, holds until 8s.
+     Pendulum squat and leg press were his picks, first runs: into the swaps, slots keep barbell
+     squat 70 and leg extension 10, asked in RX.note. Leg press 130 is not the 09-12 seated leg
+     press. Leg curl 10 x 8s again (3 of 4 towards Nordics). Calves, leg raises not logged.
+     Lower 11-22 back to full: three sets at plan loads. Upper A 11-16 unchanged. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

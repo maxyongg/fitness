@@ -318,9 +318,9 @@ fortnight; this doubles the frequency.
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | Rotate — quad compound | **Squat (Barbell)** · ★ Bulgarian Split Squat | 3 × 8–10 | **70kg** |
+| 1 | Rotate — quad compound | **Squat (Barbell)** · Pendulum Squat · ★ Bulgarian Split Squat | 3 × 8–10 | **70kg** |
 | 2 | **Anchor** | Romanian Deadlift (Barbell) | 3 × 6–8 | **80kg** |
-| 3 | Rotate — quad volume | **Leg Extension (Machine)** · Leg Press | 3 × 10–12 | **10kg** |
+| 3 | Rotate — quad volume | **Leg Extension (Machine)** · Leg Press · Seated Leg Press (Machine) | 3 × 10–12 | **10kg** |
 | 4 | Rotate — hamstring | **Kneeling Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 8–10 | **10kg** |
 | 5 | Rotate — calves | Seated Calf Raise (Plate Loaded) | 3 × 15–20 | **40kg** |
 | 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Hollow Body Hold · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
@@ -376,6 +376,18 @@ band moved to 8–10 to fit it. Calves 40kg × 10, 10, 10, under the band twice 
 load comes down if it happens again. 09-27's nameless lift (50kg × 8, 70kg × 8, 8, then
 80kg × 5) has the same warm-up and loads as the RDL on 09-12 and 10-02. Likely the RDL,
 not logged as one until he says so.
+
+**Third run, Sunday 2026-11-15, the re-entry Lower.** Prescribed as two sets at reduced
+loads after six weeks without legs; he ran it at full weight. **RDL 80kg × 6, 6, 6**
+(50kg warm-up), 72h after Thursday's pull: the first fair reading at 80kg, in the 6–8
+band, so it holds until 8s. **Pendulum Squat** (0 × 8, 20 × 8, 25 × 8, 8) ran in the
+quad compound slot and **Leg Press 130kg × 8, 8, 8** in quad volume. Both are his picks
+and first runs, so both join the swaps and the slots keep the barbell squat and leg
+extension until a second run or his word (asked in RX.note). The 130kg leg press is not
+on the scale of 09-12's Seated Leg Press 80kg: different machine. **Leg curl 10kg × 8,
+8, 8**, the fourth time; leg curl is 3 of 4 runs in the block towards the Nordic curl
+trial. Calves and hanging leg raises not logged. **The re-entry is over:** 11-22 is the
+full session, three sets at the table's loads.
 
 ## Yoga (15–20 min)
 
