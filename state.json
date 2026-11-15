@@ -1,54 +1,42 @@
 {
-  "_generated": "2026-11-14T03:48:36",
+  "_generated": "2026-11-15T03:37:15",
   "_by": "drain.py",
   "last_session": {
-    "date": "2026-11-14",
-    "type": "upper_b",
-    "name": "Upper B",
-    "exercise_count": 6,
+    "date": "2026-11-15",
+    "type": "lower",
+    "name": "Lower",
+    "exercise_count": 4,
     "top_sets": [
       {
-        "name": "Pull Up",
-        "weight": "BW",
+        "name": "Pendulum Squat",
+        "weight": 0,
+        "best_reps": 8,
+        "set_count": 4
+      },
+      {
+        "name": "Romanian Deadlift (Barbell)",
+        "weight": 50,
+        "best_reps": 8,
+        "set_count": 4
+      },
+      {
+        "name": "Leg Press",
+        "weight": 130,
         "best_reps": 8,
         "set_count": 3
       },
       {
-        "name": "Iso-Lateral Row (Machine)",
-        "weight": 40,
-        "best_reps": 10,
-        "set_count": 3
-      },
-      {
-        "name": "Straight Arm Pulldown",
-        "weight": 21,
-        "best_reps": 10,
-        "set_count": 3
-      },
-      {
-        "name": "Triceps Dip",
-        "weight": "BW+10",
-        "best_reps": 10,
-        "set_count": 3
-      },
-      {
-        "name": "Cable Crossover",
-        "weight": 11.25,
-        "best_reps": 12,
-        "set_count": 3
-      },
-      {
-        "name": "Bicep Curl (Barbell)",
-        "weight": 30,
+        "name": "Kneeling Leg Curl",
+        "weight": 10,
         "best_reps": 8,
         "set_count": 3
       }
     ]
   },
   "next_session": {
-    "type": "lower",
-    "name": "Lower",
-    "expected_date": "2026-11-15"
+    "type": "upper_a",
+    "name": "Upper A",
+    "expected_date": "2026-11-16"
   },
   "slots": {
     "upper_a": [
@@ -326,14 +314,12 @@
   },
   "rx_asof": "2026-11-14",
   "rx_after": "2026-11-14 Upper B",
-  "flags": [
-    "Pull-up: top set 8, total 24"
-  ],
+  "flags": [],
   "last_done": {
     "upper_a": "2026-11-12",
     "upper_b": "2026-11-14",
     "upper_c": "2026-11-07",
-    "lower": "2026-10-02"
+    "lower": "2026-11-15"
   },
   "review": {
     "upper_a": [
@@ -362,12 +348,12 @@
       {"slot":6,"name":"Hanging Leg Raise","logged_as":"Hanging Leg Raise","type":"rotate","status":"holding","since_best":2,"top_streak":0,"best":{"date":"2026-10-04","text":"BW × 10, 10, 10"},"last":["11-07 BW × 10, 10, 10","10-31 BW × 10, 10","10-04 BW × 10, 10, 10"],"readings":3,"alts":[{"name":"Toes To Bar","logged_as":"Toes To Bar","date":"2026-09-26","text":"BW × 8, 6"},{"name":"Hollow Body Hold","logged_as":"Hollow Body Hold","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Plank","logged_as":"Plank","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Ab Wheel","date":null,"text":"never logged"}],"line":"2 sessions since the best, BW × 10, 10, 10 (10-04)."}
     ],
     "lower": [
-      {"slot":1,"name":"Squat (Barbell)","logged_as":"Squat (Barbell)","type":"rotate","status":"new","since_best":1,"top_streak":0,"best":{"date":"2026-09-27","text":"80kg × 5, 5, 5"},"last":["10-02 80kg × 5, 5, 5","09-27 80kg × 5, 5, 5","09-12 80kg × 5 (re-entry)"],"readings":2,"alts":[{"name":"Bulgarian Split Squat","date":null,"text":"never logged"}],"line":"2 readings so far, too few to call a trend."},
-      {"slot":2,"name":"Romanian Deadlift (Barbell)","logged_as":"Romanian Deadlift (Barbell)","type":"anchor","status":"new","since_best":0,"top_streak":0,"best":{"date":"2026-10-02","text":"80kg × 5, 7, 5"},"last":["10-02 80kg × 5, 7, 5","09-12 70kg × 8, 8, 8 (re-entry)"],"readings":1,"line":"1 reading so far, too few to call a trend."},
-      {"slot":3,"name":"Leg Extension (Machine)","logged_as":"Leg Extension (Machine)","type":"rotate","status":"new","since_best":1,"top_streak":0,"best":{"date":"2026-09-27","text":"10kg × 10, 10, 10"},"last":["10-02 10kg × 10, 10, 10","09-27 10kg × 10, 10, 10"],"readings":2,"alts":[{"name":"Leg Press","date":null,"text":"never logged"}],"line":"2 readings so far, too few to call a trend."},
-      {"slot":4,"name":"Kneeling Leg Curl","logged_as":"Kneeling Leg Curl","type":"rotate","status":"new","since_best":0,"top_streak":0,"best":{"date":"2026-10-02","text":"10kg × 8, 8, 8"},"last":["10-02 10kg × 8, 8, 8","09-27 10kg × 8","09-12 10kg × 8, 8, 8 (re-entry)"],"readings":2,"alts":[{"name":"Nordic Curl","date":null,"text":"never logged"}],"line":"2 readings so far, too few to call a trend."},
-      {"slot":5,"name":"Seated Calf Raise","logged_as":"Seated Calf Raise (Plate Loaded)","type":"rotate","status":"new","since_best":0,"top_streak":0,"best":{"date":"2026-10-02","text":"40kg × 10, 10, 10"},"last":["10-02 40kg × 10, 10, 10","09-12 40kg × 12, 12, 12 (re-entry)"],"readings":1,"line":"1 reading so far, too few to call a trend."},
-      {"slot":6,"name":"Hanging Leg Raise","logged_as":"Hanging Leg Raise","type":"rotate","status":"new","since_best":0,"top_streak":0,"best":{"date":"2026-10-02","text":"BW × 10, 10, 10"},"last":["10-02 BW × 10, 10, 10"],"readings":1,"alts":[{"name":"Toes To Bar","logged_as":"Toes To Bar","date":"2026-09-26","text":"BW × 8, 6"},{"name":"Hollow Body Hold","logged_as":"Hollow Body Hold","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Plank","logged_as":"Plank","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Ab Wheel","date":null,"text":"never logged"}],"line":"1 reading so far, too few to call a trend."}
+      {"slot":1,"name":"Squat (Barbell)","logged_as":"Squat (Barbell)","type":"rotate","status":"new","since_best":1,"top_streak":0,"best":{"date":"2026-09-27","text":"80kg × 5, 5, 5"},"last":["10-02 80kg × 5, 5, 5","09-27 80kg × 5, 5, 5","09-12 80kg × 5 (re-entry)"],"readings":2,"not_run":"2026-11-15","alts":[{"name":"Bulgarian Split Squat","date":null,"text":"never logged"}],"line":"2 readings so far, too few to call a trend. Not run 11-15."},
+      {"slot":2,"name":"Romanian Deadlift (Barbell)","logged_as":"Romanian Deadlift (Barbell)","type":"anchor","status":"new","since_best":0,"top_streak":0,"best":{"date":"2026-11-15","text":"80kg × 6, 6, 6"},"last":["11-15 80kg × 6, 6, 6","10-02 80kg × 5, 7, 5","09-12 70kg × 8, 8, 8 (re-entry)"],"readings":2,"line":"2 readings so far, too few to call a trend."},
+      {"slot":3,"name":"Leg Extension (Machine)","logged_as":"Leg Extension (Machine)","type":"rotate","status":"new","since_best":1,"top_streak":0,"best":{"date":"2026-09-27","text":"10kg × 10, 10, 10"},"last":["10-02 10kg × 10, 10, 10","09-27 10kg × 10, 10, 10"],"readings":2,"alts":[{"name":"Leg Press","logged_as":"Leg Press","date":"2026-11-15","text":"130kg × 8, 8, 8"}],"line":"2 readings so far, too few to call a trend."},
+      {"slot":4,"name":"Kneeling Leg Curl","logged_as":"Kneeling Leg Curl","type":"rotate","status":"holding","since_best":1,"top_streak":0,"best":{"date":"2026-10-02","text":"10kg × 8, 8, 8"},"last":["11-15 10kg × 8, 8, 8","10-02 10kg × 8, 8, 8","09-27 10kg × 8","09-12 10kg × 8, 8, 8 (re-entry)"],"readings":3,"alts":[{"name":"Nordic Curl","date":null,"text":"never logged"}],"line":"1 session since the best, 10kg × 8, 8, 8 (10-02)."},
+      {"slot":5,"name":"Seated Calf Raise","logged_as":"Seated Calf Raise (Plate Loaded)","type":"rotate","status":"new","since_best":0,"top_streak":0,"best":{"date":"2026-10-02","text":"40kg × 10, 10, 10"},"last":["10-02 40kg × 10, 10, 10","09-12 40kg × 12, 12, 12 (re-entry)"],"readings":1,"not_run":"2026-11-15","line":"1 reading so far, too few to call a trend. Not run 11-15."},
+      {"slot":6,"name":"Hanging Leg Raise","logged_as":"Hanging Leg Raise","type":"rotate","status":"new","since_best":0,"top_streak":0,"best":{"date":"2026-10-02","text":"BW × 10, 10, 10"},"last":["10-02 BW × 10, 10, 10"],"readings":1,"not_run":"2026-11-15","alts":[{"name":"Toes To Bar","logged_as":"Toes To Bar","date":"2026-09-26","text":"BW × 8, 6"},{"name":"Hollow Body Hold","logged_as":"Hollow Body Hold","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Plank","logged_as":"Plank","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Ab Wheel","date":null,"text":"never logged"}],"line":"1 reading so far, too few to call a trend. Not run 11-15."}
     ]
   }
 }
