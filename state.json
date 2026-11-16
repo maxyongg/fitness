@@ -57,7 +57,7 @@
         "type": "anchor",
         "sets": 4,
         "reps": "5-8",
-        "load": 67.5,
+        "load": 70,
         "unit": "kg"
       },
       {
@@ -85,7 +85,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "8-12",
-        "load": 42.5,
+        "load": 47.5,
         "unit": "kg",
         "alts": [
           "Face Pull",
@@ -326,8 +326,8 @@
       }
     ]
   },
-  "rx_asof": "2026-11-15",
-  "rx_after": "2026-11-15 Lower",
+  "rx_asof": "2026-11-16",
+  "rx_after": "2026-11-16 Upper A",
   "flags": [
     "Pull-up: top set 8, total 22"
   ],

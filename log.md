@@ -826,6 +826,11 @@ note: felt strong today
 - Lateral Raise (Dumbbell) — 8kg × 15, 15, 15
 - One Handed Triceps Pull — 10kg × 12, 12, 12
 
+<!-- Re-prescribed 2026-11-16 after Upper A ("felt strong"). His own jumps, all in band, become the loads:
+     incline 70 x 5, 5, 5 (8s earn 72.5), pull-ups +10kg x 7, 7, reverse fly 47.5 x 10, 10. Triceps pull
+     12s x3, first top of band, one more for 12.5. Chest fly 10, 10, 10 holds (third set closing). Lateral
+     raise flat at 15s since 09-28: last set to failure, no load change. Upper B 11-19 unchanged. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

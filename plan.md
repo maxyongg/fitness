@@ -111,6 +111,8 @@ anything.
 
 **11-14 Upper B, done** (Saturday, the swapped week, the morning after Friday's 9-a-side, effort 5). **No deadlift**: his call, because of the match the night before (debrief reply, 11-14). A dropped session, not a reading: 80kg holds, and 11-05's 5, 5, 5 still needs one more clean session for 82.5kg. Pull-ups BW × 8, 8, 8 at slot 1. **Row 40 × 10, 10, 10**, the first 10s after three weeks of 8s: the rule fires, **42.5kg** from Thursday 11-19. Straight-arm pulldown 21 × 8, 8, then 17.5 × 10: he took 21kg over the 20kg ask because **the stack has no 20** (his answer, 11-14). 17.5 to 21kg is a 20% jump, about six reps at roughly 3% a rep (`docs/findings.md`, band width), so a 10–12 band can't hold it: **21kg, band 8–12**, 12s on all three before the next pin. Dips BW × 10, then +10 × 8, 10: his second Thursday at +10kg after 10-29, and bodyweight already gave 12, 12, 12 twice (10-01, 11-05), so **the slot goes to +10kg**, 12s earn +12.5kg. Crossover 12.5 × 10, 10 holds. **Barbell curl 30 × 8, 8, 7: flat since 10-01** (no new best in three sessions, and 30kg × 8 every Thursday since 09-13), so the biceps slot **swaps to the cable curl at 10kg**, as planned on 11-05; barbell back in the swaps. **Pull-ups on Upper B read flat too** (no best since +8kg × 8, 8, 8 on 10-01): held on purpose, since this day is bodyweight two short; Monday's are the ones read. The call on the slot offers +2.5kg here if he wants this day to move too, at the cost of two loaded pull-up days 72h apart. These are the first `call`s from the load review (below, "How this plan changes"). Lower on Sunday 11-15 stays a re-entry session, two sets, two in reserve: no deadlift on Saturday, so the RDL isn't tired, but it's his first legs since 10-02.
 
+**11-16 Upper A, done.** "Felt strong" (his note; 8h05 asleep, HRV 139). He took three loads up himself, all in band, so each becomes the load (the 70kg deadlift rule, Progression): **incline 70kg** (5, 5, 5, then 50 × 10; 8s on all three earn 72.5), **pull-ups +10kg** (7, 7, then BW × 8; +5kg if the first set is under 6), **reverse fly 47.5kg** (10, 10, then 42.5 × 10; 12s earn the next pin). **Triceps pull 10 × 12, 12, 12**, the first top of the band: the two-session rule means one more before 12.5kg. **Chest fly 65 × 10, 10, 10**, flat by the review since 09-28 but held: the third set went 4, 6, 10, and the obvious swap, the crossover, already runs on Thursday; incline chest press proposed if no 12s by 11-30. **Lateral raise 8 × 15, 15, 15, flat since 09-28**: the anchor stays and the load stays, the **last set goes to failure** to tell a ceiling from a habit (no added volume); under 18 on it and the next step is a 12–15 band at 9kg. Upper B 11-19 unchanged; its pull-up call now notes Monday is at +10kg.
+
 **From 26 Oct:** each lift goes back to its load in the session tables, full sets, if
 every re-entry set landed with 2 in reserve. A lift that ground, or that missed the
 bottom of its band, gets one more week at its re-entry load. A pain reading of 4 or more
@@ -152,11 +154,11 @@ The push-heavy upper day. Incline bench leads.
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | **Anchor** | Incline Bench Press (Barbell) | 3 working × 5–8, then a back-off for reps | **67.5kg** from 10-05 |
-| 2 | **Anchor** | Pull Up | 3 × AMRAP | **+5kg** from 09-28 |
+| 1 | **Anchor** | Incline Bench Press (Barbell) | 3 working × 5–8, then a back-off for reps | **70kg** from 11-16 (his pick; 67.5kg from 10-05) |
+| 2 | **Anchor** | Pull Up | 3 × AMRAP | **+10kg** from 11-16 (his pick; +5kg from 09-28) |
 | 3 | Rotate — chest isolation | **Chest Fly** · Cable Crossover · Incline Chest Press | 3 × 10–12 | **65kg**, reps first |
-| 4 | Rotate — rear delt | **Reverse Fly (Machine)** · Face Pull · ★ Bent-Over Rear-Delt Raise | 3 × 8–12 | **42.5kg** |
-| 5 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
+| 4 | Rotate — rear delt | **Reverse Fly (Machine)** · Face Pull · ★ Bent-Over Rear-Delt Raise | 3 × 8–12 | **47.5kg** from 11-16 (his pick) |
+| 5 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20, last set to failure (11-16) | **8kg** |
 | 6 | Rotate — triceps | **One Handed Triceps Pull** · Triceps Extension · ★ Skullcrusher | 3 × 10–12 | **10kg** |
 
 Pull-ups at slot 2: behind only the anchor press, they stay fresh. The position effect
