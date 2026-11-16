@@ -1,0 +1,244 @@
+{
+  "key": "2026-11-16-upper-a",
+  "date": "2026-11-16",
+  "session": "Upper A",
+  "session_id": "upper_a",
+  "model": "claude-sonnet-5",
+  "created": "2026-11-16T12:02:11.475Z",
+  "logged": {
+    "date": "2026-11-16",
+    "session": "Upper A",
+    "session_id": "upper_a",
+    "exercises": [
+      {
+        "name": "Incline Bench Press (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 70,
+            "reps": 5
+          },
+          {
+            "weight": 70,
+            "reps": 5
+          },
+          {
+            "weight": 70,
+            "reps": 5
+          },
+          {
+            "weight": 50,
+            "reps": 10
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 10,
+            "reps": 7
+          },
+          {
+            "weight": 10,
+            "reps": 7
+          },
+          {
+            "weight": 0,
+            "reps": 8
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Chest Fly",
+        "sets": [
+          {
+            "weight": 65,
+            "reps": 10
+          },
+          {
+            "weight": 65,
+            "reps": 10
+          },
+          {
+            "weight": 65,
+            "reps": 10
+          }
+        ],
+        "weight": 65
+      },
+      {
+        "name": "Reverse Fly (Machine)",
+        "sets": [
+          {
+            "weight": 47.5,
+            "reps": 10
+          },
+          {
+            "weight": 47.5,
+            "reps": 10
+          },
+          {
+            "weight": 42.5,
+            "reps": 10
+          }
+        ],
+        "weight": 47.5
+      },
+      {
+        "name": "Lateral Raise (Dumbbell)",
+        "sets": [
+          {
+            "weight": 8,
+            "reps": 15
+          },
+          {
+            "weight": 8,
+            "reps": 15
+          },
+          {
+            "weight": 8,
+            "reps": 15
+          }
+        ],
+        "weight": 8
+      },
+      {
+        "name": "One Handed Triceps Pull",
+        "sets": [
+          {
+            "weight": 10,
+            "reps": 12
+          },
+          {
+            "weight": 10,
+            "reps": 12
+          },
+          {
+            "weight": 10,
+            "reps": 12
+          }
+        ],
+        "weight": 10
+      }
+    ],
+    "notes": "felt strong today",
+    "extra": "",
+    "watch": {
+      "date": "2026-11-16",
+      "start": "18:29",
+      "end": "19:33",
+      "kind": "lifting",
+      "type": "Workout",
+      "source": "Apple Watch",
+      "via": "shortcut",
+      "min": 64,
+      "kcal": 278,
+      "hr": {
+        "avg": 105,
+        "min": 81,
+        "max": 150,
+        "n": 767,
+        "bins": {
+          "80": 3,
+          "90": 23.6,
+          "100": 19.1,
+          "110": 9.6,
+          "120": 6.8,
+          "130": 2.2,
+          "140": 0.6
+        }
+      },
+      "curve5": {
+        "t0": "18:29",
+        "every": 5,
+        "bpm": [
+          98,
+          113,
+          115,
+          108,
+          107,
+          99,
+          108,
+          105,
+          109,
+          105,
+          103,
+          101,
+          98
+        ]
+      }
+    },
+    "watch_recent": [
+      {
+        "date": "2026-11-12",
+        "kind": "lifting",
+        "min": 57,
+        "hr": {
+          "avg": 106,
+          "max": 139
+        },
+        "kcal": 247
+      },
+      {
+        "date": "2026-11-13",
+        "kind": "football",
+        "min": 120,
+        "hr": {
+          "avg": 135,
+          "max": 179
+        },
+        "kcal": 935
+      },
+      {
+        "date": "2026-11-14",
+        "kind": "lifting",
+        "min": 67,
+        "hr": {
+          "avg": 99,
+          "max": 140
+        },
+        "kcal": 269
+      },
+      {
+        "date": "2026-11-15",
+        "kind": "lifting",
+        "min": 35,
+        "hr": {
+          "avg": 105,
+          "max": 139
+        },
+        "kcal": 142
+      }
+    ],
+    "sleep": {
+      "night": {
+        "date": "2026-11-16",
+        "start": "00:43",
+        "end": "08:59",
+        "asleep": 485,
+        "awake": 11,
+        "hrv": 139,
+        "hr": 42
+      },
+      "week": {
+        "nights": 4,
+        "asleep": 456,
+        "hrv": 102
+      },
+      "nights_known": 4
+    }
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Incline Bench Press led at 70kg instead of the prescribed 67.5kg, landing 5,5,5 at the bottom of the band before a strong 50kg×10 back-off — matches the \"felt strong\" note. Pull-ups followed the same pattern, pushing to +10kg for 7,7 before dropping to bodyweight for 8; total reps came in under the 24 you ran at +5kg on 11-12. Chest Fly hit 10,10,10 at 65kg, the first clean top-of-band set on all three since the stall broke on 09-28. Reverse Fly also jumped unprescribed to 47.5kg for 10,10 before settling back to 42.5kg×10. Lateral Raise stayed on script at 8kg×15,15,15, and One Handed Triceps Pull hit 12,12,12 at 10kg for the first time.\n\nHeart rate: Today ran 64 minutes start to end, in line with the week's other lifting sessions (57, 67, 35 min), but peaked at 150bpm — well above last week's 139, 140, 139 highs, tracking with the heavier pushes on incline and pull-ups. Average sat at 105, matching 11-15's 105, with the trace climbing to 115 within the first ten minutes then settling into the high 90s-low 100s for the rest — a session front-loaded with its hardest lifting.\n\nSleep: 8h05 before this session, HRV 139ms, 42bpm average asleep — well above the 4-night average HRV of 102ms. No 28-night normal yet to measure against, but that strong night lines up with the \"felt strong\" note and the heavier loading across incline, pull-ups and reverse fly.\n\nTrend: Incline's 70kg×5,5,5 is a self-directed jump past the 67.5kg prescription; it's within the 5-8 band but sitting at the floor, not the 8s that would lock 70kg in for good — worth watching whether Thursday carries any residual fatigue from it. Lateral Raise has read 15-16 reps across six sessions now (09-21 through today) without reaching the 20 needed for 9kg — the longest stall in the log. One Handed Triceps Pull's 12,12,12 is the first top-of-band session; one more like it earns the next increment.\n\nNext session: Upper B, Thu 19 Nov. Deadlift at 80kg for 3×5 — one more clean set like 11-05's 5,5,5 earns 82.5kg. Pull-ups go second at bodyweight. The Iso-Lateral Row steps up to 42.5kg after three clean 10,10,10 sets at 40kg on 11-14.",
+      "at": "2026-11-16T12:02:11.475Z"
+    }
+  ]
+}
