@@ -817,6 +817,15 @@ effort: 5/10 | 80 min | load: 400 | 9-a-side, ICS@Clementi
      press. Leg curl 10 x 8s again (3 of 4 towards Nordics). Calves, leg raises not logged.
      Lower 11-22 back to full: three sets at plan loads. Upper A 11-16 unchanged. -->
 
+## 2026-11-16 · Mon · Upper A
+note: felt strong today
+- Incline Bench Press (Barbell) — 40kg × 10, 70kg × 5, 5, 5, 50kg × 10
+- Pull Up — +10kg × 7, 7, bodyweight × 8
+- Chest Fly — 65kg × 10, 10, 10
+- Reverse Fly (Machine) — 47.5kg × 10, 10, 42.5kg × 10
+- Lateral Raise (Dumbbell) — 8kg × 15, 15, 15
+- One Handed Triceps Pull — 10kg × 12, 12, 12
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
