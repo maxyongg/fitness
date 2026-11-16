@@ -49,7 +49,10 @@ them on his phone (ISO, "30 Oct 2026 at 8:03 PM",
 A workout shows up as a block of dense readings: about one every 5s while a workout is
 recording, against one every few minutes otherwise. A minute with 3+ readings is
 dense; dense minutes with gaps of up to 10 minutes are one block, and a block of 10+
-dense minutes is a workout. Its summary has the same shape as the Health-export import
+dense minutes that is dense for at least two-thirds of its length is a workout. A real
+one is dense end to end; the share rule (2026-11-16) drops the watch's stray bursts of
+fast readings outside a workout, which once made 10 dense minutes scattered over 22 at
+lunch read as a lift. Its summary has the same shape as the Health-export import
 (index.html, Import tab), plus "via": "shortcut". `min` here is elapsed time, start to
 end; the export's is workout time, which leaves out pauses.
 
@@ -88,6 +91,7 @@ HEALTH_NOTE = ("Workout summaries, and one summary per night. hr.bins: minutes p
                "minutes asleep and awake, HRV (ms) and heart rate inside the sleep, Apple's resting heart "
                "rate. Read via health.py. Each workout's heart-rate curve is in data/hr/YYYY-MM.json.")
 DENSE_PER_MIN, MAX_GAP_MIN, MIN_DENSE_MIN, MIN_FOOTBALL_OVERLAP = 3, 10, 10, 45
+MIN_DENSE_SHARE = 2 / 3   # of a block's minutes that must be dense; real workouts are ~1.0
 
 TIME_RE = re.compile(r"(\d{1,2}):(\d{2})(?::(\d{2}))?\s*([ap])?\.?\s*m?\.?(?![a-z])", re.I)
 LABEL_RE = re.compile(r"^(sleep\s+start|sleep\s+end|sleep|rhr\s+times|rhr|hrv\s+times|hrv|kcal\s+times|times|kcal|hr|sent)\s*:\s*(.*)$", re.I)
@@ -322,7 +326,9 @@ def blocks(hr):
         cur.append(m)
     if cur:
         runs.append(cur)
-    return [(min(per_min[r[0]]), max(per_min[r[-1]])) for r in runs if len(r) >= MIN_DENSE_MIN]
+    return [(min(per_min[r[0]]), max(per_min[r[-1]])) for r in runs
+            if len(r) >= MIN_DENSE_MIN
+            and len(r) / ((r[-1] - r[0]).total_seconds() / 60 + 1) >= MIN_DENSE_SHARE]
 
 
 def summarise(start, end, hr, kcal, rx):
