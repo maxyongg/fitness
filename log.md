@@ -831,6 +831,9 @@ note: felt strong today
      12s x3, first top of band, one more for 12.5. Chest fly 10, 10, 10 holds (third set closing). Lateral
      raise flat at 15s since 09-28: last set to failure, no load change. Upper B 11-19 unchanged. -->
 
+## 2026-11-17 · Tue · Football
+effort: 6/10 | 80 min | load: 480 | 7-a-side, Shelton College, Telok Blangah
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
