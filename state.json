@@ -125,7 +125,7 @@
         "type": "anchor",
         "sets": 3,
         "reps": "5",
-        "load": 80,
+        "load": 82.5,
         "unit": "kg"
       },
       {
@@ -187,7 +187,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "8-10",
-        "load": 10,
+        "load": 11.25,
         "unit": "kg",
         "alts": [
           "Bicep Curl (Barbell)",
@@ -332,8 +332,8 @@
       }
     ]
   },
-  "rx_asof": "2026-11-16",
-  "rx_after": "2026-11-16 Upper A",
+  "rx_asof": "2026-11-19",
+  "rx_after": "2026-11-19 Upper B",
   "flags": [
     "Pull-up: top set 8, total 23"
   ],

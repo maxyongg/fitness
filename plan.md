@@ -201,13 +201,13 @@ The pull-heavy upper day, and the week's deadlift. Deadlift first, pull-ups seco
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **80kg** |
+| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **82.5kg** from 11-26 (80 × 5, 5, 5 on 11-05 and 11-19) |
 | 2 | **Anchor** | Pull Up | 3 × AMRAP−2 | bodyweight |
-| 3 | **Anchor** | Iso-Lateral Row (Machine), both arms | 3 × 8–10 | **42.5kg** from 11-19 |
+| 3 | **Anchor** | Iso-Lateral Row (Machine), both arms | 3 × 8–10 | **42.5kg**, still owed its first run (machine taken 11-19) |
 | 4 | Rotate — vertical pull | **Straight Arm Pulldown** · Lat Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 8–12 | **21kg** (the stack has no 20) |
 | 5 | Rotate — push compound | **Triceps Dip**, weighted · bodyweight | 3 × 8–12 | **+10kg** from 11-19 |
-| 6 | Rotate — chest isolation | **Cable Crossover** · Single Arm Cable Chest Fly · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | **12.5kg** |
-| 7 | Rotate — biceps | **Bicep Curl (Cable)** · Bicep Curl (Barbell) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **10kg** from 11-19 (barbell flat at 30kg since 10-01) |
+| 6 | Rotate — chest isolation | **Cable Crossover** · Single Arm Cable Chest Fly · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | **12.5kg** (12s ×3 on 11-19, one more earns 13.75kg) |
+| 7 | Rotate — biceps | **Bicep Curl (Cable)** · Bicep Curl (Barbell) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **next pin above 10kg** (11.25kg) from 11-26: 10s ×3 on 09-24 and 11-19 (barbell flat at 30kg since 10-01) |
 
 **AMRAP−2 on pull-ups**, not AMRAP. This is the second pull-up session of the week —
 two full AMRAP sessions 72h apart is more joint stress than the frequency warrants. Two
@@ -239,6 +239,14 @@ it back.** Lower gets shorter, and he dislikes leg day anyway.
 file). 10-22's 40kg × 8, 8, 8 is its baseline; the single-arm L/R numbers before it are
 a different lift.
 
+**2026-11-19.** Deadlift 80 × 5, 5, 5 a second time: the rule fired, 82.5kg next. The
+iso-lateral row's machine was taken (his answer to the debrief), so he ran the seated
+cable row, 47kg × 8, 8, 8: a substitute, not a reading, and 42.5kg is still owed. Cable
+curl 10, 10, 10 again, the top of the band twice: next pin. Crossover 12, 12, 12, the
+first top-of-band session; it holds at 12.5kg for the second, since 13.75kg gave 8s on
+11-05. Straight-arm pulldown at 17.5kg × 10, 10, 10, his pick under the 21kg ask; 21kg
+stays the call.
+
 **Second run, 2026-10-01. Pain(R) 6/10, the highest reading in the log.** He saved it
 from Strong as "B - Pull". The import matched exercise names only, so it logged and
 debriefed it as Upper A. Relabelled on 10-02, and the import now reads the Strong title
@@ -265,10 +273,10 @@ The rounding day. Picks up everything the other two sessions don't hit twice a w
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
 | 1 | Rotate — press | **Bench Press (Dumbbell)** | 3 × 10–12 | **28kg** |
-| 2 | Rotate — horizontal pull | **Chest Supported Row** (trial, run 3 of 4 on 10-31; run 4 next) | 3 × 10–12 | **18kg** |
+| 2 | Rotate — horizontal pull | **Chest Supported Row** (trial passed, four runs) | 3 × 10–12 | **20kg** (12, 12, 12 at 18kg on 11-07) |
 | 3 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
 | 4 | Rotate — rear delt | **Face Pull** · Reverse Fly (Machine) · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |
-| 5 | Rotate — arms | **Hammer Curl** · Bicep Curl (Barbell) · Preacher Curl | 3 × 10–12 | **14kg** |
+| 5 | Rotate — arms | **Hammer Curl** · Bicep Curl (Barbell) · Preacher Curl | 3 × 10–12 | **16kg** |
 | 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Hollow Body Hold · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
 **Flat DB press is the mid-chest movement** the old programme didn't have. Incline bench
@@ -421,6 +429,7 @@ stretch · ankle dorsiflexion. Not tracked, not worth tracking.
   **70kg, on Upper B from 2026-10-08** (moved from Sunday, his call 10-02). He pulled 70kg × 5, 6 on Upper B 10-01 (after 60 × 8), and
   the 6/10 that day came on the row. A load he moved to himself, with no pain on it,
   becomes the load. The right row's 55kg was handled the same way on 09-24.
+  **Fired 2026-11-19** (80 × 5, 5, 5 on 11-05 and again on 11-19): **82.5kg** from 11-26.
 - **RDL** — +2.5kg once all three sets hit 8. 80kg from 2026-10-02, where he took it.
 - **Squat** — hold 70kg. +2.5kg once 10 holds across all three sets AND no joint
   complaints.

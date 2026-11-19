@@ -843,6 +843,12 @@ effort: 6/10 | 80 min | load: 480 | 7-a-side, Shelton College, Telok Blangah
 - Cable Crossover — 12.5kg × 12, 12, 12
 - Bicep Curl (Cable) — 10kg × 10, 10, 10
 
+<!-- Re-prescribed 2026-11-19 after Upper B. Deadlift 80 x 5, 5, 5 twice (11-05, 11-19): 82.5kg next.
+     Iso-lateral row machine taken (his answer), seated cable row 47kg x 8, 8, 8 is a substitute,
+     not a reading; 42.5kg still owed. Cable curl 10s x3 twice: next pin. Crossover 12s x3, first top
+     of band, holds 12.5 one more (13.75 gave 8s on 11-05). Dips +10kg 10, 10, 9, climbing. SAP his pick
+     17.5kg x 10s, 21kg stays the call. Pull-ups B flat by design. Upper C 11-21 loads unchanged. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
