@@ -278,6 +278,16 @@
       "role": "coach",
       "text": "Today: Deadlift anchor hit 80kg × 5, 5, 5, matching 11-05 exactly — two clean sessions back to back, so the +2.5kg is earned for next time. Pull-ups went bodyweight × 8, 8, 7, same as 11-05, two in reserve as prescribed. Slot 3 was logged as Seated Row (Cable) at 47kg × 8, 8, 8 rather than the prescribed Iso-Lateral Row at 42.5kg — a different machine, so it doesn't read against the anchor's progression. Straight Arm Pulldown came in at 17.5kg × 10, 10, 10, below the prescribed 21kg rather than an attempt-then-drop. Triceps Dip at +10kg × 10, 10, 9 is close to the top of the band but not there yet. Cable Crossover hit 12.5kg × 12, 12, 12 — full top of band on all three, earning 13.75kg next. Bicep Curl (Cable) matched the ask exactly at 10kg × 10, 10, 10, its first outing since 09-24.\n\nHeart rate: 84 minutes start to end, longer than any of last week's logged lifting sessions (57, 67, 35, 64 min), with a lower average (92 vs 99–106 on those). Most of the time sat in the 80s and 90s, with only brief spikes into the 120s and 130s around the deadlift's heavy sets — consistent with a session carrying a heavier top-set load but still rest-dominated.\n\nSleep: 7h00 the night before, HRV 112, against a six-night average of 7h18 and HRV 105. Nothing here points to a flat or depressed session — HRV was actually above the week's average, which lines up with the clean deadlift repeat.\n\nTrend: Deadlift has now gone 80kg × 5, 5, 5 on both 11-05 and 11-19, meeting the stated bar for 82.5kg. Cable Crossover has climbed 11.25kg → 12.5kg → 12.5kg × 12, 12, 12 across the last three Thursdays, now maxing the band. Triceps Dip has sat at +10kg for three sessions (10-29, 11-14, today) without clearing 12s on all sets — worth watching if it stalls a fourth time.\n\nNext session: Upper C, Sat 21 Nov. Deadlift goes to 82.5kg for 3×5. Bring Cable Crossover up to 13.75kg. Bicep Curl (Cable) moves to its next pin.\n\nQuestion: the row came in as Seated Row (Cable) at 47kg instead of the programmed Iso-Lateral Row at 42.5kg — was that a deliberate swap, or was the machine unavailable?",
       "at": "2026-11-19T04:24:27.799Z"
+    },
+    {
+      "role": "max",
+      "text": "machine unavailable today",
+      "at": "2026-11-19T04:26:15.911Z"
+    },
+    {
+      "role": "coach",
+      "text": "Good, that explains it — Seated Row stays out of the Iso-Lateral Row's progression line then, no decline to flag, just a substitution. The 47kg × 8, 8, 8 on cable row isn't comparable to the 40kg bilateral numbers anyway, different machine entirely.\n\nNext Thursday, if the Iso-Lateral Row is free again, pick up right where 11-14 left off: 42.5kg for 3×8-10, since that's what the 40kg × 10, 10, 10 earned. If it's unavailable again, the cable row is a fine stand-in but won't feed the anchor's progression — just flag it in the log the same way so it keeps reading clean.",
+      "at": "2026-11-19T04:26:20.525Z"
     }
   ]
 }
