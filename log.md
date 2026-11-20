@@ -849,6 +849,9 @@ effort: 6/10 | 80 min | load: 480 | 7-a-side, Shelton College, Telok Blangah
      of band, holds 12.5 one more (13.75 gave 8s on 11-05). Dips +10kg 10, 10, 9, climbing. SAP his pick
      17.5kg x 10s, 21kg stays the call. Pull-ups B flat by design. Upper C 11-21 loads unchanged. -->
 
+## 2026-11-20 · Fri · Football
+effort: 8/10 | 80 min | load: 640 | 9-a-side, ICS@Clementi
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

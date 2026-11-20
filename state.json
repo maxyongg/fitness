@@ -343,6 +343,16 @@
     "upper_c": "2026-11-07",
     "lower": "2026-11-15"
   },
+  "last_football": {
+    "played": true,
+    "format": "9-a-side",
+    "venue": "ICS@Clementi",
+    "minutes": 80,
+    "effort": 8,
+    "load": 640,
+    "date": "2026-11-20",
+    "notes": ""
+  },
   "review": {
     "upper_a": [
       {"slot":1,"name":"Incline Bench Press (Barbell)","logged_as":"Incline Bench Press (Barbell)","type":"anchor","status":"moving","since_best":0,"top_streak":0,"best":{"date":"2026-11-16","text":"70kg × 5, 5, 5"},"last":["11-16 70kg × 5, 5, 5","11-12 67.5kg × 7, 7, 7","10-26 65kg × 8, 8","10-19 60kg × 8, 8, 8 (re-entry)"],"readings":6,"line":"New best last time: 70kg × 5, 5, 5 (11-16)."},
