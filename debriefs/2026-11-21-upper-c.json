@@ -1,0 +1,243 @@
+{
+  "key": "2026-11-21-upper-c",
+  "date": "2026-11-21",
+  "session": "Upper C",
+  "session_id": "upper_c",
+  "model": "claude-sonnet-5",
+  "created": "2026-11-21T04:09:56.403Z",
+  "logged": {
+    "date": "2026-11-21",
+    "session": "Upper C",
+    "session_id": "upper_c",
+    "exercises": [
+      {
+        "name": "Bench Press (Dumbbell)",
+        "sets": [
+          {
+            "weight": 24,
+            "reps": 10,
+            "warmup": true
+          },
+          {
+            "weight": 30,
+            "reps": 10
+          },
+          {
+            "weight": 30,
+            "reps": 10
+          },
+          {
+            "weight": 30,
+            "reps": 8
+          }
+        ],
+        "weight": 24
+      },
+      {
+        "name": "Chest Supported Row",
+        "sets": [
+          {
+            "weight": 20,
+            "reps": 10
+          },
+          {
+            "weight": 20,
+            "reps": 10
+          },
+          {
+            "weight": 20,
+            "reps": 10
+          }
+        ],
+        "weight": 20
+      },
+      {
+        "name": "Lateral Raise (Cable)",
+        "sets": [
+          {
+            "weight": 5,
+            "reps": 12
+          },
+          {
+            "weight": 5,
+            "reps": 12
+          },
+          {
+            "weight": 5,
+            "reps": 12
+          }
+        ],
+        "weight": 5,
+        "supersetGroup": 1
+      },
+      {
+        "name": "Face Pull (Cable)",
+        "sets": [
+          {
+            "weight": 21,
+            "reps": 12
+          },
+          {
+            "weight": 21,
+            "reps": 12
+          },
+          {
+            "weight": 21,
+            "reps": 12
+          }
+        ],
+        "weight": 21,
+        "supersetGroup": 1
+      },
+      {
+        "name": "Hammer Curl (Dumbbell)",
+        "sets": [
+          {
+            "weight": 16,
+            "reps": 10
+          },
+          {
+            "weight": 16,
+            "reps": 10
+          },
+          {
+            "weight": 16,
+            "reps": 10
+          }
+        ],
+        "weight": 16
+      }
+    ],
+    "notes": "Imported from Strong",
+    "extra": "",
+    "watch": {
+      "date": "2026-11-21",
+      "start": "11:04",
+      "end": "11:52",
+      "kind": "lifting",
+      "type": "Workout",
+      "source": "Apple Watch",
+      "via": "shortcut",
+      "min": 48,
+      "kcal": 188,
+      "hr": {
+        "avg": 93,
+        "min": 62,
+        "max": 132,
+        "n": 551,
+        "bins": {
+          "60": 1,
+          "70": 10,
+          "80": 11.1,
+          "90": 8.6,
+          "100": 10.4,
+          "110": 6.4,
+          "120": 1.2,
+          "130": 0.3
+        }
+      },
+      "curve5": {
+        "t0": "11:04",
+        "every": 5,
+        "bpm": [
+          86,
+          84,
+          103,
+          94,
+          97,
+          80,
+          100,
+          102,
+          91,
+          94
+        ]
+      }
+    },
+    "watch_recent": [
+      {
+        "date": "2026-11-14",
+        "kind": "lifting",
+        "min": 67,
+        "hr": {
+          "avg": 99,
+          "max": 140
+        },
+        "kcal": 269
+      },
+      {
+        "date": "2026-11-15",
+        "kind": "lifting",
+        "min": 35,
+        "hr": {
+          "avg": 105,
+          "max": 139
+        },
+        "kcal": 142
+      },
+      {
+        "date": "2026-11-16",
+        "kind": "lifting",
+        "min": 64,
+        "hr": {
+          "avg": 105,
+          "max": 150
+        },
+        "kcal": 278
+      },
+      {
+        "date": "2026-11-17",
+        "kind": "football",
+        "min": 123,
+        "hr": {
+          "avg": 129,
+          "max": 178
+        },
+        "kcal": 927
+      },
+      {
+        "date": "2026-11-19",
+        "kind": "lifting",
+        "min": 84,
+        "hr": {
+          "avg": 92,
+          "max": 136
+        },
+        "kcal": 322
+      },
+      {
+        "date": "2026-11-20",
+        "kind": "football",
+        "min": 120,
+        "hr": {
+          "avg": 142,
+          "max": 186
+        },
+        "kcal": 1072
+      }
+    ],
+    "sleep": {
+      "night": {
+        "date": "2026-11-21",
+        "start": "01:20",
+        "end": "09:34",
+        "asleep": 467,
+        "awake": 27,
+        "hrv": 117,
+        "hr": 48
+      },
+      "week": {
+        "nights": 7,
+        "asleep": 449,
+        "hrv": 107
+      },
+      "nights_known": 8
+    }
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Upper C landed close to target but with the same deviations as last time. Bench Press (Dumbbell) was prescribed 28kg; you again went 30kg, pulling 10, 10, 8 — a clear step up from 11-07's 30kg × 8, 8, 8, but the last set still missed the top of the range. Chest Supported Row followed the plan exactly: stepped to 20kg and hit 10, 10, 10, right where a fresh weight should land. Lateral Raise (Cable) improved to 12, 12, 12 at 5kg, its best showing yet at this load. Face Pull stayed at 21kg rather than dropping to 17.5kg as asked, going 12, 12, 12 — up from 11-07's 10, 10, 10 at the same weight. Hammer Curl held at 16kg × 10, 10, 10, same as 11-07 and 10-04.\n\nHeart rate: 48 minutes start to end, shorter than any of last week's lifting sessions (67, 35, 64, 84 min). Average sat at 93, close to Thursday's 92, with most time spread across the 70s-100s bands rather than a strict rest-work pattern — the early climb to 103 at 10 minutes then the up-and-down through the 80s-100s reads like a session worked through rather than coasted, likely some carryover from Friday's 9-a-side (effort 8/10, load 640).\n\nSleep: 7h47 the night before against a 7-night average of 7h29, with HRV at 117ms well above the week's 107ms average. No normal yet to compare against, but nothing here suggests fatigue was holding the session back.\n\nTrend: Hammer Curl has now sat at 10, 10, 10 for three of the last four sessions (10-04, 11-07, today), with only the 10-31 dip at 8, 8, 8 breaking the pattern — worth treating as stalled at 16kg rather than pushing volume. Chest Supported Row's clean step to 20kg is the one slot moving exactly on schedule.\n\nNext session: Lower, Sun 22 Nov. Squat at 70kg for 8-10s, or pendulum at 25kg if you'd rather keep that — say which. RDL anchor at 80kg, chasing 8s across all three sets after 11-15's 6, 6, 6. Bring calf raise and hanging leg raise back into the session since neither showed up on 11-15.\n\nQuestion: Bench and face pull both ran above the prescribed step-down weights again — is that a deliberate call on those slots, or should the plan just track 30kg and 21kg going forward?",
+      "at": "2026-11-21T04:09:56.403Z"
+    }
+  ]
+}
