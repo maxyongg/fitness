@@ -852,6 +852,13 @@ effort: 6/10 | 80 min | load: 480 | 7-a-side, Shelton College, Telok Blangah
 ## 2026-11-20 · Fri · Football
 effort: 8/10 | 80 min | load: 640 | 9-a-side, ICS@Clementi
 
+## 2026-11-21 · Sat · Upper C
+- Bench Press (Dumbbell) — 24kg × 10 (warm-up), 30kg × 10, 10, 8
+- Chest Supported Row — 20kg × 10, 10, 10
+- Lateral Raise (Cable) — 5kg × 12, 12, 12
+- Face Pull (Cable) — 21kg × 12, 12, 12
+- Hammer Curl (Dumbbell) — 16kg × 10, 10, 10
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
