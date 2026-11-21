@@ -859,6 +859,11 @@ effort: 8/10 | 80 min | load: 640 | 9-a-side, ICS@Clementi
 - Face Pull (Cable) — 21kg × 12, 12, 12
 - Hammer Curl (Dumbbell) — 16kg × 10, 10, 10
 
+<!-- Re-prescribed 2026-11-21 after Upper C. DB press 30 x 10, 10, 8 and face pull 21 x 12, 12, 12, his loads
+     over the ask twice; he said yes to tracking them (debrief), so 30kg and 21kg are the plan. Row 20 x 10s
+     x3, holds. Cable raise 5 x 12s, best yet, holds. Hammer curl 16 x 10s x3, flat since 10-04: last set to
+     failure, no swap. Leg raise not logged. Lower 11-22 full session, loads as set 11-15. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

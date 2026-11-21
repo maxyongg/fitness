@@ -113,6 +113,8 @@ anything.
 
 **11-16 Upper A, done.** "Felt strong" (his note; 8h05 asleep, HRV 139). He took three loads up himself, all in band, so each becomes the load (the 70kg deadlift rule, Progression): **incline 70kg** (5, 5, 5, then 50 × 10; 8s on all three earn 72.5), **pull-ups +10kg** (7, 7, then BW × 8; +5kg if the first set is under 6), **reverse fly 47.5kg** (10, 10, then 42.5 × 10; 12s earn the next pin). **Triceps pull 10 × 12, 12, 12**, the first top of the band: the two-session rule means one more before 12.5kg. **Chest fly 65 × 10, 10, 10**, flat by the review since 09-28 but held: the third set went 4, 6, 10, and the obvious swap, the crossover, already runs on Thursday; incline chest press proposed if no 12s by 11-30. **Lateral raise 8 × 15, 15, 15, flat since 09-28**: the anchor stays and the load stays, the **last set goes to failure** to tell a ceiling from a habit (no added volume); under 18 on it and the next step is a 12–15 band at 9kg. Upper B 11-19 unchanged; its pull-up call now notes Monday is at +10kg.
 
+**11-21 Upper C, done** (the morning after Friday's 9-a-side, effort 8; 7h47 asleep, HRV 117). **DB press 30 × 10, 10, 8** and **face pull 21 × 12, 12, 12**: his own loads over the 28 and 17.5 asks for the second time, both up from 11-07 and both in or near band. Asked in the debrief whether the plan should track them, he said **yes** (11-21): **press 30kg** (10s on all three next, 12s twice earn 32kg), **face pull 21kg** (15s twice earn the next pin). The 11-07 reset is superseded. **Chest-supported row 20 × 10, 10, 10**, first run at 20, in band, holds. **Cable lateral raise 5 × 12, 12, 12**, its best, holds; the RX load now reads the cable's 5kg, not the dumbbell's. **Hammer curl 16 × 10, 10, 10, flat since 10-04** (three sessions): the slot keeps the hammer curl, and **the last set goes to failure**, the same test as Monday's raise, no added volume. No swap: the barbell curl just left Thursday flat, the preacher curl's last (30 × 8, 7) was under band, and the cable curl runs Thursday. If the failure set is under 12, the next step is 18kg on an 8–12 band (a 2kg jump is about four reps). Hanging leg raise not logged. Lower 11-22 is the full session as set on 11-15; leg curl is run 4 of 4, so the Nordic curl gets proposed after it.
+
 **From 26 Oct:** each lift goes back to its load in the session tables, full sets, if
 every re-entry set landed with 2 in reserve. A lift that ground, or that missed the
 bottom of its band, gets one more week at its re-entry load. A pain reading of 4 or more
@@ -272,11 +274,11 @@ The rounding day. Picks up everything the other two sessions don't hit twice a w
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | Rotate — press | **Bench Press (Dumbbell)** | 3 × 10–12 | **28kg** |
+| 1 | Rotate — press | **Bench Press (Dumbbell)** | 3 × 10–12 | **30kg** (his load, confirmed 11-21) |
 | 2 | Rotate — horizontal pull | **Chest Supported Row** (trial passed, four runs) | 3 × 10–12 | **20kg** (12, 12, 12 at 18kg on 11-07) |
-| 3 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **8kg** |
-| 4 | Rotate — rear delt | **Face Pull** · Reverse Fly (Machine) · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **17.5kg** |
-| 5 | Rotate — arms | **Hammer Curl** · Bicep Curl (Barbell) · Preacher Curl | 3 × 10–12 | **16kg** |
+| 3 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20 | **cable 5kg** (dumbbell 8kg, Monday's scale) |
+| 4 | Rotate — rear delt | **Face Pull** · Reverse Fly (Machine) · ★ Bent-Over Rear-Delt Raise | 3 × 12–15 | **21kg** (his load, confirmed 11-21) |
+| 5 | Rotate — arms | **Hammer Curl** · Bicep Curl (Barbell) · Preacher Curl | 3 × 10–12, last set to failure | **16kg** (flat since 10-04, see 11-21) |
 | 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Hollow Body Hold · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
 **Flat DB press is the mid-chest movement** the old programme didn't have. Incline bench

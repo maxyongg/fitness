@@ -191,7 +191,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 28,
+        "load": 30,
         "unit": "kg"
       },
       {
@@ -210,7 +210,7 @@
         "type": "anchor",
         "sets": 3,
         "reps": "15-20",
-        "load": 7,
+        "load": 5,
         "unit": "kg"
       },
       {
@@ -320,8 +320,8 @@
       }
     ]
   },
-  "rx_asof": "2026-11-19",
-  "rx_after": "2026-11-19 Upper B",
+  "rx_asof": "2026-11-21",
+  "rx_after": "2026-11-21 Upper C",
   "flags": [],
   "last_done": {
     "upper_a": "2026-11-16",
