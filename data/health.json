@@ -1,5 +1,5 @@
 {
-  "_generated": "2026-11-21T09:37:44",
+  "_generated": "2026-11-21T12:08:47",
   "_by": "index.html (Apple Health import) + watch.py (shortcut uploads)",
   "_note": "Workout summaries, and one summary per night. hr.bins: minutes per 10-bpm band, keyed by its lower bound. via: shortcut = from a Shortcut upload, where min is elapsed time. Nights: minutes asleep and awake, HRV (ms) and heart rate inside the sleep, Apple's resting heart rate. Read via health.py. Each workout's heart-rate curve is in data/hr/YYYY-MM.json.",
   "exported": "2026-11-05",
@@ -750,7 +750,8 @@
     {"date":"2026-11-16","start":"18:29","end":"19:33","kind":"lifting","type":"Workout","source":"Apple Watch","via":"shortcut","min":64,"kcal":278,"hr":{"avg":105,"min":81,"max":150,"n":767,"bins":{"80":3.0,"90":23.6,"100":19.1,"110":9.6,"120":6.8,"130":2.2,"140":0.6}}},
     {"date":"2026-11-17","start":"20:04","end":"22:07","kind":"football","type":"Workout","source":"Apple Watch","via":"shortcut","min":123,"kcal":927,"hr":{"avg":129,"min":81,"max":178,"n":1486,"bins":{"80":7.8,"90":12.8,"100":14.9,"110":16.6,"120":11.6,"130":8.3,"140":14.6,"150":18.1,"160":13.8,"170":5.5}}},
     {"date":"2026-11-19","start":"10:57","end":"12:21","kind":"lifting","type":"Workout","source":"Apple Watch","via":"shortcut","min":84,"kcal":322,"hr":{"avg":92,"min":64,"max":136,"n":975,"bins":{"60":2.3,"70":12.7,"80":27.2,"90":20.0,"100":13.6,"110":5.2,"120":3.1,"130":0.9}}},
-    {"date":"2026-11-20","start":"20:08","end":"22:08","kind":"football","type":"Workout","source":"Apple Watch","via":"shortcut","min":120,"kcal":1072,"hr":{"avg":142,"min":90,"max":186,"n":1451,"bins":{"90":8.1,"100":11.6,"110":11.2,"120":7.7,"130":10.0,"140":12.8,"150":20.9,"160":22.5,"170":15.0,"180":1.1}}}
+    {"date":"2026-11-20","start":"20:08","end":"22:08","kind":"football","type":"Workout","source":"Apple Watch","via":"shortcut","min":120,"kcal":1072,"hr":{"avg":142,"min":90,"max":186,"n":1451,"bins":{"90":8.1,"100":11.6,"110":11.2,"120":7.7,"130":10.0,"140":12.8,"150":20.9,"160":22.5,"170":15.0,"180":1.1}}},
+    {"date":"2026-11-21","start":"11:04","end":"11:52","kind":"lifting","type":"Workout","source":"Apple Watch","via":"shortcut","min":48,"kcal":188,"hr":{"avg":93,"min":62,"max":132,"n":551,"bins":{"60":1.0,"70":10.0,"80":11.1,"90":8.6,"100":10.4,"110":6.4,"120":1.2,"130":0.3}}}
   ],
   "nights": [
     {"date":"2026-11-13","start":"01:46","end":"09:21","asleep":444,"awake":11,"stages":{"core":323,"deep":29,"rem":92},"via":"shortcut","hrv":104,"hrv_n":4,"rhr":52},
@@ -760,6 +761,6 @@
     {"date":"2026-11-17","start":"00:52","end":"09:41","asleep":380,"awake":149,"stages":{"core":303,"deep":23,"rem":54},"via":"shortcut","hr":{"avg":47,"low":38,"n":119},"hrv":112,"hrv_n":4,"rhr":45},
     {"date":"2026-11-19","start":"02:02","end":"09:20","asleep":420,"awake":18,"stages":{"core":336,"deep":22,"rem":62},"via":"shortcut","hr":{"avg":45,"low":39,"n":94},"hrv":112,"hrv_n":3,"rhr":47},
     {"date":"2026-11-20","start":"01:21","end":"09:46","asleep":495,"awake":10,"stages":{"core":413,"deep":11,"rem":71},"via":"shortcut","hr":{"avg":45,"low":39,"n":111},"hrv":107,"hrv_n":4,"rhr":51},
-    {"date":"2026-11-21","start":"01:20","end":"09:34","asleep":467,"awake":27,"stages":{"core":435,"deep":3,"rem":29},"via":"shortcut","hr":{"avg":48,"low":42,"n":103},"hrv":117,"hrv_n":4}
+    {"date":"2026-11-21","start":"01:20","end":"09:34","asleep":467,"awake":27,"stages":{"core":435,"deep":3,"rem":29},"via":"shortcut","hr":{"avg":48,"low":42,"n":103},"hrv":117,"hrv_n":4,"rhr":48}
   ]
 }
