@@ -136,6 +136,9 @@ live in `docs/workflows.md` — read it when one comes up, not before.
   `RX.football`). Logged as effort × 80 min from the page's Football tab; it is context
   for the lifts around it, and `RX.after` always names a lift. Schedule under it, never
   around it. Wednesday rest sits between football and Upper B.
+- **Squat is heavy and low-rep: 3 × 3–5** (his instruction, 2026-11-22). Never prescribe
+  it in 8–10 again. The knees are the guard: if they talk, the load comes down, not the
+  reps up. The RDL stays 6–8, researched the same day (`plan.md`, Lower).
 - **No shoulder press in the programme** — personal trainer recommendation (shoulder
   burnout after heavy incline bench). The slot goes to rear delts. Don't reintroduce it.
 - **Flat barbell bench was dropped** deliberately to prioritise incline; flat DB press
