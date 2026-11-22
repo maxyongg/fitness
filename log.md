@@ -864,6 +864,13 @@ effort: 8/10 | 80 min | load: 640 | 9-a-side, ICS@Clementi
      x3, holds. Cable raise 5 x 12s, best yet, holds. Hammer curl 16 x 10s x3, flat since 10-04: last set to
      failure, no swap. Leg raise not logged. Lower 11-22 full session, loads as set 11-15. -->
 
+## 2026-11-22 · Sun · Lower
+- Squat (Barbell) — 40kg × 8, 80kg × 5, 5, 5
+- Romanian Deadlift (Barbell) — 40kg × 8 (warm-up), 80kg × 7, 7, 7
+- Leg Extension (Machine) — 10kg × 10, 12, 12
+- Kneeling Leg Curl — 10kg × 9, 9, 9
+- Seated Calf Raise (Plate Loaded) — 40kg × 10, 10, 10
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
