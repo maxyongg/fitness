@@ -871,6 +871,12 @@ effort: 8/10 | 80 min | load: 640 | 9-a-side, ICS@Clementi
 - Kneeling Leg Curl — 10kg × 9, 9, 9
 - Seated Calf Raise (Plate Loaded) — 40kg × 10, 10, 10
 
+<!-- Re-prescribed 2026-11-22 after Lower. Squat 80 x 5, 5, 5, knees ok (his word): squats are heavy and
+     low-rep, his call, so the slot is 3 x 3-5 at 80kg and 8-10 is retired; one more clean 5s for 82.5.
+     RDL 80 x 7, 7, 7, up from 6s, holds; 6-8 kept after researching the range at his ask (plan.md).
+     Leg extension 10, 12, 12 holds. Leg curl 9s x3 ends its four runs: Nordic curl proposed. Calves
+     40 x 10s again: band to 10-12 at his load. Leg raise not logged. Upper A 11-23 unchanged. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

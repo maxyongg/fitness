@@ -330,11 +330,11 @@ fortnight; this doubles the frequency.
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | Rotate — quad compound | **Squat (Barbell)** · Pendulum Squat · ★ Bulgarian Split Squat | 3 × 8–10 | **70kg** |
+| 1 | Rotate — quad compound | **Squat (Barbell)** · Pendulum Squat · ★ Bulgarian Split Squat | 3 × 3–5 | **80kg** |
 | 2 | **Anchor** | Romanian Deadlift (Barbell) | 3 × 6–8 | **80kg** |
 | 3 | Rotate — quad volume | **Leg Extension (Machine)** · Leg Press · Seated Leg Press (Machine) | 3 × 10–12 | **10kg** |
 | 4 | Rotate — hamstring | **Kneeling Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 8–10 | **10kg** |
-| 5 | Rotate — calves | Seated Calf Raise (Plate Loaded) | 3 × 15–20 | **40kg** |
+| 5 | Rotate — calves | Seated Calf Raise (Plate Loaded) | 3 × 10–12 | **40kg** |
 | 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Hollow Body Hold · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
 **Two hinges a week since 2026-10-02, both his calls.** The conventional deadlift moved
@@ -354,9 +354,16 @@ conventional pull in the log. That was 40kg × 10, 60kg × 6, 6, done on Upper B
 2026-09-24. The old programme ran RDL at 72.5kg on legs day; conventional deadlift is a
 different movement and the load does not transfer.
 
-**Squat is moderate, not heavy.** 3×8–10, and it now leads the session. His knees hurt at
-80kg × 5 on 09-12; the drop to 70kg was already proposed. The wider rep range keeps it
-there longer before a load increase is earned.
+**Squat is heavy and low-rep: 3 × 3–5. His instruction, 2026-11-22** ("squats should be
+a high weight low rep exercise. stop prescribing 8-10 range for it"). Don't prescribe it
+in 8–10 again. From 09-27 to 11-22 it read *moderate, not heavy* (3 × 8–10 at 70kg),
+because his knees hurt at 80kg × 5 on 09-12; he ran 80kg × 5, 5, 5 against that ask on
+every barbell Lower since (09-27, 10-02, 11-22), and on 11-22 said the knees were fine.
+So the knees are the guard, not the rep range: if they talk, the load comes down (75kg),
+the reps don't go up. The 3–5 band is the barbell's. A pendulum squat or split squat in
+the slot runs 6–10, since a machine or a single leg at 3 reps is a different exercise.
+The cost is quad volume — 15 hard reps instead of 24–30 — and the leg extension in slot 3
+carries it.
 
 **Nordic curls are on the candidate list**, not in the programme. Best-evidence hamstring
 injury prevention for football players (van der Horst et al., 2015), starting at an
@@ -401,6 +408,46 @@ on the scale of 09-12's Seated Leg Press 80kg: different machine. **Leg curl 10k
 trial. Calves and hanging leg raises not logged. **The re-entry is over:** 11-22 is the
 full session, three sets at the table's loads.
 
+**Fourth run, Sunday 2026-11-22.** **Squat 80kg × 5, 5, 5** (40kg × 8 warm-up), the third
+barbell Lower at that, and he named it in the debrief: squats are high weight, low rep,
+and the knees were ok. **The slot is now 3 × 3–5 at 80kg** (above); 11-22 counts as the
+first clean session, the next earns 82.5kg. **RDL 80kg × 7, 7, 7**, up from 6s, holds in
+6–8; he asked for the optimal range to be researched, and it stays (below). **Leg
+extension 10kg × 10, 12, 12**, the first 12s in the slot, holds. **Leg curl 10kg × 9, 9,
+9**, off the 8s at last, holds; it was run 4 of 4, so **the Nordic curl is proposed**
+(the slot's `call` and RX.note), and the leg curl stays until he says yes. **Calves
+40kg × 10, 10, 10**, the second full Lower under 15–20 at the load he keeps choosing.
+The page said 35kg if it happened again; the band moves to 10–12 at 40kg instead, the
+leg curl's precedent and the squat's lesson the same day: when he keeps picking a load
+over the ask, fit the ask to him. Calf growth doesn't depend on a high rep count when
+the sets are hard. Hanging leg raise not logged, the second Sunday running.
+
+**RDL rep range, researched 2026-11-22 (his ask). The verdict is to keep 3 × 6–8.** No
+study compares RDL rep ranges head to head, so the answer is assembled:
+
+- *Growth* is similar anywhere from about 6 to 30 reps when sets go near failure;
+  *strength* is better with heavier loads, roughly 8RM or less (Schoenfeld et al. 2017,
+  21 studies; Lopez et al. 2021, network meta-analysis).
+- *The RDL's stimulus is the stretch*: hamstrings loaded at long length. The seated leg
+  curl, which trains them long, grew them more than the prone (+14% vs +9% volume by
+  MRI; Maeo et al. 2021). A 6-week RDL vs Nordic trial, 4 × 4 at RPE 8–9 with a 4–6s
+  lowering, found equal gains in fascicle length and cross-section (protocol BMC SSMR
+  2023, results MSSE 2025).
+- *What ends a set* changes with the reps. Past about 8, grip and the lower back give
+  out before the hamstrings do, so the set stops being a hamstring set. At 3–5 the RDL
+  becomes a second heavy hinge, and Thursday's deadlift at 5s already is one.
+- *Proximity to failure*: stopping short keeps most of the strength gain for far fewer
+  hard reps (Pareja-Blanco et al. 2017, squat: 20% velocity loss matched 40% on strength
+  with ~40% fewer reps, though 40% grew the quads more). Here it matters because
+  Sunday's RDL is 48h before Tuesday's football, and heavy eccentric hamstring work is
+  what makes soreness.
+
+So 6–8, one or two in reserve, a slow lowering. That is under 8RM for strength, inside
+the growth range, long enough in the stretch, and short enough that the hamstrings end
+the set. 8–10 would be defensible on the evidence too; 10–12 and 3–5 are not, for this
+slot. The squat going heavy doesn't change it: the squat is the quad compound, the RDL
+the hamstring hinge, and they don't share a scale.
+
 ## Yoga (15–20 min)
 
 No longer tied to a specific day. Do it after any session, or standalone. 90/90 hip
@@ -433,8 +480,10 @@ stretch · ankle dorsiflexion. Not tracked, not worth tracking.
   becomes the load. The right row's 55kg was handled the same way on 09-24.
   **Fired 2026-11-19** (80 × 5, 5, 5 on 11-05 and again on 11-19): **82.5kg** from 11-26.
 - **RDL** — +2.5kg once all three sets hit 8. 80kg from 2026-10-02, where he took it.
-- **Squat** — hold 70kg. +2.5kg once 10 holds across all three sets AND no joint
-  complaints.
+- **Squat** — 3 × 3–5, heavy (his call, 2026-11-22). +2.5kg once 5, 5, 5 holds two
+  sessions running with no knee complaint. 80kg × 5, 5, 5 on 11-22, knees ok: one of two.
+  If the knees talk, 75kg, never more reps. The old rule (hold 70kg, 10s on all three) is
+  retired.
 - **Iso-Lateral Row (Machine)** — +2.5kg once all three sets hit 10. 40kg from the
   10-22 baseline. **Fired 2026-11-14** (40 × 10, 10, 10): **42.5kg** from 11-19.
 - **Everything else** — at the top of the rep range on all sets for two consecutive
@@ -543,7 +592,7 @@ added on top.
 | Exercise | Slot | What it is for |
 |---|---|---|
 | Chest-Supported Row | **In trial, Upper C slot 2** — he started it 09-26, run 2 of 4 on 10-04 | Removes torso English from the row. |
-| Nordic Curl (eccentric) | Lower slot 4, displacing Leg Curl | Best-evidence hamstring protection for football. Start at 2×4. |
+| Nordic Curl (eccentric) | Lower slot 4, displacing Leg Curl | Best-evidence hamstring protection for football. Start at 2×4. **Proposed 2026-11-22**, after the leg curl's four runs; awaiting his answer. |
 | Weighted Dips | Upper B slot 4 | Once bodyweight dips hit 12, 12, 12 for three sessions. 1 of 3 on 2026-10-01. |
 | Ab Wheel | Upper C slot 6 or Lower slot 6 | Harder core option once hanging leg raises are easy. |
 

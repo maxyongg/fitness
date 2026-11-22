@@ -257,8 +257,8 @@
         "name": "Squat (Barbell)",
         "type": "rotate",
         "sets": 3,
-        "reps": "8-10",
-        "load": 70,
+        "reps": "3-5",
+        "load": 80,
         "unit": "kg",
         "alts": [
           "Pendulum Squat",
@@ -300,7 +300,7 @@
         "name": "Seated Calf Raise",
         "type": "rotate",
         "sets": 3,
-        "reps": "15-20",
+        "reps": "10-12",
         "load": 40,
         "unit": "kg"
       },
@@ -320,8 +320,8 @@
       }
     ]
   },
-  "rx_asof": "2026-11-21",
-  "rx_after": "2026-11-21 Upper C",
+  "rx_asof": "2026-11-22",
+  "rx_after": "2026-11-22 Lower",
   "flags": [],
   "last_done": {
     "upper_a": "2026-11-16",
@@ -356,7 +356,7 @@
       {"slot":6,"name":"Hanging Leg Raise","logged_as":"Hanging Leg Raise","type":"rotate","status":"holding","since_best":2,"top_streak":0,"best":{"date":"2026-10-04","text":"BW × 10, 10, 10"},"last":["11-07 BW × 10, 10, 10","10-31 BW × 10, 10","10-04 BW × 10, 10, 10"],"readings":3,"not_run":"2026-11-21","alts":[{"name":"Toes To Bar","logged_as":"Toes To Bar","date":"2026-09-26","text":"BW × 8, 6"},{"name":"Hollow Body Hold","logged_as":"Hollow Body Hold","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Plank","logged_as":"Plank","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Ab Wheel","date":null,"text":"never logged"}],"line":"2 sessions since the best, BW × 10, 10, 10 (10-04). Not run 11-21."}
     ],
     "lower": [
-      {"slot":1,"name":"Squat (Barbell)","logged_as":"Squat (Barbell)","type":"rotate","status":"holding","since_best":2,"top_streak":0,"best":{"date":"2026-09-27","text":"80kg × 5, 5, 5"},"last":["11-22 80kg × 5, 5, 5","10-02 80kg × 5, 5, 5","09-27 80kg × 5, 5, 5","09-12 80kg × 5 (re-entry)"],"readings":3,"alts":[{"name":"Pendulum Squat","logged_as":"Pendulum Squat","date":"2026-11-15","text":"25kg × 8, 8"},{"name":"Bulgarian Split Squat","date":null,"text":"never logged"}],"line":"2 sessions since the best, 80kg × 5, 5, 5 (09-27)."},
+      {"slot":1,"name":"Squat (Barbell)","logged_as":"Squat (Barbell)","type":"rotate","status":"holding","since_best":2,"top_streak":3,"best":{"date":"2026-09-27","text":"80kg × 5, 5, 5"},"last":["11-22 80kg × 5, 5, 5","10-02 80kg × 5, 5, 5","09-27 80kg × 5, 5, 5","09-12 80kg × 5 (re-entry)"],"readings":3,"alts":[{"name":"Pendulum Squat","logged_as":"Pendulum Squat","date":"2026-11-15","text":"25kg × 8, 8"},{"name":"Bulgarian Split Squat","date":null,"text":"never logged"}],"line":"2 sessions since the best, 80kg × 5, 5, 5 (09-27). Top of the band on every set, 3 sessions running."},
       {"slot":2,"name":"Romanian Deadlift (Barbell)","logged_as":"Romanian Deadlift (Barbell)","type":"anchor","status":"moving","since_best":0,"top_streak":0,"best":{"date":"2026-11-22","text":"80kg × 7, 7, 7"},"last":["11-22 80kg × 7, 7, 7","11-15 80kg × 6, 6, 6","10-02 80kg × 5, 7, 5","09-12 70kg × 8, 8, 8 (re-entry)"],"readings":3,"line":"New best last time: 80kg × 7, 7, 7 (11-22)."},
       {"slot":3,"name":"Leg Extension (Machine)","logged_as":"Leg Extension (Machine)","type":"rotate","status":"moving","since_best":0,"top_streak":0,"best":{"date":"2026-11-22","text":"10kg × 10, 12, 12"},"last":["11-22 10kg × 10, 12, 12","10-02 10kg × 10, 10, 10","09-27 10kg × 10, 10, 10"],"readings":3,"alts":[{"name":"Leg Press","logged_as":"Leg Press","date":"2026-11-15","text":"130kg × 8, 8, 8"},{"name":"Seated Leg Press (Machine)","logged_as":"Seated Leg Press (Machine)","date":"2026-09-12","text":"80kg × 8, 8"}],"line":"New best last time: 10kg × 10, 12, 12 (11-22)."},
       {"slot":4,"name":"Kneeling Leg Curl","logged_as":"Kneeling Leg Curl","type":"rotate","status":"moving","since_best":0,"top_streak":0,"best":{"date":"2026-11-22","text":"10kg × 9, 9, 9"},"last":["11-22 10kg × 9, 9, 9","11-15 10kg × 8, 8, 8","10-02 10kg × 8, 8, 8","09-27 10kg × 8"],"readings":4,"alts":[{"name":"Nordic Curl","date":null,"text":"never logged"}],"line":"New best last time: 10kg × 9, 9, 9 (11-22)."},
