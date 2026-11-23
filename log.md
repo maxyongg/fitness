@@ -877,6 +877,14 @@ effort: 8/10 | 80 min | load: 640 | 9-a-side, ICS@Clementi
      Leg extension 10, 12, 12 holds. Leg curl 9s x3 ends its four runs: Nordic curl proposed. Calves
      40 x 10s again: band to 10-12 at his load. Leg raise not logged. Upper A 11-23 unchanged. -->
 
+## 2026-11-23 · Mon · Upper A
+- Incline Bench Press (Barbell) — 40kg × 10, 70kg × 6, 6, 6, 50kg × 12
+- Pull Up — +10kg × 8, 7, bodyweight × 7
+- Chest Fly — 67.5kg × 12, 10, 10
+- Reverse Fly (Machine) — 47.5kg × 10, 10, 10
+- Lateral Raise (Dumbbell) — 8kg × 17, 17, 15
+- One Handed Triceps Pull — 10kg × 12, 12, 12
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
