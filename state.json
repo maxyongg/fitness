@@ -73,7 +73,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 65,
+        "load": 67.5,
         "unit": "kg",
         "alts": [
           "Cable Crossover",
@@ -105,7 +105,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 10,
+        "load": 12.5,
         "unit": "kg",
         "alts": [
           "Triceps Extension",
@@ -326,8 +326,8 @@
       }
     ]
   },
-  "rx_asof": "2026-11-22",
-  "rx_after": "2026-11-22 Lower",
+  "rx_asof": "2026-11-23",
+  "rx_after": "2026-11-23 Upper A",
   "flags": [
     "Pull-up: top set 8, total 22"
   ],

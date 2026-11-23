@@ -158,10 +158,10 @@ The push-heavy upper day. Incline bench leads.
 |---|---|---|---|---|
 | 1 | **Anchor** | Incline Bench Press (Barbell) | 3 working × 5–8, then a back-off for reps | **70kg** from 11-16 (his pick; 67.5kg from 10-05) |
 | 2 | **Anchor** | Pull Up | 3 × AMRAP | **+10kg** from 11-16 (his pick; +5kg from 09-28) |
-| 3 | Rotate — chest isolation | **Chest Fly** · Cable Crossover · Incline Chest Press | 3 × 10–12 | **65kg**, reps first |
+| 3 | Rotate — chest isolation | **Chest Fly** · Cable Crossover · Incline Chest Press | 3 × 10–12 | **67.5kg** from 11-23 (ran it unaware: 12, 10, 10) |
 | 4 | Rotate — rear delt | **Reverse Fly (Machine)** · Face Pull · ★ Bent-Over Rear-Delt Raise | 3 × 8–12 | **47.5kg** from 11-16 (his pick) |
 | 5 | **Anchor** | Lateral Raise — dumbbell or cable | 3 × 15–20, last set to failure (11-16) | **8kg** |
-| 6 | Rotate — triceps | **One Handed Triceps Pull** · Triceps Extension · ★ Skullcrusher | 3 × 10–12 | **10kg** |
+| 6 | Rotate — triceps | **One Handed Triceps Pull** · Triceps Extension · ★ Skullcrusher | 3 × 10–12 | **12.5kg** from 11-30 (12s ×3 on 11-16 and 11-23) |
 
 Pull-ups at slot 2: behind only the anchor press, they stay fresh. The position effect
 (`docs/findings.md`) says they need to be early — position 2 for five months gave 24–32
@@ -196,6 +196,14 @@ triceps extension hasn't been run since the August export. The "keep it prescrib
 fix above assumed he'd run it, and he hasn't, so the slot follows the movement he picks.
 It is set at 10kg, where his last set landed. Hollow body hold 1:00, 1:00 and push-ups
 15, 15 ran as finishers. Both were logged, which is what the logging section asks for.
+
+**2026-11-23.** Every slot moved. Incline 70 × 6, 6, 6 (from 5s), holds. Pull-ups
++10kg × 8, 7, holds. **Chest fly ran at 67.5kg** — he thought it was 65kg (debrief) —
+and gave 12, 10, 10, the best yet: a load he moves to in band becomes the load, so
+**67.5kg**, and the flat call is dropped. Reverse fly 47.5 × 10, 10, 10, holds. Lateral
+raise 17, 17, 15 with the last set to failure: the first move off 15s since 09-28, so
+15 was a habit; the 9kg/12–15 fallback is shelved while the reps climb. **Triceps pull
+12s ×3 twice: 12.5kg** by the everything-else rule.
 
 ## Upper B — Thursday (~60 min)
 
