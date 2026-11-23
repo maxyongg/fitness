@@ -1,0 +1,219 @@
+{
+  "key": "2026-11-23-upper-a",
+  "date": "2026-11-23",
+  "session": "Upper A",
+  "session_id": "upper_a",
+  "model": "claude-sonnet-5",
+  "created": "2026-11-23T11:26:48.072Z",
+  "logged": {
+    "date": "2026-11-23",
+    "session": "Upper A",
+    "session_id": "upper_a",
+    "exercises": [
+      {
+        "name": "Incline Bench Press (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 10
+          },
+          {
+            "weight": 70,
+            "reps": 6
+          },
+          {
+            "weight": 70,
+            "reps": 6
+          },
+          {
+            "weight": 70,
+            "reps": 6
+          },
+          {
+            "weight": 50,
+            "reps": 12
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 10,
+            "reps": 8
+          },
+          {
+            "weight": 10,
+            "reps": 7
+          },
+          {
+            "weight": 0,
+            "reps": 7
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Chest Fly",
+        "sets": [
+          {
+            "weight": 67.5,
+            "reps": 12
+          },
+          {
+            "weight": 67.5,
+            "reps": 10
+          },
+          {
+            "weight": 67.5,
+            "reps": 10
+          }
+        ],
+        "weight": 67.5
+      },
+      {
+        "name": "Reverse Fly (Machine)",
+        "sets": [
+          {
+            "weight": 47.5,
+            "reps": 10
+          },
+          {
+            "weight": 47.5,
+            "reps": 10
+          },
+          {
+            "weight": 47.5,
+            "reps": 10
+          }
+        ],
+        "weight": 47.5
+      },
+      {
+        "name": "Lateral Raise (Dumbbell)",
+        "sets": [
+          {
+            "weight": 8,
+            "reps": 17
+          },
+          {
+            "weight": 8,
+            "reps": 17
+          },
+          {
+            "weight": 8,
+            "reps": 15
+          }
+        ],
+        "weight": 8
+      },
+      {
+        "name": "One Handed Triceps Pull",
+        "sets": [
+          {
+            "weight": 10,
+            "reps": 12
+          },
+          {
+            "weight": 10,
+            "reps": 12
+          },
+          {
+            "weight": 10,
+            "reps": 12
+          }
+        ],
+        "weight": 10
+      }
+    ],
+    "notes": "Imported from Strong",
+    "extra": "",
+    "watch_recent": [
+      {
+        "date": "2026-11-16",
+        "kind": "lifting",
+        "min": 64,
+        "hr": {
+          "avg": 105,
+          "max": 150
+        },
+        "kcal": 278
+      },
+      {
+        "date": "2026-11-17",
+        "kind": "football",
+        "min": 123,
+        "hr": {
+          "avg": 129,
+          "max": 178
+        },
+        "kcal": 927
+      },
+      {
+        "date": "2026-11-19",
+        "kind": "lifting",
+        "min": 84,
+        "hr": {
+          "avg": 92,
+          "max": 136
+        },
+        "kcal": 322
+      },
+      {
+        "date": "2026-11-20",
+        "kind": "football",
+        "min": 120,
+        "hr": {
+          "avg": 142,
+          "max": 186
+        },
+        "kcal": 1072
+      },
+      {
+        "date": "2026-11-21",
+        "kind": "lifting",
+        "min": 48,
+        "hr": {
+          "avg": 93,
+          "max": 132
+        },
+        "kcal": 188
+      },
+      {
+        "date": "2026-11-22",
+        "kind": "lifting",
+        "min": 54,
+        "hr": {
+          "avg": 90,
+          "max": 139
+        },
+        "kcal": 207
+      }
+    ],
+    "sleep": {
+      "night": {
+        "date": "2026-11-23",
+        "start": "01:45",
+        "end": "08:59",
+        "asleep": 429,
+        "awake": 5,
+        "hrv": 125,
+        "hr": 47
+      },
+      "week": {
+        "nights": 7,
+        "asleep": 436,
+        "hrv": 123
+      },
+      "nights_known": 10
+    }
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Incline bench ran true to plan — 40kg×10 warm-up, 70kg×6, 6, 6, then 50kg×12 back-off. That's an improvement on 11-16's 5, 5, 5 at the same load, still short of the 8s needed for 72.5kg. Pull-ups in slot 2: +10kg×8, 7, then bodyweight×7 — the first set ticked up from last time's 7. Reverse fly held 47.5kg across all three sets at 10, 10, 10, cleaner than 11-16 when the third set dropped to 42.5kg. Lateral raise: 8kg×17, 17, 15 — both working sets up from 15 to 17, and the failure set landed at 15, same ceiling as every Monday since September. Triceps pull repeated 10kg×12, 12, 12. Chest fly came in at 67.5kg×12, 10, 10, a step up from the prescribed 65kg.\n\nSleep: 7h09 the night before, HRV 125, 47bpm asleep, against a week average of 7h16 and HRV 123. No normal yet to measure against, and nothing here looks tied to today's numbers.\n\nTrend: One Handed Triceps Pull has now hit 12, 12, 12 on both 11-16 and today — two sessions at the top of the band, so the rule fires: 12.5kg next time it's in rotation. Lateral raise is edging toward the 9kg mark (17+ on the first two is there) but the failure set still caps at 15, unchanged for four sessions running. Reverse fly looks more settled at 47.5kg than it did on 11-16.\n\nNext session: Upper B, Thu 26 Nov. Deadlift steps to 82.5kg for 3×5. Pull-ups stay slot 2, bodyweight, two short of failure. Iso-Lateral Row gets its first run at 42.5kg since the machine was taken on 11-19 — if it's taken again, seated cable row at 47kg. Cable curl moves to 11.25kg.\n\nQuestion: the chest fly jump to 67.5kg wasn't earned by the rule — 11-16 was 10, 10, 10 at 65kg, not 12s across the board. Did you just feel strong and push it, or was there a reason to skip ahead?",
+      "at": "2026-11-23T11:26:48.072Z"
+    }
+  ]
+}
