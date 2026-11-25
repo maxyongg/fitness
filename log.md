@@ -890,6 +890,9 @@ effort: 8/10 | 80 min | load: 640 | 9-a-side, ICS@Clementi
      Reverse fly 47.5 x 10s x3, holds. Laterals 17, 17, 15 with the failure set: off 15s at last, holds 8kg.
      Triceps pull 12s twice: 12.5kg. Upper B 11-26 unchanged: deadlift 82.5, row 42.5 owed, curl 11.25. -->
 
+## 2026-11-24 · Tue · Football
+effort: 8/10 | 80 min | load: 640 | 7-a-side, Shelton College, Telok Blangah
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

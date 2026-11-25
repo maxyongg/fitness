@@ -337,6 +337,16 @@
     "upper_c": "2026-11-21",
     "lower": "2026-11-22"
   },
+  "last_football": {
+    "played": true,
+    "format": "7-a-side",
+    "venue": "Shelton College, Telok Blangah",
+    "minutes": 80,
+    "effort": 8,
+    "load": 640,
+    "date": "2026-11-24",
+    "notes": ""
+  },
   "review": {
     "upper_a": [
       {"slot":1,"name":"Incline Bench Press (Barbell)","logged_as":"Incline Bench Press (Barbell)","type":"anchor","status":"moving","since_best":0,"top_streak":0,"best":{"date":"2026-11-23","text":"70kg × 6, 6, 6"},"last":["11-23 70kg × 6, 6, 6","11-16 70kg × 5, 5, 5","11-12 67.5kg × 7, 7, 7","10-26 65kg × 8, 8"],"readings":7,"line":"New best last time: 70kg × 6, 6, 6 (11-23)."},
