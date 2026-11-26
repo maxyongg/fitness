@@ -1,0 +1,259 @@
+{
+  "key": "2026-11-26-upper-b",
+  "date": "2026-11-26",
+  "session": "Upper B",
+  "session_id": "upper_b",
+  "model": "claude-sonnet-5",
+  "created": "2026-11-26T04:44:46.438Z",
+  "logged": {
+    "date": "2026-11-26",
+    "session": "Upper B",
+    "session_id": "upper_b",
+    "exercises": [
+      {
+        "name": "Deadlift (Barbell)",
+        "sets": [
+          {
+            "weight": 40,
+            "reps": 8
+          },
+          {
+            "weight": 85,
+            "reps": 5
+          },
+          {
+            "weight": 85,
+            "reps": 3
+          },
+          {
+            "weight": 40,
+            "reps": 5
+          }
+        ],
+        "weight": 40
+      },
+      {
+        "name": "Pull Up",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 8
+          },
+          {
+            "weight": 0,
+            "reps": 8
+          },
+          {
+            "weight": 0,
+            "reps": 8
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Iso-Lateral Row (Machine)",
+        "sets": [
+          {
+            "weight": 42.5,
+            "reps": 8
+          },
+          {
+            "weight": 42.5,
+            "reps": 8
+          },
+          {
+            "weight": 42.5,
+            "reps": 8
+          }
+        ],
+        "weight": 42.5
+      },
+      {
+        "name": "Straight Arm Pulldown",
+        "sets": [
+          {
+            "weight": 17.5,
+            "reps": 10
+          },
+          {
+            "weight": 17.5,
+            "reps": 10
+          },
+          {
+            "weight": 17.5,
+            "reps": 10
+          }
+        ],
+        "weight": 17.5
+      },
+      {
+        "name": "Triceps Dip",
+        "sets": [
+          {
+            "weight": 0,
+            "reps": 15
+          },
+          {
+            "weight": 0,
+            "reps": 15
+          },
+          {
+            "weight": 0,
+            "reps": 12
+          }
+        ],
+        "bodyweight": true
+      },
+      {
+        "name": "Cable Crossover",
+        "sets": [
+          {
+            "weight": 12.5,
+            "reps": 12
+          },
+          {
+            "weight": 12.5,
+            "reps": 12
+          },
+          {
+            "weight": 12.5,
+            "reps": 12
+          }
+        ],
+        "weight": 12.5
+      },
+      {
+        "name": "Bicep Curl (Cable)",
+        "sets": [
+          {
+            "weight": 11.25,
+            "reps": 10
+          },
+          {
+            "weight": 11.25,
+            "reps": 10
+          },
+          {
+            "weight": 10,
+            "reps": 10
+          }
+        ],
+        "weight": 11.25
+      }
+    ],
+    "notes": "My deadlift form is poor. Might either remove from next session onward or go for much lower weights.\n\nAlso was extremely tired today",
+    "extra": "",
+    "watch": {
+      "date": "2026-11-26",
+      "start": "11:28",
+      "end": "12:37",
+      "kind": "lifting",
+      "type": "Workout",
+      "source": "Apple Watch",
+      "via": "shortcut",
+      "min": 69,
+      "kcal": 262,
+      "hr": {
+        "avg": 97,
+        "min": 75,
+        "max": 139,
+        "n": 819,
+        "bins": {
+          "70": 1.8,
+          "80": 17,
+          "90": 24.1,
+          "100": 17.9,
+          "110": 5.9,
+          "120": 2.1,
+          "130": 1.2
+        }
+      },
+      "curve5": {
+        "t0": "11:28",
+        "every": 5,
+        "bpm": [
+          99,
+          102,
+          96,
+          101,
+          98,
+          100,
+          96,
+          94,
+          91,
+          94,
+          97,
+          98,
+          97,
+          99
+        ]
+      }
+    },
+    "watch_recent": [
+      {
+        "date": "2026-11-19",
+        "kind": "lifting",
+        "min": 84,
+        "hr": {
+          "avg": 92,
+          "max": 136
+        },
+        "kcal": 322
+      },
+      {
+        "date": "2026-11-20",
+        "kind": "football",
+        "min": 120,
+        "hr": {
+          "avg": 142,
+          "max": 186
+        },
+        "kcal": 1072
+      },
+      {
+        "date": "2026-11-21",
+        "kind": "lifting",
+        "min": 48,
+        "hr": {
+          "avg": 93,
+          "max": 132
+        },
+        "kcal": 188
+      },
+      {
+        "date": "2026-11-22",
+        "kind": "lifting",
+        "min": 54,
+        "hr": {
+          "avg": 90,
+          "max": 139
+        },
+        "kcal": 207
+      }
+    ],
+    "sleep": {
+      "night": {
+        "date": "2026-11-26",
+        "start": "01:38",
+        "end": "08:49",
+        "asleep": 422,
+        "awake": 9,
+        "hrv": 99,
+        "hr": 44
+      },
+      "week": {
+        "nights": 7,
+        "asleep": 435,
+        "hrv": 116
+      },
+      "nights_known": 12
+    }
+  },
+  "thread": [
+    {
+      "role": "coach",
+      "text": "Today: Deadlift was the one going for 82.5kg × 5,5,5; instead you dropped to 40kg × 5 after two working sets at 85kg (5, then 3), with the form note and the fatigue note both on record. Reading it as a dropped session, not a regression — the prescription's own fallback for a grinding first set was 80kg, and a worse-than-usual day plus poor form is reason enough to pull back mid-session. Pull-ups held at bodyweight × 8, 8, 8, same as 11-19. Row got its first run at 42.5kg for 8, 8, 8 — in band, rule not yet fired (needs 8-10 held, which it did, so that's one session toward whatever the next step is). Straight arm pulldown stayed at 17.5kg × 10, 10, 10 rather than stepping to 21kg. Dips, crossover and curl all matched or sat at prescription (dips 15,15,12 bodyweight, crossover 12.5kg × 12,12,12, curl 11.25kg × 10,10 then 10kg × 10).\n\nHeart rate: 69 minutes start to end, averaging 97 — close to your other recent lifting sessions (90-93 avg) despite the tiredness. The trace is flat and low the whole way, drifting 94-102 throughout with no real spike, which fits a session that got cut short rather than one that got harder.\n\nSleep: 7h02 the night before against a 7-night average of 7h15 — not a shortfall worth blaming, but HRV at 99ms is well under the week's 116ms average. That dip lines up with the fatigue note better than the sleep duration does.\n\nTrend: Deadlift at 82.5kg didn't happen; 85kg was tried and backed off within the session. Nothing stalled three-plus sessions here — this is one data point, not a pattern yet.\n\nNext session: Upper C Saturday. Nothing from today changes that session's prescription. Separately — given the form note, worth deciding with your coach whether deadlift drops out or moves to a lighter rebuild before Thursday's Upper B comes around again.\n\nQuestion: When the form broke down, was it the heavier 85kg sets themselves, or did it feel off even on the 40kg warm-up/finisher sets either side?",
+      "at": "2026-11-26T04:44:46.438Z"
+    }
+  ]
+}
