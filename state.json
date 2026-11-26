@@ -125,7 +125,7 @@
         "type": "anchor",
         "sets": 3,
         "reps": "5",
-        "load": 82.5,
+        "load": 60,
         "unit": "kg"
       },
       {
@@ -149,7 +149,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "8-12",
-        "load": 21,
+        "load": 17.5,
         "unit": "kg",
         "alts": [
           "Lat Pulldown",
@@ -173,7 +173,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "10-12",
-        "load": 12.5,
+        "load": 13.75,
         "unit": "kg",
         "alts": [
           "Single Arm Cable Chest Fly",
@@ -332,8 +332,8 @@
       }
     ]
   },
-  "rx_asof": "2026-11-23",
-  "rx_after": "2026-11-23 Upper A",
+  "rx_asof": "2026-11-26",
+  "rx_after": "2026-11-26 Upper B",
   "flags": [
     "Pull-up: top set 8, total 24"
   ],

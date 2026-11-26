@@ -905,6 +905,12 @@ Also was extremely tired today
 - Cable Crossover — 12.5kg × 12, 12, 12
 - Bicep Curl (Cable) — 11.25kg × 10, 10, 10kg × 10
 
+<!-- Re-prescribed 2026-11-26 after Upper B. Deadlift 85 x 5, 3: form off from the warm-up and remarked on
+     by someone else, extremely tired (HRV 99). Not a reading: 60kg x 5 x 3 form rebuild, +5kg a session
+     while clean; keep or drop asked in RX.note. Row 42.5 x 8s x3, first run, holds. SAP 17.5 x 10s twice,
+     his load: 17.5kg tracked. Crossover 12s x3 twice: 13.75kg. Dips BW 15, 15, 12, his tired-day pick,
+     +10kg stays. Cable curl 11.25 holds. Pull-ups B flat by design. Upper C 11-28 loads unchanged. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0

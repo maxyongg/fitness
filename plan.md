@@ -211,13 +211,13 @@ The pull-heavy upper day, and the week's deadlift. Deadlift first, pull-ups seco
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **82.5kg** from 11-26 (80 × 5, 5, 5 on 11-05 and 11-19) |
+| 1 | **Anchor** | Deadlift (Barbell) | 3 × 5 | **60kg form rebuild** from 12-03 (form off from the warm-up on 11-26; +5kg a session back while the 5s stay clean) |
 | 2 | **Anchor** | Pull Up | 3 × AMRAP−2 | bodyweight |
-| 3 | **Anchor** | Iso-Lateral Row (Machine), both arms | 3 × 8–10 | **42.5kg**, still owed its first run (machine taken 11-19) |
-| 4 | Rotate — vertical pull | **Straight Arm Pulldown** · Lat Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 8–12 | **21kg** (the stack has no 20) |
+| 3 | **Anchor** | Iso-Lateral Row (Machine), both arms | 3 × 8–10 | **42.5kg** (8, 8, 8 on 11-26, first run; 10s ×3 earn 45kg) |
+| 4 | Rotate — vertical pull | **Straight Arm Pulldown** · Lat Pulldown · Alternate Single-Arm Lat Pulldown · Underhand Pulldown | 3 × 8–12 | **17.5kg**, his load (10s ×3 on 11-19 and 11-26); 12s ×3 twice earn 21kg (the stack has no 20) |
 | 5 | Rotate — push compound | **Triceps Dip**, weighted · bodyweight | 3 × 8–12 | **+10kg** from 11-19 |
-| 6 | Rotate — chest isolation | **Cable Crossover** · Single Arm Cable Chest Fly · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | **12.5kg** (12s ×3 on 11-19, one more earns 13.75kg) |
-| 7 | Rotate — biceps | **Bicep Curl (Cable)** · Bicep Curl (Barbell) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **next pin above 10kg** (11.25kg) from 11-26: 10s ×3 on 09-24 and 11-19 (barbell flat at 30kg since 10-01) |
+| 6 | Rotate — chest isolation | **Cable Crossover** · Single Arm Cable Chest Fly · Decline Chest Press · Chest Fly · Incline Chest Press | 3 × 10–12 | **13.75kg** from 12-03 (12s ×3 on 11-19 and 11-26) |
+| 7 | Rotate — biceps | **Bicep Curl (Cable)** · Bicep Curl (Barbell) · Preacher Curl · Hammer Curl · Incline Curl | 3 × 8–10 | **11.25kg** (10, 10, then 10kg × 10 on 11-26, first run at the pin) |
 
 **AMRAP−2 on pull-ups**, not AMRAP. This is the second pull-up session of the week —
 two full AMRAP sessions 72h apart is more joint stress than the frequency warrants. Two
@@ -256,6 +256,20 @@ curl 10, 10, 10 again, the top of the band twice: next pin. Crossover 12, 12, 12
 first top-of-band session; it holds at 12.5kg for the second, since 13.75kg gave 8s on
 11-05. Straight-arm pulldown at 17.5kg × 10, 10, 10, his pick under the 21kg ask; 21kg
 stays the call.
+
+**2026-11-26.** "My deadlift form is poor. Might either remove from next session onward
+or go for much lower weights. Also was extremely tired today" (his note; HRV 99 against a
+116 week). 85kg × 5, 3, then 40kg × 5. Asked in the debrief, he said it **felt off from the
+start, and someone remarked his form was poor**: the form broke before the load, so it is
+not a strength reading and 82.5kg is not owed. The deadlift is an anchor, so the slot keeps
+the exercise and the number moves: **60kg × 5 × 3**, the slot's starting load, light enough
+to watch the bar (film a set from the side), then **+5kg a session** while the 5s stay
+clean, back towards 80kg. Dropping it from Upper B is his call, asked in `RX.note`, not
+made here. Row 42.5 × 8, 8, 8, first run, in band. Straight-arm pulldown 17.5 × 10 ×3, his
+second session at 17.5 over the 21kg ask: **17.5kg is the load**, 12s twice earn 21kg. Dips
+BW × 15, 15, 12, his pick on a tired day; +10kg stays the slot. **Crossover 12s ×3 twice:
+13.75kg.** Cable curl 11.25 × 10, 10, 10kg × 10: holds; the swap call is dropped, it is
+moving. Upper C 11-28 unchanged.
 
 **Second run, 2026-10-01. Pain(R) 6/10, the highest reading in the log.** He saved it
 from Strong as "B - Pull". The import matched exercise names only, so it logged and
