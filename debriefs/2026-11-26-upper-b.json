@@ -254,6 +254,16 @@
       "role": "coach",
       "text": "Today: Deadlift was the one going for 82.5kg × 5,5,5; instead you dropped to 40kg × 5 after two working sets at 85kg (5, then 3), with the form note and the fatigue note both on record. Reading it as a dropped session, not a regression — the prescription's own fallback for a grinding first set was 80kg, and a worse-than-usual day plus poor form is reason enough to pull back mid-session. Pull-ups held at bodyweight × 8, 8, 8, same as 11-19. Row got its first run at 42.5kg for 8, 8, 8 — in band, rule not yet fired (needs 8-10 held, which it did, so that's one session toward whatever the next step is). Straight arm pulldown stayed at 17.5kg × 10, 10, 10 rather than stepping to 21kg. Dips, crossover and curl all matched or sat at prescription (dips 15,15,12 bodyweight, crossover 12.5kg × 12,12,12, curl 11.25kg × 10,10 then 10kg × 10).\n\nHeart rate: 69 minutes start to end, averaging 97 — close to your other recent lifting sessions (90-93 avg) despite the tiredness. The trace is flat and low the whole way, drifting 94-102 throughout with no real spike, which fits a session that got cut short rather than one that got harder.\n\nSleep: 7h02 the night before against a 7-night average of 7h15 — not a shortfall worth blaming, but HRV at 99ms is well under the week's 116ms average. That dip lines up with the fatigue note better than the sleep duration does.\n\nTrend: Deadlift at 82.5kg didn't happen; 85kg was tried and backed off within the session. Nothing stalled three-plus sessions here — this is one data point, not a pattern yet.\n\nNext session: Upper C Saturday. Nothing from today changes that session's prescription. Separately — given the form note, worth deciding with your coach whether deadlift drops out or moves to a lighter rebuild before Thursday's Upper B comes around again.\n\nQuestion: When the form broke down, was it the heavier 85kg sets themselves, or did it feel off even on the 40kg warm-up/finisher sets either side?",
       "at": "2026-11-26T04:44:46.438Z"
+    },
+    {
+      "role": "max",
+      "text": "it felt off from the start, and someone remarked my form was poor",
+      "at": "2026-11-26T04:45:57.998Z"
+    },
+    {
+      "role": "coach",
+      "text": "That changes the read — if it was off from the very first warm-up set, the 85kg sets weren't the cause, they just loaded onto form that was already compromised. Backing off to 40kg for the last set was the right call, not a fatigue bailout.\n\nGiven that, pushing straight back to 82.5kg next Thursday without addressing the form itself would be repeating the same mistake at higher stakes. Your own instinct in the note — remove it or go much lighter next time — lines up with what an outside pair of eyes just told you independently. Two signals pointing the same way is worth listening to.\n\nThis goes to your coach either way, but my view: next Upper B, deadlift should be a rebuild at a weight where you can actually watch your own form (even back to just the bar or 40kg for a few sets), not a continuation of the 82.5kg progression. Worth flagging to your coach specifically that someone external called it out, since that's a different kind of evidence than your own log.",
+      "at": "2026-11-26T04:46:04.451Z"
     }
   ]
 }
