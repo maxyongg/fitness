@@ -4,7 +4,7 @@
   "session": "Lower",
   "session_id": "lower",
   "model": "claude-sonnet-5",
-  "created": "2026-11-27T03:58:04.217Z",
+  "created": "2026-11-27T04:05:26.128Z",
   "logged": {
     "date": "2026-11-27",
     "session": "Lower",
@@ -94,6 +94,50 @@
     ],
     "notes": "lower back hurt a bit from doing rdl",
     "extra": "",
+    "watch": {
+      "date": "2026-11-27",
+      "start": "11:06",
+      "end": "11:56",
+      "kind": "other",
+      "type": "Workout",
+      "source": "Apple Watch",
+      "via": "shortcut",
+      "min": 50,
+      "kcal": 194,
+      "hr": {
+        "avg": 93,
+        "min": 65,
+        "max": 134,
+        "n": 584,
+        "bins": {
+          "60": 0.8,
+          "70": 9.9,
+          "80": 10.3,
+          "90": 15.1,
+          "100": 7.6,
+          "110": 4.9,
+          "120": 2.1,
+          "130": 0.5
+        }
+      },
+      "curve5": {
+        "t0": "11:06",
+        "every": 5,
+        "bpm": [
+          86,
+          96,
+          94,
+          100,
+          110,
+          93,
+          83,
+          93,
+          89,
+          89,
+          96
+        ]
+      }
+    },
     "watch_recent": [
       {
         "date": "2026-11-20",
@@ -157,8 +201,8 @@
   "thread": [
     {
       "role": "coach",
-      "text": "Today: Squat held at 80kg for 5, 5, 5, identical to 11-22, no knee complaints noted. RDL climbed to 80kg x 8, 8, 7, up from 7, 7, 7 last time — two of three sets now at the top of the range. Leg extension came in at 10kg x 10, 10, 10, down from the 12, 12 you hit on 11-22. Nordic curl replaced kneeling leg curl, as the prescription allows. Calf raise and hanging leg raise aren't in the log today.\n\nSleep: 7h23 the night before, HRV 128ms, 47bpm asleep — both above the week's average of 7h18 and HRV 118. No normal yet to measure against (13 of 14 nights needed), but nothing here looks like a thin night.\n\nTrend: squat has now given 80kg x 5, 5, 5 with quiet knees on both 11-22 and today — that's the second session the progression rule asked for, so the load should move to 82.5kg next Sunday. RDL is tracking toward 82.5kg too, one set away (needs 8s across all three, currently 8, 8, 7).\n\nRounding: calf raise has missed two of the last three Lowers (11-15, today), and hanging leg raise hasn't shown up in a Lower log since 10-02 — it's logged on Upper C instead. Not a problem if it's getting done unlogged, just worth knowing which it is.\n\nQuestion: the note says the lower back hurt a bit from the RDL — was that still bothering you through leg extension, or is the drop to 10, 10, 10 just an off day unrelated to it?\n\nNext session: Upper C, Sat 28 Nov. Keep the flat call (30kg press, 20kg row, 5kg lateral) if Thursday's tiredness is still hanging around. Separately, carry 82.5kg into next Sunday's squat given two clean 5, 5, 5 sessions with quiet knees.",
-      "at": "2026-11-27T03:58:04.217Z"
+      "text": "Today: Squat 80kg × 5, 5, 5 again, same as 11-22, no knee complaint in the note — two sessions like that is exactly what the coach's call needed, so 82.5kg is earned for Sunday. RDL 80kg × 8, 8, 7, up from 7, 7, 7 last time — two sets at the top of the range, third dropped, and the note says the lower back felt it on this lift. Leg extension came in at 10kg × 10, 10, 10, down from the two 12s on 11-22; nothing in the log explains that drop except the back mention. Nordic curl ran instead of kneeling leg curl — bodyweight × 8, 8, 8, the first time it's in the log, so no trend to read yet. Seated calf raise and hanging leg raise didn't appear this time.\n\nHeart rate: 50 minutes start to end, 93 avg, 65–134 bpm, most of it sitting in the 80s and 90s. It climbed to 110 around the 15-minute mark — likely the squat or RDL working sets — then settled back into the 80s–90s for the rest. That's in line with the week's other lifting sessions (48 min/93 avg, 54 min/90 avg, 69 min/97 avg), nothing unusual.\n\nSleep: 7h23 the night before, HRV 128 against the week's average of 118 — a good reading, no sign here that sleep is behind the back niggle. No normal yet to measure either number against (13 of 14 nights logged).\n\nQuestion: was the lower back thing a mild tightness or something that changed how the RDL sets felt as you went? That decides whether 82.5kg is still the plan for the RDL or whether it's worth dropping to 75kg for a session first.\n\nNext session: Sunday Lower — squat moves to 82.5kg for 3×3-5, knees still the guard. RDL stays at 80kg, 6–8, with the aim of all three sets at 8 before any jump — back permitting. Leg extension back toward 12s if the previous drop was just fatigue, not the back. Bring the calf raise and hanging leg raise back in, or log them if they happened off the books.",
+      "at": "2026-11-27T04:05:26.128Z"
     }
   ]
 }
