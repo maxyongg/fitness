@@ -2269,10 +2269,24 @@ function sessionCard(item, i, w, debriefsCache, canDebrief) {
   if (w) h += '<div class="hrh">Watch</div>' + watchRows(w, null);
   if (!fb && item.date && item.session_id && debriefsCache[debriefKey(item)]) {
     h += '<button class="hist-link" onclick="openDebrief(\'' + debriefKey(item) + '\')">Read the debrief →</button>';
+    var made = debriefsCache[debriefKey(item)].logged;
+    if (w && canDebrief && !(made && made.watch))
+      h += '<button class="hist-link" onclick="redoDebrief(' + i + ')">Redo it with the watch data →</button>';
   } else if (!fb && item.date && canDebrief) {
     h += '<button class="hist-link" onclick="debriefFromHistory(' + i + ')">Get the debrief →</button>';
   }
   return h + '</div></div>';
+}
+
+/* A debrief made before the watch upload landed: ask the Worker again, now with the heart rate.
+   It replaces the old one, and any replies under it, here and in debriefs/ (git keeps the old). */
+function redoDebrief(i) {
+  var item = getHistory()[i];
+  if (!item) return;
+  var old = getDebriefs()[debriefKey(item)];
+  if (old && old.thread.length > 1
+      && !confirm("This replaces the debrief and your replies under it. Redo it with the watch data?")) return;
+  debriefManual(item, "debrief-hist");
 }
 
 function toggleHist(i) { toggleCard(document.getElementById("hist-" + i)); }
