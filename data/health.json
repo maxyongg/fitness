@@ -1,5 +1,5 @@
 {
-  "_generated": "2026-11-27T09:55:14",
+  "_generated": "2026-11-27T10:04:45",
   "_by": "index.html (Apple Health import) + watch.py (shortcut uploads)",
   "_note": "Workout summaries, and one summary per night. hr.bins: minutes per 10-bpm band, keyed by its lower bound. via: shortcut = from a Shortcut upload, where min is elapsed time. Nights: minutes asleep and awake, HRV (ms) and heart rate inside the sleep, Apple's resting heart rate. Read via health.py. Each workout's heart-rate curve is in data/hr/YYYY-MM.json.",
   "exported": "2026-11-05",
@@ -768,6 +768,6 @@
     {"date":"2026-11-23","start":"01:45","end":"08:59","asleep":429,"awake":5,"stages":{"core":315,"deep":23,"rem":91},"via":"shortcut","hr":{"avg":47,"low":42,"n":91},"hrv":125,"hrv_n":4,"rhr":54},
     {"date":"2026-11-25","start":"02:07","end":"09:32","asleep":438,"awake":7,"stages":{"core":332,"deep":36,"rem":70},"via":"shortcut","hrv":99,"hrv_n":3,"rhr":51},
     {"date":"2026-11-26","start":"01:38","end":"08:49","asleep":422,"awake":9,"stages":{"core":290,"deep":39,"rem":93},"via":"shortcut","hr":{"avg":44,"low":38,"n":100},"hrv":99,"hrv_n":3,"rhr":50},
-    {"date":"2026-11-27","start":"02:23","end":"09:52","asleep":443,"awake":6,"stages":{"core":380,"deep":24,"rem":39},"via":"shortcut","hr":{"avg":47,"low":39,"n":96},"hrv":128,"hrv_n":4}
+    {"date":"2026-11-27","start":"02:23","end":"09:52","asleep":443,"awake":6,"stages":{"core":380,"deep":24,"rem":39},"via":"shortcut","hr":{"avg":47,"low":39,"n":97},"hrv":128,"hrv_n":4}
   ]
 }
