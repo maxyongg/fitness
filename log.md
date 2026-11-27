@@ -911,6 +911,13 @@ Also was extremely tired today
      his load: 17.5kg tracked. Crossover 12s x3 twice: 13.75kg. Dips BW 15, 15, 12, his tired-day pick,
      +10kg stays. Cable curl 11.25 holds. Pull-ups B flat by design. Upper C 11-28 loads unchanged. -->
 
+## 2026-11-27 · Fri · Lower
+note: lower back hurt a bit from doing rdl
+- Squat (Barbell) — 40kg × 8, 80kg × 5, 5, 5
+- Romanian Deadlift (Barbell) — 40kg × 8 (warm-up), 80kg × 8, 8, 7
+- Leg Extension (Machine) — 10kg × 10, 10, 10
+- Nordic Curl — bodyweight × 8, 8, 8
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
