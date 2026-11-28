@@ -252,7 +252,7 @@
         "type": "rotate",
         "sets": 3,
         "reps": "3-5",
-        "load": 80,
+        "load": 82.5,
         "unit": "kg",
         "alts": [
           "Pendulum Squat",
@@ -280,14 +280,14 @@
         ]
       },
       {
-        "name": "Kneeling Leg Curl",
+        "name": "Nordic Curl",
         "type": "rotate",
         "sets": 3,
-        "reps": "8-10",
-        "load": 10,
-        "unit": "kg",
+        "reps": "6-8",
+        "load": 0,
+        "unit": "BW",
         "alts": [
-          "Nordic Curl"
+          "Kneeling Leg Curl"
         ]
       },
       {
@@ -314,8 +314,8 @@
       }
     ]
   },
-  "rx_asof": "2026-11-26",
-  "rx_after": "2026-11-26 Upper B",
+  "rx_asof": "2026-11-28",
+  "rx_after": "2026-11-27 Lower",
   "flags": [],
   "last_done": {
     "upper_a": "2026-11-23",
@@ -353,7 +353,7 @@
       {"slot":1,"name":"Squat (Barbell)","logged_as":"Squat (Barbell)","type":"rotate","status":"flat","since_best":3,"top_streak":4,"best":{"date":"2026-09-27","text":"80kg × 5, 5, 5"},"last":["11-27 80kg × 5, 5, 5","11-22 80kg × 5, 5, 5","10-02 80kg × 5, 5, 5","09-27 80kg × 5, 5, 5"],"readings":4,"alts":[{"name":"Pendulum Squat","logged_as":"Pendulum Squat","date":"2026-11-15","text":"25kg × 8, 8"},{"name":"Bulgarian Split Squat","date":null,"text":"never logged"}],"line":"No new best in 3 sessions since 09-27 (80kg × 5, 5, 5). Top of the band on every set, 4 sessions running."},
       {"slot":2,"name":"Romanian Deadlift (Barbell)","logged_as":"Romanian Deadlift (Barbell)","type":"anchor","status":"moving","since_best":0,"top_streak":0,"best":{"date":"2026-11-27","text":"80kg × 8, 8, 7"},"last":["11-27 80kg × 8, 8, 7","11-22 80kg × 7, 7, 7","11-15 80kg × 6, 6, 6","10-02 80kg × 5, 7, 5"],"readings":4,"line":"New best last time: 80kg × 8, 8, 7 (11-27)."},
       {"slot":3,"name":"Leg Extension (Machine)","logged_as":"Leg Extension (Machine)","type":"rotate","status":"holding","since_best":1,"top_streak":0,"best":{"date":"2026-11-22","text":"10kg × 10, 12, 12"},"last":["11-27 10kg × 10, 10, 10","11-22 10kg × 10, 12, 12","10-02 10kg × 10, 10, 10","09-27 10kg × 10, 10, 10"],"readings":4,"alts":[{"name":"Leg Press","logged_as":"Leg Press","date":"2026-11-15","text":"130kg × 8, 8, 8"},{"name":"Seated Leg Press (Machine)","logged_as":"Seated Leg Press (Machine)","date":"2026-09-12","text":"80kg × 8, 8"}],"line":"1 session since the best, 10kg × 10, 12, 12 (11-22)."},
-      {"slot":4,"name":"Kneeling Leg Curl","logged_as":"Kneeling Leg Curl","type":"rotate","status":"moving","since_best":0,"top_streak":0,"best":{"date":"2026-11-22","text":"10kg × 9, 9, 9"},"last":["11-22 10kg × 9, 9, 9","11-15 10kg × 8, 8, 8","10-02 10kg × 8, 8, 8","09-27 10kg × 8"],"readings":4,"alts":[{"name":"Nordic Curl","logged_as":"Nordic Curl","date":"2026-11-27","text":"BW × 8, 8, 8"}],"line":"New best last time: 10kg × 9, 9, 9 (11-22)."},
+      {"slot":4,"name":"Nordic Curl","logged_as":"Nordic Curl","type":"rotate","status":"new","since_best":0,"top_streak":1,"best":{"date":"2026-11-27","text":"BW × 8, 8, 8"},"last":["11-27 BW × 8, 8, 8"],"readings":1,"alts":[{"name":"Kneeling Leg Curl","logged_as":"Kneeling Leg Curl","date":"2026-11-22","text":"10kg × 9, 9, 9"}],"line":"1 reading so far, too few to call a trend. Top of the band on every set, 1 session running."},
       {"slot":5,"name":"Seated Calf Raise","logged_as":"Seated Calf Raise (Plate Loaded)","type":"rotate","status":"new","since_best":1,"top_streak":0,"best":{"date":"2026-10-02","text":"40kg × 10, 10, 10"},"last":["11-22 40kg × 10, 10, 10","10-02 40kg × 10, 10, 10","09-12 40kg × 12, 12, 12 (re-entry)"],"readings":2,"not_run":"2026-11-27","line":"2 readings so far, too few to call a trend. Not run 11-27."},
       {"slot":6,"name":"Hanging Leg Raise","logged_as":"Hanging Leg Raise","type":"rotate","status":"new","since_best":0,"top_streak":0,"best":{"date":"2026-10-02","text":"BW × 10, 10, 10"},"last":["10-02 BW × 10, 10, 10"],"readings":1,"not_run":"2026-11-27","alts":[{"name":"Toes To Bar","logged_as":"Toes To Bar","date":"2026-09-26","text":"BW × 8, 6"},{"name":"Hollow Body Hold","logged_as":"Hollow Body Hold","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Plank","logged_as":"Plank","date":"2026-10-26","text":"0:30, 0:30, 0:30"},{"name":"Ab Wheel","date":null,"text":"never logged"}],"line":"1 reading so far, too few to call a trend. Not run 11-27."}
     ]

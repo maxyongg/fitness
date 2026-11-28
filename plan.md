@@ -352,10 +352,10 @@ fortnight; this doubles the frequency.
 
 | # | Slot | Exercise | Sets | Now |
 |---|---|---|---|---|
-| 1 | Rotate — quad compound | **Squat (Barbell)** · Pendulum Squat · ★ Bulgarian Split Squat | 3 × 3–5 | **80kg** |
+| 1 | Rotate — quad compound | **Squat (Barbell)** · Pendulum Squat · ★ Bulgarian Split Squat | 3 × 3–5 | **82.5kg** (5, 5, 5 at 80kg twice, 11-22, 11-27) |
 | 2 | **Anchor** | Romanian Deadlift (Barbell) | 3 × 6–8 | **80kg** |
 | 3 | Rotate — quad volume | **Leg Extension (Machine)** · Leg Press · Seated Leg Press (Machine) | 3 × 10–12 | **10kg** |
-| 4 | Rotate — hamstring | **Kneeling Leg Curl** · ★ Nordic Curl (eccentric, 2×4) | 3 × 8–10 | **10kg** |
+| 4 | Rotate — hamstring | **Nordic Curl** (in trial, run 1 of 4 on 11-27) · Kneeling Leg Curl | 3 × 6–8 | bodyweight |
 | 5 | Rotate — calves | Seated Calf Raise (Plate Loaded) | 3 × 10–12 | **40kg** |
 | 6 | Rotate — core | **Hanging Leg Raise** · Toes To Bar · Hollow Body Hold · Plank · ★ Ab Wheel | 3 × 10–12 | bodyweight |
 
@@ -443,6 +443,18 @@ The page said 35kg if it happened again; the band moves to 10–12 at 40kg inste
 leg curl's precedent and the squat's lesson the same day: when he keeps picking a load
 over the ask, fit the ask to him. Calf growth doesn't depend on a high rep count when
 the sets are hard. Hanging leg raise not logged, the second Sunday running.
+
+**Fifth run, Friday 2026-11-27** (moved off Sunday this week; 7h23 asleep, HRV 128).
+**Squat 80kg × 5, 5, 5** again, no knee complaint: two clean sessions at 3–5, so the
+rule fires, **82.5kg**; 80kg if the knees or the back talk. **RDL 80kg × 8, 8, 7**, up
+from 7s, but his note says the lower back hurt a bit from it: not 8s on all three, so
+**it holds at 80kg**, 75kg if the back still talks. Asked in RX.note whether it was mild
+tightness or changed the sets. **Leg extension 10kg × 10, 10, 10** holds. **He ran the
+Nordic curl, BW × 8, 8, 8**, in place of the leg curl: that is his answer to the 11-22
+proposal, so **the Nordic curl takes slot 4 for its four-run trial**, at the 3 × 6–8 he
+chose rather than the 2 × 4 proposed (his volume, not a ramp); the leg curl goes to the
+swaps. Calves and hanging leg raise not logged. Upper B's 60kg deadlift rebuild gets a
+40kg-only fallback if the back is still there on Thursday.
 
 **RDL rep range, researched 2026-11-22 (his ask). The verdict is to keep 3 × 6–8.** No
 study compares RDL rep ranges head to head, so the answer is assembled:
@@ -614,7 +626,7 @@ added on top.
 | Exercise | Slot | What it is for |
 |---|---|---|
 | Chest-Supported Row | **In trial, Upper C slot 2** — he started it 09-26, run 2 of 4 on 10-04 | Removes torso English from the row. |
-| Nordic Curl (eccentric) | Lower slot 4, displacing Leg Curl | Best-evidence hamstring protection for football. Start at 2×4. **Proposed 2026-11-22**, after the leg curl's four runs; awaiting his answer. |
+| Nordic Curl (eccentric) | Lower slot 4, displacing Leg Curl | Best-evidence hamstring protection for football. Start at 2×4. **Proposed 2026-11-22**; he ran it 11-27 at 3 × 8, his answer. **In trial, Lower slot 4, run 1 of 4.** |
 | Weighted Dips | Upper B slot 4 | Once bodyweight dips hit 12, 12, 12 for three sessions. 1 of 3 on 2026-10-01. |
 | Ab Wheel | Upper C slot 6 or Lower slot 6 | Harder core option once hanging leg raises are easy. |
 

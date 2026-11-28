@@ -918,6 +918,12 @@ note: lower back hurt a bit from doing rdl
 - Leg Extension (Machine) — 10kg × 10, 10, 10
 - Nordic Curl — bodyweight × 8, 8, 8
 
+<!-- Re-prescribed 2026-11-28 after Lower (Friday, moved off Sunday). Squat 80 x 5, 5, 5 twice
+     (11-22, 11-27), knees quiet: 82.5kg. RDL 80 x 8, 8, 7, lower back hurt a bit: holds 80, 75 if
+     it still talks; asked tightness vs changed the sets. Leg ext 10 x 10s holds. Nordic curl BW
+     x 8, 8, 8, his answer to the proposal: takes slot 4, run 1 of 4, 3 x 6-8; leg curl to swaps.
+     Upper B deadlift rebuild gets a 40kg fallback for the back. Upper C 11-28 loads unchanged. -->
+
 <!-- Baseline at handover, from the Strong export of 8 May 2024 – 31 Aug 2026:
      382 sessions · 7,323 working sets · 3.16 sessions/week lifetime, 2.67 over the last 12 weeks.
      e1RM: bench 93.3 · incline bench 82.3 · OHP 50.7 (peak 61.7 in Feb) · squat 95.0
